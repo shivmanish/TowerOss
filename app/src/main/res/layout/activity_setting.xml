@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:scrollbars="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".DashboardActivity">
+    tools:context=".activities.LanguageActivity">
 
    <LinearLayout
        android:paddingStart="25dp"
@@ -83,6 +83,7 @@
                android:layout_height="wrap_content"/>
 
            <TextView
+               android:id="@+id/language"
                android:text="Change Language"
                style="@style/SettingGeneralText"
                android:layout_width="match_parent"
@@ -171,6 +172,7 @@
            </LinearLayout>
 
            <ImageView
+               android:visibility="gone"
                android:layout_marginTop="25dp"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"

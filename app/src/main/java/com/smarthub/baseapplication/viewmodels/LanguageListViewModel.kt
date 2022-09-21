@@ -6,5 +6,4 @@ import com.smarthub.baseapplication.model.LangModel
 
 class LanguageListViewModel() : ViewModel() {
 
-
 }

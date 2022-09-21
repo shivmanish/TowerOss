@@ -3,18 +3,41 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_home_check.xml" value="0.159" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_lang_check.xml" value="0.1615" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_lang_checked.xml" value="0.1615" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_lang_unchecked.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_menu_check.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_notification_check.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/btn_task_check.xml" value="0.159" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_back.xml" value="0.1615" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.188" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_home_black_24dp_off.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_language_bg.xml" value="0.202" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_menu_black_24dp_off.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_notification_on.xml" value="0.15" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.15" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_notifications_black_24dp_off.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_profile.xml" value="0.202" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_task_black_24dp.xml" value="0.159" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/ic_task_black_24dp_off.xml" value="0.159" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/lang_list_rounded_border.xml" value="0.1615" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/language_item_overlay.xml" value="0.1" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/menu_bg_top.xml" value="0.188" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/drawable/selected_rounded_border.xml" value="0.1615" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_dashboard.xml" value="0.264" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/content_main.xml" value="0.264" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_menu.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_task.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/lang_item.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/toolbar.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/menu/menu_main.xml" value="0.1" />
       </map>
     </option>
   </component>

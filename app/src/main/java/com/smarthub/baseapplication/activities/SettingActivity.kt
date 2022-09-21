@@ -1,12 +1,11 @@
-package com.smarthub.baseapplication
+package com.smarthub.baseapplication.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import com.smarthub.baseapplication.databinding.ActivityDashboardBinding
 import com.smarthub.baseapplication.databinding.ActivitySettingBinding
-import com.smarthub.baseapplication.model.LangModel
 
 class SettingActivity : AppCompatActivity() {
 
@@ -23,5 +22,9 @@ class SettingActivity : AppCompatActivity() {
 
     //    initialize all view
     fun initViews(){
+        dataBinding?.language?.setOnClickListener {
+            var intent = Intent(this@SettingActivity,LanguageActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

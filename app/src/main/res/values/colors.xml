@@ -7,4 +7,5 @@
 
     <color name="bgColor">#FFFFFF</color>
     <color name="iconBlack">#3F4D67</color>
+    <color name="normalTextColor">#3F4D67</color>
 </resources>
