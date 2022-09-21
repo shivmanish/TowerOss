@@ -19,4 +19,14 @@
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textColor">#949191</item>
     </style>
+
+    <style name="SettingGeneralText" parent="Widget.AppCompat.TextView" >
+        <item name="android:text">English</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:drawableRight">@drawable/arrow_farword</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">#000000</item>
+    </style>
 </resources>

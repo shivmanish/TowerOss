@@ -18,6 +18,13 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.BaseApplication">
+
+        </activity>
+        <activity
+            android:name=".SettingActivity"
+            android:exported="true"
+            android:label="@string/setting"
+            android:theme="@style/Theme.BaseApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
