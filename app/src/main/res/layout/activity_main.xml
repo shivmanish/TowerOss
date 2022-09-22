@@ -2,49 +2,48 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
-    android:background="#F1F1F1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include
+        android:id="@+id/search_box_container"
+        layout="@layout/custom_actionbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view"
-        app:cardCornerRadius="15dp"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginBottom="-10dp"
+        android:background="@drawable/top_shadow"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_top_bottomnavigation"
+        app:elevation="4dp"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:elevation="10dp"
-        android:layout_marginBottom="-15dp"
-        app:strokeWidth="0dp"
-        app:cardBackgroundColor="@android:color/holo_red_dark">
-        <LinearLayout
-            android:paddingBottom="10dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/nav_view"
-                app:itemActiveIndicatorStyle="@android:color/transparent"
-                app:labelVisibilityMode="labeled"
-                android:background="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:menu="@menu/bottom_nav_menu" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        app:menu="@menu/bottom_nav_menu" />
+
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:defaultNavHost="true"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toTopOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@+id/search_box_container"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/mobile_navigation" />
+        app:navGraph="@navigation/mobile_navigation"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

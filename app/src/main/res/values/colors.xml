@@ -7,5 +7,16 @@
 
     <color name="bgColor">#FFFFFF</color>
     <color name="iconBlack">#3F4D67</color>
+    <color name="search_background">#36445F</color>
+    <color name="search_star_color">#ADC1E1</color>
     <color name="normalTextColor">#3F4D67</color>
+
+
+    <color name="purple_200">#3F4D67</color>
+    <color name="purple_500">#3F4D67</color>
+    <color name="purple_700">#3F4D67</color>
+    <color name="teal_200">#3F4D67</color>
+    <color name="teal_700">#3F4D67</color>
+
+    <color name="search_setting">#E3E3E3</color>
 </resources>
