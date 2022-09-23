@@ -8,6 +8,10 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="logout"><u>Logout</u></string>
+    <string name="site_name_uid">Site Name Uid..</string>
+    <string name="search_site">Search site</string>
+    <string name="history">History</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
