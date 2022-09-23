@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import com.smarthub.baseapplication.databinding.ActivitySettingBinding
+import com.smarthub.baseapplication.ui.profile.ProfileActivity
 
 class SettingActivity : AppCompatActivity() {
 
@@ -26,5 +27,10 @@ class SettingActivity : AppCompatActivity() {
             var intent = Intent(this@SettingActivity,LanguageActivity::class.java)
             startActivity(intent)
         }
+        dataBinding?.editProfile?.setOnClickListener {
+            var intent = Intent(this@SettingActivity,ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

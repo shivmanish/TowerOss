@@ -71,6 +71,7 @@
                android:layout_height="wrap_content"/>
 
            <TextView
+               android:id="@+id/edit_profile"
                android:text="@string/edit_profile"
                style="@style/SettingGeneralText"
                android:layout_width="match_parent"
