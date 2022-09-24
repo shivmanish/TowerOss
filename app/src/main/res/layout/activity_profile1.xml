@@ -136,6 +136,7 @@
                     android:drawableStart="@drawable/ic_call"
                     android:fontFamily="@font/roboto"
                     android:layout_marginStart="@dimen/dp15"
+                    android:drawableTint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/text_name"
@@ -147,12 +148,26 @@
                     android:textSize="12sp"
                     android:id="@+id/text_message"
                     android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/ic_inbox"
+                    android:drawableStart="@drawable/ic_call"
                     android:fontFamily="@font/roboto"
                     android:layout_marginStart="@dimen/dp15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/text_call"
+                    app:layout_constraintStart_toEndOf="@+id/profile_card"/>
+                <TextView
+                    android:text=""
+                    android:layout_marginTop="10dp"
+                    android:textColor="#787878"
+                    android:textSize="12sp"
+                    android:id="@+id/text_empty"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_inbox"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/text_message"
                     app:layout_constraintStart_toEndOf="@+id/profile_card"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

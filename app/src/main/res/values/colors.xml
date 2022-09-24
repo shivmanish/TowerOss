@@ -23,5 +23,10 @@
     <color name="teal_700">#3F4D67</color>
 
     <color name="search_setting">#E3E3E3</color>
+
+    <color name="yellow">#FFFF00</color>
+    <color name="background_login">#3F4D68</color>
+    <color name="color1">#425371</color>
+    <color name="color2">#FFD72B</color>
     <color name="pop_text_color">#636363</color>
 </resources>
