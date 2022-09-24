@@ -6,18 +6,18 @@ import android.view.Window
 import android.view.WindowManager
 import com.smarthub.baseapplication.LanguageListAdapter
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ActivityDashboardBinding
+import com.smarthub.baseapplication.databinding.ActivityLanguageBinding
 import com.smarthub.baseapplication.model.LangModel
 
 class LanguageActivity : AppCompatActivity() {
 
-    private var dataBinding : ActivityDashboardBinding ?=null
+    private var dataBinding : ActivityLanguageBinding ?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        dataBinding = ActivityDashboardBinding.inflate(layoutInflater)
+        dataBinding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(dataBinding?.root)
         initViews()
     }
