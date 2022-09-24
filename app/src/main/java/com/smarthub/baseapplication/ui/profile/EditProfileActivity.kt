@@ -6,17 +6,17 @@ import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.ProfileListAdapter
-import com.smarthub.baseapplication.databinding.ActivityProfileBinding
+import com.smarthub.baseapplication.databinding.ActivityProfileEditBinding
 
-class ProfileActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
 
-    private var dataBinding : ActivityProfileBinding?=null
+    private var dataBinding : ActivityProfileEditBinding?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        dataBinding = ActivityProfileBinding.inflate(layoutInflater)
+        dataBinding = ActivityProfileEditBinding.inflate(layoutInflater)
         setContentView(dataBinding?.root)
         initViews()
     }
@@ -24,13 +24,7 @@ class ProfileActivity : AppCompatActivity() {
     private var popupWindow: PopupWindow? = null
     private fun initViews(){
         dataBinding?.profileItemsList?.setHasFixedSize(true)
-
-//        test case 1
         dataBinding?.profileItemsList?.adapter = ProfileListAdapter()
-
-//        test case 2
-        dataBinding?.profileItemsList?.adapter = ProfileListAdapter()
-
         dataBinding?.imgMenu?.setOnClickListener {
             createPopWindow(it)
         }

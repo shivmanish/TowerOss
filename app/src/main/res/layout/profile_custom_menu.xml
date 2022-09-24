@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingRight="30dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+
+        app:cardElevation="5dp"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#ffffff">
+        <LinearLayout
+            android:id="@+id/child_container"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Delete"
+                android:padding="5dp"
+                android:fontFamily="@font/montserrat"
+                android:drawablePadding="10dp"
+                android:textSize="13sp"
+                android:id="@+id/action_delete_self_comment"
+                android:drawableStart="@drawable/ic_edit_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EFEDED"
+                android:visibility="visible"
+                android:id="@+id/divider"/>
+             <TextView
+                android:text="More"
+                android:padding="5dp"
+                android:fontFamily="@font/montserrat"
+                android:drawablePadding="10dp"
+                android:textSize="13sp"
+                 android:drawableStart="@drawable/ic_edit_menu"
+                android:drawableTint="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

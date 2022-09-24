@@ -36,6 +36,8 @@
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_dashboard.xml" value="0.264" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_profile1.xml" value="0.20512820512820512" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_profile2.xml" value="0.20512820512820512" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/content_main.xml" value="0.264" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
@@ -45,6 +47,12 @@
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/fragment_task.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/lang_item.xml" value="0.25" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/pro_double_item_view.xml" value="0.20427350427350427" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/pro_single_item_view.xml" value="0.20427350427350427" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/profile_custom_menu.xml" value="0.20427350427350427" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/profile_item_edit_view.xml" value="0.264" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/profile_list_item.xml" value="0.264" />
+        <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/search_activity.xml" value="0.20512820512820512" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/layout/toolbar.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/work/personal/task/BaseApplication/app/src/main/res/menu/menu_main.xml" value="0.1" />
