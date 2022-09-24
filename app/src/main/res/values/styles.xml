@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="input_style" >
+
+        <item name="android:textSize">
+            14sp
+        </item>
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+    <style name="registratio">
+
+        <item name="android:textSize">
+            30sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+    <style name="please_ente">
+
+        <item name="android:textSize">
+            12sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+    <style name="some_id1">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            @color/color1
+        </item>
+
+    </style>
+    <style name="password">
+
+        <item name="android:textSize">
+            11sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+    <style name="geography">
+
+        <item name="android:textSize">
+            11sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+    <style name="basic_info">
+
+        <item name="android:textSize">
+            11sp
+        </item>
+
+        <item name="android:textColor">
+            @color/color2
+        </item>
+
+    </style>
+    <style name="some_id3">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+
+    </style>
+    <style name="button1">
+
+        <item name="android:textSize">
+            16sp
+        </item>
+
+        <item name="android:textColor">
+            @color/color2
+        </item>
+        <item name="android:fontFamily">montserrat</item>
+
+    </style>
+    <style name="already_hav">
+
+        <item name="android:textSize">
+            12sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+        <item name ="android:textStyle">
+            italic
+        </item>
+        <item name="android:fontFamily">montserrat</item>
+
+    </style>
+    <style name="login">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            @color/color2
+        </item>
+        <item name ="android:textStyle">
+            italic
+        </item>
+        <item name="android:fontFamily">montserrat</item>
+
+    </style>
+    <style name="login_first">
+
+        <item name="android:textSize">
+            40sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+        <item name="android:fontFamily">montserrat</item>
+
+    </style>
+
+</resources>
