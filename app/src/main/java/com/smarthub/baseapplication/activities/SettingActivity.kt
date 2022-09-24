@@ -3,8 +3,10 @@ package com.smarthub.baseapplication.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivitySettingBinding
 import com.smarthub.baseapplication.ui.profile.ProfileActivity
 
@@ -22,7 +24,10 @@ class SettingActivity : AppCompatActivity() {
     }
 
     //    initialize all view
-    fun initViews(){
+    private fun initViews(){
+        findViewById<View>(R.id.img_back).setOnClickListener {
+            onBackPressed()
+        }
         dataBinding?.language?.setOnClickListener {
             var intent = Intent(this@SettingActivity,LanguageActivity::class.java)
             startActivity(intent)

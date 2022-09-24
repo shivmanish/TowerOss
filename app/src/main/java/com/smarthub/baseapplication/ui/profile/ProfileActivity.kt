@@ -26,6 +26,10 @@ class ProfileActivity : AppCompatActivity() {
 
     private var popupWindow: PopupWindow? = null
     private fun initViews(){
+        findViewById<View>(R.id.img_back).setOnClickListener {
+            onBackPressed()
+        }
+
         dataBinding?.profileItemsList?.setHasFixedSize(true)
 
         var list : ArrayList<Any> = ArrayList()
