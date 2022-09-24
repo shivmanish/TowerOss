@@ -26,11 +26,13 @@ class EditProfileActivity : AppCompatActivity() {
     private var popupWindow: PopupWindow? = null
     private fun initViews(){
         dataBinding?.profileItemsList?.setHasFixedSize(true)
-
+        findViewById<View>(R.id.img_back).setOnClickListener {
+            onBackPressed()
+        }
 
         dataBinding?.profileItemsList?.adapter = ProfileListItemAdapter()
         dataBinding?.imgMenu?.setOnClickListener {
-            createPopWindow(it)
+//            createPopWindow(it)
         }
     }
 

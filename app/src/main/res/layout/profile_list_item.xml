@@ -8,8 +8,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
         android:text="Role Geograpghy"
         android:textColor="#4F4D4D"
         android:id="@+id/geograpghy"
