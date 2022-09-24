@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProfileListItemBinding
 
-class ProfileListAdapter : RecyclerView.Adapter<ProfileListAdapter.ViewHold>() {
+class ProfileListViewAdapter : RecyclerView.Adapter<ProfileListViewAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -42,7 +42,14 @@ class ProfileListAdapter : RecyclerView.Adapter<ProfileListAdapter.ViewHold>() {
             proSingleItemViewBinding?.geograpghy?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
             collapse(proSingleItemViewBinding?.list!!)
 
-            proSingleItemViewBinding.list.adapter = ProfileListItemAdapter()
+
+
+            var list : ArrayList<Any> = ArrayList()
+            list.add("single_item")
+            list.add("double_item")
+            list.add("default")
+            list.add("double_half_item")
+            proSingleItemViewBinding.list.adapter = ProfileListViewItemAdapter(list)
         }
 
          private fun collapse(v: View) {

@@ -50,6 +50,12 @@
             android:label="@string/setting"
             android:theme="@style/Theme.BaseApplication">
 
+        </activity>  <activity
+            android:name=".ui.profile.ProfileActivity1"
+            android:exported="true"
+            android:label="@string/setting"
+            android:theme="@style/Theme.BaseApplication">
+
         </activity>
 
         <activity

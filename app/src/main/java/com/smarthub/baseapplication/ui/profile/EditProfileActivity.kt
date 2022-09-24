@@ -6,6 +6,8 @@ import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.ProfileListAdapter
+import com.smarthub.baseapplication.adapter.ProfileListItemAdapter
+import com.smarthub.baseapplication.adapter.ProfileListViewAdapter
 import com.smarthub.baseapplication.databinding.ActivityProfileEditBinding
 
 class EditProfileActivity : AppCompatActivity() {
@@ -24,7 +26,9 @@ class EditProfileActivity : AppCompatActivity() {
     private var popupWindow: PopupWindow? = null
     private fun initViews(){
         dataBinding?.profileItemsList?.setHasFixedSize(true)
-        dataBinding?.profileItemsList?.adapter = ProfileListAdapter()
+
+
+        dataBinding?.profileItemsList?.adapter = ProfileListItemAdapter()
         dataBinding?.imgMenu?.setOnClickListener {
             createPopWindow(it)
         }
