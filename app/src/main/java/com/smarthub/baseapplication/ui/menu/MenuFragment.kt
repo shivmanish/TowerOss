@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
+import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class MenuFragment : Fragment() {
 
@@ -19,10 +20,12 @@ class MenuFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var mainViewModel:MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val notificationsViewModel = ViewModelProvider(this)[MenuViewModel::class.java]
-
+        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        mainViewModel.isActionBarHide(false)
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

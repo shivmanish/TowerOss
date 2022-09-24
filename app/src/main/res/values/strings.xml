@@ -1,4 +1,18 @@
 <resources>
+    <string-array name="tab_names">
+        <item>Site Info</item>
+        <item>Customer</item>
+        <item>Site Lease</item>
+        <item>Blackhaul</item>
+        <item>Utilities</item>
+    </string-array>
+    <integer-array name="random_imgs">
+        <item>@drawable/siteicon</item>
+        <item>@drawable/siteicon</item>
+        <item>@drawable/siteicon</item>
+        <item>@drawable/siteicon</item>
+        <item>@drawable/siteicon</item>
+    </integer-array>
     <string name="app_name">BaseApplication</string>
     <string name="setting">Setting</string>
     <string name="action_settings">Settings</string>
@@ -57,4 +71,31 @@
     <string name="title_menu">Menu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--site-->
+    <string name="site_latlong">Site lat-long</string>
+    <string name="site">Site Status</string>
+    <string name="site_aquisition">Site Aquisition</string>
+    <string name="site_address">Site Address</string>
+    <string name="state">State</string>
+    <string name="cluster">Cluster</string>
+    <string name="site_dimesion">Site Dimension</string>
+    <string name="no_tenant">No. of Tenant</string>
+    <string name="sit_category">Site Category</string>
+    <string name="power_type">Power Type</string>
+    <string name="tenant_feasibility">Tenant Feasibility</string>
+    <string name="power_backup">Power Back-up</string>
+    <string name="smps_config">SMPS Configuration</string>
+    <string name="no_plots">No.of Poles</string>
+    <string name="pole_length">Pole Length(m)</string>
+    <string name="offset_pole">Offset Pole Count</string>
+    <string name="avg_eb">Avg. EB Supply</string>
+    <string name="edit">Edit</string>
+    <string name="lifecycle">Lifecycle</string>
+    <string name="escalationmatrix">Escalation Matrix</string>
+    <string name="viewonmap">View on map</string>
+
+
+
+
 </resources>

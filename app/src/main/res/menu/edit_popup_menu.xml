@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/id_edit"
+        android:icon="@drawable/btn_home_check"
+        android:title="@string/edit" />
+
+    <item
+        android:id="@+id/id_lifecycle"
+        android:icon="@drawable/btn_task_check"
+        android:title="@string/lifecycle" />
+
+    <item
+        android:id="@+id/id_escalation"
+        android:icon="@drawable/btn_notification_check"
+        android:title="@string/escalationmatrix" />
+
+    <item
+        android:id="@+id/id_viewonmap"
+        android:icon="@drawable/btn_menu_check"
+        android:title="@string/viewonmap" />
+</menu>
