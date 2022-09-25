@@ -10,6 +10,7 @@ import android.widget.Button
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.activities.LoginActivity
+import com.smarthub.baseapplication.activities.MainActivity
 import com.smarthub.baseapplication.ui.profile.ProfileActivity
 
 
@@ -38,8 +39,9 @@ class RegFragment_3 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.RegComplete).setOnClickListener {
             activity?.let{
-                val intent = Intent (it, ProfileActivity::class.java)
+                val intent = Intent (it, MainActivity::class.java)
                 it.startActivity(intent)
+                activity?.finish()
             }
         }
         val loginButton = view.findViewById<Button>(R.id.login)
@@ -47,6 +49,7 @@ class RegFragment_3 : Fragment() {
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
                 it.startActivity(intent)
+                activity?.finish()
             }
         }
     }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/search_card_view"
         android:layout_width="@dimen/dp180"
         android:layout_height="wrap_content"
@@ -12,6 +12,7 @@
         android:layout_marginLeft="@dimen/dp8"
         android:background="@color/white"
         app:cardCornerRadius="@dimen/dp6"
+        android:elevation="@dimen/dp5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -117,5 +118,5 @@
 
 
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
