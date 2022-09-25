@@ -13,6 +13,7 @@
        android:orientation="vertical"
        android:scrollbars="vertical"
        android:clickable="false"
+       android:paddingBottom="@dimen/dp50"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
        <LinearLayout
