@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
+import com.smarthub.baseapplication.ui.profile.ProfileActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class MenuFragment : Fragment() {
@@ -34,7 +35,10 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.profileCard.setOnClickListener {
+            var intent = Intent(requireContext(),ProfileActivity::class.java)
+            requireActivity().startActivity(intent)
+        }
         binding.setting.setOnClickListener {
             var intent = Intent(requireContext(),SettingActivity::class.java)
             requireActivity().startActivity(intent)
