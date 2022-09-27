@@ -49,11 +49,7 @@ class SiteDetailFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainViewModel.isActionBarHide(true)
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -151,8 +147,7 @@ class SiteDetailFragment : Fragment() {
         })
     }
 
-    internal inner class ViewPagerAdapter(manager: FragmentManager) :
-        FragmentPagerAdapter(manager) {
+    internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
         private val mFragmentList = ArrayList<Fragment>()
 //        private val mFragmentTitleList = ArrayList<String>()
 
@@ -174,7 +169,4 @@ class SiteDetailFragment : Fragment() {
           }*/
     }
 
-    fun setSelectTab() {
-
-    }
 }
