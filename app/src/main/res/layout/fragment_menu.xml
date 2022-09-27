@@ -24,8 +24,9 @@
            <TextView
                android:id="@+id/title"
                android:layout_width="match_parent"
-               android:layout_height="?attr/actionBarSize"
+               android:layout_height="wrap_content"
                android:singleLine="true"
+               android:layout_marginBottom="@dimen/dp30"
                android:gravity="center_vertical"
                android:textColor="@color/iconBlack"
                android:textSize="18sp"
@@ -49,13 +50,13 @@
                android:layout_width="match_parent"
                android:layout_weight="1"
                android:layout_margin="5dp"
-               android:layout_height="110dp"
+               android:layout_height="@dimen/dp85"
                app:cardCornerRadius="10dp"
                app:cardBackgroundColor="@color/white"
                app:strokeColor="@color/white"
                app:cardElevation="5dp">
                <LinearLayout
-                   android:padding="12dp"
+                   android:padding="@dimen/dp10"
                    android:orientation="horizontal"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent">
@@ -78,10 +79,11 @@
                        <RelativeLayout
                            android:layout_width="match_parent"
                            android:layout_height="match_parent">
+
                            <View
-                               android:background="#FFD72B"
                                android:layout_width="match_parent"
-                               android:layout_height="match_parent"/>
+                               android:layout_height="match_parent"
+                               android:background="#FFD72B" />
                            <ImageView
                                android:id="@+id/img_profile"
                                android:layout_width="wrap_content"
@@ -108,11 +110,13 @@
                               <TextView
                                   android:text="Manage account"
                                   android:textSize="11sp"
-                                  android:ellipsize="marquee"
                                   android:textColor="#3D4E6D"
+                                  android:maxLines="1"
+                                  android:layout_marginEnd="@dimen/dp4"
+                                  android:fontFamily="@font/montserrat"
+                                  style="@style/AutoResizeTextView"
                                   android:layout_alignTop="@+id/img_profile"
                                   android:layout_toRightOf="@+id/img_profile"
-                                  android:fontFamily="@font/montserrat"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"/>
                           </LinearLayout>
@@ -125,7 +129,7 @@
                        android:layout_marginTop="5dp"
                        android:layout_marginBottom="5dp"
                        android:layout_marginStart="5dp"
-                       android:layout_marginEnd="10dp"
+                       android:layout_marginEnd="5dp"
                        android:layout_height="match_parent"
                        app:cardCornerRadius="10dp"
                        app:cardBackgroundColor="@color/white"
@@ -167,8 +171,10 @@
                               <TextView
                                   android:text="App account"
                                   android:textSize="11sp"
-                                  android:ellipsize="marquee"
+                                  android:maxLines="1"
+                                  android:layout_marginEnd="@dimen/dp4"
                                   android:textColor="@color/white"
+                                  style="@style/AutoResizeTextView"
                                   android:layout_alignTop="@+id/img_profile"
                                   android:layout_toRightOf="@+id/img_profile"
                                   android:fontFamily="@font/montserrat"

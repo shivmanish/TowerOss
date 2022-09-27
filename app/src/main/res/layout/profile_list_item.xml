@@ -14,7 +14,8 @@
         android:textColor="#4F4D4D"
         android:id="@+id/geograpghy"
         android:gravity="center_vertical"
-        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_regular"
         android:tag="false"
         android:drawableEnd="@drawable/ic_arrow_up"/>
 

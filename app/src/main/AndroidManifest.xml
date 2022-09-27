@@ -47,8 +47,13 @@
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        </activity>  <activity
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.profile.ProfileActivity1"
             android:exported="true"
             android:label="@string/setting">
@@ -57,18 +62,18 @@
 
         <activity
             android:name=".activities.DashboardActivity"
-            android:exported="false" />
+            android:exported="false" ></activity>
         <activity
             android:name=".activities.RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <meta-data
             android:name="preloaded_fonts"

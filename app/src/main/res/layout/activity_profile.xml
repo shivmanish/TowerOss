@@ -186,10 +186,11 @@
                         android:text="02"
                         android:layout_marginTop="10dp"
                         android:textColor="#000000"
-                        android:textSize="25sp"
+                        android:textSize="28sp"
                         android:id="@+id/text_1"
                         android:drawablePadding="5dp"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/montserrat_light"
+                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dp15"
                         android:layout_width="wrap_content"
                         app:layout_constraintTop_toTopOf="parent"
@@ -228,10 +229,11 @@
                         android:text="Active"
                         android:layout_marginTop="10dp"
                         android:textColor="#018101"
-                        android:textSize="25sp"
+                        android:textSize="28sp"
                         android:id="@+id/text_active"
                         android:drawablePadding="5dp"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/montserrat_light"
+                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dp15"
                         android:layout_width="wrap_content"
                         app:layout_constraintTop_toTopOf="parent"
@@ -448,9 +450,34 @@
                         android:id="@+id/img_calendar"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
-                    </ImageView>
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
+                    <TextView
+                        android:text="HGHG5454"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:id="@+id/text_em_engineer"
+                        android:fontFamily="@font/montserrat"
+                        android:layout_marginStart="@dimen/dp15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img_calendar"/>
+
+                    <TextView
+                        android:text="Employee ID"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#787878"
+                        android:textSize="12sp"
+                        android:id="@+id/text_em_name"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginStart="@dimen/dp15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/text_em_engineer"
+                        app:layout_constraintStart_toEndOf="@+id/img_calendar"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
