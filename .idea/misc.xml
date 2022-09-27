@@ -4,7 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/blank_border.xml" value="0.142" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/border_login.xml" value="0.1565" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/btn_update_bg.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/circle.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/circle_border.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/ic_profile_border.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/ic_status1.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/light_border.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/login_white_border.xml" value="0.1565" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/drawable/login_yellow_border.xml" value="0.1565" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/font/montserrat_bold.xml" value="0.14010416666666667" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_language.xml" value="0.25" />
@@ -12,14 +20,22 @@
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_profile_edit.xml" value="0.2" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_registration.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/activity_setting.xml" value="0.25" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_login_step_1.xml" value="0.24895833333333334" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_menu.xml" value="0.25" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_reg_1.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_reg_2.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_reg_3.xml" value="0.2" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/loging_second_step.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/pro_double_half_view.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/pro_double_item_view.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/profile_custom_menu.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/profile_list_item.xml" value="0.25" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_first_step.xml" value="0.25" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_second_step.xml" value="0.25" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_third_step.xml" value="0.25" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/test_layout.xml" value="0.264" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/toolbar.xml" value="0.24010416666666667" />
       </map>
     </option>

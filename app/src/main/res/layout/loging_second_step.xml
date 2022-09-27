@@ -2,9 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background_login"
-    tools:context=".activities.LoginActivity"
     android:id="@+id/fragmentContainerView"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -17,13 +15,13 @@
 
         <TextView
             android:text="Login"
-            android:textSize="@dimen/dp22"
+            android:textSize="@dimen/dp28"
             android:textColor="#ffffff"
             android:id="@+id/login1"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp10"
             android:fontFamily="@font/montserrat_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +52,24 @@
             android:paddingStart="@dimen/dp10"
             android:gravity="center_vertical"
             android:layout_height="@dimen/dp45"
-            android:layout_marginBottom="@dimen/dp30"
+            android:layout_marginBottom="@dimen/dp8"
             android:background="@drawable/login_white_border"
             android:fontFamily="@font/montserrat_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/email_error"/>
+
+        <TextView
+            android:text="Please enter a valid username or email id"
+            android:textSize="13sp"
+            android:textColor="#FF0303"
+            android:id="@+id/email_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_marginBottom="@dimen/dp20"
+            android:fontFamily="@font/montserrat_regular"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/password"/>
 
         <TextView
@@ -73,12 +84,26 @@
             android:paddingStart="@dimen/dp10"
             android:gravity="center_vertical"
             android:layout_height="@dimen/dp45"
-            android:layout_marginBottom="@dimen/dp20"
             android:background="@drawable/login_white_border"
             android:fontFamily="@font/montserrat_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/dp8"
+            app:layout_constraintBottom_toTopOf="@+id/forgot_error"/>
+
+        <TextView
+            android:text="Password is incorrect"
+            android:textSize="13sp"
+            android:textColor="#FF0303"
+            android:id="@+id/forgot_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_marginBottom="@dimen/dp30"
+            android:fontFamily="@font/montserrat_regular"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/forgot_password"/>
+
 
         <TextView
             android:text="Forgot password?"
@@ -158,7 +183,7 @@
             android:layout_height="0dp"
             android:id="@+id/bottom_margin"
             android:layout_width="match_parent"
-            app:layout_constraintHeight_percent="0.11"
+            app:layout_constraintHeight_percent="0.08"
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
