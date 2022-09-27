@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication;
+package com.smarthub.baseapplication.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;

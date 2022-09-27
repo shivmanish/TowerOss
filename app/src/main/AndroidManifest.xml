@@ -62,10 +62,11 @@
             android:theme="@style/Theme.BaseApplication">
 
         </activity>
-        
+
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.BaseApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

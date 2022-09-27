@@ -1,10 +1,10 @@
-package com.smarthub.baseapplication
+package com.smarthub.baseapplication.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.LangItemBinding
 import com.smarthub.baseapplication.model.LangModel
 
