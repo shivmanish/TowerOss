@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_action_bar"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dp15"
     android:background="@color/iconBlack">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/iconBlack"
+        tools:ignore="MissingConstraints">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btn_back"
@@ -58,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/dp10"
-        android:src="@drawable/search"
+        android:src="@drawable/barcode_svg"
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/btn_mice"
@@ -77,4 +84,4 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+</androidx.constraintlayout.widget.ConstraintLayout>

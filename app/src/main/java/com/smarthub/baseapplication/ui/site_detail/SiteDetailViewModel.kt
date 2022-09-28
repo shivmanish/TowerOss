@@ -20,6 +20,8 @@ import com.smarthub.baseapplication.R
 class SiteDetailViewModel: ViewModel() {
     var changeStatusPopUp:PopupWindow?=null
     var tabNames= MutableLiveData<Array<String>>()
+    var isScrollUp = MutableLiveData<Boolean>()
+    var tabLayoutOnChange:Boolean = false
 
 
 
@@ -58,7 +60,7 @@ class SiteDetailViewModel: ViewModel() {
         val OFFSET_Y = -320
 
         //Clear the default translucent background
-        changeStatusPopUp?.setBackgroundDrawable(BitmapDrawable())
+//        changeStatusPopUp?.setBackgroundDrawable(BitmapDrawable())
 
         // Displaying the popup at the specified location, + offsets.
 //        changeStatusPopUp.showAsDropDown(layout)
@@ -73,6 +75,10 @@ class SiteDetailViewModel: ViewModel() {
     }
     fun dismissPopub(){
         changeStatusPopUp?.dismiss()
+    }
+
+    fun setScrollViewUp(b: Boolean) {
+       isScrollUp.value = b
     }
 
 }

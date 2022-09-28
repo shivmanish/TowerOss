@@ -33,10 +33,10 @@
     </string-array>
     <integer-array name="random_imgs">
         <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
+        <item>@drawable/customer</item>
+        <item>@drawable/site_lease</item>
+        <item>@drawable/backhaul</item>
+        <item>@drawable/utilities</item>
     </integer-array>
     <string name="app_name">BaseApplication</string>
     <string name="setting">Setting</string>
@@ -104,6 +104,7 @@
     <string name="state">State</string>
     <string name="cluster">Cluster</string>
     <string name="site_dimesion">Site Dimension</string>
+    <string name="premises">Premises Type</string>
     <string name="no_tenant">No. of Tenant</string>
     <string name="sit_category">Site Category</string>
     <string name="power_type">Power Type</string>
@@ -118,9 +119,6 @@
     <string name="lifecycle">Lifecycle</string>
     <string name="escalationmatrix">Escalation Matrix</string>
     <string name="viewonmap">View on map</string>
-
-
-
 
 
     <string name="login_first">Login\n\n</string>
