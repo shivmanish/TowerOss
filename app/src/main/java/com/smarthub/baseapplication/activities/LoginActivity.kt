@@ -1,13 +1,12 @@
 package com.smarthub.baseapplication.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.fragments.LoginSecondStep
-import com.smarthub.baseapplication.fragments.RegistrationFirstStep
+import com.smarthub.baseapplication.fragments.login.LoginSecondStep
+import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 
 class LoginActivity : AppCompatActivity() {
 
