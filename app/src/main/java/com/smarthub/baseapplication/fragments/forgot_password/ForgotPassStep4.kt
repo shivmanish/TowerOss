@@ -29,7 +29,7 @@ class ForgotPassStep4 : Fragment() {
 //            }
 //        }
 
-        val regFragment2 = ForgotPassStep3()
+        val regFragment2 = ForgotPassStep5()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
             activity?.let{
                addFragment(regFragment2)

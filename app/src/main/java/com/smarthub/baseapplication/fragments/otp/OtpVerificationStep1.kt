@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.fragments.forgot_password
+package com.smarthub.baseapplication.fragments.otp
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,19 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep2
 
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ForgotPassStep3.newInstance] factory method to
+ * Use the [OtpVerificationStep1.newInstance] factory method to
  * create an instance of this fragment.
  */
 @Suppress("DEPRECATION")
-class ForgotPassStep3 : Fragment() {
+class OtpVerificationStep1 : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.forgot_pass_step3_fragment, container, false)
+        return inflater.inflate(R.layout.otp_verification_step1_fragment, container, false)
 
     }
 
@@ -36,12 +37,12 @@ class ForgotPassStep3 : Fragment() {
 //            }
 //        }
 
-//        val regFragment2 = ForgotPassStep4()
-//        view.findViewById<View>(R.id.next_layout).setOnClickListener {
-//            activity?.let{
-//                addFragment(regFragment2)
-//            }
-//        }
+        val regFragment2 = OtpVerificationStep2()
+        view.findViewById<View>(R.id.next_layout).setOnClickListener {
+            activity?.let{
+               addFragment(regFragment2)
+            }
+        }
     }
 
     fun addFragment(fragment: Fragment?) {

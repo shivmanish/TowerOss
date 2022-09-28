@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.fragments.forgot_password
+package com.smarthub.baseapplication.fragments.otp
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,38 +8,32 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.MainActivity
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ForgotPassStep3.newInstance] factory method to
- * create an instance of this fragment.
- */
-@Suppress("DEPRECATION")
-class ForgotPassStep3 : Fragment() {
+class OtpVerificationStep4 : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.forgot_pass_step3_fragment, container, false)
+        return inflater.inflate(R.layout.otp_verification_step4_fragment, container, false)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val loginButton = view.findViewById<View>(R.id.text_register)
-//        loginButton.setOnClickListener {
-//            activity?.let{
-//                val intent = Intent (it, LoginActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                it.startActivity(intent)
-//            }
-//        }
+        val nextLayout = view.findViewById<View>(R.id.next_layout)
+        nextLayout.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                it.startActivity(intent)
+            }
+        }
 
-//        val regFragment2 = ForgotPassStep4()
+//        val regFragment2 = ForgotPassStep6()
 //        view.findViewById<View>(R.id.next_layout).setOnClickListener {
 //            activity?.let{
-//                addFragment(regFragment2)
+//               addFragment(regFragment2)
 //            }
 //        }
     }
