@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dp8"
         android:layout_marginLeft="@dimen/dp8"
-        android:background="@color/white"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/dp6"
-        android:elevation="@dimen/dp5"
+        android:elevation="@dimen/dp15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
