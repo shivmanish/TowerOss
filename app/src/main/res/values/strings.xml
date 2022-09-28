@@ -146,6 +146,6 @@
     <string name="role_state">Role State</string>
     <string name="role_mainte">Role Maintenance Point</string>
     <string name="role_area">Role Area</string>
+    <string name="successfully"><u>Login</u></string>
 
-    >>>>>>> 7456d7f (Check commit)
 </resources>

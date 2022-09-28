@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.MainActivity
 
 
 /**
@@ -17,14 +18,8 @@ import com.smarthub.baseapplication.R
  */
 @Suppress("DEPRECATION")
 class LoginSecondStep : Fragment() {
-    // TODO: Rename and change types of parameters
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-
         val view = inflater.inflate(R.layout.loging_second_step, container, false)
 
         return view
@@ -33,17 +28,23 @@ class LoginSecondStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginButton = view.findViewById<View>(R.id.register)
-        loginButton.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, LoginActivity::class.java)
-                it.startActivity(intent)
-            }
+
+        val login = view.findViewById<View>(R.id.login)
+        login.setOnClickListener {
+            val intent = Intent (requireActivity(), MainActivity::class.java)
+            requireActivity().startActivity(intent)
         }
 
-        val regFragment2 = RegistrationFirstStep()
-        view.findViewById<View>(R.id.sign_with_phone).setOnClickListener {
-            addFragment(regFragment2)
+        val textRegister = view.findViewById<View>(R.id.text_register)
+        textRegister.setOnClickListener {
+            val regFragment1 = RegistrationFirstStep()
+            addFragment(regFragment1)
+        }
+
+        val forgoPassword = view.findViewById<View>(R.id.forgot_password)
+        forgoPassword.setOnClickListener {
+//            val regFragment1 = LoginSecondStep()
+//            addFragment(regFragment1)
         }
     }
 

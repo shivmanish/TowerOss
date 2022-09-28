@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.fragments.LoginSecondStep
+import com.smarthub.baseapplication.fragments.RegistrationFirstStep
 
 class LoginActivity : AppCompatActivity() {
 
@@ -14,10 +15,22 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val registerButton = findViewById<View>(R.id.sign_with_phone)
-        registerButton.setOnClickListener {
+        val login = findViewById<View>(R.id.login)
+        login.setOnClickListener {
             val regFragment1 = LoginSecondStep()
             addFragment(regFragment1)
+        }
+
+        val textRegister = findViewById<View>(R.id.text_register)
+        textRegister.setOnClickListener {
+            val regFragment1 = RegistrationFirstStep()
+            addFragment(regFragment1)
+        }
+
+        val forgoPassword = findViewById<View>(R.id.forgot_password)
+        forgoPassword.setOnClickListener {
+//            val regFragment1 = LoginSecondStep()
+//            addFragment(regFragment1)
         }
     }
 

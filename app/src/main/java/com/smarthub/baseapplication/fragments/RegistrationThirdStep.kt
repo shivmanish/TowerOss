@@ -33,19 +33,36 @@ class RegistrationThirdStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginButton = view.findViewById<View>(R.id.text_login)
+        val loginButton = view.findViewById<View>(R.id.text_register)
         loginButton.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, LoginActivity::class.java)
                 it.startActivity(intent)
             }
         }
-
+        val regFragment2 = RegistrationSuccessfull()
         view.findViewById<View>(R.id.register).setOnClickListener {
             activity?.let{
-                val intent = Intent (it, MainActivity::class.java)
-                it.startActivity(intent)
+               addFragment(regFragment2)
             }
+        }
+    }
+
+    fun addFragment(fragment: Fragment?) {
+        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
+        val manager = requireActivity().supportFragmentManager
+        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+        if (!fragmentPopped) {
+            val transaction = manager.beginTransaction()
+            transaction.setCustomAnimations(
+                R.anim.enter,
+                R.anim.exit,
+                R.anim.pop_enter,
+                R.anim.pop_exit
+            )
+            transaction.replace(R.id.fragmentContainerView, fragment!!)
+            transaction.addToBackStack(backStateName)
+            transaction.commit()
         }
     }
 

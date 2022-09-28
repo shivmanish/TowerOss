@@ -25,7 +25,7 @@ class RegistrationSecondStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginButton = view.findViewById<View>(R.id.text_login)
+        val loginButton = view.findViewById<View>(R.id.text_register)
         loginButton.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, LoginActivity::class.java)

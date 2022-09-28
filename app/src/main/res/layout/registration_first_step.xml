@@ -1,253 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/background_login"
+android:id="@+id/fragmentContainerView"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_login"
-    android:id="@+id/fragmentContainerView"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+    <View
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.88"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:text="Registration"
-            android:textSize="@dimen/dp28"
-            android:textColor="#ffffff"
-            android:id="@+id/login1"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp10"
-            android:fontFamily="@font/montserrat_bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
-        <TextView
-            android:text="Please enter full detail for registration"
-            android:textSize="13sp"
-            android:textColor="#ffffff"
-            android:id="@+id/request_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp35"
-            android:fontFamily="@font/montserrat_regular"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/progress_status"/>
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/progress_status"
-            app:layout_constraintBottom_toTopOf="@+id/first_name"
             android:layout_width="0dp"
-            android:layout_marginBottom="@dimen/dp45"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.8"
-            android:layout_height="wrap_content">
+            app:layout_constraintWidth_percent="0.88"
+            android:layout_height="match_parent">
 
             <TextView
-                android:text="1"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:id="@+id/p1"
-                android:textColor="#3F4D68"
-                android:background="@drawable/circle"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/p_status1"
-                app:layout_constraintEnd_toEndOf="@+id/p_status1"
-                android:fontFamily="@font/montserrat_regular"
+                android:text="Registration"
+                android:textSize="@dimen/dp28"
+                android:textColor="#ffffff"
+                android:id="@+id/login1"
                 android:textStyle="bold"
-                android:layout_width="@dimen/dp35"
-                android:layout_height="@dimen/dp35"/>
-            <TextView
-                android:text="Basic info"
-                android:gravity="center"
-                android:textSize="11sp"
-                android:id="@+id/p_status1"
-                android:textColor="#E7C42C"
-                android:padding="@dimen/dp5"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/p1"
-                app:layout_constraintStart_toStartOf="parent"
-                android:fontFamily="@font/montserrat_regular"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp10"
+                android:fontFamily="@font/montserrat_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
             <TextView
-                android:id="@+id/l1"
-                app:layout_constraintStart_toEndOf="@+id/p1"
-                app:layout_constraintTop_toTopOf="@+id/p2"
-                app:layout_constraintEnd_toStartOf="@+id/p2"
-                app:layout_constraintBottom_toBottomOf="@+id/p2"
-                android:layout_width="0dp"
-                android:maxLines="1"
-                android:fontFamily="@font/montserrat"
-                android:textSize="@dimen/dp15"
-                android:text="- - - - - - - - - - "
-                android:textColor="#F7CB46"
-                android:paddingStart="@dimen/dp5"
-                android:gravity="center_vertical"
-                android:layout_height="@dimen/dp35"/>
-            <TextView
-                android:text="2"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:id="@+id/p2"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/p_status2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/p_status2"
+                android:text="Please enter full detail for registration"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:id="@+id/request_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp35"
                 android:fontFamily="@font/montserrat_regular"
-                android:background="@drawable/circle_border"
-                android:layout_width="@dimen/dp35"
-                android:layout_height="@dimen/dp35"/>
-            <TextView
-                android:text="Geography"
-                android:gravity="center"
-                android:textSize="11sp"
-                android:id="@+id/p_status2"
-                android:textColor="@color/white"
-                android:padding="@dimen/dp5"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/p1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/progress_status"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/progress_status"
+                app:layout_constraintBottom_toTopOf="@+id/first_name"
+                android:layout_width="0dp"
+                android:layout_marginBottom="@dimen/dp45"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="@font/montserrat_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/l2"
-                app:layout_constraintStart_toEndOf="@+id/p2"
-                app:layout_constraintTop_toTopOf="@+id/p3"
-                app:layout_constraintEnd_toStartOf="@+id/p3"
-                app:layout_constraintBottom_toBottomOf="@+id/p2"
-                android:layout_width="0dp"
-                android:maxLines="1"
-                android:fontFamily="@font/montserrat"
-                android:textSize="@dimen/dp15"
-                android:text="- - - - - - - - - - "
-                android:textColor="#F7CB46"
-                android:paddingStart="@dimen/dp5"
-                android:gravity="center_vertical"
-                android:layout_height="@dimen/dp35"/>
+                app:layout_constraintWidth_percent="0.8"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="1"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:id="@+id/p1"
+                    android:textColor="#3F4D68"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/p_status1"
+                    app:layout_constraintEnd_toEndOf="@+id/p_status1"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textStyle="bold"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"/>
+                <TextView
+                    android:text="Basic info"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:id="@+id/p_status1"
+                    android:textColor="#E7C42C"
+                    android:padding="@dimen/dp5"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/p1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/l1"
+                    app:layout_constraintStart_toEndOf="@+id/p1"
+                    app:layout_constraintTop_toTopOf="@+id/p2"
+                    app:layout_constraintEnd_toStartOf="@+id/p2"
+                    app:layout_constraintBottom_toBottomOf="@+id/p2"
+                    android:layout_width="0dp"
+                    android:maxLines="1"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="@dimen/dp15"
+                    android:text="- - - - - - - - - - "
+                    android:textColor="#F7CB46"
+                    android:paddingStart="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:layout_height="@dimen/dp35"/>
+                <TextView
+                    android:text="2"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:id="@+id/p2"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/p_status2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/p_status2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:background="@drawable/circle_border"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"/>
+                <TextView
+                    android:text="Geography"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:id="@+id/p_status2"
+                    android:textColor="@color/white"
+                    android:padding="@dimen/dp5"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/p1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/l2"
+                    app:layout_constraintStart_toEndOf="@+id/p2"
+                    app:layout_constraintTop_toTopOf="@+id/p3"
+                    app:layout_constraintEnd_toStartOf="@+id/p3"
+                    app:layout_constraintBottom_toBottomOf="@+id/p2"
+                    android:layout_width="0dp"
+                    android:maxLines="1"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="@dimen/dp15"
+                    android:text="- - - - - - - - - - "
+                    android:textColor="#F7CB46"
+                    android:paddingStart="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:layout_height="@dimen/dp35"/>
+
+                <TextView
+                    android:text="3"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:id="@+id/p3"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@id/p_status3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/p_status3"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:background="@drawable/circle_border"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"/>
+                <TextView
+                    android:text="Password"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:id="@+id/p_status3"
+                    android:textColor="@color/white"
+                    android:padding="@dimen/dp5"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/p1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:hint="First Name"
+                android:textSize="15sp"
+                android:id="@+id/first_name"
+                android:layout_height="@dimen/dp45"
+                android:layout_width="match_parent"
+                style="@style/registratio_first_box"
+                app:layout_constraintBottom_toTopOf="@+id/last_name"/>
+            <EditText
+                android:hint="Last Name"
+                android:textSize="15sp"
+                android:id="@+id/last_name"
+                android:layout_height="@dimen/dp45"
+                android:layout_width="match_parent"
+                style="@style/registratio_first_box"
+                app:layout_constraintBottom_toTopOf="@+id/mo_no"/>
+            <EditText
+                android:hint="Mobile Number"
+                android:textSize="15sp"
+                android:id="@+id/mo_no"
+                android:layout_height="@dimen/dp45"
+                android:layout_width="match_parent"
+                style="@style/registratio_first_box"
+                app:layout_constraintBottom_toTopOf="@+id/email_id"/>
+            <EditText
+                android:hint="Email ID"
+                android:textSize="15sp"
+                android:id="@+id/email_id"
+                android:layout_height="@dimen/dp45"
+                android:layout_width="match_parent"
+                style="@style/registratio_first_box"
+                android:layout_marginBottom="@dimen/dp35"
+                app:layout_constraintBottom_toTopOf="@+id/register"/>
 
             <TextView
-                android:text="3"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:id="@+id/p3"
+                android:padding="@dimen/dp10"
+                android:text="Next"
+                android:textSize="15sp"
+                android:textColor="#F7CB46"
+                android:id="@+id/register"
+                android:layout_width="match_parent"
                 android:textStyle="bold"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@id/p_status3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/p_status3"
+                android:layout_height="@dimen/dp45"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/dp30"
+                android:background="@drawable/login_yellow_border"
                 android:fontFamily="@font/montserrat_regular"
-                android:background="@drawable/circle_border"
-                android:layout_width="@dimen/dp35"
-                android:layout_height="@dimen/dp35"/>
-            <TextView
-                android:text="Password"
-                android:gravity="center"
-                android:textSize="11sp"
-                android:id="@+id/p_status3"
-                android:textColor="@color/white"
-                android:padding="@dimen/dp5"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/p1"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
+
+            <TextView
+                android:text="Already have account?"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:id="@+id/already_have_account"
+                android:paddingBottom="@dimen/dp10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/text_register"/>
+
+            <TextView
+                android:text="Login"
+                android:textSize="14sp"
+                android:textColor="#FFD72B"
+                android:id="@+id/text_register"
+                android:textStyle="italic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <EditText
-            android:hint="First Name"
-            android:textSize="15sp"
-            android:id="@+id/first_name"
-            android:layout_height="@dimen/dp45"
-            android:layout_width="match_parent"
-            style="@style/registratio_first_box"
-            app:layout_constraintBottom_toTopOf="@+id/last_name"/>
-        <EditText
-            android:hint="Last Name"
-            android:textSize="15sp"
-            android:id="@+id/last_name"
-            android:layout_height="@dimen/dp45"
-            android:layout_width="match_parent"
-            style="@style/registratio_first_box"
-            app:layout_constraintBottom_toTopOf="@+id/mo_no"/>
-        <EditText
-            android:hint="Mobile Number"
-            android:textSize="15sp"
-            android:id="@+id/mo_no"
-            android:layout_height="@dimen/dp45"
-            android:layout_width="match_parent"
-            style="@style/registratio_first_box"
-            app:layout_constraintBottom_toTopOf="@+id/email_id"/>
-        <EditText
-            android:hint="Email ID"
-            android:textSize="15sp"
-            android:id="@+id/email_id"
-            android:layout_height="@dimen/dp45"
-            android:layout_width="match_parent"
-            style="@style/registratio_first_box"
-            android:layout_marginBottom="@dimen/dp35"
-            app:layout_constraintBottom_toTopOf="@+id/register"/>
-
-        <TextView
-            android:padding="@dimen/dp10"
-            android:text="Next"
-            android:textSize="15sp"
-            android:textColor="#F7CB46"
-            android:id="@+id/register"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="@dimen/dp45"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/dp30"
-            android:background="@drawable/login_yellow_border"
-            android:fontFamily="@font/montserrat_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
-
-        <TextView
-            android:text="Already have account?"
-            android:textSize="13sp"
-            android:textColor="#ffffff"
-            android:id="@+id/already_have_account"
-            android:paddingBottom="@dimen/dp10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:fontFamily="@font/montserrat_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text_login"/>
-
-        <TextView
-            android:text="Login"
-            android:textSize="14sp"
-            android:textColor="#FFD72B"
-            android:id="@+id/text_login"
-            android:textStyle="italic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_margin"/>
-
-        <View
-            android:layout_height="0dp"
-            android:id="@+id/bottom_margin"
-            android:layout_width="match_parent"
-            app:layout_constraintHeight_percent="0.08"
-            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
