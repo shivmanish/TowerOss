@@ -75,7 +75,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_msg"/>
 
-            <EditText
+            <com.smarthub.baseapplication.widgets.PasswordEditText
                 android:text="4656925465"
                 android:textSize="20sp"
                 android:letterSpacing="0.4"
