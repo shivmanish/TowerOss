@@ -72,7 +72,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <EditText
+                        android:inputType="numberPassword"
                         android:maxLines="1"
                         android:ems="1"
                         android:text=""
@@ -90,7 +91,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <EditText
+                        android:inputType="numberPassword"
                         android:maxLines="1"
                         android:ems="1"
                         android:text=""
@@ -108,7 +110,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <EditText
+                        android:inputType="numberPassword"
                         android:maxLines="1"
                         android:ems="1"
                         android:text=""
@@ -126,7 +129,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <EditText
+                        android:inputType="numberPassword"
                         android:maxLines="1"
                         android:ems="1"
                         android:text=""
@@ -144,7 +148,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <EditText
+                        android:inputType="numberPassword"
                         android:maxLines="1"
                         android:ems="1"
                         android:text=""
@@ -162,7 +167,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <EditText
+                        android:inputType="numberPassword"
                         android:maxLines="1"
                         android:ems="1"
                         android:text=""
