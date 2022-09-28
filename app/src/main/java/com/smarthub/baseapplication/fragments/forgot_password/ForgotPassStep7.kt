@@ -28,13 +28,11 @@ class ForgotPassStep7 : Fragment() {
                 it.startActivity(intent)
             }
         }
-
-//        val regFragment2 = ForgotPassStep3()
-//        view.findViewById<View>(R.id.next_layout).setOnClickListener {
-//            activity?.let{
-//               addFragment(regFragment2)
-//            }
-//        }
+        view.findViewById<View>(R.id.back).setOnClickListener {
+            activity?.let{
+                it.onBackPressed()
+            }
+        }
     }
 
     fun addFragment(fragment: Fragment?) {

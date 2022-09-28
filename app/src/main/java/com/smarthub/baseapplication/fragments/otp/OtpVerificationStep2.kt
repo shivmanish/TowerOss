@@ -25,15 +25,11 @@ class OtpVerificationStep2 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val loginButton = view.findViewById<View>(R.id.text_register)
-//        loginButton.setOnClickListener {
-//            activity?.let{
-//                val intent = Intent (it, LoginActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                it.startActivity(intent)
-//            }
-//        }
+        view.findViewById<View>(R.id.back).setOnClickListener {
+            activity?.let{
+                it.onBackPressed()
+            }
+        }
 
         val regFragment2 = OtpVerificationStep3()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {

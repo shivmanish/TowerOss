@@ -12,10 +12,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
+        android:id="@+id/back"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_back"
         android:layout_width="wrap_content"
-        android:padding="@dimen/dp16"
+        android:padding="@dimen/dp18"
         android:layout_height="?attr/actionBarSize"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout

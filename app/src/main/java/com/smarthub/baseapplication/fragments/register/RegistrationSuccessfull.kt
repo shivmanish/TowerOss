@@ -34,6 +34,12 @@ class RegistrationSuccessfull : Fragment() {
                 it.startActivity(intent)
             }
         }
+
+        view.findViewById<View>(R.id.back).setOnClickListener {
+            activity?.let{
+                it.onBackPressed()
+            }
+        }
     }
 
 }
