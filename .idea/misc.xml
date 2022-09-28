@@ -27,7 +27,6 @@
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_reg_1.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_reg_2.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_reg_3.xml" value="0.2" />
-        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/fragment_task.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/loging_second_step.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/pro_double_half_view.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/pro_double_item_view.xml" value="0.25" />
@@ -36,11 +35,8 @@
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_first_step.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_second_step.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_third_step.xml" value="0.25" />
-        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/site_detail_frag.xml" value="0.25" />
-        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/site_location_detail.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/test_layout.xml" value="0.264" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/toolbar.xml" value="0.24010416666666667" />
-        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

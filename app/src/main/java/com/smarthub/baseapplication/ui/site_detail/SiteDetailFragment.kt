@@ -96,11 +96,11 @@ class SiteDetailFragment : Fragment() {
         var v: TabItemBinding? = null
         var tabNames = siteDetailViewModel.getStrings(requireActivity())
         var typedImages = siteDetailViewModel.getImageArray(requireActivity())
-        for (i in tabNames.indices) {
+        for (i in 0..tabNames.size - 1) {
             v = TabItemBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
             val imagetab: AppCompatImageView = v.tabImage
-            texttab.text = tabNames[i]
+            texttab.text = tabNames.get(i)
             imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
