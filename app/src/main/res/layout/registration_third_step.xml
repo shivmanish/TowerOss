@@ -188,6 +188,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 style="@style/registratio_first_box"
                 app:layout_constraintBottom_toTopOf="@+id/email_id"/>
             <EditText
+                android:inputType="numberPassword"
                 android:hint="Confirem Password"
                 android:textSize="15sp"
                 android:id="@+id/email_id"

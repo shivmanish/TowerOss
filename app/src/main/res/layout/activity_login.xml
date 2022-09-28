@@ -53,7 +53,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/user_mail"/>
 
-                <TextView
+                <EditText
                     android:padding="@dimen/dp10"
                     android:text="Username or E-mail"
                     android:textSize="15sp"
@@ -72,11 +72,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/password"/>
 
-                <TextView
+                <EditText
                     android:padding="@dimen/dp10"
-                    android:text="Password"
-                    android:textSize="15sp"
+                    android:hint="Password"
+                    android:textColorHint="@color/devider_grey"
+                    android:textSize="16sp"
                     android:textColor="#fff"
+                    android:inputType="numberPassword"
                     android:id="@+id/password"
                     android:drawablePadding="@dimen/dp10"
                     android:drawableStart="@drawable/ic_carbon_password"

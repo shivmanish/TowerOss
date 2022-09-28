@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.MainActivity
 import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
+import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 
 
@@ -43,6 +44,12 @@ class LoginSecondStep : Fragment() {
         val forgoPassword = view.findViewById<View>(R.id.forgot_password)
         forgoPassword.setOnClickListener {
             val regFragment1 = ForgotPassStep1()
+            addFragment(regFragment1)
+        }
+
+        val signWithPhone = view.findViewById<View>(R.id.sign_with_phone)
+        signWithPhone.setOnClickListener {
+            val regFragment1 = OtpVerificationStep1()
             addFragment(regFragment1)
         }
     }

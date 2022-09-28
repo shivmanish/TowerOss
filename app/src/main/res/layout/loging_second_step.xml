@@ -53,7 +53,7 @@
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintBottom_toTopOf="@+id/user_mail"/>
 
-               <TextView
+               <EditText
                    android:padding="@dimen/dp10"
                    android:text="Username or E-mail"
                    android:textSize="15sp"
@@ -85,7 +85,8 @@
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintBottom_toTopOf="@+id/password"/>
 
-               <TextView
+               <EditText
+                   android:inputType="numberPassword"
                    android:padding="@dimen/dp10"
                    android:text="Password"
                    android:textSize="15sp"
