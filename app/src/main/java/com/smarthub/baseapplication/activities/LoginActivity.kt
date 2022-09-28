@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
 import com.smarthub.baseapplication.fragments.login.LoginSecondStep
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 
@@ -28,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
 
         val forgoPassword = findViewById<View>(R.id.forgot_password)
         forgoPassword.setOnClickListener {
-//            val regFragment1 = LoginSecondStep()
-//            addFragment(regFragment1)
+            val regFragment1 = ForgotPassStep1()
+            addFragment(regFragment1)
         }
     }
 
