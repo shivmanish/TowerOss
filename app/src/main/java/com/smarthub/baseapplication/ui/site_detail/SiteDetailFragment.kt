@@ -46,6 +46,7 @@ class SiteDetailFragment : Fragment() {
         this.ctx = context
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -79,8 +80,8 @@ class SiteDetailFragment : Fragment() {
         setupViewPager(binding.viewpager)
 
         binding.tabs!!.setupWithViewPager(binding.viewpager)
-//        binding.viewpager.offscreenPageLimit= 5
-        binding.viewpager.currentItem = 0
+        binding.viewpager.offscreenPageLimit= 2
+//        binding.viewpager.currentItem = 0
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()

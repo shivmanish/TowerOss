@@ -67,15 +67,17 @@
                     tools:ignore="ContentDescription" />
 
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/search_edit_text"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp24"
                     android:background="@android:color/transparent"
-                    android:text="**_****_**_****"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/search_star_color"
+                    android:hint="**_****_**_****"
+                    android:fontFamily="@font/montserrat"
+                    android:textColorHint="@color/search_star_color"
+                    android:gravity="left"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -90,6 +92,36 @@
             android:fontFamily="@font/montserrat"
             android:textSize="@dimen/sp15" />
     </LinearLayout>
+   <!-- <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp20"
+        android:layout_marginBottom="-10dp"
+        android:background="@drawable/top_shadow"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_top_bottomnavigation"
+        app:elevation="@dimen/dp25"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />-->
+
+
+    <FrameLayout
+        android:id="@+id/nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

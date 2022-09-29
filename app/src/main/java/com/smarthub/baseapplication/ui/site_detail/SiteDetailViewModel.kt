@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Point
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.Gravity
@@ -12,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.R
@@ -49,18 +49,25 @@ class SiteDetailViewModel: ViewModel() {
         val layout: View = layoutInflater.inflate(R.layout.pop_window_custom, null)
 
         // Creating the PopupWindow
-         changeStatusPopUp = PopupWindow(context)
+         val wrapper: Context = ContextThemeWrapper(context, R.style.PopupMenu)
+         changeStatusPopUp = PopupWindow(wrapper)
         changeStatusPopUp?.contentView = layout
         changeStatusPopUp?.width = LinearLayout.LayoutParams.WRAP_CONTENT
         changeStatusPopUp?.height = LinearLayout.LayoutParams.WRAP_CONTENT
         changeStatusPopUp?.isFocusable = false
+
 
         // Some offset to align the popup a bit to the left, and a bit down, relative to button's position.
         val OFFSET_X = 400
         val OFFSET_Y = -320
 
         //Clear the default translucent background
-//        changeStatusPopUp?.setBackgroundDrawable(BitmapDrawable())
+        changeStatusPopUp?.setBackgroundDrawable(null)
+//         changeStatusPopUp?.setBackgroundDrawable(
+//             ColorDrawable(
+//                 Color.TRANSPARENT)
+//         )
+         changeStatusPopUp?.elevation = 40f
 
         // Displaying the popup at the specified location, + offsets.
 //        changeStatusPopUp.showAsDropDown(layout)

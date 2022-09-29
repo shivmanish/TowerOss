@@ -2,17 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/search_card_view"
         android:layout_width="@dimen/dp180"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dp8"
         android:layout_marginLeft="@dimen/dp8"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/dp6"
-        android:elevation="@dimen/dp15"
+        android:background="@android:drawable/dialog_holo_light_frame"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -118,5 +117,5 @@
 
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
