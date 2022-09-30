@@ -14,13 +14,6 @@
         android:theme="@style/Theme.MDemo"
         tools:targetApi="31">
         <activity
-            android:name=".SiteDetailActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:theme="@style/Theme.BaseApplication"
             android:name=".activities.SplashActivity"
             android:exported="true">
@@ -40,11 +33,6 @@
             android:exported="true"
             android:theme="@style/Theme.BaseApplication">
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".activities.LanguageActivity"
@@ -63,13 +51,6 @@
         <activity
             android:name=".activities.DashboardActivity"
             android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".ui.profile.ProfileActivity1"
@@ -81,11 +62,11 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.BaseApplication">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <meta-data
             android:name="preloaded_fonts"

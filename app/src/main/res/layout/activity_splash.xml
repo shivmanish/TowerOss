@@ -50,48 +50,64 @@
         android:orientation="vertical"
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:gravity="right"
-        android:padding="@dimen/dp15"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:text="Executive"
-            android:textColor="#3D4E6D"
-            android:textSize="@dimen/dp30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"/>
-        <TextView
-            android:paddingTop="3dp"
-            android:textStyle="italic|bold"
-            android:text="Manage  |  Validate  |  Control"
-            android:textColor="#3D4E6D"
-            android:textSize="@dimen/dp13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <View
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
         <LinearLayout
-            android:layout_marginTop="@dimen/dp15"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/dp20"
+            android:gravity="right"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp50">
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/manage_site"
-                android:text="Manage Site"
+                android:text="Executive"
                 android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"
-                android:padding="@dimen/dp10"
-                android:background="@drawable/login_manage_site"
-                android:drawablePadding="@dimen/dp15"
-                android:drawableStart="@drawable/ic_manage_site"
+                android:textSize="@dimen/dp30"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp45"
-                android:paddingStart="@dimen/dp15"
-                android:paddingEnd="@dimen/dp20"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:paddingTop="3dp"
+                android:textStyle="italic|bold"
+                android:text="Manage  |  Validate  |  Control"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/dp20"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp50">
+                <TextView
+                    android:id="@+id/manage_site"
+                    android:text="Manage Site"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"
+                    android:padding="@dimen/dp10"
+                    android:background="@drawable/login_manage_site"
+                    android:drawablePadding="@dimen/dp15"
+                    android:drawableStart="@drawable/ic_manage_site"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp45"
+                    android:paddingStart="@dimen/dp15"
+                    android:paddingEnd="@dimen/dp20"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
