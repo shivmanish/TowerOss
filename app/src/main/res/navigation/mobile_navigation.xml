@@ -27,9 +27,4 @@
         android:name="com.smarthub.baseapplication.ui.menu.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu"/>
-    <!--<fragment
-        android:id="@+id/siteDetailFragment3"
-        android:name="com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment"
-        android:label="SiteDetailFragment"
-        tools:layout="@layout/site_location_detail"/>-->
 </navigation>
