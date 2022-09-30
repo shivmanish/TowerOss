@@ -164,5 +164,9 @@
     <string name="verification_subheading">Please enter a one time password(OTP) sent to +91 7827230654</string>
     <string name="txt_otp">Didn\'t receive an OTP</string>
     <string name="txt_resend_otp">Resend OTP?</string>
+    <string name="patroller_management">Patroller Management</string>
+    <string name="alert_management">Alert Management</string>
+    <string name="category">Category</string>
+    <string name="tower_route">Tower Route</string>
 
 </resources>

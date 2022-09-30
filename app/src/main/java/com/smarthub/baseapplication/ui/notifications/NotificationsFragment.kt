@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.adapter.NotificationsListAdapter
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
 
-
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smarthub.baseapplication.adapter.ProfileListAdapter
 
 class NotificationsFragment : Fragment() {
      private var _binding: FragmentNotificationsBinding? = null
@@ -27,6 +26,7 @@ class NotificationsFragment : Fragment() {
         notificationViewModel = ViewModelProvider(requireActivity())[NotificationsViewModel::class.java]
        // notificationViewModel.isActionBarHide(false)
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
 
         return root
@@ -36,9 +36,11 @@ class NotificationsFragment : Fragment() {
         super.onViewCreated(itemView, savedInstanceState)
         var layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
+        _binding?.imgMenu.setOnClickListener()
         _binding?.rvNotificationList.apply {
             this?.layoutManager = layoutManager
             this?.adapter = NotificationsListAdapter()
+
         }
 
     }
@@ -46,4 +48,10 @@ class NotificationsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+}
+
+private fun ImageView?.setOnClickListener() {
+    print("HH")
+    print("HH")
+
 }
