@@ -7,6 +7,26 @@
     android:id="@+id/fragmentContainerView"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:src="@drawable/bg_login_top"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bg_login_bottom_right"
+            android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -80,6 +100,7 @@
                     android:textColor="#fff"
                     android:inputType="numberPassword"
                     android:id="@+id/password"
+                    android:maxLength="6"
                     android:drawablePadding="@dimen/dp10"
                     android:drawableStart="@drawable/ic_carbon_password"
                     android:layout_width="match_parent"

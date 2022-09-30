@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SiteDetailViewModel

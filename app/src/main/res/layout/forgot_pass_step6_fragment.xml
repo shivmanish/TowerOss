@@ -71,8 +71,9 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_msg"/>
             <com.smarthub.baseapplication.widgets.PasswordEditText
-                android:text="***********"
+                android:text="888888"
                 android:textSize="22sp"
+                android:maxLength="6"
                 android:letterSpacing="0.4"
                 android:textColor="#DEAAAAAA"
                 android:id="@+id/mo_no_edit"
@@ -98,8 +99,9 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mo_no_edit"/>
             <com.smarthub.baseapplication.widgets.PasswordEditText
-                android:text="***********"
+                android:text="888888"
                 android:textSize="22sp"
+                android:maxLength="6"
                 android:letterSpacing="0.4"
                 android:textColor="#DEAAAAAA"
                 android:id="@+id/new_pass_edit"
