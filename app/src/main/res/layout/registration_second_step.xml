@@ -3,10 +3,9 @@
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="@color/background_login"
 android:id="@+id/fragmentContainerView"
 xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <include layout="@layout/register_bg"/>
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -19,6 +18,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            app:layout_constraintWidth_percent="0.6"
+            android:src="@drawable/bg_login_bottom_left"
+            android:layout_height="wrap_content"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +214,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:layout_width="match_parent"
                 style="@style/registratio_first_box"
                 app:layout_constraintBottom_toTopOf="@+id/email_id"/>
-            <EditText
+            <TextView
                 android:hint="Role Area"
                 android:textSize="15sp"
                 android:id="@+id/email_id"
