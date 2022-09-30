@@ -4,30 +4,43 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import com.smarthub.baseapplication.adapter.NotificationsListAdapter
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
-import com.smarthub.baseapplication.viewmodels.MainViewModel
 
+
+import androidx.recyclerview.widget.LinearLayoutManager
 class NotificationsFragment : Fragment() {
-
-    private var _binding: FragmentNotificationsBinding? = null
-   private lateinit var mainViewModel:MainViewModel
+     private var _binding: FragmentNotificationsBinding? = null
+     private lateinit var notificationViewModel:NotificationsViewModel
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<NotificationsListAdapter.ViewHold>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
-        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
-        mainViewModel.isActionBarHide(false)
+        notificationViewModel = ViewModelProvider(requireActivity())[NotificationsViewModel::class.java]
+       // notificationViewModel.isActionBarHide(false)
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
     }
 
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(itemView, savedInstanceState)
+        _binding?.rvNotificationList.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = NotificationsListAdapter()
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -120,9 +120,6 @@
     <string name="viewonmap">View on map</string>
 
 
-
-
-
     <string name="login_first">Login\n\n</string>
     <string name="registratio">Registration</string>
     <string name="please_ente">Please enter full detail for registration</string>
@@ -146,6 +143,21 @@
     <string name="role_state">Role State</string>
     <string name="role_mainte">Role Maintenance Point</string>
     <string name="role_area">Role Area</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
 
-    >>>>>>> 7456d7f (Check commit)
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!--ForgotpasswordScreen-->
+    <string name="forgot_pass">Forgot Password</string>
+    <string name="txt_subhead">Enter your mobile number for get otp and access your account faster!</string>
+    <string name="txt_body_mobile_number">Mobile number</string>
+    <string name="enter_mobile_text">4656925465</string>
+    <string name="btn_next">Next  ></string>
+     <!--    sms otp screen-->
+    <string name="verification_code">Verification Code</string>
+    <string name="verification_subheading">Please enter a one time password(OTP) sent to +91 7827230654</string>
+    <string name="txt_otp">Didn\'t receive an OTP</string>
+    <string name="txt_resend_otp">Resend OTP?</string>
+
 </resources>

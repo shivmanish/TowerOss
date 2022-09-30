@@ -23,7 +23,6 @@ class DashboardActivity : AppCompatActivity() {
 
     }
     class DashboardActivityAdapter1  constructor(val context: Context, val datalist: ArrayList<String> =arrayListOf<String>(), private var data:ArrayList<String>): RecyclerView.Adapter<DashboardActivityAdapter1.DashboardActivityHolder1>() {
-
         constructor(context: Context, datalist:ArrayList<String>) : this(context, data = datalist)
         class DashboardActivityHolder1(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
