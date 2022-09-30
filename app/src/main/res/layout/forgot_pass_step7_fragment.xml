@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/white"
+android:id="@+id/fragmentContainerView"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_back"
+        android:layout_width="wrap_content"
+        android:padding="@dimen/dp16"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.88"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Password Update"
+                android:textSize="16sp"
+                android:textColor="#DE000000"
+                android:id="@+id/request_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp50"
+                android:fontFamily="@font/montserrat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/icon_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_reg_success"
+                app:layout_constraintTop_toBottomOf="@+id/request_msg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dp25"/>
+
+            <TextView
+                android:text="Your password has been updated!"
+                android:textSize="13sp"
+                android:textColor="#8A000000"
+                android:id="@+id/text_msg"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp50"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_success"/>
+
+            <TextView
+                android:text="@string/successfully"
+                android:textSize="13sp"
+                android:textColor="#DE000000"
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_msg"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

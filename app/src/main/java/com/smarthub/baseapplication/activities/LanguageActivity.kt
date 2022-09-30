@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import com.smarthub.baseapplication.LanguageListAdapter
+import com.smarthub.baseapplication.adapter.LanguageListAdapter
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLanguageBinding
 import com.smarthub.baseapplication.model.LangModel
@@ -37,5 +37,9 @@ class LanguageActivity : AppCompatActivity() {
         list.add(LangModel(false, R.drawable.ic_punjabi, R.drawable.ic_selcted_punjabi,"Punjabi"))
         list.add(LangModel(false, R.drawable.ic_assamese, R.drawable.ic_selcted_assamese,"Assamese"))
         dataBinding?.langList?.adapter = LanguageListAdapter(list)
+
+        dataBinding?.imgBack?.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

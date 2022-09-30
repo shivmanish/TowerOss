@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/white"
+android:id="@+id/fragmentContainerView"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Brajesh Phone Message app"
+            android:textSize="14sp"
+            android:layout_marginStart="@dimen/dp15"
+            android:textColor="#DE000000"
+            android:gravity="center_vertical"
+            android:id="@+id/forgot_password_text"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginBottom="@dimen/dp50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_corner"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password_text"/>
+
+        <TextView
+            android:text="@string/temp_name"
+            android:textSize="13sp"
+            android:textColor="#8A000000"
+            android:id="@+id/text_msg"
+            android:padding="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp20"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/ic_comment_bg"
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password_text"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_weight="5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

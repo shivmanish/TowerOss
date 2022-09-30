@@ -33,10 +33,10 @@
     </string-array>
     <integer-array name="random_imgs">
         <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
-        <item>@drawable/siteicon</item>
+        <item>@drawable/customer</item>
+        <item>@drawable/site_lease</item>
+        <item>@drawable/backhaul</item>
+        <item>@drawable/utilities</item>
     </integer-array>
     <string name="app_name">BaseApplication</string>
     <string name="setting">Setting</string>
@@ -104,6 +104,7 @@
     <string name="state">State</string>
     <string name="cluster">Cluster</string>
     <string name="site_dimesion">Site Dimension</string>
+    <string name="premises">Premises Type</string>
     <string name="no_tenant">No. of Tenant</string>
     <string name="sit_category">Site Category</string>
     <string name="power_type">Power Type</string>
@@ -143,6 +144,10 @@
     <string name="role_state">Role State</string>
     <string name="role_mainte">Role Maintenance Point</string>
     <string name="role_area">Role Area</string>
+    <string name="successfully"><u>Login</u></string>
+    <string name="temp_name">Dear <font fgcolor='##000000'>Brajesh Patel,</font> your OTP for registration is <font fgcolor='##000000'>454545</font>. Use this password to validate your login</string>
+    <string name="text_temp_4">Please enter a one time password(OTP) sent to <font fgcolor='##000000'>+91 7827230654</font></string>
+    <string name="resend_otp"><u>Resend OTP?</u></string>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>

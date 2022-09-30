@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.ui.site_detail
 
+import android.animation.ArgbEvaluator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -7,22 +9,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.smarthub.baseapplication.DashboardFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteLocationDetailBinding
 import com.smarthub.baseapplication.databinding.TabItemBinding
+import com.smarthub.baseapplication.fragments.sitedetail.*
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -35,10 +42,15 @@ class SiteDetailFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
     private val editPopMenu = EditPopMenu()
     var fabVisible = false
+    private var isScroll = true
+    private lateinit var v: TabItemBinding
+    private var tabNames: Array<String>? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.ctx = context
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +58,20 @@ class SiteDetailFragment : Fragment() {
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
+        siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
 
+            if (it && isScroll) {
+                Log.d("scroll>>>", "up   $it")
+                setSelectTab(it)
+                isScroll = false
+            } else if (!it && !isScroll) {
+                Log.d("scroll>>>", "down   $it")
+                setSelectTab(it)
+                isScroll = true
+            }
+
+
+        })
     }
 
     override fun onCreateView(
@@ -60,8 +85,8 @@ class SiteDetailFragment : Fragment() {
         setupViewPager(binding.viewpager)
 
         binding.tabs!!.setupWithViewPager(binding.viewpager)
-//        binding.viewpager.offscreenPageLimit= 5
-        binding.viewpager.currentItem = 0
+        binding.viewpager.offscreenPageLimit= 2
+//        binding.viewpager.currentItem = 0
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
@@ -96,20 +121,31 @@ class SiteDetailFragment : Fragment() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun setCustomTab(view: View) {
-        var v: TabItemBinding? = null
-        var tabNames = siteDetailViewModel.getStrings(requireActivity())
+
+//        var v: TabItemTextBinding? = null
+        tabNames = siteDetailViewModel.getStrings(requireActivity())
         var typedImages = siteDetailViewModel.getImageArray(requireActivity())
-        for (i in 0..tabNames.size - 1) {
+        for (i in 0..tabNames?.size!!.minus(1)) {
+//            v = TabItemTextBinding.inflate(layoutInflater)
             v = TabItemBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
+            val texttabchange: AppCompatTextView = v.txtTab
             val imagetab: AppCompatImageView = v.tabImage
-            texttab.text = tabNames.get(i)
+            texttab.text = tabNames?.get(i)
+            texttabchange.text = tabNames?.get(i)
             imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
         var constraintLayout: ConstraintLayout =
             binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
+        var constraintLay: ConstraintLayout =
+            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_layout)
+        var texttabchange =
+            constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+        texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
+
         constraintLayout.backgroundTintList =
             ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
@@ -117,11 +153,11 @@ class SiteDetailFragment : Fragment() {
     private fun setupViewPager(viewPager: ViewPager) {
 
         val adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
-        adapter.addFragment(DashboardFragment.newInstance("A"))
-        adapter.addFragment(DashboardFragment.newInstance("B"))
-        adapter.addFragment(DashboardFragment.newInstance("C"))
-        adapter.addFragment(DashboardFragment.newInstance("D"))
-        adapter.addFragment(DashboardFragment.newInstance("E"))
+        adapter.addFragment(Site_info.newInstance("A"))
+        adapter.addFragment(CustomerFragment.newInstance("Customer"))
+        adapter.addFragment(Site_LeaseFrag.newInstance("SiteLease"))
+        adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
+        adapter.addFragment(UtilitiesFrag.newInstance("Utilities"))
 
         viewPager.adapter = adapter
 
@@ -134,6 +170,11 @@ class SiteDetailFragment : Fragment() {
                     var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                     constraintLayout.backgroundTintList =
                         ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+                    var constraintLay: ConstraintLayout =
+                        view!!.findViewById(R.id.parent_tab_layout)
+                    var texttabchange =
+                        constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                    texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 }
                 Log.e("TAG", " $view  ${tab.position}")
             }
@@ -144,12 +185,17 @@ class SiteDetailFragment : Fragment() {
                 var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList =
                     ColorStateList.valueOf(resources.getColor(R.color.white))
+                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_layout)
+                var texttabchange =
+                    constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                texttabchange.setTextColor(resources.getColor(R.color.white))
 
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
+
 
     internal inner class ViewPagerAdapter(manager: FragmentManager) :
         FragmentPagerAdapter(manager) {
@@ -174,7 +220,77 @@ class SiteDetailFragment : Fragment() {
           }*/
     }
 
-    fun setSelectTab() {
+    fun setSelectTab(isUpScroll: Boolean) {
+        if (isUpScroll) {
+            for (i in 0..tabNames?.size!!.minus(1)) {
+                var constraintLayout: ConstraintLayout =
+                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                var constraintL: ConstraintLayout =
+                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_layout)
+                constraintLayout.visibility = View.GONE
+                constraintL.visibility = View.VISIBLE
+            }
+            binding.tabs!!.background = getDrawable(requireActivity(), R.drawable.tablayout_selector_change);
+        } else {
+            for (i in 0..tabNames?.size!!.minus(1)) {
+                var constraintLayout: ConstraintLayout =
+                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                var constraintL: ConstraintLayout =
+                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_layout)
+                constraintLayout.visibility = View.VISIBLE
+                constraintL.visibility = View.GONE
+            }
+            binding.tabs!!.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
+        }
+        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+//            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State) {
+                /*if (mToolbarTextView != null) {
+                    if (state === State.COLLAPSED) {
+//						mToolbarTextView.setAlpha(1);
+                        mCollapsingToolbar.setContentScrimColor(
+                            ContextCompat.getColor(this@MainActivity, R.color.colorPrimary)
+                        )
+                    } else if (state === State.EXPANDED) {
+//						mToolbarTextView.setAlpha(0);
+                        mCollapsingToolbar.setContentScrimColor(
+                            ContextCompat
+                                .getColor(this@MainActivity, android.R.color.transparent)
+                        )
+                    }
+                }*/
+//            }
 
+           /* override  fun onOffsetChanged(state: State, offset: Float) {
+                if (mToolbarTextView != null) {
+                    if (state === State.IDLE) {
+//						mToolbarTextView.setAlpha(offset);
+                        mCollapsingToolbar.setContentScrimColor(
+                            ArgbEvaluator()
+                                .evaluate(
+                                    offset, ContextCompat
+                                        .getColor(this@MainActivity, android.R.color.transparent),
+                                    ContextCompat.getColor(
+                                        this@MainActivity,
+                                        R.color.colorPrimary
+                                    )
+                                ) as Int
+                        )
+                    }
+                }
+            }*/
+
+            override fun onOffsetChanged(state: State?, offset: Float) {
+                Log.e("offset","${state}  ${offset}")
+//                Toast.makeText(requireActivity(),"  ${state}  ${offset}",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                Log.e("offset","${state} ")
+//                Toast.makeText(requireActivity(),"  ${state}  ",Toast.LENGTH_LONG).show()
+            }
+
+
+        })
     }
+
 }
