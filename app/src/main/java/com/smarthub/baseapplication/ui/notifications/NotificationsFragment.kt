@@ -12,6 +12,8 @@ import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
 
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.adapter.ProfileListAdapter
+
 class NotificationsFragment : Fragment() {
      private var _binding: FragmentNotificationsBinding? = null
      private lateinit var notificationViewModel:NotificationsViewModel
@@ -19,7 +21,6 @@ class NotificationsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<NotificationsListAdapter.ViewHold>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
@@ -33,13 +34,13 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
+        var layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         _binding?.rvNotificationList.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
-            adapter = NotificationsListAdapter()
+            this?.layoutManager = layoutManager
+            this?.adapter = NotificationsListAdapter()
         }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

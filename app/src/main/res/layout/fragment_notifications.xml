@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment">
    <LinearLayout
+
        android:orientation="vertical"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -63,6 +64,7 @@
 
 
      <androidx.recyclerview.widget.RecyclerView
+         android:orientation="vertical"
          android:id="@+id/rvNotificationList"
          android:layout_width="match_parent"
          android:layout_height="match_parent"
