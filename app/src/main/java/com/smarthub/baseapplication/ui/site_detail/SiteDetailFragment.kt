@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.site_detail
 
+import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
@@ -8,17 +9,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.smarthub.baseapplication.R
@@ -191,6 +196,7 @@ class SiteDetailFragment : Fragment() {
         })
     }
 
+
     internal inner class ViewPagerAdapter(manager: FragmentManager) :
         FragmentPagerAdapter(manager) {
         private val mFragmentList = ArrayList<Fragment>()
@@ -236,6 +242,55 @@ class SiteDetailFragment : Fragment() {
             }
             binding.tabs!!.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
         }
+        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+//            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State) {
+                /*if (mToolbarTextView != null) {
+                    if (state === State.COLLAPSED) {
+//						mToolbarTextView.setAlpha(1);
+                        mCollapsingToolbar.setContentScrimColor(
+                            ContextCompat.getColor(this@MainActivity, R.color.colorPrimary)
+                        )
+                    } else if (state === State.EXPANDED) {
+//						mToolbarTextView.setAlpha(0);
+                        mCollapsingToolbar.setContentScrimColor(
+                            ContextCompat
+                                .getColor(this@MainActivity, android.R.color.transparent)
+                        )
+                    }
+                }*/
+//            }
 
+           /* override  fun onOffsetChanged(state: State, offset: Float) {
+                if (mToolbarTextView != null) {
+                    if (state === State.IDLE) {
+//						mToolbarTextView.setAlpha(offset);
+                        mCollapsingToolbar.setContentScrimColor(
+                            ArgbEvaluator()
+                                .evaluate(
+                                    offset, ContextCompat
+                                        .getColor(this@MainActivity, android.R.color.transparent),
+                                    ContextCompat.getColor(
+                                        this@MainActivity,
+                                        R.color.colorPrimary
+                                    )
+                                ) as Int
+                        )
+                    }
+                }
+            }*/
+
+            override fun onOffsetChanged(state: State?, offset: Float) {
+                Log.e("offset","${state}  ${offset}")
+//                Toast.makeText(requireActivity(),"  ${state}  ${offset}",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                Log.e("offset","${state} ")
+//                Toast.makeText(requireActivity(),"  ${state}  ",Toast.LENGTH_LONG).show()
+            }
+
+
+        })
     }
+
 }
