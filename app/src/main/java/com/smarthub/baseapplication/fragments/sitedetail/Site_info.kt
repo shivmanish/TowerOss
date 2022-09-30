@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.fragments.sitedetail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,15 +43,35 @@ class Site_info : Fragment() {
           textView.text=param2*/
         return view
     }
+    var TAG = "MainVAlue"
     fun setScroolListner(){
         scrollview?.setOnScrollChangeListener(View.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val x = scrollY - oldScrollY
             if (x > 0) {
-                siteDetailViewModel.setScrollViewUp(true)
-            } else if (x < 0) {
-                siteDetailViewModel.setScrollViewUp(false)
 
             }
+            if (x < 0) {
+
+
+            }
+
+            if (scrollY > oldScrollY) {
+                siteDetailViewModel.setScrollViewUp(true)
+                Log.i(TAG, "Scroll DOWN  ${scrollY}   ${oldScrollY}   $x");
+            }
+            if (scrollY < oldScrollY) {
+                siteDetailViewModel.setScrollViewUp(false)
+
+                Log.i(TAG, "Scroll UP  ${scrollY}   ${oldScrollY}   $x");
+            }
+
+            if (scrollY == 0) {
+                Log.i(TAG, "TOP SCROLL ${scrollY}   ${oldScrollY}   $x" +
+                        "");
+            }
+
+            Log.i(TAG, "SCROLL------ ${oldScrollY/scrollY}   $x" +
+                    "")
         })
 
 

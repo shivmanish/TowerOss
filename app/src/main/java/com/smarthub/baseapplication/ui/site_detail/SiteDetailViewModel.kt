@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Point
 import android.graphics.drawable.Drawable
+import android.util.Base64InputStream
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ class SiteDetailViewModel: ViewModel() {
     var changeStatusPopUp:PopupWindow?=null
     var tabNames= MutableLiveData<Array<String>>()
     var isScrollUp = MutableLiveData<Boolean>()
+    var isScroll = MutableLiveData<SetTabData>()
     var tabLayoutOnChange:Boolean = false
 
 
@@ -87,5 +89,14 @@ class SiteDetailViewModel: ViewModel() {
     fun setScrollViewUp(b: Boolean) {
        isScrollUp.value = b
     }
+    fun setScrollValue(istrue: Boolean,b: Int) {
+        var setTabData=SetTabData(istrue,b)
+        isScroll.value = setTabData
 
+    }
+
+    data class SetTabData(
+        var istrue: Boolean,
+        var offset:Int
+    )
 }

@@ -52,6 +52,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="@dimen/dp85"
+            android:layout_height="@dimen/dp45"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_tab"
@@ -60,11 +70,11 @@
             android:fontFamily="@font/montserrat_semibold"
             android:textColor="@color/white"
             android:textSize="@dimen/sp10"
+            android:text="demo"
+            android:paddingBottom="@dimen/dp8"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+             />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
