@@ -164,20 +164,20 @@
                         android:layout_height="@dimen/dp35"/>
 
                     <TextView
-                        android:text="3"
-                        android:gravity="center"
-                        android:textSize="18sp"
                         android:id="@+id/p3"
-                        android:textStyle="bold"
-                        android:alpha="0.5"
-                        android:textColor="#3F4D68"
-                        android:background="@drawable/circle"
-                        app:layout_constraintEnd_toEndOf="@id/p_status3"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/p_status3"
-                        android:fontFamily="@font/montserrat_regular"
                         android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"/>
+                        android:layout_height="@dimen/dp35"
+                        android:background="@drawable/circle"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="#3F4D68"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/p_status3"
+                        app:layout_constraintStart_toStartOf="@+id/p_status3"
+                        app:layout_constraintTop_toTopOf="parent" />
                     <TextView
                         android:text="Password"
                         android:gravity="center"
@@ -186,7 +186,6 @@
                         android:textColor="#F7CB46"
                         android:padding="@dimen/dp5"
                         android:textStyle="bold"
-                        android:alpha="0.5"
                         app:layout_constraintTop_toBottomOf="@+id/p1"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:fontFamily="@font/montserrat_regular"
