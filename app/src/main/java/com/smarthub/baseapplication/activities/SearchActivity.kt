@@ -19,6 +19,8 @@ class SearchActivity : AppCompatActivity() {
         dataBinding?.clearSearchQuery?.setOnClickListener {
             val siteFragment= SiteDetailFragment()
             addFragment(siteFragment)
+//            var intent = Intent(this, SiteDetailActivity::class.java)
+//            startActivity(intent)
 //            finish()
         }
 

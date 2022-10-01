@@ -1,14 +1,16 @@
 package com.smarthub.baseapplication.fragments.sitedetail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.adapter.SiteDetailAdapter
+import com.smarthub.baseapplication.model.SiteDetailDataModel
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailViewModel
 
 
@@ -20,7 +22,8 @@ class Site_info : Fragment() {
 //    private var param1: String? = null
     private var param2: String? = null
     private lateinit var siteDetailViewModel: SiteDetailViewModel
-    private var scrollview: ScrollView?=null
+    private lateinit var recyclerView: RecyclerView
+//    private var scrollview: ScrollView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +38,27 @@ class Site_info : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.site_detail_frag, container, false)
-        scrollview  = view.findViewById(R.id.scroll_view)
+        val view =  inflater.inflate(R.layout.site_info_redetail, container, false)
+//        scrollview  = view.findViewById(R.id.scroll_view)
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
-        setScroolListner()
+//        setScroolListner()
         /*  var textView:TextView=view.findViewById(R.id.text_dashboard)
           textView.text=param2*/
+        setRecyclerView(view)
         return view
     }
-    var TAG = "MainVAlue"
-    fun setScroolListner(){
+
+    fun setRecyclerView(view: View){
+        val dataList = ArrayList<SiteDetailDataModel>()
+        dataList.add(SiteDetailDataModel(SiteDetailAdapter.VIEW_TYPE_ONE, true))
+
+        val adapter = SiteDetailAdapter(requireActivity(), dataList)
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.adapter = adapter
+    }
+
+   /* fun setScroolListner(){
         scrollview?.setOnScrollChangeListener(View.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val x = scrollY - oldScrollY
             if (x > 0) {
@@ -70,12 +84,12 @@ class Site_info : Fragment() {
                         "");
             }
 
-            Log.i(TAG, "SCROLL------ ${oldScrollY/scrollY}   $x" +
+            Log.i(TAG, "SCROLL------ ${oldScrollY}   ${scrollY}" +
                     "")
         })
 
 
-    }
+    }*/
 
     companion object {
 

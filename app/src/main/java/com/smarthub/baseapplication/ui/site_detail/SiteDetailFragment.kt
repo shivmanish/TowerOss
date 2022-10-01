@@ -45,6 +45,8 @@ class SiteDetailFragment : Fragment() {
     private var isScroll = true
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
+//    private var parentconstraintLayout: ConstraintLayout? =null
+//    var childconstraint: ConstraintLayout? =null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -96,6 +98,54 @@ class SiteDetailFragment : Fragment() {
 
     fun setFabActionButton() {
         // for our add floating action button
+        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+            override fun onOffsetChanged(state: State?, offset: Float) {
+                    if (state === State.IDLE) {
+//						mToolbarTextView.setAlpha(offset);
+                        for (i in 0..tabNames?.size!!.minus(1)) {
+                            var constraintLayout: ConstraintLayout =
+                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                            var constraintL: ConstraintLayout =
+                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+
+                            constraintL.alpha= offset
+                            constraintLayout.alpha = (1-offset)
+                        }
+                        Log.d("offsetvalues>>>onOffsetChanged>","${offset}  ${1-offset}")
+
+                }
+            }
+
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                    if (state === State.COLLAPSED) {
+//						mToolbarTextView.setAlpha(1);
+                        for (i in 0..tabNames?.size!!.minus(1)) {
+                            var parentconstraintLayout:ConstraintLayout =
+                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                           var childconstraint:ConstraintLayout =
+                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+                            parentconstraintLayout?.visibility = View.GONE
+                            childconstraint?.visibility = View.VISIBLE
+//                            constraintL.alpha= 1f
+//                            constraintLayout.alpha = 0f
+                        }
+                        Log.d("offsetvalues>>>onOffsetChanged>","${state}")
+                    } else if (state === State.EXPANDED) {
+//						mToolbarTextView.setAlpha(0);
+                        for (i in 0..tabNames?.size!!.minus(1)) {
+                           var parentconstraintLayout:ConstraintLayout =
+                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                          var  childconstraint:ConstraintLayout =
+                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+                            parentconstraintLayout?.visibility = View.VISIBLE
+                            childconstraint?.visibility = View.GONE
+//                            constraintL.alpha= 0f
+//                            constraintLayout.alpha = 1f
+                        }
+                        Log.d("offsetvalues>>>onOffsetChanged>","${state}")
+                    }
+            }
+        })
         binding.fabbtn.setOnClickListener {
 
             if (!fabVisible) {
@@ -141,7 +191,7 @@ class SiteDetailFragment : Fragment() {
         var constraintLayout: ConstraintLayout =
             binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
         var constraintLay: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_layout)
+            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
         var texttabchange =
             constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
         texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
@@ -171,7 +221,7 @@ class SiteDetailFragment : Fragment() {
                     constraintLayout.backgroundTintList =
                         ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
                     var constraintLay: ConstraintLayout =
-                        view!!.findViewById(R.id.parent_tab_layout)
+                        view!!.findViewById(R.id.parent_tab_child)
                     var texttabchange =
                         constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                     texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
@@ -185,7 +235,7 @@ class SiteDetailFragment : Fragment() {
                 var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList =
                     ColorStateList.valueOf(resources.getColor(R.color.white))
-                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_layout)
+                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
                 var texttabchange =
                     constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.white))
@@ -226,7 +276,7 @@ class SiteDetailFragment : Fragment() {
                 var constraintLayout: ConstraintLayout =
                     binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
                 var constraintL: ConstraintLayout =
-                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_layout)
+                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
                 constraintLayout.visibility = View.GONE
                 constraintL.visibility = View.VISIBLE
             }
@@ -236,61 +286,13 @@ class SiteDetailFragment : Fragment() {
                 var constraintLayout: ConstraintLayout =
                     binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
                 var constraintL: ConstraintLayout =
-                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_layout)
+                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
                 constraintLayout.visibility = View.VISIBLE
                 constraintL.visibility = View.GONE
             }
             binding.tabs!!.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
         }
-        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
-//            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State) {
-                /*if (mToolbarTextView != null) {
-                    if (state === State.COLLAPSED) {
-//						mToolbarTextView.setAlpha(1);
-                        mCollapsingToolbar.setContentScrimColor(
-                            ContextCompat.getColor(this@MainActivity, R.color.colorPrimary)
-                        )
-                    } else if (state === State.EXPANDED) {
-//						mToolbarTextView.setAlpha(0);
-                        mCollapsingToolbar.setContentScrimColor(
-                            ContextCompat
-                                .getColor(this@MainActivity, android.R.color.transparent)
-                        )
-                    }
-                }*/
-//            }
 
-           /* override  fun onOffsetChanged(state: State, offset: Float) {
-                if (mToolbarTextView != null) {
-                    if (state === State.IDLE) {
-//						mToolbarTextView.setAlpha(offset);
-                        mCollapsingToolbar.setContentScrimColor(
-                            ArgbEvaluator()
-                                .evaluate(
-                                    offset, ContextCompat
-                                        .getColor(this@MainActivity, android.R.color.transparent),
-                                    ContextCompat.getColor(
-                                        this@MainActivity,
-                                        R.color.colorPrimary
-                                    )
-                                ) as Int
-                        )
-                    }
-                }
-            }*/
-
-            override fun onOffsetChanged(state: State?, offset: Float) {
-                Log.e("offset","${state}  ${offset}")
-//                Toast.makeText(requireActivity(),"  ${state}  ${offset}",Toast.LENGTH_LONG).show()
-            }
-
-            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
-                Log.e("offset","${state} ")
-//                Toast.makeText(requireActivity(),"  ${state}  ",Toast.LENGTH_LONG).show()
-            }
-
-
-        })
     }
 
 }
