@@ -20,7 +20,7 @@ public class PasswordEditText extends AppCompatEditText {
     private static final int DRAWABLE_PADDING_IN_DP = 8;
     private Drawable showPasswordDrawable;
     private Drawable hidePasswordDrawable;
-    private boolean passwordIsVisible = true;
+    private boolean passwordIsVisible = false;
 
     public PasswordEditText(Context context) {
         super(context);
