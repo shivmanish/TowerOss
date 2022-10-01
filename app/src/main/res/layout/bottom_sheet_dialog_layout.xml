@@ -1,348 +1,340 @@
-<androidx.cardview.widget.CardView android:elevation="@dimen/dp8"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="@dimen/dp8"
-    android:shape="rectangle"
-    android:background="@drawable/card_top_rect"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/card_top_rect"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".7"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="8dp"
+            android:text="@string/category"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".3"
+            android:src="@drawable/close"
+            android:tint="@color/black"
+            tools:ignore="UseAppTint" />
+    </LinearLayout>
+
+    <LinearLayout
+
+
+        android:id="@+id/shareLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+            android:layout_weight=".7"
+            android:padding="8dp"
+            android:text="@string/tower_route"
+            android:textStyle="bold"
+            android:tint="@color/black" />
+
+        <Switch
+            android:id="@+id/switchTowerRoute"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight=".3"
+            android:buttonTint="#3D4E6D"
+            android:gravity="start"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".7"
+            android:padding="8dp"
+            android:text="@string/patroller_management"
+            android:textStyle="bold"
+            android:tint="@color/black" />
+
+        <Switch
+
+            android:id="@+id/switchPatrollerManagement"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight=".3"
+            android:buttonTint="#3D4E6D"
+            android:gravity="start"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".7"
+            android:padding="8dp"
+            android:text="@string/alert_management"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:tint="@color/black"
+            tools:ignore="RtlCompat" />
+
+        <Switch
+            android:id="@+id/switchAlert"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight=".3"
+            android:buttonTint="#3D4E6D"
+            android:gravity="start"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+
+        android:orientation="vertical"
+        android:padding="8dp">
+
+
+        <TextView
+            android:id="@+id/line_74"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rlParent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/line" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".7"
+            android:padding="8dp"
+            android:text="Basic"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
 
+            android:tint="@color/black"
+            tools:ignore="RtlCompat" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".7"
+            android:padding="8dp"
+            android:text="Date Base Filter"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:tint="@color/black"
+            tools:ignore="RtlCompat" />
+        <LinearLayout
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".7"
-                android:fontFamily="@font/montserrat_bold"
-                android:padding="8dp"
-                android:text="@string/category"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imgClose"
-                android:layout_width="wrap_content"
-                android:layout_height="13dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".3"
-                android:src="@drawable/close"
-                android:tint="@color/black"
-                tools:ignore="UseAppTint" />
-        </LinearLayout>
-
-        <LinearLayout
-
-
-            android:id="@+id/shareLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-
-                android:layout_weight=".7"
-                android:padding="8dp"
-                android:text="@string/tower_route"
-                android:textStyle="bold"
-                android:tint="@color/black" />
-
-            <Switch
-                android:id="@+id/switchTowerRoute"
-                android:layout_width="@dimen/dp20"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight=".3"
-                android:buttonTint="#3D4E6D"
-                android:gravity="start"
-                android:textColor="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".7"
-                android:padding="8dp"
-                android:text="@string/patroller_management"
-                android:textStyle="bold"
-                android:tint="@color/black" />
-
-            <Switch
-                android:id="@+id/switchPatrollerManagement"
-                android:layout_width="@dimen/dp20"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight=".3"
-                android:buttonTint="#3D4E6D"
-                android:gravity="start"
-                android:textColor="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".7"
-                android:padding="8dp"
-                android:text="@string/alert_management"
-                android:textAlignment="textStart"
-                android:textStyle="bold"
-                android:tint="@color/black"
-                tools:ignore="RtlCompat" />
-
-            <Switch
-                android:id="@+id/switchAlert"
-                android:layout_width="@dimen/dp20"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight=".3"
-                android:buttonTint="#3D4E6D"
-                android:gravity="start"
-                android:textColor="#000000" />
-
-        </LinearLayout>
-
-        <LinearLayout
-
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-
-            android:orientation="vertical"
-            android:padding="8dp">
-
-
-            <TextView
-                android:id="@+id/line_74"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/rlParent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="12dp"
-                android:background="@drawable/line" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:orientation="vertical"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".7"
-                android:padding="8dp"
-                android:text="Basic"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textAlignment="textStart"
-
-                android:tint="@color/black"
-                tools:ignore="RtlCompat" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".7"
-                android:padding="8dp"
-                android:text="Date Base Filter"
-                android:textAlignment="textStart"
-                android:textStyle="bold"
-                android:tint="@color/black"
-                tools:ignore="RtlCompat" />
-           <LinearLayout
-               android:layout_weight="1"
-               android:orientation="horizontal"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-               <LinearLayout
-                   android:layout_weight=".5"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-                   <RelativeLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:id="@+id/lblStart"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:layout_weight=".7"
-                           android:padding="8dp"
-                           android:text="Start"
-                           android:textAlignment="textStart"
-                           android:textStyle="bold"
-                           android:tint="@color/black"
-                           tools:ignore="RtlCompat" />
-
-                       <TextView
-                           android:id="@+id/txtStartDate"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_below="@+id/lblStart"
-                           android:layout_gravity="center_vertical"
-                           android:layout_marginTop="-3dp"
-                           android:layout_weight=".7"
-                           android:drawableRight="@drawable/calender"
-                           android:drawableTint="@color/black"
-                           android:padding="8dp"
-                           android:text="11 April 2022"
-                           android:textAlignment="textStart"
-                           android:textStyle="bold"
-                           android:tint="@color/black"
-                           tools:ignore="RtlCompat" />
-                   </RelativeLayout>
-                   <View
-                       android:layout_below="@+id/txtStartDate"
-
-                       android:id="@+id/line_73"
-                       android:layout_width="match_parent"
-                       android:layout_height="1dp"
-                       android:layout_alignParentLeft="true"
-                       android:layout_marginLeft="17dp"
-                       android:layout_alignParentTop="true"
-
-                       android:background="@drawable/line"
-                       />
-               </LinearLayout>
-               <LinearLayout
-                   android:layout_weight=".5"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-                   <RelativeLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:id="@+id/lblEnd"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:layout_weight=".7"
-                           android:padding="8dp"
-                           android:text="End"
-                           android:textAlignment="textStart"
-                           android:textStyle="bold"
-                           android:tint="@color/black"
-                           tools:ignore="RtlCompat" />
-                       <TextView
-
-                           android:id="@+id/txtEndDate"
-                           android:drawableTint="@color/black"
-
-                           android:drawableRight="@drawable/calender"
-                           android:layout_below="@+id/lblEnd"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:layout_weight=".7"
-                           android:padding="8dp"
-                           android:text="12 April 2022"
-                           android:textAlignment="textStart"
-                           android:textStyle="bold"
-                           android:tint="@color/black"
-                           tools:ignore="RtlCompat" />
-
-                   </RelativeLayout>
-                   <View
-                       android:layout_below="@+id/txtStartDate"
-                       android:layout_width="match_parent"
-                       android:layout_height="1dp"
-                       android:layout_alignParentLeft="true"
-                       android:layout_marginLeft="17dp"
-                       android:layout_alignParentTop="true"
-                       android:background="@drawable/line"
-                       />
-
-               </LinearLayout>
-           </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dp70"
-
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btnReset"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_margin="@dimen/dp5"
-                android:layout_weight=".5"
-                android:background="@drawable/login_yellow_bg"
-                android:backgroundTint="#3D4E6D"
-
-                android:text="Reset">
-
-
-            </Button>
-
-            <Button
-
-                android:layout_margin="@dimen/dp5"
+            <LinearLayout
                 android:layout_weight=".5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#3D4E6D"
-                android:text="Apply Filter"
-                android:id="@+id/btnFilter"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblStart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight=".7"
+                        android:padding="8dp"
+                        android:text="Start"
+                        android:textAlignment="textStart"
+                        android:textStyle="bold"
+                        android:tint="@color/black"
+                        tools:ignore="RtlCompat" />
 
-                android:background="@drawable/login_yellow_bg"
-              >
+                    <TextView
+                        android:id="@+id/txtStartDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lblStart"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="-3dp"
+                        android:layout_weight=".7"
+                        android:drawableRight="@drawable/calender"
+                        android:drawableTint="@color/black"
+                        android:padding="8dp"
+                        android:text="11 April 2022"
+                        android:textAlignment="textStart"
+                        android:textStyle="bold"
+                        android:tint="@color/black"
+                        tools:ignore="RtlCompat" />
+                </RelativeLayout>
+                <View
+                    android:layout_below="@+id/txtStartDate"
 
+                    android:id="@+id/line_73"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_alignParentTop="true"
 
-            </Button>
+                    android:background="@drawable/line"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight=".5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight=".7"
+                        android:padding="8dp"
+                        android:text="End"
+                        android:textAlignment="textStart"
+                        android:textStyle="bold"
+                        android:tint="@color/black"
+                        tools:ignore="RtlCompat" />
+                    <TextView
+
+                        android:id="@+id/txtEndDate"
+                        android:drawableTint="@color/black"
+
+                        android:drawableRight="@drawable/calender"
+                        android:layout_below="@+id/lblEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight=".7"
+                        android:padding="8dp"
+                        android:text="12 April 2022"
+                        android:textAlignment="textStart"
+                        android:textStyle="bold"
+                        android:tint="@color/black"
+                        tools:ignore="RtlCompat" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_below="@+id/txtStartDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/line"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp70"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/dp5"
+            android:layout_weight=".5"
+            android:background="@drawable/login_yellow_bg"
+            android:backgroundTint="#3D4E6D"
+
+            android:text="Reset">
+
+
+        </Button>
+
+        <Button
+
+            android:layout_margin="@dimen/dp5"
+            android:layout_weight=".5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3D4E6D"
+            android:text="Apply Filter"
+            android:id="@+id/btnFilter"
+
+            android:background="@drawable/login_yellow_bg"
+            >
+
+
+        </Button>
+    </LinearLayout>
+</LinearLayout>
