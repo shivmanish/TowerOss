@@ -7,15 +7,16 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
+        android:weightSum="1"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:orientation="horizontal"
         android:padding="8dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight=".7"
+            android:layout_weight=".9"
             android:fontFamily="@font/montserrat_bold"
             android:padding="8dp"
             android:text="@string/category"
@@ -27,8 +28,8 @@
             android:id="@+id/imgClose"
             android:layout_width="wrap_content"
             android:layout_height="13dp"
+            android:layout_weight=".1"
             android:layout_gravity="center_vertical"
-            android:layout_weight=".3"
             android:src="@drawable/close"
             android:tint="@color/black"
             tools:ignore="UseAppTint" />
@@ -50,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
 
-            android:layout_weight=".7"
+            android:layout_weight=".9"
             android:padding="8dp"
             android:text="@string/tower_route"
             android:textStyle="bold"
@@ -58,10 +59,10 @@
 
         <Switch
             android:id="@+id/switchTowerRoute"
-            android:layout_width="@dimen/dp20"
+            android:layout_width="@dimen/dp25"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_weight=".3"
+            android:layout_gravity="end"
+            android:layout_weight=".1"
             android:buttonTint="#3D4E6D"
             android:gravity="start"
             android:textColor="#000000" />
@@ -82,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight=".7"
+            android:layout_weight=".9"
             android:padding="8dp"
             android:text="@string/patroller_management"
             android:textStyle="bold"
@@ -94,7 +95,7 @@
             android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_weight=".3"
+            android:layout_weight=".1"
             android:buttonTint="#3D4E6D"
             android:gravity="start"
             android:textColor="#000000" />
