@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.utils.Utility
 
 
 /**
@@ -28,6 +29,7 @@ class RegistrationSuccessfull : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val loginButton = view.findViewById<View>(R.id.login)
         loginButton.setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             activity?.let{
                 val intent = Intent (it, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -36,6 +38,7 @@ class RegistrationSuccessfull : Fragment() {
         }
 
         view.findViewById<View>(R.id.back).setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             activity?.let{
                 it.onBackPressed()
             }

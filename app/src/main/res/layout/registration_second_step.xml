@@ -3,10 +3,9 @@
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="@color/background_login"
 android:id="@+id/fragmentContainerView"
 xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <include layout="@layout/register_bg"/>
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -19,6 +18,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            app:layout_constraintWidth_percent="0.6"
+            android:src="@drawable/bg_login_bottom_left"
+            android:layout_height="wrap_content"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +75,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:gravity="center"
                     android:textSize="18sp"
                     android:id="@+id/p1"
+                    android:alpha="0.5"
                     android:textColor="#3F4D68"
                     android:background="@drawable/circle"
                     app:layout_constraintTop_toTopOf="parent"
@@ -84,6 +93,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:textColor="#E7C42C"
                     android:padding="@dimen/dp5"
                     android:textStyle="bold"
+                    android:alpha="0.5"
                     app:layout_constraintTop_toBottomOf="@+id/p1"
                     app:layout_constraintStart_toStartOf="parent"
                     android:fontFamily="@font/montserrat_regular"
@@ -110,13 +120,14 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:gravity="center"
                     android:textSize="18sp"
                     android:id="@+id/p2"
-                    android:textColor="@color/white"
+                    android:alpha="0.5"
+                    android:textColor="#3F4D68"
                     android:textStyle="bold"
+                    android:background="@drawable/circle"
                     app:layout_constraintEnd_toEndOf="@id/p_status2"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/p_status2"
                     android:fontFamily="@font/montserrat_regular"
-                    android:background="@drawable/circle_border"
                     android:layout_width="@dimen/dp35"
                     android:layout_height="@dimen/dp35"/>
                 <TextView
@@ -124,9 +135,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:gravity="center"
                     android:textSize="11sp"
                     android:id="@+id/p_status2"
-                    android:textColor="#D8CDCD"
+                    android:textColor="#F7CB46"
                     android:padding="@dimen/dp5"
                     android:textStyle="bold"
+                    android:alpha="0.5"
                     app:layout_constraintTop_toBottomOf="@+id/p1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -162,6 +174,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:fontFamily="@font/montserrat_regular"
                     android:background="@drawable/circle_border"
                     android:layout_width="@dimen/dp35"
+                    android:alpha="0.5"
                     android:layout_height="@dimen/dp35"/>
                 <TextView
                     android:text="Password"
@@ -171,6 +184,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:textColor="#D8CDCD"
                     android:padding="@dimen/dp5"
                     android:textStyle="bold"
+                    android:alpha="0.5"
                     app:layout_constraintTop_toBottomOf="@+id/p1"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/montserrat_regular"
@@ -206,7 +220,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:layout_width="match_parent"
                 style="@style/registratio_first_box"
                 app:layout_constraintBottom_toTopOf="@+id/email_id"/>
-            <EditText
+            <TextView
                 android:hint="Role Area"
                 android:textSize="15sp"
                 android:id="@+id/email_id"
