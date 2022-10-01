@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
 import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
+import com.smarthub.baseapplication.utils.Utility
 
 
 class LoginSecondStep : Fragment() {
@@ -24,6 +25,7 @@ class LoginSecondStep : Fragment() {
 
         val login = view.findViewById<View>(R.id.login)
         login.setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             val intent = Intent (requireActivity(), DashboardActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             requireActivity().startActivity(intent)
@@ -31,18 +33,21 @@ class LoginSecondStep : Fragment() {
 
         val textRegister = view.findViewById<View>(R.id.text_register)
         textRegister.setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             val regFragment1 = RegistrationFirstStep()
             addFragment(regFragment1)
         }
 
         val forgoPassword = view.findViewById<View>(R.id.forgot_password)
         forgoPassword.setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             val regFragment1 = ForgotPassStep1()
             addFragment(regFragment1)
         }
 
         val signWithPhone = view.findViewById<View>(R.id.sign_with_phone)
         signWithPhone.setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             val regFragment1 = OtpVerificationStep1()
             addFragment(regFragment1)
         }

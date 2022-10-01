@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.utils.Utility
 
 
 /**
@@ -36,6 +37,7 @@ class RegistrationFirstStep : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val loginButton = view.findViewById<View>(R.id.text_register)
         loginButton.setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             activity?.let{
                 val intent = Intent (it, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -45,6 +47,7 @@ class RegistrationFirstStep : Fragment() {
 
         val regFragment2 = RegistrationSecondStep()
         view.findViewById<View>(R.id.register).setOnClickListener {
+            Utility.hideKeyboard(requireContext(),it)
             addFragment(regFragment2)
         }
     }
