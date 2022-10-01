@@ -95,10 +95,13 @@
 
                <EditText
                    android:padding="@dimen/dp10"
-                   android:text="Username or E-mail"
+                   android:textColorHint="@color/white"
+                   android:hint="Username or E-mail"
                    android:textSize="15sp"
+                   android:letterSpacing="0.04"
                    android:textColor="#fff"
                    android:id="@+id/user_mail"
+                   android:nextFocusForward="@id/password"
                    android:drawablePadding="@dimen/dp10"
                    android:drawableStart="@drawable/ic_profile_border"
                    android:layout_width="match_parent"
@@ -120,16 +123,19 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:textStyle="italic"
+                   android:visibility="invisible"
                    android:layout_marginBottom="@dimen/dp20"
                    android:fontFamily="@font/montserrat_regular"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintBottom_toTopOf="@+id/password"/>
 
-               <EditText
+               <com.smarthub.baseapplication.widgets.PasswordEditText
                    android:inputType="numberPassword"
                    android:padding="@dimen/dp10"
-                   android:text="Password"
-                   android:textSize="15sp"
+                   android:hint="******"
+                   android:letterSpacing="0.2"
+                   android:textColorHint="@color/white"
+                   android:textSize="17sp"
                    android:textColor="#fff"
                    android:id="@+id/password"
                    android:drawablePadding="@dimen/dp10"
@@ -153,6 +159,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:textStyle="italic"
+                   android:visibility="invisible"
                    android:layout_marginBottom="@dimen/dp30"
                    android:fontFamily="@font/montserrat_regular"
                    app:layout_constraintStart_toStartOf="parent"
