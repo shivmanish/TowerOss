@@ -20,7 +20,7 @@ public class PasswordEditText extends AppCompatEditText {
     private static final int DRAWABLE_PADDING_IN_DP = 8;
     private Drawable showPasswordDrawable;
     private Drawable hidePasswordDrawable;
-    private boolean passwordIsVisible = false;
+    private boolean passwordIsVisible = true;
 
     public PasswordEditText(Context context) {
         super(context);
@@ -48,10 +48,10 @@ public class PasswordEditText extends AppCompatEditText {
             showPasswordDrawable = getDrawable(attributes, R.styleable.PasswordEditText_showDrawable, drawableTint);
             hidePasswordDrawable = getDrawable(attributes, R.styleable.PasswordEditText_hideDrawable, drawableTint);
             if (showPasswordDrawable == null) {
-                showPasswordDrawable = getDrawable(getResources().getDrawable(R.drawable.ic_password_visible_24dp), drawableTint);
+                showPasswordDrawable = getDrawable(getResources().getDrawable(R.drawable.ic_password_hidden_24dp), drawableTint);
             }
             if (hidePasswordDrawable == null) {
-                hidePasswordDrawable = getDrawable(getResources().getDrawable(R.drawable.ic_password_hidden_24dp), drawableTint);
+                hidePasswordDrawable = getDrawable(getResources().getDrawable(R.drawable.ic_password_visible_24dp), drawableTint);
             }
             if (showPasswordDrawable != null && hidePasswordDrawable != null) {
                 setCompoundDrawablesWithIntrinsicBounds(null, null, showPasswordDrawable, null);
