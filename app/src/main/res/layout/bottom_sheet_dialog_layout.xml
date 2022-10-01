@@ -1,15 +1,18 @@
-<androidx.cardview.widget.CardView
-    android:elevation="@dimen/dp8"
+<androidx.cardview.widget.CardView android:elevation="@dimen/dp8"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="@dimen/dp8"
-    android:layout_height="match_parent">
+    android:shape="rectangle"
+    android:background="@drawable/card_top_rect"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
@@ -29,8 +32,9 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/imgClose"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp20"
+                android:layout_height="13dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".3"
                 android:src="@drawable/close"
@@ -100,7 +104,8 @@
                 android:layout_weight=".3"
                 android:buttonTint="#3D4E6D"
                 android:gravity="start"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,10 +170,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-
             android:orientation="vertical"
             android:padding="8dp">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,15 +222,17 @@
                            android:textStyle="bold"
                            android:tint="@color/black"
                            tools:ignore="RtlCompat" />
+
                        <TextView
                            android:id="@+id/txtStartDate"
-                           android:drawableTint="@color/black"
-                           android:drawableRight="@drawable/calender"
-                           android:layout_below="@+id/lblStart"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
+                           android:layout_below="@+id/lblStart"
                            android:layout_gravity="center_vertical"
+                           android:layout_marginTop="-3dp"
                            android:layout_weight=".7"
+                           android:drawableRight="@drawable/calender"
+                           android:drawableTint="@color/black"
                            android:padding="8dp"
                            android:text="11 April 2022"
                            android:textAlignment="textStart"
@@ -300,36 +305,32 @@
                </LinearLayout>
            </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dp70"
-
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-                android:layout_margin="@dimen/dp5"
-                android:layout_weight=".5"
-
+                android:id="@+id/btnReset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#3D4E6D"
-                android:text="Reset"
-
+                android:layout_margin="@dimen/dp5"
+                android:layout_weight=".5"
                 android:background="@drawable/login_yellow_bg"
-              >
-
+                android:backgroundTint="#3D4E6D"
+                android:text="Reset">
 
             </Button>
+
             <Button
+
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight=".5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#3D4E6D"
                 android:text="Apply Filter"
-                android:id="@+id/next_layout"
+                android:id="@+id/btnFilter"
 
                 android:background="@drawable/login_yellow_bg"
               >
