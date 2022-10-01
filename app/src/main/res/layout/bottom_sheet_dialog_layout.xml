@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
@@ -103,8 +104,7 @@
                 android:layout_weight=".3"
                 android:buttonTint="#3D4E6D"
                 android:gravity="start"
-                android:textColor="#000000"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                android:textColor="#000000" />
         </LinearLayout>
 
         <LinearLayout
@@ -304,20 +304,27 @@
                </LinearLayout>
            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dp70"
+
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/btnReset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight=".5"
                 android:background="@drawable/login_yellow_bg"
                 android:backgroundTint="#3D4E6D"
+
                 android:text="Reset">
+
 
             </Button>
 
