@@ -15,6 +15,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
+
+
         dataBinding = SearchActivityBinding.inflate(layoutInflater)
         setContentView(dataBinding?.root)
         dataBinding?.clearSearchQuery?.setOnClickListener {

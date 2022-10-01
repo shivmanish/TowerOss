@@ -92,7 +92,8 @@
 
                 <EditText
                     android:padding="@dimen/dp10"
-                    android:text="Username or E-mail"
+                    android:textColorHint="@color/white"
+                    android:hint="Username or E-mail"
                     android:textSize="15sp"
                     android:textColor="#fff"
                     android:id="@+id/user_mail"
@@ -103,21 +104,21 @@
                     android:gravity="center_vertical"
                     android:layout_height="@dimen/dp45"
                     android:layout_marginBottom="@dimen/dp30"
+                    android:letterSpacing="0.05"
                     android:background="@drawable/login_white_border"
                     android:fontFamily="@font/montserrat_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/password"/>
 
-                <EditText
+                <com.smarthub.baseapplication.widgets.PasswordEditText
                     android:padding="@dimen/dp10"
-                    android:hint="Password"
+                    android:hint="000000"
                     android:textColorHint="@color/devider_grey"
                     android:textSize="16sp"
                     android:textColor="#fff"
-                    android:inputType="numberPassword"
                     android:id="@+id/password"
-                    android:maxLength="6"
+                    android:letterSpacing="0.1"
                     android:drawablePadding="@dimen/dp10"
                     android:drawableStart="@drawable/ic_carbon_password"
                     android:layout_width="match_parent"

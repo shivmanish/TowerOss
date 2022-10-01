@@ -30,12 +30,12 @@ import retrofit2.Retrofit
 
 class LoginActivity : AppCompatActivity() {
     var retrofit: Retrofit? = null
-    var binding : LogingSecondStepBinding?=null
+    var binding : ActivityLoginBinding?=null
     private lateinit var progressDialog : ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LogingSecondStepBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Please Wait...")
@@ -76,19 +76,18 @@ class LoginActivity : AppCompatActivity() {
 //                return
 //            }
 
-        if (binding?.password?.text.toString().isNotEmpty() && binding?.password?.text.toString().length == 6)
-            if (binding?.forgotError?.visibility == View.VISIBLE)
-                binding?.forgotError?.visibility = View.INVISIBLE
-            else if (binding?.forgotError?.visibility == View.INVISIBLE) {
-                binding?.forgotError?.visibility = View.VISIBLE
-                return
-            }
+//        if (binding?.password?.text.toString().isNotEmpty() && binding?.password?.text.toString().length == 6)
+//            if (binding?.forgotError?.visibility == View.VISIBLE)
+//                binding?.forgotError?.visibility = View.INVISIBLE
+//            else if (binding?.forgotError?.visibility == View.INVISIBLE) {
+//                binding?.forgotError?.visibility = View.VISIBLE
+//                return
+//            }
 
 
         progressDialog.show()
         loadJSONFromAsset(binding?.userMail?.text.toString(),binding?.password?.text.toString())
-//        val regFragment1 = LoginSecondStep()
-//        addFragment(regFragment1)
+
     }
 
     private fun loadJSONFromAsset(userName:String,userPass :String) {
@@ -108,6 +107,9 @@ class LoginActivity : AppCompatActivity() {
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()
                     Toast.makeText(this@LoginActivity,"error:"+e.localizedMessage,Toast.LENGTH_LONG).show()
+
+                    val regFragment1 = LoginSecondStep()
+                    addFragment(regFragment1)
                 }
 
                 override fun onSuccess(t: JsonObject) {
