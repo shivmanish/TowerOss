@@ -113,7 +113,7 @@
 
                 <com.smarthub.baseapplication.widgets.PasswordEditText
                     android:padding="@dimen/dp10"
-                    android:hint="000000"
+                    android:hint="******"
                     android:textColorHint="@color/devider_grey"
                     android:textSize="16sp"
                     android:textColor="#fff"

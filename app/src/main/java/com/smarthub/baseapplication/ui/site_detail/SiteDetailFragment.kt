@@ -45,8 +45,6 @@ class SiteDetailFragment : Fragment() {
     private var isScroll = true
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
-//    private var parentconstraintLayout: ConstraintLayout? =null
-//    var childconstraint: ConstraintLayout? =null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
