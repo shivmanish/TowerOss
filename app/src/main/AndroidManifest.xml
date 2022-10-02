@@ -14,6 +14,18 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MDemo"
         tools:targetApi="31">
+
+
+
+            <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 <!--        <activity-->
 <!--            android:name=".ui.site_detail.SiteDetailActivity"-->
 <!--            android:exported="true">-->
@@ -26,25 +38,20 @@
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="true"
-            android:label="@string/setting"
-            android:theme="@style/Theme.BaseApplication"></activity>
-            android:label="@string/setting" />
+            android:label="@string/setting"></activity>
         <activity
             android:name=".ui.profile.EditProfileActivity"
-            android:exported="true"
-            android:theme="@style/Theme.BaseApplication">
+            android:exported="true">
 
         </activity>
         <activity
             android:name=".activities.LanguageActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.BaseApplication" />
+            android:label="@string/app_name" />
         <activity
             android:name=".activities.SettingActivity"
             android:exported="true"
-            android:label="@string/setting"
-            android:theme="@style/Theme.BaseApplication" />
+            android:label="@string/setting" />
         <activity
             android:name=".activities.SearchActivity"
             android:exported="true"
@@ -56,8 +63,6 @@
         <activity
             android:name=".ui.profile.ProfileActivity1"
             android:exported="true"
-            android:label="@string/setting"
-            android:theme="@style/Theme.BaseApplication"></activity>
             android:label="@string/setting" />
         <activity
             android:name=".activities.LoginActivity"
@@ -70,17 +75,7 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity
-            android:name=".activities.SplashActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/Theme.BaseApplication">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

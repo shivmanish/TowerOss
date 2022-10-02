@@ -201,7 +201,6 @@ class SiteDetailFragment : Fragment() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-
         val adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
         adapter.addFragment(Site_info.newInstance("A"))
         adapter.addFragment(CustomerFragment.newInstance("Customer"))
