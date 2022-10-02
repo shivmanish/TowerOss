@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.notifications
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.NotificationsListAdapter
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
+import java.text.DateFormatSymbols
 import java.util.*
 import javax.xml.datatype.DatatypeConstants.MONTHS
 
@@ -70,7 +72,7 @@ class NotificationsFragment : Fragment() {
                             view, year, monthOfYear, dayOfMonth ->
                         // Display Selected date in textbox
                         // 12-Apl-2022, DD/MMM/YYYY
-                      //  startDate.setText("" + dayOfMonth + " " + MONTHS.toString().get(monthOfYear) + ", " + year)
+                        startDate.text = "" + dayOfMonth + " " + getMonthName(monthOfYear) + ", " + year
                     }, year, month, day
                 )
                 dpd.show()
@@ -85,7 +87,8 @@ class NotificationsFragment : Fragment() {
                     {
                             view, year, monthOfYear, dayOfMonth ->
                         // Display Selected date in textbox
-                        txtEndDate.setText("" + dayOfMonth + " " + MONTHS.toString().get(monthOfYear) + ", " + year)
+                        Log.d("date ","  $monthOfYear")
+                        txtEndDate.text = "" + dayOfMonth + " " + getMonthName(monthOfYear) + ", " + year
                     }, year, month, day
                 )
                 dpd.show()
@@ -123,6 +126,10 @@ class NotificationsFragment : Fragment() {
     }
 }
 
+fun getMonthName(monthIndex: Int): String? {
+    require(!(monthIndex < 0 || monthIndex > 11)) { "$monthIndex is not a valid month index." }
+    return DateFormatSymbols().months[monthIndex].toString()
+}
 private fun ImageView?.setOnClickListener() {
     print("HH")
 
