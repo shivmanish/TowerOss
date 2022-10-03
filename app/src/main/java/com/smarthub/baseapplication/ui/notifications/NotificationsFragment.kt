@@ -27,7 +27,6 @@ class NotificationsFragment : Fragment() {
 
     private val binding get() = _binding!!
     private var layoutManager: RecyclerView.LayoutManager? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
         notificationViewModel = ViewModelProvider(requireActivity())[NotificationsViewModel::class.java]
@@ -38,7 +37,6 @@ class NotificationsFragment : Fragment() {
 
         return root
     }
-
     @SuppressLint("MissingInflatedId")
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
