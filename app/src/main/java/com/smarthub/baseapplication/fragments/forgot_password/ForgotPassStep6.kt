@@ -1,14 +1,12 @@
 package com.smarthub.baseapplication.fragments.forgot_password
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class ForgotPassStep6 : Fragment() {
 
@@ -32,7 +30,7 @@ class ForgotPassStep6 : Fragment() {
 
         val regFragment2 = ForgotPassStep7()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }

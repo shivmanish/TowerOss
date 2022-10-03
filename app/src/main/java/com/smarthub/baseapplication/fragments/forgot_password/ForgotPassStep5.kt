@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.fragments.forgot_password
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,10 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ForgotPassStep5FragmentBinding
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class ForgotPassStep5 : Fragment() {
 
@@ -29,7 +27,7 @@ class ForgotPassStep5 : Fragment() {
 
         val regFragment2 = ForgotPassStep6()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }
@@ -80,7 +78,7 @@ class ForgotPassStep5 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
-                    Utility.hideKeyboard(requireContext(),binding?.p6!!)
+                    Utils.hideKeyboard(requireContext(),binding?.p6!!)
             }
         })
     }

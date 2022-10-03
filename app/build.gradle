@@ -33,6 +33,7 @@ android {
         viewBinding true
 
     }
+    namespace 'com.smarthub.baseapplication'
 }
 
 dependencies {
@@ -44,7 +45,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     // for adding cardview
@@ -64,4 +65,15 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.2.7"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    implementation 'com.facebook.stetho:stetho-js-rhino:1.5.1'
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+
+//    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
 }

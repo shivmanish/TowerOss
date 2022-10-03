@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.fragments.otp
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.databinding.OtpVerificationStep3FragmentBinding
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class OtpVerificationStep3 : Fragment() {
     var binding : OtpVerificationStep3FragmentBinding?=null
@@ -28,7 +27,7 @@ class OtpVerificationStep3 : Fragment() {
 
         val regFragment2 = OtpVerificationStep4()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }
@@ -79,7 +78,7 @@ class OtpVerificationStep3 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
-                    Utility.hideKeyboard(requireContext(),binding?.p6!!)
+                    Utils.hideKeyboard(requireContext(),binding?.p6!!)
             }
         })
     }

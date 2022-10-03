@@ -3,125 +3,103 @@ package com.smarthub.baseapplication.activities
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonObject
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLoginBinding
-import com.smarthub.baseapplication.databinding.LogingSecondStepBinding
 import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
 import com.smarthub.baseapplication.fragments.login.LoginSecondStep
 import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
-import com.smarthub.baseapplication.network.FetchingUi
-import com.smarthub.baseapplication.network.RetrofitObjectInstance
-import com.smarthub.baseapplication.utils.Utility
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
+import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
-    var retrofit: Retrofit? = null
+
     var binding : ActivityLoginBinding?=null
+    private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         setContentView(binding?.root)
         progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
         binding?.login?.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             loginValidation()
         }
 
         binding?.textRegister?.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             val regFragment1 = RegistrationFirstStep()
             addFragment(regFragment1)
         }
 
         binding?.forgotPassword?.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             val regFragment1 = ForgotPassStep1()
             addFragment(regFragment1)
         }
 
         binding?.signWithPhone?.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             val regFragment1 = OtpVerificationStep1()
             addFragment(regFragment1)
         }
 
-    }
 
-    fun loginValidation(){
-
-//        if (Utility.emailValidator(binding?.userMail?.text.toString()))
-//            if (binding?.emailError?.visibility == View.VISIBLE)
-//                binding?.emailError?.visibility = View.INVISIBLE
-//            else if (binding?.emailError?.visibility == View.INVISIBLE) {
-//                binding?.emailError?.visibility = View.VISIBLE
-//                return
-//            }
-
-//        if (binding?.password?.text.toString().isNotEmpty() && binding?.password?.text.toString().length == 6)
-//            if (binding?.forgotError?.visibility == View.VISIBLE)
-//                binding?.forgotError?.visibility = View.INVISIBLE
-//            else if (binding?.forgotError?.visibility == View.INVISIBLE) {
-//                binding?.forgotError?.visibility = View.VISIBLE
-//                return
-//            }
-
-
-        progressDialog.show()
-        loadJSONFromAsset(binding?.userMail?.text.toString(),binding?.password?.text.toString())
-
-    }
-
-    private fun loadJSONFromAsset(userName:String,userPass :String) {
-        Log.d("status","trying to login with mail :$userName ,pass:$userPass")
-        retrofit = RetrofitObjectInstance.getInstance()
-        val fetchingUi = retrofit!!.create(FetchingUi::class.java)
-        fetchingUi.applyAIEffect(UserLoginPost(userName,userPass)).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<JsonObject?> {
-                override fun onSubscribe(d: Disposable) {
-
-                }
-
-                override fun onError(e: Throwable) {
-                    e.printStackTrace()
-                    Log.d("status","${e.localizedMessage}")
-                    if (progressDialog.isShowing)
-                        progressDialog.dismiss()
-                    Toast.makeText(this@LoginActivity,"error:"+e.localizedMessage,Toast.LENGTH_LONG).show()
-
-                    val regFragment1 = LoginSecondStep()
-                    addFragment(regFragment1)
-                }
-
-                override fun onSuccess(t: JsonObject) {
-                    Log.d("status","$t")
+        loginViewModel?.loginResponse?.observe(this) {
+            if (it != null && it.data?.access?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS && it.data!=null) {
+                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
+                    Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()
                     Toast.makeText(this@LoginActivity,"LoginSuccessful",Toast.LENGTH_LONG).show()
                     val intent = Intent (this@LoginActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    return@observe
+                }else{
+                    Log.d("status","${it.message}")
+                    if (progressDialog.isShowing)
+                        progressDialog.dismiss()
+                    Toast.makeText(this@LoginActivity,"error:"+it.message,Toast.LENGTH_LONG).show()
+
+                    val regFragment1 = LoginSecondStep()
+                    addFragment(regFragment1)
                 }
-            })
+            }else{
+                    Log.d("status","${AppConstants.GENERIC_ERROR}")
+                    if (progressDialog.isShowing)
+                        progressDialog.dismiss()
+                    Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
+
+                    val regFragment1 = LoginSecondStep()
+                    addFragment(regFragment1)
+            }
+
+        }
+
+
+    }
+
+    private fun loginValidation(){
+        progressDialog.show()
+        loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
     }
 
     fun addFragment(fragment: Fragment?) {

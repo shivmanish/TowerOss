@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ForgotPassStep4FragmentBinding
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class ForgotPassStep4 : Fragment() {
 
@@ -27,7 +27,7 @@ class ForgotPassStep4 : Fragment() {
 
         val regFragment2 = ForgotPassStep5()
         binding?.nextLayout?.setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }
@@ -77,7 +77,7 @@ class ForgotPassStep4 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
-                    Utility.hideKeyboard(requireContext(),binding?.p6!!)
+                    Utils.hideKeyboard(requireContext(),binding?.p6!!)
             }
         })
     }

@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.OtpVerificationStep4FragmentBinding
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class OtpVerificationStep4 : Fragment() {
     var binding : OtpVerificationStep4FragmentBinding?=null
@@ -28,7 +28,7 @@ class OtpVerificationStep4 : Fragment() {
 
         val nextLayout = view.findViewById<View>(R.id.next_layout)
         nextLayout.setOnClickListener { vi ->
-            Utility.hideKeyboard(requireContext(),vi)
+            Utils.hideKeyboard(requireContext(),vi)
             activity?.let{
                 val intent = Intent (it, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -80,7 +80,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
-                    Utility.hideKeyboard(requireContext(),binding?.p6!!)
+                    Utils.hideKeyboard(requireContext(),binding?.p6!!)
             }
         })
     }

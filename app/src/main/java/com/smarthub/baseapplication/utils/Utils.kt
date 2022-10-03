@@ -1,14 +1,25 @@
 package com.smarthub.baseapplication.utils
 
 import android.content.Context
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.Toast
 
 
-object Utility {
+object Utils {
+
+    fun log(message: String) {
+        Log.i("TAG", message)
+    }
+
+    fun log(tag: String, message: String){
+        Log.i(tag, message)
+    }
+
+    fun flog(message: String){
+        Log.e("asdfasdf", ":-: $message :-:")
+    }
 
 
     fun hideKeyboard(context: Context,view: View){

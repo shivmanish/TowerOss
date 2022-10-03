@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchActivityBinding
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment
-import com.smarthub.baseapplication.utils.Utility
 
 class SearchActivity : AppCompatActivity() {
     private var dataBinding : SearchActivityBinding?=null
