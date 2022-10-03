@@ -128,7 +128,4 @@ fun getMonthName(monthIndex: Int): String? {
     require(!(monthIndex < 0 || monthIndex > 11)) { "$monthIndex is not a valid month index." }
     return DateFormatSymbols().months[monthIndex].toString()
 }
-private fun ImageView?.setOnClickListener() {
-    print("HH")
 
-}

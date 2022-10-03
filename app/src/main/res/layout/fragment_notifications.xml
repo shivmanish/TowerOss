@@ -62,7 +62,6 @@
 
       </LinearLayout>
 
-
      <androidx.recyclerview.widget.RecyclerView
          android:orientation="vertical"
          android:id="@+id/rvNotificationList"
