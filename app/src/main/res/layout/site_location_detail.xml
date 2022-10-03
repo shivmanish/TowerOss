@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <include
         android:id="@+id/site_actionbar"
         layout="@layout/site_action_bar"
@@ -84,7 +85,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
             app:backgroundTint="@color/tab_selected_color"
-            android:layout_marginBottom="@dimen/dp35"
+            android:layout_marginBottom="@dimen/dp80"
             app:srcCompat="@drawable/edit_fav_btn" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

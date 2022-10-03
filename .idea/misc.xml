@@ -65,12 +65,13 @@
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_successfull.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/registration_third_step.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/search_activity.xml" value="0.24635416666666668" />
+        <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/site_location_detail.xml" value="0.25" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/test_layout.xml" value="0.264" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/toolbar.xml" value="0.24010416666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

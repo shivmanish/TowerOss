@@ -195,11 +195,13 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
-                    android:hint="Password"
-                    android:textSize="15sp"
+                <com.smarthub.baseapplication.widgets.PasswordEditText
+                    android:hint="*******"
+                    android:textSize="16sp"
                     android:id="@+id/mo_no"
                     android:layout_height="@dimen/dp45"
+                    android:letterSpacing="0.1"
+                    android:paddingEnd="@dimen/dp15"
                     android:layout_width="match_parent"
                     style="@style/registratio_first_box"
                     app:layout_constraintBottom_toTopOf="@+id/email_id"/>
