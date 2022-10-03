@@ -23,6 +23,7 @@ class Site_info : Fragment() {
     private var param2: String? = null
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     private lateinit var recyclerView: RecyclerView
+    private lateinit var viewmain:View
 //    private var scrollview: ScrollView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,63 +39,68 @@ class Site_info : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.site_info_redetail, container, false)
+        viewmain = inflater.inflate(R.layout.site_info_redetail, container, false)
 //        scrollview  = view.findViewById(R.id.scroll_view)
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
 //        setScroolListner()
         /*  var textView:TextView=view.findViewById(R.id.text_dashboard)
           textView.text=param2*/
-        setRecyclerView(view)
-        return view
+
+        return viewmain
     }
 
-    fun setRecyclerView(view: View){
+    override fun onResume() {
+        super.onResume()
+        setRecyclerView(viewmain)
+    }
+
+    fun setRecyclerView(view: View) {
         val dataList = ArrayList<SiteDetailDataModel>()
         dataList.add(SiteDetailDataModel(SiteDetailAdapter.VIEW_TYPE_ONE, true))
-
         val adapter = SiteDetailAdapter(requireActivity(), dataList)
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
     }
 
-   /* fun setScroolListner(){
-        scrollview?.setOnScrollChangeListener(View.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            val x = scrollY - oldScrollY
-            if (x > 0) {
+    /* fun setScroolListner(){
+         scrollview?.setOnScrollChangeListener(View.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+             val x = scrollY - oldScrollY
+             if (x > 0) {
 
-            }
-            if (x < 0) {
-
-
-            }
-
-            if (scrollY > oldScrollY) {
-                siteDetailViewModel.setScrollViewUp(true)
-                Log.i(TAG, "Scroll DOWN  ${scrollY}   ${oldScrollY}   $x");
-            }
-            if (scrollY < oldScrollY) {
-                siteDetailViewModel.setScrollViewUp(false)
-
-                Log.i(TAG, "Scroll UP  ${scrollY}   ${oldScrollY}   $x");
-            }
-
-            if (scrollY == 0) {
-                Log.i(TAG, "TOP SCROLL ${scrollY}   ${oldScrollY}   $x" +
-                        "");
-            }
-
-            Log.i(TAG, "SCROLL------ ${oldScrollY}   ${scrollY}" +
-                    "")
-        })
+             }
+             if (x < 0) {
 
 
-    }*/
+             }
+
+             if (scrollY > oldScrollY) {
+                 siteDetailViewModel.setScrollViewUp(true)
+                 Log.i(TAG, "Scroll DOWN  ${scrollY}   ${oldScrollY}   $x");
+             }
+             if (scrollY < oldScrollY) {
+                 siteDetailViewModel.setScrollViewUp(false)
+
+                 Log.i(TAG, "Scroll UP  ${scrollY}   ${oldScrollY}   $x");
+             }
+
+             if (scrollY == 0) {
+                 Log.i(TAG, "TOP SCROLL ${scrollY}   ${oldScrollY}   $x" +
+                         "");
+             }
+
+             Log.i(TAG, "SCROLL------ ${oldScrollY}   ${scrollY}" +
+                     "")
+         })
+
+
+     }*/
 
     companion object {
 
         @JvmStatic
-        fun newInstance( param2: String) =
+        fun newInstance(param2: String) =
             Site_info().apply {
                 arguments = Bundle().apply {
 //                    putString(ARG_PARAM1, param1)
