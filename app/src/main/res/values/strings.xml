@@ -49,6 +49,7 @@
     <string name="site_name_uid">Site Name Uid..</string>
     <string name="search_site">Search site</string>
     <string name="history">History</string>
+    <string name="search_by">Search by</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
