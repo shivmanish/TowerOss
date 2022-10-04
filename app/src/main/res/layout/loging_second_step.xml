@@ -129,7 +129,6 @@
                    app:layout_constraintBottom_toTopOf="@+id/password"/>
 
                <com.smarthub.baseapplication.widgets.PasswordEditText
-                   android:inputType="numberPassword"
                    android:padding="@dimen/dp10"
                    android:hint="******"
                    android:letterSpacing="0.1"
