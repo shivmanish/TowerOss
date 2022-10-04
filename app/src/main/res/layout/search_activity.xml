@@ -83,6 +83,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

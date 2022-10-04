@@ -1,13 +1,17 @@
 package com.smarthub.baseapplication.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchActivityBinding
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment
-import com.smarthub.baseapplication.utils.Utility
+
 
 class SearchActivity : AppCompatActivity() {
     private var dataBinding : SearchActivityBinding?=null
@@ -17,6 +21,7 @@ class SearchActivity : AppCompatActivity() {
         actionBar?.hide()
         dataBinding = SearchActivityBinding.inflate(layoutInflater)
         setContentView(dataBinding?.root)
+
         dataBinding?.clearSearchQuery?.setOnClickListener {
             val siteFragment= SiteDetailFragment()
             addFragment(siteFragment)
@@ -33,7 +38,7 @@ class SearchActivity : AppCompatActivity() {
         if (!fragmentPopped) {
             val transaction = manager.beginTransaction()
             transaction.setCustomAnimations(
-                R.anim.enter,
+                com.smarthub.baseapplication.R.anim.enter,
                 R.anim.exit,
                 R.anim.pop_enter,
                 R.anim.pop_exit
@@ -43,4 +48,5 @@ class SearchActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
 }

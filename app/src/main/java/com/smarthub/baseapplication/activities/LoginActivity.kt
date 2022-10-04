@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
 import com.smarthub.baseapplication.fragments.login.LoginSecondStep
 import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
+import com.smarthub.baseapplication.ui.dialog.PunchPointCreateDialog
 import com.smarthub.baseapplication.utils.Utility
 
 class LoginActivity : AppCompatActivity() {
@@ -33,9 +34,12 @@ class LoginActivity : AppCompatActivity() {
 
         val forgoPassword = findViewById<View>(R.id.forgot_password)
         forgoPassword.setOnClickListener {
-            Utility.hideKeyboard(this,it)
-            val regFragment1 = ForgotPassStep1()
-            addFragment(regFragment1)
+//            Utility.hideKeyboard(this,it)
+//            val regFragment1 = ForgotPassStep1()
+//            addFragment(regFragment1)
+
+            PunchPointCreateDialog(this).show()
+
         }
 
         val signWithPhone = findViewById<View>(R.id.sign_with_phone)
