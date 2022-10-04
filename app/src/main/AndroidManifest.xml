@@ -49,6 +49,10 @@
             android:exported="true"
             android:label="@string/app_name" />
         <activity
+            android:name=".fragments.qat.AtpMainFragment"
+            android:exported="true"
+            android:label="@string/app_name" />
+        <activity
             android:name=".activities.SettingActivity"
             android:exported="true"
             android:label="@string/setting" />
@@ -60,10 +64,6 @@
             android:name=".activities.DashboardActivity"
             android:exported="true">
         </activity>
-        <activity
-            android:name=".ui.profile.ProfileActivity1"
-            android:exported="true"
-            android:label="@string/setting" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"

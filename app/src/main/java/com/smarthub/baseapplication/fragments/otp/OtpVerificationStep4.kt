@@ -49,6 +49,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p2?.text.toString().isNotEmpty())
                     binding?.p3?.requestFocus()
+                else binding?.p1?.requestFocus()
             }
         })
         binding?.p3?.addTextChangedListener(object : TextWatcher {
@@ -57,6 +58,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p3?.text.toString().isNotEmpty())
                     binding?.p4?.requestFocus()
+                else binding?.p2?.requestFocus()
             }
         })
         binding?.p4?.addTextChangedListener(object : TextWatcher {
@@ -65,6 +67,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p4?.text.toString().isNotEmpty())
                     binding?.p5?.requestFocus()
+                else binding?.p3?.requestFocus()
             }
         })
         binding?.p5?.addTextChangedListener(object : TextWatcher {
@@ -73,6 +76,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p5?.text.toString().isNotEmpty())
                     binding?.p6?.requestFocus()
+                else binding?.p4?.requestFocus()
             }
         })
         binding?.p6?.addTextChangedListener(object : TextWatcher {
@@ -81,6 +85,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
                     Utils.hideKeyboard(requireContext(),binding?.p6!!)
+                else binding?.p5?.requestFocus()
             }
         })
     }

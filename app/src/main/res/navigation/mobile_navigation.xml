@@ -19,9 +19,10 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.smarthub.baseapplication.ui.notifications.NotificationsFragment"
+        android:name="com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
     <fragment
         android:id="@+id/navigation_menu"
         android:name="com.smarthub.baseapplication.ui.menu.MenuFragment"

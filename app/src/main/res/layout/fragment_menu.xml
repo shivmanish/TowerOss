@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#F1F1F1"
     android:clickable="true"
+    android:id="@+id/container_frag"
     tools:context=".ui.notifications.NotificationsFragment">
 
    <androidx.core.widget.NestedScrollView
@@ -195,7 +196,7 @@
                <com.smarthub.baseapplication.widgets.SquareLayout
                    android:layout_width="0dp"
                    android:layout_weight="1"
-                   android:id="@+id/card_language"
+                   android:id="@+id/card_qat"
                    android:layout_marginStart="5dp"
                    android:layout_marginTop="5dp"
                    android:layout_marginBottom="5dp"
@@ -222,13 +223,12 @@
                                android:layout_height="wrap_content"
                                android:layout_alignParentTop="true"
                                android:layout_alignParentRight="true"
-                               android:layout_margin="10dp"
-                               android:layout_marginStart="5dp"
-                               android:layout_marginTop="5dp"
-                               android:layout_marginEnd="5dp"
-                               android:layout_marginBottom="5dp"
+                               android:layout_marginStart="10dp"
+                               android:layout_marginTop="10dp"
+                               android:layout_marginEnd="10dp"
+                               android:layout_marginBottom="10dp"
                                android:adjustViewBounds="true"
-                               android:src="@drawable/ic_language_hi" />
+                               android:src="@drawable/ic_qat" />
                        </RelativeLayout>
                        <RelativeLayout
                            android:layout_weight="1"
@@ -239,13 +239,18 @@
                                android:layout_height="match_parent"
                                android:adjustViewBounds="true"
                                android:src="@drawable/ic_language_bg"/>
+
                            <TextView
-                               android:text="language"
-                               android:layout_margin="15dp"
-                               android:layout_alignParentBottom="true"
-                               android:fontFamily="@font/montserrat"
+                               android:textColor="#616161"
                                android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"/>
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentBottom="true"
+                               android:layout_marginStart="15dp"
+                               android:layout_marginTop="15dp"
+                               android:layout_marginEnd="15dp"
+                               android:layout_marginBottom="15dp"
+                               android:fontFamily="@font/montserrat"
+                               android:text="Site QAT" />
                        </RelativeLayout>
                    </LinearLayout>
                </com.smarthub.baseapplication.widgets.SquareLayout>
@@ -296,13 +301,18 @@
                                android:layout_height="match_parent"
                                android:adjustViewBounds="true"
                                android:src="@drawable/ic_language_bg"/>
+
                            <TextView
-                               android:text="Analytic"
-                               android:layout_margin="15dp"
-                               android:layout_alignParentBottom="true"
-                               android:fontFamily="@font/montserrat"
+                               android:textColor="#616161"
                                android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"/>
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentBottom="true"
+                               android:layout_marginStart="15dp"
+                               android:layout_marginTop="15dp"
+                               android:layout_marginEnd="15dp"
+                               android:layout_marginBottom="15dp"
+                               android:fontFamily="@font/montserrat"
+                               android:text="Analytic" />
                        </RelativeLayout>
                    </LinearLayout>
                </com.smarthub.baseapplication.widgets.SquareLayout>
@@ -362,13 +372,18 @@
                                android:adjustViewBounds="true"
                                android:src="@drawable/ic_language_bg"
                                app:tint="#F2E6F4" />
+
                            <TextView
-                               android:text="Location"
-                               android:layout_margin="15dp"
-                               android:layout_alignParentBottom="true"
-                               android:fontFamily="@font/montserrat"
+                               android:textColor="#616161"
                                android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"/>
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentBottom="true"
+                               android:layout_marginStart="15dp"
+                               android:layout_marginTop="15dp"
+                               android:layout_marginEnd="15dp"
+                               android:layout_marginBottom="15dp"
+                               android:fontFamily="@font/montserrat"
+                               android:text="Location" />
                        </RelativeLayout>
                    </LinearLayout>
                </com.smarthub.baseapplication.widgets.SquareLayout>
@@ -420,13 +435,18 @@
                                android:adjustViewBounds="true"
                                android:src="@drawable/ic_language_bg"
                                app:tint="#F4EBE6" />
+
                            <TextView
-                               android:text="Manage Team"
-                               android:layout_margin="15dp"
-                               android:layout_alignParentBottom="true"
-                               android:fontFamily="@font/montserrat"
+                               android:textColor="#616161"
                                android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"/>
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentBottom="true"
+                               android:layout_marginStart="15dp"
+                               android:layout_marginTop="15dp"
+                               android:layout_marginEnd="15dp"
+                               android:layout_marginBottom="15dp"
+                               android:fontFamily="@font/montserrat"
+                               android:text="Manage Team" />
                        </RelativeLayout>
                    </LinearLayout>
                </com.smarthub.baseapplication.widgets.SquareLayout>
@@ -487,6 +507,7 @@
                                android:src="@drawable/ic_language_bg"
                                app:tint="#F2F4E6" />
                            <TextView
+                               android:textColor="#616161"
                                android:text="language"
                                android:layout_margin="15dp"
                                android:layout_alignParentBottom="true"
@@ -544,6 +565,7 @@
                                android:src="@drawable/ic_language_bg"
                                app:tint="#E6EFF4" />
                            <TextView
+                               android:textColor="#616161"
                                android:text="language"
                                android:layout_margin="15dp"
                                android:layout_alignParentBottom="true"
@@ -564,6 +586,7 @@
                android:layout_marginEnd="10dp"
                android:layout_height="70dp"
                app:cardCornerRadius="15dp"
+               android:id="@+id/quick_help"
                app:cardBackgroundColor="@color/white"
                app:strokeColor="@color/white"
                app:strokeWidth="0dp"

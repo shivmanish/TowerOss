@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SiteDetailViewModel
@@ -44,7 +44,7 @@ class DashboardActivity : AppCompatActivity() {
         })
     }
 
-    fun initializeCustomActionBar() {
+    private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
     }

@@ -13,15 +13,15 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         findViewById<View>(R.id.manage_site).setOnClickListener {
-            if (AppPreferences.getInstance().token.isNullOrEmpty()){
+//            if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 var intent = Intent(this@SplashActivity,LoginActivity::class.java)
                 startActivity(intent)
                 finish()
-            }else{
-                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            }
+//            }else{
+//                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                startActivity(intent)
+//            }
 
         }
     }

@@ -11,5 +11,9 @@ public interface APIClient {
     @POST(EndPoints.ACCESS_TOKEN)
     Call<RefreshToken> getLoginForAccessToken(@Body UserLoginPost data);
 
+
+    @POST(EndPoints.ACCESS_TOKEN)
+    Call<RefreshToken> getRegister(@Body UserLoginPost data);
+
 }
 
