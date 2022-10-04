@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
 
-class AtpMainFragment : AppCompatActivity() {
+class AtpMainActivity : AppCompatActivity() {
 
     var atpMainScreenBinding : AtpMainScreenBinding?=null
 

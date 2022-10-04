@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
-import com.smarthub.baseapplication.fragments.qat.AtpMainFragment
+import com.smarthub.baseapplication.fragments.qat.AtpMainActivity
 import com.smarthub.baseapplication.ui.profile.ProfileActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -43,7 +43,7 @@ class MenuFragment : Fragment() {
             requireActivity().startActivity(intent)
         }
         binding?.cardQat?.setOnClickListener {
-            var intent = Intent(requireActivity(),AtpMainFragment::class.java)
+            var intent = Intent(requireActivity(),AtpMainActivity::class.java)
             startActivity(intent)
         }
 
