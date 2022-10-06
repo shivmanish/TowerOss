@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.smarthub.baseapplication.R
 
 import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding
+import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding.*
 import com.smarthub.baseapplication.databinding.ActivitySettingBinding
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
+         binding = inflate(layoutInflater)
          setContentView(binding?.root)
          initViews();
     }
