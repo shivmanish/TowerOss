@@ -22,11 +22,9 @@ import java.text.DateFormatSymbols
 import java.util.*
 import javax.xml.datatype.DatatypeConstants.MONTHS
 
-
-class NotificationsFragment : Fragment() {
+ class NotificationsFragment : Fragment() {
      private var _binding: FragmentNotificationsBinding? = null
      private lateinit var notificationViewModel:NotificationsViewModel
-
     private val binding get() = _binding!!
     private var layoutManager: RecyclerView.LayoutManager? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -34,9 +32,7 @@ class NotificationsFragment : Fragment() {
         notificationViewModel = ViewModelProvider(requireActivity())[NotificationsViewModel::class.java]
        // notificationViewModel.isActionBarHide(false)
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-
         val root: View = binding.root
-
         return root
     }
     @SuppressLint("MissingInflatedId")
