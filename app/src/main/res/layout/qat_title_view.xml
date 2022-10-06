@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:tag="false"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp10"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:drawablePadding="@dimen/dp10"
+        android:drawableTint="@color/black"
+        android:drawableEnd="@drawable/arrow_farword"
+        android:text="Electircal / Civil Material"
+        android:id="@+id/expansion_text"
+        android:textSize="@dimen/sp13"
+        android:fontFamily="@font/montserrat_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_view"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/expansion_text"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <View
+        android:background="#D9D9D9"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="3px"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

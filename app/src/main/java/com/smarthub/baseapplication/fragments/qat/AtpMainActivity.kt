@@ -4,16 +4,27 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.adapter.AtpListAdapter
 import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
 
 class AtpMainActivity : AppCompatActivity() {
 
-    var atpMainScreenBinding : AtpMainScreenBinding?=null
+    var binding : AtpMainScreenBinding?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        atpMainScreenBinding = AtpMainScreenBinding.inflate(layoutInflater)
-        setContentView(atpMainScreenBinding?.root)
+        binding = AtpMainScreenBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
+        init()
+    }
+
+    private fun init(){
+        binding?.atpList?.adapter = AtpListAdapter()
+
+        binding?.toolbar?.setOnClickListener {
+            var fragment = QatCheckNestedList()
+            addFragment(fragment)
+        }
     }
 
     fun addFragment(fragment: Fragment?) {
@@ -28,7 +39,7 @@ class AtpMainActivity : AppCompatActivity() {
                 R.anim.pop_enter,
                 R.anim.pop_exit
             )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
+            transaction.add(R.id.container, fragment!!)
             transaction.addToBackStack(backStateName)
             transaction.commit()
         }
