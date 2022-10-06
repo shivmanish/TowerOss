@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.smarthub.baseapplication.activities.FAQActivity
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.fragments.qat.AtpMainActivity
@@ -49,6 +50,8 @@ class MenuFragment : Fragment() {
 
         binding.quickHelp.setOnClickListener {
 //            launch your FAQ screen
+            var intent = Intent(requireActivity(),FAQActivity::class.java)
+            startActivity(intent)
         }
     }
 
