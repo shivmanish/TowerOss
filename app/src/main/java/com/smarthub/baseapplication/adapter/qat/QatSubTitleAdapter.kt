@@ -9,17 +9,18 @@ import com.smarthub.baseapplication.databinding.AtpViewType1Binding
 import com.smarthub.baseapplication.databinding.AtpViewType2Binding
 import com.smarthub.baseapplication.databinding.QatSubTitleViewBinding
 import com.smarthub.baseapplication.databinding.QatTitleViewBinding
+import com.smarthub.baseapplication.listeners.QatItemListener
 import com.smarthub.baseapplication.model.atp.AtpCardList
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.HeaderList
 import com.smarthub.baseapplication.utils.Utils
 
-class QatSubTitleAdapter : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
+class QatSubTitleAdapter(var listener: QatItemListener) : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_sub_title_view, parent, false)
-        return ViewHold(view)
+        return ViewHold(view,listener)
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
@@ -30,9 +31,8 @@ class QatSubTitleAdapter : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
         return 5
     }
 
-    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
+    open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
         val binding = QatSubTitleViewBinding.bind(itemView)
-
         init {
             binding.expansionText.tag = false
             binding.expansionText.setOnClickListener {
@@ -46,7 +46,7 @@ class QatSubTitleAdapter : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
                 it.tag = !(it.tag as Boolean)
             }
             Utils
-            binding.listView.adapter = QatItemAdapter()
+            binding.listView.adapter = QatItemAdapter(listener)
         }
     }
 

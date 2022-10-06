@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.AtpListAdapter
 import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
+import com.smarthub.baseapplication.listeners.QatProfileListener
 
-class AtpMainActivity : AppCompatActivity() {
+class AtpMainActivity : AppCompatActivity(), QatProfileListener {
 
-    var binding : AtpMainScreenBinding?=null
+    var binding: AtpMainScreenBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,13 +19,13 @@ class AtpMainActivity : AppCompatActivity() {
         init()
     }
 
-    private fun init(){
-        binding?.atpList?.adapter = AtpListAdapter()
+    private fun init() {
+        binding?.atpList?.adapter = AtpListAdapter(this@AtpMainActivity)
+    }
 
-        binding?.toolbar?.setOnClickListener {
-            var fragment = QatCheckNestedList()
-            addFragment(fragment)
-        }
+    override fun itemClicked() {
+        var fragment = QatCheckNestedList()
+        addFragment(fragment)
     }
 
     fun addFragment(fragment: Fragment?) {

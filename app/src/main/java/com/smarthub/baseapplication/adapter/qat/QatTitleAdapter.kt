@@ -8,13 +8,14 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AtpViewType1Binding
 import com.smarthub.baseapplication.databinding.AtpViewType2Binding
 import com.smarthub.baseapplication.databinding.QatTitleViewBinding
+import com.smarthub.baseapplication.listeners.QatItemListener
 import com.smarthub.baseapplication.model.atp.AtpCardList
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.HeaderList
 import com.smarthub.baseapplication.utils.Utils
 
-class QatTitleAdapter : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
+class QatTitleAdapter(var listener: QatItemListener) : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     init {
@@ -26,7 +27,7 @@ class QatTitleAdapter : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_title_view, parent, false)
-        return ViewHold(view)
+        return ViewHold(view,listener)
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
@@ -37,7 +38,7 @@ class QatTitleAdapter : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
         return list.size
     }
 
-    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
+    open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
         val binding = QatTitleViewBinding.bind(itemView)
         init {
             binding.expansionText.tag = false
@@ -52,7 +53,7 @@ class QatTitleAdapter : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
                 it.tag = !(it.tag as Boolean)
             }
             Utils
-            binding.listView.adapter = QatSubTitleAdapter()
+            binding.listView.adapter = QatSubTitleAdapter(listener)
         }
     }
 

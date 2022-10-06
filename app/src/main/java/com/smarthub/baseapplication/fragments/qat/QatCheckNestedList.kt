@@ -8,17 +8,17 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.qat.QatTitleAdapter
 import com.smarthub.baseapplication.databinding.QatNestedListBinding
+import com.smarthub.baseapplication.listeners.QatItemListener
 
-class QatCheckNestedList : Fragment() {
+class QatCheckNestedList() : Fragment(), QatItemListener {
 
     var binding : QatNestedListBinding ?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.qat_nested_list, container, false)
 
         binding = QatNestedListBinding.bind(view)
-        binding?.list?.adapter = QatTitleAdapter()
+        binding?.list?.adapter = QatTitleAdapter(this@QatCheckNestedList)
         return view
 
     }
@@ -44,6 +44,10 @@ class QatCheckNestedList : Fragment() {
             transaction.addToBackStack(backStateName)
             transaction.commit()
         }
+    }
+
+    override fun itemClicked() {
+
     }
 
 }
