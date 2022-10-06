@@ -86,7 +86,7 @@ class SiteDetailFragment : Fragment() {
 
         binding.tabs!!.setupWithViewPager(binding.viewpager)
         binding.viewpager.offscreenPageLimit= 2
-//        binding.viewpager.currentItem = 0
+        binding.viewpager.currentItem = 0
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
