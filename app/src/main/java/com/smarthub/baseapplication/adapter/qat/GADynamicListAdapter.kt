@@ -6,24 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.DynamicTextfieldLayoutBinding
+import com.smarthub.baseapplication.databinding.FragmentGABinding
 import com.smarthub.baseapplication.databinding.ProSingleItemViewBinding
+import com.smarthub.baseapplication.databinding.SpinnerTextBinding
 
 class GADynamicAdapter(var list : ArrayList<Any>) : RecyclerView.Adapter<GADynamicAdapter.ViewHold>() {
-
     open class ViewHold(var view : View) : RecyclerView.ViewHolder(view) {
-
     }
 
     class SpinerViewHold(view : View) : ViewHold(view) {
-        var proSingleItemViewBinding = ProSingleItemViewBinding.bind(view)
+        var spinerBinding= SpinnerTextBinding.bind(view)
     }
 
     class TextFieldViewHold(view : View) : ViewHold(view) {
-//        var proSingleItemViewBinding = ProSingleItemViewBinding.bind(view)
+  //    var dynamicTextfieldLayoutBinding = DynamicTextfieldLayoutBinding.bind(view)
     }
 
     class MainScreenHold(view : View) : ViewHold(view) {
-//        var proSingleItemViewBinding = ProSingleItemViewBinding.bind(view)
+      var fragmentGABinding = FragmentGABinding.bind(view)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -70,8 +71,7 @@ class GADynamicAdapter(var list : ArrayList<Any>) : RecyclerView.Adapter<GADynam
             Log.d("status","default")
         }
     }
-
     override fun getItemCount(): Int {
-        return list.size
+        return 5
     }
 }

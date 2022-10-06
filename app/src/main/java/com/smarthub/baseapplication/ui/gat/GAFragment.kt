@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.ui.gat
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.app.Fragment
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.util.Log
 
@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 import com.smarthub.baseapplication.adapter.GADynamicAdapter
 import com.smarthub.baseapplication.adapter.NotificationsListAdapter
 import com.smarthub.baseapplication.databinding.FragmentGABinding
@@ -34,24 +35,18 @@ class GAFragment : Fragment() {
         val root: View = binding.root
         return root
     }
-
     @SuppressLint("MissingInflatedId")
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         var layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-
         _binding?.rvDynamicList.apply {
             this?.layoutManager = layoutManager
             this?.adapter = GADynamicAdapter(list)
         }
     }
-    override fun onDestroyView() {
+     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
-
-
 }

@@ -20,7 +20,6 @@ import com.smarthub.baseapplication.adapter.NotificationsListAdapter
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
 import java.text.DateFormatSymbols
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
  class NotificationsFragment : Fragment() {
      private var _binding: FragmentNotificationsBinding? = null
