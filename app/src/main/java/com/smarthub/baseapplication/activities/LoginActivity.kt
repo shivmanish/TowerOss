@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.ui.dialog.PunchPointCreateDialog
 import com.smarthub.baseapplication.ui.dialog.PunchPointResolveDialog
 import com.smarthub.baseapplication.ui.dialog.PunchPointUpdateDialog
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,21 +22,21 @@ class LoginActivity : AppCompatActivity() {
 
         val login = findViewById<View>(R.id.login)
         login.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             val regFragment1 = LoginSecondStep()
             addFragment(regFragment1)
         }
 
         val textRegister = findViewById<View>(R.id.text_register)
         textRegister.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             val regFragment1 = RegistrationFirstStep()
             addFragment(regFragment1)
         }
 
         val forgoPassword = findViewById<View>(R.id.forgot_password)
         forgoPassword.setOnClickListener {
-//            Utility.hideKeyboard(this,it)
+//            Utils.hideKeyboard(this,it)
 //            val regFragment1 = ForgotPassStep1()
 //            addFragment(regFragment1)
 
@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
         val signWithPhone = findViewById<View>(R.id.sign_with_phone)
         signWithPhone.setOnClickListener {
-            Utility.hideKeyboard(this,it)
+            Utils.hideKeyboard(this,it)
             val regFragment1 = OtpVerificationStep1()
             addFragment(regFragment1)
         }
