@@ -18,40 +18,41 @@ class RecyclerAdapter_faq : RecyclerView.Adapter<RecyclerAdapter_faq.ViewHolder>
     )
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var question: TextView
         var question1: TextView
         var answer: TextView
-        var invisiblegroup: Group
+        var card: com.google.android.material.card.MaterialCardView?=null
+
         init{
-            question= itemView.findViewById(R.id.question)
             question1= itemView.findViewById(R.id.question1)
             answer=itemView.findViewById(R.id.answer)
-            invisiblegroup=itemView.findViewById(R.id.group_collapse)
+            card=itemView.findViewById(R.id.base_cardview)
 
-            question1.setOnClickListener{
-                invisiblegroup.visibility=View.VISIBLE
-                question1.visibility=View.GONE
-            }
-            question.setOnClickListener{
-                invisiblegroup.visibility=View.GONE
-                question1.visibility=View.VISIBLE
-            }
-
+            question1.tag = false
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.recycleritem_faq, parent, false)
-        val group = v.findViewById<Group>(R.id.group_collapse)
-        group.visibility=View.GONE
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.question.text=questions[position]
         holder.question1.text=questions[position]
 
+        holder.question1.setOnClickListener{
+            var isExpanded = !(holder.question1.tag as Boolean)
+            holder.question1.tag = isExpanded
+            if (isExpanded){
+                holder.answer.visibility = View.VISIBLE
+//                change radius 10dp
+
+            }else{
+                holder.answer.visibility = View.GONE
+//                change radius 100dp
+
+            }
+        }
     }
 
     override fun getItemCount(): Int {

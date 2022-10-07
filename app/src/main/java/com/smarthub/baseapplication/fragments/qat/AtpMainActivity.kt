@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.AtpListAdapter
 import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
+import com.smarthub.baseapplication.databinding.SearchBoxBinding
 
 class AtpMainActivity : AppCompatActivity() {
 
@@ -25,6 +26,10 @@ class AtpMainActivity : AppCompatActivity() {
             var fragment = QatCheckNestedList()
             addFragment(fragment)
         }
+//        var searchBinding = binding?.searchBox?.let { SearchBoxBinding.bind(it) }
+//        searchBinding?.clearSearchQuery?.setOnClickListener {
+//
+//        }
     }
 
     fun addFragment(fragment: Fragment?) {

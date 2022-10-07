@@ -22,14 +22,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Fragmentfaq_Demo_faq : Fragment() {
-    private var layoutManager:RecyclerView.LayoutManager?=null
-    private var adapter:RecyclerView.Adapter<RecyclerView.ViewHolder>?=null
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_demo_faq, container, false)
     }
@@ -38,11 +32,9 @@ class Fragmentfaq_Demo_faq : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recycler_view = view.findViewById<RecyclerView>(R.id.faq_recycler_view)
         recycler_view.apply {
-            layoutManager=LinearLayoutManager(activity)
             adapter=RecyclerAdapter_faq()
         }
-        val scrollView = view.findViewById<ScrollView>(R.id.scrollfaq)
-        scrollView.scrollTo(0, scrollView.getBottom());
+        recycler_view.setHasFixedSize(true)
 
     }
 }
