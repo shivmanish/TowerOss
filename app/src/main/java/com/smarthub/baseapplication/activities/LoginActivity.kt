@@ -10,6 +10,8 @@ import com.smarthub.baseapplication.fragments.login.LoginSecondStep
 import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.ui.dialog.PunchPointCreateDialog
+import com.smarthub.baseapplication.ui.dialog.PunchPointResolveDialog
+import com.smarthub.baseapplication.ui.dialog.PunchPointUpdateDialog
 import com.smarthub.baseapplication.utils.Utility
 
 class LoginActivity : AppCompatActivity() {
@@ -38,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 //            val regFragment1 = ForgotPassStep1()
 //            addFragment(regFragment1)
 
-            PunchPointCreateDialog(this).show()
+            PunchPointResolveDialog(this).show()
 
         }
 

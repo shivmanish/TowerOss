@@ -51,7 +51,9 @@
     <string name="history">History</string>
     <string name="searchby">Search by</string>
 
+
     <string name="punch_point_creation">Punch Point Creation</string>
+    <string name="punch_points">Punch Points</string>
     <string name="obeservation">Obeservation</string>
     <string name="recommendation">Recommendation</string>
     <string name="issue_type">Issue Type</string>
@@ -59,6 +61,14 @@
     <string name="select_here">Select here</string>
     <string name="type_here">Type here</string>
     <string name="submit_punch_point">Submit Punch Point</string>
+    <string name="status">Status</string>
+    <string name="resolved">Resolved</string>
+    <string name="resolution">Resolution</string>
+    <string name="cloded_by">Closed By</string>
+    <string name="created_by">Created By</string>
+
+    <string name="resolved_date">Resolve Date / Time</string>
+    <string name="created_date">Created Date / Time</string>
 
     <string-array name="spinner_item">
         <item>Select here</item>

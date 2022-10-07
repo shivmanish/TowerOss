@@ -14,6 +14,7 @@
     <color name="search_background">#36445F</color>
     <color name="search_star_color">#ADC1E1</color>
     <color name="normalTextColor">#3F4D67</color>
+    <color name="normalTextColorgrey">#71809A</color>
 
 
     <color name="purple_200">#3F4D67</color>
