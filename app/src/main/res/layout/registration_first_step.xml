@@ -76,7 +76,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:gravity="center"
                     android:textSize="18sp"
                     android:id="@+id/p1"
-                    android:alpha="0.5"
                     android:textColor="#3F4D68"
                     android:background="@drawable/circle"
                     app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +86,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_width="@dimen/dp35"
                     android:layout_height="@dimen/dp35"/>
                 <TextView
-                    android:alpha="0.5"
                     android:text="Basic info"
                     android:gravity="center"
                     android:textSize="11sp"

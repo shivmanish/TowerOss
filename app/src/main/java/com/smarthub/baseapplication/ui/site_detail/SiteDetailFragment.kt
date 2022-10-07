@@ -45,8 +45,6 @@ class SiteDetailFragment : Fragment() {
     private var isScroll = true
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
-//    private var parentconstraintLayout: ConstraintLayout? =null
-//    var childconstraint: ConstraintLayout? =null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -88,7 +86,7 @@ class SiteDetailFragment : Fragment() {
 
         binding.tabs!!.setupWithViewPager(binding.viewpager)
         binding.viewpager.offscreenPageLimit= 2
-//        binding.viewpager.currentItem = 0
+        binding.viewpager.currentItem = 0
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
@@ -201,7 +199,6 @@ class SiteDetailFragment : Fragment() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-
         val adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
         adapter.addFragment(Site_info.newInstance("A"))
         adapter.addFragment(CustomerFragment.newInstance("Customer"))

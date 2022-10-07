@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.OtpVerificationStep1FragmentBinding
 import com.smarthub.baseapplication.databinding.OtpVerificationStep2FragmentBinding
-import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep2
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 
 /**
@@ -39,7 +37,7 @@ class OtpVerificationStep2 : Fragment() {
 
         val regFragment2 = OtpVerificationStep3()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }
@@ -50,7 +48,7 @@ class OtpVerificationStep2 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.moNoEdit?.text.toString().isNotEmpty() && binding?.moNoEdit?.text.toString().length>=10)
-                    Utility.hideKeyboard(requireContext(),binding?.moNoEdit!!)
+                    Utils.hideKeyboard(requireContext(),binding?.moNoEdit!!)
             }
         })
     }

@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.smarthub.baseapplication">
-
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
+        android:name=".utils.AppController"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MDemo"
         tools:targetApi="31">
+
+
+
+            <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 <!--        <activity-->
 <!--            android:name=".ui.site_detail.SiteDetailActivity"-->
 <!--            android:exported="true">-->
@@ -25,25 +38,24 @@
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="true"
-            android:label="@string/setting"
-            android:theme="@style/Theme.BaseApplication"></activity>
-            android:label="@string/setting" />
+            android:label="@string/setting"></activity>
         <activity
             android:name=".ui.profile.EditProfileActivity"
-            android:exported="true"
-            android:theme="@style/Theme.BaseApplication">
+            android:exported="true">
 
         </activity>
         <activity
             android:name=".activities.LanguageActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.BaseApplication" />
+            android:label="@string/app_name" />
+        <activity
+            android:name=".fragments.qat.AtpMainActivity"
+            android:exported="true"
+            android:label="@string/app_name" />
         <activity
             android:name=".activities.SettingActivity"
             android:exported="true"
-            android:label="@string/setting"
-            android:theme="@style/Theme.BaseApplication" />
+            android:label="@string/setting" />
         <activity
             android:name=".activities.SearchActivity"
             android:exported="true"
@@ -53,22 +65,17 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".ui.profile.ProfileActivity1"
-            android:exported="true"
-            android:label="@string/setting"
-            android:theme="@style/Theme.BaseApplication"></activity>
-            android:label="@string/setting" />
-        <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.BaseApplication">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

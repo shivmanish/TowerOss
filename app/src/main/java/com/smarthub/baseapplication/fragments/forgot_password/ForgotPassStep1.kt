@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.fragments.forgot_password
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,11 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ForgotPassStep2FragmentBinding
 import com.smarthub.baseapplication.databinding.ForgotPasswordFragmentBinding
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 
 /**
@@ -34,7 +31,7 @@ class ForgotPassStep1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<View>(R.id.back).setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                 it.onBackPressed()
             }
@@ -42,7 +39,7 @@ class ForgotPassStep1 : Fragment() {
 
         val regFragment2 = ForgotPassStep2()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }
@@ -53,7 +50,7 @@ class ForgotPassStep1 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.moNoEdit?.text.toString().isNotEmpty() && binding?.moNoEdit?.text.toString().length>=10)
-                    Utility.hideKeyboard(requireContext(),binding?.moNoEdit!!)
+                    Utils.hideKeyboard(requireContext(),binding?.moNoEdit!!)
             }
         })
     }
