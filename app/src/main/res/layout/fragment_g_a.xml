@@ -80,6 +80,7 @@
              android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
      </RelativeLayout>
      <androidx.recyclerview.widget.RecyclerView
+         android:orientation="vertical"
          android:id="@+id/rvDynamicList"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"

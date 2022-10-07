@@ -31,12 +31,14 @@ class GAFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         gaViewModel = ViewModelProvider(requireActivity())[GAViewModel::class.java]
+
         _binding = FragmentGABinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
     @SuppressLint("MissingInflatedId")
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(itemView, savedInstanceState)
         var layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

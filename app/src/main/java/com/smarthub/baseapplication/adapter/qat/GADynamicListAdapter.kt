@@ -10,8 +10,11 @@ import com.smarthub.baseapplication.databinding.DynamicTextfieldLayoutBinding
 import com.smarthub.baseapplication.databinding.FragmentGABinding
 import com.smarthub.baseapplication.databinding.ProSingleItemViewBinding
 import com.smarthub.baseapplication.databinding.SpinnerTextBinding
+import com.smarthub.baseapplication.ui.gat.GAViewModel
 
 class GADynamicAdapter(var list : ArrayList<Any>) : RecyclerView.Adapter<GADynamicAdapter.ViewHold>() {
+    private  lateinit var gaViewModel :GAViewModel
+
     open class ViewHold(var view : View) : RecyclerView.ViewHolder(view) {
     }
 
@@ -66,7 +69,12 @@ class GADynamicAdapter(var list : ArrayList<Any>) : RecyclerView.Adapter<GADynam
         }else if (holder is TextFieldViewHold){
             Log.d("status","TextFieldViewHold")
         }else if (holder is MainScreenHold){
+
             Log.d("status","MainScreenHold")
+            Log.d("status",
+                holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
+
+            );
         }else{
             Log.d("status","default")
         }

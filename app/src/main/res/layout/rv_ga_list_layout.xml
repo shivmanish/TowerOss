@@ -3,7 +3,6 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="14dp"
         android:layout_margin="@dimen/activity_horizontal_margin"
@@ -130,7 +129,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 layout="@layout/dynamic_spiner" />
-
             <include
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/dynamicTextLayout"
@@ -158,7 +156,7 @@
                 android:textColor="#000000"
                 android:textSize="16sp" />
             <com.google.android.material.card.MaterialCardView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_below="@+id/txtCardHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,6 +168,7 @@
                 <EditText
 
                     android:id="@+id/txtRemarks"
+                    android:background="null"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp60"
                     android:layout_alignParentTop="true"
@@ -206,6 +205,14 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"
                 android:textSize="16sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvImageAttachment"
+                android:orientation="horizontal"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp100">
+
+            </androidx.recyclerview.widget.RecyclerView>
             <FrameLayout
                 android:background="@drawable/bggraycard"
                 android:layout_width="match_parent"
@@ -336,11 +343,5 @@
 
             </FrameLayout>
         </LinearLayout>
-
-
-
-
-
     </androidx.cardview.widget.CardView>
-
 </LinearLayout>
