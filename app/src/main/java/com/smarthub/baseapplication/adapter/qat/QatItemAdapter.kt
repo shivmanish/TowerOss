@@ -9,13 +9,14 @@ import com.smarthub.baseapplication.databinding.AtpViewType1Binding
 import com.smarthub.baseapplication.databinding.AtpViewType2Binding
 import com.smarthub.baseapplication.databinding.QatItemViewBinding
 import com.smarthub.baseapplication.databinding.QatTitleViewBinding
+import com.smarthub.baseapplication.listeners.QatItemListener
 import com.smarthub.baseapplication.model.atp.AtpCardList
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.HeaderList
 import com.smarthub.baseapplication.utils.Utils
 
-class QatItemAdapter : RecyclerView.Adapter<QatItemAdapter.ViewHold>() {
+class QatItemAdapter(var listener: QatItemListener) : RecyclerView.Adapter<QatItemAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     init {
@@ -31,7 +32,8 @@ class QatItemAdapter : RecyclerView.Adapter<QatItemAdapter.ViewHold>() {
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
-        hold.binding.expansionText.text = list.get(pos)
+        hold.binding.expansionText.text = list[pos]
+        hold.binding.expansionText.setOnClickListener { listener.itemClicked() }
     }
 
     override fun getItemCount(): Int {
@@ -40,6 +42,7 @@ class QatItemAdapter : RecyclerView.Adapter<QatItemAdapter.ViewHold>() {
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
         val binding = QatItemViewBinding.bind(itemView)
+
     }
 
 }

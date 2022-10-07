@@ -49,55 +49,112 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/id_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp45"
-        android:backgroundTint="@color/white"
-        android:layout_margin="@dimen/dp15"
-        android:id="@+id/search_box"
-        android:background="@drawable/login_yellow_bg"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/dp15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <ImageView
-            android:id="@+id/clear_search_query"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp8"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/dp8"
-            android:src="@drawable/search"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/search_edit_text"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp24"
-            android:background="@android:color/transparent"
-            android:hint="Search site by ID/Name"
-            android:fontFamily="@font/montserrat_medium"
-            android:textColorHint="#909090"
-            android:gravity="left"
-            android:textSize="16sp"
-            android:textColor="#909090"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:alpha=".5"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/site_name_uid"
+            android:textColor="@color/normalTextColor"
+            android:textSize="@dimen/sp12" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/atp_list"
-        android:orientation="vertical"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/search_site"
+            android:textColor="@color/normalTextColor"
+            android:textSize="@dimen/sp18" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/search_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginVertical="@dimen/dp8"
+            app:cardBackgroundColor="@color/search_setting"
+            app:cardCornerRadius="@dimen/dp10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/clear_search_query"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp8"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/dp8"
+                    android:src="@drawable/search"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/search_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp24"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="left"
+                    android:hint="**_****_**_****"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/search_star_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/search_by"
+            android:textColor="@color/normalTextColor"
+            android:textSize="@dimen/sp14" />
+
+
+        <com.smarthub.baseapplication.widgets.FlowLayout
+            android:id="@+id/flowlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp5"
+            android:visibility="visible"
+            app:flChildSpacing="auto"
+            app:flChildSpacingForLastRow="align"
+            app:flRowSpacing="8dp" />
+
+
+    </LinearLayout>
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/dp10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_box"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:fontFamily="@font/montserrat"
+        android:paddingHorizontal="@dimen/dp15"
+        android:text="@string/history"
+        android:textColor="@color/normalTextColor"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_header" />
 </androidx.constraintlayout.widget.ConstraintLayout>
