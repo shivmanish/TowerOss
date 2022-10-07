@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ForgotPassStep4FragmentBinding
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class ForgotPassStep4 : Fragment() {
 
@@ -27,7 +27,7 @@ class ForgotPassStep4 : Fragment() {
 
         val regFragment2 = ForgotPassStep5()
         binding?.nextLayout?.setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                addFragment(regFragment2)
             }
@@ -46,6 +46,7 @@ class ForgotPassStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p2?.text.toString().isNotEmpty())
                     binding?.p3?.requestFocus()
+                else binding?.p1?.requestFocus()
             }
         })
         binding?.p3?.addTextChangedListener(object : TextWatcher {
@@ -54,6 +55,7 @@ class ForgotPassStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p3?.text.toString().isNotEmpty())
                     binding?.p4?.requestFocus()
+                else binding?.p2?.requestFocus()
             }
         })
         binding?.p4?.addTextChangedListener(object : TextWatcher {
@@ -62,6 +64,7 @@ class ForgotPassStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p4?.text.toString().isNotEmpty())
                     binding?.p5?.requestFocus()
+                else binding?.p3?.requestFocus()
             }
         })
         binding?.p5?.addTextChangedListener(object : TextWatcher {
@@ -70,6 +73,7 @@ class ForgotPassStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p5?.text.toString().isNotEmpty())
                     binding?.p6?.requestFocus()
+                else binding?.p4?.requestFocus()
             }
         })
         binding?.p6?.addTextChangedListener(object : TextWatcher {
@@ -77,7 +81,8 @@ class ForgotPassStep4 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
-                    Utility.hideKeyboard(requireContext(),binding?.p6!!)
+                    Utils.hideKeyboard(requireContext(),binding?.p6!!)
+                else binding?.p5?.requestFocus()
             }
         })
     }

@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.OtpVerificationStep4FragmentBinding
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.utils.Utils
 
 class OtpVerificationStep4 : Fragment() {
     var binding : OtpVerificationStep4FragmentBinding?=null
@@ -28,7 +28,7 @@ class OtpVerificationStep4 : Fragment() {
 
         val nextLayout = view.findViewById<View>(R.id.next_layout)
         nextLayout.setOnClickListener { vi ->
-            Utility.hideKeyboard(requireContext(),vi)
+            Utils.hideKeyboard(requireContext(),vi)
             activity?.let{
                 val intent = Intent (it, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -49,6 +49,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p2?.text.toString().isNotEmpty())
                     binding?.p3?.requestFocus()
+                else binding?.p1?.requestFocus()
             }
         })
         binding?.p3?.addTextChangedListener(object : TextWatcher {
@@ -57,6 +58,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p3?.text.toString().isNotEmpty())
                     binding?.p4?.requestFocus()
+                else binding?.p2?.requestFocus()
             }
         })
         binding?.p4?.addTextChangedListener(object : TextWatcher {
@@ -65,6 +67,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p4?.text.toString().isNotEmpty())
                     binding?.p5?.requestFocus()
+                else binding?.p3?.requestFocus()
             }
         })
         binding?.p5?.addTextChangedListener(object : TextWatcher {
@@ -73,6 +76,7 @@ class OtpVerificationStep4 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p5?.text.toString().isNotEmpty())
                     binding?.p6?.requestFocus()
+                else binding?.p4?.requestFocus()
             }
         })
         binding?.p6?.addTextChangedListener(object : TextWatcher {
@@ -80,7 +84,8 @@ class OtpVerificationStep4 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding?.p6?.text.toString().isNotEmpty())
-                    Utility.hideKeyboard(requireContext(),binding?.p6!!)
+                    Utils.hideKeyboard(requireContext(),binding?.p6!!)
+                else binding?.p5?.requestFocus()
             }
         })
     }

@@ -79,6 +79,7 @@
     </string-array>
 
 
+    <string name="search_by">Search by</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

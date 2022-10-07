@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
-import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
+import com.smarthub.baseapplication.fragments.qat.AtpMainActivity
 import com.smarthub.baseapplication.ui.profile.ProfileActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -43,10 +42,19 @@ class MenuFragment : Fragment() {
             var intent = Intent(requireContext(),SettingActivity::class.java)
             requireActivity().startActivity(intent)
         }
+        binding?.cardQat?.setOnClickListener {
+            var intent = Intent(requireActivity(),AtpMainActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.quickHelp.setOnClickListener {
+//            launch your FAQ screen
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

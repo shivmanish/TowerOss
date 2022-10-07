@@ -1,56 +1,124 @@
 package com.smarthub.baseapplication.fragments.login
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.google.gson.JsonObject
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
+import com.smarthub.baseapplication.databinding.LogingSecondStepBinding
 import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
 import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
-import com.smarthub.baseapplication.utils.Utility
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.login.UserLoginPost
+import com.smarthub.baseapplication.network.APIClient
+import com.smarthub.baseapplication.network.RetrofitObjectInstance
+import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.LoginViewModel
+import io.reactivex.SingleObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
 
 
 class LoginSecondStep : Fragment() {
+
+    private var loginViewModel : LoginViewModel?=null
+    private lateinit var progressDialog : ProgressDialog
+    var binding : LogingSecondStepBinding?=null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.loging_second_step, container, false)
+        var view = inflater.inflate(R.layout.loging_second_step, container, false)
+        binding = LogingSecondStepBinding.bind(view)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(true)
 
         val login = view.findViewById<View>(R.id.login)
         login.setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
-            val intent = Intent (requireActivity(), DashboardActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            requireActivity().startActivity(intent)
+            Utils.hideKeyboard(requireContext(),it)
+            loginValidation()
         }
 
         val textRegister = view.findViewById<View>(R.id.text_register)
         textRegister.setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             val regFragment1 = RegistrationFirstStep()
             addFragment(regFragment1)
         }
 
         val forgoPassword = view.findViewById<View>(R.id.forgot_password)
         forgoPassword.setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             val regFragment1 = ForgotPassStep1()
             addFragment(regFragment1)
         }
 
         val signWithPhone = view.findViewById<View>(R.id.sign_with_phone)
         signWithPhone.setOnClickListener {
-            Utility.hideKeyboard(requireContext(),it)
+            Utils.hideKeyboard(requireContext(),it)
             val regFragment1 = OtpVerificationStep1()
             addFragment(regFragment1)
         }
+
+        loginViewModel?.loginResponse?.observe(requireActivity()) {
+            if (it != null && it.data?.access?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS && it.data!=null) {
+                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
+                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
+                    Log.d("status","${it.message}")
+                    if (progressDialog.isShowing)
+                        progressDialog.dismiss()
+                    Toast.makeText(requireActivity(),"LoginSuccessful",Toast.LENGTH_LONG).show()
+                    val intent = Intent (requireActivity(), DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    return@observe
+                }else{
+                    Log.d("status","${it.message}")
+                    if (progressDialog.isShowing)
+                        progressDialog.dismiss()
+                    Toast.makeText(requireActivity(),"error:"+it.message,Toast.LENGTH_LONG).show()
+
+                    val regFragment1 = LoginSecondStep()
+                    addFragment(regFragment1)
+                }
+            }else{
+                Log.d("status","${AppConstants.GENERIC_ERROR}")
+                if (progressDialog.isShowing)
+                    progressDialog.dismiss()
+                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
+
+                val regFragment1 = LoginSecondStep()
+                addFragment(regFragment1)
+            }
+
+        }
+
+
+    }
+
+    private fun loginValidation(){
+        progressDialog.show()
+        loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
     }
 
     fun addFragment(fragment: Fragment?) {

@@ -18,7 +18,6 @@
         <item name="android:textSize">100sp</item>
         <item name="autoSizePresetSizes">@array/autosize_text_sizes</item>
     </style>
-
     <style name="registratio">
 
         <item name="android:textSize">
