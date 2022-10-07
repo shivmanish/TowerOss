@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchActivityBinding
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment
-import com.smarthub.baseapplication.utils.Utility
 import com.smarthub.baseapplication.viewmodels.SearchActivityViewModel
 
 class SearchActivity : AppCompatActivity() {
@@ -64,7 +63,7 @@ class SearchActivity : AppCompatActivity() {
             val child: View =
                 layoutInflater.inflate(R.layout.flowcontainer, dataBinding!!.flowlayout, false)
             var titeltext: TextView = child.findViewById(R.id.titel)
-            titeltext.text = data.get(i)
+            titeltext.text = data[i]
             dataBinding!!.flowlayout.addView(child)
         }
     }
