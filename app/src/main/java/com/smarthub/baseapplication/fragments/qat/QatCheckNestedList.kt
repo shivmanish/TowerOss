@@ -23,11 +23,6 @@ class QatCheckNestedList() : Fragment(), QatItemListener {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     fun addFragment(fragment: Fragment?) {
         val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
         val manager = requireActivity().supportFragmentManager

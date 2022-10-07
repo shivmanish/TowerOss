@@ -20,11 +20,11 @@ class AtpMainActivity : AppCompatActivity(), QatProfileListener {
     }
 
     private fun init() {
-        binding?.atpList?.adapter = AtpListAdapter(this@AtpMainActivity)
+//        binding?.atpList?.adapter = AtpListAdapter(this@AtpMainActivity)
     }
 
     override fun itemClicked() {
-        var fragment = QatCheckNestedList()
+        var fragment = AtpMainFragment()
         addFragment(fragment)
     }
 
