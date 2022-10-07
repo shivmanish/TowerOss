@@ -22,7 +22,7 @@ class SearchActivity : AppCompatActivity() {
 
 
         dataBinding = SearchActivityBinding.inflate(layoutInflater)
-        mViewModel = ViewModelProvider(this).get(SearchActivityViewModel::class.java)
+        mViewModel = ViewModelProvider(this)[SearchActivityViewModel::class.java]
         setContentView(dataBinding?.root)
         dataBinding?.clearSearchQuery?.setOnClickListener {
             val siteFragment = SiteDetailFragment()

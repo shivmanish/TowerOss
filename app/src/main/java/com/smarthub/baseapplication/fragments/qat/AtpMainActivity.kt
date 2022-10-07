@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.AtpListAdapter
+import com.smarthub.baseapplication.adapter.history.AtpMainListAdapter
 import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
 import com.smarthub.baseapplication.listeners.QatProfileListener
 
@@ -20,7 +21,7 @@ class AtpMainActivity : AppCompatActivity(), QatProfileListener {
     }
 
     private fun init() {
-//        binding?.atpList?.adapter = AtpListAdapter(this@AtpMainActivity)
+        binding?.atpList?.adapter = AtpMainListAdapter(this@AtpMainActivity)
     }
 
     override fun itemClicked() {

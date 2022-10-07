@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/history_list_layout"
+    android:background="@color/white">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_box"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/search_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginVertical="@dimen/dp8"
+            app:cardCornerRadius="@dimen/dp8"
+            app:cardBackgroundColor="#E3E3E3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/search_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp24"
+                    android:drawableTint="#9B9B9B"
+                    android:background="@android:color/transparent"
+                    android:text="**_****_**_****"
+                    android:drawablePadding="@dimen/dp10"
+                    android:drawableEnd="@drawable/search"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="#9B9B9B"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/history_title"
+        android:text="History"
+        android:textSize="13sp"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp10"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_box"/>
+   <com.google.android.material.chip.ChipGroup
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="@dimen/dp3"
+       app:layout_constraintTop_toBottomOf="@+id/history_title">
+       <com.google.android.material.chip.Chip
+           android:text="History test"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <com.google.android.material.chip.Chip
+           android:text="History test"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <com.google.android.material.chip.Chip
+           android:text="History test"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <com.google.android.material.chip.Chip
+           android:text="History"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <com.google.android.material.chip.Chip
+           android:text="History"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <com.google.android.material.chip.Chip
+           android:text="History Test"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+   </com.google.android.material.chip.ChipGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>
