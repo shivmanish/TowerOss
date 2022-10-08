@@ -14,16 +14,12 @@ class QatCheckNestedList() : Fragment(), QatItemListener {
 
     var binding : QatNestedListBinding ?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         val view = inflater.inflate(R.layout.qat_nested_list, container, false)
-
         binding = QatNestedListBinding.bind(view)
         binding?.list?.adapter = QatTitleAdapter(this@QatCheckNestedList)
         return view
-
-    }
-
-    fun addFragment(fragment: Fragment?) {
+       }
+        fun addFragment(fragment: Fragment?) {
         val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
         val manager = requireActivity().supportFragmentManager
         val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)

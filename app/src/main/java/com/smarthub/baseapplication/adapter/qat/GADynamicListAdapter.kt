@@ -4,12 +4,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.adapter.qat.AtpAddImageListAdapter
 import com.smarthub.baseapplication.databinding.FragmentGABinding
 import com.smarthub.baseapplication.databinding.SpinnerTextBinding
 import com.smarthub.baseapplication.ui.gat.GAViewModel
@@ -31,6 +30,12 @@ class GADynamicAdapter(var list: ArrayList<Any>) :
 
     class MainScreenHold(view: View) : ViewHold(view) {
         var fragmentGABinding = FragmentGABinding.bind(view)
+        lateinit var list : ArrayList<String>
+      var addimge=view.findViewById<RecyclerView>(R.id.rvImageAttachment)
+        init{
+         //addimge.adapter=AtpAddImageListAdapter();
+        }
+
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -45,6 +50,7 @@ class GADynamicAdapter(var list: ArrayList<Any>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+
         return when (viewType) {
             1 -> {
                 var view: View = LayoutInflater.from(parent.context)
@@ -83,19 +89,19 @@ class GADynamicAdapter(var list: ArrayList<Any>) :
                 "status",
                 holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
             )
-            val addimge=holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
-            holder.itemView.setOnClickListener {
+          //  val addimge=holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
+   /*         holder.addimge.setOnClickListener {
                // Toast.makeText(holder.itemView.context,"Clicked!",Toast.LENGTH_LONG).show()
-
                 val dialog = BottomSheetDialog(holder.itemView.context)
                 val view= LayoutInflater.from(holder.itemView.context).inflate(R.layout.upload_pic_bottom_sheet,null)
                 val layoutCamera= view.findViewById<LinearLayout>(R.id.layoutCamera);
-             //   val layoutCamera2= view.findViewById<TextView>(R.id.layoutCamera2);
+                val layoutCamera2= view.findViewById<LinearLayout>(R.id.layoutCamera2);
+
 
 
                dialog.show()
             }
-
+*/
         } else {
             Log.d("status", "default")
         }

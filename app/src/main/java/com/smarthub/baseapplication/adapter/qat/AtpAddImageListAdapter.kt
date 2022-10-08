@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.adapter
+package com.smarthub.baseapplication.adapter.qat
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +7,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CardItemBinding
 import com.smarthub.baseapplication.databinding.LangItemBinding
+import com.smarthub.baseapplication.databinding.SpinnerTextBinding
+import com.smarthub.baseapplication.databinding.UploadPicBottomSheetBinding
+import com.smarthub.baseapplication.listeners.AddImageListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.LangModel
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.AtpListItem
 
-class AtpCardListAdapter(var list : ArrayList<AtpListItem>,var listener: QatProfileListener) : RecyclerView.Adapter<AtpCardListAdapter.ViewHold>() {
-        init {
-        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
+class AtpAddImageListAdapter(var list : ArrayList<Any>, var listener: AddImageListener) : RecyclerView.Adapter<AtpAddImageListAdapter.ViewHold>() {
+
+
+    init {
+ //       list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
 //        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
 //        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
 //        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
@@ -27,19 +32,24 @@ class AtpCardListAdapter(var list : ArrayList<AtpListItem>,var listener: QatProf
     }
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding : CardItemBinding = CardItemBinding.bind(itemView)
+        var uploadPicBottomSheetBinding = UploadPicBottomSheetBinding.bind(itemView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.card_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.upload_pic_bottom_sheet,parent,false)
+        var layoutCamera=view.findViewById<RecyclerView>(R.id.layoutCamera)
+        var layoutGallery=view.findViewById<RecyclerView>(R.id.layoutGallery)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.headerList.adapter = CardItemAdapter(ArrayList(),listener)
-        holder.binding.root.setOnClickListener {
-            listener.itemClicked()
+           holder.uploadPicBottomSheetBinding.layoutCamera.setOnClickListener(){
+           list.add( listener.itemCameraClicked());
+         }
+         holder.uploadPicBottomSheetBinding.layoutGallery.setOnClickListener(){
+         list.add(listener.itemClicked());
         }
+
     }
 
     override fun getItemCount(): Int {

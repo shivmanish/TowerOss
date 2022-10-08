@@ -170,7 +170,7 @@
                 <EditText
 
                     android:id="@+id/txtRemarks"
-                    android:background="null"
+                    android:background="@null"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp60"
                     android:layout_alignParentTop="true"
