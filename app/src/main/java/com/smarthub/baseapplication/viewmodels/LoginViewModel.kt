@@ -1,12 +1,11 @@
 package com.smarthub.baseapplication.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.network.APIInterceptor
-import com.smarthub.baseapplication.network.RefreshToken
+import com.smarthub.baseapplication.network.pojo.RefreshToken
 import com.smarthub.baseapplication.network.repo.LoginRepo
 
 class LoginViewModel: ViewModel() {
