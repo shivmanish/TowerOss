@@ -316,7 +316,7 @@
 
 
                             android:id="@+id/txtDate"
-                            android:layout_weight=".30"
+                            android:layout_weight=".40"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/activity_horizontal_margin"

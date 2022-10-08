@@ -40,6 +40,7 @@ class GAFragment : Fragment() {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(itemView, savedInstanceState)
+
         var layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         _binding?.rvDynamicList.apply {
