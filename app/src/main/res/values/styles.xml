@@ -167,4 +167,8 @@
         <item name="android:popupBackground">@android:color/transparent</item>
         <item name="android:popupElevation">20dp</item>
     </style>
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>
