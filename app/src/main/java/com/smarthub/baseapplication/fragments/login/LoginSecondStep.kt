@@ -83,7 +83,6 @@ class LoginSecondStep : Fragment() {
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null) {
                     AppPreferences.getInstance().saveString("access", "${it.data?.access}")
-                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
                     Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()

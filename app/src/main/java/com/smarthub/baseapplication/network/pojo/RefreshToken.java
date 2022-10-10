@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.network;
+package com.smarthub.baseapplication.network.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

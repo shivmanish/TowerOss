@@ -33,7 +33,11 @@ class QatItemAdapter(var listener: QatItemListener) : RecyclerView.Adapter<QatIt
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
         hold.binding.expansionText.text = list[pos]
-        hold.binding.expansionText.setOnClickListener { listener.itemClicked() }
+        hold.binding.expansionText.setOnClickListener {
+            var item = listener.itemClicked()
+//            list.add(item)
+//            notifyItemChanged(pos)
+        }
     }
 
     override fun getItemCount(): Int {

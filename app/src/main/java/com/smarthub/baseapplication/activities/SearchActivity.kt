@@ -20,7 +20,7 @@ class SearchActivity : AppCompatActivity() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
         dataBinding = SearchActivityBinding.inflate(layoutInflater)
-        mViewModel = ViewModelProvider(this).get(SearchActivityViewModel::class.java)
+        mViewModel = ViewModelProvider(this)[SearchActivityViewModel::class.java]
         setContentView(dataBinding?.root)
         dataBinding?.clearSearchQuery?.setOnClickListener {
             val siteFragment = SiteDetailFragment()
