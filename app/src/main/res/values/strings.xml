@@ -178,5 +178,8 @@
     <string name="create_datetime">Create Date/Time</string>
     <string name="submitted_datetime">Submitted Date/Time</string>
     <string name="Approved_datetime">Approved Date/Time</string>
+    <string name="mark_taylor">Mark Taylor</string>
+    <string name="qa">QA</string>
+    <string name="electircal_civil_material">Electircal / Civil Material</string>
 
 </resources>

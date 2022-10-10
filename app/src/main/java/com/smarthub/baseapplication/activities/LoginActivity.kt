@@ -35,12 +35,10 @@ class LoginActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(this,it)
             loginValidation()
         }
-
         binding?.textRegister?.setOnClickListener {
             Utils.hideKeyboard(this,it)
             val regFragment1 = RegistrationFirstStep()
