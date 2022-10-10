@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/backgroun_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/bgColor"
         android:gravity="center"
-        android:id="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -28,21 +28,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back"
-            app:tint="@color/iconBlack"/>
+            app:tint="@color/iconBlack" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
+            android:fontFamily="@font/montserrat"
             android:gravity="center|start"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:singleLine="true"
+            android:text="QAT Check"
             android:textColor="@color/iconBlack"
             android:textSize="18sp"
-            android:text="QAT Check"
-            android:fontFamily="@font/montserrat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_back"
@@ -67,7 +67,8 @@
             android:fontFamily="@font/montserrat_semibold"
             android:text="@string/site_name_uid"
             android:textColor="@color/normalTextColor"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp12"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="match_parent"
@@ -75,7 +76,8 @@
             android:fontFamily="@font/montserrat_semibold"
             android:text="@string/search_site"
             android:textColor="@color/normalTextColor"
-            android:textSize="@dimen/sp18" />
+            android:textSize="@dimen/sp18"
+            android:visibility="gone" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/search_card_view"
@@ -129,7 +131,8 @@
             android:fontFamily="@font/montserrat"
             android:text="@string/search_by"
             android:textColor="@color/normalTextColor"
-            android:textSize="@dimen/sp14" />
+            android:textSize="@dimen/sp14"
+            android:visibility="gone" />
 
 
         <com.smarthub.baseapplication.widgets.FlowLayout
@@ -142,7 +145,6 @@
             app:flChildSpacingForLastRow="align"
             app:flRowSpacing="8dp" />
 
-
     </LinearLayout>
 
     <TextView
@@ -154,7 +156,44 @@
         android:text="@string/history"
         android:textColor="@color/normalTextColor"
         android:textSize="@dimen/sp14"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_header" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_header">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroun_color">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_view"
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/dp1"
+                android:background="@color/white"
+                app:tabMode="fixed"
+                app:tabTextAppearance="@style/MyCustomTextAppearance"
+                app:tabBackground="@drawable/tab_selctor_qat"
+                android:layout_gravity="bottom"
+                app:tabIndicatorColor="@color/tab_selected_color"
+
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp130"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

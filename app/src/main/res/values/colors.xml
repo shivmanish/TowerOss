@@ -2,11 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<color name="tab_text_color">#3D4E6D</color>
+    <color name="tab_text_color">#3D4E6D</color>
     <color name="tab_selected_color">#F7CB46</color>
     <color name="site_detail_background">#f5f5f5</color>
     <color name="devider_grey">#E6E6E6</color>
-
+    <color name="tab_selected">#E9EEF7</color>
 
 
     <color name="bgColor">#FFFFFF</color>
@@ -30,4 +30,6 @@
     <color name="color1">#425371</color>
     <color name="color2">#FFD72B</color>
     <color name="pop_text_color">#636363</color>
+    <color name="backgroun_color">#F1F1F1</color>
+    <color name="line_color">#33000000</color>
 </resources>
