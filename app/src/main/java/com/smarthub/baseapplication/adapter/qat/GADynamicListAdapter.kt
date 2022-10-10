@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -11,10 +12,11 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.qat.AtpAddImageListAdapter
 import com.smarthub.baseapplication.databinding.FragmentGABinding
 import com.smarthub.baseapplication.databinding.SpinnerTextBinding
+import com.smarthub.baseapplication.listeners.AddImageListener
 import com.smarthub.baseapplication.ui.gat.GAViewModel
 
 
-class GADynamicAdapter(var list: ArrayList<Any>) :
+class GADynamicAdapter(var list: ArrayList<Any>,var listener: AddImageListener) :
     RecyclerView.Adapter<GADynamicAdapter.ViewHold>() {
     private lateinit var gaViewModel: GAViewModel
 
@@ -28,12 +30,17 @@ class GADynamicAdapter(var list: ArrayList<Any>) :
         //    var dynamicTextfieldLayoutBinding = DynamicTextfieldLayoutBinding.bind(view)
     }
 
-    class MainScreenHold(view: View) : ViewHold(view) {
+    class MainScreenHold(view: View, var listener: AddImageListener) : ViewHold(view) {
         var fragmentGABinding = FragmentGABinding.bind(view)
         lateinit var list : ArrayList<String>
+        var Adapter= AtpAddImageListAdapter(listener)
       var addimge=view.findViewById<RecyclerView>(R.id.rvImageAttachment)
+
         init{
-         //addimge.adapter=AtpAddImageListAdapter();
+
+
+            /*var list : ArrayList<Any>, var listener: AddImageListener*/
+           addimge.adapter=Adapter
         }
 
     }
@@ -65,7 +72,7 @@ class GADynamicAdapter(var list: ArrayList<Any>) :
             3 -> {
                 var view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.rv_ga_list_layout, parent, false)
-                MainScreenHold(view)
+                MainScreenHold(view, listener)
             }
             else -> {
                 var view: View = LayoutInflater.from(parent.context)
@@ -88,7 +95,9 @@ class GADynamicAdapter(var list: ArrayList<Any>) :
             Log.d(
                 "status",
                 holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
+
             )
+            holder.Adapter.UpdateList(ArrayList())
           //  val addimge=holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
    /*         holder.addimge.setOnClickListener {
                // Toast.makeText(holder.itemView.context,"Clicked!",Toast.LENGTH_LONG).show()

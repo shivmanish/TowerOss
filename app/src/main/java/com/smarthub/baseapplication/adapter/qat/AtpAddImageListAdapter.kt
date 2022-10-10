@@ -16,8 +16,14 @@ import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.AtpListItem
 
-class AtpAddImageListAdapter(var list : ArrayList<Any>, var listener: AddImageListener) : RecyclerView.Adapter<AtpAddImageListAdapter.ViewHold>() {
+class AtpAddImageListAdapter( var listener: AddImageListener) : RecyclerView.Adapter<AtpAddImageListAdapter.ViewHold>() {
 
+    var list =ArrayList<Any>()
+     fun UpdateList(list:ArrayList<Any> )
+     {this.list.addAll(list)
+         notifyDataSetChanged()
+
+     }
 
     init {
  //       list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
@@ -44,10 +50,10 @@ class AtpAddImageListAdapter(var list : ArrayList<Any>, var listener: AddImageLi
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
            holder.uploadPicBottomSheetBinding.layoutCamera.setOnClickListener(){
-           list.add( listener.itemCameraClicked());
+             listener.itemCameraClicked()
          }
          holder.uploadPicBottomSheetBinding.layoutGallery.setOnClickListener(){
-         list.add(listener.itemClicked());
+             listener.itemClicked()
         }
 
     }

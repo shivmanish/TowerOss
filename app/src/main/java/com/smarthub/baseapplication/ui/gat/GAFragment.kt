@@ -42,16 +42,15 @@ class GAFragment : Fragment() , AddImageListener {
     }
     @SuppressLint("MissingInflatedId")
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(itemView, savedInstanceState)
-
         var layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         _binding?.rvDynamicList.apply {
             this?.layoutManager = layoutManager
-            this?.adapter = GADynamicAdapter(list)
+            this?.adapter = GADynamicAdapter(list,this@GAFragment)
         }
     }
+
      override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
