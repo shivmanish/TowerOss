@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/dp15"
+    android:layout_margin="@dimen/dp10"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@drawable/addmorebg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rlParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dp10">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageView1"
+                android:layout_width="@dimen/dp60"
+
+                app:cardCornerRadius="@dimen/dp60"
+                android:layout_height="@dimen/dp60">
+                <ImageView
+
+                    android:padding="@dimen/dp6"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp60"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/vodaphone"
+                    android:contentDescription="TODO" />
+            </androidx.cardview.widget.CardView>
+
+           <LinearLayout
+               android:layout_centerVertical="true"
+               android:weightSum="1"
+               android:orientation="horizontal"
+               android:layout_toRightOf="@+id/imageView1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <RelativeLayout
+                   android:layout_weight=".5"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/txtHeading"
+
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+                       android:lineSpacingExtra="2sp"
+                       android:text="Reliance jio pvt ltd"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/sp12"
+                       />
+                   <TextView
+                       android:layout_marginTop="@dimen/dp6"
+                       android:id="@+id/txtDescription"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+                       android:lineSpacingExtra="2sp"
+                       android:text="DEL-VIL-SC-0001"
+                       android:textColor="#8C9090"
+                       android:textSize="@dimen/sp12"
+                       />
+               </RelativeLayout>
+               <RelativeLayout
+                   android:gravity="end"
+                   android:layout_weight=".5"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/txtDate"
+
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="end"
+
+                       android:lineSpacingExtra="2sp"
+                       android:text="20-02-2022"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/sp12"
+                       />
+                   <TextView
+                       android:layout_marginTop="@dimen/dp6"
+                       android:id="@+id/txtDatetitle"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtDate"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="end"
+                       android:lineSpacingExtra="2sp"
+                       android:text="RFI Date"
+                       android:textColor="#8C9090"
+                       android:textSize="@dimen/sp12"
+                       />
+               </RelativeLayout>
+
+           </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
