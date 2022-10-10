@@ -33,11 +33,14 @@ class AtpMainFragment : Fragment(), QatProfileListener {
 
     private fun init() {
         binding?.atpList?.adapter = AtpListAdapter(this@AtpMainFragment)
+        binding?.imgBack?.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     override fun itemClicked() {
         var fragment = QatCheckNestedList()
-        (requireActivity() as AtpMainActivity).addFragment(fragment)
+        (requireActivity() as QATCheckActivity).addFragment(fragment)
     }
 
 }
