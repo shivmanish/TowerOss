@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:paddingTop="@dimen/dp10"
         android:paddingBottom="@dimen/dp10"
-        android:background="#F1F1F1"
+        android:background="@color/backgroun_color"
         android:id="@+id/expansion_top"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:textStyle="bold"
             android:textColor="#4F4D4D"
             android:maxLines="1"
-            android:background="#F1F1F1"
+            android:background="@color/backgroun_color"
             android:drawablePadding="@dimen/dp15"
             android:drawableStart="@drawable/dot"
             android:text="Electircal / Civil Material"
