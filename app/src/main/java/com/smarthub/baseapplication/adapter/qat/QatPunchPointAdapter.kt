@@ -16,7 +16,6 @@ import com.smarthub.baseapplication.utils.Utils
 
 class QatPunchPointAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
 
-
     class ViewHold(itemView: View,var listener: QatProfileListener) : RecyclerView.ViewHolder(itemView) {
         var binding : QatPunchPointItemBinding = QatPunchPointItemBinding.bind(itemView)
         var adapter = QatSpinnerItemAdapter(listener)

@@ -15,9 +15,6 @@ import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
 class QatAttachmentAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<QatAttachmentAdapter.ViewHold>() {
 
     var list = ArrayList<String>()
-    init {
-
-    }
 
     fun addItem(item : String){
         list.add(item)
