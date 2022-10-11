@@ -71,7 +71,7 @@
     <string name="created_date">Created Date / Time</string>
 
     <string-array name="spinner_item">
-        <item>Select here</item>
+        <item>First value</item>
         <item>Array Item One</item>
         <item>Array Item Two</item>
         <item>Array Item Three</item>

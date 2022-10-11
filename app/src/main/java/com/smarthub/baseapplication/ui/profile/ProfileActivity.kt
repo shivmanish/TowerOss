@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.model.profile.UserProfileGet
+import com.smarthub.baseapplication.network.ProfileDetails
 import com.smarthub.baseapplication.network.User
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
@@ -37,13 +38,13 @@ class ProfileActivity : AppCompatActivity() {
             if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")
+                    uiDataMapping(it.data?.get(0)!!)
                     Log.d("status", "${it.message}")
                     Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
 
                 }
             } else {
@@ -53,6 +54,14 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
         initViews()
+    }
+
+    private fun uiDataMapping(profileDetails: ProfileDetails){
+        dataBinding?.textName?.text = "${profileDetails.first_name} ${profileDetails.last_name}"
+        dataBinding?.textCall?.text = "${profileDetails.phone}"
+        dataBinding?.textMessage?.text = "${profileDetails.email}"
+        dataBinding?.textYellow?.text = "${profileDetails.id}"
+        dataBinding?.textActive?.text = "${profileDetails.active}"
     }
 
     private var popupWindow: PopupWindow? = null

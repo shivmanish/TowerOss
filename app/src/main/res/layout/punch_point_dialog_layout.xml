@@ -61,18 +61,17 @@
                     android:textSize="@dimen/sp14" />
 
                 <EditText
+                    android:gravity="bottom"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_marginTop="@dimen/dp12"
+                    android:layout_height="@dimen/dp40"
+                    android:textStyle="bold"
                     android:background="@drawable/bottom_line_bg"
-                    android:fontFamily="@font/montserrat"
-                    android:hint="@string/type_here"
-                    android:paddingLeft="@dimen/dp15"
-                    android:paddingTop="@dimen/dp10"
+                    android:fontFamily="@font/montserrat_regular"
                     android:paddingRight="@dimen/dp15"
                     android:paddingBottom="@dimen/dp10"
                     android:textColor="@color/normalTextColor"
-                    android:textColorHint="@color/search_setting"
+                    android:hint="@string/type_here"
+                    android:textColorHint="@color/light_gray"
                     android:textSize="@dimen/dp14" />
 
                 <TextView
@@ -80,22 +79,22 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp25"
                     android:text="@string/recommendation"
                     android:textColor="@color/light_gray"
                     android:textSize="@dimen/sp14" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_marginTop="@dimen/dp12"
+                    android:layout_height="@dimen/dp40"
                     android:background="@drawable/bottom_line_bg"
                     android:fontFamily="@font/montserrat"
-                    android:paddingLeft="@dimen/dp15"
-                    android:paddingTop="@dimen/dp10"
                     android:paddingRight="@dimen/dp15"
                     android:paddingBottom="@dimen/dp10"
+                    android:gravity="bottom"
                     android:textColor="@color/normalTextColor"
+                    android:hint="@string/type_here"
+                    android:textColorHint="@color/light_gray"
                     android:textSize="@dimen/dp14" />
 
                 <TextView

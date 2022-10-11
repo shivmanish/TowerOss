@@ -27,24 +27,24 @@ class CustomeDetailsFragment : Fragment() {
 
     fun setData(){
         customeDetailsFragmentBinding.operatornameMain.setOnClickListener(){
-//            if(customeDetailsFragmentBinding.operatornameCollaps.visibility == GONE){
-//                Utils.expand(customeDetailsFragmentBinding.operatornameCollaps)
-//                customeDetailsFragmentBinding.arrowOperator.rotation = 180f
-//            }else{
-//                Utils.collapse(customeDetailsFragmentBinding.operatornameCollaps)
-//                customeDetailsFragmentBinding.arrowOperator.rotation = 0f
-//            }
+            if(customeDetailsFragmentBinding.operatornameCollaps.visibility == GONE){
+                Utils.expand(customeDetailsFragmentBinding.operatornameCollaps)
+                customeDetailsFragmentBinding.arrowOperator.rotation = 180f
+            }else{
+                Utils.collapse(customeDetailsFragmentBinding.operatornameCollaps)
+                customeDetailsFragmentBinding.arrowOperator.rotation = 0f
+            }
         }
 
 
         customeDetailsFragmentBinding.loadview.loadmesurmentMain.setOnClickListener(){
-//            if(customeDetailsFragmentBinding.loadview.loadManagementColaps.visibility == GONE){
-//                Utils.expand(customeDetailsFragmentBinding.loadview.loadManagementColaps)
-//                customeDetailsFragmentBinding.loadview.loadmanagementArrow.rotation = 180f
-//            }else{
-//                Utils.collapse(customeDetailsFragmentBinding.loadview.loadManagementColaps)
-//                customeDetailsFragmentBinding.loadview.loadmanagementArrow.rotation = 0f
-//            }
+            if(customeDetailsFragmentBinding.loadview.loadManagementColaps.visibility == GONE){
+                Utils.expand(customeDetailsFragmentBinding.loadview.loadManagementColaps)
+                customeDetailsFragmentBinding.loadview.loadmanagementArrow.rotation = 180f
+            }else{
+                Utils.collapse(customeDetailsFragmentBinding.loadview.loadManagementColaps)
+                customeDetailsFragmentBinding.loadview.loadmanagementArrow.rotation = 0f
+            }
         }
 
 
