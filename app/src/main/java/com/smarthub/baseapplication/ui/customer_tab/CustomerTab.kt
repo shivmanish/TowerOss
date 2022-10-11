@@ -41,12 +41,19 @@ class CustomerTab : Fragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         _binding?.rvAddMoreItems.apply {
             this?.layoutManager = layoutManager
-            this?.adapter = AddMoreCustomerListAdapter()
             list.add("Reliance jio pvt ltd")
             list.add("Smart mile")
             list.add("Airtel")
 
+            this?.adapter = AddMoreCustomerListAdapter(list)
+
+
         }
+        _binding?.btnNext?.setOnClickListener{
+
+        }
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

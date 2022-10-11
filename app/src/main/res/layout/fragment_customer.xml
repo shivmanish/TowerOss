@@ -1,40 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    tools:context=".fragments.sitedetail.CustomerFragment">
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
 
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-
-      <!-- TODO: Update blank fragment layout -->
-      <Button
-          android:id="@+id/btn_next"
-          android:layout_gravity="end"
-          android:drawableLeft="@drawable/add"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_alignParentRight="true"
-          android:layout_alignParentBottom="true"
-          android:layout_margin="@dimen/activity_horizontal_margin"
-          android:background="@drawable/login_yellow_bg"
-          android:text="@string/addmore"
-          />
-
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/rvAddMoreItems"
-          android:background="@color/white"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          tools:itemCount="5"
-          tools:listitem="@layout/rv_add_more_customer"></androidx.recyclerview.widget.RecyclerView>
-  </LinearLayout>
-</FrameLayout>
+        android:layout_gravity="end"
+        android:drawableLeft="@drawable/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@drawable/login_yellow_bg"
+        android:text="@string/addmore"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:id="@+id/rvAddMoreItems"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:itemCount="5"
+        tools:listitem="@layout/rv_add_more_customer"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
