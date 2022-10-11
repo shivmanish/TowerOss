@@ -45,6 +45,7 @@ class RecyclerAdapter_faq : RecyclerView.Adapter<RecyclerAdapter_faq.ViewHolder>
             holder.question1.tag = isExpanded
             if (isExpanded){
                 holder.answer.visibility = View.VISIBLE
+
 //                change radius 10dp
 
             }else{

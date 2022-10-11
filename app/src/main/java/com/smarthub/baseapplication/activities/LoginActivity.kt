@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
+import com.smarthub.baseapplication.network.User
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
     var binding : ActivityLoginBinding?=null
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
-
+    private var user : User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -100,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginValidation(){
         progressDialog.show()
+        user?.username = binding?.userMail?.text.toString()
         loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
     }
 
