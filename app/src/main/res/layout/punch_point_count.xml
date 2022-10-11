@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp35"
+    android:layout_height="@dimen/dp35"
+    android:padding="5dp"
+    android:layout_marginEnd="3dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:text="1"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:id="@+id/p1"
+        android:textColor="#3F4D68"
+        android:background="@drawable/circle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/montserrat_regular"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

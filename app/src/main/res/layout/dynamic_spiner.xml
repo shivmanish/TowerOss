@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.google.android.material.card.MaterialCardView
         android:layout_below="@+id/txtCardHeading"
@@ -12,6 +12,7 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         app:strokeColor="#D3D3D3"
         app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="@color/white"
         tools:ignore="MissingConstraints,UnknownIdInLayout">
 
         <androidx.appcompat.widget.AppCompatSpinner

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.qat.AtpAddImageListAdapter
+import com.smarthub.baseapplication.databinding.DynamicSpinerBinding
 import com.smarthub.baseapplication.databinding.FragmentGABinding
 import com.smarthub.baseapplication.databinding.SpinnerTextBinding
 import com.smarthub.baseapplication.listeners.AddImageListener
@@ -18,12 +19,11 @@ import com.smarthub.baseapplication.ui.gat.GAViewModel
 
 class GADynamicAdapter(var list: ArrayList<Any>,var listener: AddImageListener) :
     RecyclerView.Adapter<GADynamicAdapter.ViewHold>() {
-    private lateinit var gaViewModel: GAViewModel
 
     open class ViewHold(var view: View) : RecyclerView.ViewHolder(view)
 
     class SpinerViewHold(view: View) : ViewHold(view) {
-        var spinerBinding = SpinnerTextBinding.bind(view)
+//        var spinerBinding = DynamicSpinerBinding.bind(view)
     }
 
     class TextFieldViewHold(view: View) : ViewHold(view) {
@@ -31,17 +31,15 @@ class GADynamicAdapter(var list: ArrayList<Any>,var listener: AddImageListener) 
     }
 
     class MainScreenHold(view: View, var listener: AddImageListener) : ViewHold(view) {
-        var fragmentGABinding = FragmentGABinding.bind(view)
-        lateinit var list : ArrayList<String>
-        var Adapter= AtpAddImageListAdapter(listener)
-      var addimge=view.findViewById<RecyclerView>(R.id.rvImageAttachment)
-
-        init{
-
-
-            /*var list : ArrayList<Any>, var listener: AddImageListener*/
-           addimge.adapter=Adapter
-        }
+//        var Adapter= AtpAddImageListAdapter(listener)
+//        var addimge=view.findViewById<RecyclerView>(R.id.rvImageAttachment)
+//
+//        init{
+//
+//
+//            /*var list : ArrayList<Any>, var listener: AddImageListener*/
+//           addimge.adapter=Adapter
+//        }
 
     }
 
@@ -91,33 +89,21 @@ class GADynamicAdapter(var list: ArrayList<Any>,var listener: AddImageListener) 
         }
         else if (holder is MainScreenHold) {
 
-            Log.d("status", "MainScreenHold")
-            Log.d(
-                "status",
-                holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
+//            Log.d("status", "MainScreenHold")
+//            Log.d(
+//                "status",
+//                holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
+//
+//            )
+//            holder.Adapter.UpdateList(ArrayList())
 
-            )
-            holder.Adapter.UpdateList(ArrayList())
-          //  val addimge=holder.view.findViewById<RecyclerView>(R.id.rvImageAttachment).toString()
-   /*         holder.addimge.setOnClickListener {
-               // Toast.makeText(holder.itemView.context,"Clicked!",Toast.LENGTH_LONG).show()
-                val dialog = BottomSheetDialog(holder.itemView.context)
-                val view= LayoutInflater.from(holder.itemView.context).inflate(R.layout.upload_pic_bottom_sheet,null)
-                val layoutCamera= view.findViewById<LinearLayout>(R.id.layoutCamera);
-                val layoutCamera2= view.findViewById<LinearLayout>(R.id.layoutCamera2);
-
-
-
-               dialog.show()
-            }
-*/
         } else {
             Log.d("status", "default")
         }
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return list.size
     }
 }
 

@@ -84,8 +84,7 @@
          android:id="@+id/rvDynamicList"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         tools:itemCount="5"
-         tools:listitem="@layout/rv_ga_list_layout">
+         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
      </androidx.recyclerview.widget.RecyclerView>
  </LinearLayout>
 </FrameLayout>

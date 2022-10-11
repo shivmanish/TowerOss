@@ -33,6 +33,7 @@ class GAFragment : Fragment() , AddImageListener {
     private val CAMERA_PIC_REQUEST = 100
     private var imageUri: Uri? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         gaViewModel = ViewModelProvider(requireActivity())[GAViewModel::class.java]
 
@@ -44,6 +45,9 @@ class GAFragment : Fragment() , AddImageListener {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         var layoutManager = LinearLayoutManager(activity)
+        list.add("spiner_item")
+        list.add("text_filed_items")
+        list.add("main_layout")
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         _binding?.rvDynamicList.apply {
             this?.layoutManager = layoutManager
