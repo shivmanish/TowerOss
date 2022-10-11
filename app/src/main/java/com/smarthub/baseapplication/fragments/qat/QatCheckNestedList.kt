@@ -42,14 +42,14 @@ class QatCheckNestedList : Fragment(), QatItemListener {
                 R.anim.pop_enter,
                 R.anim.pop_exit
             )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
+            transaction.replace(R.id.container, fragment!!)
             transaction.addToBackStack(backStateName)
             transaction.commit()
         }
     }
     override fun itemClicked() :String {
-
-
+        var fragment = QatPunchPointFragment()
+        addFragment(fragment)
         return "ghjsjbsdkvna"
     }
 
