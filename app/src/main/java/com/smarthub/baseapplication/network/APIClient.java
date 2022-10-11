@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.network;
 
 import com.smarthub.baseapplication.model.login.UserLoginPost;
+import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

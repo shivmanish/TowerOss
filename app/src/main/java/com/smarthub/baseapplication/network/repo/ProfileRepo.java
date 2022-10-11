@@ -13,23 +13,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginRepo {
+public class ProfileRepo {
 
     private final APIClient apiClient;
-    private static LoginRepo sInstance;
+    private static ProfileRepo sInstance;
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<RefreshToken>> logingResponse;
 
-    public static LoginRepo getInstance(APIClient apiClient) {
+    public static ProfileRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
             synchronized (LOCK) {
-                sInstance = new LoginRepo(apiClient);
+                sInstance = new ProfileRepo(apiClient);
             }
         }
         return sInstance;
     }
 
-    public LoginRepo(APIClient apiClient) {
+    public ProfileRepo(APIClient apiClient) {
         this.apiClient = apiClient;
         logingResponse = new SingleLiveEvent<>();
     }

@@ -13,17 +13,12 @@ import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.AtpListItem
 
-class AtpCardListAdapter(var list : ArrayList<AtpListItem>,var listener: QatProfileListener) : RecyclerView.Adapter<AtpCardListAdapter.ViewHold>() {
-        init {
-        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
-//        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
-//        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
-//        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
-    }
+class AtpCardListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<AtpCardListAdapter.ViewHold>() {
 
+    var indexSize = 5
     fun addListItem(){
-        list.add(AtpListItem(AtpHeaderStatus("",""),ArrayList()))
-        notifyItemChanged(list.size - 1)
+        indexSize++
+        notifyItemChanged(indexSize - 1)
     }
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -43,6 +38,6 @@ class AtpCardListAdapter(var list : ArrayList<AtpListItem>,var listener: QatProf
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return indexSize
     }
 }

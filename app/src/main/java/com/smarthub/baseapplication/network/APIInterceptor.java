@@ -1,7 +1,5 @@
 package com.smarthub.baseapplication.network;
 
-import android.util.Log;
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
@@ -15,11 +13,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import com.smarthub.baseapplication.BuildConfig;
-import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.helpers.AppPreferences;
-import com.smarthub.baseapplication.network.APIClient;
-import com.smarthub.baseapplication.network.EndPoints;
-import com.smarthub.baseapplication.network.RefreshToken;
+import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.Utils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;

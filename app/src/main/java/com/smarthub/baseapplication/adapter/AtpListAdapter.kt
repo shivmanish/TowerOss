@@ -28,7 +28,7 @@ class AtpListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<At
         imageData.add(HeaderList(ArrayList()))
         imageData.add(atpCardListAdapter)
 
-        adapter = AtpCardListAdapter(ArrayList(atpCardListAdapter.list),listener)
+        adapter = AtpCardListAdapter(listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {

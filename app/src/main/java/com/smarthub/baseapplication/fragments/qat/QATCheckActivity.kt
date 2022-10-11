@@ -10,12 +10,37 @@ import com.smarthub.baseapplication.R
 import kotlinx.android.synthetic.main.activity_qatcheck.*
 
 class QATCheckActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qatcheck)
         setupViewPager(view_pager)
-
+        clear_search_query.setOnClickListener {
+            var fragment = AtpMainFragment()
+            addFragment(fragment)
+        }
         tab_view!!.setupWithViewPager(view_pager)
+        img_back.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    fun addFragment(fragment: Fragment?) {
+        val backStateName: String = supportFragmentManager.javaClass.name
+        val manager = supportFragmentManager
+        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+        if (!fragmentPopped) {
+            val transaction = manager.beginTransaction()
+            transaction.setCustomAnimations(
+                R.anim.enter,
+                R.anim.exit,
+                R.anim.pop_enter,
+                R.anim.pop_exit
+            )
+            transaction.add(R.id.container, fragment!!)
+            transaction.addToBackStack(backStateName)
+            transaction.commit()
+        }
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
