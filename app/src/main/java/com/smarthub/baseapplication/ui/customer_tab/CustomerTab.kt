@@ -39,18 +39,17 @@ class CustomerTab : Fragment() {
         super.onViewCreated(itemView, savedInstanceState)
         var layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
+        list.add("Reliance jio pvt ltd")
+        list.add("Smart mile")
+        list.add("Airtel")
+
+        var myAdapter = AddMoreCustomerListAdapter(list)
         _binding?.rvAddMoreItems.apply {
             this?.layoutManager = layoutManager
-            list.add("Reliance jio pvt ltd")
-            list.add("Smart mile")
-            list.add("Airtel")
-
-            this?.adapter = AddMoreCustomerListAdapter(list)
-
-
+            this?.adapter = myAdapter
         }
         _binding?.btnNext?.setOnClickListener{
-
+            myAdapter.addItem("Item Added")
         }
 
 

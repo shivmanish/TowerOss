@@ -11,8 +11,10 @@ import com.smarthub.baseapplication.databinding.ProfileListItemBinding
 
 class AddMoreCustomerListAdapter( var list : ArrayList<Any> ) : RecyclerView.Adapter<AddMoreCustomerListAdapter.ViewHold>() {
 
-
-
+    fun addItem(item : Any){
+        list.add(item)
+        notifyDataSetChanged()
+    }
     class ViewHold(var view : View) : RecyclerView.ViewHolder(view) {
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
