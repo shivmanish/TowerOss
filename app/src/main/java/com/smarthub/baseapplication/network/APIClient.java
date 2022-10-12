@@ -3,6 +3,8 @@ package com.smarthub.baseapplication.network;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,7 +20,7 @@ public interface APIClient {
     Call<RefreshToken> getRegister(@Body UserLoginPost data);
 
     @POST(EndPoints.PROFILE)
-    Call<ProfileDetails> getProfile(@Body UserProfileGet data);
+    Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data);
 
     @POST(EndPoints.PROFILE)
     Call<RefreshToken> updateProfile(@Body UserProfileGet data);

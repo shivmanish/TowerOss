@@ -34,9 +34,9 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(dataBinding?.root)
         profileViewModel?.getProfileData(UserProfileGet("7269024641"))
         profileViewModel?.profileResponse?.observe(this) {
-            if (it != null && it.data?.data?.isNotEmpty() == true) {
+            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
-                    AppPreferences.getInstance().saveString("data", "${it.data?.data}")
+                    AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")
                     Log.d("status", "${it.message}")
                     Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG)
                         .show()
