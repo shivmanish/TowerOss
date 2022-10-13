@@ -3,11 +3,13 @@ package com.smarthub.baseapplication.network.repo;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
-import com.smarthub.baseapplication.model.ErrorUtils;
-import com.smarthub.baseapplication.model.login.UserLoginPost;
+import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.network.APIClient;
-import com.smarthub.baseapplication.network.pojo.RefreshToken;
+import com.smarthub.baseapplication.network.ProfileDetails;
 import com.smarthub.baseapplication.utils.AppConstants;
+import com.smarthub.baseapplication.utils.AppLogger;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +20,7 @@ public class ProfileRepo {
     private final APIClient apiClient;
     private static ProfileRepo sInstance;
     private static final Object LOCK = new Object();
-    private SingleLiveEvent<Resource<RefreshToken>> logingResponse;
+    private SingleLiveEvent<Resource<List<ProfileDetails>>> profileResponse;
 
     public static ProfileRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -31,44 +33,50 @@ public class ProfileRepo {
 
     public ProfileRepo(APIClient apiClient) {
         this.apiClient = apiClient;
-        logingResponse = new SingleLiveEvent<>();
+        profileResponse = new SingleLiveEvent<>();
     }
 
-    public SingleLiveEvent<Resource<RefreshToken>> getLoginResponse() {
-        return logingResponse;
+    public SingleLiveEvent<Resource<List<ProfileDetails>>> getProfileResponse() {
+        return profileResponse;
     }
 
-    public void getLoginToken(UserLoginPost data) {
-        apiClient.getLoginForAccessToken(data).enqueue(new Callback<RefreshToken>() {
+    public void getProfileData(UserProfileGet data) {
+        apiClient.getProfile(data).enqueue(new Callback<List<ProfileDetails>>() {
             @Override
-            public void onResponse(Call<RefreshToken> call, Response<RefreshToken> response) {
+            public void onResponse(Call<List<ProfileDetails>> call, Response<List<ProfileDetails>> response) {
                 if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else {
-                    APIError error = ErrorUtils.parseError(response);
-                    reportErrorResponse(error, null);
-                }
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+//                    APIError error = ErrorUtils.parseError(response);
+//                    reportErrorResponse(error, null);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
             }
 
             @Override
-            public void onFailure(Call<RefreshToken> call, Throwable t) {
+            public void onFailure(Call<List<ProfileDetails>> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<RefreshToken> response) {
+            private void reportSuccessResponse(Response<List<ProfileDetails>> response) {
 
                 if (response.body() != null) {
-                    logingResponse.postValue(Resource.success(response.body(), 200));
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+//                    Logger.getLogger("ProfileRepo").warning(response.toString());
+                    profileResponse.postValue(Resource.success(response.body(), 200));
+
                 }
             }
 
             private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
                 if (response != null) {
-                    logingResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                    profileResponse.postValue(Resource.error(response.getMessage(), null, 400));
                 } else if (iThrowableLocalMessage != null)
-                    logingResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    profileResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    logingResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    profileResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

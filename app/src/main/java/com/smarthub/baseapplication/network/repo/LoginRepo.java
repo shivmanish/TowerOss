@@ -56,7 +56,6 @@ public class LoginRepo {
             }
 
             private void reportSuccessResponse(Response<RefreshToken> response) {
-
                 if (response.body() != null) {
                     logingResponse.postValue(Resource.success(response.body(), 200));
                 }
