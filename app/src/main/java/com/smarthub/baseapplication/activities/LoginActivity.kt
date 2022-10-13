@@ -65,6 +65,10 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()
+
+                    AppPreferences.getInstance().saveString("userMail",binding?.userMail?.text.toString())
+                    AppPreferences.getInstance().saveString("password",binding?.password?.text.toString())
+
                     Toast.makeText(this@LoginActivity,"LoginSuccessful",Toast.LENGTH_LONG).show()
                     val intent = Intent (this@LoginActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
