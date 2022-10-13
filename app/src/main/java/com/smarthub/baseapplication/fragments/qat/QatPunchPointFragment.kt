@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.adapter.qat.QatPunchPointAdapter
 import com.smarthub.baseapplication.listeners.PunchPointListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.ui.dialog.PunchPointCreateDialog
+import com.smarthub.baseapplication.ui.dialog.PunchPointResolveDialog
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -60,8 +61,12 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
     }
 
     override fun addPunchPoint() {
-//        TODO("Not yet implemented")
         var dialog = PunchPointCreateDialog(requireContext())
+        dialog.show()
+    }
+
+    override fun punchPointClicked() {
+        var dialog = PunchPointResolveDialog(requireContext())
         dialog.show()
     }
 }

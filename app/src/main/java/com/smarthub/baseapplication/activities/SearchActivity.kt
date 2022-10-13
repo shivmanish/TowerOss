@@ -56,13 +56,13 @@ class SearchActivity : AppCompatActivity() {
 
     private fun setSearchFilter() {
         val data: List<String> = mViewModel.getFlowData()
-        dataBinding!!.flowlayout.removeAllViews()
-        for (i in 0 until data.size) {
-            val child: View =
-                layoutInflater.inflate(R.layout.flowcontainer, dataBinding!!.flowlayout, false)
-            var titeltext: TextView = child.findViewById(R.id.titel)
-            titeltext.text = data[i]
-            dataBinding!!.flowlayout.addView(child)
-        }
+//        dataBinding!!.flowlayout.removeAllViews()
+//        for (i in 0 until data.size) {
+//            val child: View =
+//                layoutInflater.inflate(R.layout.flowcontainer, dataBinding!!.flowlayout, false)
+//            var titeltext: TextView = child.findViewById(R.id.titel)
+//            titeltext.text = data[i]
+//            dataBinding!!.flowlayout.addView(child)
+//        }
     }
 }

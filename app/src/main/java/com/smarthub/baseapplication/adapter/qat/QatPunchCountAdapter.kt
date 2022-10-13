@@ -27,7 +27,7 @@ class QatPunchCountAdapter(var listener: PunchPointListener) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.root.setOnClickListener {
-            listener.itemClicked()
+            listener.punchPointClicked()
         }
     }
 
