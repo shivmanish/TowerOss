@@ -25,7 +25,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class APIInterceptor {
-    private static final String BASE_URL = "http://49.50.77.81:8181/api/";
+    private static final String BASE_URL = "http://49.50.77.81:8181/";
     private static final String TAG = "APIInterceptor";
     private static final Retrofit.Builder builder = createInstance();
     public static Retrofit retrofit = builder.build();
@@ -112,7 +112,7 @@ public  class APIInterceptor {
                 ).client(httpClient.build());
     }
 
-    public  static APIClient getInstance(){
+    public static APIClient getInstance(){
 
         return apiClient=getRetrofitInstance().create(APIClient.class);
 
@@ -240,11 +240,9 @@ public  class APIInterceptor {
             in.close();
             // this gson part is optional , you can read response directly from Json too
             Gson gson = new Gson();
-            RefreshToken refreshTokenResult = gson.fromJson(response.toString(),
-                    RefreshToken.class);
+            RefreshToken refreshTokenResult = gson.fromJson(response.toString(), RefreshToken.class);
 //      AppPreferences.getInstance().removeItem("accessToken");
-            AppPreferences.getInstance().saveString("accessToken",
-                    refreshTokenResult.getData());
+            AppPreferences.getInstance().saveString("accessToken", refreshTokenResult.getData());
             Utils.INSTANCE.log("APIInterceptor 401 inside refresh token:"+refreshTokenResult.getData());
 
             return true;

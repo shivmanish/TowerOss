@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.network.repo.ProfileRepo
 class ProfileViewModel: ViewModel() {
     var profileRepo: ProfileRepo?=null
     var profileResponse : SingleLiveEvent<Resource<List<ProfileDetails>>>?=null
+
     init {
         profileRepo = ProfileRepo(APIInterceptor.get())
         profileResponse = profileRepo?.profileResponse

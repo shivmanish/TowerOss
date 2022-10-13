@@ -62,7 +62,8 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel?.loginResponse?.observe(this) {
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null) {
-                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
+                    AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
+                    AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
                     Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()

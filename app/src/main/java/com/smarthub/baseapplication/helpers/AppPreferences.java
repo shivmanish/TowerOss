@@ -73,7 +73,11 @@ public class AppPreferences {
     }
 
     public String getToken(){
-        return getString("access");
+        return getString("accessToken");
+    }
+
+    public String getRefresh(){
+        return getString("refreshToken");
     }
 
     public void  saveGAId(String gaId){

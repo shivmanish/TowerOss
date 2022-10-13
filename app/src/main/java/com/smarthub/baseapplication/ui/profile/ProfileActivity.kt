@@ -38,8 +38,7 @@ class ProfileActivity : AppCompatActivity() {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")

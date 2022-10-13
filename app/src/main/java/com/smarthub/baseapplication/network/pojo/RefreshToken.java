@@ -16,6 +16,10 @@ public class RefreshToken {
         return access;
     }
 
+    public String getRefresh() {
+        return refresh;
+    }
+
     public void setAccess(String status) {
         this.access = status;
     }
