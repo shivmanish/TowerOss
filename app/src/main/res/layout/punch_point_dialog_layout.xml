@@ -20,7 +20,6 @@
         app:cardCornerRadius="@dimen/dp15">
 
         <LinearLayout
-            android:paddingBottom="@dimen/dp10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -46,24 +45,26 @@
                 android:background="@color/devider_grey" />
 
             <LinearLayout
+                android:background="#F1F1F1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp15"
+                android:padding="@dimen/dp15"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="@string/obeservation"
-                    android:textColor="@color/normalTextColor"
-                    android:textSize="@dimen/sp15" />
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/sp14" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp50"
                     android:layout_marginTop="@dimen/dp12"
-                    android:background="@drawable/touch_background_border"
+                    android:background="@drawable/bottom_line_bg"
                     android:fontFamily="@font/montserrat"
                     android:hint="@string/type_here"
                     android:paddingLeft="@dimen/dp15"
@@ -75,56 +76,53 @@
                     android:textSize="@dimen/dp14" />
 
                 <TextView
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp15"
-                    android:fontFamily="@font/montserrat"
                     android:text="@string/recommendation"
-                    android:textColor="@color/normalTextColor"
-                    android:textSize="@dimen/sp15" />
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/sp14" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp50"
                     android:layout_marginTop="@dimen/dp12"
-                    android:background="@drawable/touch_background_border"
+                    android:background="@drawable/bottom_line_bg"
                     android:fontFamily="@font/montserrat"
-                    android:hint="@string/type_here"
                     android:paddingLeft="@dimen/dp15"
                     android:paddingTop="@dimen/dp10"
                     android:paddingRight="@dimen/dp15"
                     android:paddingBottom="@dimen/dp10"
                     android:textColor="@color/normalTextColor"
-                    android:textColorHint="@color/search_setting"
                     android:textSize="@dimen/dp14" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:fontFamily="@font/montserrat"
+                    android:layout_marginTop="@dimen/dp25"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="@string/issue_type"
-                    android:textColor="@color/normalTextColor"
-                    android:textSize="@dimen/sp15" />
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/sp14" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp12"
-                    android:background="@drawable/edit_box_backround_normal">
+                    android:layout_marginTop="@dimen/dp12">
 
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:entries="@array/spinner_item"
                         android:fontFamily="@font/montserrat"
-                        android:paddingLeft="@dimen/dp10"
-                        android:paddingTop="@dimen/dp10"
-                        android:background="@drawable/edit_box_backround_normal"
-                    android:paddingRight="@dimen/dp15"
+                        android:background="@drawable/bottom_line_bg"
+                        android:paddingRight="@dimen/dp15"
                         android:paddingBottom="@dimen/dp10"
                         android:spinnerMode="dropdown"
-                        android:textColor="@color/normalTextColor"
+                        android:textColor="@color/light_gray"
                         android:textSize="@dimen/dp14" />
                     <ImageView
                         android:layout_width="wrap_content"
@@ -141,36 +139,37 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:fontFamily="@font/montserrat"
+                    android:layout_marginTop="@dimen/dp25"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="@string/target_date"
-                    android:textColor="@color/normalTextColor"
-                    android:textSize="@dimen/sp15" />
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/sp14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp12"
-                    android:background="@drawable/touch_background_border"
                     android:drawableRight="@drawable/calender"
-                    android:fontFamily="@font/montserrat"
-                    android:hint="@string/select_here"
-                    android:paddingLeft="@dimen/dp15"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:paddingLeft="@dimen/dp5"
+                    android:drawablePadding="5dp"
                     android:paddingTop="@dimen/dp10"
                     android:paddingRight="@dimen/dp15"
                     android:paddingBottom="@dimen/dp10"
-                    android:textColor="@color/normalTextColor"
-                    android:textColorHint="@color/search_setting"
-                    android:textSize="@dimen/dp14" />
+                    android:textColor="@color/black"
+                    android:background="@drawable/bottom_line_bg"
+                    android:textColorHint="@color/light_gray"
+                    android:textSize="@dimen/dp13" />
 
                 <TextView
                     android:id="@+id/submit"
+                    android:layout_marginBottom="@dimen/dp10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dp15"
-                    android:layout_marginTop="@dimen/dp16"
+                    android:layout_marginTop="@dimen/dp36"
                     android:layout_marginRight="@dimen/dp15"
                     android:background="@drawable/touch_background_button"
                     android:clickable="true"
