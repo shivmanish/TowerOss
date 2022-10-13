@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.adapter.qat.QatPunchPointAdapter
+import com.smarthub.baseapplication.listeners.PunchPointListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class QatPunchPointFragment : Fragment(), QatProfileListener {
+class QatPunchPointFragment : Fragment(), PunchPointListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
@@ -55,5 +56,9 @@ class QatPunchPointFragment : Fragment(), QatProfileListener {
 
     override fun itemClicked() {
         Toast.makeText(requireActivity(),"Click_Open", Toast.LENGTH_LONG).show()
+    }
+
+    override fun addPunchPoint() {
+//        TODO("Not yet implemented")
     }
 }

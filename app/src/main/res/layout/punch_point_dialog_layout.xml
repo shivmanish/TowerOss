@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dp15">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp15"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:text="@string/punch_point_creation"
+                android:textColor="@color/normalTextColor"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/devider_grey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/obeservation"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:background="@drawable/touch_background_border"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="@string/type_here"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingRight="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp10"
+                    android:textColor="@color/normalTextColor"
+                    android:textColorHint="@color/search_setting"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/recommendation"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:background="@drawable/touch_background_border"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="@string/type_here"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingRight="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp10"
+                    android:textColor="@color/normalTextColor"
+                    android:textColorHint="@color/search_setting"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/issue_type"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:background="@drawable/edit_box_backround_normal">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/spinner_item"
+                        android:fontFamily="@font/montserrat"
+                        android:paddingLeft="@dimen/dp10"
+                        android:paddingTop="@dimen/dp10"
+                        android:background="@drawable/edit_box_backround_normal"
+                    android:paddingRight="@dimen/dp15"
+                        android:paddingBottom="@dimen/dp10"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/dp14" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_down"
+                        android:layout_alignParentRight="true"
+                        app:tint="@color/normalTextColor"
+                        android:layout_marginRight="@dimen/dp15"
+                        android:layout_centerVertical="true"
+                        />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/target_date"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:background="@drawable/touch_background_border"
+                    android:drawableRight="@drawable/calender"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="@string/select_here"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingRight="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp10"
+                    android:textColor="@color/normalTextColor"
+                    android:textColorHint="@color/search_setting"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp16"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:background="@drawable/touch_background_button"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:text="@string/submit_punch_point"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/search_setting"
+                    android:textSize="@dimen/sp16" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

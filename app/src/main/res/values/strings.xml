@@ -49,6 +49,36 @@
     <string name="site_name_uid">Site Name Uid..</string>
     <string name="search_site">Search site</string>
     <string name="history">History</string>
+    <string name="searchby">Search by</string>
+
+
+    <string name="punch_point_creation">Punch Point Creation</string>
+    <string name="punch_points">Punch Points</string>
+    <string name="obeservation">Obeservation</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="issue_type">Issue Type</string>
+    <string name="target_date">Target Date</string>
+    <string name="select_here">Select here</string>
+    <string name="type_here">Type here</string>
+    <string name="submit_punch_point">Submit Punch Point</string>
+    <string name="status">Status</string>
+    <string name="resolved">Resolved</string>
+    <string name="resolution">Resolution</string>
+    <string name="cloded_by">Closed By</string>
+    <string name="created_by">Created By</string>
+
+    <string name="resolved_date">Resolve Date / Time</string>
+    <string name="created_date">Created Date / Time</string>
+
+    <string-array name="spinner_item">
+        <item>Select here</item>
+        <item>Array Item One</item>
+        <item>Array Item Two</item>
+        <item>Array Item Three</item>
+        <item>Array Item four</item>
+    </string-array>
+
+
     <string name="search_by">Search by</string>
 
     <string name="lorem_ipsum">
@@ -160,7 +190,7 @@
     <string name="txt_body_mobile_number">Mobile number</string>
     <string name="enter_mobile_text">4656925465</string>
     <string name="btn_next">Next  ></string>
-    <!--    sms otp screen-->
+     <!--    sms otp screen-->
     <string name="verification_code">Verification Code</string>
     <string name="verification_subheading">Please enter a one time password(OTP) sent to +91 7827230654</string>
     <string name="txt_otp">Didn\'t receive an OTP</string>
@@ -174,7 +204,6 @@
     <string name="site_type">Site Type</string>
     <string name="qat_id">QAT ID</string>
     <string name="qat_name">QAT Name</string>
-    <string name="created_by">Created By</string>
     <string name="create_datetime">Create Date/Time</string>
     <string name="submitted_datetime">Submitted Date/Time</string>
     <string name="Approved_datetime">Approved Date/Time</string>

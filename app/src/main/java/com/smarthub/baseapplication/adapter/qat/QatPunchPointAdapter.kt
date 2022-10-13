@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.QatCheckopenItemBinding
 import com.smarthub.baseapplication.databinding.QatPunchPointItemBinding
+import com.smarthub.baseapplication.listeners.PunchPointListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
 import com.smarthub.baseapplication.utils.Utils
 
-class QatPunchPointAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
+class QatPunchPointAdapter(var listener: PunchPointListener) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
 
-    class ViewHold(itemView: View,var listener: QatProfileListener) : RecyclerView.ViewHolder(itemView) {
+    class ViewHold(itemView: View,var listener: PunchPointListener) : RecyclerView.ViewHolder(itemView) {
         var binding : QatPunchPointItemBinding = QatPunchPointItemBinding.bind(itemView)
         var adapter = QatSpinnerItemAdapter(listener)
         var attachmentAdapter = QatAttachmentAdapter(listener)
@@ -35,6 +36,14 @@ class QatPunchPointAdapter(var listener: QatProfileListener) : RecyclerView.Adap
 
             binding?.attachment?.setOnClickListener {
                 attachmentAdapter.addItem("")
+            }
+            binding?.punchPlush?.setOnClickListener {
+//                attachmentAdapter.addItem("")
+                listener.addPunchPoint()
+            }
+            binding?.punchPoint?.setOnClickListener {
+//                attachmentAdapter.addItem("")
+                listener.addPunchPoint()
             }
         }
     }
