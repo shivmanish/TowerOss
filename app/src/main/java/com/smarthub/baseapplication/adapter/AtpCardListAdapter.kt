@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CardItemBinding
 import com.smarthub.baseapplication.databinding.LangItemBinding
+import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.LangModel
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.AtpListItem
 
-class AtpCardListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<AtpCardListAdapter.ViewHold>() {
+class AtpCardListAdapter(var listener: QatListListener) : RecyclerView.Adapter<AtpCardListAdapter.ViewHold>() {
 
-    var indexSize = 5
+    var indexSize = 1
     fun addListItem(){
         indexSize++
         notifyItemChanged(indexSize - 1)
@@ -33,7 +34,7 @@ class AtpCardListAdapter(var listener: QatProfileListener) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.headerList.adapter = CardItemAdapter(ArrayList(),listener)
         holder.binding.root.setOnClickListener {
-            listener.itemClicked()
+            listener.cardClicked()
         }
     }
 

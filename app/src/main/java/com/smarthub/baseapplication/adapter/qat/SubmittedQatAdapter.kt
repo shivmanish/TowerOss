@@ -8,10 +8,11 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.QatChecksubmittedItemBinding
+import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
 
 
-class SubmittedQatAdapter(var list : ArrayList<OpenQatDataModel>) : RecyclerView.Adapter<SubmittedQatAdapter.ViewHold>() {
+class SubmittedQatAdapter(var list : ArrayList<OpenQatDataModel>,var listener : QatProfileListener) : RecyclerView.Adapter<SubmittedQatAdapter.ViewHold>() {
 
     init {
         list.add(OpenQatDataModel("item1","item2","item2","item2","item2","item2"))
@@ -34,13 +35,19 @@ class SubmittedQatAdapter(var list : ArrayList<OpenQatDataModel>) : RecyclerView
         holder.binding.idBtnLessmore.setOnClickListener {
             if (holder.binding.idLessMore.visibility === View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(holder.binding.idCardview, AutoTransition())
-                holder.binding.idLessMore.setVisibility(View.GONE)
+                holder.binding.idLessMore.visibility = View.GONE
                 holder.binding.idBtnLessmore.setImageResource(R.drawable.ic_baseline_expand_more)
             } else {
                 TransitionManager.beginDelayedTransition(holder.binding.idCardview, AutoTransition())
-                holder.binding.idLessMore.setVisibility(View.VISIBLE)
+                holder.binding.idLessMore.visibility = View.VISIBLE
                 holder.binding.idBtnLessmore.setImageResource(R.drawable.ic_baseline_expand_less)
             }
+        }
+        holder.binding.layoutTop.setOnClickListener {
+            listener.itemClicked()
+        }
+        holder.binding.idCardview.setOnClickListener {
+            listener.itemClicked()
         }
     }
 

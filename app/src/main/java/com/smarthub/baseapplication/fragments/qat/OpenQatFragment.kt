@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.listeners.QatProfileListener
+import com.smarthub.baseapplication.utils.Utils
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -28,20 +30,16 @@ class OpenQatFragment : Fragment(), QatProfileListener {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewlay = inflater.inflate(R.layout.fragment_open_qat, container, false)
         setRecyclerView(viewlay)
         return viewlay
     }
 
-    fun setRecyclerView(view: View) {
+    private fun setRecyclerView(view: View) {
         val adapter = OpenQatAdapter(ArrayList(),this)
         recyclerView = view.findViewById(R.id.recyclerView_open)
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
     }
 
@@ -57,6 +55,7 @@ class OpenQatFragment : Fragment(), QatProfileListener {
     }
 
     override fun itemClicked() {
-        Toast.makeText(requireActivity(),"Click_Open", Toast.LENGTH_LONG).show()
+        var fragment = QatCheckNestedList()
+        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
     }
 }
