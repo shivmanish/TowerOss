@@ -58,7 +58,6 @@ class LoginActivity : AppCompatActivity() {
             addFragment(regFragment1)
         }
 
-
         loginViewModel?.loginResponse?.observe(this) {
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null) {
@@ -82,22 +81,23 @@ class LoginActivity : AppCompatActivity() {
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()
                     Toast.makeText(this@LoginActivity,"error:"+it.message,Toast.LENGTH_LONG).show()
-
+                    loginViewModel?.loginResponse?.removeObservers(this)
                     val regFragment1 = LoginSecondStep()
                     addFragment(regFragment1)
                 }
-            }else{
+            }
+            else{
                     Log.d("status","${AppConstants.GENERIC_ERROR}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()
                     Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
-
+                loginViewModel?.loginResponse?.removeObservers(this)
                     val regFragment1 = LoginSecondStep()
                     addFragment(regFragment1)
+
             }
 
         }
-
 
     }
 
@@ -108,10 +108,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun addFragment(fragment: Fragment?) {
-        val backStateName: String = supportFragmentManager.javaClass.name
+//        val backStateName: String = supportFragmentManager.javaClass.name
         val manager = supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
+//        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+//        if (!fragmentPopped) {
             val transaction = manager.beginTransaction()
             transaction.setCustomAnimations(
                 R.anim.enter,
@@ -119,18 +119,18 @@ class LoginActivity : AppCompatActivity() {
                 R.anim.pop_enter,
                 R.anim.pop_exit
             )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(backStateName)
+            transaction.add(R.id.fragmentContainerView, fragment!!)
+//            transaction.addToBackStack(null)
             transaction.commit()
-        }
+//        }
     }
 
     override fun onBackPressed() {
 
-        if (supportFragmentManager.backStackEntryCount === 0) {
+//        if (supportFragmentManager.backStackEntryCount === 0) {
             super.onBackPressed()
-        } else {
-            supportFragmentManager.popBackStack()
-        }
+//        } else {
+//            supportFragmentManager.popBackStack()
+//        }
     }
 }
