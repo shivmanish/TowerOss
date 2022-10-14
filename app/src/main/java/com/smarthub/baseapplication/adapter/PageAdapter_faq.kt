@@ -15,10 +15,10 @@ class PageAdapter_faq(fm:FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> {return Fragmentfaq_Demo_faq() }
+            0 -> {return Fragment2_faq() }
             1 -> {return Fragment2_faq() }
-            2 -> {return Fragmentfaq_Demo_faq()}
-            else -> {return Fragmentfaq_Demo_faq()}
+            2 -> {return Fragment2_faq()}
+            else -> {return Fragment2_faq()}
         }
     }
 

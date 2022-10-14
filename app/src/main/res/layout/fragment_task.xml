@@ -17,7 +17,7 @@
         android:textSize="20sp"
         android:textColor="@color/tab_text_color"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Task is under development"
+        android:text="Task screen is under development"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,32 +1,23 @@
-<LinearLayout android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next"
-
-        android:layout_gravity="end"
-        android:drawableLeft="@drawable/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:background="@drawable/login_yellow_bg"
-        android:text="@string/addmore"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:id="@+id/rvAddMoreItems"
-        android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/text_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:itemCount="5"
-        tools:listitem="@layout/rv_add_more_customer"></androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/tab_text_color"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Customer screen is under development"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

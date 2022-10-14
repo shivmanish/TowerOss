@@ -44,13 +44,13 @@ class CustomerTab : Fragment() {
         list.add("Airtel")
 
         var myAdapter = AddMoreCustomerListAdapter(list)
-        _binding?.rvAddMoreItems.apply {
-            this?.layoutManager = layoutManager
-            this?.adapter = myAdapter
-        }
-        _binding?.btnNext?.setOnClickListener{
-            myAdapter.addItem("Item Added")
-        }
+//        _binding?.rvAddMoreItems.apply {
+//            this?.layoutManager = layoutManager
+//            this?.adapter = myAdapter
+//        }
+//        _binding?.btnNext?.setOnClickListener{
+//            myAdapter.addItem("Item Added")
+//        }
 
 
     }
