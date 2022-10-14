@@ -3,10 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-
-
         <RelativeLayout
             android:id="@+id/rlParent"
             android:layout_width="match_parent"
@@ -19,7 +17,7 @@
                 android:layout_width="@dimen/dp60"
                 android:layout_height="@dimen/dp60"
                 android:layout_centerVertical="true"
-                android:src="@drawable/circle"/>
+                android:src="@drawable/bike"/>
 
             <TextView
                 android:id="@+id/txtHeading"
@@ -30,7 +28,7 @@
                 android:fontFamily="@font/montserrat"
                 android:gravity="top"
                 android:lineSpacingExtra="2sp"
-                android:text="Global"
+                android:text="Add Patroller"
                 android:textColor="#0EABB7"
                 android:textSize="@dimen/sp12"
                 />
@@ -59,7 +57,7 @@
                 android:fontFamily="@font/montserrat"
                 android:gravity="top"
                 android:lineSpacingExtra="2sp"
-                android:text="Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Proin eget tortor risus."
+                android:text="New Patroller added Brajesh Patel(SM001) Maintenance Point is Delhi NCR "
                 android:textColor="#8C9090"
                 android:textSize="@dimen/sp12"
                  />
@@ -70,4 +68,284 @@
             android:layout_height="1dp"
             android:layout_alignBottom="@+id/rlParent"
             android:background="@drawable/line" />
+           <RelativeLayout
+            android:id="@+id/rlParent1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dp10">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/dp60"
+            android:id="@+id/imageView2"
+
+            android:layout_height="@dimen/dp60"
+            app:cardCornerRadius="50dp"
+            app:strokeWidth="1dp">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dp8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/paymentlogo"
+                android:background="@color/blue"
+                android:scaleType="fitCenter"
+                android:src="@drawable/location_tracking" />
+        </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/txtHeading2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp12"
+                android:layout_toRightOf="@+id/imageView2"
+                android:fontFamily="@font/montserrat"
+                android:gravity="top"
+                android:lineSpacingExtra="2sp"
+                android:text="Add Route"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sp12"
+                />
+
+            <TextView
+                android:id="@+id/min_ago2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp12"
+                android:layout_toRightOf="@+id/txtHeading2"
+                android:fontFamily="@font/montserrat"
+                android:gravity="top"
+                android:lineSpacingExtra="2sp"
+                android:text="|   24min ago"
+                android:textColor="#8C9090"
+                android:textSize="@dimen/sp12"
+                 />
+
+            <TextView
+                android:id="@+id/txtRouteID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtHeading2"
+                android:layout_marginStart="@dimen/dp12"
+                android:layout_toRightOf="@+id/imageView2"
+                android:fontFamily="@font/montserrat"
+                android:gravity="top"
+                android:lineSpacingExtra="2sp"
+                android:text="Route ID :  "
+                android:textColor="#8C9090"
+                android:textSize="@dimen/sp12"
+                 />
+              <TextView
+            android:id="@+id/txtRouteID2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtRouteID"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_toRightOf="@+id/imageView2"
+            android:fontFamily="@font/montserrat"
+            android:gravity="top"
+            android:lineSpacingExtra="2sp"
+            android:text="SMRT-INDB-BHPL-COLLECTOR-01 "
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp12"
+            />
+           <LinearLayout
+               android:weightSum="3"
+               android:layout_toRightOf="@+id/imageView2"
+               android:layout_below="@+id/txtRouteID2"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               >
+
+               <LinearLayout
+                   android:layout_weight=".80"
+
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/start_to_en"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading2"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:layout_toRightOf="@+id/imageView2"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+                       android:lineSpacingExtra="2sp"
+                       android:text="Start to End"
+                       android:textColor="#8C9090"
+                       android:textSize="@dimen/sp12"
+                       />
+                   <TextView
+                       android:id="@+id/txtStartEnd"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading2"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:layout_toRightOf="@+id/imageView2"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+
+                       android:lineSpacingExtra="2sp"
+                       android:text="Indore - Bhopal, MP"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/sp12"
+                       />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_weight="1.1"
+
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/span_10"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading2"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:layout_toRightOf="@+id/imageView2"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+                       android:lineSpacingExtra="2sp"
+                       android:text="Span:"
+                       android:textColor="#8C9090"
+                       android:textSize="@dimen/sp12"
+                       />
+                   <TextView
+                       android:id="@+id/txtSpan"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading2"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:layout_toRightOf="@+id/imageView2"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+
+                       android:lineSpacingExtra="2sp"
+                       android:text="10"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/sp12"
+                       />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_weight="1.1"
+
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/section_20"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading2"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:layout_toRightOf="@+id/imageView2"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+                       android:lineSpacingExtra="2sp"
+                       android:text="Section: "
+                       android:textColor="#8C9090"
+                       android:textSize="@dimen/sp12"
+                       />
+                   <TextView
+                       android:id="@+id/txtSection"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/txtHeading2"
+                       android:layout_marginStart="@dimen/dp12"
+                       android:layout_toRightOf="@+id/imageView2"
+                       android:fontFamily="@font/montserrat"
+                       android:gravity="top"
+
+                       android:lineSpacingExtra="2sp"
+                       android:text="20"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/sp12"
+                       />
+               </LinearLayout>
+
+           </LinearLayout>
+        </RelativeLayout>
+           <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@+id/rlParent"
+            android:background="@drawable/line" />
+    <RelativeLayout
+        android:id="@+id/rlParenttimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/dp10">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/dp60"
+            android:id="@+id/imagetime"
+
+            android:layout_height="@dimen/dp60"
+            app:cardCornerRadius="50dp"
+            app:strokeWidth="1dp">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dp12"
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+
+                android:background="@color/orange"
+                android:scaleType="fitCenter"
+                android:src="@drawable/time" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/txtTimeHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_toRightOf="@+id/imagetime"
+            android:fontFamily="@font/montserrat"
+            android:gravity="top"
+            android:lineSpacingExtra="2sp"
+            android:text="App Update"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/sp12"
+            />
+
+        <TextView
+            android:id="@+id/min_ago_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_toRightOf="@+id/txtTimeHeading"
+            android:fontFamily="@font/montserrat"
+            android:gravity="top"
+            android:lineSpacingExtra="2sp"
+            android:text="|   24min ago"
+            android:textColor="#8C9090"
+            android:textSize="@dimen/sp12"
+            />
+
+        <TextView
+            android:id="@+id/txtTimeDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTimeHeading"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_toRightOf="@+id/imagetime"
+            android:fontFamily="@font/montserrat"
+            android:gravity="top"
+            android:lineSpacingExtra="2sp"
+            android:text="Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Proin eget tortor risus."
+            android:textColor="#8C9090"
+            android:textSize="@dimen/sp12"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/rlParent"
+        android:background="@drawable/line" />
 </LinearLayout>

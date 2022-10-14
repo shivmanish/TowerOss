@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:hint="Job Role"
+        android:textSize="13sp"
+        android:id="@+id/first_name"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        style="@style/registratio_first_box"
+        android:drawableTint="@color/black"
+        android:textColor="@color/black"
+        android:text="6.5 m"
+        android:drawableEnd="@drawable/ic_arrow_down"
+        android:paddingEnd="@dimen/dp15"
+        android:backgroundTint="#D3D3D3"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

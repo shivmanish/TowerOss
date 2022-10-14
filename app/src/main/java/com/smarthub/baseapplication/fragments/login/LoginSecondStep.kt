@@ -80,10 +80,16 @@ class LoginSecondStep : Fragment() {
         }
 
         loginViewModel?.loginResponse?.observe(requireActivity()) {
+            if (progressDialog.isShowing)
+                progressDialog.dismiss()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null) {
-                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
-                    AppPreferences.getInstance().saveString("access", "${it.data?.access}")
+                    AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
+                    AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
+
+                    AppPreferences.getInstance().saveString("userMail",binding?.userMail?.text.toString())
+                    AppPreferences.getInstance().saveString("password",binding?.password?.text.toString())
+
                     Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()
@@ -94,21 +100,13 @@ class LoginSecondStep : Fragment() {
                     return@observe
                 }else{
                     Log.d("status","${it.message}")
-                    if (progressDialog.isShowing)
-                        progressDialog.dismiss()
                     Toast.makeText(requireActivity(),"error:"+it.message,Toast.LENGTH_LONG).show()
 
-                    val regFragment1 = LoginSecondStep()
-                    addFragment(regFragment1)
                 }
             }else{
                 Log.d("status","${AppConstants.GENERIC_ERROR}")
-                if (progressDialog.isShowing)
-                    progressDialog.dismiss()
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
 
-                val regFragment1 = LoginSecondStep()
-                addFragment(regFragment1)
             }
 
         }
@@ -117,8 +115,10 @@ class LoginSecondStep : Fragment() {
     }
 
     private fun loginValidation(){
-        progressDialog.show()
-        loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
+        if (binding?.userMail?.text.toString().isNotEmpty() && binding?.password?.text.toString().isNotEmpty()) {
+            progressDialog.show()
+            loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
+        }
     }
 
     fun addFragment(fragment: Fragment?) {

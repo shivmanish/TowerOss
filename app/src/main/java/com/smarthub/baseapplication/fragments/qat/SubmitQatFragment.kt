@@ -6,18 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.adapter.qat.SubmittedQatAdapter
 import com.smarthub.baseapplication.listeners.QatProfileListener
+import com.smarthub.baseapplication.utils.Utils
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class SubmitQatFragment : Fragment() {
+class SubmitQatFragment : Fragment(), QatProfileListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
@@ -30,20 +32,21 @@ class SubmitQatFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun itemClicked() {
+        var fragment = QatCheckNestedList()
+        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewlay = inflater.inflate(R.layout.fragment_submit_qat, container, false)
         setRecyclerView(viewlay)
         return viewlay
     }
 
-    fun setRecyclerView(view: View) {
-        val adapter = SubmittedQatAdapter(ArrayList())
+    private fun setRecyclerView(view: View) {
+        val adapter = SubmittedQatAdapter(ArrayList(),this)
         recyclerView = view.findViewById(R.id.recyclerView_submitted)
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
     }
 

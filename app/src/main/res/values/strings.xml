@@ -38,7 +38,7 @@
         <item>@drawable/backhaul</item>
         <item>@drawable/utilities</item>
     </integer-array>
-    <string name="app_name">BaseApplication</string>
+    <string name="app_name">Tower OSS</string>
     <string name="setting">Setting</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
@@ -63,7 +63,6 @@
     <string name="type_here">Type here</string>
     <string name="submit_punch_point">Submit Punch Point</string>
     <string name="status">Status</string>
-    <string name="search_by">Search By</string>
     <string name="resolved">Resolved</string>
     <string name="resolution">Resolution</string>
     <string name="cloded_by">Closed By</string>
@@ -73,15 +72,12 @@
     <string name="created_date">Created Date / Time</string>
 
     <string-array name="spinner_item">
-        <item>First value</item>
+        <item>Select here</item>
         <item>Array Item One</item>
         <item>Array Item Two</item>
         <item>Array Item Three</item>
         <item>Array Item four</item>
     </string-array>
-
-
->>>>>>>>> Temporary merge branch 2
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -209,10 +205,16 @@
     <string name="create_datetime">Create Date/Time</string>
     <string name="submitted_datetime">Submitted Date/Time</string>
     <string name="Approved_datetime">Approved Date/Time</string>
+    <string name="mark_taylor">Mark Taylor</string>
+    <string name="qa">QA</string>
+    <string name="electircal_civil_material">Electircal / Civil Material</string>
+    <string name="addmore">Add More</string>
 
 
 
 
     <string name="operator_name">Operator Name</string>
+    <string name="hello_blank_fragment_demo">Blank Fragment</string>
+    <string name="demo_answer">Hjghsgjfgygsfygvydjfghvgashjdvgsdbhjsdvsdghjadgvjyvjdgsjhvgajdvdjahvgsgvhjdsgjhvygygvwsyjsdg jhbvhjgwyvguehfcd hbdhjvgeyvgyjgv bhgjycfgwjycgvjs</string>
 
 </resources>

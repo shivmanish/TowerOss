@@ -6,7 +6,7 @@ import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.ErrorUtils;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.network.APIClient;
-import com.smarthub.baseapplication.network.RefreshToken;
+import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.AppConstants;
 
 import retrofit2.Call;
@@ -56,7 +56,6 @@ public class LoginRepo {
             }
 
             private void reportSuccessResponse(Response<RefreshToken> response) {
-
                 if (response.body() != null) {
                     logingResponse.postValue(Resource.success(response.body(), 200));
                 }

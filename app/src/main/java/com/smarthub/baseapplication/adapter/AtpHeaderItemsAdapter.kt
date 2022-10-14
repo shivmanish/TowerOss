@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AtpHeaderTitleBinding
 import com.smarthub.baseapplication.databinding.LangItemBinding
+import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.LangModel
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 
-class AtpHeaderItemsAdapter(var list : ArrayList<AtpHeaderTitle>,var listener: QatProfileListener) : RecyclerView.Adapter<AtpHeaderItemsAdapter.ViewHold>() {
+class AtpHeaderItemsAdapter(var list : ArrayList<AtpHeaderTitle>,var listener: QatListListener) : RecyclerView.Adapter<AtpHeaderItemsAdapter.ViewHold>() {
 
     init {
         list.add(AtpHeaderTitle("Site Name","Mangolpuri"))

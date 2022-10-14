@@ -28,4 +28,10 @@
         android:name="com.smarthub.baseapplication.ui.menu.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu"/>
+
+<!--        <fragment-->
+<!--        android:id="@+id/navigation_menu"-->
+<!--        android:name="com.smarthub.baseapplication.ui.customer_tab.CustomerTab"-->
+<!--        android:label="MenuFragment"-->
+<!--        tools:layout="@layout/fragment_customer_tab"/>-->
 </navigation>

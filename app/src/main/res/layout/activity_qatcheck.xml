@@ -129,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
-            android:text="@string/search_by"
+            android:text="Search By"
             android:textColor="@color/normalTextColor"
             android:textSize="@dimen/sp14"
             android:visibility="gone" />

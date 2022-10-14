@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.smarthub.baseapplication.activities.FAQActivity
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.fragments.qat.AtpMainActivity
+import com.smarthub.baseapplication.fragments.qat.QATCheckActivity
 import com.smarthub.baseapplication.ui.profile.ProfileActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -43,12 +45,14 @@ class MenuFragment : Fragment() {
             requireActivity().startActivity(intent)
         }
         binding?.cardQat?.setOnClickListener {
-            var intent = Intent(requireActivity(),AtpMainActivity::class.java)
+            var intent = Intent(requireActivity(),QATCheckActivity::class.java)
             startActivity(intent)
         }
 
         binding.quickHelp.setOnClickListener {
 //            launch your FAQ screen
+            var intent = Intent(requireActivity(),FAQActivity::class.java)
+            startActivity(intent)
         }
     }
 

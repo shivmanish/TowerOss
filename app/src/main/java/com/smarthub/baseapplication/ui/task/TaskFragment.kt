@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.viewmodels.MainViewModel
 class TaskFragment : Fragment() {
 
     private var _binding: FragmentTaskBinding? = null
-private lateinit var mainViewModel:MainViewModel
+    private lateinit var mainViewModel:MainViewModel
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!

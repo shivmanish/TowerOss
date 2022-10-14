@@ -10,15 +10,12 @@ import com.smarthub.baseapplication.model.SiteDetailDataModel
 
 class SiteDetailAdapter(context: Context, list: ArrayList<SiteDetailDataModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     companion object {
         const val VIEW_TYPE_ONE = 1
         const val VIEW_TYPE_TWO = 2
     }
-
     private val context: Context = context
     var list: ArrayList<SiteDetailDataModel> = list
-
     private inner class View1ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 

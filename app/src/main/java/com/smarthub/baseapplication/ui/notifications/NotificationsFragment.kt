@@ -20,27 +20,20 @@ import com.smarthub.baseapplication.adapter.NotificationsListAdapter
 import com.smarthub.baseapplication.databinding.FragmentNotificationsBinding
 import java.text.DateFormatSymbols
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
-
-class NotificationsFragment : Fragment() {
+ class NotificationsFragment : Fragment() {
      private var _binding: FragmentNotificationsBinding? = null
      private lateinit var notificationViewModel:NotificationsViewModel
-
     private val binding get() = _binding!!
     private var layoutManager: RecyclerView.LayoutManager? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
         notificationViewModel = ViewModelProvider(requireActivity())[NotificationsViewModel::class.java]
        // notificationViewModel.isActionBarHide(false)
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-
         val root: View = binding.root
-
         return root
     }
-
     @SuppressLint("MissingInflatedId")
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
@@ -130,7 +123,4 @@ fun getMonthName(monthIndex: Int): String? {
     require(!(monthIndex < 0 || monthIndex > 11)) { "$monthIndex is not a valid month index." }
     return DateFormatSymbols().months[monthIndex].toString()
 }
-private fun ImageView?.setOnClickListener() {
-    print("HH")
 
-}

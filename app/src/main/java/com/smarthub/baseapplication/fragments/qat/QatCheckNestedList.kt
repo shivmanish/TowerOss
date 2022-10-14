@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.adapter.qat.QatTitleAdapter
 import com.smarthub.baseapplication.databinding.QatNestedListBinding
 import com.smarthub.baseapplication.listeners.QatItemListener
 
-class QatCheckNestedList() : Fragment(), QatItemListener {
+class QatCheckNestedList : Fragment(), QatItemListener {
 
     var binding : QatNestedListBinding ?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -21,6 +21,13 @@ class QatCheckNestedList() : Fragment(), QatItemListener {
         binding?.list?.adapter = QatTitleAdapter(this@QatCheckNestedList)
         return view
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.imgBack?.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     fun addFragment(fragment: Fragment?) {
@@ -35,14 +42,15 @@ class QatCheckNestedList() : Fragment(), QatItemListener {
                 R.anim.pop_enter,
                 R.anim.pop_exit
             )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
+            transaction.replace(R.id.container, fragment!!)
             transaction.addToBackStack(backStateName)
             transaction.commit()
         }
     }
-
-    override fun itemClicked() {
-
+    override fun itemClicked() :String {
+        var fragment = QatPunchPointFragment()
+        addFragment(fragment)
+        return "ghjsjbsdkvna"
     }
 
 }

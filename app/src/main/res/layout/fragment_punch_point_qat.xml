@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/bgColor"
+        android:gravity="center"
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="14dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back"
+            app:tint="@color/iconBlack"/>
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:gravity="center|start"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:singleLine="true"
+            android:textColor="@color/iconBlack"
+            android:textSize="18sp"
+            android:text="QAT Check"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_back"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:scrollbars="vertical"
+            android:background="#f1f1f1"
+            android:paddingBottom="@dimen/dp50"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/title"
+                app:layout_constraintWidth_percent="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:tag="false"
+                    android:paddingTop="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp3"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:drawablePadding="@dimen/dp10"
+                    android:text="Electircal / Civil Material"
+                    android:id="@+id/expansion_text"
+                    android:textSize="@dimen/sp13"
+                    android:fontFamily="@font/montserrat"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:paddingBottom="@dimen/dp14"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:drawablePadding="@dimen/dp10"
+                    android:text="Pole &amp; Mount Material > Pole"
+                    android:id="@+id/expansion_sub_text"
+                    android:textSize="@dimen/sp11"
+                    android:fontFamily="@font/montserrat_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/expansion_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_height="wrap_content"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_open"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:listitem="@layout/qat_punch_point_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/btn_create"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="#3D4E6D"
+                android:textColor="@color/white"
+                android:text="Create QAT"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_open"
+                android:background="@drawable/login_yellow_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

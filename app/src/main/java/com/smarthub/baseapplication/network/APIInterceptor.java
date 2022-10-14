@@ -1,7 +1,5 @@
 package com.smarthub.baseapplication.network;
 
-import android.util.Log;
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
@@ -15,11 +13,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import com.smarthub.baseapplication.BuildConfig;
-import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.helpers.AppPreferences;
-import com.smarthub.baseapplication.network.APIClient;
-import com.smarthub.baseapplication.network.EndPoints;
-import com.smarthub.baseapplication.network.RefreshToken;
+import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.Utils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -30,7 +25,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class APIInterceptor {
-    private static final String BASE_URL = "http://49.50.77.81:8181/api/";
+    private static final String BASE_URL = "http://49.50.77.81:8181/";
     private static final String TAG = "APIInterceptor";
     private static final Retrofit.Builder builder = createInstance();
     public static Retrofit retrofit = builder.build();
@@ -117,7 +112,7 @@ public  class APIInterceptor {
                 ).client(httpClient.build());
     }
 
-    public  static APIClient getInstance(){
+    public static APIClient getInstance(){
 
         return apiClient=getRetrofitInstance().create(APIClient.class);
 
@@ -245,11 +240,9 @@ public  class APIInterceptor {
             in.close();
             // this gson part is optional , you can read response directly from Json too
             Gson gson = new Gson();
-            RefreshToken refreshTokenResult = gson.fromJson(response.toString(),
-                    RefreshToken.class);
+            RefreshToken refreshTokenResult = gson.fromJson(response.toString(), RefreshToken.class);
 //      AppPreferences.getInstance().removeItem("accessToken");
-            AppPreferences.getInstance().saveString("accessToken",
-                    refreshTokenResult.getData());
+            AppPreferences.getInstance().saveString("accessToken", refreshTokenResult.getData());
             Utils.INSTANCE.log("APIInterceptor 401 inside refresh token:"+refreshTokenResult.getData());
 
             return true;

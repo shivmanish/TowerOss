@@ -2,26 +2,66 @@ package com.smarthub.baseapplication.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.adapter.ProfileListAdapter
 import com.smarthub.baseapplication.adapter.ProfileListViewAdapter
 import com.smarthub.baseapplication.databinding.ActivityProfileBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.login.UserLoginPost
+import com.smarthub.baseapplication.model.profile.UserProfileGet
+import com.smarthub.baseapplication.network.ProfileDetails
+import com.smarthub.baseapplication.network.User
+import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
 
     private var dataBinding : ActivityProfileBinding?=null
-
+    private var profileViewModel : ProfileViewModel?=null
+    private var user : User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         dataBinding = ActivityProfileBinding.inflate(layoutInflater)
+        profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
         setContentView(dataBinding?.root)
+        profileViewModel?.getProfileData(UserProfileGet("7269024641"))
+        profileViewModel?.profileResponse?.observe(this) {
+            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS && it.data != null) {
+                    AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")
+                    uiDataMapping(it.data?.get(0)!!)
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+
+                }
+            } else {
+                Log.d("status", "${AppConstants.GENERIC_ERROR}")
+                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
         initViews()
+    }
+
+    private fun uiDataMapping(profileDetails: ProfileDetails){
+        dataBinding?.textName?.text = "${profileDetails.first_name} ${profileDetails.last_name}"
+        dataBinding?.textCall?.text = "${profileDetails.phone}"
+        dataBinding?.textMessage?.text = "${profileDetails.email}"
+        dataBinding?.textYellow?.text = "${profileDetails.id}"
+        dataBinding?.textActive?.text = "${profileDetails.active}"
     }
 
     private var popupWindow: PopupWindow? = null

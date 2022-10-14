@@ -11,9 +11,7 @@ import com.smarthub.baseapplication.databinding.ActivitySettingBinding
 import com.smarthub.baseapplication.ui.profile.ProfileActivity
 
 class SettingActivity : AppCompatActivity() {
-
     private var dataBinding : ActivitySettingBinding ?=null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);

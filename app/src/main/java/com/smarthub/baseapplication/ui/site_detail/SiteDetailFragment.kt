@@ -45,16 +45,12 @@ class SiteDetailFragment : Fragment() {
     private var isScroll = true
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.ctx = context
     }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
@@ -87,6 +83,11 @@ class SiteDetailFragment : Fragment() {
         binding.tabs!!.setupWithViewPager(binding.viewpager)
         binding.viewpager.offscreenPageLimit= 2
         binding.viewpager.currentItem = 0
+        //disable swiping
+        binding.viewpager.beginFakeDrag();
+
+//enable swiping
+//        binding.viewpager.endFakeDrag();
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()

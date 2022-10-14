@@ -14,27 +14,25 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailViewModel
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class DashboardActivity : BaseActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SiteDetailViewModel
     private lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel = ViewModelProvider(this)[SiteDetailViewModel::class.java]
         initializeCustomActionBar()
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
-
         navView.itemIconTintList = null
         mainViewModel.isActionbarHide.observe(this, Observer {
             if (it)
@@ -42,8 +40,11 @@ class DashboardActivity : BaseActivity() {
             else
                 binding.searchBoxContainer.mainActionBar.visibility = View.VISIBLE
         })
-    }
 
+
+        AppLogger.log("access token :" + AppPreferences.getInstance().token)
+        AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
+    }
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()

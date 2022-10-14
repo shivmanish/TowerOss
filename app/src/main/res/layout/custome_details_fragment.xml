@@ -218,7 +218,7 @@
                 android:layout_marginRight="@dimen/dp7"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                
+
                 <ImageView
                     android:layout_width="@dimen/dp17"
                     android:layout_height="@dimen/dp17"

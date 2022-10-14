@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AtpViewType1Binding
 import com.smarthub.baseapplication.databinding.AtpViewType2Binding
+import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.atp.AtpCardList
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.HeaderList
 
-class AtpListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<AtpListAdapter.ViewHold>() {
+class AtpListAdapter(var listener: QatListListener) : RecyclerView.Adapter<AtpListAdapter.ViewHold>() {
 
     val imageData: ArrayList<Any> = ArrayList()
     val VIEW_TYPE_1 = 0
@@ -28,7 +29,7 @@ class AtpListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<At
         imageData.add(HeaderList(ArrayList()))
         imageData.add(atpCardListAdapter)
 
-        adapter = AtpCardListAdapter(ArrayList(atpCardListAdapter.list),listener)
+        adapter = AtpCardListAdapter(listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -53,13 +54,15 @@ class AtpListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<At
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
         if (hold is ViewType2){
             hold.atpViewType2Binding.root.setOnClickListener {
-                listener.itemClicked()
+//                listener.itemClicked()
             }
             hold.atpViewType2Binding.addNew.setOnClickListener {
-                adapter?.addListItem()
-                Toast.makeText(hold.atpViewType2Binding.root.context,"Item Added",Toast.LENGTH_SHORT).show()
+//                adapter?.addListItem()
+//                Toast.makeText(hold.atpViewType2Binding.root.context,"Item Added",Toast.LENGTH_SHORT).show()
             }
-//            var item = imageData[pos] as AtpCardList
+            hold.atpViewType2Binding.addNew.setOnClickListener {
+                adapter?.let { it1 -> listener.addNewClicked(it1) }
+            }
             hold.atpViewType2Binding.headerList.adapter = adapter
         }
         else if (hold is ViewType1){
@@ -79,14 +82,14 @@ class AtpListAdapter(var listener: QatProfileListener) : RecyclerView.Adapter<At
         return imageData?.size!!
     }
 
-    open class ViewHold(itemView: View,listener: QatProfileListener) : RecyclerView.ViewHolder(itemView)
+    open class ViewHold(itemView: View,listener: QatListListener) : RecyclerView.ViewHolder(itemView)
 
-    class ViewType1(itemView: View,listener: QatProfileListener) : ViewHold(itemView,listener) {
+    class ViewType1(itemView: View,listener: QatListListener) : ViewHold(itemView,listener) {
         var atpViewType1Binding = AtpViewType1Binding.bind(itemView)
 
     }
 
-    class ViewType2(itemView: View,listener: QatProfileListener) : ViewHold(itemView,listener) {
+    class ViewType2(itemView: View,listener: QatListListener) : ViewHold(itemView,listener) {
         var atpViewType2Binding = AtpViewType2Binding.bind(itemView)
     }
 
