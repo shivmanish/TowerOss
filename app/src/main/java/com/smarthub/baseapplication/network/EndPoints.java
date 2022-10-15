@@ -4,4 +4,5 @@ public class EndPoints {
 
     public static final String ACCESS_TOKEN =  "api/token/";
     public static final String PROFILE = "Touweuserroles/";
+    public static final String REGISTRATION = "/toweross/Userregistration/";
 }

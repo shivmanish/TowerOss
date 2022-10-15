@@ -2,31 +2,34 @@ package com.smarthub.baseapplication.fragments.register
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.smarthub.baseapplication.activities.LoginActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistrationThirdStep.newInstance] factory method to
- * create an instance of this fragment.
- */
 @Suppress("DEPRECATION")
 class RegistrationThirdStep : Fragment() {
-    // TODO: Rename and change types of parameters
+    lateinit var registrationViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.registration_third_step, container, false)
-
+        registrationViewModel =
+            ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
         return view
 
     }
@@ -35,18 +38,44 @@ class RegistrationThirdStep : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val loginButton = view.findViewById<View>(R.id.text_register)
         loginButton.setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-            activity?.let{
-                val intent = Intent (it, LoginActivity::class.java)
+            Utils.hideKeyboard(requireContext(), it)
+            activity?.let {
+                val intent = Intent(it, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 it.startActivity(intent)
             }
         }
-        val regFragment2 = RegistrationSuccessfull()
         view.findViewById<View>(R.id.register).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-            activity?.let{
-               addFragment(regFragment2)
+            Utils.hideKeyboard(requireContext(), it)
+            setObserver(view)
+            registrationViewModel.registerUser()
+
+//
+        }
+    }
+
+    val regFragment2 = RegistrationSuccessfull()
+
+    fun setObserver(view: View) {
+        registrationViewModel.regstationResponse!!.observe(requireActivity()) {
+            if (it.status.equals("success")) {
+                activity?.let {
+                    addFragment(regFragment2)
+                }
+            } else {
+                if (it.Errors != null) {
+                    Snackbar.make(
+                        view.findViewById<View>(R.id.register),
+                        it.Errors!!,
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }else{
+                    Snackbar.make(
+                        view.findViewById<View>(R.id.register),
+                        "Something went wrong!",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }

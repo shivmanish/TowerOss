@@ -55,7 +55,7 @@ public  class APIInterceptor {
 
                 Request request = chain.request();
                 Request request2 = request.newBuilder()
-                        .addHeader("Authorization", getAccessToken())
+//                        .addHeader("Authorization", getAccessToken())
                         .build();
                 Utils.INSTANCE.log("createInstance REtrofit 51");
                 Utils.INSTANCE.log("Request:" + request2);
