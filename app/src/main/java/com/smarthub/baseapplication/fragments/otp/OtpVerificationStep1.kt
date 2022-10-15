@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.fragments.otp
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,9 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OtpVerificationStep1FragmentBinding
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 
 /**
@@ -20,6 +23,8 @@ import com.smarthub.baseapplication.utils.Utils
 @Suppress("DEPRECATION")
 class OtpVerificationStep1 : Fragment() {
 
+    private var loginViewModel : LoginViewModel?=null
+    private lateinit var progressDialog : ProgressDialog
     var binding : OtpVerificationStep1FragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -30,6 +35,11 @@ class OtpVerificationStep1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(true)
+
         view.findViewById<View>(R.id.back).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{
@@ -53,6 +63,8 @@ class OtpVerificationStep1 : Fragment() {
                     Utils.hideKeyboard(requireContext(),binding?.moNoEdit!!)
             }
         })
+
+
     }
 
     fun addFragment(fragment: Fragment?) {
