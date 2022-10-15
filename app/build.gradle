@@ -78,4 +78,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
 //    implementation 'com.github.lankton:android-flowlayout:'
+
+    //for sms auto read
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
 }

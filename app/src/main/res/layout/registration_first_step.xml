@@ -212,11 +212,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:hint="Mobile Number"
                     android:textSize="15sp"
                     android:id="@+id/mo_no"
+                    android:inputType="number"
                     android:layout_height="@dimen/dp45"
                     android:layout_width="match_parent"
                     style="@style/registratio_first_box"
                     app:layout_constraintBottom_toTopOf="@+id/email_id"/>
                 <EditText
+                    android:inputType="textEmailAddress"
                     android:hint="Email ID"
                     android:textSize="15sp"
                     android:id="@+id/email_id"
@@ -224,14 +226,14 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:layout_width="match_parent"
                     style="@style/registratio_first_box"
                     android:layout_marginBottom="@dimen/dp35"
-                    app:layout_constraintBottom_toTopOf="@+id/register"/>
+                    app:layout_constraintBottom_toTopOf="@+id/next"/>
 
                 <TextView
                     android:padding="@dimen/dp10"
                     android:text="Next"
                     android:textSize="15sp"
                     android:textColor="#F7CB46"
-                    android:id="@+id/register"
+                    android:id="@+id/next"
                     android:layout_width="match_parent"
                     android:textStyle="bold"
                     android:layout_height="@dimen/dp45"

@@ -1,51 +1,75 @@
 package com.smarthub.baseapplication.fragments.sitedetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.smarthub.baseapplication.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.databinding.FragmentCustomerBinding
+import com.smarthub.baseapplication.fragments.sitedetail.adapter.CustomerDataAdapter
+import com.smarthub.baseapplication.fragments.sitedetail.viewmodel.CustomerFragmentViewmodel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+lateinit var customerBinding: FragmentCustomerBinding
+lateinit var viewmodel: CustomerFragmentViewmodel
+lateinit var customerDataAdapter: CustomerDataAdapter
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CustomerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CustomerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
+      /*  arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-        }
+        }*/
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customer, container, false)
+        customerBinding = FragmentCustomerBinding.inflate(inflater, container, false)
+        viewmodel = ViewModelProvider(requireActivity()).get(CustomerFragmentViewmodel::class.java)
+        initializeFragment()
+        return customerBinding.root
     }
 
-    companion object {
+    fun initializeFragment() {
+        customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
+        customerDataAdapter = CustomerDataAdapter(requireContext(), ArrayList<String>())
+        customerBinding.customerList.adapter = customerDataAdapter
+        customerBinding.addmore.setOnClickListener{
+            var arraydata = ArrayList<String>()
+            arraydata.add(
+                "anything"
+            )
+            customerDataAdapter.setData(arraydata)
+        }
 
+
+        viewmodel.fetchData()
+        viewmodel.customer_data.observe(requireActivity(), Observer {
+            // Data is get from server and ui work will be start from here
+            println("this is called data is $it")
+            var arraydata = ArrayList<String>()
+            arraydata.add(it)
+            customerDataAdapter.setData(arraydata)
+        })
+    }
+
+
+    companion object {
         @JvmStatic
         fun newInstance(param1: String) =
             CustomerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
                 }
             }
     }

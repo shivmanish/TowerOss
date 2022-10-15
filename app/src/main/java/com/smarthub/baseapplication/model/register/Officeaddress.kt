@@ -1,9 +1,9 @@
 package com.smarthub.baseapplication.model.register
 
 data class Officeaddress(
-    val address: String,
-    val maintenancepoint: String,
-    val national: String,
-    val region: String,
-    val state: String
+    val address: String = "NA",
+    val maintenancepoint: String= "NA",
+    val national: String= "NA",
+    val region: String= "NA",
+    val state: String= "NA"
 )

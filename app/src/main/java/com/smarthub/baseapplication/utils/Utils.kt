@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.utils
 
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.util.Patterns
@@ -12,6 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.model.register.Commucationaddess
+import com.smarthub.baseapplication.model.register.Officeaddress
+import com.smarthub.baseapplication.model.register.RegisterData
 
 
 object Utils {
@@ -20,11 +22,11 @@ object Utils {
         Log.i("TAG", message)
     }
 
-    fun log(tag: String, message: String){
+    fun log(tag: String, message: String) {
         Log.i(tag, message)
     }
 
-    fun flog(message: String){
+    fun flog(message: String) {
         Log.e("asdfasdf", ":-: $message :-:")
     }
 
@@ -92,21 +94,22 @@ object Utils {
     }
 
 
-    fun hideKeyboard(context: Context,view: View){
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    fun hideKeyboard(context: Context, view: View) {
+        val inputMethodManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     // the function which triggered when the VALIDATE button is clicked
     // which validates the email address entered by the user
-    fun emailValidator(emailToText: String) : Boolean{
+    fun emailValidator(emailToText: String): Boolean {
         if (emailToText.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailToText).matches()) {
             return true
         }
         return false
     }
 
-    fun addFragment(fragment: Fragment?, activity : AppCompatActivity,resId:Int) {
+    fun addFragment(fragment: Fragment?, activity: AppCompatActivity, resId: Int) {
         val backStateName: String = activity.supportFragmentManager.javaClass.name
         val manager = activity.supportFragmentManager
         val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
@@ -124,7 +127,15 @@ object Utils {
         }
     }
 
-    fun replaceFragmentFragment(fragment: Fragment?, activity : AppCompatActivity,resId :Int) {
+    fun addFragmenttab(fragment: Fragment?, activity: AppCompatActivity, resId: Int) {
+        val manager = activity.supportFragmentManager
+        val transaction = manager.beginTransaction()
+        transaction.add(resId, fragment!!)
+        transaction.commit()
+    }
+
+
+    fun replaceFragmentFragment(fragment: Fragment?, activity: AppCompatActivity, resId: Int) {
         val backStateName: String = activity.supportFragmentManager.javaClass.name
         val manager = activity.supportFragmentManager
         val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
@@ -141,4 +152,64 @@ object Utils {
             transaction.commit()
         }
     }
+
+    fun getRegistationDummyData(phone: String): RegisterData {
+        var commucationaddess = Commucationaddess(
+            address = "new street , 96/56 2nd floor",
+            national = "SMRT_INDIA",
+            region = "East",
+            state = "Bihar",
+            maintenancepoint = "Arrah"
+        )
+
+        var officeaddress = Officeaddress(
+            address = "new street , 96/56 2nd floor",
+            national = "SMRT_INDIA",
+            region = "East",
+            state = "Bihar",
+            maintenancepoint = "Arrah"
+        )
+
+        var roles = arrayListOf<String>("Patroller", "Area_Executive")
+        var priviledgename = arrayListOf<String>(
+            "Fiber_Manage_Route_AddRoute",
+            "Addministration_UserManagem_Executive_AddExecutive"
+        )
+        var maintenancepoint = arrayListOf<String>("Arrah")
+        var state = arrayListOf<String>("Assam")
+        var region = arrayListOf<String>("East")
+
+
+        var registerData = RegisterData(
+            save = "",
+            title = "Mr.",
+            username = "Somnath",
+            last_name = "Lenka",
+            email = "somnath.lenka@smartmile.com",
+            phone = phone,
+            national = "SMRT_INDIA",
+            region = region,
+            gender = "M",
+            state = state,
+            maintenancepoint = maintenancepoint,
+            ownername = "SMRT",
+            requestname = "sandeep",
+            priviledgename = priviledgename,
+            roles = roles,
+            department = "D1",
+            commucationaddess = commucationaddess,
+            officeaddress = officeaddress
+        )
+        return registerData
+    }
+
+    fun isValid(value: String):Boolean {
+        if (value != null && !value.trim().equals("") && !value.equals("Na", ignoreCase = true)){
+            return true
+        }else{
+            return false
+        }
+
+    }
+
 }
