@@ -80,9 +80,6 @@ class LoginSecondStep : Fragment() {
                     AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
                     AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
 
-                    AppPreferences.getInstance().saveString("userMail",loginViewModel?.userMail)
-                    AppPreferences.getInstance().saveString("password",loginViewModel?.password)
-
                     Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
                         progressDialog.dismiss()

@@ -26,13 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class APIInterceptor {
     private static final String BASE_URL = "http://49.50.77.81:8181/";
-    private static final String TAG = "APIInterceptor";
     private static final Retrofit.Builder builder = createInstance();
     public static Retrofit retrofit = builder.build();
-    public static Retrofit retrofitt;
-    public static OkHttpClient httpClient=getOkHttpClient();
-    public static APIClient apiClient ;
-
 
     private static Retrofit.Builder createInstance() {
 
@@ -61,10 +56,6 @@ public  class APIInterceptor {
                 Utils.INSTANCE.log("Request:" + request2);
 
                 okhttp3.Response response = chain.proceed(request2);
-                //Utils.INSTANCE.log("Request:" + request2);
-                // String bodyString=response.body().string();
-                //Utils.INSTANCE.log("response:" +bodyString);
-
                 int rescode = response.code();
                 if (rescode == 401) {
                     try {
@@ -83,15 +74,12 @@ public  class APIInterceptor {
                         } else {
                             Utils.INSTANCE.log("APIInterceptor 401 else");
 
-//              AppPreferences.getInstance().clearSavedData();
                             return response;
                         }
                     } catch (Exception e) {
                         return response;
                     }
                 }else{
-                    // Utils.INSTANCE.log("else not 401 for request: "+request.url());
-                    //Utils.INSTANCE.log("REsponse: "+ Objects.requireNonNull(response.body()).string());
                     return response;
                 }
 
@@ -112,12 +100,6 @@ public  class APIInterceptor {
                 ).client(httpClient.build());
     }
 
-    public static APIClient getInstance(){
-
-        return apiClient=getRetrofitInstance().create(APIClient.class);
-
-    }
-
     private  static  OkHttpClient getOkHttpClient(){
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -129,8 +111,6 @@ public  class APIInterceptor {
         builder.writeTimeout(60L, TimeUnit.SECONDS);
         if (BuildConfig.DEBUG) {
             builder.addNetworkInterceptor(new StethoInterceptor());
-            //httpClient.interceptors().add(new LoggingInterceptor());
-
         }
         // adding refresh token Interceptors
         builder.addInterceptor(new Interceptor() {
@@ -143,13 +123,7 @@ public  class APIInterceptor {
                         .addHeader("Authorization", getAccessToken())
                         .method(request.method(),request.body())
                         .build();
-                Utils.INSTANCE.log("createInstance REtrofit 51");
-                Utils.INSTANCE.log("Request:" + request2+"body: "+request2.body());
                 okhttp3.Response response = chain.proceed(request2);
-
-                Utils.INSTANCE.log("response:" + Objects.requireNonNull(response.body()).string());
-                // String bodyString=response.body().string();
-                //Utils.INSTANCE.log("response:" +bodyString);
 
                 int rescode = response.code();
                 if (rescode == 401) {
@@ -167,7 +141,6 @@ public  class APIInterceptor {
 
                             return response;
                         } else {
-//              AppPreferences.getInstance().clearSavedData();
                             return response;
                         }
                     } catch (Exception e) {
@@ -178,7 +151,6 @@ public  class APIInterceptor {
             }
         });
         if (BuildConfig.DEBUG) {
-            // logging the req and response only in dev | debug mode only
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.addInterceptor(logging);
@@ -188,21 +160,7 @@ public  class APIInterceptor {
 
     }
 
-    private static Retrofit getRetrofitInstance() {
-
-        return retrofitt=new Retrofit.Builder().baseUrl(BASE_URL)
-
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
-                .build();
-
-
-
-    }
-
     public static APIClient get() {
-        //return getInstance();
         return retrofit.create(APIClient.class);
 
     }
@@ -215,8 +173,6 @@ public  class APIInterceptor {
     private static boolean refreshToken() throws Exception {
         URL refreshUrl = new URL(BASE_URL + EndPoints.ACCESS_TOKEN);
         String refreshToken = AppPreferences.getInstance().getString("refreshToken");
-//    JSONObject parent = new JSONObject();
-//    parent.put("refreshToken", refreshToken);
         HttpURLConnection urlConnection = (HttpURLConnection) refreshUrl.openConnection();
         urlConnection.setDoInput(true);
         urlConnection.setDoOutput(true);
@@ -225,7 +181,6 @@ public  class APIInterceptor {
 
         urlConnection.setDoOutput(true);
         OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
-//    wr.write(parent.toString());
         wr.flush();
 
         int responseCode = urlConnection.getResponseCode();
@@ -241,7 +196,6 @@ public  class APIInterceptor {
             // this gson part is optional , you can read response directly from Json too
             Gson gson = new Gson();
             RefreshToken refreshTokenResult = gson.fromJson(response.toString(), RefreshToken.class);
-//      AppPreferences.getInstance().removeItem("accessToken");
             AppPreferences.getInstance().saveString("accessToken", refreshTokenResult.getData());
             Utils.INSTANCE.log("APIInterceptor 401 inside refresh token:"+refreshTokenResult.getData());
 

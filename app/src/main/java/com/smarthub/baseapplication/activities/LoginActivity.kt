@@ -21,20 +21,16 @@ import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     var binding : ActivityLoginBinding?=null
     private var loginViewModel : LoginViewModel?=null
-    private lateinit var progressDialog : ProgressDialog
     private var user : User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         setContentView(binding?.root)
-        progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Please Wait...")
-        progressDialog.setCanceledOnTouchOutside(true)
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(this,it)
             loginValidation()
@@ -61,16 +57,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginValidation(){
         loginViewModel?.loginResponse?.observe(this) {
+            hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null) {
                     AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
                     AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
-                    Log.d("status","${it.message}")
-                    if (progressDialog.isShowing)
-                        progressDialog.dismiss()
 
-                    AppPreferences.getInstance().saveString("userMail",binding?.userMail?.text.toString())
-                    AppPreferences.getInstance().saveString("password",binding?.password?.text.toString())
 
                     Toast.makeText(this@LoginActivity,"LoginSuccessful",Toast.LENGTH_LONG).show()
                     val intent = Intent (this@LoginActivity, DashboardActivity::class.java)
@@ -79,9 +71,7 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                     return@observe
                 }else{
-                    Log.d("status","${it.message}")
-                    if (progressDialog.isShowing)
-                        progressDialog.dismiss()
+
                     Toast.makeText(this@LoginActivity,"error:"+it.message,Toast.LENGTH_LONG).show()
                     loginViewModel?.loginResponse?.removeObservers(this)
                     val regFragment1 = LoginSecondStep()
@@ -89,9 +79,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else{
-                Log.d("status","${AppConstants.GENERIC_ERROR}")
-                if (progressDialog.isShowing)
-                    progressDialog.dismiss()
                 Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
                 loginViewModel?.loginResponse?.removeObservers(this)
                 val regFragment1 = LoginSecondStep()
@@ -100,16 +87,13 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-        progressDialog.show()
         user?.username = binding?.userMail?.text.toString()
+        showLoader()
         loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
     }
 
     fun addFragment(fragment: Fragment?) {
-//        val backStateName: String = supportFragmentManager.javaClass.name
         val manager = supportFragmentManager
-//        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-//        if (!fragmentPopped) {
             val transaction = manager.beginTransaction()
             transaction.setCustomAnimations(
                 R.anim.enter,
@@ -118,17 +102,7 @@ class LoginActivity : AppCompatActivity() {
                 R.anim.pop_exit
             )
             transaction.add(R.id.fragmentContainerView, fragment!!)
-//            transaction.addToBackStack(null)
             transaction.commit()
-//        }
     }
 
-    override fun onBackPressed() {
-
-//        if (supportFragmentManager.backStackEntryCount === 0) {
-            super.onBackPressed()
-//        } else {
-//            supportFragmentManager.popBackStack()
-//        }
-    }
 }

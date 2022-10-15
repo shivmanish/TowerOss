@@ -13,7 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.databinding.OtpVerificationStep4FragmentBinding
+import com.smarthub.baseapplication.databinding.OtpVerificationStep3FragmentBinding
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -24,12 +24,12 @@ import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class OtpVerificationStep3 : Fragment() {
-    var binding : OtpVerificationStep4FragmentBinding?=null
+    var binding : OtpVerificationStep3FragmentBinding?=null
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.otp_verification_step4_fragment, container, false)
-        binding = OtpVerificationStep4FragmentBinding.bind(view)
+        var view = inflater.inflate(R.layout.otp_verification_step3_fragment, container, false)
+        binding = OtpVerificationStep3FragmentBinding.bind(view)
         return view
 
     }
@@ -124,7 +124,7 @@ class OtpVerificationStep3 : Fragment() {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null && it.data?.access?.isNotEmpty() == true) {
                     AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
                     AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
-//                    Log.d("status","onAttach ${it.message}")
+                    Log.d("status","loginResponse accessToken ${it.data?.access}")
                     Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
                     val intent = Intent (requireActivity(), DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.adapter.ProfileListViewAdapter
 import com.smarthub.baseapplication.databinding.ActivityProfileBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -21,7 +22,7 @@ import com.smarthub.baseapplication.network.User
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity() {
 
     private var dataBinding : ActivityProfileBinding?=null
     private var profileViewModel : ProfileViewModel?=null
@@ -33,8 +34,10 @@ class ProfileActivity : AppCompatActivity() {
         dataBinding = ActivityProfileBinding.inflate(layoutInflater)
         profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
         setContentView(dataBinding?.root)
+        showLoader()
         profileViewModel?.getProfileData(UserProfileGet("7269024641"))
         profileViewModel?.profileResponse?.observe(this) {
+            hideLoader()
             if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")

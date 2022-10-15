@@ -11,6 +11,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface APIClient {
@@ -24,8 +26,9 @@ public interface APIClient {
     @POST(EndPoints.GET_OTP)
     Call<GetOtpResponse> getOTP(@Body UserOTPGet data);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)
-    Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data);
+    Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data,@Header("Authorization") String auth);
 
 
 

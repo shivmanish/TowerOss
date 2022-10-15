@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.network.repo;
 
+import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
@@ -41,7 +42,8 @@ public class ProfileRepo {
     }
 
     public void getProfileData(UserProfileGet data) {
-        apiClient.getProfile(data).enqueue(new Callback<List<ProfileDetails>>() {
+
+        apiClient.getProfile(data, AppPreferences.getInstance().getBearerToken()).enqueue(new Callback<List<ProfileDetails>>() {
             @Override
             public void onResponse(Call<List<ProfileDetails>> call, Response<List<ProfileDetails>> response) {
                 if (response.isSuccessful()) {

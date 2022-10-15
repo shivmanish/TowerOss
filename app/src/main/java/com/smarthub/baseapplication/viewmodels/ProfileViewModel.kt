@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
