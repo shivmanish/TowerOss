@@ -87,8 +87,8 @@ class LoginSecondStep : Fragment() {
                     AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
                     AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
 
-                    AppPreferences.getInstance().saveString("userMail",binding?.userMail?.text.toString())
-                    AppPreferences.getInstance().saveString("password",binding?.password?.text.toString())
+                    AppPreferences.getInstance().saveString("userMail",loginViewModel?.userMail)
+                    AppPreferences.getInstance().saveString("password",loginViewModel?.password)
 
                     Log.d("status","${it.message}")
                     if (progressDialog.isShowing)
@@ -117,6 +117,8 @@ class LoginSecondStep : Fragment() {
     private fun loginValidation(){
         if (binding?.userMail?.text.toString().isNotEmpty() && binding?.password?.text.toString().isNotEmpty()) {
             progressDialog.show()
+            loginViewModel?.userMail = binding?.userMail?.text.toString()
+            loginViewModel?.password = binding?.password?.text.toString()
             loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
         }
     }

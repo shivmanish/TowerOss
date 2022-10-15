@@ -4,13 +4,17 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OtpVerificationStep1FragmentBinding
+import com.smarthub.baseapplication.model.otp.UserOTPGet
+import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -50,9 +54,9 @@ class OtpVerificationStep1 : Fragment() {
         val regFragment2 = OtpVerificationStep2()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-            activity?.let{
-               addFragment(regFragment2)
-            }
+            if (!progressDialog.isShowing)
+                progressDialog.show()
+            loginViewModel?.getPhoneOtp(UserOTPGet(binding?.moNoEdit?.text?.toString()))
         }
 
         binding?.moNoEdit?.addTextChangedListener(object : TextWatcher {
@@ -64,7 +68,22 @@ class OtpVerificationStep1 : Fragment() {
             }
         })
 
+        loginViewModel?.getOtpResponse?.observe(requireActivity()) {
+            if (progressDialog.isShowing)
+                progressDialog.dismiss()
 
+            if (it?.data != null && it.data.sucesss == true){
+                Log.d("status","getOtpResponse ${it.data}")
+                activity?.let{
+                    val regFragment = OtpVerificationStep3()
+                    addFragment(regFragment)
+                }
+            }else{
+                Log.d("status","${AppConstants.GENERIC_ERROR}")
+                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+                addFragment(regFragment2)
+            }
+        }
     }
 
     fun addFragment(fragment: Fragment?) {

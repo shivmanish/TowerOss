@@ -7,6 +7,7 @@ import com.smarthub.baseapplication.model.ErrorUtils;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
 import com.smarthub.baseapplication.model.otp.UserOTPGet;
+import com.smarthub.baseapplication.model.otp.UserOTPVerify;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.AppConstants;
@@ -47,6 +48,40 @@ public class LoginRepo {
 
     public void getLoginToken(UserLoginPost data) {
         apiClient.getLoginForAccessToken(data).enqueue(new Callback<RefreshToken>() {
+            @Override
+            public void onResponse(Call<RefreshToken> call, Response<RefreshToken> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    reportErrorResponse(error, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RefreshToken> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<RefreshToken> response) {
+                if (response.body() != null) {
+                    logingResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    logingResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    logingResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    logingResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getLoginWith(UserOTPVerify data) {
+        apiClient.getLoginWithOtpToken(data).enqueue(new Callback<RefreshToken>() {
             @Override
             public void onResponse(Call<RefreshToken> call, Response<RefreshToken> response) {
                 if (response.isSuccessful()) {
