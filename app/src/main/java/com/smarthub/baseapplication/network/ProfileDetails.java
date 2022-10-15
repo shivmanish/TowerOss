@@ -28,6 +28,7 @@ public class ProfileDetails {
     @Expose
     private String active;
 
+
     public String getId() {
         return id;
     }

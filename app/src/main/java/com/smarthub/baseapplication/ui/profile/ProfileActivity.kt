@@ -49,8 +49,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
             } else {
                 Log.d("status", "${AppConstants.GENERIC_ERROR}")
-                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
         initViews()
@@ -62,6 +61,8 @@ class ProfileActivity : AppCompatActivity() {
         dataBinding?.textMessage?.text = "${profileDetails.email}"
         dataBinding?.textYellow?.text = "${profileDetails.id}"
         dataBinding?.textActive?.text = "${profileDetails.active}"
+
+//        dataBinding?.textRole?.text = "${profileDetails?.}"
     }
 
     private var popupWindow: PopupWindow? = null
