@@ -4,6 +4,8 @@ import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
 import com.smarthub.baseapplication.model.otp.UserOTPGet;
 import com.smarthub.baseapplication.model.otp.UserOTPVerify;
+import com.smarthub.baseapplication.model.register.RegisterData;
+import com.smarthub.baseapplication.model.register.RegstationResponse;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
 
@@ -30,8 +32,8 @@ public interface APIClient {
     @POST(EndPoints.PROFILE)
     Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data,@Header("Authorization") String auth);
 
-
-
+    @POST(EndPoints.REGISTRATION)
+    Call<RegstationResponse> registration(@Body RegisterData data);
 
 
 

@@ -104,8 +104,6 @@ class LoginSecondStep : Fragment() {
     private fun loginValidation(){
         if (binding?.userMail?.text.toString().isNotEmpty() && binding?.password?.text.toString().isNotEmpty()) {
             progressDialog.show()
-            loginViewModel?.userMail = binding?.userMail?.text.toString()
-            loginViewModel?.password = binding?.password?.text.toString()
             loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
         }
     }

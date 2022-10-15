@@ -13,11 +13,7 @@ import retrofit2.Response
 
 class RegisterRepo(private val apiClient: APIClient) {
     val TAG = "RegisterRepo"
-    val regstationResponse: MutableLiveData<RegstationResponse>
-
-    init {
-        regstationResponse = MutableLiveData()
-    }
+    val regstationResponse: MutableLiveData<RegstationResponse> = MutableLiveData()
 
     fun registerUser(data: RegisterData?) {
         apiClient.registration(data!!).enqueue(object : Callback<RegstationResponse?> {
@@ -25,7 +21,7 @@ class RegisterRepo(private val apiClient: APIClient) {
                 call: Call<RegstationResponse?>,
                 response: Response<RegstationResponse?>
             ) {
-                AppLogger.log(TAG + " onResponse get response " + response)
+                AppLogger.log("$TAG onResponse get response $response")
                 reportSuccessResponse(response)
             }
 
