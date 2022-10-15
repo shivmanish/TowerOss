@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.fragments.login
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,26 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.JsonObject
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.LogingSecondStepBinding
 import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
-import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
+import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep2
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
-import com.smarthub.baseapplication.network.APIClient
-import com.smarthub.baseapplication.network.RetrofitObjectInstance
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
 
 
 class LoginSecondStep : Fragment() {
@@ -75,11 +68,11 @@ class LoginSecondStep : Fragment() {
         val signWithPhone = view.findViewById<View>(R.id.sign_with_phone)
         signWithPhone.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-            val regFragment1 = OtpVerificationStep1()
+            val regFragment1 = OtpVerificationStep2()
             addFragment(regFragment1)
         }
 
-        loginViewModel?.loginResponse?.observe(requireActivity()) {
+        loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
@@ -101,17 +94,14 @@ class LoginSecondStep : Fragment() {
                 }else{
                     Log.d("status","${it.message}")
                     Toast.makeText(requireActivity(),"error:"+it.message,Toast.LENGTH_LONG).show()
-
                 }
-            }else{
+            }
+            else{
                 Log.d("status","${AppConstants.GENERIC_ERROR}")
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
 
             }
-
         }
-
-
     }
 
     private fun loginValidation(){

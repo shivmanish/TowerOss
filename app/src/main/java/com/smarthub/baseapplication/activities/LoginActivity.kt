@@ -7,12 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.JsonObject
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLoginBinding
 import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
 import com.smarthub.baseapplication.fragments.login.LoginSecondStep
-import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep1
+import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep2
 import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -54,10 +53,13 @@ class LoginActivity : AppCompatActivity() {
 
         binding?.signWithPhone?.setOnClickListener {
             Utils.hideKeyboard(this,it)
-            val regFragment1 = OtpVerificationStep1()
+            val regFragment1 = OtpVerificationStep2()
             addFragment(regFragment1)
         }
 
+    }
+
+    private fun loginValidation(){
         loginViewModel?.loginResponse?.observe(this) {
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data!=null) {
@@ -87,21 +89,17 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else{
-                    Log.d("status","${AppConstants.GENERIC_ERROR}")
-                    if (progressDialog.isShowing)
-                        progressDialog.dismiss()
-                    Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
+                Log.d("status","${AppConstants.GENERIC_ERROR}")
+                if (progressDialog.isShowing)
+                    progressDialog.dismiss()
+                Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
                 loginViewModel?.loginResponse?.removeObservers(this)
-                    val regFragment1 = LoginSecondStep()
-                    addFragment(regFragment1)
+                val regFragment1 = LoginSecondStep()
+                addFragment(regFragment1)
 
             }
 
         }
-
-    }
-
-    private fun loginValidation(){
         progressDialog.show()
         user?.username = binding?.userMail?.text.toString()
         loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))

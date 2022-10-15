@@ -11,29 +11,21 @@ import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.RefreshToken
 import com.smarthub.baseapplication.network.repo.LoginRepo
 import com.smarthub.baseapplication.utils.AppLogger
+import java.util.*
+import kotlin.collections.ArrayList
 
 class LoginViewModel: ViewModel() {
     var loginRepo: LoginRepo?=null
     var userMail : String = ""
     var password : String = ""
     var loginResponse : SingleLiveEvent<Resource<RefreshToken>>?=null
-    var otp : SingleLiveEvent<ArrayList<String>?>?=null
     var getOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
     init {
         loginRepo = LoginRepo(APIInterceptor.get())
         loginResponse = loginRepo?.loginResponse
         getOtpResponse = loginRepo?.otpResponse
-        otp = SingleLiveEvent()
-        otp?.postValue(ArrayList())
     }
 
-    fun updateOtpValueIndex(char: String,index: Int){
-        var list = otp?.value
-        if (list?.size!! > index){
-            list[index] = char
-        }else list?.add(index,char)
-        otp?.postValue(list)
-    }
 
     fun getLoginToken(data : UserLoginPost) {
         loginRepo?.getLoginToken(data)
