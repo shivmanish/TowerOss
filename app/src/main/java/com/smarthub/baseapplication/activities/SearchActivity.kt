@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchActivityBinding
-import com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment
+import com.smarthub.baseapplication.ui.fragments.site_detail.SiteDetailFragment
 import com.smarthub.baseapplication.viewmodels.SearchActivityViewModel
 
 class SearchActivity : BaseActivity() {

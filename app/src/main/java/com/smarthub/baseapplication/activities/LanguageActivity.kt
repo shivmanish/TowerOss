@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import com.smarthub.baseapplication.adapter.LanguageListAdapter
+import com.smarthub.baseapplication.ui.adapter.LanguageListAdapter
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLanguageBinding
 import com.smarthub.baseapplication.model.LangModel

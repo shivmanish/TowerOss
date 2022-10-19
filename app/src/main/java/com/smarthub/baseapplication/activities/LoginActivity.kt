@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLoginBinding
-import com.smarthub.baseapplication.fragments.forgot_password.ForgotPassStep1
-import com.smarthub.baseapplication.fragments.login.LoginSecondStep
-import com.smarthub.baseapplication.fragments.otp.OtpVerificationStep2
-import com.smarthub.baseapplication.fragments.register.RegistrationFirstStep
+import com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1
+import com.smarthub.baseapplication.ui.fragments.login.LoginSecondStep
+import com.smarthub.baseapplication.ui.fragments.otp.OtpVerificationStep2
+import com.smarthub.baseapplication.ui.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
@@ -43,7 +43,8 @@ class LoginActivity : BaseActivity() {
 
         binding?.forgotPassword?.setOnClickListener {
             Utils.hideKeyboard(this,it)
-            val regFragment1 = ForgotPassStep1()
+            val regFragment1 =
+                com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1()
             addFragment(regFragment1)
         }
 

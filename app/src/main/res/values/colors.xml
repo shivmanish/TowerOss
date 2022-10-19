@@ -24,8 +24,10 @@
     <color name="purple_700">#3F4D67</color>
     <color name="teal_200">#3F4D67</color>
     <color name="teal_700">#3F4D67</color>
+    <color name="card_bg">#3D4E6D</color>
 
     <color name="search_setting">#E3E3E3</color>
+    <color name="milky_white">#CCCCCC</color>
     <color name="light_gray">#818181</color>
     <color name="textGray">#6C6C70</color>
 

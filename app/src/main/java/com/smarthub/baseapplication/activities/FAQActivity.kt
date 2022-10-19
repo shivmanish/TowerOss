@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.adapter.PageAdapter_faq
+import com.smarthub.baseapplication.ui.adapter.PageAdapter_faq
 
 class FAQActivity : AppCompatActivity() {
     private val pageTitles = arrayOf("Ventos","Catering","Cancellations","Reservations","ABC","XYZ")

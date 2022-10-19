@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/site_detail_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.gat.GAFragment">
+    tools:context=".ui.fragments.gat.GAFragment">
     <!-- TODO: Update blank fragment layout -->
  <LinearLayout
      android:orientation="vertical"

@@ -8,7 +8,7 @@
     android:background="@color/backgroun_color"
     android:clickable="true"
     android:id="@+id/container_frag"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.fragments.notifications.NotificationsFragment">
 
    <androidx.core.widget.NestedScrollView
        android:orientation="vertical"

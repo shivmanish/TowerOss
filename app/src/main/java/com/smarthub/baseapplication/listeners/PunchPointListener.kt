@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.listeners
 
-import com.smarthub.baseapplication.adapter.AtpCardListAdapter
+import com.smarthub.baseapplication.ui.adapter.AtpCardListAdapter
 
 interface PunchPointListener {
     fun itemClicked()

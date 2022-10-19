@@ -18,6 +18,26 @@
         <item name="android:textSize">100sp</item>
         <item name="autoSizePresetSizes">@array/autosize_text_sizes</item>
     </style>
+
+    <style name="RowTestItemEdit" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textSize">@dimen/dp14</item>
+    </style>
+    <style name="RowTextItemInfo" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">#818181</item>
+        <item name="android:textSize">@dimen/dp14</item>
+    </style>
+
+    <style name="ColumnItemInfo">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_columnWeight">1</item>
+
+    </style>
     <style name="registratio">
 
         <item name="android:textSize">

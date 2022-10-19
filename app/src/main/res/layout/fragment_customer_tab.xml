@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.customer_tab.CustomerTab">
+    tools:context=".ui.fragments.customer_tab.CustomerTab">
 
 
         <LinearLayout

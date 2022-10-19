@@ -16,7 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.ui.site_detail.SiteDetailViewModel
+import com.smarthub.baseapplication.ui.fragments.site_detail.SiteDetailViewModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 

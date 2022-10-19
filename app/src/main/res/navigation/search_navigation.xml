@@ -6,24 +6,24 @@
     app:startDestination="@id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.site_detail.SiteDetailFragment"
         android:label="SiteDetailFragment"
         tools:layout="@layout/site_location_detail" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.smarthub.baseapplication.ui.task.TaskFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.TaskFragment"
         android:label="@string/title_task"
         tools:layout="@layout/fragment_task" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.smarthub.baseapplication.ui.notifications.NotificationsFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_menu"
-        android:name="com.smarthub.baseapplication.ui.menu.MenuFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.menu.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu"/>
     <!--<fragment
