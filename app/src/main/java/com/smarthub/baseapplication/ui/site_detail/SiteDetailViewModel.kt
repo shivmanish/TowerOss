@@ -31,7 +31,7 @@ class SiteDetailViewModel: ViewModel() {
        return ctx.resources.getStringArray(R.array.tab_names)
     }
     fun  getImageArray(ctx:Context): TypedArray {
-        return ctx.resources.obtainTypedArray(R.array.random_imgs);
+        return ctx.resources.obtainTypedArray(R.array.random_imgs)
     }
 
 

@@ -13,7 +13,7 @@
 
     <style name="AutoResizeTextView" parent="Widget.AppCompat.TextView">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMinTextSize">10sp</item>
+        <item name="autoSizeMinTextSize">5sp</item>
         <item name="autoSizeMaxTextSize">100sp</item>
         <item name="android:textSize">100sp</item>
         <item name="autoSizePresetSizes">@array/autosize_text_sizes</item>

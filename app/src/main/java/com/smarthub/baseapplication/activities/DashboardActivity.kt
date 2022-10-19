@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -48,5 +49,23 @@ class DashboardActivity : BaseActivity() {
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
+    }
+
+    fun addFragment(fragment: Fragment?) {
+        val backStateName: String = supportFragmentManager.javaClass.name
+        val manager = supportFragmentManager
+        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+        if (!fragmentPopped) {
+            val transaction = manager.beginTransaction()
+            transaction.setCustomAnimations(
+                R.anim.enter,
+                R.anim.exit,
+                R.anim.pop_enter,
+                R.anim.pop_exit
+            )
+            transaction.replace(R.id.container, fragment!!)
+            transaction.addToBackStack(backStateName)
+            transaction.commit()
+        }
     }
 }

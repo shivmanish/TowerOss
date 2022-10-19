@@ -1,10 +1,7 @@
 package com.smarthub.baseapplication.activities
 
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
@@ -12,7 +9,7 @@ import com.smarthub.baseapplication.databinding.SearchActivityBinding
 import com.smarthub.baseapplication.ui.site_detail.SiteDetailFragment
 import com.smarthub.baseapplication.viewmodels.SearchActivityViewModel
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BaseActivity() {
     private var dataBinding: SearchActivityBinding? = null
     private lateinit var mViewModel: SearchActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +22,8 @@ class SearchActivity : AppCompatActivity() {
         dataBinding?.clearSearchQuery?.setOnClickListener {
             val siteFragment = SiteDetailFragment()
             addFragment(siteFragment)
-//            var intent = Intent(this, SiteDetailActivity::class.java)
-//            startActivity(intent)
-//            finish()
         }
         setSearchFilter()
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 
     fun addFragment(fragment: Fragment?) {
@@ -48,7 +38,7 @@ class SearchActivity : AppCompatActivity() {
                 R.anim.pop_enter,
                 R.anim.pop_exit
             )
-            transaction.replace(R.id.nav_main, fragment!!)
+            transaction.add(R.id.nav_main, fragment!!)
             transaction.addToBackStack(backStateName)
             transaction.commit()
         }

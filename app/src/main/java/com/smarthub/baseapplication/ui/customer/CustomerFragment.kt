@@ -1,5 +1,6 @@
-package com.smarthub.baseapplication.fragments.sitedetail
+package com.smarthub.baseapplication.ui.customer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,45 +11,32 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentCustomerBinding
 import com.smarthub.baseapplication.fragments.sitedetail.adapter.CustomerDataAdapter
+import com.smarthub.baseapplication.fragments.sitedetail.adapter.CustomerDataAdapterListener
 import com.smarthub.baseapplication.fragments.sitedetail.viewmodel.CustomerFragmentViewmodel
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-lateinit var customerBinding: FragmentCustomerBinding
-lateinit var viewmodel: CustomerFragmentViewmodel
-lateinit var customerDataAdapter: CustomerDataAdapter
 
-class CustomerFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+class CustomerFragment : Fragment(), CustomerDataAdapterListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-      /*  arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }*/
-    }
+    private val ARG_PARAM1 = "param1"
+    private val ARG_PARAM2 = "param2"
+    lateinit var customerBinding: FragmentCustomerBinding
+    lateinit var viewmodel: CustomerFragmentViewmodel
+    lateinit var customerDataAdapter: CustomerDataAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         customerBinding = FragmentCustomerBinding.inflate(inflater, container, false)
-        viewmodel = ViewModelProvider(requireActivity()).get(CustomerFragmentViewmodel::class.java)
+        viewmodel = ViewModelProvider(requireActivity())[CustomerFragmentViewmodel::class.java]
         initializeFragment()
         return customerBinding.root
     }
 
-    fun initializeFragment() {
+    private fun initializeFragment() {
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = CustomerDataAdapter(requireContext(), ArrayList<String>())
+        customerDataAdapter = CustomerDataAdapter(this@CustomerFragment, ArrayList())
         customerBinding.customerList.adapter = customerDataAdapter
         customerBinding.addmore.setOnClickListener{
             var arraydata = ArrayList<String>()
-            arraydata.add(
-                "anything"
-            )
+            arraydata.add("anything")
             customerDataAdapter.setData(arraydata)
         }
 
@@ -72,5 +60,10 @@ class CustomerFragment : Fragment() {
                     putString(ARG_PARAM1, param1)
                 }
             }
+    }
+
+    override fun clickedItem() {
+        requireActivity().startActivity(Intent(requireContext(),NewCustomerDetailsActivity::class.java))
+
     }
 }

@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp15"
     android:elevation="@dimen/dp10"
+    android:id="@+id/card_item"
     android:background="@color/white"
     app:cardCornerRadius="@dimen/dp15">
 
@@ -14,91 +15,102 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@id/top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/customer_top_background"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp15">
+       <com.google.android.material.card.MaterialCardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:cardElevation="2dp"
+           android:layout_margin="2dp"
+           app:cardBackgroundColor="#C4D3EE">
+           <LinearLayout
+               android:id="@id/top"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:padding="@dimen/dp15">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/jio_demo" />
+               <com.google.android.material.imageview.ShapeableImageView
+                   android:layout_width="@dimen/dp30"
+                   android:layout_height="@dimen/dp30"
+                   android:adjustViewBounds="true"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/dummy_network_call" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp15"
-                android:layout_weight="2"
-                android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/dp15"
+                   android:layout_weight="2"
+                   android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/titel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Reliance jio pvt ltd"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp15" />
+                   <TextView
+                       android:id="@+id/titel"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Reliance jio pvt ltd"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/sp15" />
 
-                <TextView
-                    android:id="@+id/customer_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="#DEL-VIL-SC-0001"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp12" />
-            </LinearLayout>
+                   <LinearLayout
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:id="@+id/text1"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/montserrat_regular"
+                           android:text="Smell"
+                           android:textColor="@color/textGray"
+                           android:textSize="@dimen/sp12" />
+                       <View
+                           android:layout_marginStart="5dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_width="1dp"
+                           android:background="#3D4E6D"
+                           android:alpha="0.21"
+                           android:layout_height="@dimen/dp20"/>
+                       <TextView
+                           android:id="@+id/text2"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/montserrat_regular"
+                           android:text="ODC"
+                           android:textColor="@color/tab_text_color"
+                           android:textSize="@dimen/sp12" />
+                       <View
+                           android:layout_marginStart="5dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_width="1dp"
+                           android:background="#3D4E6D"
+                           android:alpha="0.21"
+                           android:layout_height="@dimen/dp20"/>
+                       <TextView
+                           android:id="@+id/text3"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/montserrat_regular"
+                           android:text="Fiber"
+                           android:textColor="@color/tab_text_color"
+                           android:textSize="@dimen/sp12" />
+                   </LinearLayout>
+               </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/dp15"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="right"
-                    android:text="20-02-2022"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp12" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="right"
-                    android:id="@+id/datetext"
-                    android:text="RFI Date"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp12" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/menu"
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"
-                android:layout_gravity="center"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-                android:paddingLeft="@dimen/dp5"
-                android:rotation="90"
-                android:src="@drawable/menu"
-                app:tint="@color/white" />
+               <ImageView
+                   android:id="@+id/menu"
+                   android:layout_width="@dimen/dp30"
+                   android:layout_height="@dimen/dp30"
+                   android:layout_gravity="center"
+                   android:paddingTop="@dimen/dp5"
+                   android:paddingBottom="@dimen/dp5"
+                   android:paddingLeft="@dimen/dp5"
+                   android:rotation="90"
+                   android:src="@drawable/dummy_3g" />
 
 
-        </LinearLayout>
+           </LinearLayout>
+       </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:id="@+id/main_collaps"
@@ -106,63 +118,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <RadioGroup
-                android:id="@+id/rdogrp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp36"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/btn1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_selector"
-                    android:button="@null"
-                    android:checked="true"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="center"
-                    android:text="Details"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/dp11" />
-
-                <RadioButton
-                    android:id="@+id/btn2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_selector"
-                    android:button="@null"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="center"
-                    android:text="Telecom Anteena"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/dp11" />
-
-                <RadioButton
-                    android:id="@+id/btn3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_selector"
-                    android:button="@null"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:gravity="center"
-                    android:text="Telecom Equipment"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/dp11" />
-            </RadioGroup>
-
-            <FrameLayout
-                android:id="@+id/placeholder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp15" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

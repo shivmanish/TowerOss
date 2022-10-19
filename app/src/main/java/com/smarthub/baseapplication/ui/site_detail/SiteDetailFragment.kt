@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.site_detail
 
-import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
@@ -9,19 +8,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -31,6 +27,7 @@ import com.smarthub.baseapplication.databinding.SiteLocationDetailBinding
 import com.smarthub.baseapplication.databinding.TabItemBinding
 import com.smarthub.baseapplication.fragments.sitedetail.*
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
+import com.smarthub.baseapplication.ui.customer.CustomerFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
@@ -212,7 +209,7 @@ class SiteDetailFragment : Fragment() {
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
-                viewPager.currentItem = tab.position
+//                viewPager.currentItem = tab.position
                 var view: View? = tab.customView
                 if (view != null) {
                     var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
@@ -228,7 +225,7 @@ class SiteDetailFragment : Fragment() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                viewPager.currentItem = tab.position
+//                viewPager.currentItem = tab.position
                 var view: View? = tab.customView
                 var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList =
