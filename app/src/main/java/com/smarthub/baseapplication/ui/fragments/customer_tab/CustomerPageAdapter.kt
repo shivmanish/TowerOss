@@ -22,7 +22,7 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
                 return CustomerInfo()
             }
             3 -> {
-                return CustomerInfo()
+                return CustomerTempTab()
             }
             else -> {
                 return CustomerInfo()
