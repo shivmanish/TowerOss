@@ -101,7 +101,7 @@ class LoginActivity : BaseActivity() {
         loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
     }
 
-    fun addWithoutStackFragment(fragment: Fragment?) {
+    private fun addWithoutStackFragment(fragment: Fragment?) {
         val manager = supportFragmentManager
             val transaction = manager.beginTransaction()
             transaction.setCustomAnimations(
