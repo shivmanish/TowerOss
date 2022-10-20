@@ -19,7 +19,7 @@ class SearchActivity : BaseActivity() {
         dataBinding = SearchActivityBinding.inflate(layoutInflater)
         mViewModel = ViewModelProvider(this)[SearchActivityViewModel::class.java]
         setContentView(dataBinding?.root)
-        dataBinding?.clearSearchQuery?.setOnClickListener {
+        dataBinding?.searchCardView?.setOnClickListener {
             val siteFragment = SiteDetailFragment()
             addFragment(siteFragment)
         }

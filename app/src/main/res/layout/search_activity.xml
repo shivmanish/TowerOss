@@ -52,23 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/clear_search_query"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/dp8"
-                    android:background="?attr/selectableItemBackground"
-                    android:padding="@dimen/dp8"
-                    android:src="@drawable/search"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription" />
-
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/search_edit_text"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp24"
@@ -78,6 +62,7 @@
                     android:textColorHint="@color/search_star_color"
                     android:gravity="left"
                     android:textColor="@color/black"
+                    android:drawableEnd="@drawable/search"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

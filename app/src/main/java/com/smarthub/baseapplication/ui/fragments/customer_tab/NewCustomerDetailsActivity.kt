@@ -29,7 +29,7 @@ class NewCustomerDetailsActivity : BaseActivity() {
         binding.viewpager.adapter = CustomerPageAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
-
+        binding.viewpager.beginFakeDrag()
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)

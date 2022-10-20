@@ -81,7 +81,7 @@ class SiteDetailFragment : Fragment() {
         binding.viewpager.offscreenPageLimit= 2
         binding.viewpager.currentItem = 0
         //disable swiping
-        binding.viewpager.beginFakeDrag();
+        binding.viewpager.beginFakeDrag()
 
 //enable swiping
 //        binding.viewpager.endFakeDrag();
@@ -198,7 +198,7 @@ class SiteDetailFragment : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
-        adapter.addFragment(Site_info.newInstance("A"))
+        adapter.addFragment(SiteInfo())
         adapter.addFragment(CustomerFragment.newInstance("Customer"))
         adapter.addFragment(Site_LeaseFrag.newInstance("SiteLease"))
         adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
