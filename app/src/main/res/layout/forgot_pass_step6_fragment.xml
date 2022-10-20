@@ -74,11 +74,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_msg"/>
             <com.smarthub.baseapplication.widgets.PasswordEditText
-                android:text="8888"
-
-                android:textSize="22sp"
+                android:hint="New Password"
+                android:textSize="18sp"
                 android:maxLength="6"
-                android:letterSpacing="0.4"
+                android:letterSpacing="0.1"
                 android:focusableInTouchMode="true"
                 android:textColor="#DEAAAAAA"
                 android:id="@+id/mo_no_edit"
@@ -96,7 +95,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:textSize="13sp"
                 android:textColor="#8A000000"
                 android:id="@+id/new_pass"
-
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,11 +104,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mo_no_edit"/>
             <com.smarthub.baseapplication.widgets.PasswordEditText
-                android:text="888888"
-                android:textSize="22sp"
+                android:hint="Confirm password"
+                android:textSize="18sp"
                 android:maxLength="6"
                 android:password="true"
-                android:letterSpacing="0.4"
+                android:letterSpacing="0.1"
                 android:textColor="#DEAAAAAA"
                 android:id="@+id/new_pass_edit"
                 android:layout_width="match_parent"

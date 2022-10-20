@@ -24,6 +24,8 @@ class DashboardActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SiteDetailViewModel
     private lateinit var mainViewModel: MainViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,6 +44,10 @@ class DashboardActivity : BaseActivity() {
                 binding.searchBoxContainer.mainActionBar.visibility = View.VISIBLE
         })
 
+        findViewById<View>(R.id.search).setOnClickListener {
+            var intent = Intent(this,SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         AppLogger.log("access token :" + AppPreferences.getInstance().token)
         AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)

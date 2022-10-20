@@ -77,6 +77,8 @@ class SiteDetailFragment : Fragment() {
         val root: View = binding.root
         setupViewPager(binding.viewpager)
 
+        root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
+
         binding.tabs?.setupWithViewPager(binding.viewpager)
 //        binding.viewpager.offscreenPageLimit= 2
         binding.viewpager.currentItem = 0
@@ -200,7 +202,7 @@ class SiteDetailFragment : Fragment() {
         val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         adapter.addFragment(SiteInfo())
         adapter.addFragment(CustomerFragment.newInstance("Customer"))
-        adapter.addFragment(Site_LeaseFrag.newInstance("SiteLease"))
+        adapter.addFragment(SiteLeaseFrag.newInstance("SiteLease"))
         adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
         adapter.addFragment(UtilitiesFrag.newInstance("Utilities"))
 

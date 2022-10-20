@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.activities.FAQActivity
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
 import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.home.EmptyFragment
 import com.smarthub.baseapplication.ui.fragments.profile.ProfileActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -50,9 +53,27 @@ class MenuFragment : Fragment() {
         }
 
         binding.quickHelp.setOnClickListener {
-//            launch your FAQ screen
             var intent = Intent(requireActivity(),FAQActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.cardAnalytics.setOnClickListener {
+            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.cardLocation.setOnClickListener {
+            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+        }
+        binding.cardTeam.setOnClickListener {
+            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.cardOther1.setOnClickListener {
+            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.cardOther2.setOnClickListener {
+            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
     }
 
