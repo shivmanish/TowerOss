@@ -144,7 +144,7 @@ class OtpVerificationStep3 : Fragment() {
 
         }
     }
-    fun updateOtpValueIndex() : String{
+    private fun updateOtpValueIndex() : String{
         return binding?.p1?.text.toString() +
                 binding?.p2?.text.toString()+
                 binding?.p3?.text.toString()+

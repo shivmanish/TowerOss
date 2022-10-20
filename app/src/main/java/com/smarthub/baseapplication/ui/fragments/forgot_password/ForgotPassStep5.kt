@@ -1,20 +1,32 @@
 package com.smarthub.baseapplication.ui.fragments.forgot_password
 
+import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.ForgotPassStep5FragmentBinding
+import com.smarthub.baseapplication.databinding.OtpVerificationStep3FragmentBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class ForgotPassStep5 : Fragment() {
 
     var binding : ForgotPassStep5FragmentBinding?=null
-
+    private lateinit var progressDialog : ProgressDialog
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.forgot_pass_step5_fragment, container, false)
         binding = ForgotPassStep5FragmentBinding.bind(view)
@@ -22,14 +34,29 @@ class ForgotPassStep5 : Fragment() {
 
     }
 
+    private fun enableErrorText(){
+        binding?.validationError?.visibility = View.VISIBLE
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val regFragment2 = ForgotPassStep6()
-        view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(true)
+        val fragment = ForgotPassStep6()
+        view.findViewById<View>(R.id.next_layout).setOnClickListener { view ->
+            Utils.hideKeyboard(requireContext(),view)
             activity?.let{
-               addFragment(regFragment2)
+                var s = updateOtpValueIndex()
+                AppLogger.log("s : $s")
+                if (s.isNotEmpty() && s.length == 6){
+//                    if (!progressDialog.isShowing)
+//                        progressDialog.show()
+                   addFragment(fragment)
+                }else{enableErrorText()
+                    Toast.makeText(it,"Please enter valid Otp", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -37,17 +64,19 @@ class ForgotPassStep5 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding?.p1?.text.toString().isNotEmpty())
+                if (binding?.p1?.text.toString().isNotEmpty()) {
                     binding?.p2?.requestFocus()
+
+                }
             }
         })
         binding?.p2?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding?.p2?.text.toString().isNotEmpty())
+                if (binding?.p2?.text.toString().isNotEmpty()) {
                     binding?.p3?.requestFocus()
-                else binding?.p1?.requestFocus()
+                } else binding?.p1?.requestFocus()
             }
         })
         binding?.p3?.addTextChangedListener(object : TextWatcher {
@@ -86,6 +115,15 @@ class ForgotPassStep5 : Fragment() {
                 else binding?.p5?.requestFocus()
             }
         })
+
+    }
+    private fun updateOtpValueIndex() : String{
+        return binding?.p1?.text.toString() +
+                binding?.p2?.text.toString()+
+                binding?.p3?.text.toString()+
+                binding?.p4?.text.toString()+
+                binding?.p5?.text.toString()+
+                binding?.p6?.text.toString()
     }
 
     fun addFragment(fragment: Fragment?) {
@@ -107,5 +145,3 @@ class ForgotPassStep5 : Fragment() {
     }
 
 }
-
-

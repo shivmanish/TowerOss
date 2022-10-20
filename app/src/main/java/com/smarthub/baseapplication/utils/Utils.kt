@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.utils
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.util.Patterns
@@ -10,6 +11,8 @@ import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.register.Commucationaddess
 import com.smarthub.baseapplication.model.register.Officeaddress
@@ -20,6 +23,12 @@ object Utils {
 
     fun log(message: String) {
         Log.i("TAG", message)
+    }
+
+    fun clearBackStack(activity : FragmentActivity){
+        val name: String? = activity.supportFragmentManager.getBackStackEntryAt(0).name
+        activity.supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
     }
 
     fun log(tag: String, message: String) {

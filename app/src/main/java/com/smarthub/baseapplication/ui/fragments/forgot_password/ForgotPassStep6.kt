@@ -11,28 +11,18 @@ import com.smarthub.baseapplication.utils.Utils
 class ForgotPassStep6 : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.forgot_pass_step6_fragment, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val loginButton = view.findViewById<View>(R.id.text_register)
-//        loginButton.setOnClickListener {
-//            activity?.let{
-//                val intent = Intent (it, LoginActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                it.startActivity(intent)
-//            }
-//        }
-
         val regFragment2 = ForgotPassStep7()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{
-               addFragment(regFragment2)
+                Utils.clearBackStack(requireActivity())
+                addFragment(regFragment2)
             }
         }
     }

@@ -1,22 +1,19 @@
 package com.smarthub.baseapplication.activities
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLoginBinding
-import com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1
-import com.smarthub.baseapplication.ui.fragments.login.LoginSecondStep
-import com.smarthub.baseapplication.ui.fragments.otp.OtpVerificationStep2
-import com.smarthub.baseapplication.ui.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.network.User
+import com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1
+import com.smarthub.baseapplication.ui.fragments.otp.OtpVerificationStep2
+import com.smarthub.baseapplication.ui.fragments.register.RegistrationFirstStep
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -27,13 +24,10 @@ class LoginActivity : BaseActivity() {
     private var loginViewModel : LoginViewModel?=null
     private var user : User?=null
 
-//    override fun onBackPressed() {
-//        if (supportFragmentManager.backStackEntryCount === 0) {
-//            super.onBackPressed()
-//        } else {
-//            supportFragmentManager.popBackStack()
-//        }
-//    }
+    fun enableErrorMsg(){
+        binding?.emailError?.visibility = View.VISIBLE
+        binding?.forgotError?.visibility = View.VISIBLE
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,16 +76,18 @@ class LoginActivity : BaseActivity() {
                 }else{
 
                     Toast.makeText(this@LoginActivity,"error:"+it.message,Toast.LENGTH_LONG).show()
-                    loginViewModel?.loginResponse?.removeObservers(this)
-                    val regFragment1 = LoginSecondStep()
-                    addWithoutStackFragment(regFragment1)
+                    enableErrorMsg()
+//                    loginViewModel?.loginResponse?.removeObservers(this)
+//                    val regFragment1 = LoginSecondStep()
+//                    addWithoutStackFragment(regFragment1)
                 }
             }
             else{
                 Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
-                loginViewModel?.loginResponse?.removeObservers(this)
-                val regFragment1 = LoginSecondStep()
-                addWithoutStackFragment(regFragment1)
+                enableErrorMsg()
+//                loginViewModel?.loginResponse?.removeObservers(this)
+//                val regFragment1 = LoginSecondStep()
+//                addWithoutStackFragment(regFragment1)
 
             }
 

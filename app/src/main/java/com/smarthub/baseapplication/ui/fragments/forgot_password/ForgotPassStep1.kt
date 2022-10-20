@@ -42,7 +42,7 @@ class ForgotPassStep1 : Fragment() {
             }
         }
 
-        val regFragment2 = ForgotPassStep4()
+        val regFragment2 = ForgotPassStep5()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if(binding?.moNoEdit?.text!=null && !binding?.moNoEdit?.text?.toString().isNullOrEmpty() &&
