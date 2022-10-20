@@ -45,10 +45,14 @@ class RegistrationThirdStep : Fragment() {
         }
         view.findViewById<View>(R.id.register).setOnClickListener {
             Utils.hideKeyboard(requireContext(), it)
+
+            Utils.clearBackStack(requireActivity())
+            addFragment(regFragment2)
+
 //            if (!progressDialog.isShowing)
 //                progressDialog.show()
-            setObserver(view)
-            registrationViewModel.registerUser()
+//            setObserver(view)
+//            registrationViewModel.registerUser()
         }
     }
 
@@ -61,9 +65,7 @@ class RegistrationThirdStep : Fragment() {
             if (it.status.equals("success")) {
 
                 activity?.let {
-                    val name: String? = requireActivity().supportFragmentManager.getBackStackEntryAt(0).name
-                    requireActivity().supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
+                    Utils.clearBackStack(requireActivity())
                     addFragment(regFragment2)
                 }
             }
