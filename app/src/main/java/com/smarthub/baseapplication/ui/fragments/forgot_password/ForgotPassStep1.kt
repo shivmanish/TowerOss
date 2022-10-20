@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.ForgotPassStep2FragmentBinding
 import com.smarthub.baseapplication.databinding.ForgotPasswordFragmentBinding
 import com.smarthub.baseapplication.utils.Utils
 
@@ -19,30 +20,37 @@ import com.smarthub.baseapplication.utils.Utils
  */
 @Suppress("DEPRECATION")
 class ForgotPassStep1 : Fragment() {
-    var binding : ForgotPasswordFragmentBinding?=null
+    var binding : ForgotPassStep2FragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.forgot_password_fragment, container, false)
-        binding = ForgotPasswordFragmentBinding.bind(view)
+        var view = inflater.inflate(R.layout.forgot_pass_step2_fragment, container, false)
+        binding = ForgotPassStep2FragmentBinding.bind(view)
         return view
 
+    }
+
+    fun enableErrorMsg(){
+        binding?.errorMessage?.visibility = View.VISIBLE
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<View>(R.id.back).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
+        view.findViewById<View>(R.id.back).setOnClickListener { view ->
+            Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 it.onBackPressed()
             }
         }
 
-        val regFragment2 = ForgotPassStep2()
+        val regFragment2 = ForgotPassStep4()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-            activity?.let{
-               addFragment(regFragment2)
-            }
+            if(binding?.moNoEdit?.text!=null && !binding?.moNoEdit?.text?.toString().isNullOrEmpty() &&
+                binding?.moNoEdit?.text?.toString()?.length == 10) {
+                activity?.let {
+                    addFragment(regFragment2)
+                }
+            }else enableErrorMsg()
         }
 
         binding?.moNoEdit?.addTextChangedListener(object : TextWatcher {
