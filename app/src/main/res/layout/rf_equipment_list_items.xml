@@ -1,39 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <ScrollView
+    <TextView
+        android:id="@+id/item_title"
+        android:text="SO Details"
+        android:paddingStart="@dimen/dp10"
+        android:paddingEnd="@dimen/dp10"
+        style="@style/RowTestItemEdit"
+        android:textColor="@color/light_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="0.37"
+        android:background="@color/light_gray"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginStart="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"/>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:paddingBottom="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp15"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <GridLayout
                 android:columnCount="2"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="OPCO Name"
+                        android:text="Equipment Name"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="Vodafone Idea Ltd."
+                        android:text="RRH"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -45,108 +66,18 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="OPCO Site ID"
+                        android:text="Model"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="GUJ_VIL_SC_1026   "
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="OPCO Site Name"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="VI Store - Naranpura"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="OPCO Site Status"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="On-Air"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="OPCO Site Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Small Cell"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Network Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Mobility"
+                        android:text="xxxx"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -160,17 +91,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="RFI Acceptance Date"
+                        android:text="Serial Number"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="05-Oct-2018"
+                        android:text="S3058940"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -183,17 +115,18 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="RFR Date"
+                        android:text="Make"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="10-Nov-2018"
+                        android:text="xxxx"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -207,17 +140,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="OPCO Sign-off Date"
+                        android:text="Technology"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="15-Nov-2018"
+                        android:text="3G"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -230,21 +164,22 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Committed NWA"
+                        android:text="Band"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="99.95"
+                        android:text="1800 GHz"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:drawableEnd="@drawable/icon_vector"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -254,63 +189,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Alarm Extension"
+                        android:text="Owner Company"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="Yes"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="RF Technology"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="4G LTE"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Telecom Equipment Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Indoor"
+                        android:text="CloudExtel"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -323,130 +213,13 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="RRU Count"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="3"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Sector Count"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="3"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Rack Count"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="2"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Antenna Count"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="5"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Antenna Slot Used"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="4"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Installation Vendor"
+                        android:text="User Company"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -463,18 +236,44 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Maintenance Vendor"
+                        android:text="Operating Temp"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="Ericssion"
+                        android:text="Min -    |    Max -"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="10-Nov-22"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -488,17 +287,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Backhaul Technology"
+                        android:text="Operational Status"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="Fiber"
+                        android:text="Live"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -511,20 +311,22 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Site In-charge Name"
+                        android:text="Max Power Rating"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="Mohan Patil"
+                        android:text="1.2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -534,20 +336,22 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Site In-charge Email ID"
+                        android:text="Weight"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="mohan.patil@vil.com"
+                        android:text="1.2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -556,20 +360,22 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Site In-charge Number"
+                        android:text="Rack Space Used"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="9890000009"
+                        android:text="3U"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -578,32 +384,47 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Rack Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="R1"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
             </GridLayout>
 
-            <LinearLayout
+            <TextView
+                android:text="Remark"
+                android:layout_marginStart="@dimen/dp10"
+                style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:hint="Type Here"
+                android:textSize="15sp"
+                android:layout_margin="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:text="Operator’s Maintenance Location"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="87, Naranpura, Gujrat - xxxx"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-
-            <include layout="@layout/layout_img_attachment"/>
+            <include
+                layout="@layout/layout_img_attachment"/>
 
             <TextView
                 app:layout_constraintStart_toStartOf="parent"
@@ -621,8 +442,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/login_yellow_bg"
                 app:layout_constraintTop_toBottomOf="@+id/items_list"/>
-
         </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>

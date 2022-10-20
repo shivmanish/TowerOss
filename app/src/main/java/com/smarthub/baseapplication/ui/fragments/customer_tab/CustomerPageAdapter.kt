@@ -4,10 +4,12 @@ package com.smarthub.baseapplication.ui.fragments.customer_tab
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 
 class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 4
+        return 5
     }
 
     override fun getItem(position: Int): Fragment {
@@ -16,13 +18,16 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
                 return CustomerInfo()
             }
             1 -> {
-                return CustomerInfo()
+                return CommercialFragment()
             }
             2 -> {
-                return CustomerInfo()
+                return RfEquipmentFragment()
             }
             3 -> {
-                return CustomerTempTab()
+                return BackhaulFragment()
+            }
+            4 -> {
+                return RfAntinaFragment()
             }
             else -> {
                 return CustomerInfo()
@@ -43,6 +48,9 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             }
             3 -> {
                 return "Backhaul"
+            }
+            4 -> {
+                return "RF Anteena"
             }
         }
         return super.getPageTitle(position)

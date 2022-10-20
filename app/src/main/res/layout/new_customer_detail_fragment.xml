@@ -202,7 +202,7 @@
                 android:layout_height="@dimen/dp38"
                 android:background="@color/tab_deselected"
                 android:layout_gravity="bottom"
-                app:tabMode="fixed"
+                app:tabMode="scrollable"
                 app:tabPaddingEnd="@dimen/dp5"
                 app:tabPaddingStart="@dimen/dp5"
                 app:layout_constraintTop_toTopOf="parent"

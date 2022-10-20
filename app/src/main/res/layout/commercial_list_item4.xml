@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_title"
+        android:text="SO Details"
+        android:paddingStart="@dimen/dp10"
+        android:paddingEnd="@dimen/dp10"
+        android:paddingTop="@dimen/dp10"
+        style="@style/RowTestItemEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="0.37"
+        android:background="#263238"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp20" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_margin="5dp"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="vertical"
+            tools:itemCount="3"
+            android:id="@+id/list_item"
+            tools:listitem="@layout/commercial_list_invoice_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </LinearLayout>
+</LinearLayout>

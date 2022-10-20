@@ -34,14 +34,19 @@ class AtpListAdapter(var listener: QatListListener) : RecyclerView.Adapter<AtpLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view: View
-        if (viewType == VIEW_TYPE_1) {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.atp_view_type_1, parent, false)
-            return ViewType1(view,listener)
-        }else if (viewType == VIEW_TYPE_2) {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.atp_view_type_2, parent, false)
-            return ViewType2(view,listener)
+        when (viewType) {
+            VIEW_TYPE_1 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.atp_view_type_1, parent, false)
+                return ViewType1(view,listener)
+            }
+            VIEW_TYPE_2 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.atp_view_type_2, parent, false)
+                return ViewType2(view,listener)
+            }
+            else -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty, parent, false)
+            }
         }
-        else view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty, parent, false)
         return ViewHold(view,listener)
     }
 
