@@ -37,18 +37,19 @@ class DashboardActivity : BaseActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
-        mainViewModel.isActionbarHide.observe(this, Observer {
-            if (it)
-            binding.searchBoxContainer.mainActionBar.visibility = View.GONE
-            else
+//        mainViewModel.isActionbarHide.observe(this, Observer {
+//            if (it)
+//            binding.searchBoxContainer.mainActionBar.visibility = View.GONE
+//            else
                 binding.searchBoxContainer.mainActionBar.visibility = View.VISIBLE
-        })
+//        })
 
         findViewById<View>(R.id.search).setOnClickListener {
             var intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
         }
 
+//        navController.navigate(R.id.navigation_menu)
         AppLogger.log("access token :" + AppPreferences.getInstance().token)
         AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
     }

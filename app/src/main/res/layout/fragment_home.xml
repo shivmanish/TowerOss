@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.fragments.home.HomeFragment">
 
     <LinearLayout
@@ -16,23 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp8"
-            android:text="@string/site_name_uid"
-            android:textColor="@color/search_star_color"
-            android:fontFamily="@font/montserrat"
-            android:textSize="@dimen/sp10" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp8"
-            android:text="@string/search_site"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat"
-            android:textSize="@dimen/sp15" />
 
         <include
             android:id="@+id/search_box_container"
