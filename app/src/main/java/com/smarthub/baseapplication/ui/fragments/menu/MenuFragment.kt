@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
 import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.profile.ProfileActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class MenuFragment : Fragment() {
@@ -36,7 +37,7 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileCard.setOnClickListener {
-            var intent = Intent(requireContext(), NewCustomerDetailsActivity::class.java)
+            var intent = Intent(requireContext(), ProfileActivity::class.java)
             requireActivity().startActivity(intent)
         }
         binding.setting.setOnClickListener {
