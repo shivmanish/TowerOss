@@ -34,7 +34,7 @@ class OtpVerificationStep3 : Fragment() {
 
     }
 
-    fun enableErrorText(){
+    private fun enableErrorText(){
         binding?.validationError?.visibility = View.VISIBLE
     }
 
