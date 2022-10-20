@@ -37,8 +37,7 @@ class ForgotPassStep1 : Fragment() {
             }
         }
 
-        val regFragment2 =
-            com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep2()
+        val regFragment2 = ForgotPassStep2()
         view.findViewById<View>(R.id.next_layout).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{

@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.databinding.ActivitySettingBinding
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
-   private  var binding: ActivityForgotPasswordBinding?=null
+   private var binding: ActivityForgotPasswordBinding?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);

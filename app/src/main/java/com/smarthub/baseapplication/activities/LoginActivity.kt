@@ -26,6 +26,15 @@ class LoginActivity : BaseActivity() {
     var binding : ActivityLoginBinding?=null
     private var loginViewModel : LoginViewModel?=null
     private var user : User?=null
+
+//    override fun onBackPressed() {
+//        if (supportFragmentManager.backStackEntryCount === 0) {
+//            super.onBackPressed()
+//        } else {
+//            supportFragmentManager.popBackStack()
+//        }
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -43,8 +52,7 @@ class LoginActivity : BaseActivity() {
 
         binding?.forgotPassword?.setOnClickListener {
             Utils.hideKeyboard(this,it)
-            val regFragment1 =
-                com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1()
+            val regFragment1 = ForgotPassStep1()
             addFragment(regFragment1)
         }
 
@@ -76,14 +84,14 @@ class LoginActivity : BaseActivity() {
                     Toast.makeText(this@LoginActivity,"error:"+it.message,Toast.LENGTH_LONG).show()
                     loginViewModel?.loginResponse?.removeObservers(this)
                     val regFragment1 = LoginSecondStep()
-                    addFragment(regFragment1)
+                    addWithoutStackFragment(regFragment1)
                 }
             }
             else{
                 Toast.makeText(this@LoginActivity,AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
                 loginViewModel?.loginResponse?.removeObservers(this)
                 val regFragment1 = LoginSecondStep()
-                addFragment(regFragment1)
+                addWithoutStackFragment(regFragment1)
 
             }
 
@@ -93,7 +101,7 @@ class LoginActivity : BaseActivity() {
         loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
     }
 
-    fun addFragment(fragment: Fragment?) {
+    fun addWithoutStackFragment(fragment: Fragment?) {
         val manager = supportFragmentManager
             val transaction = manager.beginTransaction()
             transaction.setCustomAnimations(
@@ -104,6 +112,24 @@ class LoginActivity : BaseActivity() {
             )
             transaction.add(R.id.fragmentContainerView, fragment!!)
             transaction.commit()
+    }
+
+    fun addFragment(fragment: Fragment?) {
+        val backStateName: String = supportFragmentManager.javaClass.name
+        val manager = supportFragmentManager
+        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+        if (!fragmentPopped) {
+            val transaction = manager.beginTransaction()
+            transaction.setCustomAnimations(
+                R.anim.enter,
+                R.anim.exit,
+                R.anim.pop_enter,
+                R.anim.pop_exit
+            )
+            transaction.replace(R.id.fragmentContainerView, fragment!!)
+            transaction.addToBackStack(backStateName)
+            transaction.commit()
+        }
     }
 
 }
