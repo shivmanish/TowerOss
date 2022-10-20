@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:id="@+id/fragmentContainerView"
-xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:id="@+id/fragmentContainerView"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/register_bg"/>
     <LinearLayout
         android:orientation="vertical"
@@ -212,8 +213,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:hint="Mobile Number"
                     android:textSize="15sp"
                     android:id="@+id/mo_no"
+                    android:maxEms="10"
                     android:inputType="number"
                     android:layout_height="@dimen/dp45"
+                    android:letterSpacing="0.2"
                     android:layout_width="match_parent"
                     style="@style/registratio_first_box"
                     app:layout_constraintBottom_toTopOf="@+id/email_id"/>

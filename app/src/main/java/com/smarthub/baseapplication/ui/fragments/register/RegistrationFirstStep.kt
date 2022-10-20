@@ -2,6 +2,8 @@ package com.smarthub.baseapplication.ui.fragments.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,27 +21,19 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 class RegistrationFirstStep : Fragment() {
     lateinit var loginViewModel: LoginViewModel
     lateinit var registrationFirstStepBinding: RegistrationFirstStepBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         registrationFirstStepBinding =
             RegistrationFirstStepBinding.inflate(inflater, container, false)
-        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         return registrationFirstStepBinding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registrationFirstStepBinding.textRegister.setOnClickListener {
-            Utils.hideKeyboard(requireContext(), it)
+        registrationFirstStepBinding.textRegister.setOnClickListener { view ->
+            Utils.hideKeyboard(requireContext(), view)
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -94,6 +88,16 @@ class RegistrationFirstStep : Fragment() {
             Utils.hideKeyboard(requireContext(), it)
             addFragment(regFragment2)
         }
+
+
+        registrationFirstStepBinding?.moNo?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (registrationFirstStepBinding?.moNo?.text.toString().isNotEmpty() && registrationFirstStepBinding?.moNo?.text.toString().length>=10)
+                    Utils.hideKeyboard(requireContext(),registrationFirstStepBinding?.moNo!!)
+            }
+        })
     }
 
     fun addFragment(fragment: Fragment?) {

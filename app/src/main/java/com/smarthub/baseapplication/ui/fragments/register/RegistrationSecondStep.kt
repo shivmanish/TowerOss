@@ -2,12 +2,13 @@ package com.smarthub.baseapplication.ui.fragments.register
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.smarthub.baseapplication.activities.LoginActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.utils.Utils
 
 
@@ -27,8 +28,8 @@ class RegistrationSecondStep : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val loginButton = view.findViewById<View>(R.id.text_register)
-        loginButton.setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
+        loginButton.setOnClickListener { view ->
+            Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 val intent = Intent (it, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -37,7 +38,7 @@ class RegistrationSecondStep : Fragment() {
         }
 
         val regFragment2 = RegistrationThirdStep()
-        view.findViewById<View>(R.id.register).setOnClickListener {
+        view.findViewById<View>(R.id.next).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             addFragment(regFragment2)
         }

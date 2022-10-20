@@ -1,11 +1,13 @@
 package com.smarthub.baseapplication.ui.fragments.register
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.smarthub.baseapplication.R
@@ -15,30 +17,26 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 @Suppress("DEPRECATION")
 class RegistrationThirdStep : Fragment() {
+    lateinit var progressDialog : ProgressDialog
     lateinit var registrationViewModel: LoginViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.registration_third_step, container, false)
-        registrationViewModel =
-            ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        registrationViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         return view
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(true)
+
         val loginButton = view.findViewById<View>(R.id.text_register)
-        loginButton.setOnClickListener {
-            Utils.hideKeyboard(requireContext(), it)
+        loginButton.setOnClickListener { view ->
+            Utils.hideKeyboard(requireContext(), view)
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -47,25 +45,32 @@ class RegistrationThirdStep : Fragment() {
         }
         view.findViewById<View>(R.id.register).setOnClickListener {
             Utils.hideKeyboard(requireContext(), it)
+//            if (!progressDialog.isShowing)
+//                progressDialog.show()
             setObserver(view)
             registrationViewModel.registerUser()
-
-//
         }
     }
 
-    val regFragment2 = RegistrationSuccessfull()
+    private val regFragment2 = RegistrationSuccessfull()
 
-    fun setObserver(view: View) {
-        registrationViewModel.regstationResponse!!.observe(requireActivity()) {
+    private fun setObserver(view: View) {
+        registrationViewModel.regstationResponse!!.observe(viewLifecycleOwner) {
+//            if (progressDialog.isShowing)
+//                progressDialog.dismiss()
             if (it.status.equals("success")) {
+
                 activity?.let {
+                    val name: String? = requireActivity().supportFragmentManager.getBackStackEntryAt(0).name
+                    requireActivity().supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
                     addFragment(regFragment2)
                 }
-            } else {
+            }
+            else {
                 if (it.Errors != null) {
                     Snackbar.make(
-                        view.findViewById<View>(R.id.register),
+                        view.findViewById(R.id.register),
                         it.Errors!!,
                         Snackbar.LENGTH_LONG
                     ).show()
