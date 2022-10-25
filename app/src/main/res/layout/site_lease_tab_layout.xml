@@ -15,6 +15,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/parentRelative"
         android:padding="@dimen/dp8"
         android:background="@drawable/rectangle_5"
 
