@@ -40,7 +40,7 @@
         <item>@drawable/backhaul</item>
         <item>@drawable/utilities</item>
     </integer-array>
-    <string name="app_name">Tower OSS</string>
+    <string name="app_name">TowerOSS</string>
     <string name="setting">Setting</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->

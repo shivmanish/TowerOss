@@ -25,7 +25,9 @@ class NewCustomerDetailsActivity : BaseActivity() {
     }
 
     private fun initViews(){
-
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
         binding.viewpager.adapter = CustomerPageAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
