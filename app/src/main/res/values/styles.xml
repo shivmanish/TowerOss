@@ -10,7 +10,7 @@
         </item>
 
     </style>
-
+<!--comment added-->
     <style name="AutoResizeTextView" parent="Widget.AppCompat.TextView">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMinTextSize">5sp</item>
