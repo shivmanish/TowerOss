@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+
+
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:id="@+id/parentRelative"
+        android:padding="@dimen/dp8"
+        android:background="@drawable/rectangle_5"
+
+        android:layout_margin="@dimen/dp12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/lnLayout"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight=".7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Reliance jio pvt ltd"
+                android:textAppearance="@style/RowTestItemEdit"
+                android:lineSpacingExtra="2sp"
+                android:gravity="center_vertical"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/lnLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight=".7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="#DEL-VIL-SC-0001"
+                android:textAppearance="@style/RowTextItemInfo"
+                android:lineSpacingExtra="2sp"
+                android:gravity="center_vertical"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Smell Cell | "
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="ODC | "
+                    android:textColor="#3D4E6D"
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:textColor="#3D4E6D"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Fiber | "
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/dp5"
+                android:id="@+id/bg_dark"
+                android:alpha=".21"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/bg_dark"
+                />
+            <LinearLayout
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/dp5"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_weight=".5"
+                    android:orientation="horizontal"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="RFI Date:"
+                        android:textAppearance="@style/RowTextItemInfo"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text=" 5-Nov-2018"
+                        android:textColor="@color/color1"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_gravity="end"
+                    android:layout_weight=".5"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="RFS Date:"
+                        android:textAppearance="@style/RowTextItemInfo"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text=" 10-Nov-2018"
+                        android:textColor="@color/color1"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
