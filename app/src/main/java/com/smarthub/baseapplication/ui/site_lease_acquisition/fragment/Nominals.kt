@@ -25,11 +25,9 @@ class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
         var adapter =  ImageAttachmentAdapter(this@Nominals)
         recyclerListener.adapter = adapter
-
         view.findViewById<View>(R.id.attach_card).setOnClickListener {
             adapter.addItem()
         }
