@@ -18,7 +18,6 @@ class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     var binding : NominalsFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         binding = NominalsFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
