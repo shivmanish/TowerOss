@@ -17,22 +17,30 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.fragments.qat.QATCheckActivity"
+            android:name=".NewSiteActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
+        <activity
+            android:name=".ui.fragments.qat.QATCheckActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".ui.fragments.customer_tab.NewCustomerDetailsActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,7 +50,7 @@
             android:label="@string/setting" />
         <activity
             android:name=".ui.fragments.profile.EditProfileActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.LanguageActivity"
             android:exported="true"
@@ -61,11 +69,10 @@
             android:label="@string/setting" />
         <activity
             android:name=".activities.DashboardActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.FAQActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
