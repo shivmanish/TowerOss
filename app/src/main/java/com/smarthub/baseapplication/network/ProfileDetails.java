@@ -3,6 +3,9 @@ package com.smarthub.baseapplication.network;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class ProfileDetails {
     @SerializedName("first_name")
     @Expose
@@ -27,6 +30,39 @@ public class ProfileDetails {
     @SerializedName("active")
     @Expose
     private String active;
+
+    @SerializedName("national")
+    @Expose
+    private String national;
+
+    @SerializedName("region")
+    @Expose
+    private List<String> region;
+
+    @SerializedName("state")
+    @Expose
+    private List<String> state;
+
+    @SerializedName("maintenancepoint")
+    @Expose
+    private List<String> maintenancepoint;
+
+    @SerializedName("roles")
+    @Expose
+    private List<String> roles;
+
+    @SerializedName("priviledgename")
+    @Expose
+    private List<String> priviledgename;
+
+    @SerializedName("department")
+    @Expose
+    private List<String> department;
+
+    @SerializedName("communicationAddress")
+    @Expose
+    private HashMap<String,String> communicationAddress;
+
 
 
     public String getId() {
@@ -75,5 +111,32 @@ public class ProfileDetails {
 
     public String getActive() {
         return active;
+    }
+    public String getNational() {
+        return national;
+    }
+    public List<String> getRegion() {
+        return region;
+    }
+    public List<String> getState() {
+        return state;
+    }
+    public List<String> getMaintenancepoint() {
+        return maintenancepoint;
+    }
+    public String getRoles()
+    { String listroles = String.join(", ", roles);
+        return listroles;
+    }
+    public String getDepartment(){
+        String listdepartment = String.join(", ", department);
+        return listdepartment;}
+
+    public HashMap<String, String> getCommunicationAddress() {
+        return communicationAddress;
+    }
+
+    public List<String> getPriviledgename() {
+        return priviledgename;
     }
 }
