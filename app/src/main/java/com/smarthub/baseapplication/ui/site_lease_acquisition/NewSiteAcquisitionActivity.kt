@@ -1,12 +1,11 @@
-package com.smarthub.baseapplication.activities
+package com.smarthub.baseapplication.ui.site_lease_acquisition
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
-import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerPageAdapter
 import kotlinx.android.synthetic.main.new_customer_detail_fragment.*
@@ -29,7 +28,7 @@ class NewSiteAcquisitionActivity : BaseActivity() {
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.viewpager.adapter = CustomerPageAdapter(supportFragmentManager)
+        binding.viewpager.adapter = SiteLeaseAcquisitionAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()
