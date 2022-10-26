@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.basic_info.fragment.BasicInfo
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Agreements
+import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Feasibility
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Nominals
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.TeamVendor
 
@@ -26,7 +27,7 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return Agreements()
             }
             3 -> {
-                return BasicInfo()
+                return Feasibility()
             }
             else -> {
                 return BasicInfo()
@@ -37,16 +38,18 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "Basic Info"
+                return "Nominals"
             }
             1 -> {
-                return "Operational Info"
+                return "Team/ Vendor"
             }
             2 -> {
-                return "Geo Conditions"
+                return "Feasibility"
             }
             3 -> {
-                return "Safaty/Access"
+                return "Agreements"
+            }  4 -> {
+                return "Payment"
             }
         }
         return super.getPageTitle(position)
