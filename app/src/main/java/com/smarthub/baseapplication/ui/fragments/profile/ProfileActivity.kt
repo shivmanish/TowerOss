@@ -64,6 +64,11 @@ class ProfileActivity : BaseActivity() {
         dataBinding?.textMessage?.text = "${profileDetails.email}"
         dataBinding?.textYellow?.text = "${profileDetails.id}"
         dataBinding?.textActive?.text = "${profileDetails.active}"
+        dataBinding?.textRole?.text="${profileDetails.roles}"
+        dataBinding?.textSDepartment?.text="${profileDetails.department}"
+
+
+
 
 //        dataBinding?.textRole?.text = "${profileDetails?.}"
     }
