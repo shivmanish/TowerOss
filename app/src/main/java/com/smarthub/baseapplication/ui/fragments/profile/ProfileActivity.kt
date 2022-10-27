@@ -26,15 +26,16 @@ class ProfileActivity : BaseActivity() {
 
     private var dataBinding : ActivityProfileBinding?=null
     private var profileViewModel : ProfileViewModel?=null
-    private var user : User?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         dataBinding = ActivityProfileBinding.inflate(layoutInflater)
-        profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
+
         setContentView(dataBinding?.root)
         showLoader()
+        profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
         profileViewModel?.getProfileData(UserProfileGet("7269024641"))
         profileViewModel?.profileResponse?.observe(this) {
             hideLoader()

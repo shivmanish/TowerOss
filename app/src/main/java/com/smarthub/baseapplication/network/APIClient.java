@@ -9,11 +9,13 @@ import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -39,6 +41,9 @@ public interface APIClient {
 
     @POST(EndPoints.REGISTRATION)
     Call<RegstationResponse> registration(@Body RegisterData data);
+
+    @GET(EndPoints.SITE_INFO_DROP_DOWN)
+    Call<SiteInfoDropDownData> siteInfoDropDown();
 
 
 
