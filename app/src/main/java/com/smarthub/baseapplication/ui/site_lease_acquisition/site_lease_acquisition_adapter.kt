@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.TeamVendo
 
 class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 4
+        return 5
     }
 
     override fun getItem(position: Int): Fragment {
@@ -30,7 +30,7 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return Feasibility()
             }
             else -> {
-                return BasicInfo()
+                return Nominals()
             }
         }
     }
@@ -48,8 +48,9 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
             }
             3 -> {
                 return "Agreements"
-            }  4 -> {
-                return "Payment"
+            }
+            4 -> {
+                return "Nominals"
             }
         }
         return super.getPageTitle(position)
