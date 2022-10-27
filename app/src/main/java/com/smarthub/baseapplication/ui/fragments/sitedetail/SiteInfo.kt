@@ -43,7 +43,7 @@ class SiteInfo : Fragment() {
                 } else {
                     Log.d("status", "${it.message}")
                     Toast.makeText(requireActivity(), "error:" + it.message, Toast.LENGTH_LONG).show()
-    
+
                 }
             } else {
                 Log.d("status", "${AppConstants.GENERIC_ERROR}")
