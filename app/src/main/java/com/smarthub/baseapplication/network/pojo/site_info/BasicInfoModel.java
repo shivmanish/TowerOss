@@ -9,6 +9,10 @@ public class BasicInfoModel {
     @Expose
     private SiteInfoStatusData basicInfo;
 
+    @SerializedName("Sitecategory")
+    @Expose
+    private SiteInfoStatusData siteCategories;
+
 
 
 }

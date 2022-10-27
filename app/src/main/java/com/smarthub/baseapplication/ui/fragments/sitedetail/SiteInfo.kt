@@ -18,7 +18,7 @@ import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class SiteInfo : Fragment() {
 
-    var profileViewModel : SiteInfoViewModel?=null
+    var siteViewModel : SiteInfoViewModel?=null
     var binding : SiteInfoRedetailBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -31,9 +31,9 @@ class SiteInfo : Fragment() {
         binding?.listView?.adapter = SiteInfoCardItemAdapter()
 
 
-        profileViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
-        profileViewModel?.fetchDropDown()
-        profileViewModel?.dropDownResponse?.observe(viewLifecycleOwner) {
+        siteViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
+            siteViewModel?.fetchDropDown()
+            siteViewModel?.dropDownResponse?.observe(viewLifecycleOwner) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
@@ -43,7 +43,7 @@ class SiteInfo : Fragment() {
                 } else {
                     Log.d("status", "${it.message}")
                     Toast.makeText(requireActivity(), "error:" + it.message, Toast.LENGTH_LONG).show()
-
+    
                 }
             } else {
                 Log.d("status", "${AppConstants.GENERIC_ERROR}")
