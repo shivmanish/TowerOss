@@ -21,7 +21,7 @@
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/rvSiteLease"
        android:layout_width="match_parent"
-       tools:listitem="@layout/site_lease_tab_layout"
+       tools:listitem="@layout/site_lease_list_item"
        android:layout_height="wrap_content">
 
    </androidx.recyclerview.widget.RecyclerView>
