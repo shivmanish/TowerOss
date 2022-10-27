@@ -42,6 +42,7 @@ public interface APIClient {
     @POST(EndPoints.REGISTRATION)
     Call<RegstationResponse> registration(@Body RegisterData data);
 
+//    Site Info Drop Down api integration
     @GET(EndPoints.SITE_INFO_DROP_DOWN)
     Call<SiteInfoDropDownData> siteInfoDropDown();
 

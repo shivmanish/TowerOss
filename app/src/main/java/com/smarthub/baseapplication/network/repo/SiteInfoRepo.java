@@ -3,7 +3,6 @@ package com.smarthub.baseapplication.network.repo;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
-import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppConstants;
@@ -18,7 +17,7 @@ public class SiteInfoRepo {
     private final APIClient apiClient;
     private static SiteInfoRepo sInstance;
     private static final Object LOCK = new Object();
-    private SingleLiveEvent<Resource<SiteInfoDropDownData>> profileResponse;
+    private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
 
     public static SiteInfoRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -31,14 +30,14 @@ public class SiteInfoRepo {
 
     public SiteInfoRepo(APIClient apiClient) {
         this.apiClient = apiClient;
-        profileResponse = new SingleLiveEvent<>();
+        dropDownResoonse = new SingleLiveEvent<>();
     }
 
-    public SingleLiveEvent<Resource<SiteInfoDropDownData>> getProfileResponse() {
-        return profileResponse;
+    public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
+        return dropDownResoonse;
     }
 
-    public void getProfileData() {
+    public void siteInfoDropDown() {
 
         apiClient.siteInfoDropDown().enqueue(new Callback<SiteInfoDropDownData>() {
             @Override
@@ -62,18 +61,18 @@ public class SiteInfoRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
 //                    Logger.getLogger("ProfileRepo").warning(response.toString());
-                    profileResponse.postValue(Resource.success(response.body(), 200));
+                    dropDownResoonse.postValue(Resource.success(response.body(), 200));
 
                 }
             }
 
             private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
                 if (response != null) {
-                    profileResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                    dropDownResoonse.postValue(Resource.error(response.getMessage(), null, 400));
                 } else if (iThrowableLocalMessage != null)
-                    profileResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    dropDownResoonse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    profileResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    dropDownResoonse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

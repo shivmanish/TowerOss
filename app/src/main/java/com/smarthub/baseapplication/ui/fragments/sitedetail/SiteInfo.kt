@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.SiteInfoRedetailBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteInfoCardItemAdapter
 import com.smarthub.baseapplication.utils.AppConstants
@@ -33,8 +32,8 @@ class SiteInfo : Fragment() {
 
 
         profileViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
-        profileViewModel?.getProfileData()
-        profileViewModel?.profileResponse?.observe(viewLifecycleOwner) {
+        profileViewModel?.fetchDropDown()
+        profileViewModel?.dropDownResponse?.observe(viewLifecycleOwner) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
