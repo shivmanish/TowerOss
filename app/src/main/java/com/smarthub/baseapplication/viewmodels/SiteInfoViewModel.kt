@@ -9,24 +9,20 @@ import com.smarthub.baseapplication.model.profile.UserProfileUpdate
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.ProfileDetails
 import com.smarthub.baseapplication.network.ProfileUpdate
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.ProfileRepo
+import com.smarthub.baseapplication.network.repo.SiteInfoRepo
 
-class ProfileViewModel: ViewModel() {
-    var profileRepo: ProfileRepo?=null
-    var profileResponse : SingleLiveEvent<Resource<List<ProfileDetails>>>?=null
-    var profileUpdate : SingleLiveEvent<Resource<ProfileUpdate>>?=null
+class SiteInfoViewModel: ViewModel() {
+    var profileRepo: SiteInfoRepo?=null
+    var profileResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     init {
-        profileRepo = ProfileRepo(APIInterceptor.get())
+        profileRepo = SiteInfoRepo(APIInterceptor.get())
         profileResponse = profileRepo?.profileResponse
-        profileUpdate = profileRepo?.profileUpdate
     }
-    fun getProfileData(data : UserProfileGet) {
-        profileRepo?.getProfileData(data)
+    fun getProfileData() {
+        profileRepo?.getProfileData()
     }
 
-    fun updateProfileData(data : UserProfileUpdate?){
-        Log.d("status","Update Profile Data in Profile View Model")
-        profileRepo?.updateProfileData(data)
-    }
 
 }

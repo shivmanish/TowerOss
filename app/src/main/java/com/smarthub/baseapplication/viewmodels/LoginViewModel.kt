@@ -14,8 +14,6 @@ import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.RefreshToken
 import com.smarthub.baseapplication.network.repo.LoginRepo
 import com.smarthub.baseapplication.utils.AppLogger
-import java.util.*
-import kotlin.collections.ArrayList
 import com.smarthub.baseapplication.network.repo.RegisterRepo
 
 class LoginViewModel: ViewModel() {
