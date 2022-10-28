@@ -64,7 +64,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:text="27-Jun-22" />
 
                     <View
@@ -194,7 +194,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:text="27-Jun-22" />
 
                     <View
@@ -220,7 +220,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:text="27-Jun-22" />
 
                     <View
@@ -349,7 +349,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/icon_vector"
+                        android:drawableRight="@drawable/icon_date"
                         android:text="27-Jun-22" />
 
                     <View
