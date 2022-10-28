@@ -32,12 +32,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Airtel"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinRequestCompany"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -54,13 +55,14 @@
                         android:text="Temp ID"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Airtel001"
-                        style="@style/RowTestItemEdit"
+                    android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinTeamId"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -133,12 +135,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="2"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinProposedSelectedCount"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -156,12 +159,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="80 m"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinProposedAntinaHeight"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -180,12 +184,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Small Cell"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinPropertySiteType"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -203,12 +208,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Outdoor"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinTelecomEquipmentType"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -227,12 +233,15 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="22.968035,76.085596"
-                        style="@style/RowTestItemEdit"
+
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinNorminalLatLong"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="22.968035,76.085596" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -250,12 +259,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="4"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAntennaSlotUsed"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="22.968035,76.085596" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -322,12 +332,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="modan.patil@vil.com"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinExecutiveEmailID"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -345,11 +356,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="9890000009"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinExecutiveNumber"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -371,7 +383,7 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <EditText
                     android:text=""
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
