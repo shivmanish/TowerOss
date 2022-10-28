@@ -105,12 +105,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="PO Amount"
+                            android:text="Building Build Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="8,000"
+                            android:text="Framed Structure"
                             style="@style/RowTestItemEdit"
                             android:drawableRight="@drawable/rupee_symbol"
                             android:layout_width="match_parent"
@@ -128,12 +128,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Vendor Executive Name"
+                            android:text="Site Access Area"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="Vishesh Sharma"
+                            android:text="Clear"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

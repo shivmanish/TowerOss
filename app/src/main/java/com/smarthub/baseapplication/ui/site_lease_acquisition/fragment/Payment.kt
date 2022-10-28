@@ -8,25 +8,26 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AgreementFragmentBinding
 import com.smarthub.baseapplication.databinding.BasicInfoFragmentBinding
 import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
-import com.smarthub.baseapplication.databinding.FeasibilityFragmentBinding
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
+import com.smarthub.baseapplication.databinding.PaymentFragmentBinding
 import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
 import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class Feasibility :Fragment(), ImageAttachmentAdapter.ItemClickListener {
-    var binding : FeasibilityFragmentBinding?=null
+class Payment :Fragment(), ImageAttachmentAdapter.ItemClickListener {
+
+    var binding : PaymentFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FeasibilityFragmentBinding.inflate(inflater, container, false)
+        binding = PaymentFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
-        var adapter =  ImageAttachmentAdapter(this@Feasibility)
+        var adapter =  ImageAttachmentAdapter(this@Payment)
         recyclerListener.adapter = adapter
         view.findViewById<View>(R.id.attach_card).setOnClickListener {
             adapter.addItem()
