@@ -37,7 +37,7 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
         fragmentSiteLeaseBinding.addmore.setOnClickListener{
             var arraydata = ArrayList<String>()
             arraydata.add("anything")
-          //  SiteLeaseDataAdapter.setData(arraydata)
+           siteLeaseDataAdapter.setData(arraydata)
         }
         viewmodel.fetchData()
         viewmodel.site_lease_data.observe(requireActivity(), Observer {
@@ -45,7 +45,7 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
             println("this is called data is $it")
             var arraydata = ArrayList<String>()
             arraydata.add(it)
-         //   SiteLeaseDataAdapter.setData(arraydata)
+            siteLeaseDataAdapter.setData(arraydata)
         })
     }
 

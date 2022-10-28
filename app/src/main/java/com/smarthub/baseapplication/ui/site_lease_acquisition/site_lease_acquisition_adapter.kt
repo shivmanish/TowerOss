@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.basic_info.fragment.BasicInfo
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Agreements
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Feasibility
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Nominals
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.TeamVendor
+import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.*
 
 class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
@@ -30,7 +27,7 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return Feasibility()
             }
             else -> {
-                return Nominals()
+                return Payment()
             }
         }
     }
@@ -50,7 +47,7 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return "Agreements"
             }
             4 -> {
-                return "Nominals"
+                return "Payments"
             }
         }
         return super.getPageTitle(position)

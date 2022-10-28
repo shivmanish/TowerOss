@@ -23,7 +23,7 @@ class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var array
 
     override fun onBindViewHolder(holder: SiteLeaseDataViewHolder, position: Int) {
 
-        holder.binding?.parentRelative?.setOnClickListener {
+        holder.binding?.sitelease?.setOnClickListener {
             listener.clickedItem()
         }
     }

@@ -28,6 +28,7 @@ import com.smarthub.baseapplication.databinding.TabItemBinding
 import com.smarthub.baseapplication.ui.fragments.sitedetail.*
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
+import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
@@ -202,7 +203,7 @@ class SiteDetailFragment : Fragment() {
         val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         adapter.addFragment(SiteInfo())
         adapter.addFragment(CustomerFragment.newInstance("Customer"))
-        adapter.addFragment(SiteLeaseFrag.newInstance("SiteLease"))
+        adapter.addFragment(SiteLeaseAcqusitionFragment.newInstance("SiteLease"))
         adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
         adapter.addFragment(UtilitiesFrag.newInstance("Utilities"))
 
