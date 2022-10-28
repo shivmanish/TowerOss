@@ -143,7 +143,7 @@
                    style="@style/RowTestItemEdit"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:drawableEnd="@drawable/icon_vector"/>
+                   android:drawableEnd="@drawable/icon_date"/>
                <View
                    android:alpha="0.37"
                    android:background="#263238"
@@ -167,7 +167,7 @@
                    style="@style/RowTestItemEdit"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:drawableEnd="@drawable/icon_vector"/>
+                   android:drawableEnd="@drawable/icon_date"/>
                <View
                    android:alpha="0.37"
                    android:background="#263238"
@@ -190,7 +190,7 @@
                    style="@style/RowTestItemEdit"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:drawableEnd="@drawable/icon_vector"/>
+                   android:drawableEnd="@drawable/icon_date"/>
                <View
                    android:alpha="0.37"
                    android:background="#263238"
@@ -214,7 +214,7 @@
                    style="@style/RowTestItemEdit"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:drawableEnd="@drawable/icon_vector"/>
+                   android:drawableEnd="@drawable/icon_date"/>
                <View
                    android:alpha="0.37"
                    android:background="#263238"

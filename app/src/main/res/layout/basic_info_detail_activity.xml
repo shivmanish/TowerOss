@@ -214,7 +214,7 @@
                 app:tabPaddingEnd="@dimen/dp5"
                 app:tabPaddingStart="@dimen/dp5"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tabTextAppearance="@style/AutoResizeTextView"
+                app:tabTextAppearance="@style/TabTextView"
                 />
 
             <androidx.viewpager.widget.ViewPager

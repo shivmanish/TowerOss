@@ -9,12 +9,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:paddingBottom="@dimen/dp10"
             android:layout_marginBottom="@dimen/dp15"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <GridLayout
                 android:columnCount="2"
                 android:orientation="horizontal"
@@ -28,16 +30,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Executive Name"
+                        android:text="Physical Security"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Mohan Patil"
+                    <EditText
+                        android:text="Available"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -51,16 +52,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Executive Email ID"
+                        android:text="Gate &amp; Fence"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="modan.patil@vil.com"
+                    <EditText
+                        android:text="Yes"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -75,67 +75,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Executive Number"
+                        android:text="Video Monitoring"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="9890000009"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_date"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Lead Name"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Ajay Verma"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                     />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-
-
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Lead Email ID"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="ajay.verma@vil.com"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
+                        android:id="@+id/video_monitoring_spinner"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View
@@ -151,12 +98,59 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Number"
+                        android:text="Site Access Area"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
+                        android:id="@+id/site_access_area_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
                     <TextView
-                        android:text="9890000008"
+                        android:text="Danger Signage"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="ETIPL"
+                        android:id="@+id/danger_signage_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Caution Signage"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text="Available"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -174,16 +168,16 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Mode"
+                        android:text="Site Access"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Outsource"
+                    <EditText
+                        android:text="Restricted Access"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -197,63 +191,16 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Type"
+                        android:text="Site Access Methodology"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Lease"
+                    <EditText
+                        android:text="Key with Owner"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Budget"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="8,000"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Target Date"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="27-Jun-22"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_date"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -268,16 +215,16 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Vendor Name"
+                        android:text="Nearby Police Station"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="V D Enterprises"
+                    <EditText
+                        android:text="Kapurwadi"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content"/>
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -291,16 +238,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="PO Number"
+                        android:text="Police Station Number"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="xxxx"
+                    <EditText
+                        android:text="022-21763538"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -309,182 +255,85 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        android:text="Nearby Fire Station"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
+                    <EditText
+                        android:text="Kapurwadi"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Fire Station Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:text="022-21763538"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
 
             </GridLayout>
+
+
             <LinearLayout
-                android:layout_width="match_parent"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+               android:visibility="gone"
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Office Address"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="102, Ahmedabad, Gujrat - xxxx"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-            <GridLayout
-                android:columnCount="2"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
+               <include layout="@layout/layout_img_attachment"/>
 
-                    <TextView
-                        android:text="PO Amount"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="8,000"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/rupee_symbol"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Vendor Executive Name"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Vishesh Sharma"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Vendor Executive Email ID"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="vishesh.sharma@vde.c..."
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_call"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Vendor Executive Number"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="989000323"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_call"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-
-
-
-
-
-
-            </GridLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Remarks"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-
-            <include layout="@layout/layout_img_attachment"/>
-
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Save/Update"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
-                android:backgroundTint="#3F4D67"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+               <TextView
+                   app:layout_constraintStart_toStartOf="parent"
+                   android:layout_width="match_parent"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:textColor="@color/white"
+                   android:text="Save/Update"
+                   android:textSize="14sp"
+                   android:layout_margin="@dimen/dp10"
+                   android:gravity="center"
+                   android:paddingTop="@dimen/dp10"
+                   android:paddingBottom="@dimen/dp10"
+                   android:backgroundTint="#3F4D67"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:background="@drawable/login_yellow_bg"
+                   app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+           </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
