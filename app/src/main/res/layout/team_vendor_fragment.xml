@@ -32,12 +32,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Mohan Patil"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAcquisitionExecutiveName"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -55,12 +56,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="modan.patil@vil.com"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinExecutiveEmailID"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -80,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="9890000009"
+                        android:hint="9890000009"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -105,8 +107,8 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Ajay Verma"
+                    <EditText
+                        android:hint="Ajay Verma"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -133,7 +135,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
                         android:text="ajay.verma@vil.com"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -155,7 +157,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
                         android:text="9890000008"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -178,12 +180,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Outsource"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAcquisitionMode"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -201,12 +203,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Lease"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAcquisitionType"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -225,12 +228,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
                         android:text="8,000"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -272,12 +274,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="V D Enterprises"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinVendorName"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -295,12 +298,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="xxxx"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinPONumber"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="1" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -323,8 +327,8 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="102, Ahmedabad, Gujrat - xxxx"
+                <EditText
+                    android:hint="102, Ahmedabad, Gujrat - xxxx"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -351,8 +355,8 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="8,000"
+                    <EditText
+                        android:hint="8,000"
                         style="@style/RowTestItemEdit"
                         android:drawableRight="@drawable/rupee_symbol"
                         android:layout_width="match_parent"
@@ -374,8 +378,8 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Vishesh Sharma"
+                    <EditText
+                        android:hint="Vishesh Sharma"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -396,7 +400,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
                         android:text="vishesh.sharma@vde.c..."
                         style="@style/RowTestItemEdit"
                         android:drawableRight="@drawable/ic_call"
@@ -420,7 +424,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
                         android:text="989000323"
                         style="@style/RowTestItemEdit"
                         android:drawableRight="@drawable/ic_call"
@@ -452,8 +456,8 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:text=""
+                <EditText
+                    android:hint=""
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
