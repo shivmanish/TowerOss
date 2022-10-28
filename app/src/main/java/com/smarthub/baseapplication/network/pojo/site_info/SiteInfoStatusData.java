@@ -15,5 +15,19 @@ public class SiteInfoStatusData {
     @Expose
     private List<DropDownItem> data;
 
+    public Boolean getSuccess() {
+        return success;
+    }
 
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+
+    public List<DropDownItem> getData() {
+        return data;
+    }
+
+    public void setData(List<DropDownItem> data) {
+        this.data = data;
+    }
 }

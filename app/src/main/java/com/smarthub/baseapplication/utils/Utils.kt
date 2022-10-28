@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -17,6 +18,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.register.Commucationaddess
 import com.smarthub.baseapplication.model.register.Officeaddress
 import com.smarthub.baseapplication.model.register.RegisterData
+import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem
 
 
 object Utils {
@@ -213,11 +215,7 @@ object Utils {
     }
 
     fun isValid(value: String):Boolean {
-        if (value != null && !value.trim().equals("") && !value.equals("Na", ignoreCase = true)){
-            return true
-        }else{
-            return false
-        }
+        return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
 
     }
 
