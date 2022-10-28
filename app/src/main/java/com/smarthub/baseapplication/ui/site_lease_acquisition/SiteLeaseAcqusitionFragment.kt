@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smarthub.baseapplication.databinding.FragmentSiteLeaseBinding
+import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapterListener
 
@@ -18,12 +18,12 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
 
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
-    lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseBinding
+    lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
     lateinit var viewmodel: SiteLeaseAcqusitionViewModel
     lateinit var siteLeaseDataAdapter: SiteLeaseDataAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragmentSiteLeaseBinding = FragmentSiteLeaseBinding.inflate(inflater, container, false)
+        fragmentSiteLeaseBinding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[SiteLeaseAcqusitionViewModel::class.java]
         initializeFragment()
         return fragmentSiteLeaseBinding.root
