@@ -14,695 +14,765 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:columnCount="2"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                app:layout_constraintTop_toTopOf="parent">
+
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Agreement Type"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Term Lease"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Agreement Type" />
 
-                    <TextView
-                        android:text="Registration Number"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Rxxxx"
+                    <EditText
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="Mangolpuri" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
 
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Registration Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Registration Date" />
+
                     <TextView
-                        android:text="27-Jun-22"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_vector"/>
+                        android:drawableEnd="@drawable/icon_vector"
+                        android:text="27-Jun-22" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
 
-
-
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Booking Cost Centre"
                         style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Cloudextel"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                     />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
+                        android:text="Registration Number" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinRegistrationNumberr"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
 
 
-
-
-
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Agreement Period"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="5 Years"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Booking Cost Centre" />
 
-                    <TextView
-                        android:text="Lock-in Period"
-                        style="@style/RowTextItemInfo"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/SpinBookingCost"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="2 Years"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
 
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Agreement effective Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Agreement Period" />
+
                     <TextView
-                        android:text="27-Jun-22"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_vector"/>
+                        android:text="5 Years" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Agreement Expiry Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Lock-in Period" />
+
                     <TextView
-                        android:text="27-Jun-22"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_vector"/>
+                        android:text="2 Years" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Rent Payment Frequency"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Agreement effective Date" />
+
                     <TextView
-                        android:text="Quarterly"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:drawableEnd="@drawable/icon_vector"
+                        android:text="27-Jun-22" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Periodic Rent Payable Amo..."
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Agreement Expiry Date" />
+
                     <TextView
-                        android:text="75,000"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:drawableEnd="@drawable/icon_vector"
+                        android:text="27-Jun-22" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Rent Escalation"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Rent Payment Frequency" />
+
                     <TextView
-                        android:text="10"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:text="Quarterly" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Rent Escalation Period"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Periodic Rent Payable Amo..." />
+
                     <TextView
-                        android:text="2 Year"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:text="75,000" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Last Escalation Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Rent Escalation" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/SpinRentEscalation"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
                     <TextView
-                        android:text="27-Jun-22"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rent Escalation Period" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinRentEscalationPeriod"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Last Escalation Date" />
+
+                    <TextView
                         style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:drawableRight="@drawable/icon_vector"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="27-Jun-22" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Last Revised Rent Amount"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Last Revised Rent Amount" />
+
                     <TextView
-                        android:text="3,00,000"
                         style="@style/RowTestItemEdit"
-                         android:drawableRight="@drawable/rupee_symbol"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="EB Inclusive in Rental"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Fully/ Partially/ Excluded.."
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="EB Bill Limit"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text=" Unit - xxxx"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
-                        android:drawableLeft="@drawable/rupee_symbol"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="EB Billing Basis                     %"
-                        style="@style/RowTextItemInfo"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Landlord Bill/ SubMeter.."
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="EB per unit Rate"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="12"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Property Ownership"
-                        style="@style/RowTextItemInfo"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Housing Society"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Property Acquired"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Building Roof/ Land"
-                        style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_arrow_down_black"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Onetime Amount"
-                        style="@style/RowTextItemInfo"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="6,000"
-                        style="@style/RowTestItemEdit"
+                        android:layout_height="wrap_content"
                         android:drawableRight="@drawable/rupee_symbol"
+                        android:text="3,00,000" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Security Deposit Amount"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="EB Inclusive in Rental" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinEBinclusiveRental"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
                     <TextView
-                        android:text="2,00,000"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EB Bill Limit" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinEBBillLimit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="EB Billing Basis                     %" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinEBBillingBasis"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EB per unit Rate" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinunitRent"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="Property Ownership" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/propertyOwenership"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Property Acquired" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinPropertyAcquired"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="Onetime Amount" />
+
+                    <TextView
                         style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
                         android:drawableRight="@drawable/rupee_symbol"
+                        android:text="6,000" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Rooftop acquired Area"
                         style="@style/RowTextItemInfo"
-
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                   <LinearLayout
-                       android:weightSum="1"
-                       android:orientation="horizontal"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:layout_weight=".5"
-                           android:text="3000"
-                           style="@style/RowTestItemEdit"
+                        android:layout_height="wrap_content"
+                        android:text="Security Deposit Amount" />
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                       <TextView
-                           android:layout_weight=".5"
-                           android:gravity="end"
-                           android:text="Sq. ft"
-                           style="@style/RowTextItemInfo"
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                   </LinearLayout>
+                        android:drawableRight="@drawable/rupee_symbol"
+                        android:text="2,00,000" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Rooftop Usable Area"
                         style="@style/RowTextItemInfo"
-
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                   <LinearLayout
-                       android:weightSum="1"
-                       android:orientation="horizontal"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:layout_weight=".5"
-                           android:text="2500"
-                           style="@style/RowTestItemEdit"
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                       <TextView
-                           android:layout_weight=".5"
-                           android:gravity="end"
-                           android:text="Sq. ft"
-                           style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"
+                        android:text="Rooftop acquired Area" />
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                   </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight=".5"
+                            android:text="3000" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+
+                            android:gravity="end"
+                            android:text="Sq. ft" />
+                    </LinearLayout>
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Ground acquired Area"
                         style="@style/RowTextItemInfo"
-
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                   <LinearLayout
-                       android:weightSum="1"
-                       android:orientation="horizontal"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:layout_weight=".5"
-                           android:text="1000"
-                           style="@style/RowTestItemEdit"
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                       <TextView
-                           android:layout_weight=".5"
-                           android:gravity="end"
-                           android:text="Sq. ft"
-                           style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"
+                        android:text="Rooftop Usable Area" />
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                   </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight=".5"
+                            android:text="2500" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+
+                            android:gravity="end"
+                            android:text="Sq. ft" />
+                    </LinearLayout>
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Ground Usable Area"
                         style="@style/RowTextItemInfo"
-
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                   <LinearLayout
-                       android:weightSum="1"
-                       android:orientation="horizontal"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:layout_weight=".5"
-                           android:text="1000"
-                           style="@style/RowTestItemEdit"
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                       <TextView
-                           android:layout_weight=".5"
-                           android:gravity="end"
-                           android:text="Sq. ft"
-                           style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"
+                        android:text="Ground acquired Area" />
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                   </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight=".5"
+                            android:text="1000" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+
+                            android:gravity="end"
+                            android:text="Sq. ft" />
+                    </LinearLayout>
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="Ground Usable Area" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight=".5"
+                            android:text="1000" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+
+                            android:gravity="end"
+                            android:text="Sq. ft" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
             </GridLayout>
 
