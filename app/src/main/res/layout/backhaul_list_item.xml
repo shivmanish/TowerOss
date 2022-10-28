@@ -747,7 +747,7 @@
                     <TextView
                         android:text="10-Nov-22"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -1065,7 +1065,7 @@
                     <TextView
                         android:text="Airtel"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -1089,7 +1089,7 @@
                     <TextView
                         android:text="Airtel"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -1112,7 +1112,7 @@
                     <TextView
                         android:text="Live"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -1136,7 +1136,7 @@
                     <TextView
                         android:text="Nokia"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -1159,7 +1159,7 @@
                     <TextView
                         android:text="xxxx"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -1206,7 +1206,7 @@
                     <TextView
                         android:text="10-Nov-22"
                         style="@style/RowTestItemEdit"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View

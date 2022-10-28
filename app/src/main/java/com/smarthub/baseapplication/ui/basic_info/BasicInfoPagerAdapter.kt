@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.basic_info.fragment.BasicInfo
+import com.smarthub.baseapplication.ui.basic_info.fragment.GeoConditionalInfo
+import com.smarthub.baseapplication.ui.basic_info.fragment.OperationalInfo
+import com.smarthub.baseapplication.ui.basic_info.fragment.SafatyAccessFragment
 
 class BasicInfoPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
@@ -17,13 +20,13 @@ class BasicInfoPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
                 return BasicInfo()
             }
             1 -> {
-                return BasicInfo()
+                return OperationalInfo()
             }
             2 -> {
-                return BasicInfo()
+                return GeoConditionalInfo()
             }
             3 -> {
-                return BasicInfo()
+                return SafatyAccessFragment()
             }
             else -> {
                 return BasicInfo()

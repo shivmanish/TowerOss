@@ -8,52 +8,25 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="#E9EEF7"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
         <LinearLayout
-            android:weightSum="4"
-            android:layout_marginBottom="@dimen/dp15"
+            android:gravity="center_vertical"
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight="1"
-                android:text="3G"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_weight="1"
-                android:text="RFA1"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_weight="1"
-                android:text="S3058940"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
+
             <TextView
                 android:drawablePadding="5dp"
                 android:layout_weight="1"
                 android:id="@+id/item_title"
-                android:text="10-Nov-22"
+                android:text="IDU"
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
                 android:paddingTop="@dimen/dp10"
                 style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_arrow_down_black"/>
         </LinearLayout>
@@ -577,7 +550,7 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="10-Nov-22"
-                        android:drawableEnd="@drawable/icon_vector"
+                        android:drawableEnd="@drawable/icon_date"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
