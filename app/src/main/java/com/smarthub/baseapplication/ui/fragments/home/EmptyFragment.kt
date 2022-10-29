@@ -11,7 +11,7 @@ class EmptyFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_site__lease, container, false)
+        return inflater.inflate(R.layout.site_lease_fragment, container, false)
     }
 
 }

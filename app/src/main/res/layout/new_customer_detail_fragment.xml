@@ -193,37 +193,32 @@
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp38"
+        android:background="@color/tab_deselected"
+        android:layout_gravity="start"
+        app:tabPaddingEnd="@dimen/dp5"
+        app:tabPaddingStart="@dimen/dp5"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="scrollable"
+        app:layout_constraintTop_toBottomOf="@+id/card"
+        app:tabTextAppearance="@style/TabTextView"
+        />
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:cardElevation="5dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@+id/tabs">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp38"
-                android:background="@color/tab_deselected"
-                android:layout_gravity="bottom"
-                app:tabMode="scrollable"
-                app:tabPaddingEnd="@dimen/dp5"
-                app:tabPaddingStart="@dimen/dp5"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tabTextAppearance="@style/AutoResizeTextView"
-                />
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tabs" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

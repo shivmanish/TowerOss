@@ -8,14 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.activities.FAQActivity
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
-import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
-import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
-import com.smarthub.baseapplication.ui.fragments.home.EmptyFragment
 import com.smarthub.baseapplication.ui.fragments.profile.ProfileActivity
+import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
+import com.smarthub.baseapplication.ui.site_lease_acquisition.NewSiteAcquisitionActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class MenuFragment : Fragment() {
@@ -40,6 +38,8 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileCard.setOnClickListener {
+//            var intent = Intent(requireContext(), NewSiteAcquisitionActivity::class.java)
+//            requireActivity().startActivity(intent)
             var intent = Intent(requireContext(), ProfileActivity::class.java)
             requireActivity().startActivity(intent)
         }

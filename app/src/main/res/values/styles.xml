@@ -2,21 +2,39 @@
 <resources>
     <style name="input_style" >
 
-        <item name="android:textSize">
-            14sp
-        </item>
-        <item name="android:textColor">
-            #FFFFFF
-        </item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
 
     </style>
 <!--comment added-->
     <style name="AutoResizeTextView" parent="Widget.AppCompat.TextView">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMinTextSize">5sp</item>
+        <item name="autoSizeMinTextSize">10sp</item>
         <item name="autoSizeMaxTextSize">100sp</item>
         <item name="android:textSize">100sp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="autoSizePresetSizes">@array/autosize_text_sizes</item>
+    </style>
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/spinner_bg</item>
+        <item name="android:popupElevation">5dp</item>
+        <item name="windowMinWidthMajor">0dp</item>
+        <item name="windowMinWidthMinor">0dp</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:dropDownItemStyle">@style/DropDownTextView</item>
+
+    </style>
+    <style name="DropDownTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color1</item>
+        <item name="android:background">@color/card_bg</item>
+
+    </style>
+    <style name="TabTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+
     </style>
 
     <style name="RowTestItemEdit" parent="Widget.AppCompat.TextView">
@@ -25,6 +43,7 @@
         <item name="fontWeight">400</item>
         <item name="android:textSize">@dimen/dp14</item>
         <item name="android:maxLines">1</item>
+        <item name="android:background">@color/white</item>
     </style>
     <style name="RowTextItemInfo" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/roboto</item>

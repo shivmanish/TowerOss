@@ -26,7 +26,7 @@ class ProfileViewModel: ViewModel() {
 
     fun updateProfileData(data : UserProfileUpdate?){
         Log.d("status","Update Profile Data in Profile View Model")
-        profileRepo?.updateProfileData(data);
+        profileRepo?.updateProfileData(data)
     }
 
 }
