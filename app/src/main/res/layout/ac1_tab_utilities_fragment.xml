@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="@dimen/dp12"
+            android:paddingBottom="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp15"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <GridLayout
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Equipment Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinEquipmentName"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Serial Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editSerialNumber"
+
+                            android:hint="S3058940"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Make"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editMake"
+
+                            android:hint="XXXX"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Make"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editModel"
+
+                            android:hint="Model"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="500AH"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAH"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Make"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editManufacturing"
+
+                            android:hint="Manufacturing Month/Year"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Make"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editWarrantyPeriod"
+
+                            android:hint="Warranty Period"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Warranty Expiry Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editExpiryDate"
+
+                            android:text="10-Nov-22"
+                            android:drawableRight="@drawable/icon_date"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Indoor Unit Size"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editIndoorUnitSize"
+
+                            android:text="L -        | W -        | H - "
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Warranty Expiry Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_weight=".3"
+                                android:id="@+id/editIndoorUnitWeight"
+
+                                android:hint="50"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_weight=".7"
+                                android:text="Kg"
+                                android:gravity="end"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Outdoor Unit Size "
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editOutdoorUnitSize"
+
+                            android:text="L -        | W -        | H - "
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text=""
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_weight=".3"
+                                android:id="@+id/editWeight"
+
+                                android:hint="50"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_weight=".7"
+                                android:text="Kg"
+                                android:gravity="end"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Outdoor Unit Location Mark"
+                        android:maxLines="1"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinOutdoorLocationMark"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Copper Tubing  Length"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_weight=".3"
+                                android:id="@+id/editCopperTubingLength"
+                                android:hint="50"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_weight=".7"
+                                android:text="ft"
+                                android:gravity="end"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Max Power Rating"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_weight=".3"
+                                android:id="@+id/editMaxRating"
+                                android:hint="3.5"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_weight=".7"
+                                android:text="KW"
+                                android:gravity="end"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Cooling Temp Setting"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_weight=".3"
+                                android:id="@+id/editCoolingTempSetting"
+                                android:hint="24"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_weight=".7"
+                                android:text="\u00C2\u00B0C"
+                                android:gravity="end"
+
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Owner Company"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinOwnerCompany"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="User Company"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinUserCompany"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+            </GridLayout>
+
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/spinInstallation"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20"
+                android:text="On-Air" />
+  <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/spinMaintenance"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20"
+                android:text="Maintenance" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Remarks"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text=""
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_img_attachment"/>
+
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Save/Update"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+                android:backgroundTint="#3F4D67"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/login_yellow_bg"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
