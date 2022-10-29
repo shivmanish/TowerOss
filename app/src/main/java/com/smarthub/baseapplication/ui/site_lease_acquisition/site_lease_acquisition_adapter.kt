@@ -21,10 +21,10 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return TeamVendor()
             }
             2 -> {
-                return Agreements()
+                return Feasibility()
             }
             3 -> {
-                return Feasibility()
+                return Agreements()
             }
             else -> {
                 return Payment()

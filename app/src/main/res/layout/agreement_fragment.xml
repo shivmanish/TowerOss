@@ -274,6 +274,7 @@
                     <TextView
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
+                        android:maxLines="1"
                         android:layout_height="wrap_content"
                         android:text="Periodic Rent Payable Amo..." />
 
@@ -378,6 +379,7 @@
 
                     <TextView
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Last Revised Rent Amount" />
@@ -431,6 +433,7 @@
 
                     <TextView
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EB Bill Limit" />
@@ -460,7 +463,7 @@
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
-                        android:text="EB Billing Basis                     %" />
+                        android:text="EB Billing Basis    %" />
 
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinEBBillingBasis"

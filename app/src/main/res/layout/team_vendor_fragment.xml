@@ -30,6 +30,7 @@
                     <TextView
                         android:text="Acquisition Executive Name"
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
@@ -403,7 +404,6 @@
                     <EditText
                         android:text="vishesh.sharma@vde.c..."
                         style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_call"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -427,7 +427,7 @@
                     <EditText
                         android:text="989000323"
                         style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_call"
+
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
