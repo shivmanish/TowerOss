@@ -14,7 +14,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -793,12 +792,10 @@
                         android:background="#263238" />
                 </LinearLayout>
             </GridLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:text="Remarks"
                     style="@style/RowTextItemInfo"
@@ -816,9 +813,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
-
             <include layout="@layout/layout_img_attachment"/>
-
             <TextView
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
