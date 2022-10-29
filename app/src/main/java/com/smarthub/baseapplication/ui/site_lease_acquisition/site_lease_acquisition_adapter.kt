@@ -4,7 +4,6 @@ package com.smarthub.baseapplication.ui.site_lease_acquisition
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.basic_info.fragment.BasicInfo
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.*
 
 class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
