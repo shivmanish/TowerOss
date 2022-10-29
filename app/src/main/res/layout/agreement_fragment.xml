@@ -35,10 +35,11 @@
                         android:text="Agreement Type" />
 
                     <EditText
+                        android:id="@+id/editAgreementType"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mangolpuri" />
+                        android:hint="Term Lease" />
 
                     <View
                         android:layout_width="match_parent"
@@ -61,6 +62,7 @@
                         android:text="Registration Date" />
 
                     <TextView
+                        android:id="@+id/txtRegistrationDate"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,7 +142,8 @@
                         android:layout_height="wrap_content"
                         android:text="Agreement Period" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/editAgreementPeriod"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,7 +168,9 @@
                         android:layout_height="wrap_content"
                         android:text="Lock-in Period" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/editLockinPeriod"
+
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -191,6 +196,8 @@
                         android:text="Agreement effective Date" />
 
                     <TextView
+                        android:id="@+id/txtAgreementeffectiveDate"
+
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -217,6 +224,8 @@
                         android:text="Agreement Expiry Date" />
 
                     <TextView
+                        android:id="@+id/txtExpiryDate"
+
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -242,12 +251,13 @@
                         android:layout_height="wrap_content"
                         android:text="Rent Payment Frequency" />
 
-                    <TextView
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinRentPaymentFrequency"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
-                        android:text="Quarterly" />
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+
 
                     <View
                         android:layout_width="match_parent"
@@ -268,11 +278,12 @@
                         android:layout_height="wrap_content"
                         android:text="Periodic Rent Payable Amo..." />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/editPeriodicRentPayable"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="75,000" />
+                        android:hint="75,000" />
 
                     <View
                         android:layout_width="match_parent"
@@ -346,6 +357,7 @@
                         android:text="Last Escalation Date" />
 
                     <TextView
+                        android:id="@+id/LastEscalationDate"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -371,12 +383,13 @@
                         android:layout_height="wrap_content"
                         android:text="Last Revised Rent Amount" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/editLastRevisedRent"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/rupee_symbol"
-                        android:text="3,00,000" />
+                        android:hint="3,00,000" />
 
                     <View
                         android:layout_width="match_parent"
@@ -556,13 +569,14 @@
                         android:layout_height="wrap_content"
                         android:text="Onetime Amount" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/editOnetimeAmount"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
                         android:drawableRight="@drawable/rupee_symbol"
-                        android:text="6,000" />
+                        android:hint="6,000" />
 
                     <View
                         android:layout_width="match_parent"
@@ -583,7 +597,8 @@
                         android:layout_height="wrap_content"
                         android:text="Security Deposit Amount" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/edtSecurityDepositAmount"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -617,7 +632,8 @@
                         android:orientation="horizontal"
                         android:weightSum="1">
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/editRooftopacquiredArea"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -651,7 +667,6 @@
                     <TextView
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:text="Rooftop Usable Area" />
 
@@ -662,10 +677,10 @@
                         android:weightSum="1">
 
                         <TextView
+                            android:id="@+id/editRooftopUsableArea"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:layout_weight=".5"
                             android:text="2500" />
 
@@ -674,7 +689,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
-
                             android:gravity="end"
                             android:text="Sq. ft" />
                     </LinearLayout>
@@ -705,7 +719,8 @@
                         android:orientation="horizontal"
                         android:weightSum="1">
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/editGroundacquiredArea"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -749,13 +764,16 @@
                         android:orientation="horizontal"
                         android:weightSum="1">
 
-                        <TextView
+                        <EditText
+
+                            android:id="@+id/editGroundUsableArea"
+
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
 
                             android:layout_weight=".5"
-                            android:text="1000" />
+                            android:hint="1000" />
 
                         <TextView
                             style="@style/RowTextItemInfo"

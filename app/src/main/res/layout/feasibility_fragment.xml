@@ -303,6 +303,7 @@
                         <TextView
                             android:text="Property Offer for Acquisition"
                             style="@style/RowTextItemInfo"
+                            android:maxLines="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
@@ -434,6 +435,7 @@
                     <TextView
                         android:text="EB supply thro’ Building Meter"
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
@@ -504,6 +506,7 @@
                     <TextView
                         android:text="Availability of statutory per..."
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
