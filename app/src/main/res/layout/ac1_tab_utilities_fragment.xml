@@ -540,7 +540,7 @@
 
             <LinearLayout
                 android:layout_margin="5dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/item_collapse_maintance"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
