@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/dp10"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/attach_card">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Add Picture"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp20"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rectangle_8"
+                android:layout_marginBottom="@dimen/dp20"/>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_7">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/camera_icon"
+                    android:drawablePadding="3dp"
+                    android:text="  Add Picture"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <TextView
+                android:text="Title"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp5"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:text="Tower Poll"
+                android:layout_marginLeft="@dimen/dp5"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+            <TextView
+                android:text="File Category *"
+                android:layout_marginLeft="@dimen/dp5"
+                style="@style/RowTextItemInfo"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:text="Poll"
+                android:layout_marginLeft="@dimen/dp5"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+            <TextView
+                android:text="File Detail *"
+                android:layout_marginLeft="@dimen/dp5"
+                style="@style/RowTextItemInfo"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:text="Poll"
+                android:layout_marginLeft="@dimen/dp5"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
