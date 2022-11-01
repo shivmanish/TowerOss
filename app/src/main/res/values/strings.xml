@@ -215,4 +215,6 @@
     <string name="hello_blank_fragment_demo">Blank Fragment</string>
     <string name="demo_answer">Hjghsgjfgygsfygvydjfghvgashjdvgsdbhjsdvsdghjadgvjyvjdgsjhvgajdvdjahvgsgvhjdsgjhvygygvwsyjsdg jhbvhjgwyvguehfcd hbdhjvgeyvgyjgv bhgjycfgwjycgvjs</string>
     <string name="u_service_details_u"> <u>Service Details</u>.</string>
+    <string name="po_details"><u>PO Details</u>.</string>
+
 </resources>
