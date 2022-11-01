@@ -20,6 +20,7 @@ class SPD1TabUtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener 
         binding = Spd1TabUtilitiesFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
