@@ -1119,6 +1119,7 @@
                         android:drawableEnd="@drawable/ic_arrow_down_black"/>
                 </LinearLayout>
                 <View
+
                     android:id="@+id/item_line_maintenance"
                     android:alpha="0.37"
                     android:background="#263238"
