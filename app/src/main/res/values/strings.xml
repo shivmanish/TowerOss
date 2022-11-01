@@ -218,5 +218,6 @@
     <string name="po_details"><u>PO Details</u>.</string>
     <string name="battry_module"><u>Battery Module</u>.</string>
     <string name="consumable_materials"><u>Consumable Materials</u>.</string>
+    <string name="additional_accessories"><u>Additional Accessories</u>.</string>
 
 </resources>
