@@ -216,5 +216,7 @@
     <string name="demo_answer">Hjghsgjfgygsfygvydjfghvgashjdvgsdbhjsdvsdghjadgvjyvjdgsjhvgajdvdjahvgsgvhjdsgjhvygygvwsyjsdg jhbvhjgwyvguehfcd hbdhjvgeyvgyjgv bhgjycfgwjycgvjs</string>
     <string name="u_service_details_u"> <u>Service Details</u>.</string>
     <string name="po_details"><u>PO Details</u>.</string>
+    <string name="battry_module"><u>Battery Module</u>.</string>
+    <string name="consumable_materials"><u>Consumable Materials</u>.</string>
 
 </resources>
