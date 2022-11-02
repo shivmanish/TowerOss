@@ -122,6 +122,15 @@
                     android:rotation="90"
                     android:adjustViewBounds="true"
                     android:src="@drawable/dummy_3g" />
+                <ImageView
+                    android:padding="3dp"
+                    android:id="@+id/add_image"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:rotation="90"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/add_image1" />
+
 
                 <ImageView
                     android:id="@+id/menu"

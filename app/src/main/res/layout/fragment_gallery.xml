@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.basic_info.fragment.GalleryFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <RelativeLayout
+           android:id="@+id/rlParent1"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:id="@+id/img_back"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
+               android:layout_marginStart="16dp"
+               android:paddingTop="6dp"
+               android:paddingEnd="8dp"
+               android:paddingBottom="6dp"
+               android:src="@drawable/ic_back" />
+
+           <TextView
+               android:id="@+id/siteimage"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_centerVertical="true"
+               android:layout_marginStart="@dimen/activity_horizontal_margin"
+               android:layout_marginTop="19dp"
+               android:layout_marginBottom="@dimen/activity_horizontal_margin"
+               android:layout_toRightOf="@+id/img_back"
+               android:fontFamily="@font/montserrat_bold"
+               android:gravity="top"
+               android:lineSpacingExtra="-7sp"
+               android:text="Site Pictures"
+               android:textColor="#000000"
+               android:textSize="@dimen/dp20" />
+
+           <TextView
+               android:id="@+id/add_image1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_centerVertical="true"
+               android:layout_marginStart="@dimen/dp170"
+               android:layout_marginTop="@dimen/activity_horizontal_margin"
+               android:layout_marginEnd="@dimen/activity_horizontal_margin"
+               android:layout_marginBottom="@dimen/activity_horizontal_margin"
+               android:layout_toRightOf="@id/siteimage"
+               android:background="@drawable/circle_2"
+               android:fontFamily="@font/montserrat_bold"
+               android:gravity="center"
+               android:lineHeight="18dp"
+               android:src="@drawable/ic_back"
+               android:text="+"
+               android:textSize="25dp" />
+       </RelativeLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:layout_marginLeft="@dimen/dp5"
+           android:orientation="horizontal"
+           android:background="@drawable/rectangle_9">
+           <TextView
+               android:layout_weight="1.0"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="@dimen/dp20"
+               android:text="Category"
+               android:textColor="@color/black"/>
+       <ImageView
+           android:layout_weight="0.1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_arrow_down"/>
+
+       </LinearLayout>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_marginTop="@dimen/dp5"
+           android:layout_height="wrap_content"
+           app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+           app:spanCount="3"
+           tools:listitem="@layout/grid_image_view"
+           tools:itemCount="9"/>
+   </LinearLayout>
+</FrameLayout>
