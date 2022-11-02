@@ -4,9 +4,11 @@ package com.smarthub.baseapplication.ui.utilites
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.smarthub.baseapplication.databinding.Spd1TabUtilitiesFragmentBinding
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.*
+import com.smarthub.baseapplication.ui.utilites.fragment.*
 
-class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
+class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 5
     }
@@ -14,19 +16,19 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return Nominals()
+                return AC1UtilitesFrag()
             }
             1 -> {
-                return TeamVendor()
+                return BatteryBank1TabUtilitesFrag()
             }
             2 -> {
-                return Feasibility()
+                return FireExtinguisher1UtilitesFrag()
             }
             3 -> {
-                return Agreements()
+                return DG1TabUtilitesFrag()
             }
             else -> {
-                return Payment()
+                return SPD1TabUtilitesFrag()
             }
         }
     }
@@ -34,19 +36,19 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "Nominals"
+                return "AC"
             }
             1 -> {
-                return "Team/ Vendor"
+                return "Battery Bank"
             }
             2 -> {
-                return "Feasibility"
+                return "Fire Extinguisher"
             }
             3 -> {
-                return "Agreements"
+                return "DG"
             }
             4 -> {
-                return "Payments"
+                return "SPD1"
             }
         }
         return super.getPageTitle(position)

@@ -29,6 +29,7 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.*
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
+import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
@@ -205,7 +206,7 @@ class SiteDetailFragment : Fragment() {
         adapter.addFragment(CustomerFragment.newInstance("Customer"))
         adapter.addFragment(SiteLeaseAcqusitionFragment.newInstance("SiteLease"))
         adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
-        adapter.addFragment(UtilitiesFrag.newInstance("Utilities"))
+        adapter.addFragment(UtilitiesNocMainTabFragment.newInstance("Utilities"))
 
         viewPager.adapter = adapter
 

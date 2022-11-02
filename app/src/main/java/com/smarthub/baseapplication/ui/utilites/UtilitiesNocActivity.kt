@@ -6,6 +6,7 @@ import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
+import com.smarthub.baseapplication.databinding.ActivityUtilitiesNocBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerPageAdapter
 import kotlinx.android.synthetic.main.new_customer_detail_fragment.*
@@ -15,11 +16,11 @@ import kotlinx.android.synthetic.main.tab_name_item.view.*
 /*activity_new_site_acquisition*/
 class UtilitiesNocActivity : BaseActivity() {
 
-    lateinit var binding : ActivityNewSiteAcquisitionBinding
+    lateinit var binding : ActivityUtilitiesNocBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNewSiteAcquisitionBinding.inflate(layoutInflater)
+        binding = ActivityUtilitiesNocBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         initViews()
     }
@@ -28,7 +29,7 @@ class UtilitiesNocActivity : BaseActivity() {
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.viewpager.adapter = SiteLeaseAcquisitionAdapter(supportFragmentManager)
+        binding.viewpager.adapter = UtilitiesNocAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()

@@ -55,6 +55,9 @@
             android:name=".ui.fragments.profile.EditProfileActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.utilites.UtilitiesNocActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.LanguageActivity"
             android:exported="true"
             android:label="@string/app_name" />

@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDat
 
 class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
 
-    private val ARG_PARAM1 = "param1"
+    val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
     lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
     lateinit var viewmodel: SiteLeaseAcqusitionViewModel
