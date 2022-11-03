@@ -496,6 +496,25 @@
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_down_black"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:id="@+id/collapsing_InstallationAcceptanceUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:drawablePadding="5dp"
+                        android:layout_weight="1"
+                        android:text="Installation/ Acceptance"
+                        android:paddingStart="@dimen/dp10"
+                        android:paddingEnd="@dimen/dp10"
+                        android:paddingTop="@dimen/dp10"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_up"/>
+                </LinearLayout>
                 <View
                     android:id="@+id/item_line_installations_acceptance"
                     android:alpha="0.37"
@@ -506,7 +525,7 @@
             <LinearLayout
                 android:layout_margin="5dp"
                 android:visibility="gone"
-                android:id="@+id/item_collapse"
+                android:id="@+id/item_collapse_installations"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -948,6 +967,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:gravity="center_vertical"
+                    android:id="@+id/collapsing_MaintenanceUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:drawablePadding="5dp"
+                        android:layout_weight="1"
+                        android:text="Maintenance"
+                        android:paddingStart="@dimen/dp10"
+                        android:paddingEnd="@dimen/dp10"
+                        android:paddingTop="@dimen/dp10"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_up"/>
                 </LinearLayout>
                 <View
                     android:id="@+id/item_line_maintenance"
