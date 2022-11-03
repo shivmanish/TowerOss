@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,22 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
+        var collapsing_layout = view.findViewById<LinearLayout>(R.id.collapsing_layout)
+        var collapsing_layoutup = view.findViewById<LinearLayout>(R.id.collapsing_layoutup)
+        var item_collapse_equipment = view.findViewById<LinearLayout>(R.id.item_collapse_equipment)
+        collapsing_layout.setOnClickListener(){
+            item_collapse_equipment.setVisibility(View.VISIBLE);
+            collapsing_layoutup.setVisibility(View.VISIBLE);
+            collapsing_layout.setVisibility(View.GONE);
+
+        }
+
+           collapsing_layoutup.setOnClickListener(){
+            item_collapse_equipment.setVisibility(View.GONE);
+            collapsing_layoutup.setVisibility(View.GONE);
+            collapsing_layout.setVisibility(View.VISIBLE);
+        }
+
         var adapter =  ImageAttachmentAdapter(this@AC1UtilitesFrag)
         recyclerListener.adapter = adapter
         view.findViewById<View>(R.id.attach_card).setOnClickListener {
