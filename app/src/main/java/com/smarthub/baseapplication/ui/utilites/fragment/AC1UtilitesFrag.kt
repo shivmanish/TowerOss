@@ -32,7 +32,8 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
         var collapsing_InstallationAcceptanceUp = view.findViewById<LinearLayout>(R.id.collapsing_InstallationAcceptanceUp)
         var item_collapse_equipment = view.findViewById<LinearLayout>(R.id.item_collapse_equipment)
         var item_collapse_installations = view.findViewById<LinearLayout>(R.id.item_collapse_installations)
-     //   var item_collapse_maintance = view.findViewById<LinearLayout>(R.id.item_collapse_maintance)
+        var collapsing_Maintenance = view.findViewById<LinearLayout>(R.id.collapsing_Maintenance)
+        var item_collapse_maintance = view.findViewById<LinearLayout>(R.id.item_collapse_maintance)
          //Eqipment collapsing
            collapsing_layout.setOnClickListener {
             item_collapse_equipment.visibility = View.VISIBLE
@@ -40,10 +41,10 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
                collapsing_layout.visibility = View.GONE
 
            }
-           collapsing_layoutup.setOnClickListener {
+            collapsing_layoutup.setOnClickListener {
             item_collapse_equipment.visibility = View.GONE
                collapsing_layoutup.visibility = View.GONE
-               collapsing_layout.visibility = View.VISIBLE
+               collapsing_layout.visibility = View.GONE
            }
         //installation collapsing
             collapsing_InstallationAcceptance.setOnClickListener {
@@ -57,6 +58,22 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
             item_collapse_installations.visibility = View.GONE
                 collapsing_InstallationAcceptanceUp.visibility = View.GONE
                 collapsing_InstallationAcceptance.visibility = View.VISIBLE
+
+
+            }
+
+
+            collapsing_Maintenance.setOnClickListener {
+            item_collapse_maintance.visibility = View.VISIBLE
+            collapsing_MaintenanceUp.visibility = View.VISIBLE
+            collapsing_Maintenance.visibility = View.GONE
+
+
+            }
+        collapsing_MaintenanceUp.setOnClickListener {
+            item_collapse_maintance.visibility = View.GONE
+            collapsing_MaintenanceUp.visibility = View.GONE
+            collapsing_Maintenance.visibility = View.VISIBLE
 
 
             }
