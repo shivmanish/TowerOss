@@ -32,36 +32,34 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
         var collapsing_InstallationAcceptanceUp = view.findViewById<LinearLayout>(R.id.collapsing_InstallationAcceptanceUp)
         var item_collapse_equipment = view.findViewById<LinearLayout>(R.id.item_collapse_equipment)
         var item_collapse_installations = view.findViewById<LinearLayout>(R.id.item_collapse_installations)
-        var item_collapse_maintance = view.findViewById<LinearLayout>(R.id.item_collapse_maintance)
+     //   var item_collapse_maintance = view.findViewById<LinearLayout>(R.id.item_collapse_maintance)
          //Eqipment collapsing
-           collapsing_layout.setOnClickListener(){
-            item_collapse_equipment.setVisibility(View.VISIBLE);
-            collapsing_layoutup.setVisibility(View.VISIBLE);
-            collapsing_layout.setVisibility(View.GONE);
+           collapsing_layout.setOnClickListener {
+            item_collapse_equipment.visibility = View.VISIBLE
+               collapsing_layoutup.visibility = View.VISIBLE
+               collapsing_layout.visibility = View.GONE
 
-        }
-           collapsing_layoutup.setOnClickListener(){
-            item_collapse_equipment.setVisibility(View.GONE);
-            collapsing_layoutup.setVisibility(View.GONE);
-            collapsing_layout.setVisibility(View.VISIBLE);
-        }
+           }
+           collapsing_layoutup.setOnClickListener {
+            item_collapse_equipment.visibility = View.GONE
+               collapsing_layoutup.visibility = View.GONE
+               collapsing_layout.visibility = View.VISIBLE
+           }
         //installation collapsing
-            collapsing_InstallationAcceptance.setOnClickListener(){
-            item_collapse_installations.setVisibility(View.VISIBLE);
-            collapsing_InstallationAcceptanceUp.setVisibility(View.VISIBLE);
-            collapsing_InstallationAcceptance.setVisibility(View.GONE);
+            collapsing_InstallationAcceptance.setOnClickListener {
+            item_collapse_installations.visibility = View.VISIBLE
+                collapsing_InstallationAcceptanceUp.visibility = View.VISIBLE
+                collapsing_InstallationAcceptance.visibility = View.GONE
 
 
-
-        }
-            collapsing_InstallationAcceptanceUp.setOnClickListener(){
-            item_collapse_installations.setVisibility(View.GONE);
-            collapsing_InstallationAcceptanceUp.setVisibility(View.GONE);
-            collapsing_InstallationAcceptance.setVisibility(View.VISIBLE);
-
+            }
+            collapsing_InstallationAcceptanceUp.setOnClickListener {
+            item_collapse_installations.visibility = View.GONE
+                collapsing_InstallationAcceptanceUp.visibility = View.GONE
+                collapsing_InstallationAcceptance.visibility = View.VISIBLE
 
 
-        }
+            }
 
         var adapter =  ImageAttachmentAdapter(this@AC1UtilitesFrag)
         recyclerListener.adapter = adapter
