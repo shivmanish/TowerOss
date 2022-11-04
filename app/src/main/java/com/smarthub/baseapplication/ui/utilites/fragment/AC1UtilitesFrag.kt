@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -32,20 +33,21 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
         var item_collapse_equipment = view.findViewById<LinearLayout>(R.id.item_collapse_equipment)
         var item_collapse_installations = view.findViewById<LinearLayout>(R.id.item_collapse_installations)
         var collapsing_Maintenance = view.findViewById<LinearLayout>(R.id.collapsing_Maintenance)
+        var item_title = view.findViewById<TextView>(R.id.item_title)
         var item_collapse_maintance = view.findViewById<LinearLayout>(R.id.item_collapse_maintance)
          //Eqipment collapsing
            collapsing_layout.setOnClickListener {
             item_collapse_equipment.visibility = View.VISIBLE
                collapsing_layoutup.visibility = View.VISIBLE
                collapsing_layout.visibility = View.GONE
-
+           //   item_title?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
            }
             collapsing_layoutup.setOnClickListener {
             item_collapse_equipment.visibility = View.GONE
                collapsing_layoutup.visibility = View.GONE
-               collapsing_layout.visibility = View.GONE
+               collapsing_layout.visibility = View.VISIBLE
            }
-        //installation collapsing
+            //installation collapsing
             collapsing_InstallationAcceptance.setOnClickListener {
             item_collapse_installations.visibility = View.VISIBLE
                 collapsing_InstallationAcceptanceUp.visibility = View.VISIBLE
@@ -55,8 +57,8 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
             }
             collapsing_InstallationAcceptanceUp.setOnClickListener {
             item_collapse_installations.visibility = View.GONE
-                collapsing_InstallationAcceptanceUp.visibility = View.GONE
-                collapsing_InstallationAcceptance.visibility = View.VISIBLE
+            collapsing_InstallationAcceptanceUp.visibility = View.GONE
+            collapsing_InstallationAcceptance.visibility = View.VISIBLE
 
 
             }
@@ -69,7 +71,7 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
 
             }
-        collapsing_MaintenanceUp.setOnClickListener {
+            collapsing_MaintenanceUp.setOnClickListener {
             item_collapse_maintance.visibility = View.GONE
             collapsing_MaintenanceUp.visibility = View.GONE
             collapsing_Maintenance.visibility = View.VISIBLE
