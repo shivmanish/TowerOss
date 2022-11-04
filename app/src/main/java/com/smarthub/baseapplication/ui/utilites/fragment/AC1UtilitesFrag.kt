@@ -15,7 +15,6 @@ import com.smarthub.baseapplication.databinding.Ac1TabUtilitiesFragmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
-
     var binding : Ac1TabUtilitiesFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = Ac1TabUtilitiesFragmentBinding.inflate(inflater, container, false)
