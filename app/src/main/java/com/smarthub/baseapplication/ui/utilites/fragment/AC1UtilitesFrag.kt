@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.Ac1TabUtilitiesFragmentBinding
 
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.Utils
 
 class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     var binding : Ac1TabUtilitiesFragmentBinding?=null
@@ -25,59 +26,70 @@ class AC1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
-        var collapsing_layout = view.findViewById<LinearLayout>(R.id.collapsing_layout)
-        var collapsing_InstallationAcceptance = view.findViewById<LinearLayout>(R.id.collapsing_InstallationAcceptance)
-        var collapsing_layoutup = view.findViewById<LinearLayout>(R.id.collapsing_layoutup)
-        var collapsing_MaintenanceUp = view.findViewById<LinearLayout>(R.id.collapsing_MaintenanceUp)
-        var collapsing_InstallationAcceptanceUp = view.findViewById<LinearLayout>(R.id.collapsing_InstallationAcceptanceUp)
+        var eqipmantcheck=false;
+        var installationcheck=false;
+        var othercheck=false;
+        var item_title_eqipment = view.findViewById<TextView>(R.id.item_title_eqipment)
+        var collapsing_layout_equipment = view.findViewById<LinearLayout>(R.id.collapsing_layout_equipment)
         var item_collapse_equipment = view.findViewById<LinearLayout>(R.id.item_collapse_equipment)
+        // acceptance
+        var item_InstallationAcceptance = view.findViewById<TextView>(R.id.item_InstallationAcceptance)
+        var collapsing_InstallationAcceptance = view.findViewById<LinearLayout>(R.id.collapsing_InstallationAcceptance)
         var item_collapse_installations = view.findViewById<LinearLayout>(R.id.item_collapse_installations)
+//  others
         var collapsing_Maintenance = view.findViewById<LinearLayout>(R.id.collapsing_Maintenance)
-        var item_title = view.findViewById<TextView>(R.id.item_title)
+        var item_maintenance = view.findViewById<TextView>(R.id.item_maintenance)
         var item_collapse_maintance = view.findViewById<LinearLayout>(R.id.item_collapse_maintance)
-         //Eqipment collapsing
-           collapsing_layout.setOnClickListener {
-            item_collapse_equipment.visibility = View.VISIBLE
-               collapsing_layoutup.visibility = View.VISIBLE
-               collapsing_layout.visibility = View.GONE
-           //   item_title?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
-           }
-            collapsing_layoutup.setOnClickListener {
-            item_collapse_equipment.visibility = View.GONE
-               collapsing_layoutup.visibility = View.GONE
-               collapsing_layout.visibility = View.VISIBLE
-           }
-            //installation collapsing
-            collapsing_InstallationAcceptance.setOnClickListener {
-            item_collapse_installations.visibility = View.VISIBLE
-                collapsing_InstallationAcceptanceUp.visibility = View.VISIBLE
-                collapsing_InstallationAcceptance.visibility = View.GONE
 
+        collapsing_layout_equipment.setOnClickListener(){
+
+            if(eqipmantcheck==true)
+            {
+                eqipmantcheck=false
+                Utils.expand(item_collapse_equipment)
+                item_title_eqipment?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
 
             }
-            collapsing_InstallationAcceptanceUp.setOnClickListener {
-            item_collapse_installations.visibility = View.GONE
-            collapsing_InstallationAcceptanceUp.visibility = View.GONE
-            collapsing_InstallationAcceptance.visibility = View.VISIBLE
-
-
-            }
-
-
-            collapsing_Maintenance.setOnClickListener {
-            item_collapse_maintance.visibility = View.VISIBLE
-            collapsing_MaintenanceUp.visibility = View.VISIBLE
-            collapsing_Maintenance.visibility = View.GONE
-
+            else{
+                eqipmantcheck=true
+                Utils.collapse(item_collapse_equipment)
+                item_title_eqipment?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
 
             }
-            collapsing_MaintenanceUp.setOnClickListener {
-            item_collapse_maintance.visibility = View.GONE
-            collapsing_MaintenanceUp.visibility = View.GONE
-            collapsing_Maintenance.visibility = View.VISIBLE
+        }
 
+        collapsing_InstallationAcceptance.setOnClickListener(){
+
+            if(installationcheck==true)
+            {
+                installationcheck=false
+                Utils.expand(item_collapse_installations)
+                item_InstallationAcceptance?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
 
             }
+            else{
+                installationcheck=true
+                Utils.collapse(item_collapse_installations)
+                item_InstallationAcceptance?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
+
+            }
+        }
+        collapsing_Maintenance.setOnClickListener(){
+
+            if(othercheck==true)
+            {
+                othercheck=false
+                Utils.expand(item_collapse_maintance)
+                item_maintenance?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
+
+            }
+            else{
+                othercheck=true
+                Utils.collapse(item_collapse_maintance)
+                item_maintenance?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
+
+            }
+        }
 
         var adapter =  ImageAttachmentAdapter(this@AC1UtilitesFrag)
         recyclerListener.adapter = adapter

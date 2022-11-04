@@ -24,13 +24,13 @@
                 android:layout_height="60dp">
                 <LinearLayout
                     android:gravity="center_vertical"
-                    android:id="@+id/collapsing_layout"
+                    android:id="@+id/collapsing_layout_equipment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
                         android:drawablePadding="5dp"
                         android:layout_weight="1"
-                        android:id="@+id/item_title"
+                        android:id="@+id/item_title_eqipment"
                         android:text="Equipment"
                         android:paddingStart="@dimen/dp10"
                         android:paddingEnd="@dimen/dp10"
@@ -40,24 +40,7 @@
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_down_black"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:visibility="gone"
-                    android:gravity="center_vertical"
-                    android:id="@+id/collapsing_layoutup"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:drawablePadding="5dp"
-                        android:layout_weight="1"
-                        android:text="Equipment"
-                        android:paddingStart="@dimen/dp10"
-                        android:paddingEnd="@dimen/dp10"
-                        android:paddingTop="@dimen/dp10"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_up"/>
-                </LinearLayout>
+
                 <View
                     android:id="@+id/item_line"
                     android:alpha="0.37"
@@ -222,7 +205,7 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Manufacturing Month/Year" />
+                                android:text="Manufacturing Month / Year" />
 
                             <EditText
                                 android:id="@+id/editManufacturingMonthYear"
@@ -496,25 +479,7 @@
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_down_black"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:gravity="center_vertical"
-                    android:visibility="gone"
-                    android:id="@+id/collapsing_InstallationAcceptanceUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:drawablePadding="5dp"
-                        android:layout_weight="1"
-                        android:text="Installation/ Acceptance"
-                        android:paddingStart="@dimen/dp10"
-                        android:paddingEnd="@dimen/dp10"
-                        android:paddingTop="@dimen/dp10"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_up"/>
-                </LinearLayout>
                 <View
                     android:id="@+id/item_line_installations_acceptance"
                     android:alpha="0.37"
@@ -968,25 +933,7 @@
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_down_black"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:visibility="gone"
-                    android:gravity="center_vertical"
-                    android:id="@+id/collapsing_MaintenanceUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:drawablePadding="5dp"
-                        android:layout_weight="1"
-                        android:text="Maintenance"
-                        android:paddingStart="@dimen/dp10"
-                        android:paddingEnd="@dimen/dp10"
-                        android:paddingTop="@dimen/dp10"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_up"/>
-                </LinearLayout>
                 <View
                     android:id="@+id/item_line_maintenance"
                     android:alpha="0.37"
