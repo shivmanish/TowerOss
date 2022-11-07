@@ -1,11 +1,10 @@
-package com.smarthub.baseapplication.ui.fragments.site_detail
+package com.smarthub.baseapplication.ui.fragments.sitedetail
 
 import android.app.Activity
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Point
 import android.graphics.drawable.Drawable
-import android.util.Base64InputStream
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater

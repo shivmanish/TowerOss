@@ -6,7 +6,7 @@
     app:startDestination="@id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.smarthub.baseapplication.ui.fragments.site_detail.SiteDetailFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailFragment"
         android:label="SiteDetailFragment"
         tools:layout="@layout/site_location_detail" />
 

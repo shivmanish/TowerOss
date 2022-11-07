@@ -60,6 +60,7 @@
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/test_layout.xml" value="0.264" />
         <entry key="..\:/work/library/mobiledev_new/app/src/main/res/layout/toolbar.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/drawable-mdpi/blank_border_faq.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/cross_dialog.xml" value="0.1445" />
         <entry key="app/src/main/res/drawable/Rectangle_Image.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/blank_border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/blank_border_faq.xml" value="0.1" />
@@ -77,30 +78,73 @@
         <entry key="app/src/main/res/drawable/rectangle_8.xml" value="0.1185" />
         <entry key="app/src/main/res/drawable/rectangle_9.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rectangledotted.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/ac1_tab_utilities_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/ac2_tab_utilities_fragment.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_add_image.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/activity_faq.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_new_site_acquisition.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_profile1.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_profile_edit.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_qatcheck.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_sms_otp.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_utilities_noc.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/agreement_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_header_title.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_main_card_item.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_main_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_main_header_title.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_main_screen.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_view_type_1.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_view_type_2.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/atp_view_type_3.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/backhaul_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/backhaul_list_item.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/basic_info_detail_activity.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/basic_info_fragment.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/battery_bank1_tab_utilities_fragment.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/bottom_sheet_dialog_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/card_item.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_list_invoice_status.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_list_item1.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_list_item2.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_list_item3.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_list_item4.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/commercial_list_item5.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/content_forgot_password.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/custom_actionbar.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/custom_spinner_view.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/custom_tab_item.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/custome_details_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/customer_info_fragment_info.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/customer_info_temp_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/customer_list_item.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/dg1_tab_utilities_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/dynamic_spiner.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/dynamic_textfield_layout.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/edit_box.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/feasibility_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fire_extinguisher1_tab_utilities_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fire_extinguisher2_tab_utilities_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/flowcontainer.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/forgot_pass_step2_fragment.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/forgot_pass_step3_fragment.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_2_faq.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/fragment_add_image.xml" value="0.10462962962962963" />
         <entry key="app/src/main/res/layout/fragment_blackhaul.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/fragment_customer.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/fragment_customer_tab.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_demo_faq.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/fragment_faqpage.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/fragment_first2.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_g_a.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
@@ -117,6 +161,7 @@
         <entry key="app/src/main/res/layout/lang_item.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/layout_img_attachment.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/loging_second_step.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/new_customer_detail_fragment.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/notifications_item_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/otp_verification_step2_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/otp_verification_step4_fragment.xml" value="0.20416666666666666" />
@@ -135,7 +180,7 @@
         <entry key="app/src/main/res/layout/search_activity.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/search_box.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/search_header_layout.xml" value="0.20416666666666666" />
-        <entry key="app/src/main/res/layout/site_action_bar.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/site_action_bar.xml" value="0.4759597778320313" />
         <entry key="app/src/main/res/layout/site_detail_frag.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/site_detail_tabs.xml" value="0.11614583333333334" />
         <entry key="app/src/main/res/layout/site_info_redetail.xml" value="0.20729166666666668" />

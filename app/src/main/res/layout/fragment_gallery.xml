@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.basic_info.fragment.GalleryFragment">
+    tools:context=".ui.basic_info.SiteImages">
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -17,7 +17,7 @@
            android:layout_height="wrap_content">
 
            <ImageView
-               android:id="@+id/img_back"
+               android:id="@+id/back"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_centerVertical="true"
@@ -34,9 +34,9 @@
                android:layout_alignParentTop="true"
                android:layout_centerVertical="true"
                android:layout_marginStart="@dimen/activity_horizontal_margin"
-               android:layout_marginTop="19dp"
+               android:layout_marginTop="23dp"
                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-               android:layout_toRightOf="@+id/img_back"
+               android:layout_toRightOf="@+id/back"
                android:fontFamily="@font/montserrat_bold"
                android:gravity="top"
                android:lineSpacingExtra="-7sp"
@@ -50,7 +50,7 @@
                android:layout_height="wrap_content"
                android:layout_alignParentTop="true"
                android:layout_centerVertical="true"
-               android:layout_marginStart="@dimen/dp170"
+               android:layout_marginStart="@dimen/dp150"
                android:layout_marginTop="@dimen/activity_horizontal_margin"
                android:layout_marginEnd="@dimen/activity_horizontal_margin"
                android:layout_marginBottom="@dimen/activity_horizontal_margin"
@@ -69,6 +69,7 @@
            android:layout_height="wrap_content"
            android:gravity="center"
            android:layout_marginLeft="@dimen/dp5"
+           android:layout_marginRight="@dimen/dp5"
            android:orientation="horizontal"
            android:background="@drawable/rectangle_9">
            <TextView
