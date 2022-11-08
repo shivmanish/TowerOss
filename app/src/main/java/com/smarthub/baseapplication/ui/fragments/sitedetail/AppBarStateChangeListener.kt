@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.site_detail
+package com.smarthub.baseapplication.ui.fragments.sitedetail
 
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.AppBarLayout

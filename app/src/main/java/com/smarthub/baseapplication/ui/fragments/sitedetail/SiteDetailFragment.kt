@@ -1,13 +1,15 @@
-package com.smarthub.baseapplication.ui.fragments.site_detail
+package com.smarthub.baseapplication.ui.fragments.sitedetail
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
@@ -25,8 +27,8 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteLocationDetailBinding
 import com.smarthub.baseapplication.databinding.TabItemBinding
-import com.smarthub.baseapplication.ui.fragments.sitedetail.*
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
+import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
@@ -92,6 +94,11 @@ class SiteDetailFragment : Fragment() {
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
+        var addImage = root.findViewById<ImageView>(R.id.add_image)
+        addImage.setOnClickListener{
+            val intent = Intent(activity, SiteImages::class.java)
+            startActivity(intent)
+        }
 
         return root
     }
