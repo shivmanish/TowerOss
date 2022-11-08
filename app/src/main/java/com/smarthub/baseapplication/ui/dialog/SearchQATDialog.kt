@@ -13,8 +13,6 @@ import com.smarthub.baseapplication.databinding.SearchQatDialogLayoutBinding
 import com.smarthub.baseapplication.ui.dialog.adapter.SearchSpinnerAdapter
 import com.smarthub.baseapplication.ui.dialog.model.SearchQatModel
 import java.util.*
-
-
 class SearchQATDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog) {
     private lateinit var searchQATDialogLayoutBinding: SearchQatDialogLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
