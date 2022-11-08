@@ -20,13 +20,11 @@ import com.smarthub.baseapplication.ui.fragments.site_detail.SiteDetailViewModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class DashboardActivity : BaseActivity() {
+class  DashboardActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SiteDetailViewModel
     private lateinit var mainViewModel: MainViewModel
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

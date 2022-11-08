@@ -676,7 +676,7 @@
             <LinearLayout
                 android:layout_margin="5dp"
                 android:visibility="gone"
-                android:id="@+id/item_collapse"
+                android:id="@+id/item_collapse_acceptance"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -1102,13 +1102,13 @@
                 android:layout_height="60dp">
                 <LinearLayout
                     android:gravity="center_vertical"
-                    android:id="@+id/collapsing_Maintenance"
+                    android:id="@+id/collapsing_other"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
                         android:drawablePadding="5dp"
                         android:layout_weight="1"
-                        android:id="@+id/item_maintenance"
+                        android:id="@+id/item_others"
                         android:text="Others"
                         android:paddingStart="@dimen/dp10"
                         android:paddingEnd="@dimen/dp10"
@@ -1131,7 +1131,7 @@
             <LinearLayout
                 android:layout_margin="5dp"
                 android:visibility="gone"
-                android:id="@+id/item_collapse_maintance"
+                android:id="@+id/item_collapse_others"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
