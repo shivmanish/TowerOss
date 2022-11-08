@@ -40,7 +40,8 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener, var a
             Toast.makeText(it.context, "login",Toast.LENGTH_SHORT).show()
         }
         holder.binding?.addsmp?.setOnClickListener {
-         listener.clickedItemSMP()
+        // listener.clickedItemSMP()
+            Navigation.findNavController(it).navigate(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag);
             Toast.makeText(it.context, "login",Toast.LENGTH_SHORT).show()
         }
         holder.binding?.addFireExiting?.setOnClickListener {
