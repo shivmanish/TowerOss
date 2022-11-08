@@ -33,6 +33,23 @@
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
                 />
+            <TextView
+                android:layout_weight=".3"
+
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp25"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:drawablePadding="@dimen/dp10"
+                android:background="@drawable/yellow_text_button"
+                android:fontFamily="@font/montserrat"
+                android:text="Add More"
+                android:id="@+id/addmore"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:textColor="@color/normalTextColor"
+                android:textSize="@dimen/sp12" />
 
         </LinearLayout>
 
@@ -211,7 +228,23 @@
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
                 />
+            <TextView
+                android:layout_weight=".3"
 
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp25"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:drawablePadding="@dimen/dp10"
+                android:background="@drawable/yellow_text_button"
+                android:fontFamily="@font/montserrat"
+                android:text="Add More"
+                android:id="@+id/addDg"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:textColor="@color/normalTextColor"
+                android:textSize="@dimen/sp12" />
         </LinearLayout>
 
         <LinearLayout
@@ -388,7 +421,23 @@
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
                 />
+            <TextView
+                android:layout_weight=".3"
 
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp25"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:drawablePadding="@dimen/dp10"
+                android:background="@drawable/yellow_text_button"
+                android:fontFamily="@font/montserrat"
+                android:text="Add More"
+                android:id="@+id/addAC"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:textColor="@color/normalTextColor"
+                android:textSize="@dimen/sp12" />
         </LinearLayout>
 
         <LinearLayout
@@ -564,7 +613,23 @@
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
                 />
+            <TextView
+                android:layout_weight=".3"
 
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp25"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:drawablePadding="@dimen/dp10"
+                android:background="@drawable/yellow_text_button"
+                android:fontFamily="@font/montserrat"
+                android:text="Add More"
+                android:id="@+id/addFireExiting"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:textColor="@color/normalTextColor"
+                android:textSize="@dimen/sp12" />
         </LinearLayout>
 
         <LinearLayout
