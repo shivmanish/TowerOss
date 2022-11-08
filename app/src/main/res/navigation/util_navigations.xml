@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/util_navigations"
+    app:startDestination="@id/AC1UtilitesFrag">
+
+    <fragment
+        android:id="@+id/AC1UtilitesFrag"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.AC1UtilitesFrag"
+        android:label="AC1UtilitesFrag" />
+    <fragment
+        android:id="@+id/utilitiesNocMainTabFragment"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment"
+        android:label="UtilitiesNocMainTabFragment" >
+        <action
+            android:id="@+id/action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag"
+            app:destination="@id/AC1UtilitesFrag" />
+        <action
+            android:id="@+id/action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag2"
+            app:destination="@id/AC1UtilitesFrag"
+            app:popUpTo="@id/utilitiesNocMainTabFragment" />
+    </fragment>
+</navigation>
