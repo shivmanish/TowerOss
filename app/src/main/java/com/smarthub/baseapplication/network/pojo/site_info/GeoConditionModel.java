@@ -3,7 +3,9 @@ package com.smarthub.baseapplication.network.pojo.site_info;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GeoConditionModel {
+import java.io.Serializable;
+
+public class GeoConditionModel implements Serializable {
 
     @SerializedName("Potentialthreat")
     @Expose
