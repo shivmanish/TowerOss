@@ -13,9 +13,17 @@
             android:id="@+id/action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag"
             app:destination="@id/AC1UtilitesFrag"
             app:popUpTo="@id/utilitiesNocMainTabFragment" />
+        <action
+            android:id="@+id/action_utilitiesNocMainTabFragment_to_DG1TabUtilitesFrag4"
+            app:destination="@id/DG1TabUtilitesFrag4"
+            app:popUpTo="@id/utilitiesNocMainTabFragment" />
     </fragment>
     <fragment
         android:id="@+id/AC1UtilitesFrag"
         android:name="com.smarthub.baseapplication.ui.utilites.fragment.AC1UtilitesFrag"
         android:label="AC1UtilitesFrag" />
+    <fragment
+        android:id="@+id/DG1TabUtilitesFrag4"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.DG1TabUtilitesFrag"
+        android:label="DG1TabUtilitesFrag" />
 </navigation>

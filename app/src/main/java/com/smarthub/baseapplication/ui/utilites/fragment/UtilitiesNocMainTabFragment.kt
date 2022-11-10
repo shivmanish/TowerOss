@@ -77,12 +77,12 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
 
     override fun clickedItemAC() {
 
+        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
+
    }  override fun clickedItemDG() {
+        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToDG1TabUtilitesFrag())
 
    } override fun clickedItemSMP() {
-      //  Navigation.findNavController(requireActivity()).navigate(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag);
-
-     //   findNavController().navigate(HomeFragmentDirections.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag())
 
 
     }
