@@ -10,7 +10,15 @@ public class SiteInfoDropDownData {
 
     @SerializedName("OperationalInfo")
     @Expose
-    private BasicInfoModel operationalInfo;
+    private OperationalInfoModel operationalInfo;
+
+    @SerializedName("GeoCondition")
+    @Expose
+    private GeoConditionModel geoCondition;
+
+    @SerializedName("SafetyAndAccess")
+    @Expose
+    private SafetyAndAccessModel safetyAndAccess;
 
 
     public BasicInfoModel getBasicInfoModel() {
@@ -21,11 +29,27 @@ public class SiteInfoDropDownData {
         this.basicInfoModel = basicInfoModel;
     }
 
-    public BasicInfoModel getOperationalInfo() {
+    public OperationalInfoModel getOperationalInfo() {
         return operationalInfo;
     }
 
-    public void setOperationalInfo(BasicInfoModel operationalInfo) {
+    public void setOperationalInfo(OperationalInfoModel operationalInfo) {
         this.operationalInfo = operationalInfo;
+    }
+
+    public GeoConditionModel getGeoCondition() {
+        return geoCondition;
+    }
+
+    public void setGeoCondition(GeoConditionModel geoCondition) {
+        this.geoCondition = geoCondition;
+    }
+
+    public SafetyAndAccessModel getSafetyAndAccess() {
+        return safetyAndAccess;
+    }
+
+    public void setSafetyAndAccess(SafetyAndAccessModel safetyAndAccess) {
+        this.safetyAndAccess = safetyAndAccess;
     }
 }
