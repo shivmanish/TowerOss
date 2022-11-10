@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 
@@ -30,6 +31,9 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
         nocBinding = FragmentUtilitesNocBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[UtilitiesNocViewModel::class.java]
         initializeFragment()
+
+
+        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
         return nocBinding.root
     }
 
