@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.faq
+package com.smarthub.baseapplication.ui.fragments.customer_tab.faq
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

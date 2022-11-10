@@ -45,7 +45,7 @@ class UtilitesNocDataAdapter(
         holder.binding.addsmp?.setOnClickListener {
             // listener.clickedItemSMP()
 
-            // findNavController(it).navigate(HomeFragmentDirections.actionNavigationHomeToImageListFragment())
+          //  findNavController(it).navigate(HomeFragmentDirections.actionNavigationHomeToImageListFragment())
 
 /*AC1UtilitesFrag*/
 
