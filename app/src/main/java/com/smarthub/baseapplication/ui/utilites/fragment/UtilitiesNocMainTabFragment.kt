@@ -33,7 +33,7 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
         initializeFragment()
 
 
-        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
+//        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
         return nocBinding.root
     }
 
