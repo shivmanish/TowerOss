@@ -1,6 +1,9 @@
 package com.smarthub.baseapplication.ui.basic_info
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -8,6 +11,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.BasicInfoDetailActivityBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
+import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 import kotlinx.android.synthetic.main.new_customer_detail_fragment.*
 import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
 import kotlinx.android.synthetic.main.tab_name_item.view.*
@@ -16,19 +23,21 @@ import kotlinx.android.synthetic.main.tab_name_item.view.*
 class BasicInfoDetailsActivity : BaseActivity() {
 
     lateinit var binding : BasicInfoDetailActivityBinding
+    lateinit var siteViewModel : BasicInfoDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = BasicInfoDetailActivityBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        initViews()
+        setViewModel()
+
     }
 
-    private fun initViews(){
+    private fun initViews(siteInfoDropDownData: SiteInfoDropDownData) {
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.viewpager.adapter = BasicInfoPagerAdapter(supportFragmentManager)
+        binding.viewpager.adapter = BasicInfoPagerAdapter(supportFragmentManager,siteInfoDropDownData)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()
@@ -52,6 +61,36 @@ class BasicInfoDetailsActivity : BaseActivity() {
                 tab.view.setBackgroundResource(R.color.tab_deselected)
             }
             override fun onTabReselected(tab: TabLayout.Tab) {}
+        }
+    }
+
+    private fun setViewModel(){
+        siteViewModel= ViewModelProvider(this@BasicInfoDetailsActivity)[BasicInfoDetailViewModel::class.java]
+        siteViewModel?.fetchDropDown()
+        siteViewModel?.dropDownResponse?.observe(this@BasicInfoDetailsActivity) {
+            (this as BaseActivity).hideLoader()
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS && it.data != null) {
+                    mapUiData(it.data)
+                    Toast.makeText(this@BasicInfoDetailsActivity, "data fetched successfully", Toast.LENGTH_LONG).show()
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@BasicInfoDetailsActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+
+                }
+            } else {
+                Log.d("status", "${AppConstants.GENERIC_ERROR}")
+                Toast.makeText(this@BasicInfoDetailsActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun mapUiData(siteInfoDropDownData: SiteInfoDropDownData){
+        if (siteInfoDropDownData!=null){
+//            start data mapping
+            initViews(siteInfoDropDownData)
+
         }
     }
 

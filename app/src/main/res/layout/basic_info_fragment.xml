@@ -153,6 +153,7 @@
                         android:text="On-Air"
                         android:id="@+id/site_ownership_spinner"
                         style="@style/SpinnerTheme"
+                        android:gravity="left"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View

@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.sitedetail
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -34,7 +35,8 @@ class SiteInfo: Fragment() {
         binding?.listView?.adapter = SiteInfoCardItemAdapter()
 
         siteViewModel= ViewModelProvider(requireActivity())[SiteInfoViewModel::class.java]
-            siteViewModel?.fetchDropDown()
+//            siteViewModel?.fetchDropDown()
+/*
             siteViewModel?.dropDownResponse?.observe(viewLifecycleOwner) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null) {
@@ -52,6 +54,7 @@ class SiteInfo: Fragment() {
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
+*/
         binding?.basicInfoLayout?.setOnClickListener {
             var intent = Intent(requireContext(),BasicInfoDetailsActivity::class.java)
             startActivity(intent)
