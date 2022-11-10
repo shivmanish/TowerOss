@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
@@ -68,7 +71,22 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
     }
 
     override fun clickedItem() {
-        requireActivity().startActivity(Intent(requireContext(), UtilitiesNocActivity::class.java))
+     //   requireActivity().startActivity(Intent(requireContext(), UtilitiesNocActivity::class.java))
 
     }
+
+    override fun clickedItemAC() {
+
+   }  override fun clickedItemDG() {
+
+   } override fun clickedItemSMP() {
+      //  Navigation.findNavController(requireActivity()).navigate(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag);
+
+     //   findNavController().navigate(HomeFragmentDirections.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag())
+
+
+    }
+    override fun clickedItemFireExiting() {
+
+   }
 }
