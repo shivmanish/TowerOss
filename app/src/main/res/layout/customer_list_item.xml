@@ -1,121 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dp15"
-    android:elevation="@dimen/dp10"
     android:id="@+id/card_item"
-    android:background="@color/white"
-    app:cardCornerRadius="@dimen/dp15">
+    app:cardElevation="@dimen/dp5"
+    android:layout_margin="@dimen/dp5"
+    app:cardCornerRadius="@dimen/dp5">
 
-    <LinearLayout
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/top"
+        android:background="#C4D3EE"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-       <com.google.android.material.card.MaterialCardView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           app:cardElevation="2dp"
-           android:layout_margin="2dp"
-           app:cardBackgroundColor="#C4D3EE">
-           <LinearLayout
-               android:id="@id/top"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal"
-               android:padding="@dimen/dp15">
-               <com.google.android.material.imageview.ShapeableImageView
-                   android:layout_width="@dimen/dp30"
-                   android:layout_height="@dimen/dp30"
-                   android:adjustViewBounds="true"
-                   android:scaleType="centerCrop"
-                   android:src="@drawable/dummy_network_call" />
-               <LinearLayout
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="@dimen/dp15"
-                   android:layout_weight="2"
-                   android:orientation="vertical">
-
-                   <TextView
-                       android:id="@+id/titel"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/montserrat_regular"
-                       android:text="Reliance jio pvt ltd"
-                       android:textColor="@color/black"
-                       android:textSize="@dimen/sp15" />
-
-                   <LinearLayout
-                       android:gravity="center_vertical"
-                       android:orientation="horizontal"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:id="@+id/text1"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:fontFamily="@font/montserrat_regular"
-                           android:text="Smell"
-                           android:textColor="@color/textGray"
-                           android:textSize="@dimen/sp12" />
-                       <View
-                           android:layout_marginStart="5dp"
-                           android:layout_marginEnd="5dp"
-                           android:layout_width="1dp"
-                           android:background="#3D4E6D"
-                           android:alpha="0.21"
-                           android:layout_height="@dimen/dp20"/>
-                       <TextView
-                           android:id="@+id/text2"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:fontFamily="@font/montserrat_regular"
-                           android:text="ODC"
-                           android:textColor="@color/tab_text_color"
-                           android:textSize="@dimen/sp12" />
-                       <View
-                           android:layout_marginStart="5dp"
-                           android:layout_marginEnd="5dp"
-                           android:layout_width="1dp"
-                           android:background="#3D4E6D"
-                           android:alpha="0.21"
-                           android:layout_height="@dimen/dp20"/>
-                       <TextView
-                           android:id="@+id/text3"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:fontFamily="@font/montserrat_regular"
-                           android:text="Fiber"
-                           android:textColor="@color/tab_text_color"
-                           android:textSize="@dimen/sp12" />
-                   </LinearLayout>
-               </LinearLayout>
-
-               <ImageView
-                   android:id="@+id/menu"
-                   android:layout_width="wrap_content"
-                   android:layout_height="17dp"
-                   android:layout_gravity="center"
-                   android:paddingLeft="@dimen/dp5"
-                   android:paddingTop="@dimen/dp5"
-                   android:paddingBottom="@dimen/dp5"
-                   android:rotation="90"
-                   android:src="@drawable/dummy_3g" />
-
-
-           </LinearLayout>
-       </com.google.android.material.card.MaterialCardView>
-
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginStart="@dimen/dp15"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:id="@+id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/dummy_network_call" />
         <LinearLayout
-            android:id="@+id/main_collaps"
-            android:visibility="gone"
-            android:layout_width="match_parent"
+            android:id="@+id/text_content"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/menu"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_weight="2"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Reliance jio pvt ltd"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15" />
+            <TextView
+                android:id="@+id/text_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="#DEL-VIL-SC-0001"
+                android:textColor="@color/textGray"
+                android:textSize="@dimen/sp12" />
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Smell"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/sp12" />
+                <View
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_width="1dp"
+                    android:background="#3D4E6D"
+                    android:alpha="0.21"
+                    android:layout_height="@dimen/dp20"/>
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="ODC"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/sp12" />
+                <View
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_width="1dp"
+                    android:background="#3D4E6D"
+                    android:alpha="0.21"
+                    android:layout_height="@dimen/dp20"/>
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Fiber"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/menu"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@drawable/dummy_3g" />
+        <View
+            android:id="@+id/divider"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/text_content"
+            android:background="@color/tab_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:alpha="0.21"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/text_rfi_date"
+            android:text="RFI Date 05-Oct-2018"
+            android:layout_marginTop="@dimen/dp10"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp15"
+            app:layout_constraintWidth_percent="0.5"/>
+        <TextView
+            android:gravity="end"
+            android:layout_width="0dp"
+            android:id="@+id/text_rfs_date"
+            app:layout_constraintTop_toTopOf="@+id/text_rfi_date"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_height="wrap_content"
+            android:text="RFS Date 10-Nov-2018"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/dp15"
+            app:layout_constraintWidth_percent="0.5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

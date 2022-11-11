@@ -15,6 +15,11 @@ class CustomerDataAdapter(var listener: CustomerDataAdapterListener, var array: 
         notifyDataSetChanged()
     }
 
+    fun updateData(s : String) {
+        this.array.add(s)
+        notifyItemChanged(array.size.minus(1))
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerDataViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.customer_list_item, parent, false)
         return CustomerDataViewHolder(view)
@@ -37,5 +42,5 @@ class CustomerDataViewHolder(var itemview: View) : ViewHolder(itemview) {
 }
 
 interface CustomerDataAdapterListener{
-    fun clickedItem();
+    fun clickedItem()
 }

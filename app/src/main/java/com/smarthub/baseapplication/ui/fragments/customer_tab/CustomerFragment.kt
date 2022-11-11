@@ -34,10 +34,8 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
         customerDataAdapter = CustomerDataAdapter(this@CustomerFragment, ArrayList())
         customerBinding.customerList.adapter = customerDataAdapter
-        customerBinding.addmore.setOnClickListener{
-            var arraydata = ArrayList<String>()
-            arraydata.add("anything")
-            customerDataAdapter.setData(arraydata)
+        customerBinding.addMore.setOnClickListener{
+            customerDataAdapter.updateData("anything")
         }
 
 
