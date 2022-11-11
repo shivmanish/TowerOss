@@ -6,8 +6,10 @@
     <TextView
         android:id="@+id/text_view"
         android:text="Sample"
-        android:textSize="@dimen/dp12"
-        android:padding="@dimen/dp5"
+        android:textSize="@dimen/sp14"
+        android:maxLines="1"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
         android:textColor="@color/card_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

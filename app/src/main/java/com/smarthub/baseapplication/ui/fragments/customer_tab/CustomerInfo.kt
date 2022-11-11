@@ -66,11 +66,11 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     private fun mapUiData(siteInfoDropDownData: SiteInfoDropDownData){
         if (siteInfoDropDownData.basicInfoModel!=null){
 //            start data mapping
-//            siteInfoDropDownData.basicInfoModel?.sitestatus?.data?.let {
-//                binding?.siteStatusSpinner?.setSpinnerData(
-//                    it
-//                )
-//            }
+            siteInfoDropDownData.basicInfoModel?.sitestatus?.data?.let {
+                binding?.siteStatusSpinner?.setSpinnerData(
+                    it
+                )
+            }
 //            siteInfoDropDownData.basicInfoModel?.sitetype?.data?.let {
 //                binding?.mobilitySpinner?.setSpinnerData(
 //                    it

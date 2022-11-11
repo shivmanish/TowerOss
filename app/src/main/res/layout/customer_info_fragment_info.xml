@@ -17,6 +17,8 @@
             android:layout_height="match_parent">
             <GridLayout
                 android:columnCount="2"
+                android:layout_gravity="bottom"
+                android:foregroundGravity="bottom"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
