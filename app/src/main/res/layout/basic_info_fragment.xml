@@ -248,7 +248,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -294,7 +294,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -318,7 +318,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -341,7 +341,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
