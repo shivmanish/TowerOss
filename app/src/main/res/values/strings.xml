@@ -175,7 +175,7 @@
     <string name="role_area">Role Area</string>
     <string name="successfully"><u>Login</u></string>
     <string name="temp_name">Dear <font fgcolor='##000000'>Brajesh Patel,</font> your OTP for registration is <font fgcolor='##000000'>454545</font>. Use this password to validate your login</string>
-    <string name="text_temp_4">Please enter a one time password(OTP) sent to <font fgcolor='##000000'>+91 7827230654</font></string>
+    <string name="text_temp_4">Please enter your 10 digit mobile number</string>
     <string name="resend_otp"><u>Resend OTP?</u></string>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
 
