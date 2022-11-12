@@ -20,6 +20,18 @@ public class SiteInfoDropDownData {
     @Expose
     private SafetyAndAccessModel safetyAndAccess;
 
+    public SafetyAndAccessModel getAcquistionMode() {
+        return acquistionMode;
+    }
+
+    public void setAcquistionMode(SafetyAndAccessModel acquistionMode) {
+        this.acquistionMode = acquistionMode;
+    }
+
+    @SerializedName("AcquistionMode")
+    @Expose
+    private SafetyAndAccessModel acquistionMode;
+
 
     public BasicInfoModel getBasicInfoModel() {
         return basicInfoModel;

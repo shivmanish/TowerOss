@@ -39,6 +39,7 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
            siteLeaseDataAdapter.setData(arraydata)
         }
      //   viewmodel.fetchData()
+
         viewmodel.fetchDropDown()
         viewmodel.site_lease_data.observe(requireActivity(), Observer {
             // Data is get from server and ui work will be start from here

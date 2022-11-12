@@ -23,7 +23,6 @@ class SearchActivity : BaseActivity() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
         dataBinding = SearchActivityBinding.inflate(layoutInflater)
-
         mViewModel = ViewModelProvider(this)[SearchActivityViewModel::class.java]
         setContentView(dataBinding?.root)
         navController=Navigation.findNavController(dataBinding?.root?.findViewById(R.id.nav_host)!!)
