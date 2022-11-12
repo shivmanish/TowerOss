@@ -27,7 +27,7 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:padding="5dp"
+                    android:padding="@dimen/dp8"
                     android:id="@+id/back"
                     app:tint="@color/white"
                     android:src="@drawable/ic_back"
@@ -78,7 +78,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_regular"
-                            android:text="Rooftop: 3000"
+                            android:text="Rooftop : 3000"
                             android:textColor="@color/milky_white"
                             android:textSize="@dimen/sp12" />
                         <View
@@ -93,16 +93,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_regular"
-                            android:text="Ground:"
+                            android:text="Ground : "
                             android:textColor="@color/milky_white"
                             android:textSize="@dimen/sp12" />
-                        <View
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_width="1dp"
-                            android:background="@color/white"
-                            android:alpha="0.8"
-                            android:layout_height="match_parent"/>
                         <TextView
                             android:id="@+id/text3"
                             android:layout_width="match_parent"
@@ -119,7 +112,6 @@
                     android:id="@+id/menu_icon"
                     android:layout_width="@dimen/dp30"
                     android:layout_height="@dimen/dp30"
-                    android:rotation="90"
                     android:adjustViewBounds="true"
                     android:src="@drawable/dummy_3g" />
 
@@ -149,7 +141,8 @@
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
 
                     <TextView
                         android:textSize="14sp"
@@ -171,7 +164,8 @@
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
 
                     <TextView
                         android:textSize="14sp"

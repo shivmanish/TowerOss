@@ -172,12 +172,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:text="Restricted Access"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
+                        android:id="@+id/site_access"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"

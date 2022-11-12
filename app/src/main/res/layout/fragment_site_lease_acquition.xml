@@ -21,8 +21,7 @@
         android:layout_gravity="center|right"
         android:gravity="center"
         android:textColor="@color/normalTextColor"
-        android:textSize="@dimen/sp12"
-        app:drawableLeftCompat="@drawable/add_ico" />
+        android:textSize="@dimen/sp12" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="@dimen/dp15"

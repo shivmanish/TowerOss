@@ -20,6 +20,10 @@ public class SiteInfoDropDownData {
     @Expose
     private SafetyAndAccessModel safetyAndAccess;
 
+//    @SerializedName("Siteacquisition")
+//    @Expose
+//    private AcuationsLeaseModel acquistionMode;
+
 
     public BasicInfoModel getBasicInfoModel() {
         return basicInfoModel;

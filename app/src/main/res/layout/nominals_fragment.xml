@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Antenna Slot Used"
+                        android:text="City/ Town"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
