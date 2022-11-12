@@ -79,7 +79,7 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
 
     override fun clickedItemAC() {
 
-        (requireActivity() as SearchActivity).navigationFragment(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
+       // (requireActivity() as SearchActivity).navigationFragment(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
 
      //   requireActivity().findNavController(R.id.nav_host).navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
 
