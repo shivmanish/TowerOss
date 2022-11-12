@@ -16,23 +16,6 @@ public class SiteInfoDropDownData {
     @Expose
     private GeoConditionModel geoCondition;
 
-    @SerializedName("SafetyAndAccess")
-    @Expose
-    private SafetyAndAccessModel safetyAndAccess;
-
-    public SafetyAndAccessModel getAcquistionMode() {
-        return acquistionMode;
-    }
-
-    public void setAcquistionMode(SafetyAndAccessModel acquistionMode) {
-        this.acquistionMode = acquistionMode;
-    }
-
-    @SerializedName("AcquistionMode")
-    @Expose
-    private SafetyAndAccessModel acquistionMode;
-
-
     public BasicInfoModel getBasicInfoModel() {
         return basicInfoModel;
     }
@@ -57,11 +40,30 @@ public class SiteInfoDropDownData {
         this.geoCondition = geoCondition;
     }
 
-    public SafetyAndAccessModel getSafetyAndAccess() {
+    public AcuationsLeaseModel getSafetyAndAccess() {
         return safetyAndAccess;
     }
 
-    public void setSafetyAndAccess(SafetyAndAccessModel safetyAndAccess) {
+    public void setSafetyAndAccess(AcuationsLeaseModel safetyAndAccess) {
         this.safetyAndAccess = safetyAndAccess;
     }
+
+    public AcuationsLeaseModel getAcquistionMode() {
+        return acquistionMode;
+    }
+
+    public void setAcquistionMode(AcuationsLeaseModel acquistionMode) {
+        this.acquistionMode = acquistionMode;
+    }
+
+    @SerializedName("SafetyAndAccess")
+    @Expose
+    private AcuationsLeaseModel safetyAndAccess;
+    @SerializedName("AcquistionMode")
+    @Expose
+    private AcuationsLeaseModel acquistionMode;
+
+
+
+
 }
