@@ -43,9 +43,9 @@ class UtilitesNocDataAdapter(
         }
         holder.binding.addAC?.setOnClickListener {
             listener.clickedItemAC()
-            val action =
+     /*       val action =
                 UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag()
-            Navigation.findNavController(it).navigate(action);
+            Navigation.findNavController(it).navigate(action);*/
 
         }
         holder.binding.addsmp?.setOnClickListener {

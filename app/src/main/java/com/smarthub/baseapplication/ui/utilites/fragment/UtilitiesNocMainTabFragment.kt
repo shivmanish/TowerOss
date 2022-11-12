@@ -10,9 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.SearchActivity
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
@@ -77,10 +79,12 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
 
     override fun clickedItemAC() {
 
-        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
+        (requireActivity() as SearchActivity).navigationFragment(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
+
+     //   requireActivity().findNavController(R.id.nav_host).navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
 
    }  override fun clickedItemDG() {
-        findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToDG1TabUtilitesFrag())
+    //    findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToDG1TabUtilitesFrag())
 
    }
     override fun clickedItemSMP() {

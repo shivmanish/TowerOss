@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/utilitiesNocMainTabFragment">
+    app:startDestination="@id/searchFragment">
 
     <fragment
         android:id="@+id/utilitiesNocMainTabFragment"
@@ -26,4 +26,18 @@
         android:id="@+id/DG1TabUtilitesFrag4"
         android:name="com.smarthub.baseapplication.ui.utilites.fragment.DG1TabUtilitesFrag"
         android:label="DG1TabUtilitesFrag" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_siteDetailFragment"
+            app:destination="@id/siteDetailFragment"
+            app:popUpTo="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/siteDetailFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailFragment"
+        android:label="SiteDetailFragment" />
+
 </navigation>
