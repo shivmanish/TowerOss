@@ -5,10 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitesNocListItemBinding
+import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragmentDirections
 
 class UtilitesNocDataAdapter(
     var listener: UtilitesNocDataAdapterListener,
@@ -40,29 +43,22 @@ class UtilitesNocDataAdapter(
         }
         holder.binding.addAC?.setOnClickListener {
             listener.clickedItemAC()
-            Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+     /*       val action =
+                UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag()
+            Navigation.findNavController(it).navigate(action);*/
+
         }
         holder.binding.addsmp?.setOnClickListener {
-            // listener.clickedItemSMP()
+           listener.clickedItemSMP()
 
-            // findNavController(it).navigate(HomeFragmentDirections.actionNavigationHomeToImageListFragment())
-
-/*AC1UtilitesFrag*/
-
-            Navigation.findNavController(it)
-                .navigate(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag)
-            Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
         }
         holder.binding.addFireExiting?.setOnClickListener {
             listener.clickedItemFireExiting()
             Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
         }
         holder.binding.addAC?.setOnClickListener {
-            listener.clickedItemAC()
-            //  Navigation.findNavController(it).navigate(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag)
-            // Navigation.createNavigateOnClickListener(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag)
-            Toast.makeText(it.context, "Hi>>>>", Toast.LENGTH_SHORT).show()
-            //        Navigation.findNavController(it).navigate(R.id.action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag);
+          listener.clickedItemAC()
+        //    Navigation.findNavController(it).navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
 
         }
     }

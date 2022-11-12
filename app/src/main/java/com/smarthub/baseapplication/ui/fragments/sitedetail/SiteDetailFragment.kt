@@ -214,7 +214,6 @@ class SiteDetailFragment : Fragment() {
         adapter.addFragment(SiteLeaseAcqusitionFragment.newInstance("SiteLease"))
         adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
         adapter.addFragment(UtilitiesNocMainTabFragment.newInstance("Utilities"))
-
         viewPager.adapter = adapter
 
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {

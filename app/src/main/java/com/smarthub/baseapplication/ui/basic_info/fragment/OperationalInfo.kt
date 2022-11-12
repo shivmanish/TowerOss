@@ -17,22 +17,18 @@ import com.smarthub.baseapplication.network.pojo.site_info.OperationalInfoModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class OperationalInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
-
     var binding : OperationalInfoFragmentBinding?=null
     var data: OperationalInfoModel? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         binding = OperationalInfoFragmentBinding.inflate(inflater, container, false)
         return binding?.root
-    }   
-
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         data = requireArguments().getSerializable("data") as OperationalInfoModel?
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
         var adapter =  ImageAttachmentAdapter(this@OperationalInfo)
         recyclerListener.adapter = adapter
-
         view.findViewById<View>(R.id.attach_card).setOnClickListener {
             adapter.addItem()
         }

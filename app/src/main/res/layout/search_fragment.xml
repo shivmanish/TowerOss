@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.home.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/id_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginVertical="@dimen/dp12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            android:text="@string/site_name_uid"
+            android:textColor="@color/normalTextColor"
+            android:fontFamily="@font/montserrat"
+            android:alpha=".5"
+            android:textSize="@dimen/sp10" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            android:text="@string/search_site"
+            android:textColor="@color/normalTextColor"
+            android:fontFamily="@font/montserrat"
+            android:textSize="@dimen/sp15" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/search_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp5"
+            android:layout_marginVertical="@dimen/dp8"
+            app:cardBackgroundColor="@color/search_setting"
+            app:cardCornerRadius="@dimen/dp12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp24"
+                    android:background="@android:color/transparent"
+                    android:hint="**_****_**_****"
+                    android:fontFamily="@font/montserrat"
+                    android:textColorHint="@color/search_star_color"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:drawableEnd="@drawable/search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            android:text="@string/history"
+            android:textColor="@color/normalTextColor"
+            android:fontFamily="@font/montserrat"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+    <!-- <View
+         android:id="@+id/shadow"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/dp20"
+         android:layout_marginBottom="-10dp"
+         android:background="@drawable/top_shadow"
+         app:layout_constraintBottom_toTopOf="@id/nav_view"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent" />
+
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:id="@+id/nav_view"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@drawable/round_top_bottomnavigation"
+         app:elevation="@dimen/dp25"
+         app:labelVisibilityMode="labeled"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:menu="@menu/bottom_nav_menu" />-->
+
+
+    <FrameLayout
+        android:id="@+id/nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

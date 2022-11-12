@@ -3,7 +3,7 @@ package com.smarthub.baseapplication.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.fragments.faq.Fragment2_faq
+import com.smarthub.baseapplication.ui.fragments.customer_tab.faq.Fragment2_faq
 
 
 class PageAdapter_faq(fm:FragmentManager) : FragmentPagerAdapter(fm) {
