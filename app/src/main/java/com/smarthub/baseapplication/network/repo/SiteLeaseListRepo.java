@@ -13,12 +13,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SiteLeaseListRepo {
-
     private final APIClient apiClient;
     private static SiteLeaseListRepo sInstance;
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
-
     public static SiteLeaseListRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
             synchronized (LOCK) {
