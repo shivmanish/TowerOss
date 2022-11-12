@@ -39,14 +39,14 @@ class BasicInfoPagerAdapter(fm: FragmentManager,var siteInfoDropDownData: SiteIn
                 val bundle = Bundle()
                 bundle.putSerializable("data", siteInfoDropDownData.geoCondition)
                 geoConditionalInfo.arguments = bundle
-                return GeoConditionalInfo()
+                return geoConditionalInfo
             }
             3 -> {
                 val safatyAccessFragment = SafatyAccessFragment()
                 val bundle = Bundle()
                 bundle.putSerializable("data", siteInfoDropDownData.safetyAndAccess)
                 safatyAccessFragment.arguments = bundle
-                return SafatyAccessFragment()
+                return safatyAccessFragment
             }
             else -> {
                 val basicInfo = BasicInfo()
