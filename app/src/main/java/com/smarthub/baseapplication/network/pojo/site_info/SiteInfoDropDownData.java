@@ -47,6 +47,7 @@ public class SiteInfoDropDownData {
         return basicInfoModel;
     }
 
+
     public void setBasicInfoModel(BasicInfoModel basicInfoModel) {
         this.basicInfoModel = basicInfoModel;
     }
