@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.utilites.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.UtilitesNocDataAdapterListener
+import com.smarthub.baseapplication.ui.utilites.UtilitiesNocActivity
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocViewModel
 class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
     private val ARG_PARAM1 = "param1"
@@ -60,7 +62,7 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
     }
 
     override fun clickedItem() {
-     //   requireActivity().startActivity(Intent(requireContext(), UtilitiesNocActivity::class.java))
+     requireActivity().startActivity(Intent(requireContext(), UtilitiesNocActivity::class.java))
 
     }
 
