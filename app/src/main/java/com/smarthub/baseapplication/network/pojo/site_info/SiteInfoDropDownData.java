@@ -24,10 +24,10 @@ public class SiteInfoDropDownData {
 //    @Expose
 //    private AcuationsLeaseModel acquistionMode;
 
-    @SerializedName("AcquistionMode")
-    @Expose
-    private AcuationsLeaseModel acuationsLeaseModel;
-    @Expose
+//    @SerializedName("AcquistionMode")
+//    @Expose
+//    private AcuationsLeaseModel acuationsLeaseModel;
+   /* @Expose
     private UtilitesNocModel utilitesNocModel;
     @SerializedName("Utilities")
     @Expose
@@ -46,7 +46,9 @@ public class SiteInfoDropDownData {
     private RfAntenaModel rfAntena;
     @SerializedName("comercial")
     @Expose
-    private ComercialModel comercial;
+    private ComercialModel comercial;*/
+
+
 
     public BasicInfoModel getBasicInfoModel() {
         return basicInfoModel;
@@ -81,7 +83,7 @@ public class SiteInfoDropDownData {
         this.safetyAndAccess = safetyAndAccess;
     }
 
-    public AcuationsLeaseModel getAcuationsLeaseModel() {
+ /*   public AcuationsLeaseModel getAcuationsLeaseModel() {
         return acuationsLeaseModel;
     }
 
@@ -143,5 +145,5 @@ public class SiteInfoDropDownData {
 
     public void setComercial(ComercialModel comercial) {
         this.comercial = comercial;
-    }
+    }*/
 }
