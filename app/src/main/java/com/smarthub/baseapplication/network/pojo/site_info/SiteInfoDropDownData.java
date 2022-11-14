@@ -48,6 +48,8 @@ public class SiteInfoDropDownData {
     @Expose
     private ComercialModel comercial;*/
 
+
+
     public BasicInfoModel getBasicInfoModel() {
         return basicInfoModel;
     }
