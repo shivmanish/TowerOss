@@ -35,6 +35,9 @@ class SiteInfo: Fragment() {
         binding?.listView?.adapter = SiteInfoCardItemAdapter()
 
         siteViewModel= ViewModelProvider(requireActivity())[SiteInfoViewModel::class.java]
+
+
+
 //            siteViewModel?.fetchDropDown()
 /*
             siteViewModel?.dropDownResponse?.observe(viewLifecycleOwner) {
