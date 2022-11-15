@@ -32,6 +32,15 @@
         android:layout_height="match_parent"
         android:id="@+id/utilites_noc_list"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/color1"
 
+        android:layout_gravity="end|bottom"
+        android:src="@android:drawable/ic_menu_add"
+
+        android:layout_margin="16dp" />
 
 </LinearLayout>

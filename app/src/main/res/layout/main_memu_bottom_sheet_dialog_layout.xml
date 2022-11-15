@@ -1,0 +1,160 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/card_top_rect"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+
+
+        android:id="@+id/shareLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/item_EscalationMatrix"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Escalation Matrix" />
+
+        <TextView
+            android:id="@+id/item_sendalert"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Send alert" />
+
+        <TextView
+            android:id="@+id/item_logs"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Logs" />
+
+        <TextView
+            android:id="@+id/item_call"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Call" />
+
+        <TextView
+            android:id="@+id/item_map_view"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Map View" />
+
+        <TextView
+            android:id="@+id/item_viewkyc"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="View picture/layout" />
+
+        <TextView
+            android:id="@+id/item_addnewsite"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Add new site" />
+
+        <TextView
+            android:id="@+id/item_duetask"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            android:text="Due PM task" />
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/item_Open"
+                style="@style/RowTestItemEdit"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:paddingStart="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:text="Open faults" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="@dimen/fab_margin"
+                app:backgroundTint="@color/tab_selected_color"
+                app:srcCompat="@drawable/close" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

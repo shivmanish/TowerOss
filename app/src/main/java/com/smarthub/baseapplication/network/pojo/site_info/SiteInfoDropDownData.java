@@ -20,18 +20,13 @@ public class SiteInfoDropDownData {
     @Expose
     private SafetyAndAccessModel safetyAndAccess;
 
-//    @SerializedName("Siteacquisition")
-//    @Expose
-//    private AcuationsLeaseModel acquistionMode;
-
-//    @SerializedName("AcquistionMode")
-//    @Expose
-//    private AcuationsLeaseModel acuationsLeaseModel;
-   /* @Expose
-    private UtilitesNocModel utilitesNocModel;
-    @SerializedName("Utilities")
+    @SerializedName("Siteacquisition")
     @Expose
-    private UtilitesNocModel utilities;
+    private AcuationsLeaseModel acquistionMode;
+
+/*    @SerializedName("Utilities")
+    @Expose
+    private UtilitesNocModel utilities;*/
     @SerializedName("Opcoinfo")
     @Expose
     private OpcoinfoModel opcoinfo;
@@ -44,16 +39,10 @@ public class SiteInfoDropDownData {
     @SerializedName("RfAntena")
     @Expose
     private RfAntenaModel rfAntena;
-    @SerializedName("comercial")
-    @Expose
-    private ComercialModel comercial;*/
-
-
 
     public BasicInfoModel getBasicInfoModel() {
         return basicInfoModel;
     }
-
 
     public void setBasicInfoModel(BasicInfoModel basicInfoModel) {
         this.basicInfoModel = basicInfoModel;
@@ -83,28 +72,12 @@ public class SiteInfoDropDownData {
         this.safetyAndAccess = safetyAndAccess;
     }
 
- /*   public AcuationsLeaseModel getAcuationsLeaseModel() {
-        return acuationsLeaseModel;
+    public AcuationsLeaseModel getAcquistionMode() {
+        return acquistionMode;
     }
 
-    public void setAcuationsLeaseModel(AcuationsLeaseModel acuationsLeaseModel) {
-        this.acuationsLeaseModel = acuationsLeaseModel;
-    }
-
-    public UtilitesNocModel getUtilitesNocModel() {
-        return utilitesNocModel;
-    }
-
-    public void setUtilitesNocModel(UtilitesNocModel utilitesNocModel) {
-        this.utilitesNocModel = utilitesNocModel;
-    }
-
-    public UtilitesNocModel getUtilities() {
-        return utilities;
-    }
-
-    public void setUtilities(UtilitesNocModel utilities) {
-        this.utilities = utilities;
+    public void setAcquistionMode(AcuationsLeaseModel acquistionMode) {
+        this.acquistionMode = acquistionMode;
     }
 
     public OpcoinfoModel getOpcoinfo() {
@@ -145,5 +118,14 @@ public class SiteInfoDropDownData {
 
     public void setComercial(ComercialModel comercial) {
         this.comercial = comercial;
-    }*/
+    }
+
+    @SerializedName("comercial")
+    @Expose
+    private ComercialModel comercial;
+
+
+
+
+
 }
