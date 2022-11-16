@@ -20,9 +20,10 @@
             android:layout_height="wrap_content">
             <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                 android:id="@+id/ic_menu_close"
-                android:layout_width="@dimen/dp70"
-                android:layout_height="@dimen/dp70"
-                android:background="@color/black"
+                android:background="@color/white"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+
                 android:elevation="@dimen/dp12"
                 android:innerRadius="0dp"
                 android:shape="ring"
@@ -30,13 +31,13 @@
                 app:cardCornerRadius="@dimen/dp40">
 
                 <ImageView
-                    android:layout_gravity="end"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp80"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:padding="@dimen/dp25"
-                    android:src="@drawable/close"></ImageView>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/ic_menu_close"></ImageView>
             </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
         </LinearLayout>
@@ -59,8 +60,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_menu_call"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -74,11 +75,12 @@
                         android:background="@color/circle_color"
                         android:id="@+id/imageView1"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
+                        android:padding="@dimen/dp14"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
 
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                     
                         android:src="@drawable/ic_menu_call"></ImageView>
                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -112,8 +114,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_map_view"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -123,13 +125,13 @@
                     app:cardCornerRadius="40dp">
 
                     <ImageView
-                        android:background="@color/circle_color"
-
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
+
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                        android:background="@color/circle_color"
+                        android:padding="@dimen/dp14"
                         android:src="@drawable/ic_menu_map"></ImageView>
                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -162,8 +164,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_send_alert"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -177,10 +179,10 @@
                         android:background="@color/circle_color"
 
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                        android:padding="@dimen/dp14"
                         android:src="@drawable/ic_menu_send_alert"></ImageView>
                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -213,8 +215,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_menu_open_faults"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -228,10 +230,10 @@
                         android:background="@color/circle_color"
 
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                        android:padding="@dimen/dp14"
                         android:src="@drawable/ic_menu_faults"></ImageView>
                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -255,6 +257,7 @@
 
         </LinearLayout>
          <LinearLayout
+             android:layout_marginBottom="@dimen/dp20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -272,8 +275,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_menu_escalations"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -285,13 +288,13 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
-                        android:background="@color/circle_color"
-
-
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+
+
+                        android:background="@color/circle_color"
+                        android:padding="@dimen/dp14"
                         android:src="@drawable/ic_menu_escalations"></ImageView>
                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -324,8 +327,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_menu_picture"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -336,12 +339,12 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
-                        android:background="@color/circle_color"
-
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
+
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                        android:background="@color/circle_color"
+                        android:padding="@dimen/dp14"
                         android:src="@drawable/ic_menu_picture"></ImageView>
                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -374,8 +377,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_pm_task"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -387,10 +390,10 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp80"
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                        android:padding="@dimen/dp14"
                         android:background="@color/circle_color"
 
                         android:src="@drawable/ic_menu_pm_task"></ImageView>
@@ -425,8 +428,8 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
                     android:id="@+id/ic_menu_logs"
-                    android:layout_width="@dimen/dp70"
-                    android:layout_height="@dimen/dp70"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
                     android:background="@color/black"
                     android:elevation="@dimen/dp12"
@@ -438,10 +441,10 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="88dp"
+                        android:layout_height="@dimen/dp50"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:padding="@dimen/dp25"
+                        android:padding="@dimen/dp14"
                         android:background="@color/circle_color"
 
                         android:src="@drawable/ic_menu_logs"></ImageView>
