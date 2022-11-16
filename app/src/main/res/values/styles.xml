@@ -6,6 +6,22 @@
         <item name="android:textColor">#FFFFFF</item>
 
     </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#ffffff</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="backgroundTint">#ffffff</item>
+        <item name="hintTextColor">#ffffff</item>
+    </style>
+
+    <style name="CustomTextInputEdit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="CustomEditField" parent="Widget.Design.TextInputLayout">
+        <item name="colorAccent">@color/white</item>
+    </style>
 <!--comment added-->
     <style name="AutoResizeTextView" parent="Widget.AppCompat.TextView">
         <item name="autoSizeTextType">uniform</item>
