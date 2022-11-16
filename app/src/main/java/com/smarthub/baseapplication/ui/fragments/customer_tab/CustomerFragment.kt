@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentCustomerBinding
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
@@ -37,6 +39,13 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
         customerBinding.addMore.setOnClickListener{
             customerDataAdapter.updateData("anything")
         }
+
+        customerBinding.addMore.setOnClickListener(){
+            val dialog = BottomSheetDialog(requireActivity())
+            // on below line we are inflating a layout file which we have created.
+            val view = layoutInflater.inflate(R.layout.main_memu_bottom_sheet_dialog_layout, null)
+        }
+
 
 
         viewmodel.fetchData()
