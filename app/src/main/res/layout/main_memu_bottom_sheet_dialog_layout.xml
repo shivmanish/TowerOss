@@ -27,12 +27,12 @@
                 android:innerRadius="0dp"
                 android:shape="ring"
                 android:thicknessRatio="1.9"
-                app:cardCornerRadius="40dp">
+                app:cardCornerRadius="@dimen/dp40">
 
                 <ImageView
                     android:layout_gravity="end"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="@dimen/dp80"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:padding="@dimen/dp25"
@@ -74,7 +74,7 @@
                         android:background="@color/circle_color"
                         android:id="@+id/imageView1"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:layout_alignParentTop="true"
 
                         android:layout_centerHorizontal="true"
@@ -126,7 +126,7 @@
                         android:background="@color/circle_color"
 
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:padding="@dimen/dp25"
@@ -177,7 +177,7 @@
                         android:background="@color/circle_color"
 
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:padding="@dimen/dp25"
@@ -228,7 +228,7 @@
                         android:background="@color/circle_color"
 
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:padding="@dimen/dp25"
@@ -285,7 +285,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:layout_alignParentTop="true"
                         android:background="@color/circle_color"
 
@@ -336,7 +336,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:background="@color/circle_color"
 
                         android:layout_alignParentTop="true"
@@ -387,7 +387,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="@dimen/dp80"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:padding="@dimen/dp25"
