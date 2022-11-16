@@ -1,32 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <TextView
-        android:layout_marginTop="@dimen/dp10"
-        android:layout_marginRight="@dimen/dp10"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp40"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10"
-        android:drawablePadding="@dimen/dp10"
-        android:drawableLeft="@drawable/add_ico"
-        android:background="@drawable/yellow_text_button"
-        android:fontFamily="@font/montserrat"
-        android:text="Add More"
-        android:id="@+id/addmore"
-        android:layout_gravity="center|right"
-        android:gravity="center"
-        android:textColor="@color/normalTextColor"
-        android:textSize="@dimen/sp12" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="@dimen/dp15"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/site_lease_list_item"/>
+        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp40"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:drawablePadding="@dimen/dp10"
+
+                android:drawableLeft="@drawable/addmore"
+
+                android:background="@drawable/rounded_textblue"
+                android:fontFamily="@font/montserrat"
+                android:text="Add More"
+                android:id="@+id/addmore"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp12" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/site_lease_list_item"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_more"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        app:backgroundTint="@color/tab_selected_color"
+        android:layout_marginBottom="@dimen/dp80"
+        app:srcCompat="@drawable/addmore" />
+
+</FrameLayout>

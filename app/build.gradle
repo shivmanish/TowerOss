@@ -57,6 +57,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
+    implementation project(':coverflow')
     // for adding cardview
     implementation 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.13.2'

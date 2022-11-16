@@ -37,6 +37,7 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="@dimen/dp30"
+                    android:visibility="gone"
                     android:layout_height="@dimen/dp30"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
@@ -54,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Acquisition⌗1"
+                        android:text="Reliance jio pvt ltd"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp15" />
 
@@ -64,11 +65,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Tearm Lease - Rooftop - Land"
+                        android:text="#DEL-VIL-SC-0001"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp12" />
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
@@ -108,11 +110,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:padding="3dp"
+                    android:visibility="gone"
                     android:id="@+id/menu_icon"
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+                    android:padding="3dp"
                     android:src="@drawable/dummy_3g" />
 
                 <ImageView
@@ -146,13 +149,13 @@
 
                     <TextView
                         android:textSize="14sp"
-                        android:text="Registration Date:"
+                        android:text="Site ID:"
                         android:textColor="#CCCCCC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:text="05-Oct-2018"
+                        android:text=" CE-MHMUMB-SC-A0123"
                         android:textSize="14sp"
                         android:paddingStart="5dp"
                         android:textColor="@color/white"
