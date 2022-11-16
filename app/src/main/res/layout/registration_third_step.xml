@@ -29,15 +29,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="0dp"
+                android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_percent="0.88"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="Registration"
+                    android:layout_gravity="center"
+                    android:text="User Registration"
                     android:textSize="@dimen/dp28"
                     android:textColor="#ffffff"
                     android:id="@+id/login1"
@@ -52,6 +54,7 @@
                 <TextView
                     android:text="Please enter full detail for registration"
                     android:textSize="13sp"
+                    android:layout_gravity="center"
                     android:textColor="#ffffff"
                     android:id="@+id/request_msg"
                     android:layout_width="wrap_content"
@@ -65,8 +68,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/progress_status"
                     app:layout_constraintBottom_toTopOf="@+id/mo_no"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_marginBottom="@dimen/dp45"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintWidth_percent="0.8"
@@ -130,7 +135,7 @@
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"/>
                     <TextView
-                        android:text="Geography"
+                        android:text="Job role info"
                         android:gravity="center"
                         android:textSize="11sp"
                         android:id="@+id/p_status2"
@@ -174,7 +179,7 @@
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"/>
                     <TextView
-                        android:text="Password"
+                        android:text="Manager Info"
                         android:gravity="center"
                         android:textSize="11sp"
                         android:id="@+id/p_status3"
@@ -188,6 +193,28 @@
                         android:layout_height="wrap_content"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:hint="Manager name"
+                    android:textSize="15sp"
+                    android:id="@+id/manager_name"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_width="match_parent"
+                    style="@style/registratio_first_box" />
+                <EditText
+                    android:hint="Email ID"
+                    android:textSize="15sp"
+                    android:id="@+id/email_id"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_width="match_parent"
+                    style="@style/registratio_first_box" />
+                <EditText
+                    android:hint="Mobile number"
+                    android:textSize="15sp"
+                    android:id="@+id/mobile_number"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_width="match_parent"
+                    style="@style/registratio_first_box" />
+
 
                 <com.smarthub.baseapplication.widgets.PasswordEditText
                     android:hint="New Password"
@@ -203,7 +230,7 @@
                 <com.smarthub.baseapplication.widgets.PasswordEditText
                     android:hint="@string/confirm_password"
                     android:textSize="16sp"
-                    android:id="@+id/email_id"
+                    android:id="@+id/confirm_password"
                     android:layout_height="@dimen/dp45"
                     android:letterSpacing="0.1"
                     android:paddingEnd="@dimen/dp15"
@@ -213,7 +240,7 @@
 
                 <TextView
                     android:padding="@dimen/dp10"
-                    android:text="Register"
+                    android:text="Next"
                     android:textSize="15sp"
                     android:textColor="#F7CB46"
                     android:id="@+id/register"
@@ -227,7 +254,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
                 <TextView
                     android:text="Already have account?"
                     android:textSize="13sp"
@@ -243,7 +274,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/text_register"/>
 
                 <TextView
-                    android:text="Login"
+                    android:text="   Login"
                     android:textSize="14sp"
                     android:textColor="#FFD72B"
                     android:id="@+id/text_register"
@@ -254,8 +285,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View

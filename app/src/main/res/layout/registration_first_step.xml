@@ -29,16 +29,17 @@
                 app:layout_constraintWidth_percent="0.6"
                 android:src="@drawable/bg_login_bottom_left"
                 android:layout_height="wrap_content"/>
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="0dp"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_percent="0.88"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="Registration"
+                    android:layout_gravity="center"
+                    android:text="User Registration"
                     android:textSize="@dimen/dp28"
                     android:textColor="#ffffff"
                     android:id="@+id/login1"
@@ -46,10 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
+                    android:fontFamily="@font/montserrat_bold" />
                 <TextView
                     android:text="Please enter full detail for registration"
                     android:textSize="13sp"
@@ -59,18 +57,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp35"
                     android:fontFamily="@font/montserrat_regular"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/progress_status"/>
+               android:layout_gravity="center"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/progress_status"
-                    app:layout_constraintBottom_toTopOf="@+id/first_name"
-                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:layout_width="match_parent"
                     android:layout_marginBottom="@dimen/dp45"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintWidth_percent="0.8"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -132,7 +126,7 @@
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"/>
                     <TextView
-                        android:text="Geography"
+                        android:text="Job role info"
                         android:gravity="center"
                         android:textSize="11sp"
                         android:id="@+id/p_status2"
@@ -178,7 +172,7 @@
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"/>
                     <TextView
-                        android:text="Password"
+                        android:text="Manager Info"
                         android:gravity="center"
                         android:textSize="11sp"
                         android:id="@+id/p_status3"
@@ -193,6 +187,19 @@
                         android:layout_height="wrap_content"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:hint="Compnay Name"
+                    android:textSize="15sp"
+                    android:id="@+id/company_name"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_width="match_parent"
+                    style="@style/registratio_first_box"
+                    android:drawableEnd="@drawable/ic_arrow_down"
+                    android:paddingEnd="@dimen/dp15"
+                    app:layout_constraintBottom_toTopOf="@+id/last_name"/>
+
+
                 <EditText
                     android:hint="First Name"
                     android:textSize="15sp"
@@ -247,7 +254,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
                 <TextView
                     android:text="Already have account?"
                     android:textSize="13sp"
@@ -263,7 +273,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/text_register"/>
 
                 <TextView
-                    android:text="Login"
+                    android:text="   Login"
                     android:textSize="14sp"
                     android:textColor="#FFD72B"
                     android:id="@+id/text_register"
@@ -274,8 +284,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
