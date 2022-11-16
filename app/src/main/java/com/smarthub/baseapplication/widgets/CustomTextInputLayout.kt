@@ -1,33 +1,34 @@
-package com.smarthub.baseapplication.widgets;
+package com.smarthub.baseapplication.widgets
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
+import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.util.AttributeSet
+import com.google.android.material.textfield.TextInputLayout
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.android.material.textfield.TextInputLayout;
+class CustomTextInputLayout : TextInputLayout {
+    constructor(context: Context) : super(context) {}
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {}
 
-public class CustomTextInputLayout extends TextInputLayout {
-    public CustomTextInputLayout(@NonNull Context context) {
-        super(context);
-    }
-
-    public CustomTextInputLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    //    public CustomTextInputLayout(@NonNull Context context) {
-//        super(new ContextThemeWrapper(context,R.style.TextInputLayout));
+//    override fun setErrorTextAppearance(errorTextAppearance: Int) {
+//        super.setErrorTextAppearance(errorTextAppearance)
+//        val states = arrayOf(intArrayOf())
+//        val colors = intArrayOf(
+//            Color.WHITE
+//        )
+//        val myList = ColorStateList(states, colors)
+//        hintTextColor = myList
 //    }
 //
-//    public CustomTextInputLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-//        super(new ContextThemeWrapper(context,R.style.TextInputLayout));
+//    override fun setError(errorText: CharSequence?) {
+//        super.setError(errorText)
+//        val states = arrayOf(intArrayOf())
+//        val colors = intArrayOf(
+//            Color.WHITE
+//        )
+//        val myList = ColorStateList(states, colors)
+//        hintTextColor = myList
 //    }
-//
-//    public CustomTextInputLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-//        super(new ContextThemeWrapper(context,R.style.TextInputLayout));
-//
-//    }
+
 }

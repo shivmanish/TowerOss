@@ -92,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/user_mail_layout"/>
-                <com.google.android.material.textfield.TextInputLayout
+                <com.smarthub.baseapplication.widgets.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Username or E-mail"
@@ -125,7 +125,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toTopOf="@+id/email_error"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.smarthub.baseapplication.widgets.CustomTextInputLayout>
 
                 <TextView
                     android:text="Please enter a valid username or email id"
