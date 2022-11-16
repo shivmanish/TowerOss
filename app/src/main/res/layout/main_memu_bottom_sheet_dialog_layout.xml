@@ -19,15 +19,12 @@
             android:gravity="end"
             android:layout_height="wrap_content">
             <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
                 android:id="@+id/ic_menu_close"
                 android:layout_width="@dimen/dp70"
                 android:layout_height="@dimen/dp70"
-
                 android:background="@color/black"
                 android:elevation="@dimen/dp12"
                 android:innerRadius="0dp"
-
                 android:shape="ring"
                 android:thicknessRatio="1.9"
                 app:cardCornerRadius="40dp">
