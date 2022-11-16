@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.ui.fragments.customer_tab
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +59,7 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
             val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
             val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
             val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)
+            dialog.getWindow()?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
             close.setOnClickListener {
                 // on below line we are calling a dismiss
                 // method to close our dialog.
