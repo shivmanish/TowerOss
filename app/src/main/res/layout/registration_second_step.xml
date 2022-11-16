@@ -206,38 +206,98 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/developer"
-                    style="@style/registratio_first_box"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/developer_root"
+                    style="@style/TextInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp45"
-                    android:drawableEnd="@drawable/ic_arrow_down"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="Developer"
-                    android:paddingEnd="@dimen/dp15"
-                    android:textSize="15sp" />
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/ic_arrow_down"
+                    app:endIconMode="dropdown_menu"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
-                <TextView
-                    android:id="@+id/technology"
-                    style="@style/registratio_first_box"
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/developer"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/technology_root"
+                    style="@style/TextInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp45"
-                    android:drawableEnd="@drawable/ic_arrow_down"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="Technology"
-                    android:paddingEnd="@dimen/dp15"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toTopOf="@+id/mo_no" />
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/ic_arrow_down"
+                    app:endIconMode="dropdown_menu"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
-                <TextView
-                    android:id="@+id/email_id"
-                    style="@style/registratio_first_box"
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/technology"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/role_area_root"
+                    style="@style/TextInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp45"
-                    android:layout_marginBottom="@dimen/dp35"
-                    android:drawableEnd="@drawable/add"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="Role Area"
-                    android:paddingEnd="@dimen/dp15"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toTopOf="@+id/next" />
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/add"
+                    app:endIconMode="dropdown_menu"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/role_area"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/next"
@@ -257,9 +317,9 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <LinearLayout
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView

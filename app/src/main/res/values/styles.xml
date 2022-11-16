@@ -9,7 +9,11 @@
 
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">#ffffff</item>
-        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
         <item name="backgroundTint">#ffffff</item>
         <item name="hintTextColor">#ffffff</item>
     </style>
