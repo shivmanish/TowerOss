@@ -219,6 +219,15 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            app:backgroundTint="@color/tab_selected_color"
+            android:layout_marginBottom="@dimen/dp80"
+            app:srcCompat="@drawable/addmore" />
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
