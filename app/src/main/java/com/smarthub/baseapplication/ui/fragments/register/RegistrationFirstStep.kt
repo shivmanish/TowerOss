@@ -45,12 +45,12 @@ class RegistrationFirstStep : Fragment() {
         registrationFirstStepBinding.next.setOnClickListener {
 
             if (!Utils.isValid(registrationFirstStepBinding.firstName.text.toString())) {
-                Snackbar.make(
-                    registrationFirstStepBinding.firstName,
-                    "Please Fill FirstName ",
-                    Snackbar.LENGTH_LONG
-                ).show()
+               registrationFirstStepBinding.firstNameRoot.isErrorEnabled = true
+                registrationFirstStepBinding.firstNameRoot.error = "This field can not be empty!"
                 return@setOnClickListener
+            }else{
+                registrationFirstStepBinding.firstNameRoot.isErrorEnabled = false
+                registrationFirstStepBinding.firstNameRoot.error = null
             }
             if (!Utils.isValid(registrationFirstStepBinding.lastName.text.toString())) {
                 Snackbar.make(

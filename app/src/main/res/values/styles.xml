@@ -6,6 +6,36 @@
         <item name="android:textColor">#FFFFFF</item>
 
     </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#ffffff</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:padding">3dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="backgroundTint">#ffffff</item>
+        <item name="hintTextColor">#ffffff</item>
+        <item name="colorErrorContainer">@color/transparent</item>
+        <item name="errorIconDrawable">@drawable/icon_error</item>
+        <item name="boxStrokeErrorColor">@color/white</item>
+    </style>
+
+    <style name="ErrorText" parent="Widget.MaterialComponents.TextView">
+
+
+    </style>
+
+    <style name="CustomTextInputEdit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:textSize">15sp</item>
+
+    </style>
+
+    <style name="CustomEditField" parent="Widget.Design.TextInputLayout">
+        <item name="colorAccent">@color/white</item>
+    </style>
 <!--comment added-->
     <style name="AutoResizeTextView" parent="Widget.AppCompat.TextView">
         <item name="autoSizeTextType">uniform</item>

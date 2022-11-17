@@ -24,9 +24,9 @@ class LoginActivity : BaseActivity() {
     private var loginViewModel : LoginViewModel?=null
     private var user : User?=null
 
-    fun enableErrorMsg(){
-        binding?.emailError?.visibility = View.VISIBLE
-        binding?.forgotError?.visibility = View.VISIBLE
+    private fun enableErrorMsg(){
+        binding?.userMailLayout?.error = "Invalid username"
+        binding?.passwordLayout?.error = "Incorrect password"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

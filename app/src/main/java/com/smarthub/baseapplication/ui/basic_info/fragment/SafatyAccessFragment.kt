@@ -30,7 +30,6 @@ class SafatyAccessFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
         var adapter =  ImageAttachmentAdapter(this@SafatyAccessFragment)
         recyclerListener.adapter = adapter
-
         view.findViewById<View>(R.id.attach_card).setOnClickListener {
             adapter.addItem()
         }
