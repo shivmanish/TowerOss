@@ -210,7 +210,7 @@ class SiteDetailFragment : Fragment() {
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         adapter.addFragment(SiteInfo())
-        adapter.addFragment(CustomerFragment.newInstance("Customer"))
+        adapter.addFragment(CustomerFragment.newInstance("OPCO Tenacy"))
         adapter.addFragment(SiteLeaseAcqusitionFragment.newInstance("SiteLease"))
         adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
         adapter.addFragment(UtilitiesNocMainTabFragment.newInstance("Utilities"))
@@ -255,7 +255,7 @@ class SiteDetailFragment : Fragment() {
     internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) :
         FragmentPagerAdapter(manager,behaviour) {
         private val mFragmentList = ArrayList<Fragment>()
-//        private val mFragmentTitleList = ArrayList<String>()
+       // private val mFragmentTitleList = ArrayList<String>()
 
         override fun getItem(position: Int): Fragment {
             return mFragmentList[position]
