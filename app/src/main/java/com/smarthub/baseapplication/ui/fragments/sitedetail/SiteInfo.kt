@@ -32,6 +32,8 @@ class SiteInfo: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.listView?.set3DItem(true)
+        binding?.listView?.setLoop()
         binding?.listView?.adapter = SiteInfoCardItemAdapter()
 
         siteViewModel= ViewModelProvider(requireActivity())[SiteInfoViewModel::class.java]
