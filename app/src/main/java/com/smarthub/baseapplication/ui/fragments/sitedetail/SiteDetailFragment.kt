@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
@@ -181,7 +182,7 @@ class SiteDetailFragment : Fragment() {
         for (i in 0..tabNames?.size!!.minus(1)) {
             v = TabItemBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
-            val texttabchange: AppCompatTextView = v.txtTab
+            val texttabchange: TextView = v.txtTab
             val imagetab: AppCompatImageView = v.tabImage
             texttab.text = tabNames?.get(i)
             texttabchange.text = tabNames?.get(i)

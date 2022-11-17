@@ -40,6 +40,7 @@
 
             <TextView
                 android:id="@+id/titel"
+                android:layout_marginEnd="@dimen/dp10"
                 android:drawableRight="@drawable/ic_4g"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
