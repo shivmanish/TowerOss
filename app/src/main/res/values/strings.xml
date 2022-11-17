@@ -26,7 +26,7 @@
     </array>
     <string-array name="tab_names">
         <item>Site Info</item>
-        <item>Customer</item>
+        <item>OPCO Tenancy</item>
         <item>Site Lease</item>
         <item>Blackhaul</item>
         <item>Utilities</item>

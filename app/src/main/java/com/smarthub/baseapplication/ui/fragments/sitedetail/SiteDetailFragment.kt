@@ -33,6 +33,7 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.qat_punch_point_item.*
 
 
 class SiteDetailFragment : Fragment() {
@@ -71,14 +72,11 @@ class SiteDetailFragment : Fragment() {
         })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainViewModel.isActionBarHide(true)
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        tabNames = siteDetailViewModel.getStrings(requireActivity())
         setupViewPager(binding.viewpager)
 
         root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
@@ -89,8 +87,6 @@ class SiteDetailFragment : Fragment() {
         //disable swiping
         binding.viewpager.beginFakeDrag()
 
-//enable swiping
-//        binding.viewpager.endFakeDrag();
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
@@ -103,7 +99,7 @@ class SiteDetailFragment : Fragment() {
         return root
     }
 
-    fun setFabActionButton() {
+    private fun setFabActionButton() {
         // for our add floating action button
         binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
             override fun onOffsetChanged(state: State?, offset: Float) {
@@ -181,11 +177,8 @@ class SiteDetailFragment : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     fun setCustomTab(view: View) {
 
-//        var v: TabItemTextBinding? = null
-        tabNames = siteDetailViewModel.getStrings(requireActivity())
         var typedImages = siteDetailViewModel.getImageArray(requireActivity())
         for (i in 0..tabNames?.size!!.minus(1)) {
-//            v = TabItemTextBinding.inflate(layoutInflater)
             v = TabItemBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
             val texttabchange: AppCompatTextView = v.txtTab
@@ -209,40 +202,27 @@ class SiteDetailFragment : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-        adapter.addFragment(SiteInfo())
-        adapter.addFragment(CustomerFragment.newInstance("OPCO Tenacy"))
-        adapter.addFragment(SiteLeaseAcqusitionFragment.newInstance("SiteLease"))
-        adapter.addFragment(BlackhaulFrag.newInstance("Blackhaul"))
-        adapter.addFragment(UtilitiesNocMainTabFragment.newInstance("Utilities"))
         viewPager.adapter = adapter
 
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-
-//                viewPager.currentItem = tab.position
                 var view: View? = tab.customView
                 if (view != null) {
                     var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                    constraintLayout.backgroundTintList =
-                        ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
-                    var constraintLay: ConstraintLayout =
-                        view!!.findViewById(R.id.parent_tab_child)
-                    var texttabchange =
-                        constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                    constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+                    var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
+                    var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                     texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 }
                 Log.e("TAG", " $view  ${tab.position}")
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-//                viewPager.currentItem = tab.position
                 var view: View? = tab.customView
                 var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                constraintLayout.backgroundTintList =
-                    ColorStateList.valueOf(resources.getColor(R.color.white))
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                 var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
-                var texttabchange =
-                    constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.white))
 
             }
@@ -254,28 +234,29 @@ class SiteDetailFragment : Fragment() {
 
     internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) :
         FragmentPagerAdapter(manager,behaviour) {
-        private val mFragmentList = ArrayList<Fragment>()
-       // private val mFragmentTitleList = ArrayList<String>()
 
         override fun getItem(position: Int): Fragment {
-            return mFragmentList[position]
+            return when(position){
+                0-> SiteInfo()
+                1-> CustomerFragment.newInstance(tabNames?.get(0) ?: "OPCO Tenancy")
+                2-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(1) ?: "SiteLease")
+                3-> BlackhaulFrag.newInstance(tabNames?.get(2) ?: "Blackhaul")
+                4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(3) ?: "Utilities")
+                else -> SiteInfo()
+            }
         }
 
         override fun getCount(): Int {
-            return mFragmentList.size
+            return tabNames?.size!!
         }
 
-        fun addFragment(fragment: Fragment) {
-            mFragmentList.add(fragment)
-//            mFragmentTitleList.add(title)
+        override fun getPageTitle(position: Int): CharSequence? {
+            return tabNames?.get(position)
         }
 
-        /*  override fun getPageTitle(position: Int): CharSequence {
-              return mFragmentTitleList[position]
-          }*/
     }
 
-    fun setSelectTab(isUpScroll: Boolean) {
+    private fun setSelectTab(isUpScroll: Boolean) {
         if (isUpScroll) {
             for (i in 0..tabNames?.size!!.minus(1)) {
                 var constraintLayout: ConstraintLayout =
