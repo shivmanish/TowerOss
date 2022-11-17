@@ -34,20 +34,10 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
         init {
             binding.itemTitle.tag = true
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_arrow_up,
-                    0
-                )
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up, 0)
             }
             else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.arrow_farword,
-                    0
-                )
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.arrow_farword, 0)
             }
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)

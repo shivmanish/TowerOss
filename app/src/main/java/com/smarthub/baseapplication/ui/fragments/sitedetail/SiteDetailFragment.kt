@@ -247,6 +247,7 @@ class SiteDetailFragment : Fragment() {
             }
         }
 
+
         override fun getCount(): Int {
             return tabNames?.size!!
         }
