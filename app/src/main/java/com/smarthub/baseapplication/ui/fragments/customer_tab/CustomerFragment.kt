@@ -46,10 +46,9 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
         }
 
         customerBinding.addMore.setOnClickListener(){
-            val dialog = BottomSheetDialog(requireActivity())
+            val dialog = BottomSheetDialog(requireActivity(),R.style.NewDialog)
             // on below line we are inflating a layout file which we have created.
             val view = layoutInflater.inflate(R.layout.main_memu_bottom_sheet_dialog_layout, null)
-
             val close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
             val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
             val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
@@ -59,7 +58,7 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
             val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
             val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
             val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)
-            dialog.getWindow()?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
+            dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
             close.setOnClickListener {
                 // on below line we are calling a dismiss
                 // method to close our dialog.
@@ -71,6 +70,7 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
             dialog.setContentView(view)
             // on below line we are calling
             // a show method to display a dialog.
+//            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
             dialog.show()
         }
 
