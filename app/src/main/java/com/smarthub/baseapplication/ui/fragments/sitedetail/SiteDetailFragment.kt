@@ -219,7 +219,7 @@ class SiteDetailFragment : Fragment() {
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
-//                viewPager.currentItem = tab.position
+//              viewPager.currentItem = tab.position
                 var view: View? = tab.customView
                 if (view != null) {
                     var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
