@@ -14,17 +14,17 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
     var list : ArrayList<String> = ArrayList()
 
     var type1 = "RF Antena1 - 3G"
-   /* var type2 = "Colocation Fee"
+    var type2 = "Colocation Fee"
     var type3 = "Rental/ Energy Charges"
     var type4 = "Invoice/ Payment Status"
-    var type5 = "OPCO Contact Details"*/
+    var type5 = "OPCO Contact Details"
 
     init {
         list.add("RF Antena1 - 3G")
-       /* list.add("Colocation Fee")
+        list.add("Colocation Fee")
         list.add("Rental/ Energy Charges")
         list.add("Invoice/ Payment Status")
-        list.add("OPCO Contact Details")*/
+        list.add("OPCO Contact Details")
     }
 
     class ViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView) {
