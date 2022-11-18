@@ -25,7 +25,6 @@
                 android:background="@color/white"
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp30"
-
                 android:elevation="@dimen/dp12"
                 android:innerRadius="0dp"
                 android:shape="ring"
