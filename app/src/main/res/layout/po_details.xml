@@ -17,7 +17,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:layout_width="match_parent"
            
-            android:text="Item code"
+            android:text="Item"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -26,7 +26,7 @@
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/montserrat_regular"
             android:layout_width="match_parent"
-            android:text="Description"
+            android:text="PO No."
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -36,8 +36,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:layout_width="match_parent"
            
-            android:text="Qty
-"
+            android:text="Vendor"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -57,49 +56,7 @@
          android:layout_height="wrap_content">
 
      </androidx.recyclerview.widget.RecyclerView>
-    <TextView
-        android:layout_marginTop="@dimen/dp20"
-        android:layout_weight="1"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dp14"
-        android:fontFamily="@font/montserrat_regular"
-        android:layout_width="match_parent"
 
-        android:text="Remarks:"
-        style="@style/RowTextItemInfo"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/txtDate"
-
-
-        android:layout_width="match_parent"
-
-        android:text="wezrextdycvuhbjyfh"
-        style="@style/RowTextItemInfo"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:layout_marginTop="@dimen/dp12"
-        android:layout_weight="1"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dp14"
-        android:fontFamily="@font/montserrat_regular"
-        android:layout_width="match_parent"
-
-        android:text="Attachments"
-        style="@style/RowTextItemInfo"
-        android:layout_height="wrap_content"/>
-    <include
-        layout="@layout/layout_img_attachment"/>
-   <LinearLayout
-       android:layout_marginTop="@dimen/dp20"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-       <include
-
-           layout="@layout/cancel_save_layout"
-           />
-   </LinearLayout>
 
 
 
