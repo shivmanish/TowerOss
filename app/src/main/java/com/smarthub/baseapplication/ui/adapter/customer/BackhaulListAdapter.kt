@@ -12,18 +12,26 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
     var list : ArrayList<String> = ArrayList()
 
-    var type1 = "SO Details"
-    var type2 = "Colocation Fee"
-    var type3 = "Rental/ Energy Charges"
-    var type4 = "Invoice/ Payment Status"
-    var type5 = "OPCO Contact Details"
+    var type1 = "Link"
+    var type2 = "IDU"
+    var type3 = "ODU"
+    var type4 = "Anteena"
+    var type5 = "Installation Team"
+    var type6 = "Consumable Materials"
+    var type7 = "LMC; Fiber"
+    var type8 = "ATP Checklist"
+    var type9 = "PO Details"
 
     init {
-        list.add("SO Details")
-        list.add("Colocation Fee")
-        list.add("Rental/ Energy Charges")
-        list.add("Invoice/ Payment Status")
-        list.add("OPCO Contact Details")
+        list.add("Link")
+        list.add("IDU")
+        list.add("ODU")
+        list.add("Anteena")
+        list.add("Installation Team")
+        list.add(" Materials")
+        list.add("LMC; Fiber")
+        list.add("ATP Checklist")
+        list.add("PO Details")
     }
 
     class ViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView) {
@@ -34,7 +42,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
