@@ -37,7 +37,7 @@ class RegistrationFirstStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registrationFirstStepBinding.textRegister.setOnClickListener { view ->
+        registrationFirstStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
