@@ -170,6 +170,25 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }*/
         }
     }
+    class CONNEVCTEDEQUIPMENTViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulConnectedEquipmentItemListBinding = BackhaulConnectedEquipmentItemListBinding.bind(itemView)
+    //   var adapter =  ImageAttachmentAdapter(listener)
+        init {
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+            } else {
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+            }
+
+        /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            recyclerListener.adapter = adapter
+
+            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                adapter.addItem()
+            }*/
+        }
+    }
 
     class ATPCHECKViewHold(itemView: View) : ViewHold(itemView) {
         var binding : AtpChecklistBinding = AtpChecklistBinding.bind(itemView)
@@ -230,8 +249,8 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 PODetailsViewHold(view)
             }
             CONNEVCTED_EQUIPMENT_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_po_details_list_item,parent,false)
-                PODetailsViewHold(view)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_connected_equipment_item_list,parent,false)
+                CONNEVCTEDEQUIPMENTViewHold(view)
             }
             else -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
@@ -250,6 +269,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         else if (list[position] == "LMC; Fiber") LMC_VIEW_TYPE
         else if (list[position] == "ATP Checklist") ATPCHECK_LIST_VIEW_TYPE
         else if (list[position] == "PO Details") PO_DETAILS_VIEW_TYPE
+        else if (list[position] == "Connected Equipment(CE)") CONNEVCTED_EQUIPMENT_VIEW_TYPE
         else 0
     }
 
@@ -391,6 +411,23 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
        }
        else if (holder is ATPCHECKViewHold){
+           holder.binding.collapsingLayout.setOnClickListener {
+               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+               if ((holder.binding.itemTitle.tag as Boolean)) {
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+               } else {
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+               }
+
+               holder.binding.itemLine.visibility =
+                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+               holder.binding.itemCollapse.visibility =
+                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+           }
+           holder.binding.itemTitle.text = list[position]
+
+       }
+       else if (holder is CONNEVCTEDEQUIPMENTViewHold){
            holder.binding.collapsingLayout.setOnClickListener {
                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                if ((holder.binding.itemTitle.tag as Boolean)) {
