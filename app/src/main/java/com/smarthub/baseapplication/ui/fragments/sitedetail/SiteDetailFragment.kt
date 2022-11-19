@@ -26,14 +26,20 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteLocationDetailBinding
 import com.smarthub.baseapplication.databinding.TabItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
+import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
@@ -294,7 +300,7 @@ class SiteDetailFragment : Fragment() {
     }
 
 
-    fun setDataObserver() {
+    private fun setDataObserver() {
         siteDetailViewModel?.fetchDropDown()
         siteDetailViewModel?.dropDownResponse?.observe(requireActivity()) {
             if (it != null) {
