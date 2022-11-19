@@ -32,12 +32,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinRequestCompany"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinRequestCompany"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
 
                     <View
                         android:alpha="0.37"
@@ -56,12 +70,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinTeamId"
                         style="@style/SpinnerTheme"
+                        android:layout_gravity="left"
+                        android:gravity="left"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -135,12 +164,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinProposedSelectedCount"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinProposedSelectedCount"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -159,12 +203,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinProposedAntinaHeight"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinProposedAntinaHeight"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -184,12 +243,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinPropertySiteType"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinPropertySiteType"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -208,12 +282,25 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinTelecomEquipmentType"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinTelecomEquipmentType"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -259,12 +346,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinAntennaSlotUsed"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="22.968035,76.085596" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinAntennaSlotUsed"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="22.968035,76.085596" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -284,12 +386,28 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Powai"
-                        style="@style/RowTestItemEdit"
+
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinPowai"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="22.968035,76.085596" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -307,13 +425,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Mohan Patil
-"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinRequestEquipmentName"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="22.968035,76.085596" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -332,12 +463,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinExecutiveEmailID"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinExctiveEmailiD"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="22.968035,76.085596" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
 
                     <View
                         android:alpha="0.37"
@@ -356,12 +502,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinExecutiveNumber"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spinExcutiveNumber"
+                            style="@style/SpinnerTheme"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="22.968035,76.085596" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"

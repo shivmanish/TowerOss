@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
@@ -24,14 +25,21 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.SiteLocationDetailBinding
 import com.smarthub.baseapplication.databinding.TabItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
+import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
@@ -50,7 +58,8 @@ class SiteDetailFragment : Fragment() {
         super.onAttach(context)
         this.ctx = context
     }
-        override fun onCreate(savedInstanceState: Bundle?) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
@@ -69,6 +78,7 @@ class SiteDetailFragment : Fragment() {
 
 
         })
+        setDataObserver()
     }
 
     override fun onCreateView(
@@ -81,7 +91,8 @@ class SiteDetailFragment : Fragment() {
         val root: View = binding.root
         setupViewPager(binding.viewpager)
 
-        root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
+        root.findViewById<View>(R.id.btn_back)
+            .setOnClickListener { requireActivity().onBackPressed() }
 
         binding.tabs?.setupWithViewPager(binding.viewpager)
 //        binding.viewpager.offscreenPageLimit= 2
@@ -95,7 +106,7 @@ class SiteDetailFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
         var addImage = root.findViewById<ImageView>(R.id.add_image)
-        addImage.setOnClickListener{
+        addImage.setOnClickListener {
             val intent = Intent(activity, SiteImages::class.java)
             startActivity(intent)
         }
@@ -107,50 +118,50 @@ class SiteDetailFragment : Fragment() {
         // for our add floating action button
         binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
             override fun onOffsetChanged(state: State?, offset: Float) {
-                    if (state === State.IDLE) {
+                if (state === State.IDLE) {
 //						mToolbarTextView.setAlpha(offset);
-                        for (i in 0..tabNames?.size!!.minus(1)) {
-                            var constraintLayout: ConstraintLayout =
-                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                            var constraintL: ConstraintLayout =
-                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+                    for (i in 0..tabNames?.size!!.minus(1)) {
+                        var constraintLayout: ConstraintLayout =
+                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                        var constraintL: ConstraintLayout =
+                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
 
-                            constraintL.alpha= offset
-                            constraintLayout.alpha = (1-offset)
-                        }
-                        Log.d("offsetvalues>>>onOffsetChanged>","${offset}  ${1-offset}")
+                        constraintL.alpha = offset
+                        constraintLayout.alpha = (1 - offset)
+                    }
+                    Log.d("offsetvalues>>>onOffsetChanged>", "${offset}  ${1 - offset}")
 
                 }
             }
 
             override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
-                    if (state === State.COLLAPSED) {
+                if (state === State.COLLAPSED) {
 //						mToolbarTextView.setAlpha(1);
-                        for (i in 0..tabNames?.size!!.minus(1)) {
-                            var parentconstraintLayout:ConstraintLayout =
-                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                           var childconstraint:ConstraintLayout =
-                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                            parentconstraintLayout?.visibility = View.GONE
-                            childconstraint?.visibility = View.VISIBLE
+                    for (i in 0..tabNames?.size!!.minus(1)) {
+                        var parentconstraintLayout: ConstraintLayout =
+                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                        var childconstraint: ConstraintLayout =
+                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+                        parentconstraintLayout?.visibility = View.GONE
+                        childconstraint?.visibility = View.VISIBLE
 //                            constraintL.alpha= 1f
 //                            constraintLayout.alpha = 0f
-                        }
-                        Log.d("offsetvalues>>>onOffsetChanged>","${state}")
-                    } else if (state === State.EXPANDED) {
+                    }
+                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
+                } else if (state === State.EXPANDED) {
 //						mToolbarTextView.setAlpha(0);
-                        for (i in 0..tabNames?.size!!.minus(1)) {
-                           var parentconstraintLayout:ConstraintLayout =
-                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                          var  childconstraint:ConstraintLayout =
-                                binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                            parentconstraintLayout?.visibility = View.VISIBLE
-                            childconstraint?.visibility = View.GONE
+                    for (i in 0..tabNames?.size!!.minus(1)) {
+                        var parentconstraintLayout: ConstraintLayout =
+                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+                        var childconstraint: ConstraintLayout =
+                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+                        parentconstraintLayout?.visibility = View.VISIBLE
+                        childconstraint?.visibility = View.GONE
 //                            constraintL.alpha= 0f
 //                            constraintLayout.alpha = 1f
-                        }
-                        Log.d("offsetvalues>>>onOffsetChanged>","${state}")
                     }
+                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
+                }
             }
         })
         binding.fabbtn.setOnClickListener {
@@ -208,7 +219,10 @@ class SiteDetailFragment : Fragment() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        val adapter = ViewPagerAdapter(
+            childFragmentManager,
+            FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+        )
         adapter.addFragment(SiteInfo())
         adapter.addFragment(CustomerFragment.newInstance("Customer"))
         adapter.addFragment(SiteLeaseAcqusitionFragment.newInstance("SiteLease"))
@@ -252,8 +266,8 @@ class SiteDetailFragment : Fragment() {
     }
 
 
-    internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) :
-        FragmentPagerAdapter(manager,behaviour) {
+    internal inner class ViewPagerAdapter(manager: FragmentManager, behaviour: Int) :
+        FragmentPagerAdapter(manager, behaviour) {
         private val mFragmentList = ArrayList<Fragment>()
 //        private val mFragmentTitleList = ArrayList<String>()
 
@@ -285,7 +299,8 @@ class SiteDetailFragment : Fragment() {
                 constraintLayout.visibility = View.GONE
                 constraintL.visibility = View.VISIBLE
             }
-            binding.tabs!!.background = getDrawable(requireActivity(), R.drawable.tablayout_selector_change);
+            binding.tabs!!.background =
+                getDrawable(requireActivity(), R.drawable.tablayout_selector_change);
         } else {
             for (i in 0..tabNames?.size!!.minus(1)) {
                 var constraintLayout: ConstraintLayout =
@@ -295,9 +310,43 @@ class SiteDetailFragment : Fragment() {
                 constraintLayout.visibility = View.VISIBLE
                 constraintL.visibility = View.GONE
             }
-            binding.tabs!!.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
+            binding.tabs!!.background =
+                getDrawable(requireActivity(), R.drawable.tablayout_selector);
         }
 
     }
+
+
+    fun setDataObserver() {
+        siteDetailViewModel?.fetchDropDown()
+        siteDetailViewModel?.dropDownResponse?.observe(requireActivity()) {
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS && it.data != null) {
+                    saveDataToLocal(it.data)
+                    Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
+
+                }
+            } else {
+                Log.d("status", "${AppConstants.GENERIC_ERROR}")
+                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun saveDataToLocal(data: SiteInfoDropDownData) {
+        if (data != null) {
+
+            val gson = Gson()
+            var stringDatajson = gson.toJson(data)
+            AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
+            Toast.makeText(context, "Data Save Succsfully !", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
 
 }

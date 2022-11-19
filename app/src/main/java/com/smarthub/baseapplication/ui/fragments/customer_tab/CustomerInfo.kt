@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
@@ -37,7 +39,8 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
         view.findViewById<View>(R.id.attach_card).setOnClickListener {
             adapter.addItem()
         }
-        siteViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
+        fetchDropDown()
+      /*  siteViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
         siteViewModel?.fetchDropDown()
         siteViewModel?.dropDownResponse?.observe(viewLifecycleOwner) {
             (requireActivity() as BaseActivity).hideLoader()
@@ -55,7 +58,7 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
                 Log.d("status", "${AppConstants.GENERIC_ERROR}")
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
-        }
+        }*/
 
     }
 
@@ -64,6 +67,7 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     }
 
     private fun mapUiData(siteInfoDropDownData: SiteInfoDropDownData){
+/*
         if (siteInfoDropDownData.basicInfoModel!=null){
 //            start data mapping
             siteInfoDropDownData.basicInfoModel?.sitestatus?.data?.let {
@@ -82,6 +86,31 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 //                    it
 //                )
 //            }
+        }
+*/
+    }
+
+    fun fetchDropDown() {
+        var jsonData: String =
+            AppPreferences.getInstance().getString(AppPreferences.DROPDOWNDATA)
+        val gson = Gson()
+        val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData,
+            SiteInfoDropDownData::class.java)
+        if(siteInfoDropDownData != null) {
+            binding!!.spinSiteStatus.setSpinnerData(siteInfoDropDownData!!.opcoinfo.opcositestatus.data)
+            binding!!.spinSiteType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.opcositetype.data)
+            binding!!.spinTelecomEquipmentType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.telecomequipmenttype.data)
+            binding!!.spinAlaramExtention.setSpinnerData(siteInfoDropDownData!!.opcoinfo.alarmsextension.data)
+            binding!!.spinRruCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rrucount.data)
+            binding!!.spinAntenaCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.antenacount.data)
+            binding!!.spinAntenaSlotUsed.setSpinnerData(siteInfoDropDownData!!.opcoinfo.antenaslotused.data)
+//            binding!!.spinCommitedNwa.setSpinnerData(siteInfoDropDownData!!.opcoinfo.)
+            binding!!.spinRackCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rackcount.data)
+            binding!!.spinRfTechnology.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rftechnology.data)
+            binding!!.spinSectorCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.sectorcount.data)
+            binding!!.spinNetworkType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.operatornetworktype.data)
+
+
         }
     }
 
