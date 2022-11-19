@@ -21,6 +21,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
     var LMC_VIEW_TYPE =6
     var ATPCHECK_LIST_VIEW_TYPE =7
     var PO_DETAILS_VIEW_TYPE =8
+    var CONNEVCTED_EQUIPMENT_VIEW_TYPE =9
     init {
         list.add("Link")
         list.add("IDU")
@@ -31,14 +32,15 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         list.add("LMC; Fiber")
         list.add("ATP Checklist")
         list.add("PO Details")
+        list.add("Connected Equipment(CE)")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
-    class LinkViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class LinkViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulLinkListItemBinding = BackhaulLinkListItemBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -47,12 +49,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
         }
     }
     class IDUViewHold(itemView: View) : ViewHold(itemView) {
@@ -122,7 +119,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         }
     }
     class MaterialsViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
+        var binding : BackhaulConsumableMaterialsListItemBinding = BackhaulConsumableMaterialsListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
@@ -140,9 +137,9 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
         }
     }
-    class LMCViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class LMCViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulLmcListItemBinding = BackhaulLmcListItemBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -151,17 +148,12 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
         }
     }
-    class PODetailsViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class PODetailsViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulPoDetailsListItemBinding = BackhaulPoDetailsListItemBinding.bind(itemView)
+    //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -170,12 +162,12 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+        /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()
-            }
+            }*/
         }
     }
 
@@ -202,8 +194,8 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         var view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
         return when(viewType){
             LINK_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                LinkViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_link_list_item,parent,false)
+                LinkViewHold(view)
             }
             IDU_VIEW_TYPE->{
                 view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_idu_list_item,parent,false)
@@ -222,20 +214,24 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 InstallationTeamViewHold(view)
             }
             MATERIALS_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_consumable_materials_list_item,parent,false)
                 MaterialsViewHold(view,listener)
             }
             LMC_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                LMCViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_lmc_list_item,parent,false)
+                LMCViewHold(view)
             }
             ATPCHECK_LIST_VIEW_TYPE->{
                 view = LayoutInflater.from(parent.context).inflate(R.layout.atp_checklist,parent,false)
                 ATPCHECKViewHold(view)
             }
             PO_DETAILS_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                PODetailsViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_po_details_list_item,parent,false)
+                PODetailsViewHold(view)
+            }
+            CONNEVCTED_EQUIPMENT_VIEW_TYPE->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_po_details_list_item,parent,false)
+                PODetailsViewHold(view)
             }
             else -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
@@ -265,7 +261,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -281,7 +277,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -298,7 +294,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -315,7 +311,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -332,7 +328,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -349,7 +345,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -366,7 +362,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -383,7 +379,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
@@ -400,7 +396,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                if ((holder.binding.itemTitle.tag as Boolean)) {
                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                }
 
                holder.binding.itemLine.visibility =
