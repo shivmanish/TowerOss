@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.databinding.BasicInfoFragmentBinding
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoStatusData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.widgets.CustomSpinner
+
 
 
 class BasicInfo : Fragment(), ImageAttachmentAdapter.ItemClickListener {
@@ -26,7 +26,6 @@ class BasicInfo : Fragment(), ImageAttachmentAdapter.ItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = BasicInfoFragmentBinding.inflate(inflater, container, false)
         data = requireArguments().getSerializable("data") as BasicInfoModel?
         return binding?.root

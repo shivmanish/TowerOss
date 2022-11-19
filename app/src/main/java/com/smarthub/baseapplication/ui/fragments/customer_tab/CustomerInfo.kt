@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +18,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
@@ -29,7 +32,9 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        var eqipmantcheck=false;
+        var operationalteamcheck=false;
+        var addimagecheck=false;
         var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
         var adapter =  ImageAttachmentAdapter(this@CustomerInfo)
         recyclerListener.adapter = adapter
@@ -56,8 +61,67 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
+        var item_title_eqipment = view.findViewById<TextView>(R.id.item_title_eqipment)
+        var item_operations_team = view.findViewById<TextView>(R.id.item_operations_team)
+        var item_attachments = view.findViewById<TextView>(R.id.item_attachments)
 
-    }
+        var collapsing_layout_equipment = view.findViewById<LinearLayout>(R.id.collapsing_layout_equipment)
+        var item_collapse_equipment = view.findViewById<LinearLayout>(R.id.item_collapse_equipment)
+        var collapsing_layout_operations_team = view.findViewById<LinearLayout>(R.id.collapsing_layout_operations_team)
+        var item_collapse_operations_team = view.findViewById<LinearLayout>(R.id.item_collapse_operations_team)
+        var collapsing_layout_attachments = view.findViewById<LinearLayout>(R.id.collapsing_layout_attachments)
+        var item_collapse_attachments = view.findViewById<LinearLayout>(R.id.item_collapse_attachments)
+
+
+        collapsing_layout_equipment.setOnClickListener(){
+
+            if(eqipmantcheck==true)
+            {
+                eqipmantcheck=false
+                Utils.expand(item_collapse_equipment)
+                item_title_eqipment?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
+
+            }
+            else{
+                eqipmantcheck=true
+                Utils.collapse(item_collapse_equipment)
+                item_title_eqipment?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+
+            }
+        }
+        collapsing_layout_operations_team.setOnClickListener(){
+
+            if(operationalteamcheck==true)
+            {
+                operationalteamcheck=false
+                Utils.expand(item_collapse_operations_team)
+                item_operations_team?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
+
+            }
+            else{
+                operationalteamcheck=true
+                Utils.collapse(item_collapse_operations_team)
+                item_operations_team?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+
+            }
+        }
+        collapsing_layout_attachments.setOnClickListener(){
+
+            if(addimagecheck==true)
+            {
+                addimagecheck=false
+                Utils.expand(item_collapse_attachments)
+                item_attachments?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_up,0)
+
+            }
+            else{
+                addimagecheck=true
+                Utils.collapse(item_collapse_attachments)
+                item_attachments?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+
+            }
+        }
+       }
 
     override fun itemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()

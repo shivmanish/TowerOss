@@ -13,29 +13,29 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
     var list : ArrayList<String> = ArrayList()
 
-    var type1 = "SO Details"
-    var type2 = "Colocation Fee"
+    var type1 = "RF Antena1 - 3G"
+   /* var type2 = "Colocation Fee"
     var type3 = "Rental/ Energy Charges"
     var type4 = "Invoice/ Payment Status"
-    var type5 = "OPCO Contact Details"
+    var type5 = "OPCO Contact Details"*/
 
     init {
-        list.add("SO Details")
-        list.add("Colocation Fee")
+        list.add("RF Antena1 - 3G")
+       /* list.add("Colocation Fee")
         list.add("Rental/ Energy Charges")
         list.add("Invoice/ Payment Status")
-        list.add("OPCO Contact Details")
+        list.add("OPCO Contact Details")*/
     }
 
     class ViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
+        var binding : RfAntinaListItemBinding = RfAntinaListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)

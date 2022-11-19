@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="5dp">
         <LinearLayout
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -54,6 +55,9 @@
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+    <include
+        android:id="@+id/addNew"
+        layout="@layout/add_new_layout"/>
     <androidx.recyclerview.widget.RecyclerView
         android:orientation="vertical"
         tools:itemCount="3"
