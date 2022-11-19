@@ -3,16 +3,21 @@ package com.smarthub.baseapplication.ui.fragments.register
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
+import com.smarthub.baseapplication.ui.adapter.spinner.CustomRegistrationArrayAdapter
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -40,7 +45,7 @@ class RegistrationFirstStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-
+        setupAutoCompleteView()
         val regFragment2 = RegistrationSecondStep()
         registrationFirstStepBinding.next.setOnClickListener {
 
@@ -98,6 +103,7 @@ class RegistrationFirstStep : Fragment() {
                     Utils.hideKeyboard(requireContext(),registrationFirstStepBinding?.moNo!!)
             }
         })
+
     }
 
     fun addFragment(fragment: Fragment?) {
@@ -116,6 +122,28 @@ class RegistrationFirstStep : Fragment() {
             transaction.addToBackStack(backStateName)
             transaction.commit()
         }
+    }
+
+    private fun setupAutoCompleteView() {
+        val datalist=getlList()
+        registrationFirstStepBinding.companyName.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
+//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
+        registrationFirstStepBinding.companyName.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, arg1, position, id ->
+//                registrationFirstStepBinding.companyName.text = datalist.get(position)
+            }
+
+
+    }
+
+    private fun getlList(): ArrayList<String> {
+        val dataList=ArrayList<String>()
+        dataList.add("SmartMile")
+        dataList.add("Jio Fiber")
+        dataList.add("Airtel India")
+        dataList.add("VI")
+        dataList.add("")
+        return dataList
     }
 
 }

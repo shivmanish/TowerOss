@@ -48,7 +48,7 @@ public class OpcoinfoModel implements Serializable {
 
     @SerializedName("Antenaslotused")
     @Expose
-    private SiteInfoStatusData atenaslotused;
+    private SiteInfoStatusData antenaslotused;
 
     @SerializedName("InstallationVendor")
     @Expose
@@ -137,12 +137,12 @@ public class OpcoinfoModel implements Serializable {
         this.antenacount = antenacount;
     }
 
-    public SiteInfoStatusData getAtenaslotused() {
-        return atenaslotused;
+    public SiteInfoStatusData getAntenaslotused() {
+        return antenaslotused;
     }
 
-    public void setAtenaslotused(SiteInfoStatusData atenaslotused) {
-        this.atenaslotused = atenaslotused;
+    public void setAntenaslotused(SiteInfoStatusData atenaslotused) {
+        this.antenaslotused = atenaslotused;
     }
 
     public SiteInfoStatusData getInstallationVendor() {

@@ -20,9 +20,15 @@ public class SiteInfoDropDownData {
     @Expose
     private SafetyAndAccessModel safetyAndAccess;
 
-//    @SerializedName("Siteacquisition")
-//    @Expose
-//    private AcuationsLeaseModel acquistionMode;
+    @SerializedName("Siteacquisition")
+    @Expose
+    private AcuationsLeaseModel acquistionMode;
+
+
+    @SerializedName("Opcoinfo")
+    @Expose
+    private OpcoinfoModel opcoinfo;
+
 
   /*  @SerializedName("AcquistionMode")
     @Expose
@@ -81,4 +87,19 @@ public class SiteInfoDropDownData {
         this.safetyAndAccess = safetyAndAccess;
     }
 
+    public AcuationsLeaseModel getAcquistionMode() {
+        return acquistionMode;
+    }
+
+    public void setAcquistionMode(AcuationsLeaseModel acquistionMode) {
+        this.acquistionMode = acquistionMode;
+    }
+
+    public OpcoinfoModel getOpcoinfo() {
+        return opcoinfo;
+    }
+
+    public void setOpcoinfo(OpcoinfoModel opcoinfo) {
+        this.opcoinfo = opcoinfo;
+    }
   }
