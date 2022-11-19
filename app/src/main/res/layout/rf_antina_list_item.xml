@@ -8,16 +8,20 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@color/white"
+        android:background="@drawable/bg_expansion_bar"
+
+
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:background="@drawable/bg_expansion_bar"
             android:gravity="center_vertical"
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
+                android:background="@drawable/bg_expansion_bar"
                 android:drawablePadding="5dp"
                 android:layout_weight="1"
                 android:id="@+id/item_title"
@@ -27,10 +31,11 @@
                 android:paddingTop="@dimen/dp10"
                 style="@style/RowTestItemEdit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp50"
                 android:drawableEnd="@drawable/ic_arrow_down_black"/>
         </LinearLayout>
         <View
+            android:visibility="gone"
             android:id="@+id/item_line"
             android:alpha="0.37"
             android:background="#263238"
@@ -41,7 +46,7 @@
 
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -588,6 +593,7 @@
 
             </GridLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:background="@color/light_gray"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -658,8 +664,9 @@
 
             <include
                 layout="@layout/layout_img_attachment"/>
-
-            <TextView
+            <include
+                layout="@layout/cancel_save_layout"/>
+           <!-- <TextView
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -674,7 +681,7 @@
                 android:backgroundTint="#3F4D67"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>-->
 
         </LinearLayout>
     </LinearLayout>
