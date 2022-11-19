@@ -55,9 +55,9 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
         }
     }
-    class IDUViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class IDUViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulIduListItemBinding = BackhaulIduListItemBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -66,17 +66,18 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+          /*  var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()
-            }
+            }*/
+
         }
     }
-    class ODUViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class ODUViewHold(itemView: View,) : ViewHold(itemView) {
+        var binding : BackhaulOduListItemBinding = BackhaulOduListItemBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -85,17 +86,12 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
         }
     }
-    class AntennaViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class AntennaViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulAntenaListItemBinding = BackhaulAntenaListItemBinding.bind(itemView)
+      //  var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -104,17 +100,17 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+         /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()
-            }
+            }*/
         }
     }
-    class InstallationTeamViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulListItemBinding = BackhaulListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+    class InstallationTeamViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : BackhaulInstallationTeamListItemBinding = BackhaulInstallationTeamListItemBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -123,12 +119,6 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
-
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
         }
     }
     class MaterialsViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
@@ -209,27 +199,26 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
         return when(viewType){
             LINK_VIEW_TYPE->{
                 view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
                 LinkViewHold(view,listener)
             }
             IDU_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                IDUViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_idu_list_item,parent,false)
+                IDUViewHold(view)
             }
             ODU_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                ODUViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_odu_list_item,parent,false)
+                ODUViewHold(view)
             }
             ANTEENA_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                AntennaViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_antena_list_item,parent,false)
+                AntennaViewHold(view)
             }
             INSTALLATION_TEAM_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-                InstallationTeamViewHold(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_installation_team_list_item,parent,false)
+                InstallationTeamViewHold(view)
             }
             MATERIALS_VIEW_TYPE->{
                 view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)

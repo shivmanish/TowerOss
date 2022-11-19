@@ -787,6 +787,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -809,8 +810,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
