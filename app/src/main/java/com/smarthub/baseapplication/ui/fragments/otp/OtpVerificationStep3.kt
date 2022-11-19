@@ -35,11 +35,7 @@ class OtpVerificationStep3 : Fragment() {
     }
 
     private fun enableErrorText(){
-        binding?.validationError?.visibility = View.VISIBLE
-    }
-
-    fun disableErrorText(){
-        binding?.validationError?.visibility = View.VISIBLE
+        binding?.userMailLayout?.error = "enter valid password"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,8 +44,8 @@ class OtpVerificationStep3 : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        view.findViewById<View>(R.id.next_layout).setOnClickListener { view ->
-            Utils.hideKeyboard(requireContext(),view)
+        binding?.signWithPhone?.setOnClickListener {
+            Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                 var s = updateOtpValueIndex()
                 AppLogger.log("s : $s")

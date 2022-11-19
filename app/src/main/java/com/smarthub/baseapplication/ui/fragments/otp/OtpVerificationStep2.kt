@@ -43,14 +43,14 @@ class OtpVerificationStep2 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-        view.findViewById<View>(R.id.back).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
+        view.findViewById<View>(R.id.back).setOnClickListener {view->
+            Utils.hideKeyboard(requireContext(),view)
             activity?.let{
-                it.onBackPressed()
+                it?.onBackPressed()
             }
         }
 
-        view.findViewById<View>(R.id.next_layout).setOnClickListener {
+        binding?.signWithPhone?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
@@ -61,8 +61,14 @@ class OtpVerificationStep2 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding?.moNoEdit?.text.toString().isNotEmpty() && binding?.moNoEdit?.text.toString().length>=10)
-                    Utils.hideKeyboard(requireContext(),binding?.moNoEdit!!)
+                if (binding?.moNoEdit?.text.toString().isNotEmpty() && binding?.moNoEdit?.text.toString().length>=10) {
+                    Utils.hideKeyboard(requireContext(), binding?.moNoEdit!!)
+                    binding?.signWithPhone?.visibility = View.VISIBLE
+                    binding?.signWithPhoneDisable?.visibility = View.GONE
+                }else{
+                    binding?.signWithPhoneDisable?.visibility = View.VISIBLE
+                    binding?.signWithPhone?.visibility = View.GONE
+                }
             }
         })
 
@@ -85,10 +91,7 @@ class OtpVerificationStep2 : Fragment() {
     }
 
     private fun enableErrorText(){
-        binding?.errorMessage?.visibility = View.VISIBLE
-    }
-    private fun disableErrorText(){
-        binding?.errorMessage?.visibility = View.GONE
+        binding?.userMailLayout?.error = "enter valid mo no"
     }
 
     fun addFragment(fragment: Fragment?) {
