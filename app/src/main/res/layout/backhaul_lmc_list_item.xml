@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:background="@drawable/bg_expansion_bar"
-
                 android:layout_weight="1"
                 android:id="@+id/item_title"
                 android:text=""
