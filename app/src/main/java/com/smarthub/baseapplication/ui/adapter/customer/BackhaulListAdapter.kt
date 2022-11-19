@@ -199,6 +199,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
         return when(viewType){
             LINK_VIEW_TYPE->{
                 view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)

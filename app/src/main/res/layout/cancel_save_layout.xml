@@ -30,8 +30,8 @@
         android:textSize="14sp"
         android:layout_margin="@dimen/dp10"
         android:gravity="center"
-        android:paddingTop="@dimen/dp10"
-        android:paddingBottom="@dimen/dp10"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp5"
 
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/login_yellow_bg"
