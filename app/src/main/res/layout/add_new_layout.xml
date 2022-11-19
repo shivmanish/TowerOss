@@ -5,9 +5,8 @@
     android:id="@+id/lnAddNew"
     android:gravity="end"
     android:padding="@dimen/dp20"
-
     android:orientation="horizontal"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/ic_menu_close"
