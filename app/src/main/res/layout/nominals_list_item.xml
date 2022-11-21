@@ -90,7 +90,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -483,24 +483,7 @@
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
-            <include layout="@layout/layout_img_attachment"/>
-
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Save/Update"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
-                android:backgroundTint="#3F4D67"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+            <include layout="@layout/cancel_save_layout"/>
 
         </LinearLayout>
     </LinearLayout>

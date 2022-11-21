@@ -14,7 +14,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
     var list: ArrayList<String> = ArrayList()
 
     var DETAILS_VIEW_TYPE = 0
-    var ATTSCHMENT_VIEW_TYPE = 1
+    var ATTACHMENT_VIEW_TYPE = 1
 
     init {
         list.add("Details")
@@ -39,6 +39,21 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
         }
     }
+    class AttachmentViewHold(itemView: View) : ViewHold(itemView) {
+        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
+
+        init {
+            binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+            }
+
+
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
@@ -47,6 +62,11 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.nominals_list_item, parent, false)
+                DetailsViewHold(view)
+            }
+            ATTACHMENT_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.attachment_list_item, parent, false)
                 DetailsViewHold(view)
             }
 
@@ -60,7 +80,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Details") DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTSCHMENT_VIEW_TYPE
+        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
       else 0
     }
 
@@ -85,7 +105,25 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             holder.binding.itemTitle.text = list[position]
         }
 
+       else if (holder is AttachmentViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                }
 
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
+        }
 
     }
 
