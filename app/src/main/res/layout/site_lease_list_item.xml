@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView
+    android:elevation="@dimen/dp10"
+    android:layout_margin="@dimen/dp7"
+
     android:background="@color/white"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,9 +10,9 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/parentRelative"
-        android:padding="@dimen/dp8"
-        android:background="@drawable/rectangle_5"
-        android:layout_margin="@dimen/dp12"
+        android:padding="@dimen/dp7"
+
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -24,6 +25,7 @@
                 android:layout_weight=".9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/tab_text_color"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="Acquisition⌗1"
@@ -206,4 +208,4 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>
