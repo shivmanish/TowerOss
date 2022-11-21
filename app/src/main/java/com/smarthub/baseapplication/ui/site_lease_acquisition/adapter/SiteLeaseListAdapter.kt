@@ -24,7 +24,6 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
 
