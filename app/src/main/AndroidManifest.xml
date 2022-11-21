@@ -96,6 +96,17 @@
             <!-- </intent-filter> -->
         </activity>
 
+        <activity
+            android:name="com.smarthub.baseapplication.imagePicker.ui.album.ui.AlbumActivity"
+            android:label="@string/album"
+            android:theme="@style/FishBunTheme"/>
+        <activity
+            android:name="com.smarthub.baseapplication.imagePicker.ui.picker.PickerActivity"
+            android:theme="@style/FishBunTheme" />
+        <activity
+            android:name="com.smarthub.baseapplication.imagePicker.ui.detail.ui.DetailImageActivity"
+            android:theme="@style/DetailViewTheme" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
