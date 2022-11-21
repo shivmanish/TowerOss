@@ -7,7 +7,7 @@
     <color name="site_detail_background">#f5f5f5</color>
     <color name="devider_grey">#E6E6E6</color>
     <color name="tab_selected">#E9EEF7</color>
-
+    <color name="colorAccent">#930a3a</color>
 
 
     <color name="tab_deselected">#E9EEF7</color>
@@ -18,7 +18,7 @@
     <color name="normalTextColor">#3F4D67</color>
     <color name="normalTextColorgrey">#71809A</color>
     <color name="disabledColor">#34FFD72B</color>
-
+    <color name="app_theme_color">#ef0864</color>
 
     <color name="purple_200">#3F4D67</color>
     <color name="purple_500">#3F4D67</color>
