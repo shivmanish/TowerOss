@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
@@ -48,6 +50,16 @@ class RegistrationFirstStep : Fragment() {
         setupAutoCompleteView()
         val regFragment2 = RegistrationSecondStep()
         registrationFirstStepBinding.next.setOnClickListener {
+            if (!Utils.isValid(registrationFirstStepBinding.companyName.text.toString())) {
+                registrationFirstStepBinding.companyNameRoot.isErrorEnabled = true
+                registrationFirstStepBinding.companyNameRoot.error = "This field can not be empty!"
+
+                return@setOnClickListener
+            }else{
+                registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
+                registrationFirstStepBinding.companyNameRoot.error = null
+
+            }
 
             if (!Utils.isValid(registrationFirstStepBinding.firstName.text.toString())) {
                registrationFirstStepBinding.firstNameRoot.isErrorEnabled = true
@@ -58,12 +70,34 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.firstNameRoot.error = null
             }
             if (!Utils.isValid(registrationFirstStepBinding.lastName.text.toString())) {
-                Snackbar.make(
-                    registrationFirstStepBinding.lastName,
-                    "Please Fill LastName ",
-                    Snackbar.LENGTH_LONG
-                ).show()
+                registrationFirstStepBinding.lastNameRoot.isErrorEnabled = true
+                registrationFirstStepBinding.lastNameRoot.error = "This field can not be empty!"
+
                 return@setOnClickListener
+            }else{
+                registrationFirstStepBinding.lastNameRoot.isErrorEnabled = false
+                registrationFirstStepBinding.lastNameRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationFirstStepBinding.moNo.text.toString())) {
+                registrationFirstStepBinding.moNoRoot.isErrorEnabled = true
+                registrationFirstStepBinding.moNoRoot.error = "This field can not be empty!"
+
+                return@setOnClickListener
+            }else{
+                registrationFirstStepBinding.moNoRoot.isErrorEnabled = false
+                registrationFirstStepBinding.moNoRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {
+                registrationFirstStepBinding.emailIdRoot.isErrorEnabled = true
+                registrationFirstStepBinding.emailIdRoot.error = "This field can not be empty!"
+
+                return@setOnClickListener
+            }else{
+                registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
+                registrationFirstStepBinding.emailIdRoot.error = null
+
             }
             if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {
                 Snackbar.make(
@@ -89,7 +123,8 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.emailId.text.toString()
             loginViewModel.registerData!!.phone =
                 registrationFirstStepBinding.moNo.text.toString()
-
+//            loginViewModel.registerData!!. =
+//                registrationFirstStepBinding.moNo.text.toString()
             Utils.hideKeyboard(requireContext(), it)
             addFragment(regFragment2)
         }
@@ -144,6 +179,19 @@ class RegistrationFirstStep : Fragment() {
         dataList.add("VI")
         dataList.add("")
         return dataList
+    }
+
+
+    fun isFilled(field:TextInputEditText,fieldroot:TextInputLayout):Boolean{
+        if (!Utils.isValid(field.text.toString())) {
+            fieldroot.isErrorEnabled = true
+            fieldroot.error = "This field can not be empty!"
+            return false
+        }else{
+            fieldroot.isErrorEnabled = false
+            fieldroot.error = null
+        return true
+        }
     }
 
 }

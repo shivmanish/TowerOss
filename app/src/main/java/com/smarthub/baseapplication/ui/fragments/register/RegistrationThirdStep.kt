@@ -47,12 +47,12 @@ class RegistrationThirdStep : Fragment() {
             Utils.hideKeyboard(requireContext(), it)
 
             Utils.clearBackStack(requireActivity())
-            addFragment(regFragment2)
 
-//            if (!progressDialog.isShowing)
-//                progressDialog.show()
-//            setObserver(view)
-//            registrationViewModel.registerUser()
+
+            if (!progressDialog.isShowing)
+                progressDialog.show()
+            setObserver(view)
+            registrationViewModel.registerUser()
         }
     }
 
@@ -60,8 +60,8 @@ class RegistrationThirdStep : Fragment() {
 
     private fun setObserver(view: View) {
         registrationViewModel.regstationResponse!!.observe(viewLifecycleOwner) {
-//            if (progressDialog.isShowing)
-//                progressDialog.dismiss()
+            if (progressDialog.isShowing)
+                progressDialog.dismiss()
             if (it.status.equals("success")) {
 
                 activity?.let {
