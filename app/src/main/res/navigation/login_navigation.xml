@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPassStep1"
+            app:destination="@id/forgotPassStep1"
+            app:popUpTo="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPassStep1"
+        android:name="com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1"
+        android:label="ForgotPassStep1" >
+        <action
+            android:id="@+id/action_forgotPassStep1_to_forgotPassStep2"
+            app:destination="@id/forgotPassStep2"
+            app:popUpTo="@id/forgotPassStep1" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPassStep2"
+        android:name="com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep2"
+        android:label="ForgotPassStep2" />
+
+</navigation>

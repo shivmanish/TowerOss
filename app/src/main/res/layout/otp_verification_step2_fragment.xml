@@ -112,7 +112,7 @@
             <com.smarthub.baseapplication.widgets.CustomTextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Username or E-mail"
+                android:hint="Enter Mobile Number"
                 android:id="@+id/user_mail_layout"
                 android:textColorHint="@color/white"
                 style="@style/TextInputLayout"
@@ -135,6 +135,7 @@
                     android:drawableEnd="@drawable/mo_no_next_outline"
                     android:layout_width="match_parent"
                     android:paddingStart="@dimen/dp10"
+                    android:inputType="number"
                     android:gravity="center_vertical"
                     style="@style/CustomTextInputEdit"
                     android:layout_height="wrap_content"
