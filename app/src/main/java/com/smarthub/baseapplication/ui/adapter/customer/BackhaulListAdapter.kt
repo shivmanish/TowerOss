@@ -8,20 +8,22 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
+class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+    RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
+    var list: ArrayList<String> = ArrayList()
 
-    var LINK_VIEW_TYPE =0
-    var IDU_VIEW_TYPE =1
-    var ODU_VIEW_TYPE =2
-    var ANTEENA_VIEW_TYPE =3
-    var INSTALLATION_TEAM_VIEW_TYPE =4
-    var MATERIALS_VIEW_TYPE =5
-    var LMC_VIEW_TYPE =6
-    var ATPCHECK_LIST_VIEW_TYPE =7
-    var PO_DETAILS_VIEW_TYPE =8
-    var CONNEVCTED_EQUIPMENT_VIEW_TYPE =9
+    var LINK_VIEW_TYPE = 0
+    var IDU_VIEW_TYPE = 1
+    var ODU_VIEW_TYPE = 2
+    var ANTEENA_VIEW_TYPE = 3
+    var INSTALLATION_TEAM_VIEW_TYPE = 4
+    var MATERIALS_VIEW_TYPE = 5
+    var LMC_VIEW_TYPE = 6
+    var ATPCHECK_LIST_VIEW_TYPE = 7
+    var PO_DETAILS_VIEW_TYPE = 8
+    var CONNEVCTED_EQUIPMENT_VIEW_TYPE = 9
+
     init {
         list.add("Link")
         list.add("IDU")
@@ -35,98 +37,157 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         list.add("Connected Equipment(CE)")
     }
 
-    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    }
     class LinkViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulLinkListItemBinding = BackhaulLinkListItemBinding.bind(itemView)
+        var binding: BackhaulLinkListItemBinding = BackhaulLinkListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
 
         }
     }
+
     class IDUViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulIduListItemBinding = BackhaulIduListItemBinding.bind(itemView)
+        var binding: BackhaulIduListItemBinding = BackhaulIduListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
-          /*  var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+            /*  var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+              recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }*/
+              itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                  adapter.addItem()
+              }*/
 
         }
     }
-    class ODUViewHold(itemView: View,) : ViewHold(itemView) {
-        var binding : BackhaulOduListItemBinding = BackhaulOduListItemBinding.bind(itemView)
+
+    class ODUViewHold(itemView: View) : ViewHold(itemView) {
+        var binding: BackhaulOduListItemBinding = BackhaulOduListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
 
         }
     }
+
     class AntennaViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulAntenaListItemBinding = BackhaulAntenaListItemBinding.bind(itemView)
-      //  var adapter =  ImageAttachmentAdapter(listener)
+        var binding: BackhaulAntenaListItemBinding = BackhaulAntenaListItemBinding.bind(itemView)
+
+        //  var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
-         /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+            /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+               recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }*/
+               itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                   adapter.addItem()
+               }*/
         }
     }
+
     class InstallationTeamViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulInstallationTeamListItemBinding = BackhaulInstallationTeamListItemBinding.bind(itemView)
+        var binding: BackhaulInstallationTeamListItemBinding =
+            BackhaulInstallationTeamListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
         }
     }
-    class MaterialsViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding : BackhaulConsumableMaterialsListItemBinding = BackhaulConsumableMaterialsListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+
+    class MaterialsViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) :
+        ViewHold(itemView) {
+        var binding: BackhaulConsumableMaterialsListItemBinding =
+            BackhaulConsumableMaterialsListItemBinding.bind(itemView)
+        var adapter = ImageAttachmentAdapter(listener)
+
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
@@ -137,123 +198,174 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
         }
     }
+
     class LMCViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulLmcListItemBinding = BackhaulLmcListItemBinding.bind(itemView)
+        var binding: BackhaulLmcListItemBinding = BackhaulLmcListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
 
         }
     }
+
     class PODetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulPoDetailsListItemBinding = BackhaulPoDetailsListItemBinding.bind(itemView)
-    //   var adapter =  ImageAttachmentAdapter(listener)
+        var binding: BackhaulPoDetailsListItemBinding =
+            BackhaulPoDetailsListItemBinding.bind(itemView)
+
+        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
-        /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }*/
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
         }
     }
+
     class CONNEVCTEDEQUIPMENTViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulConnectedEquipmentItemListBinding = BackhaulConnectedEquipmentItemListBinding.bind(itemView)
-    //   var adapter =  ImageAttachmentAdapter(listener)
+        var binding: BackhaulConnectedEquipmentItemListBinding =
+            BackhaulConnectedEquipmentItemListBinding.bind(itemView)
+
+        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
-        /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }*/
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
         }
     }
 
     class ATPCHECKViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : AtpChecklistBinding = AtpChecklistBinding.bind(itemView)
-      //  var adapter =  ImageAttachmentAdapter(listener)
+        var binding: AtpChecklistBinding = AtpChecklistBinding.bind(itemView)
+
+        //  var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.ic_arrow_up,
+                    0
+                )
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
             }
 
-         /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+            /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+               recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }*/
+               itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                   adapter.addItem()
+               }*/
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
-        return when(viewType){
-            LINK_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_link_list_item,parent,false)
+        var view =
+            LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item, parent, false)
+        return when (viewType) {
+            LINK_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_link_list_item, parent, false)
                 LinkViewHold(view)
             }
-            IDU_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_idu_list_item,parent,false)
+            IDU_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_idu_list_item, parent, false)
                 IDUViewHold(view)
             }
-            ODU_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_odu_list_item,parent,false)
+            ODU_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_odu_list_item, parent, false)
                 ODUViewHold(view)
             }
-            ANTEENA_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_antena_list_item,parent,false)
+            ANTEENA_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_antena_list_item, parent, false)
                 AntennaViewHold(view)
             }
-            INSTALLATION_TEAM_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_installation_team_list_item,parent,false)
+            INSTALLATION_TEAM_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_installation_team_list_item, parent, false)
                 InstallationTeamViewHold(view)
             }
-            MATERIALS_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_consumable_materials_list_item,parent,false)
-                MaterialsViewHold(view,listener)
+            MATERIALS_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_consumable_materials_list_item, parent, false)
+                MaterialsViewHold(view, listener)
             }
-            LMC_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_lmc_list_item,parent,false)
+            LMC_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_lmc_list_item, parent, false)
                 LMCViewHold(view)
             }
-            ATPCHECK_LIST_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.atp_checklist,parent,false)
+            ATPCHECK_LIST_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.atp_checklist, parent, false)
                 ATPCHECKViewHold(view)
             }
-            PO_DETAILS_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_po_details_list_item,parent,false)
+            PO_DETAILS_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_po_details_list_item, parent, false)
                 PODetailsViewHold(view)
             }
-            CONNEVCTED_EQUIPMENT_VIEW_TYPE->{
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_connected_equipment_item_list,parent,false)
+            CONNEVCTED_EQUIPMENT_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_connected_equipment_item_list, parent, false)
                 CONNEVCTEDEQUIPMENTViewHold(view)
             }
             else -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item,parent,false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.backhaul_list_item, parent, false)
                 ViewHold(view)
             }
         }
@@ -274,182 +386,265 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-       if (holder is LinkViewHold){
+        if (holder is LinkViewHold) {
 
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
-       }
-       else if (holder is IDUViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
+        } else if (holder is IDUViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-       }
-       else if (holder is ODUViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+        }
+        else if (holder is ODUViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-       }
-       else if (holder is AntennaViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+        } else if (holder is AntennaViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-       }
-       else if (holder is InstallationTeamViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+        }
+        else if (holder is InstallationTeamViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-       }
-       else if (holder is MaterialsViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+        }
+        else if (holder is MaterialsViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
-       }
-       else if (holder is LMCViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
 
-       }
-       else if (holder is PODetailsViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+        } else if (holder is LMCViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-       }
-       else if (holder is ATPCHECKViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+        }
+        else if (holder is PODetailsViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                }
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
-       }
-       else if (holder is CONNEVCTEDEQUIPMENTViewHold){
-           holder.binding.collapsingLayout.setOnClickListener {
-               holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-               if ((holder.binding.itemTitle.tag as Boolean)) {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-               } else {
-                   holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-               }
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
 
-               holder.binding.itemLine.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-               holder.binding.itemCollapse.visibility =
-                   if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-           }
-           holder.binding.itemTitle.text = list[position]
+        } else if (holder is ATPCHECKViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
 
-       }
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
+
+        } else if (holder is CONNEVCTEDEQUIPMENTViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_arrow_up,
+                        0
+                    )
+                } else {
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.down_arrow,
+                        0
+                    )
+                }
+
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
+
+        }
     }
+
     override fun getItemCount(): Int {
         return list.size
     }
 
-    interface ItemClickListener{
+    interface ItemClickListener {
         fun itemClicked()
     }
 }
