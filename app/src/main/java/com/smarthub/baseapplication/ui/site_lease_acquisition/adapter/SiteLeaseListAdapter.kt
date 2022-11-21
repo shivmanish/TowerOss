@@ -19,6 +19,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
     init {
         list.add("Details")
         list.add("Attachments")
+
         
     }
 
