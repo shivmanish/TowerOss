@@ -17,7 +17,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         list.add("Building Details")
         list.add("Boundary Structures Details")
         list.add("Property Owner's Details")
-        list.add("Property Owner's Details")
+
         list.add("PO Details")
         list.add("Attachments")
 
