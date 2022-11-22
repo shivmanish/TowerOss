@@ -8,21 +8,16 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
-    RecyclerView.Adapter<SiteLeaseListAdapter.ViewHold>() {
-
+class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+    RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
-
     var DETAILS_VIEW_TYPE = 0
     var ATTACHMENT_VIEW_TYPE = 1
-
     init {
-        list.add("Details")
+        list.add("Building Details")
         list.add("Attachments")
 
-        
-    }
-
+      }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
@@ -39,9 +34,8 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View) : ViewHold(itemView) {
         var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
 
         init {
             binding.itemTitle.tag = false
@@ -52,16 +46,9 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
-                var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
-
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }
 
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.nominals_list_item, parent, false)
@@ -74,7 +61,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.attachment_list_item, parent, false)
-                AttachmentViewHold(view,listener)
+                DetailsViewHold(view)
             }
 
             else -> {
@@ -84,13 +71,11 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             }
         }
     }
-
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Details") DETAILS_VIEW_TYPE
         else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
       else 0
     }
-
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is DetailsViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
@@ -133,11 +118,9 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         }
 
     }
-
     override fun getItemCount(): Int {
         return list.size
     }
-
     interface ItemClickListener {
         fun itemClicked()
     }
