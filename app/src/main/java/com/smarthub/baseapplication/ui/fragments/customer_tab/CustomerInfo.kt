@@ -91,26 +91,27 @@ class CustomerInfo :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     }
 
     fun fetchDropDown() {
-        var jsonData: String =
+        var jsonData: String? =
             AppPreferences.getInstance().getString(AppPreferences.DROPDOWNDATA)
         val gson = Gson()
-        val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData,
-            SiteInfoDropDownData::class.java)
-        if(siteInfoDropDownData != null) {
-            binding!!.spinSiteStatus.setSpinnerData(siteInfoDropDownData!!.opcoinfo.opcositestatus.data)
-            binding!!.spinSiteType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.opcositetype.data)
-            binding!!.spinTelecomEquipmentType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.telecomequipmenttype.data)
-            binding!!.spinAlaramExtention.setSpinnerData(siteInfoDropDownData!!.opcoinfo.alarmsextension.data)
-            binding!!.spinRruCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rrucount.data)
-            binding!!.spinAntenaCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.antenacount.data)
-            binding!!.spinAntenaSlotUsed.setSpinnerData(siteInfoDropDownData!!.opcoinfo.antenaslotused.data)
+        if (jsonData!=null){
+            val siteInfoDropDownData: SiteInfoDropDownData? = gson.fromJson(jsonData,
+                SiteInfoDropDownData::class.java)
+            if(siteInfoDropDownData != null) {
+                binding!!.spinSiteStatus.setSpinnerData(siteInfoDropDownData!!.opcoinfo.opcositestatus.data)
+                binding!!.spinSiteType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.opcositetype.data)
+                binding!!.spinTelecomEquipmentType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.telecomequipmenttype.data)
+                binding!!.spinAlaramExtention.setSpinnerData(siteInfoDropDownData!!.opcoinfo.alarmsextension.data)
+                binding!!.spinRruCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rrucount.data)
+                binding!!.spinAntenaCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.antenacount.data)
+                binding!!.spinAntenaSlotUsed.setSpinnerData(siteInfoDropDownData!!.opcoinfo.antenaslotused.data)
 //            binding!!.spinCommitedNwa.setSpinnerData(siteInfoDropDownData!!.opcoinfo.)
-            binding!!.spinRackCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rackcount.data)
-            binding!!.spinRfTechnology.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rftechnology.data)
-            binding!!.spinSectorCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.sectorcount.data)
-            binding!!.spinNetworkType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.operatornetworktype.data)
+                binding!!.spinRackCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rackcount.data)
+                binding!!.spinRfTechnology.setSpinnerData(siteInfoDropDownData!!.opcoinfo.rftechnology.data)
+                binding!!.spinSectorCount.setSpinnerData(siteInfoDropDownData!!.opcoinfo.sectorcount.data)
+                binding!!.spinNetworkType.setSpinnerData(siteInfoDropDownData!!.opcoinfo.operatornetworktype.data)
 
-
+            }
         }
     }
 
