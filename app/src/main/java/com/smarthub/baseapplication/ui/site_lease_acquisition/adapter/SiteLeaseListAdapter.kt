@@ -25,7 +25,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
+        var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -40,7 +40,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         }
     }
     class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
+        var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(listener)
 
         init {
@@ -68,7 +68,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.nominals_list_item, parent, false)
+                    .inflate(R.layout.team_vendor_list_item, parent, false)
                 DetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
@@ -103,8 +103,6 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE

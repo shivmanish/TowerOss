@@ -22,7 +22,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
       }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: Team_VendorLeaseListAdapter = TeamVendorListItemBinding.bind(itemView)
+        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -37,7 +37,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         }
     }
     class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
-        var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
+        var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
        var adapter =  ImageAttachmentAdapter(listener)
 
         init {
@@ -65,7 +65,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.team_vendor_list_item, parent, false)
+                    .inflate(R.layout.nominals_list_item, parent, false)
                 DetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
