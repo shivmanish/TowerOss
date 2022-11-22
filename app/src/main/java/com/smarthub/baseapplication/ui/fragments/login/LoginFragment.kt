@@ -44,8 +44,8 @@ class LoginFragment : Fragment() {
         }
         binding?.textRegister?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-//            val regFragment1 = RegistrationFirstStep()
-//            addFragment(regFragment1)
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegistrationFirstStep())
+
         }
 
         binding?.forgotPassword?.setOnClickListener {
@@ -55,8 +55,7 @@ class LoginFragment : Fragment() {
 
         binding?.signWithPhone?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-//            val regFragment1 = OtpVerificationStep2()
-//            addFragment(regFragment1)
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOtpVerificationStep1())
         }
     }
 

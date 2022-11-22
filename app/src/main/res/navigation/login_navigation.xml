@@ -17,6 +17,10 @@
             android:id="@+id/action_loginFragment_to_otpVerificationStep1"
             app:destination="@id/otpVerificationStep1"
             app:popUpTo="@id/loginFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFirstStep"
+            app:destination="@id/registrationFirstStep"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -75,5 +79,36 @@
         android:id="@+id/otpVerificationStep2"
         android:name="com.smarthub.baseapplication.ui.fragments.otp.OtpVerificationStep2"
         android:label="OtpVerificationStep2" />
+    <fragment
+        android:id="@+id/registrationFirstStep"
+        android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationFirstStep"
+        android:label="RegistrationFirstStep" >
+        <action
+            android:id="@+id/action_registrationFirstStep_to_registrationSecondStep"
+            app:destination="@id/registrationSecondStep"
+            app:popUpTo="@id/registrationFirstStep" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationSecondStep"
+        android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationSecondStep"
+        android:label="RegistrationSecondStep" >
+        <action
+            android:id="@+id/action_registrationSecondStep_to_registrationThirdStep"
+            app:destination="@id/registrationThirdStep"
+            app:popUpTo="@id/registrationSecondStep" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationThirdStep"
+        android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationThirdStep"
+        android:label="RegistrationThirdStep" >
+        <action
+            android:id="@+id/action_registrationThirdStep_to_registrationSuccessfull"
+            app:destination="@id/registrationSuccessfull"
+            app:popUpTo="@id/registrationThirdStep" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationSuccessfull"
+        android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationSuccessfull"
+        android:label="RegistrationSuccessfull" />
 
 </navigation>

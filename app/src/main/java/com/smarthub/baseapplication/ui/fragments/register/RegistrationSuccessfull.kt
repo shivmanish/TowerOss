@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.utils.Utils
@@ -31,9 +32,7 @@ class RegistrationSuccessfull : Fragment() {
         loginButton.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{
-                val intent = Intent (it, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                it.startActivity(intent)
+                findNavController().popBackStack(R.id.loginFragment,false)
             }
         }
 

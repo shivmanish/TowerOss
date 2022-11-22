@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
@@ -50,28 +51,9 @@ class RegistrationSecondStep : Fragment() {
         }
         setupAutoCompleteView()
 
-        val regFragment2 = RegistrationThirdStep()
         view.findViewById<View>(R.id.next).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-            addFragment(regFragment2)
-        }
-    }
-
-    fun addFragment(fragment: Fragment?) {
-        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
-        val manager = requireActivity().supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
-            val transaction = manager.beginTransaction()
-            transaction.setCustomAnimations(
-                R.anim.enter,
-                R.anim.exit,
-                R.anim.pop_enter,
-                R.anim.pop_exit
-            )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(backStateName)
-            transaction.commit()
+            findNavController().navigate(RegistrationSecondStepDirections.actionRegistrationSecondStepToRegistrationThirdStep())
         }
     }
 

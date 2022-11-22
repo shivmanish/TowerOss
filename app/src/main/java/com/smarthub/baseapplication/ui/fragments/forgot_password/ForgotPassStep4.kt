@@ -23,7 +23,7 @@ class ForgotPassStep4 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.textLogin.setOnClickListener {
-            findNavController().popBackStack(R.id.loginFragment,true)
+            findNavController().popBackStack(R.id.loginFragment,false)
         }
     }
 

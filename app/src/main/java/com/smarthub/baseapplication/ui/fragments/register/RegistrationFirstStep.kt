@@ -13,6 +13,7 @@ import android.widget.AdapterView
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
@@ -91,7 +92,7 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.moNo.text.toString()
 
             Utils.hideKeyboard(requireContext(), it)
-            addFragment(regFragment2)
+            findNavController().navigate(RegistrationFirstStepDirections.actionRegistrationFirstStepToRegistrationSecondStep())
         }
 
 
@@ -104,24 +105,6 @@ class RegistrationFirstStep : Fragment() {
             }
         })
 
-    }
-
-    fun addFragment(fragment: Fragment?) {
-        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
-        val manager = requireActivity().supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
-            val transaction = manager.beginTransaction()
-            transaction.setCustomAnimations(
-                R.anim.enter,
-                R.anim.exit,
-                R.anim.pop_enter,
-                R.anim.pop_exit
-            )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(backStateName)
-            transaction.commit()
-        }
     }
 
     private fun setupAutoCompleteView() {
