@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/dp10"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -50,12 +51,17 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-     <androidx.recyclerview.widget.RecyclerView
-         android:id="@+id/rv_boundary_list_items"
-         tools:listitem="@layout/item_meterial_list"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-     </androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:orientation="vertical"
+        tools:itemCount="3"
+        android:id="@+id/items_list"
+        android:paddingTop="@dimen/dp10"
+        tools:listitem="@layout/item_meterial_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
 
 
