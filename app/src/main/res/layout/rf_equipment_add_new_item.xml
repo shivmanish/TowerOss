@@ -67,6 +67,8 @@
         android:layout_marginTop="10dp"
          />
 
+
+
     <LinearLayout
         android:visibility="visible"
         android:id="@+id/item_collapse"
@@ -81,9 +83,10 @@
             android:layout_height="wrap_content">
 
             <GridLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:columnCount="2"
                 android:orientation="horizontal"
+                android:scrollbars="vertical"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -504,7 +507,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
