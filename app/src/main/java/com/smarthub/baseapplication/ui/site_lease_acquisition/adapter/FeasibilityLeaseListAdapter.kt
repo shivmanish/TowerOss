@@ -62,6 +62,48 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
                 }*/
         }
     }
+    class PropertyDetailsViewHold(itemView: View) :ViewHold(itemView) {
+        var binding: PropertyDetailsListItemBinding =
+            PropertyDetailsListItemBinding.bind(itemView)
+
+        //   var adapter =  ImageAttachmentAdapter(listener)
+        init {
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+            }
+
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
+
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
+        }
+    }
+    class PODetailsViewHold(itemView: View) :ViewHold(itemView) {
+        var binding: BackhaulPoDetailsListItemBinding =
+            BackhaulPoDetailsListItemBinding.bind(itemView)
+
+        //   var adapter =  ImageAttachmentAdapter(listener)
+        init {
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+            }
+
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
+
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
+        }
+    }
     class AttachmentViewHold(itemView: View) : ViewHold(itemView) {
         var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
 
@@ -85,10 +127,20 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.feasibility_list_item, parent, false)
                 DetailsViewHold(view)
-            }   BOUNDARY_VIEW_TYPE -> {
+            }
+            BOUNDARY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.boudry_details_list_item, parent, false)
                 BoundaryDetailsViewHold(view)
+            }  PROPERTY_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.property_details_list_item, parent, false)
+                PropertyDetailsViewHold(view)
+            }
+            PO_DETAILS_VIEW_TYPE -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.po_details, parent, false)
+                PODetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
@@ -106,6 +158,8 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
       override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Building Details") DETAILS_VIEW_TYPE
         else if (list[position] == "Boundary Structures Details") BOUNDARY_VIEW_TYPE
+        else if (list[position] == "Property Owner's Details") PROPERTY_VIEW_TYPE
+        else if (list[position] == "PO Details") PO_DETAILS_VIEW_TYPE
         else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
       else 0
     }
@@ -130,6 +184,46 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
             holder.binding.itemTitle.text = list[position]
         }
         else if (holder is BoundaryDetailsViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                }
+
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
+
+        }
+        else if (holder is PropertyDetailsViewHold) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                }
+
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitle.text = list[position]
+
+        }
+        else if (holder is PODetailsViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
