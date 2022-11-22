@@ -139,7 +139,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
             }
             PO_DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.po_details, parent, false)
+                    .inflate(R.layout.backhaul_po_details_list_item, parent, false)
                 PODetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
