@@ -28,7 +28,7 @@ class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.nominalList?.adapter = SiteLeaseListAdapter(this@Nominals)
+        binding?.nominalslist?.adapter = SiteLeaseListAdapter(this@Nominals)
     }
 
     fun initViews(view: View){
