@@ -12,12 +12,14 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
     RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var DETAILS_VIEW_TYPE = 0
-    var ATTACHMENT_VIEW_TYPE = 1
+    var BOUNDARY_VIEW_TYPE = 1
+    var PROPERTY_VIEW_TYPE = 2
+    var PO_DETAILS_VIEW_TYPE =3
+    var ATTACHMENT_VIEW_TYPE = 4
     init {
         list.add("Building Details")
         list.add("Boundary Structures Details")
         list.add("Property Owner's Details")
-
         list.add("PO Details")
         list.add("Attachments")
 
@@ -77,6 +79,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
     }
       override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Building Details") DETAILS_VIEW_TYPE
+        else if (list[position] == "Boundary Structures Details") ATTACHMENT_VIEW_TYPE
         else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
       else 0
     }
@@ -101,7 +104,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
             holder.binding.itemTitle.text = list[position]
         }
 
-       else if (holder is AttachmentViewHold) {
+           else if (holder is AttachmentViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
