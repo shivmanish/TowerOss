@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.forgot_password
+package com.smarthub.baseapplication.ui.fragments.otp
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -11,20 +11,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.smarthub.baseapplication.databinding.ForgotPassStep1FragmentBinding
+import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.OtpVerificationStep1FragmentBinding
 import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
-class ForgotPassStep1 : Fragment() {
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [OtpVerificationStep1.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class OtpVerificationStep1 : Fragment() {
 
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
-    lateinit var binding : ForgotPassStep1FragmentBinding
+    lateinit var binding : OtpVerificationStep1FragmentBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = ForgotPassStep1FragmentBinding.inflate(inflater)
+        binding = OtpVerificationStep1FragmentBinding.inflate(inflater)
         return binding.root
     }
 
@@ -35,7 +42,7 @@ class ForgotPassStep1 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-        binding?.back?.setOnClickListener {view->
+        view.findViewById<View>(R.id.back).setOnClickListener {view->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 it?.onBackPressed()
@@ -71,9 +78,8 @@ class ForgotPassStep1 : Fragment() {
             if (it?.data != null && it.data.sucesss == true){
                 Log.d("status","getOtpResponse ${it.data}")
                 activity?.let{
-                    findNavController().navigate(
-                        ForgotPassStep1Directions.actionForgotPassStep1ToForgotPassStep2(binding.moNoEdit.text?.toString()!!)
-                    )
+                    val regFragment = OtpVerificationStep2()
+                    addFragment(regFragment)
                 }
             }else{
                 Log.d("status","${AppConstants.GENERIC_ERROR}")
@@ -85,6 +91,24 @@ class ForgotPassStep1 : Fragment() {
 
     private fun enableErrorText(){
         binding?.userMailLayout?.error = "enter valid mo no"
+    }
+
+    fun addFragment(fragment: Fragment?) {
+        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
+        val manager = requireActivity().supportFragmentManager
+        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+        if (!fragmentPopped) {
+            val transaction = manager.beginTransaction()
+            transaction.setCustomAnimations(
+                R.anim.enter,
+                R.anim.exit,
+                R.anim.pop_enter,
+                R.anim.pop_exit
+            )
+            transaction.replace(R.id.fragmentContainerView, fragment!!)
+            transaction.addToBackStack(backStateName)
+            transaction.commit()
+        }
     }
 
 }
