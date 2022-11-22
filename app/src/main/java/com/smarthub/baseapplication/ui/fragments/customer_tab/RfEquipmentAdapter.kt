@@ -23,7 +23,7 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
     var list : ArrayList<String> = ArrayList()
 
     init {
-        list.add("no_data")
+//        list.add("no_data")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
