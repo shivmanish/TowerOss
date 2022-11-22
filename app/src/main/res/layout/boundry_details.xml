@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/dp10"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingDefaultResource">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:weightSum="4"
         android:orientation="horizontal"
@@ -18,7 +16,7 @@
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/montserrat_regular"
             android:layout_width="match_parent"
-           
+
             android:text="Direction"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
@@ -37,7 +35,7 @@
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/montserrat_regular"
             android:layout_width="match_parent"
-           
+
             android:text="Bldg Type"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
@@ -51,17 +49,12 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:orientation="vertical"
-        tools:itemCount="3"
-        android:id="@+id/items_list"
-        android:paddingTop="@dimen/dp10"
-        tools:listitem="@layout/item_meterial_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/rv_boundry_item_list"
+         tools:listitem="@layout/item_meterial_list"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+     </androidx.recyclerview.widget.RecyclerView>
 
 
 
