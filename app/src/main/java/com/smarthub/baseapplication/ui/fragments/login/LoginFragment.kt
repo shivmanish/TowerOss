@@ -51,8 +51,6 @@ class LoginFragment : Fragment() {
         binding?.forgotPassword?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPassStep1())
-//            val regFragment1 = ForgotPassStep1()
-//            addFragment(regFragment1)
         }
 
         binding?.signWithPhone?.setOnClickListener {
@@ -66,9 +64,9 @@ class LoginFragment : Fragment() {
         loginViewModel?.loginResponse?.observe(requireActivity()) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
-                if (it.status == Resource.Status.SUCCESS && it.data!=null) {
-                    AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
-                    AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
+                if (it.status == Resource.Status.SUCCESS) {
+                    AppPreferences.getInstance().saveString("accessToken", "${it.data.access}")
+                    AppPreferences.getInstance().saveString("refreshToken", "${it.data.refresh}")
 
 
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
@@ -81,17 +79,11 @@ class LoginFragment : Fragment() {
 
                     Toast.makeText(requireContext(),"error:"+it.message,Toast.LENGTH_LONG).show()
                     enableErrorMsg()
-//                    loginViewModel?.loginResponse?.removeObservers(this)
-//                    val regFragment1 = LoginSecondStep()
-//                    addWithoutStackFragment(regFragment1)
                 }
             }
             else{
                 Toast.makeText(requireContext(),AppConstants.GENERIC_ERROR,Toast.LENGTH_LONG).show()
                 enableErrorMsg()
-//                loginViewModel?.loginResponse?.removeObservers(this)
-//                val regFragment1 = LoginSecondStep()
-//                addWithoutStackFragment(regFragment1)
 
             }
 
