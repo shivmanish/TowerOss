@@ -3,16 +3,22 @@ package com.smarthub.baseapplication.ui.fragments.register
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
+import com.smarthub.baseapplication.ui.adapter.spinner.CustomRegistrationArrayAdapter
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -32,7 +38,7 @@ class RegistrationFirstStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registrationFirstStepBinding.textRegister.setOnClickListener { view ->
+        registrationFirstStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
@@ -40,7 +46,7 @@ class RegistrationFirstStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-
+        setupAutoCompleteView()
         val regFragment2 = RegistrationSecondStep()
         registrationFirstStepBinding.next.setOnClickListener {
 
@@ -86,7 +92,7 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.moNo.text.toString()
 
             Utils.hideKeyboard(requireContext(), it)
-            addFragment(regFragment2)
+            findNavController().navigate(RegistrationFirstStepDirections.actionRegistrationFirstStepToRegistrationSecondStep())
         }
 
 
@@ -98,24 +104,29 @@ class RegistrationFirstStep : Fragment() {
                     Utils.hideKeyboard(requireContext(),registrationFirstStepBinding?.moNo!!)
             }
         })
+
     }
 
-    fun addFragment(fragment: Fragment?) {
-        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
-        val manager = requireActivity().supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
-            val transaction = manager.beginTransaction()
-            transaction.setCustomAnimations(
-                R.anim.enter,
-                R.anim.exit,
-                R.anim.pop_enter,
-                R.anim.pop_exit
-            )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(backStateName)
-            transaction.commit()
-        }
+    private fun setupAutoCompleteView() {
+        val datalist=getlList()
+        registrationFirstStepBinding.companyName.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
+//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
+        registrationFirstStepBinding.companyName.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, arg1, position, id ->
+//                registrationFirstStepBinding.companyName.text = datalist.get(position)
+            }
+
+
+    }
+
+    private fun getlList(): ArrayList<String> {
+        val dataList=ArrayList<String>()
+        dataList.add("SmartMile")
+        dataList.add("Jio Fiber")
+        dataList.add("Airtel India")
+        dataList.add("VI")
+        dataList.add("")
+        return dataList
     }
 
 }

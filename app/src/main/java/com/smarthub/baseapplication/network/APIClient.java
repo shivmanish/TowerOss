@@ -2,8 +2,10 @@ package com.smarthub.baseapplication.network;
 
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
+import com.smarthub.baseapplication.model.otp.GetSuccessResponse;
 import com.smarthub.baseapplication.model.otp.UserOTPGet;
 import com.smarthub.baseapplication.model.otp.UserOTPVerify;
+import com.smarthub.baseapplication.model.otp.UserPasswordGet;
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate;
 import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
@@ -30,6 +32,9 @@ public interface APIClient {
 
     @POST(EndPoints.GET_OTP)
     Call<GetOtpResponse> getOTP(@Body UserOTPGet data);
+
+    @POST(EndPoints.PASSWORD_RESET)
+    Call<GetSuccessResponse> changePass(@Body UserPasswordGet data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)

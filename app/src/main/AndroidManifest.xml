@@ -79,7 +79,9 @@
             android:label="@string/setting" />
         <activity
             android:name=".activities.DashboardActivity"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".activities.FAQActivity"
             android:exported="true" />
