@@ -11,23 +11,52 @@
         <action
             android:id="@+id/action_loginFragment_to_forgotPassStep1"
             app:destination="@id/forgotPassStep1"
-            app:popUpTo="@id/loginFragment" />
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
         android:id="@+id/forgotPassStep1"
         android:name="com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep1"
         android:label="ForgotPassStep1" >
+        <argument
+            android:name="phone"
+            app:argType="string"
+            android:defaultValue="1234567890" />
         <action
             android:id="@+id/action_forgotPassStep1_to_forgotPassStep2"
             app:destination="@id/forgotPassStep2"
             app:popUpTo="@id/forgotPassStep1" >
+            <argument
+                android:name="phone"
+                app:argType="string"
+                android:defaultValue="1234567890" />
         </action>
     </fragment>
 
     <fragment
         android:id="@+id/forgotPassStep2"
         android:name="com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep2"
-        android:label="ForgotPassStep2" />
+        android:label="ForgotPassStep2" >
+        <action
+            android:id="@+id/action_forgotPassStep2_to_forgotPassStep3"
+            app:destination="@id/forgotPassStep3"
+            app:popUpTo="@id/forgotPassStep1"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPassStep3"
+        android:name="com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep3"
+        android:label="ForgotPassStep3" >
+        <action
+            android:id="@+id/action_forgotPassStep3_to_forgotPassStep4"
+            app:destination="@id/forgotPassStep4"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPassStep4"
+        android:name="com.smarthub.baseapplication.ui.fragments.forgot_password.ForgotPassStep4"
+        android:label="ForgotPassStep4" />
 
 </navigation>

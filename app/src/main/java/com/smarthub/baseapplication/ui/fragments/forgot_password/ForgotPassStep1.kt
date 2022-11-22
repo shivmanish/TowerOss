@@ -12,20 +12,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ForgotPassStep1FragmentBinding
 import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ForgotPassStep1.newInstance] factory method to
- * create an instance of this fragment.
- */
-@Suppress("DEPRECATION")
 class ForgotPassStep1 : Fragment() {
 
     private var loginViewModel : LoginViewModel?=null
@@ -79,9 +71,9 @@ class ForgotPassStep1 : Fragment() {
             if (it?.data != null && it.data.sucesss == true){
                 Log.d("status","getOtpResponse ${it.data}")
                 activity?.let{
-                    findNavController().navigate(ForgotPassStep1Directions.actionForgotPassStep1ToForgotPassStep2())
-//                    val regFragment = ForgotPassStep2()
-//                    addFragment(regFragment)
+                    findNavController().navigate(
+                        ForgotPassStep1Directions.actionForgotPassStep1ToForgotPassStep2(binding.moNoEdit.text?.toString()!!)
+                    )
                 }
             }else{
                 Log.d("status","${AppConstants.GENERIC_ERROR}")
@@ -94,24 +86,6 @@ class ForgotPassStep1 : Fragment() {
     private fun enableErrorText(){
         binding?.userMailLayout?.error = "enter valid mo no"
     }
-
-//    fun addFragment(fragment: Fragment?) {
-//        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
-//        val manager = requireActivity().supportFragmentManager
-//        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-//        if (!fragmentPopped) {
-//            val transaction = manager.beginTransaction()
-//            transaction.setCustomAnimations(
-//                R.anim.enter,
-//                R.anim.exit,
-//                R.anim.pop_enter,
-//                R.anim.pop_exit
-//            )
-//            transaction.replace(R.id.fragmentContainerView, fragment!!)
-//            transaction.addToBackStack(backStateName)
-//            transaction.commit()
-//        }
-//    }
 
 }
 
