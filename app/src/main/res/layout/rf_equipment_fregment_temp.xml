@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/add_new_layout"
-        app:cardElevation="5dp">
+        app:cardElevation="1dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -62,7 +62,6 @@
         android:paddingTop="@dimen/dp10"
         tools:listitem="@layout/rf_equipment_list_items"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
