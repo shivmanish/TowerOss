@@ -16,6 +16,8 @@ import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
 import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.FeasibilityLeaseListAdapter
+import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.Team_VendorLeaseListAdapter
 
 class Feasibility :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     var binding : FeasibilityFragmentBinding?=null
@@ -25,12 +27,7 @@ class Feasibility :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     }
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
-        var adapter =  ImageAttachmentAdapter(this@Feasibility)
-        recyclerListener.adapter = adapter
-        view.findViewById<View>(R.id.attach_card).setOnClickListener {
-            adapter.addItem()
-        }
+            binding?.feasibilityList?.adapter = FeasibilityLeaseListAdapter(this@Feasibility)
         initViews(view)
     }
 

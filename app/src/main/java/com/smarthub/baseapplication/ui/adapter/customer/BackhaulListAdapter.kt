@@ -585,7 +585,8 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
             holder.binding.itemTitle.text = list[position]
 
-        } else if (holder is ATPCHECKViewHold) {
+        }
+        else if (holder is ATPCHECKViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
