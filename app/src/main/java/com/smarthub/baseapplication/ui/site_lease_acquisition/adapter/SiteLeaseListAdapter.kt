@@ -22,7 +22,6 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
         
     }
-
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
