@@ -162,7 +162,7 @@ class OtpVerificationStep3 : Fragment() {
                 R.anim.pop_exit
             )
             transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(backStateName)
+            transaction.addToBackStack(null)
             transaction.commit()
         }
     }
