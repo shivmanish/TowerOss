@@ -34,57 +34,69 @@
             android:padding="5dp"
             android:id="@+id/person_task_item"
             android:layout_width="0dp"
-            app:layout_constraintEnd_toStartOf="@+id/edit_task_item"
+            app:layout_constraintEnd_toStartOf="@+id/edit_task_item_layout"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_outline_person_add_alt_24"
             />
-        <TextView
-            android:padding="10dp"
-            android:id="@+id/edit_task_item"
-            android:layout_width="@dimen/dp45"
+        <com.smarthub.baseapplication.widgets.SquareLinearLayout
+            android:id="@+id/edit_task_item_layout"
+            android:layout_width="@dimen/dp55"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_height="@dimen/dp45"
-            android:text="M"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            style="@style/AutoResizeTextView"
-            android:textColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/circleblue_1"
-            android:backgroundTint="#4F4D4D"
-            />
-        <com.google.android.material.card.MaterialCardView
-            android:padding="6dp"
-            android:id="@+id/btn_edit_card"
-            android:layout_width="@dimen/dp28"
-            app:layout_constraintStart_toEndOf="@+id/edit_task_item"
-            android:layout_height="@dimen/dp28"
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="@dimen/dp50"
-            app:strokeWidth="1dp"
-            app:cardBackgroundColor="@color/color1"
-            app:strokeColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/edit_task_item"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_task_item">
-            <ImageView
-                android:padding="6dp"
-                android:id="@+id/btn_edit"
-                android:layout_width="@dimen/dp28"
-                app:layout_constraintStart_toEndOf="@+id/edit_task_item"
-                android:layout_height="@dimen/dp28"
-                android:src="@drawable/ic_edit_menu"
-                app:tint="@color/white"
-                android:layout_marginEnd="5dp"
-                app:layout_constraintEnd_toEndOf="@+id/edit_task_item"
-                app:layout_constraintBottom_toBottomOf="@+id/edit_task_item"/>
-        </com.google.android.material.card.MaterialCardView>
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/edit_task_item"
+                    android:layout_width="@dimen/dp35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="@dimen/dp35"
+                    android:text="M"
+                    android:gravity="center"
+                    style="@style/AutoResizeTextView"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/circleblue_1"
+                    android:backgroundTint="#4F4D4D"
+                    />
+                <com.google.android.material.card.MaterialCardView
+                    android:padding="6dp"
+                    android:id="@+id/btn_edit_card"
+                    android:layout_width="@dimen/dp24"
+                    app:layout_constraintStart_toEndOf="@+id/edit_task_item"
+                    android:layout_height="@dimen/dp24"
+                    app:cardCornerRadius="@dimen/dp50"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/color1"
+                    app:strokeColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/edit_task_item"
+                    app:layout_constraintBottom_toBottomOf="@+id/edit_task_item">
+                    <ImageView
+                        android:padding="6dp"
+                        android:id="@+id/btn_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_edit_menu"
+                        app:tint="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.smarthub.baseapplication.widgets.SquareLinearLayout>
+
         <ImageView
             android:id="@+id/task_list_dropdown"
             android:layout_width="0dp"
             android:padding="@dimen/dp18"
-            app:layout_constraintStart_toEndOf="@+id/edit_task_item"
+            app:layout_constraintStart_toEndOf="@+id/edit_task_item_layout"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_arrow_down_black"
