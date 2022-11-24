@@ -83,7 +83,7 @@
             android:layout_height="wrap_content">
 
             <GridLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:columnCount="2"
                 android:orientation="horizontal"
                 android:scrollbars="vertical"
