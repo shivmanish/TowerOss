@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/addTaskFragment2"
-        android:name="com.smarthub.baseapplication.ui.fragments.task.AddTaskFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.AddTaskInfoFragment"
         android:label="AddTaskFragment" />
 </navigation>

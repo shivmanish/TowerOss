@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.databinding.FragmentAddTaskBinding
-import com.smarthub.baseapplication.databinding.FragmentTaskBinding
+import com.smarthub.baseapplication.databinding.FragmentAddTaskInfoBinding
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class AddTaskFragment : Fragment() {
+class AddTaskInfoFragment : Fragment() {
 
-    private var _binding: FragmentAddTaskBinding? = null
+    private var _binding: FragmentAddTaskInfoBinding? = null
     private lateinit var mainViewModel:MainViewModel
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,7 +21,7 @@ class AddTaskFragment : Fragment() {
         val taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         mainViewModel.isActionBarHide(false)
-        _binding = FragmentAddTaskBinding.inflate(inflater, container, false)
+        _binding = FragmentAddTaskInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }

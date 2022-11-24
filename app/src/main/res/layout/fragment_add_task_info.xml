@@ -27,7 +27,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-6dp"
             android:text="ce-dlhi-sc-0179"
             android:textAllCaps="true"
             android:textColor="@color/white"
