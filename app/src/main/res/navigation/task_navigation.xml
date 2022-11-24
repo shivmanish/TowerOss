@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/task_navigation"
+    app:startDestination="@id/addTaskFragment2">
+
+    <fragment
+        android:id="@+id/addTaskFragment2"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.AddTaskInfoFragment"
+        android:label="AddTaskFragment" />
+</navigation>
