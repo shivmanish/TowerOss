@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.*
 
 class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 5
+        return 4
     }
 
     override fun getItem(position: Int): Fragment {
@@ -22,12 +22,12 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
             2 -> {
                 return Feasibility()
             }
-            3 -> {
+            else -> {
                 return Agreements()
             }
-            else -> {
+           /* else -> {
                 return Payment()
-            }
+            }*/
         }
     }
 
