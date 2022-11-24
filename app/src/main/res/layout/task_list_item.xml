@@ -417,8 +417,6 @@
                             android:checked="true"
                             android:textOff="OFF"
                             android:textOn="ON"/>
-
-
                     </LinearLayout>
 
                     <LinearLayout
