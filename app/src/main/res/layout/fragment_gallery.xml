@@ -86,8 +86,8 @@
            android:src="@drawable/ic_arrow_down"/>
 
        </LinearLayout>
-
        <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/image_grid"
            android:layout_width="match_parent"
            android:layout_marginTop="@dimen/dp5"
            android:layout_height="wrap_content"
