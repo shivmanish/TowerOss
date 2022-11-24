@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".utils.AppController"
         android:allowBackup="true"
@@ -101,6 +103,17 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+
+        <activity
+            android:name="com.smarthub.baseapplication.imagePicker.ui.album.ui.AlbumActivity"
+            android:label="@string/album"
+            android:theme="@style/FishBunTheme"/>
+        <activity
+            android:name="com.smarthub.baseapplication.imagePicker.ui.picker.PickerActivity"
+            android:theme="@style/FishBunTheme" />
+        <activity
+            android:name="com.smarthub.baseapplication.imagePicker.ui.detail.ui.DetailImageActivity"
+            android:theme="@style/DetailViewTheme" />
 
         <meta-data
             android:name="preloaded_fonts"

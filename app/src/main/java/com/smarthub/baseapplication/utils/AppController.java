@@ -1,8 +1,11 @@
 package com.smarthub.baseapplication.utils;
 
 import android.app.Application;
+import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatDelegate;
+
+import java.util.ArrayList;
 
 public class AppController extends Application {
 
@@ -19,4 +22,13 @@ public class AppController extends Application {
     public static synchronized AppController getInstance() {
         return mInstance;
     }
+    ArrayList<Uri> pickedImages = new ArrayList();
+    public ArrayList<Uri> getPickedImages() {
+        return pickedImages;
+    }
+
+    public void setPickedImages(ArrayList<Uri> pickedImages) {
+        this.pickedImages = pickedImages;
+    }
+
 }

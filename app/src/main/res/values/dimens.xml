@@ -1085,4 +1085,7 @@
     <dimen name="dpneg3">-3dp</dimen>
     <dimen name="dpneg2">-2dp</dimen>
     <dimen name="dpneg1">-1dp</dimen>
+
+
+    <dimen name="album_thum_size">70dp</dimen>
 </resources>
