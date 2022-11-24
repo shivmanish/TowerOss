@@ -119,7 +119,7 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
-            LayoutInflater.from(parent.context).inflate(R.layout.feasibility_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.agreements_list_item, parent, false)
         return when (viewType) {
             AGREMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
@@ -138,7 +138,7 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.attachment_list_item, parent, false)
-                AgreementViewHold(view)
+                AttachmentViewHold(view)
             }
 
             else -> {
