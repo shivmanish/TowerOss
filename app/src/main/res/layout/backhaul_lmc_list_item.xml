@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/bg_expansion_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginBottom="@dimen/dp15"
+            android:id="@+id/collapsing_layout"
+            android:background="@drawable/bg_expansion_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:visibility="gone"
+                android:background="@drawable/bg_expansion_bar"
+                android:layout_weight="1"
+                android:text="Link"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:text="Link Name"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:background="@drawable/bg_expansion_bar"
+                android:layout_weight="1"
+                android:id="@+id/item_title"
+                android:text=""
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_down_black"/>
+        </LinearLayout>
+        <View
+            android:id="@+id/item_line"
+            android:alpha="0.37"
+            android:background="@color/transparent"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingBottom="@dimen/dp10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Lastmile Fiber Cable Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editFiberCornType"
+                        android:hint="S3058940"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Build Fiber Core"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinBuildFiberCore"
+
+                        style="@style/SpinnerTheme"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Laying Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editLayingType"
+                        android:hint="xyz"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Zero MH Lat-long"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editZeroMHLatlong"
+                        android:hint="22.968035,76.085596"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Vendor"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinInstallationVendor"
+
+                        style="@style/SpinnerTheme"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="On-Air" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/textinstallationDate"
+                        android:text="210-Nov-22"
+                        style="@style/RowTestItemEdit"
+                        android:drawableRight="@drawable/icon_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Executive Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editInstallationExecutiveName"
+                        android:text="dsff"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Executive Num..."
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editInstallationExecutiveNumber"
+                        android:text="9890000009"
+                        style="@style/RowTestItemEdit"
+                        android:drawableRight="@drawable/ic_call"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="LMC Length"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editLMCLength"
+                        android:text="210-Nov-22"
+                        style="@style/RowTestItemEdit"
+                        android:drawableRight="@drawable/txt_subheading_regular_16_sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="OTDR Length"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editOTDRLength"
+                        android:text="210-Nov-22"
+                        style="@style/RowTestItemEdit"
+                        android:drawableRight="@drawable/txt_subheading_regular_16_sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Acceptance Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAcceptanceStatus"
+
+                        style="@style/SpinnerTheme"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="Completed" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Conditional Acceptance Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/textConditionalAcceptanceDate"
+                        android:text="210-Nov-22"
+                        style="@style/RowTestItemEdit"
+                        android:drawableRight="@drawable/icon_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Final Acceptance Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/textFinalAcceptanceDate"
+                        android:text="210-Nov-22"
+                        style="@style/RowTestItemEdit"
+                        android:drawableRight="@drawable/icon_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Operational Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinOperationalStatus"
+
+                        style="@style/SpinnerTheme"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="Completed" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Used Fiber numbers"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/textUsedFibernumbers"
+                        android:text="11,12"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="FMS Port Numbers"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/textFMSPortNumbers"
+                        android:text="5,6"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Billable Length"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/textBillableLength"
+                        android:text="1200"
+                        android:drawableRight="@drawable/txt_subheading_regular_16_sp"
+
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+            </GridLayout>
+
+            <include
+                android:id="@+id/includedLayout"
+                layout="@layout/cancel_save_layout">
+
+            </include>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

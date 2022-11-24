@@ -11,7 +11,7 @@
         tools:layout="@layout/site_location_detail" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_task"
         android:name="com.smarthub.baseapplication.ui.fragments.task.TaskFragment"
         android:label="@string/title_task"
         tools:layout="@layout/fragment_task" />

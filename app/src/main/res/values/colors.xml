@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="tab_text_color">#3D4E6D</color>
@@ -7,8 +7,10 @@
     <color name="site_detail_background">#f5f5f5</color>
     <color name="devider_grey">#E6E6E6</color>
     <color name="tab_selected">#E9EEF7</color>
-    <color name="colorAccent">#930a3a</color>
 
+
+    <color name="collapse_card_bg">#F0F0F0</color>
+    <color name="colorRed">#FF0000</color>
 
     <color name="tab_deselected">#E9EEF7</color>
     <color name="bgColor">#FFFFFF</color>
@@ -18,7 +20,8 @@
     <color name="normalTextColor">#3F4D67</color>
     <color name="normalTextColorgrey">#71809A</color>
     <color name="disabledColor">#34FFD72B</color>
-    <color name="app_theme_color">#ef0864</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">#fff</color>
 
     <color name="purple_200">#3F4D67</color>
     <color name="purple_500">#3F4D67</color>
@@ -32,7 +35,7 @@
     <color name="light_gray">#818181</color>
     <color name="textGray">#6C6C70</color>
 
-    <color name="yellow">#FFFF00</color>
+    <color name="yellow">#FFD72B</color>
     <color name="background_login">#3F4D68</color>
     <color name="color1">#425371</color>
     <color name="blue">#817BC8</color>
@@ -44,5 +47,7 @@
     <color name="pop_text_color">#636363</color>
     <color name="backgroun_color">#F1F1F1</color>
     <color name="line_color">#33000000</color>
+    <color name="circle_color">#D9D9D9</color>
+    <color name="bg_color">#F0F0F0</color>
     <color name="transparent">#00000000</color>
 </resources>

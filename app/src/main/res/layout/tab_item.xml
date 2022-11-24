@@ -13,8 +13,8 @@
         android:visibility="visible">
 
         <LinearLayout
-            android:layout_width="@dimen/dp85"
-            android:layout_height="@dimen/dp45"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +37,10 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:paddingTop="@dimen/dp2"
                 android:text="@string/search_site"
+                android:maxLines="1"
+                android:paddingBottom="2dp"
+                android:paddingStart="@dimen/dp5"
+                android:paddingEnd="@dimen/dp5"
                 android:textColor="@color/tab_text_color"
                 android:textSize="@dimen/sp10"
                 android:visibility="visible" />
@@ -53,17 +57,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
-            android:layout_width="@dimen/dp85"
-            android:layout_height="@dimen/dp45"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal|bottom"
             android:orientation="vertical"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/txt_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +74,10 @@
             android:textColor="@color/white"
             android:textSize="@dimen/sp10"
             android:text="demo"
-            android:paddingBottom="@dimen/dp8"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp5"
+            android:paddingEnd="@dimen/dp5"
+            android:paddingBottom="2dp"
             android:visibility="visible"
              />
         </LinearLayout>

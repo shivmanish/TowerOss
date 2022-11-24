@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomTextInputEdit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:autofilledHighlight">@color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/bg_expansion_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginBottom="@dimen/dp15"
+            android:id="@+id/collapsing_layout"
+            android:background="@drawable/bg_expansion_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:visibility="gone"
+                android:background="@drawable/bg_expansion_bar"
+                android:layout_weight="1"
+                android:text="Link"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:text="Link Name"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:background="@drawable/bg_expansion_bar"
+
+                android:layout_weight="1"
+                android:id="@+id/item_title"
+                android:text=""
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_down_black"/>
+        </LinearLayout>
+        <View
+            android:id="@+id/item_line"
+            android:alpha="0.37"
+            android:background="@color/transparent"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingBottom="@dimen/dp10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Backhaul Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="MW"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Link Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Ring/ Spur"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Category"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Tail end/ Hub"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Link Bandwidth"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="1Gbps"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Link ID"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="ZGSHD_231Z"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Link Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Fiber Gio"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Link User Company"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text="Airtel"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Link Operational Company"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Live"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+            </GridLayout>
+
+            <include
+                android:id="@+id/includedLayout"
+                layout="@layout/cancel_save_layout">
+
+            </include>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

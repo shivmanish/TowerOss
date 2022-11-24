@@ -43,8 +43,7 @@ class SiteImages : AppCompatActivity() {
         }
     }
     fun showExitDialog() {
-        val dialogBuilder: AlertDialog.Builder =
-            AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this,R.style.FullDialog)
         val inflater = layoutInflater
         val dialogView: View = inflater.inflate(R.layout.activity_add_image, null)
         dialogBinding = ActivityAddImageBinding.bind(dialogView)

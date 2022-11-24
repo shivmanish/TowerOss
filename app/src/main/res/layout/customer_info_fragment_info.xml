@@ -101,12 +101,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="On-Air"
-                        android:id="@+id/site_status_spinner"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content">
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spin_site_status"
+                        style="@style/SpinnerTheme"
+                        android:gravity="left"
+                        android:layout_gravity="left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <ImageView
+                        android:layout_gravity="end|center"
+                        android:contentDescription="@null"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_down_black"
+                        />
+                    </FrameLayout>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -125,11 +139,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Small Cell"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_site_type"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -147,13 +176,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="Mobility"
-                        android:id="@+id/mobility_spinner"
-                        style="@style/SpinnerTheme"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_network_type"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -241,13 +283,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="99.95"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_commited_nwa"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -265,11 +320,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Yes"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_alaram_extention"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -287,13 +357,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="4G LTE"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_rf_technology"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -311,13 +394,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Indoor"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_telecom_equipment_type"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -334,13 +430,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="3"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_rru_count"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -358,13 +467,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="3"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_sector_count"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -381,13 +503,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="2"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_rack_count"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -405,13 +540,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="5"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_antena_count"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
@@ -428,13 +576,26 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="4"
-                        style="@style/RowTestItemEdit"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                    <View
+                        android:layout_height="wrap_content">
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/spin_antena_slot_used"
+                            style="@style/SpinnerTheme"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                        <ImageView
+                            android:layout_gravity="end|center"
+                            android:contentDescription="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            />
+                    </FrameLayout>                    <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"

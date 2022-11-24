@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.otp
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,29 +12,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OtpVerificationStep2FragmentBinding
-import com.smarthub.baseapplication.model.otp.UserOTPGet
+import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.DashboardActivity
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OtpVerificationStep2.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OtpVerificationStep2 : Fragment() {
-
+    
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
-    var binding : OtpVerificationStep2FragmentBinding?=null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    lateinit var binding : OtpVerificationStep2FragmentBinding
 
-        var view = inflater.inflate(R.layout.otp_verification_step2_fragment, container, false)
-        binding = OtpVerificationStep2FragmentBinding.bind(view)
-        return view
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = OtpVerificationStep2FragmentBinding.inflate(inflater)
+        return binding.root
+    }
+
+    private fun enableErrorText(){
+        binding.userMailLayout.error = "enter valid password"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,53 +43,109 @@ class OtpVerificationStep2 : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-
-        view.findViewById<View>(R.id.back).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
+        binding.signWithPhone.setOnClickListener { view ->
+            Utils.hideKeyboard(requireContext(),view)
             activity?.let{
-                it.onBackPressed()
+                val s = updateOtpValueIndex()
+                AppLogger.log("s : $s")
+                if (s.isNotEmpty() && s.length == 6){
+                    if (!progressDialog.isShowing)
+                        progressDialog.show()
+                    loginViewModel?.getLoginWithOtp(s)
+                }else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
             }
         }
 
-        view.findViewById<View>(R.id.next_layout).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-            if (!progressDialog.isShowing)
-                progressDialog.show()
-            loginViewModel?.getPhoneOtp(UserOTPGet(binding?.moNoEdit?.text?.toString()))
-        }
-
-        binding?.moNoEdit?.addTextChangedListener(object : TextWatcher {
+        binding.p1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding?.moNoEdit?.text.toString().isNotEmpty() && binding?.moNoEdit?.text.toString().length>=10)
-                    Utils.hideKeyboard(requireContext(),binding?.moNoEdit!!)
+                if (binding.p1.text.toString().isNotEmpty()) {
+                    binding.p2.requestFocus()
+
+                }
+            }
+        })
+        binding.p2.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (binding.p2.text.toString().isNotEmpty()) {
+                    binding.p3.requestFocus()
+                } else binding.p1.requestFocus()
+            }
+        })
+        binding.p3.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (binding.p3.text.toString().isNotEmpty())
+                    binding.p4.requestFocus()
+                else binding.p2.requestFocus()
+            }
+        })
+        binding.p4.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (binding.p4.text.toString().isNotEmpty())
+                    binding.p5.requestFocus()
+                else binding.p3.requestFocus()
+            }
+        })
+        binding.p5.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (binding.p5.text.toString().isNotEmpty())
+                    binding.p6.requestFocus()
+                else binding.p4.requestFocus()
+            }
+        })
+        binding.p6.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (binding.p6.text.toString().isNotEmpty())
+                    Utils.hideKeyboard(requireContext(), binding.p6)
+                else binding.p5.requestFocus()
             }
         })
 
-        loginViewModel?.getOtpResponse?.observe(requireActivity()) {
+        loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
+            if (it != null && it.data?.access?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS && it.data.access?.isNotEmpty() == true) {
+                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
+                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
+                    Log.d("status","loginResponse accessToken ${it.data.access}")
+                    Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
+                    val intent = Intent (requireActivity(), DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    requireActivity().startActivity(intent)
 
-            if (it?.data != null && it.data.sucesss == true){
-                Log.d("status","getOtpResponse ${it.data}")
-                activity?.let{
-                    val regFragment = OtpVerificationStep3()
-                    addFragment(regFragment)
+                    return@observe
+                }else{
+                    Log.d("status","${it.message}")
+                    Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
+                    enableErrorText()
                 }
             }else{
-                Log.d("status","${AppConstants.GENERIC_ERROR}")
+                Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
                 enableErrorText()
             }
+
         }
     }
-
-    private fun enableErrorText(){
-        binding?.errorMessage?.visibility = View.VISIBLE
-    }
-    private fun disableErrorText(){
-        binding?.errorMessage?.visibility = View.GONE
+    private fun updateOtpValueIndex() : String{
+        return binding.p1.text.toString() +
+                binding.p2.text.toString()+
+                binding.p3.text.toString()+
+                binding.p4.text.toString()+
+                binding.p5.text.toString()+
+                binding.p6.text.toString()
     }
 
     fun addFragment(fragment: Fragment?) {
@@ -104,7 +161,7 @@ class OtpVerificationStep2 : Fragment() {
                 R.anim.pop_exit
             )
             transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(backStateName)
+            transaction.addToBackStack(null)
             transaction.commit()
         }
     }

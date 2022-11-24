@@ -6,6 +6,36 @@
         <item name="android:textColor">#FFFFFF</item>
 
     </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#ffffff</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:padding">3dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="backgroundTint">#ffffff</item>
+        <item name="hintTextColor">#ffffff</item>
+        <item name="colorErrorContainer">@color/transparent</item>
+        <item name="errorIconDrawable">@drawable/icon_error</item>
+        <item name="boxStrokeErrorColor">@color/white</item>
+    </style>
+
+    <style name="ErrorText" parent="Widget.MaterialComponents.TextView">
+
+
+    </style>
+
+    <style name="CustomTextInputEdit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:textSize">15sp</item>
+
+    </style>
+
+    <style name="CustomEditField" parent="Widget.Design.TextInputLayout">
+        <item name="colorAccent">@color/white</item>
+    </style>
 <!--comment added-->
     <style name="AutoResizeTextView" parent="Widget.AppCompat.TextView">
         <item name="autoSizeTextType">uniform</item>
@@ -235,7 +265,17 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-
+    <style name="FullDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
 
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">

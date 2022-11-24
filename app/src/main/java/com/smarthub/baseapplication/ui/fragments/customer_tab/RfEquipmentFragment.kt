@@ -10,17 +10,18 @@ import com.smarthub.baseapplication.databinding.CommercialFragmentBinding
 import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
 import com.smarthub.baseapplication.databinding.CustomerInfoTempFragmentBinding
 import com.smarthub.baseapplication.databinding.RfEquipmentFragmentBinding
+import com.smarthub.baseapplication.databinding.RfEquipmentFregmentTempBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.adapter.customer.CommercialListAdapter
 
 class RfEquipmentFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     var adapter : RfEquipmentAdapter?=null
-    var binding : RfEquipmentFragmentBinding?=null
+    var binding : RfEquipmentFregmentTempBinding?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = RfEquipmentFragmentBinding.inflate(inflater, container, false)
+        binding = RfEquipmentFregmentTempBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

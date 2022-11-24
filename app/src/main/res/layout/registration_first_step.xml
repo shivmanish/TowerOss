@@ -1,287 +1,417 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentContainerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:clickable="true"
-    android:id="@+id/fragmentContainerView"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <include layout="@layout/register_bg"/>
+    android:orientation="vertical">
+    <include layout="@layout/register_bg" />
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <View
-            android:layout_weight="3"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="3" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:clickable="false"
+                android:src="@drawable/bg_login_bottom_left"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:adjustViewBounds="true"
-                android:layout_width="wrap_content"
-                app:layout_constraintWidth_percent="0.6"
-                android:src="@drawable/bg_login_bottom_left"
-                android:layout_height="wrap_content"/>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.6" />
 
-                app:layout_constraintStart_toStartOf="parent"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_percent="0.88"
-                android:layout_height="match_parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.88">
 
                 <TextView
-                    android:text="Registration"
-                    android:textSize="@dimen/dp28"
-                    android:textColor="#ffffff"
                     android:id="@+id/login1"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/dp10"
                     android:fontFamily="@font/montserrat_bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
-                <TextView
-                    android:text="Please enter full detail for registration"
-                    android:textSize="13sp"
+                    android:text="User Registration"
                     android:textColor="#ffffff"
+                    android:textSize="@dimen/dp28"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/request_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/dp35"
                     android:fontFamily="@font/montserrat_regular"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/progress_status"/>
+                    android:text="Please enter full detail for registration"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/progress_status"
-                    app:layout_constraintBottom_toTopOf="@+id/first_name"
-                    android:layout_width="0dp"
-                    android:layout_marginBottom="@dimen/dp45"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintWidth_percent="0.8"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:layout_marginBottom="@dimen/dp45">
 
                     <TextView
-                        android:text="1"
-                        android:gravity="center"
-                        android:textSize="18sp"
                         android:id="@+id/p1"
-                        android:textColor="#3F4D68"
-                        android:background="@drawable/circle"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/p_status1"
-                        app:layout_constraintEnd_toEndOf="@+id/p_status1"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
                         android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"/>
-                    <TextView
-                        android:text="Basic info"
-                        android:gravity="center"
-                        android:textSize="11sp"
-                        android:id="@+id/p_status1"
-                        android:textColor="#E7C42C"
-                        android:padding="@dimen/dp5"
-                        android:textStyle="bold"
-                        app:layout_constraintTop_toBottomOf="@+id/p1"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_height="@dimen/dp35"
+                        android:background="@drawable/circle"
                         android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#3F4D68"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/p_status1"
+                        app:layout_constraintStart_toStartOf="@+id/p_status1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/p_status1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:padding="@dimen/dp5"
+                        android:text="Basic info"
+                        android:textColor="#E7C42C"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p1" />
 
                     <TextView
                         android:id="@+id/l1"
-                        app:layout_constraintStart_toEndOf="@+id/p1"
-                        app:layout_constraintTop_toTopOf="@+id/p2"
-                        app:layout_constraintEnd_toStartOf="@+id/p2"
-                        app:layout_constraintBottom_toBottomOf="@+id/p2"
                         android:layout_width="0dp"
-                        android:maxLines="1"
+                        android:layout_height="@dimen/dp35"
                         android:fontFamily="@font/montserrat"
-                        android:textSize="@dimen/dp15"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dp5"
                         android:text="- - - - - - - - - - "
                         android:textColor="#F7CB46"
-                        android:paddingStart="@dimen/dp5"
-                        android:gravity="center_vertical"
-                        android:layout_height="@dimen/dp35"/>
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintBottom_toBottomOf="@+id/p2"
+                        app:layout_constraintEnd_toStartOf="@+id/p2"
+                        app:layout_constraintStart_toEndOf="@+id/p1"
+                        app:layout_constraintTop_toTopOf="@+id/p2" />
+
                     <TextView
-                        android:text="2"
-                        android:gravity="center"
-                        android:textSize="18sp"
                         android:id="@+id/p2"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:alpha="0.5"
-                        app:layout_constraintEnd_toEndOf="@id/p_status2"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/p_status2"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:background="@drawable/circle_border"
                         android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"/>
-                    <TextView
-                        android:text="Geography"
-                        android:gravity="center"
-                        android:textSize="11sp"
-                        android:id="@+id/p_status2"
-                        android:textColor="#ffffff"
-                        android:padding="@dimen/dp5"
-                        android:textStyle="bold"
+                        android:layout_height="@dimen/dp35"
                         android:alpha="0.5"
-                        app:layout_constraintTop_toBottomOf="@+id/p1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/circle_border"
                         android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/p_status2"
+                        app:layout_constraintStart_toStartOf="@+id/p_status2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/p_status2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:alpha="0.5"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:padding="@dimen/dp5"
+                        android:text="Job role info"
+                        android:textColor="#ffffff"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p1" />
+
                     <TextView
                         android:id="@+id/l2"
-                        app:layout_constraintStart_toEndOf="@+id/p2"
-                        app:layout_constraintTop_toTopOf="@+id/p3"
-                        app:layout_constraintEnd_toStartOf="@+id/p3"
-                        app:layout_constraintBottom_toBottomOf="@+id/p2"
                         android:layout_width="0dp"
-                        android:maxLines="1"
+                        android:layout_height="@dimen/dp35"
                         android:fontFamily="@font/montserrat"
-                        android:textSize="@dimen/dp15"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dp5"
                         android:text="- - - - - - - - - - "
                         android:textColor="#F7CB46"
-                        android:paddingStart="@dimen/dp5"
-                        android:gravity="center_vertical"
-                        android:layout_height="@dimen/dp35"/>
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintBottom_toBottomOf="@+id/p2"
+                        app:layout_constraintEnd_toStartOf="@+id/p3"
+                        app:layout_constraintStart_toEndOf="@+id/p2"
+                        app:layout_constraintTop_toTopOf="@+id/p3" />
 
                     <TextView
-                        android:text="3"
-                        android:gravity="center"
-                        android:textSize="18sp"
                         android:id="@+id/p3"
-                        android:alpha="0.5"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="@id/p_status3"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/p_status3"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:background="@drawable/circle_border"
                         android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"/>
-                    <TextView
-                        android:text="Password"
-                        android:gravity="center"
-                        android:textSize="11sp"
-                        android:id="@+id/p_status3"
-                        android:textColor="#ffffff"
+                        android:layout_height="@dimen/dp35"
                         android:alpha="0.5"
-                        android:padding="@dimen/dp5"
-                        android:textStyle="bold"
-                        app:layout_constraintTop_toBottomOf="@+id/p1"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/circle_border"
                         android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/p_status3"
+                        app:layout_constraintStart_toStartOf="@+id/p_status3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/p_status3"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:alpha="0.5"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:padding="@dimen/dp5"
+                        android:text="Manager Info"
+                        android:textColor="#ffffff"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p1" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                <EditText
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/company_name_root"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:hint="Compnay Name"
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/check_textview"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/company_name"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/first_name_root"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="First Name"
-                    android:textSize="15sp"
-                    android:id="@+id/first_name"
-                    android:layout_height="@dimen/dp45"
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/check_textview"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/first_name"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/last_name_root"
+                    style="@style/TextInputLayout"
                     android:layout_width="match_parent"
-                    style="@style/registratio_first_box"
-                    app:layout_constraintBottom_toTopOf="@+id/last_name"/>
-                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="Last Name"
-                    android:textSize="15sp"
-                    android:id="@+id/last_name"
-                    android:layout_height="@dimen/dp45"
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/check_textview"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/last_name"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mo_no_root"
+                    style="@style/TextInputLayout"
                     android:layout_width="match_parent"
-                    style="@style/registratio_first_box"
-                    app:layout_constraintBottom_toTopOf="@+id/mo_no"/>
-                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="Mobile Number"
-                    android:textSize="15sp"
-                    android:id="@+id/mo_no"
-                    android:maxEms="10"
-                    android:inputType="number"
-                    android:layout_height="@dimen/dp45"
-                    android:letterSpacing="0.2"
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/check_textview"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mo_no"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:letterSpacing="0.1"
+                        android:maxEms="10"
+                        android:maxLength="10"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/email_id_root"
+                    style="@style/TextInputLayout"
                     android:layout_width="match_parent"
-                    style="@style/registratio_first_box"
-                    app:layout_constraintBottom_toTopOf="@+id/email_id"/>
-                <EditText
-                    android:inputType="textEmailAddress"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:hint="Email ID"
-                    android:textSize="15sp"
-                    android:id="@+id/email_id"
-                    android:layout_height="@dimen/dp45"
-                    android:layout_width="match_parent"
-                    style="@style/registratio_first_box"
-                    android:layout_marginBottom="@dimen/dp35"
-                    app:layout_constraintBottom_toTopOf="@+id/next"/>
+                    android:textColorHint="@color/white"
+                    app:endIconDrawable="@drawable/check_textview"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/email_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_id"
+                        android:inputType="textEmailAddress"
+                        style="@style/CustomTextInputEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.1"
+                        android:padding="@dimen/dp13"
+                        android:paddingStart="@dimen/dp15"
+                        android:textColor="#fff"
+                        android:textColorHint="@color/white"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:padding="@dimen/dp10"
-                    android:text="Next"
-                    android:textSize="15sp"
-                    android:textColor="#F7CB46"
                     android:id="@+id/next"
                     android:layout_width="match_parent"
-                    android:textStyle="bold"
                     android:layout_height="@dimen/dp45"
-                    android:gravity="center"
                     android:layout_marginBottom="@dimen/dp30"
                     android:background="@drawable/login_yellow_border"
                     android:fontFamily="@font/montserrat_regular"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center"
+                    android:padding="@dimen/dp10"
+                    android:text="Next"
+                    android:textColor="#F7CB46"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/already_have_account"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:text="Already have account?"
-                    android:textSize="13sp"
-                    android:textColor="#ffffff"
-                    android:id="@+id/already_have_account"
-                    android:paddingBottom="@dimen/dp10"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:fontFamily="@font/montserrat_regular"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/text_register"/>
+                    android:layout_gravity="center">
 
-                <TextView
-                    android:text="Login"
-                    android:textSize="14sp"
-                    android:textColor="#FFD72B"
-                    android:id="@+id/text_register"
-                    android:textStyle="italic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    <TextView
+                        android:id="@+id/already_have_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:paddingBottom="@dimen/dp10"
+                        android:text="Already have account?"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toTopOf="@+id/text_register"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/text_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="   Login"
+                        android:textColor="#FFD72B"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </LinearLayout>
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
-            android:layout_weight="4"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="4" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

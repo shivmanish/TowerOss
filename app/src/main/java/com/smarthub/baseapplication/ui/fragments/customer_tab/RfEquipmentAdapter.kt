@@ -23,7 +23,7 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
     var list : ArrayList<String> = ArrayList()
 
     init {
-        list.add("no_data")
+       list.add("no_data")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -32,22 +32,15 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
         var adapter =  ImageAttachmentAdapter(listener)
         var binding : RfEquipmentListItemsBinding = RfEquipmentListItemsBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = true
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_arrow_up,
-                    0
-                )
+                //binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up, 0)
+                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
             }
             else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.arrow_farword,
-                    0
-                )
+                //binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.arrow_farword, 0)
+                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+
             }
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
@@ -64,26 +57,32 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_arrow_up,
-                    0
-                )
+//                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                    0,
+//                    0,
+//                    R.drawable.ic_arrow_up,
+//                    0
+//                )
+                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
+
             }
             else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.arrow_farword,
-                    0
-                )
+
+//                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                    0,
+//                    0,
+//                    R.drawable.arrow_farword,
+//                    0
+//                )
+                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
             }
 
             binding.itemLine.visibility =
                 if (binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
             binding.itemCollapse.visibility =
                 if (binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            binding.editRfEquipmentItem.visibility=
+                if (binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
@@ -131,54 +130,62 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
             holder.binding.itemTitle.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_arrow_up,
-                        0
-                    )
+//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                        0,
+//                        0,
+//                        R.drawable.ic_arrow_up,
+//                        0
+//                    )
+                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
                 } else {
-                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.arrow_farword,
-                        0
-                    )
+//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                        0,
+//                        0,
+//                        R.drawable.arrow_farword,
+//                        0
+//                    )
+                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 }
 
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                holder.binding.editRfEquipmentItem.visibility=
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
         }
         else if (holder is ViewHold2) {
             holder.binding.itemTitle.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_arrow_up,
-                        0
-                    )
+//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                        0,
+//                        0,
+//                        R.drawable.ic_arrow_up,
+//                        0
+//                    )
+                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
                 }
                 else {
-                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.arrow_farword,
-                        0
-                    )
+//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                        0,
+//                        0,
+//                        R.drawable.arrow_farword,
+//                        0
+//                    )
+                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 }
 
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                holder.binding.editRfEquipmentItem.visibility=
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
         }
     }
 

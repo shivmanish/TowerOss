@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.login.UserLoginPost
-import com.smarthub.baseapplication.model.otp.GetOtpResponse
-import com.smarthub.baseapplication.model.otp.UserOTPGet
-import com.smarthub.baseapplication.model.otp.UserOTPVerify
+import com.smarthub.baseapplication.model.otp.*
 import com.smarthub.baseapplication.model.register.RegisterData
 import com.smarthub.baseapplication.model.register.RegstationResponse
 import com.smarthub.baseapplication.network.APIInterceptor
@@ -20,6 +18,7 @@ class LoginViewModel: ViewModel() {
     var loginRepo: LoginRepo?=null
     var loginResponse : SingleLiveEvent<Resource<RefreshToken>>?=null
     var getOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
+    var getPassResponse : SingleLiveEvent<Resource<GetSuccessResponse>>?=null
 
     var regstationResponse: MutableLiveData<RegstationResponse>?=null
     var registerRepo: RegisterRepo?=null
@@ -31,6 +30,7 @@ class LoginViewModel: ViewModel() {
         loginRepo = LoginRepo(APIInterceptor.get())
         loginResponse = loginRepo?.loginResponse
         getOtpResponse = loginRepo?.otpResponse
+        getPassResponse = loginRepo?.passResponse
         registerRepo = RegisterRepo(APIInterceptor.get())
         regstationResponse = registerRepo?.regstationResponse
 
@@ -49,13 +49,18 @@ class LoginViewModel: ViewModel() {
 
 
     var userOTPGet : UserOTPGet?=null
+
     fun getPhoneOtp(data : UserOTPGet) {
         userOTPGet = data
         loginRepo?.getOtpOnPhone(data)
     }
 
+    fun changePassword(data : String) {
+        loginRepo?.changePassword(UserPasswordGet(userOTPGet?.userPhoneNumber,data))
+    }
+
     fun registerUser() {
-        registerRepo!!.registerUser(registerData)
+        registerRepo?.registerUser(registerData)
     }
 
 

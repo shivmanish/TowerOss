@@ -8,8 +8,11 @@
         android:text="Sample"
         android:textSize="@dimen/sp14"
         android:maxLines="1"
-        android:paddingEnd="5dp"
-        android:paddingStart="5dp"
+        android:fontFamily="@font/montserrat"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp5"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
         android:textColor="@color/card_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

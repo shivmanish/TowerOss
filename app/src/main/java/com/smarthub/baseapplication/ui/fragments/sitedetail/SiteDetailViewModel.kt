@@ -15,6 +15,11 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.helpers.SingleLiveEvent
+import com.smarthub.baseapplication.network.APIInterceptor
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
+import com.smarthub.baseapplication.network.repo.SiteInfoRepo
 
 
 class SiteDetailViewModel: ViewModel() {
@@ -24,7 +29,14 @@ class SiteDetailViewModel: ViewModel() {
     var isScroll = MutableLiveData<SetTabData>()
     var tabLayoutOnChange:Boolean = false
 
+    var siteInfoRepo: SiteInfoRepo?=null
+    var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
 
+
+    init {
+        siteInfoRepo = SiteInfoRepo(APIInterceptor.get())
+        dropDownResponse = siteInfoRepo?.dropDownResoonse
+    }
 
     fun  getStrings(ctx:Context): Array<String> {
        return ctx.resources.getStringArray(R.array.tab_names)
@@ -98,4 +110,9 @@ class SiteDetailViewModel: ViewModel() {
         var istrue: Boolean,
         var offset:Int
     )
+
+
+    fun fetchDropDown() {
+        siteInfoRepo?.siteInfoDropDown()
+    }
 }

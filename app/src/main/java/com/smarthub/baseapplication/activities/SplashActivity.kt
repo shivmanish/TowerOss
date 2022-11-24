@@ -1,18 +1,14 @@
 package com.smarthub.baseapplication.activities
 
-import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.ui.fragments.login.LoginSecondStep
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 

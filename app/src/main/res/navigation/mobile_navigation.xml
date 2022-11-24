@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.smarthub.baseapplication.ui.fragments.task.TaskFragment"
+        android:id="@+id/navigation_task"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.AddTaskFragment"
         android:label="@string/title_task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_add_task" />
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -28,10 +28,4 @@
         android:name="com.smarthub.baseapplication.ui.fragments.menu.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu"/>
-
-<!--        <fragment-->
-<!--        android:id="@+id/navigation_menu"-->
-<!--        android:name="com.smarthub.baseapplication.ui.customer.CustomerTab"-->
-<!--        android:label="MenuFragment"-->
-<!--        tools:layout="@layout/fragment_customer_tab"/>-->
 </navigation>

@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_item"
+    android:layout_margin="@dimen/dp10"
     app:cardElevation="@dimen/dp5"
-    android:layout_margin="@dimen/dp5"
+
     app:cardCornerRadius="@dimen/dp5">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/top"
-        android:background="#C4D3EE"
-        android:paddingTop="@dimen/dp15"
-        android:paddingBottom="@dimen/dp15"
+        android:padding="@dimen/dp10"
+
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -40,6 +41,8 @@
 
             <TextView
                 android:id="@+id/titel"
+                android:layout_marginEnd="@dimen/dp10"
+                android:drawableRight="@drawable/ic_4g"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_regular"
@@ -131,7 +134,7 @@
             android:layout_marginStart="@dimen/dp15"
             app:layout_constraintWidth_percent="0.5"/>
         <TextView
-            android:gravity="end"
+            android:gravity="center"
             android:layout_width="0dp"
             android:id="@+id/text_rfs_date"
             app:layout_constraintTop_toTopOf="@+id/text_rfi_date"

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AppPreferences {
-
+public static String DROPDOWNDATA = "dropdowndata";
     private static AppPreferences mInstance = null;
     private final SharedPreferences mPrefs;
 
