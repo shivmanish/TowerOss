@@ -42,6 +42,7 @@
                     android:textSize="@dimen/dp15"
                     android:layout_marginRight="@dimen/dp10"
                     android:gravity="center"
+                    android:id="@+id/add_item"
                     android:fontFamily="@font/montserrat"
                     android:textColor="@color/color1"
                     android:drawablePadding="10dp"

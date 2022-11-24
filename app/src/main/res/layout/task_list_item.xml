@@ -33,6 +33,7 @@
                 style="@style/RowTextItemInfo"
                 android:textSize="@dimen/dp11"
                 android:paddingStart="@dimen/dp10"
+                android:fontFamily="@font/montserrat"
                 android:paddingEnd="@dimen/dp5"
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
                 android:text="10-Nov-2022"
                 android:textSize="@dimen/dp12"
                 android:paddingEnd="@dimen/dp10"
+                android:fontFamily="@font/montserrat"
                 android:gravity="center_vertical"
                 android:textColor="@color/colorRed"
                 android:layout_width="0dp"
@@ -58,8 +60,9 @@
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
                 android:textStyle="bold"
+                android:fontFamily="@font/montserrat"
                 android:gravity="center_vertical"
-                android:textColor="@color/black"
+                android:textColor="#4F4D4D"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/item_title_text"
@@ -68,6 +71,7 @@
                 android:id="@+id/item_title_text2"
                 android:text="CE-MHMUM-SC-A0123_0001"
                 android:textSize="@dimen/dp11"
+                android:fontFamily="@font/montserrat"
                 style="@style/RowTextItemInfo"
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
@@ -165,7 +169,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
