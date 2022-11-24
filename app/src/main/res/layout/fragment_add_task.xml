@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.task.TaskFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/iconBlack"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/arrow_back"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-6dp"
+            android:text="ce-dlhi-sc-0179"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp17"
+            android:id="@+id/title_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+
+            android:id="@+id/camera"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginEnd="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="2dp"
+            android:paddingBottom="2dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/camera_svg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421" />
+
+        <ImageView
+            android:id="@+id/add_image"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="@dimen/dp5"
+            android:adjustViewBounds="true"
+            android:src="@drawable/qr_svg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421"
+            android:layout_marginEnd="@dimen/dp20"/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="@dimen/dp5"
+            android:adjustViewBounds="true"
+            android:src="@drawable/search"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/camera"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="@dimen/dp20"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/progress_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginBottom="@dimen/dp45">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/p1"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp60"
+                    app:cardBackgroundColor="#3D4E6D"
+                    app:cardCornerRadius="@dimen/dp60"
+                    app:layout_constraintEnd_toEndOf="@+id/p_status1"
+                    app:layout_constraintStart_toStartOf="@+id/p_status1"
+                    app:layout_constraintTop_toTopOf="parent" >
+                    <ImageView
+                        android:layout_marginEnd="@dimen/dp10"
+                        android:layout_marginStart="@dimen/dp15"
+                        android:src="@drawable/task_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/p_status1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Basic info"
+                    android:textColor="#4F4D4D"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/p1" />
+                <View
+                    android:id="@+id/l1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp10"
+                    android:background="#3D4E6D"
+                    app:layout_constraintBottom_toBottomOf="@+id/p1"
+                    app:layout_constraintEnd_toStartOf="@+id/p2"
+                    app:layout_constraintStart_toEndOf="@+id/p1"
+                    app:layout_constraintTop_toTopOf="@+id/p1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/p2"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp60"
+                    app:cardCornerRadius="@dimen/dp60"
+                    app:cardBackgroundColor="#ffffff"
+                    app:strokeColor="#3D4E6D"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintEnd_toEndOf="@id/p_status2"
+                    app:layout_constraintStart_toStartOf="@+id/p_status2"
+                    app:layout_constraintTop_toTopOf="parent" >
+                    <ImageView
+                        android:layout_margin="@dimen/dp15"
+                        android:src="@drawable/menu_task"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/p_status2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Job role info"
+                    android:textColor="#4F4D4D"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/p1" />
+                <View
+                    android:id="@+id/l2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp10"
+                    android:background="#3D4E6D"
+                    app:layout_constraintBottom_toBottomOf="@+id/p2"
+                    app:layout_constraintEnd_toStartOf="@+id/p3"
+                    app:layout_constraintStart_toEndOf="@+id/p2"
+                    app:layout_constraintTop_toTopOf="@+id/p3" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/p3"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp60"
+                    app:cardBackgroundColor="#ffffff"
+                    app:strokeColor="#3D4E6D"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="@dimen/dp60"
+                    app:layout_constraintEnd_toEndOf="@id/p_status3"
+                    app:layout_constraintStart_toStartOf="@+id/p_status3"
+                    app:layout_constraintTop_toTopOf="parent" >
+                    <ImageView
+                        android:layout_margin="@dimen/dp15"
+                        android:src="@drawable/notification_bell"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/p_status3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Manager Info"
+                    android:textColor="#4F4D4D"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
