@@ -84,7 +84,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
 
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Details") DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
 

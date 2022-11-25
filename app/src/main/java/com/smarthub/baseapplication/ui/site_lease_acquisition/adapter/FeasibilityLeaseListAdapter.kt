@@ -160,7 +160,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         else if (list[position] == "Boundary Structures Details") BOUNDARY_VIEW_TYPE
         else if (list[position] == "Property Owner's Details") PROPERTY_VIEW_TYPE
         else if (list[position] == "PO Details") PO_DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {

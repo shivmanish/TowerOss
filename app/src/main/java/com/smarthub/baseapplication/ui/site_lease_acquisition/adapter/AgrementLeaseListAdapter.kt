@@ -153,7 +153,7 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
 
         else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
 
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
