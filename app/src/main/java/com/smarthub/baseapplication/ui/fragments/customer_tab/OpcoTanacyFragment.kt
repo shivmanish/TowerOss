@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +20,7 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerData
 import com.smarthub.baseapplication.ui.fragments.sitedetail.viewmodel.CustomerFragmentViewmodel
 
 
-class CustomerFragment : Fragment(), CustomerDataAdapterListener {
+class OpcoTanacyFragment : Fragment(), CustomerDataAdapterListener {
 
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
@@ -39,7 +37,7 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
 
     private fun initializeFragment() {
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = CustomerDataAdapter(this@CustomerFragment, ArrayList())
+        customerDataAdapter = CustomerDataAdapter(this@OpcoTanacyFragment, ArrayList())
         customerBinding.customerList.adapter = customerDataAdapter
         customerBinding.addMore.setOnClickListener{
             customerDataAdapter.updateData("anything")
@@ -90,7 +88,7 @@ class CustomerFragment : Fragment(), CustomerDataAdapterListener {
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
-            CustomerFragment().apply {
+            OpcoTanacyFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                 }

@@ -63,8 +63,7 @@ class BasicInfoDetailsActivity : BaseActivity() {
     }
 
     private fun setViewModel() {
-        siteViewModel =
-            ViewModelProvider(this@BasicInfoDetailsActivity)[BasicInfoDetailViewModel::class.java]
+        siteViewModel = ViewModelProvider(this@BasicInfoDetailsActivity)[BasicInfoDetailViewModel::class.java]
         siteViewModel?.fetchDropDown()
         siteViewModel?.dropDownResponse?.observe(this@BasicInfoDetailsActivity) {
             mapUiData(it)

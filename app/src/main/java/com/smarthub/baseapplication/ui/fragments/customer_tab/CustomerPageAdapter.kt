@@ -17,16 +17,16 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             0 -> {
                 return CustomerInfo()
             }
+//            1 -> {
+//                return CommercialFragment()
+//            }
             1 -> {
-                return CommercialFragment()
-            }
-            2 -> {
                 return RfEquipmentFragment()
             }
-            3 -> {
+            2 -> {
                 return BackhaulFragment()
             }
-            4 -> {
+            3 -> {
                 return RfAntinaFragment()
             }
             else -> {

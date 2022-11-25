@@ -7,9 +7,7 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
@@ -38,7 +36,8 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
@@ -252,12 +251,12 @@ class SiteDetailFragment : Fragment() {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
-                0-> SiteInfo()
-                1-> CustomerFragment.newInstance(tabNames?.get(0) ?: "OPCO Tenancy")
+                0-> SiteInfoNewFragment()
+                1-> OpcoTanacyFragment.newInstance(tabNames?.get(0) ?: "OPCO Tenancy")
                 2-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(1) ?: "SiteLease")
                 3-> BlackhaulFrag.newInstance(tabNames?.get(2) ?: "Blackhaul")
                 4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(3) ?: "Utilities")
-                else -> SiteInfo()
+                else -> SiteInfoNewFragment()
             }
         }
 
