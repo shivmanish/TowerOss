@@ -14,50 +14,38 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityAddImageBinding
 import com.smarthub.baseapplication.databinding.FragmentGalleryBinding
 import com.smarthub.baseapplication.imagePicker.FishBun
-import com.smarthub.baseapplication.imagePicker.FishBun.Companion.INTENT_PATH
 import com.smarthub.baseapplication.imagePicker.adapter.image.impl.GlideAdapter
 import com.smarthub.baseapplication.ui.adapter.GridItemAdapter
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.FileUtilities
-import kotlinx.android.synthetic.main.fragment_gallery.*
 
 
 class SiteImages : AppCompatActivity() {
     lateinit var binding : FragmentGalleryBinding
     lateinit var dialogBinding : ActivityAddImageBinding
-    lateinit var recyclerView : RecyclerView
-    lateinit var layoutManager: RecyclerView.LayoutManager
-    lateinit var recyclerViewAdapter: GridItemAdapter
-    private val MULTIPLE_IMAGE_PICKER = 100
-    lateinit var mSelected : ArrayList<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentGalleryBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
         initViews()
 
     }
     private fun initViews(){
-        recyclerView= findViewById(R.id.image_grid)
-        layoutManager= GridLayoutManager(this,3)
-        mSelected = ArrayList<String>();
-        recyclerViewAdapter= GridItemAdapter(mSelected)
-        recyclerView.layoutManager=layoutManager
         binding.back.setOnClickListener {
-            onBackPressed()
+            finish()
         }
         binding.addImage1.setOnClickListener{
             showExitDialog()
         }
 
+        binding.imageGrid.adapter = GridItemAdapter(ArrayList())
     }
-    fun showExitDialog() {
+
+    private fun showExitDialog() {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this,R.style.FullDialog)
         val inflater = layoutInflater
         val dialogView: View = inflater.inflate(R.layout.activity_add_image, null)
@@ -70,12 +58,11 @@ class SiteImages : AppCompatActivity() {
         dialogBinding.openGallery.setOnClickListener{
             Log.d("status", "Opening gallery")
             pickImages()
-            Log.d("mselected",mSelected.size.toString())
-            recyclerViewAdapter= GridItemAdapter(mSelected)
         }
         exitDialog.setCancelable(true)
         exitDialog.show()
     }
+
     private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result: ActivityResult -> when (result.resultCode) {
             Activity.RESULT_OK -> {
@@ -87,7 +74,9 @@ class SiteImages : AppCompatActivity() {
             if (fileUri!=null){
                 try {
                     val path = FileUtilities().getRealPath(this@SiteImages,fileUri)
-                    mSelected.add(path)
+                    if (binding.imageGrid.adapter is GridItemAdapter){
+                        (binding.imageGrid.adapter as GridItemAdapter).addItem(path)
+                    }
                     Log.d("Gallery",path)
                 } catch (e: java.lang.Exception) {
                     Log.d("Gallery","e ${e.localizedMessage}")

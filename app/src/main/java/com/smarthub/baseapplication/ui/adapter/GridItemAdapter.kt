@@ -8,25 +8,16 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AtpHeaderTitleBinding
-import com.smarthub.baseapplication.databinding.CardItemBinding
-import com.smarthub.baseapplication.databinding.GridImageViewBinding
-import com.smarthub.baseapplication.databinding.LangItemBinding
-import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.listeners.QatProfileListener
-import com.smarthub.baseapplication.model.LangModel
-import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
-import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
-import com.smarthub.baseapplication.model.atp.AtpListItem
 
 class GridItemAdapter(var list : ArrayList<String>) : RecyclerView.Adapter<GridItemAdapter.ViewHold>() {
 
-    init {
+    fun addItem(item:String){
+        list.add(item)
+        notifyItemInserted(list.size.minus(1))
     }
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView = itemView.findViewById(R.id.image)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -39,7 +30,9 @@ class GridItemAdapter(var list : ArrayList<String>) : RecyclerView.Adapter<GridI
             Glide.with(holder.imageView.context)
                 .load(this)
                 .into(holder.imageView)
+
         }
+        Log.d("status", list[position])
     }
 
     override fun getItemCount(): Int {

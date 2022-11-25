@@ -7,7 +7,9 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
@@ -81,11 +83,7 @@ class SiteDetailFragment : Fragment() {
         setDataObserver()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainViewModel.isActionBarHide(true)
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -99,7 +97,7 @@ class SiteDetailFragment : Fragment() {
 //        binding.viewpager.offscreenPageLimit= 2
         binding.viewpager.currentItem = 0
         //disable swiping
-        binding.viewpager.beginFakeDrag()
+
 
         setCustomTab(root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
