@@ -50,7 +50,6 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
-
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                 recyclerListener.adapter = adapter
 
