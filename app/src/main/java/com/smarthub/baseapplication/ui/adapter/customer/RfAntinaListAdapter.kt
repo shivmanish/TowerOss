@@ -22,9 +22,9 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
     init {
         list.add("RF Antena1 - 3G")
         list.add("Colocation Fee")
-        list.add("Rental/ Energy Charges")
-        list.add("Invoice/ Payment Status")
-        list.add("OPCO Contact Details")
+//        list.add("Rental/ Energy Charges")
+//        list.add("Invoice/ Payment Status")
+//        list.add("OPCO Contact Details")
     }
 
     class ViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView) {
