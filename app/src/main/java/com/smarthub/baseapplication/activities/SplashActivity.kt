@@ -22,8 +22,8 @@ class SplashActivity : BaseActivity() {
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
-//                var intent = Intent(this@SplashActivity,LoginActivity::class.java)
-                var intent = Intent(this@SplashActivity, DemoActivity::class.java)
+                var intent = Intent(this@SplashActivity,LoginActivity::class.java)
+//                var intent = Intent(this@SplashActivity, DemoActivity::class.java)
 
                 startActivity(intent)
                 finish()
