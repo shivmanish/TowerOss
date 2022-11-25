@@ -27,7 +27,7 @@ class GridItemAdapter(var list : ArrayList<String>) : RecyclerView.Adapter<GridI
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         list[position].apply {
-            Glide.with(holder.imageView.context)
+            Glide.with(holder.imageView.context).asBitmap()
                 .load(this)
                 .into(holder.imageView)
 
