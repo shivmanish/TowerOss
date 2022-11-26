@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/flow_border"
-    android:fontFamily="@font/montserrat"
+    android:fontFamily="@font/poppins"
     android:paddingLeft="@dimen/dp10"
     android:paddingTop="@dimen/dp5"
     android:paddingRight="@dimen/dp15"

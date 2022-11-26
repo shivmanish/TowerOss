@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/verification_code"
         android:textColor="#000000"
         android:layout_margin="@dimen/activity_horizontal_margin"

@@ -21,7 +21,7 @@
             <TextView
                 android:text="Edit"
                 android:padding="5dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:drawablePadding="10dp"
                 android:textSize="13sp"
                 android:id="@+id/action_edit_profile"
@@ -37,7 +37,7 @@
              <TextView
                 android:text="More"
                 android:padding="5dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:drawablePadding="10dp"
                 android:textSize="13sp"
                  android:drawableStart="@drawable/ic_edit_menu"

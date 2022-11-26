@@ -18,7 +18,7 @@
             android:gravity="center"
             android:textSize="16sp"
             android:padding="@dimen/dp10"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/poppins_bold"
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -41,7 +41,7 @@
                 android:layout_weight="1"
                 android:padding="@dimen/dp10"
                 android:textStyle="bold"
-                android:fontFamily="@font/montserrat_light"
+                android:fontFamily="@font/poppins_light"
                 android:textColor="#818181"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
@@ -52,7 +52,7 @@
                 android:layout_weight="1"
                 android:padding="@dimen/dp10"
                 android:textStyle="bold"
-                android:fontFamily="@font/montserrat_light"
+                android:fontFamily="@font/poppins_light"
                 android:textColor="#818181"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
@@ -73,7 +73,7 @@
                 android:padding="@dimen/dp10"
                 android:textStyle="bold"
                 android:maxLines="1"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
@@ -84,7 +84,7 @@
                 android:layout_weight="1"
                 android:padding="@dimen/dp10"
                 android:textStyle="bold"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
@@ -97,7 +97,7 @@
                 android:drawableTint="@color/black"
                 android:drawableEnd="@drawable/ic_arrow_down"
                 android:textStyle="bold"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
@@ -111,7 +111,7 @@
             android:backgroundTint="#3D4E6D"
             android:textColor="@color/white"
             android:text="Create QAT"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:gravity="center"
             android:background="@drawable/login_yellow_bg"
             android:layout_width="match_parent"

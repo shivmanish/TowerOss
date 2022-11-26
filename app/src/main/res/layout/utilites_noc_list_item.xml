@@ -32,7 +32,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="SMPS"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:textAppearance="@style/RowTestItemEdit"
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
@@ -52,7 +52,7 @@
                 android:layout_weight=".2"
                 android:background="@drawable/rounded_textblue"
                 android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:paddingLeft="@dimen/dp10"
                 android:paddingRight="@dimen/dp10"
@@ -86,7 +86,7 @@
                     android:id="@+id/mark" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     android:layout_alignParentTop="true"
                     android:text="Capacity "
                     android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
@@ -232,7 +232,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="DG"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:textAppearance="@style/RowTestItemEdit"
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
@@ -250,7 +250,7 @@
                 android:layout_weight=".2"
                 android:background="@drawable/rounded_textblue"
                 android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:paddingLeft="@dimen/dp10"
                 android:paddingRight="@dimen/dp10"
@@ -284,7 +284,7 @@
                     android:id="@+id/mark2" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -319,7 +319,7 @@
                     android:layout_alignParentTop="true"
                     android:text="Capacity "
                     android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
@@ -429,7 +429,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="AC"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:textAppearance="@style/RowTestItemEdit"
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
@@ -447,7 +447,7 @@
                 android:layout_weight=".2"
                 android:background="@drawable/rounded_textblue"
                 android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:paddingLeft="@dimen/dp10"
                 android:paddingRight="@dimen/dp10"
@@ -480,7 +480,7 @@
                     android:gravity="center" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -515,7 +515,7 @@
                     android:layout_alignParentTop="true"
                     android:text="Capacity "
                     android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
@@ -625,7 +625,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="Fire Extinguisher"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:textAppearance="@style/RowTestItemEdit"
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
@@ -643,7 +643,7 @@
                 android:layout_weight=".3"
                 android:background="@drawable/rounded_textblue"
                 android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:paddingLeft="@dimen/dp10"
                 android:paddingRight="@dimen/dp10"
@@ -675,7 +675,7 @@
                     android:gravity="center" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -710,7 +710,7 @@
                     android:layout_alignParentTop="true"
                     android:text="Capacity "
                     android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"

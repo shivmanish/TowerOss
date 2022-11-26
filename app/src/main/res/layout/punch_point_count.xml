@@ -15,7 +15,7 @@
         android:background="@drawable/circle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/montserrat_regular"
+        android:fontFamily="@font/poppins_regular"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

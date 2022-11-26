@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:text="@string/operator_name"
             android:textColor="@color/normalTextColor"
             android:textSize="@dimen/sp15" />
@@ -76,7 +76,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="@string/obeservation"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Customer ID"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:drawableRight="@drawable/calender"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
@@ -141,7 +141,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Customer SIte Type"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -156,7 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:entries="@array/spinner_item"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/poppins"
                         android:background="@android:color/transparent"
                         android:spinnerMode="dropdown"
                         android:paddingBottom="@dimen/dp3"
@@ -184,7 +184,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Customer SIte Name"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -229,7 +229,7 @@
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Add Operator Logo"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -252,7 +252,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="SR Date"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -263,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:drawableRight="@drawable/calender"
                     android:textColor="@color/black"
@@ -290,7 +290,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="SR Number"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -301,7 +301,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -318,7 +318,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Premium Site"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -329,7 +329,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -355,7 +355,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Premium Applicable"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -366,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -383,7 +383,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Telecom Technology"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -398,7 +398,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:entries="@array/spinner_item"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/poppins"
                         android:background="@android:color/transparent"
                         android:spinnerMode="dropdown"
                         android:paddingBottom="@dimen/dp3"
@@ -435,7 +435,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Pole/Tower Slot used"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -446,7 +446,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -463,7 +463,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Installed Racks"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -474,7 +474,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -500,7 +500,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="RFI Acceptance Date"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -511,7 +511,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:drawableRight="@drawable/calender"
@@ -529,7 +529,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Telecom Equipment Type"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -544,7 +544,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:entries="@array/spinner_item"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/poppins"
                         android:background="@android:color/transparent"
                         android:spinnerMode="dropdown"
                         android:paddingBottom="@dimen/dp3"
@@ -581,7 +581,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Antenna Count &amp; Type"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -596,7 +596,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:entries="@array/spinner_item"
-                        android:fontFamily="@font/montserrat"
+                        android:fontFamily="@font/poppins"
                         android:background="@android:color/transparent"
                         android:spinnerMode="dropdown"
                         android:paddingBottom="@dimen/dp3"
@@ -624,7 +624,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="RRU Count"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -635,7 +635,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -661,7 +661,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="RFR Date"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -672,7 +672,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:drawableRight="@drawable/calender"
@@ -690,7 +690,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Network Type"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -701,7 +701,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -727,7 +727,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Network Type"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -738,7 +738,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -755,7 +755,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="CommitTed NWA"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -766,7 +766,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -792,7 +792,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Extension"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -803,7 +803,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"
@@ -820,7 +820,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Rent Free Period"
                     android:textColor="#818181"
                     android:textSize="@dimen/sp12" />
@@ -831,7 +831,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@drawable/edittext_back"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:paddingBottom="@dimen/dp7"
                     android:textColor="@color/black"
                     android:textColorHint="@color/search_setting"

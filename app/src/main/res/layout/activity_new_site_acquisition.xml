@@ -54,7 +54,7 @@
                         android:id="@+id/titel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="Reliance jio pvt ltd"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp15" />
@@ -64,7 +64,7 @@
                         android:id="@+id/sub_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="#DEL-VIL-SC-0001"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp12" />
@@ -79,7 +79,7 @@
                             android:id="@+id/text1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat_regular"
+                            android:fontFamily="@font/poppins_regular"
                             android:text="Rooftop : 3000"
                             android:textColor="@color/milky_white"
                             android:textSize="@dimen/sp12" />
@@ -94,7 +94,7 @@
                             android:id="@+id/text2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat_regular"
+                            android:fontFamily="@font/poppins_regular"
                             android:text="Ground : "
                             android:textColor="@color/milky_white"
                             android:textSize="@dimen/sp12" />
@@ -102,7 +102,7 @@
                             android:id="@+id/text3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat_regular"
+                            android:fontFamily="@font/poppins_regular"
                             android:text="1000"
                             android:textColor="@color/milky_white"
                             android:textSize="@dimen/sp12" />

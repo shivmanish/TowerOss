@@ -22,7 +22,7 @@
             android:layout_marginLeft="@dimen/dp15"
             android:layout_weight="1"
             android:gravity="center"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:text="Update Task 1"
             android:textColor="@color/black"
             android:textSize="@dimen/dp14" />

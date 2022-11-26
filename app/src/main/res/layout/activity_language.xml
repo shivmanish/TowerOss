@@ -42,7 +42,7 @@
             android:textColor="@color/iconBlack"
             android:textSize="18sp"
             android:text="Language"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_back"

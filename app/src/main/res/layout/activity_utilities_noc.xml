@@ -48,7 +48,7 @@
                         android:paddingBottom="@dimen/dp5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="SMPS"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp15" />
@@ -69,7 +69,7 @@
                             android:id="@+id/mark" />
                         <TextView
                             android:layout_marginLeft="@dimen/dp10"
-                            android:fontFamily="@font/montserrat_bold"
+                            android:fontFamily="@font/poppins_bold"
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                             android:layout_alignParentTop="true"
                             android:text="Capacity "
                             android:textSize="@dimen/dp12"
-                            android:fontFamily="@font/montserrat_bold"
+                            android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/white"
                             android:textAppearance="@style/RowTextItemInfo"
                             android:lineSpacingExtra="2sp"

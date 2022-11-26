@@ -116,7 +116,7 @@
                     android:paddingTop="@dimen/dp10"
                     android:layout_marginStart="0dp"
                     android:layout_toRightOf="@+id/ic_menu_close"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Add"
                     android:textColor="@color/color1"
                     android:textSize="@dimen/sp12" />
@@ -167,7 +167,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp14"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_width="match_parent"
 
                 android:text="Remarks:"
@@ -188,7 +188,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp14"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_width="match_parent"
 
                 android:text="Attachments"

@@ -14,7 +14,7 @@
         android:textSize="13sp"
         android:id="@+id/subtitle"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/poppins_medium"
         android:layout_height="wrap_content"
         />
     <TextView
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:textSize="13sp"
         android:textColor="#818181"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/poppins_medium"
         android:layout_marginBottom="7dp"
         android:layout_height="wrap_content"/>
 </LinearLayout>

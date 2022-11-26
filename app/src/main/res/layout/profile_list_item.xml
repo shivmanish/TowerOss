@@ -15,7 +15,7 @@
         android:id="@+id/geograpghy"
         android:gravity="center_vertical"
         android:textStyle="bold"
-        android:fontFamily="@font/montserrat_regular"
+        android:fontFamily="@font/poppins_regular"
         android:tag="false"
         android:drawableEnd="@drawable/ic_arrow_up"/>
 

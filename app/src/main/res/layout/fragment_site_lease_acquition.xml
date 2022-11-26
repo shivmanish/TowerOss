@@ -30,7 +30,7 @@
                 android:drawableLeft="@drawable/addmore"
 
                 android:background="@drawable/rounded_textblue"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/poppins"
                 android:text="Add More"
                 android:id="@+id/addmore"
                 android:gravity="center"

@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp10"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/poppins_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp20"
             android:layout_marginStart="@dimen/dp20"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_img"/>
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp20"
             android:layout_marginStart="@dimen/dp20"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_msg"/>
