@@ -55,4 +55,12 @@ class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
         }
     }
 
+//    private fun openImageTemplatesBottomSheet(){
+//        if (bottomSheetDialogFragment==null) {
+//            bottomSheetDialogFragment = FrameSelectionBottomSheet(R.layout.image_templates_bottom_sheet, this)
+//            bottomSheetDialogFragment?.show(supportFragmentManager,"category")
+//        }else bottomSheetDialogFragment?.show(supportFragmentManager,"category")
+//
+//    }
+
 }

@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.R
 class TaskAdapter :Adapter<TaskViewModel>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewModel {
         val inflater = LayoutInflater.from(parent.context)
-        val view  = inflater.inflate(R.layout.task_list_item,parent,false)
+        val view  = inflater.inflate(R.layout.project_task_list_item,parent,false)
         return TaskViewModel(view)
     }
 
