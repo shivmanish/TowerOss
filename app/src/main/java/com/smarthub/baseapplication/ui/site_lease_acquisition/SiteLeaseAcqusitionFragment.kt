@@ -39,11 +39,10 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
         fragmentSiteLeaseBinding.siteLeaseListItem.layoutManager = LinearLayoutManager(requireContext())
         siteLeaseDataAdapter = SiteLeaseDataAdapter(this@SiteLeaseAcqusitionFragment, ArrayList())
         fragmentSiteLeaseBinding.siteLeaseListItem.adapter = siteLeaseDataAdapter
-        fragmentSiteLeaseBinding.addmore.setOnClickListener{
-            var arraydata = ArrayList<String>()
-            arraydata.add("anything")
-           siteLeaseDataAdapter.setData(arraydata)
-        }
+        var arraydata = ArrayList<String>()
+        arraydata.add("anything")
+        arraydata.add("anything")
+        siteLeaseDataAdapter.setData(arraydata)
      //   viewmodel.fetchData()
 
         viewmodel.fetchDropDown()

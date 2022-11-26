@@ -11,7 +11,7 @@
         tools:itemCount="1"
         android:id="@+id/feasibility_list"
         android:paddingTop="@dimen/dp10"
-        tools:listitem="@layout/feasibility_list_item"
+        tools:listitem="@layout/building_details_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

@@ -5,7 +5,6 @@
     android:layout_marginBottom="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/title_layout"
         android:orientation="vertical"
@@ -15,8 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
-
-
             android:layout_marginBottom="@dimen/dp15"
             android:id="@+id/collapsing_layout"
             android:background="@drawable/bg_expansion_bar"
@@ -35,7 +32,28 @@
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
                 android:layout_height="wrap_content"/>
-
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/icon_layout"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
+                <ImageView
+                    android:visibility="visible"
+                    android:id="@+id/img_edit"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_edit_menu"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
@@ -94,7 +112,7 @@
                         android:text="Acquisition Executive Name" />
 
                     <EditText
-                        android:id="@+id/spinAcquisitionExecutiveName"
+                        android:id="@+id/textAcquisitionExecutiveName"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -119,9 +137,9 @@
                         android:layout_height="wrap_content"
                         android:text="Executive Email ID" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinExecutiveEmailID"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textExecutiveEmailID"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -249,9 +267,9 @@
                         android:layout_height="wrap_content"
                         android:text="Acquisition Mode" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinAcquisitionMode"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textAcquisitionMode"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -275,9 +293,9 @@
                         android:layout_height="wrap_content"
                         android:text="Acquisition Type" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinAcquisitionType"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textAcquisitionType"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -352,9 +370,9 @@
                         android:layout_height="wrap_content"
                         android:text="Vendor Name" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinVendorName"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textVendorName"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -378,9 +396,9 @@
                         android:layout_height="wrap_content"
                         android:text="PO Number" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinPONumber"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textPONumber"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1" />
@@ -558,7 +576,6 @@
                     android:alpha="0.37"
                     android:background="#263238" />
             </LinearLayout>
-            <include layout="@layout/cancel_save_layout"/>
 
         </LinearLayout>
     </LinearLayout>
