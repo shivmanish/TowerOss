@@ -37,34 +37,24 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
-        if (bottomSheetDialogFragment==null) {
-            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.basic_info_details_bottom_sheet)
-            bottomSheetDialogFragment?.show(childFragmentManager,"category")
-        }else bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment = DetailsBottomSheet(R.layout.basic_info_details_bottom_sheet)
+        bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
     override fun operationInfoDetailsItemClicked() {
-        if (bottomSheetDialogFragment==null) {
-            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.operations_info_details_bottom_sheet)
-            bottomSheetDialogFragment?.show(childFragmentManager,"category")
-        }else bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment = DetailsBottomSheet(R.layout.operations_info_details_bottom_sheet)
+        bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
     override fun geoConditionsDetailsItemClicked() {
-        if (bottomSheetDialogFragment==null) {
-            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
-            bottomSheetDialogFragment?.show(childFragmentManager,"category")
-        }
-        else bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment = DetailsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
+        bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
 
     override fun siteAccessDetailsItemClicked() {
-        if (bottomSheetDialogFragment==null) {
-            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.site_access_details_bottom_sheet)
-            bottomSheetDialogFragment?.show(childFragmentManager,"category")
-        }
-        else bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment = DetailsBottomSheet(R.layout.site_access_details_bottom_sheet)
+        bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
 }
