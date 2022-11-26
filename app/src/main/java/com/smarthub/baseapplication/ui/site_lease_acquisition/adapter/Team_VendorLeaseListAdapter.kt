@@ -100,8 +100,7 @@ class Team_VendorLeaseListAdapter(var listener: TeamVendorListItemListner) :
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 }
 
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+
                 holder.binding.iconLayout.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 

@@ -8,9 +8,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerInvoiceAdapter
 
-class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
+class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -33,7 +32,7 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         list.add("Safety / Access")
     }
 
-    open class ViewHold(itemView: View, var listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView)
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position]==type1)
@@ -49,70 +48,79 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         return 0
     }
 
-    class ViewHold1(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
+    class ViewHold1(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : BasicDetailItemViewBinding = BasicDetailItemViewBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
+
+
         }
     }
-    class ViewHold2(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
+    class ViewHold2(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : OperationInfoViewBinding = OperationInfoViewBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
+
+
         }
     }
-    class ViewHold3(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
+    class ViewHold3(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : GeoConditionListItemBinding = GeoConditionListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+      /*  var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })*/
+
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
         }
     }
-    class ViewHold4(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
+    class ViewHold4(itemView: View,listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : SafatyAccessListItemBinding = SafatyAccessListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
+
 
         }
     }
 
-    class ViewHold5(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
+    class ViewHold5(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
         }
     }
@@ -142,74 +150,109 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
 
         }
-        return ViewHold(view,listener)
+        return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-                holder.binding.itemTitle.setOnClickListener {
+                holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     }
 
                     holder.binding.itemLine.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility =
+                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                    holder.binding.imgEdit.setOnClickListener()
+                    {
+                     listener.detailsItemClicked()
+                    }
+
                     holder.binding.itemCollapse.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                 }
                 holder.binding.itemTitle.text = list[position]
 
                 if (data!=null) {
-                    holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
+                  /*  holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
                     holder.binding.siteCategorySpinner.setSpinnerData(data?.sitecategory?.data)
                     holder.binding.siteOwnershipSpinner.setSpinnerData(data?.siteownership?.data)
-                    holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)
+                    holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)*/
                 }
             }
             is ViewHold2 -> {
-                holder.binding.itemTitle.setOnClickListener {
+                holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     }
+
                     holder.binding.itemLine.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility =
+                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                    holder.binding.imgEdit.setOnClickListener()
+                    {
+                        listener.operationInfoDetailsItemClicked()
+                    }
+
                     holder.binding.itemCollapse.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                 }
                 holder.binding.itemTitle.text = list[position]
             }
             is ViewHold3 -> {
-                holder.binding.itemTitle.setOnClickListener {
+                holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     }
+
                     holder.binding.itemLine.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility =
+                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                    holder.binding.imgEdit.setOnClickListener()
+                    {
+                        listener.geoConditionsDetailsItemClicked()
+                    }
+
                     holder.binding.itemCollapse.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                 }
                 holder.binding.itemTitle.text = list[position]
             }
             is ViewHold4 -> {
-                holder.binding.itemTitle.setOnClickListener {
+                holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     }
+
                     holder.binding.itemLine.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility =
+                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                    holder.binding.imgEdit.setOnClickListener()
+                    {
+                        listener.siteAccessDetailsItemClicked()
+                    }
+
                     holder.binding.itemCollapse.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                 }
@@ -221,7 +264,7 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
                     } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                     }
 
                     holder.binding.itemLine.visibility =
@@ -238,7 +281,11 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         return list.size
     }
 
-    interface ItemClickListener{
-        fun itemClicked()
+    interface SiteInfoLisListener {
+        fun attachmentItemClicked()
+        fun detailsItemClicked()
+        fun operationInfoDetailsItemClicked()
+        fun geoConditionsDetailsItemClicked()
+        fun siteAccessDetailsItemClicked()
     }
 }
