@@ -7,7 +7,7 @@
         android:layout_margin="5dp"
         app:layout_constraintTop_toTopOf="parent"
 
-        android:visibility="gone"
+
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/txtRFCDate"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:drawableEnd="@drawable/icon_date"
@@ -53,6 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/txtRFIDate"
+
                     style="@style/RowTestItemEdit"
                     android:drawableEnd="@drawable/icon_date"
                     android:layout_width="match_parent"

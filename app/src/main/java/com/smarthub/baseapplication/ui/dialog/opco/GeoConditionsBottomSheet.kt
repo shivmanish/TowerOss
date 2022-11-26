@@ -9,14 +9,15 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.DetailsBottomSheetViewBinding
+import com.smarthub.baseapplication.databinding.GeoConditionsDetailsBottomSheetBinding
 
 class GeoConditionsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
 
-    lateinit var binding : BasicInfoDetailsBottomSheetBinding
+    lateinit var binding : GeoConditionsDetailsBottomSheetBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = BasicInfoDetailsBottomSheetBinding.bind(view)
+        binding = GeoConditionsDetailsBottomSheetBinding.bind(view)
 
     }
 
@@ -26,7 +27,7 @@ class GeoConditionsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = BasicInfoDetailsBottomSheetBinding.inflate(inflater)
+        binding = GeoConditionsDetailsBottomSheetBinding.inflate(inflater)
         return binding.root
     }
 
