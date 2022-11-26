@@ -82,7 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
         android:layout_margin="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                         android:text="Acquisition Executive Name" />
 
                     <EditText
-                        android:id="@+id/spinAcquisitionExecutiveName"
+                        android:id="@+id/textAcquisitionExecutiveName"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -141,8 +141,8 @@
                         android:text="Executive Email ID" />
 
                     <TextView
-                        android:id="@+id/spinExecutiveEmailID"
-                        style="@style/SpinnerTheme"
+                        android:id="@+id/textExecutiveEmailID"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -271,8 +271,8 @@
                         android:text="Acquisition Mode" />
 
                     <TextView
-                        android:id="@+id/spinAcquisitionMode"
-                        style="@style/SpinnerTheme"
+                        android:id="@+id/textAcquisitionMode"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -297,8 +297,8 @@
                         android:text="Acquisition Type" />
 
                     <TextView
-                        android:id="@+id/spinAcquisitionType"
-                        style="@style/SpinnerTheme"
+                        android:id="@+id/textAcquisitionType"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -374,8 +374,8 @@
                         android:text="Vendor Name" />
 
                     <TextView
-                        android:id="@+id/spinVendorName"
-                        style="@style/SpinnerTheme"
+                        android:id="@+id/textVendorName"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
@@ -400,8 +400,8 @@
                         android:text="PO Number" />
 
                     <TextView
-                        android:id="@+id/spinPONumber"
-                        style="@style/SpinnerTheme"
+                        android:id="@+id/textPONumber"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1" />
@@ -579,7 +579,6 @@
                     android:alpha="0.37"
                     android:background="#263238" />
             </LinearLayout>
-            <include layout="@layout/cancel_save_layout"/>
 
         </LinearLayout>
     </LinearLayout>
