@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
 
-class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var AGREMENT_VIEW_TYPE = 0
@@ -97,10 +97,13 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View,listener: AgreementListItemlistner) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-         var adapter =  ImageAttachmentAdapter(listener)
-
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -262,7 +265,8 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
     override fun getItemCount(): Int {
         return list.size
     }
-    interface ItemClickListener {
-        fun itemClicked()
+    interface AgreementListItemlistner {
+        fun attachmentItemClicked()
+        fun detailsItemClicked()
     }
 }
