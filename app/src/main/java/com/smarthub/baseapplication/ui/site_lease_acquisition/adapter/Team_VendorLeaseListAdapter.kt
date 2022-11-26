@@ -102,8 +102,14 @@ class Team_VendorLeaseListAdapter(var listener: TeamVendorListItemListner) :
 
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
-                listener.detailsItemClicked()
+                holder.binding.imgEdit.setOnClickListener()
+                {
+                    listener.detailsItemClicked()
+                }
+
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
