@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+class Team_VendorLeaseListAdapter(var listener: TeamVendorListItemListner) :
     RecyclerView.Adapter<Team_VendorLeaseListAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
@@ -36,10 +36,13 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View,listener:TeamVendorListItemListner) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-       var adapter =  ImageAttachmentAdapter(listener)
-
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -97,9 +100,14 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 }
 
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
 
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                holder.binding.imgEdit.setOnClickListener()
+                {
+                    listener.detailsItemClicked()
+                }
 
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -133,7 +141,9 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         return list.size
     }
 
-    interface ItemClickListener {
-        fun itemClicked()
+
+    interface TeamVendorListItemListner {
+        fun attachmentItemClicked()
+        fun detailsItemClicked()
     }
 }

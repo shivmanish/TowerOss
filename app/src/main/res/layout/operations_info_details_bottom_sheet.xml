@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/ic_menu_close"
         app:cardBackgroundColor="@color/tab_text_color"
@@ -52,17 +52,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Requester Company"
+                        android:text="RFC Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinRequestCompany"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
-
+                        android:drawableEnd="@drawable/icon_date"
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -76,17 +74,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Temp ID"
+                        android:text="RFI Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinTeamId"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
-
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -101,16 +97,110 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Request Date"
+                        android:text="RFS Date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="27-Jun-22"
+                        android:id="@+id/site_status_spinner"
+                        style="@style/RowTestItemEdit"
+                        android:drawableEnd="@drawable/icon_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site bling Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
+                        android:id="@+id/site_category_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Cost Center"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="ETIPL"
+                        android:id="@+id/site_type_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Operator Sharing Feasibility"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Solo"
+                        android:id="@+id/site_ownership_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Power Source"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text="SEB/ DG"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_date"/>
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -118,78 +208,22 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
-
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Expected Date"
+                        android:text="Design DC Load"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="27-Jun-22"
+                    <EditText
+                        android:text="5KW"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_date"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-
-
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Proposed Sector Count"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinProposedSelectedCount"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Proposed Antenna Height"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinProposedAntinaHeight"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
-
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -204,116 +238,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Proposed Site Type"
+                        android:text="Installed DC Load"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinPropertySiteType"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Telecom Equipment Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinTelecomEquipmentType"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="On-Air" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Nominal Lat-long"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinNorminalLatLong"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="22.968035,76.085596" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="City/ Town"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinAntennaSlotUsed"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="22.968035,76.085596" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Powai"
+                    <EditText
+                        android:text="3KW"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -327,17 +260,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Requester Executive Name"
+                        android:text="Operating Temp"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Mohan Patil
-"
+                    <EditText
+                        android:text="24 Ded"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -352,17 +283,17 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Executive Email ID"
+                        android:text="Town Category"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
                     <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinExecutiveEmailID"
+                        android:text="ETIPL"
+                        android:id="@+id/town_category_spinner"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -376,16 +307,17 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Executive Number"
+                        android:text="Hub City"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
                     <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinExecutiveNumber"
+                        android:text="ETIPL"
+                        android:id="@+id/hub_city_spinner"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -394,31 +326,76 @@
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        android:text="LDCA"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="ETIPL"
+                        android:id="@+id/ldca_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="SCDA"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="ETIPL"
+                        android:id="@+id/scda_spinner"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Dismantling Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:drawableEnd="@drawable/icon_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
             </GridLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Remarks"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
 
             <TextView
                 app:layout_constraintStart_toStartOf="parent"

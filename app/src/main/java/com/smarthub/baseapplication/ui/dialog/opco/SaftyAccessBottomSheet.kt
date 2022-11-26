@@ -7,16 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.DetailsBottomSheetViewBinding
+import com.smarthub.baseapplication.databinding.SaftyAccessDetailsBottomSheetBinding
 
-class DetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class SaftyAccessBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
 
-    lateinit var binding : DetailsBottomSheetViewBinding
+    lateinit var binding : SaftyAccessDetailsBottomSheetBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = DetailsBottomSheetViewBinding.bind(view)
+        binding = SaftyAccessDetailsBottomSheetBinding.bind(view)
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
@@ -28,7 +29,7 @@ class DetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(conte
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DetailsBottomSheetViewBinding.inflate(inflater)
+        binding = SaftyAccessDetailsBottomSheetBinding.inflate(inflater)
         return binding.root
     }
 

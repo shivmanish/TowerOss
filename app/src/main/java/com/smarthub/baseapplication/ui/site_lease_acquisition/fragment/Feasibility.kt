@@ -16,11 +16,13 @@ import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
 import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.dialog.opco.DetailsBottomSheet
 import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.FeasibilityLeaseListAdapter
 import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.Team_VendorLeaseListAdapter
 
-class Feasibility :Fragment(), ImageAttachmentAdapter.ItemClickListener {
+class Feasibility :Fragment(), FeasibilityLeaseListAdapter.FeasibilityListItemListener {
     var binding : FeasibilityFragmentBinding?=null
+    var bottomSheetDialogFragment : DetailsBottomSheet?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FeasibilityFragmentBinding.inflate(inflater, container, false)
         return binding?.root
@@ -38,7 +40,15 @@ class Feasibility :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 //        }
     }
 
-    override fun itemClicked() {
+
+    override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+    }
+    override fun detailsItemClicked() {
+        if (bottomSheetDialogFragment==null) {
+            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.building_details_botom_sheet)
+            bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        }else bottomSheetDialogFragment?.show(childFragmentManager,"category")
+
     }
 }

@@ -5,7 +5,6 @@
     android:layout_marginBottom="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/title_layout"
         android:orientation="vertical"
@@ -15,8 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
-
-
             android:layout_marginBottom="@dimen/dp15"
             android:id="@+id/collapsing_layout"
             android:background="@drawable/bg_expansion_bar"
@@ -35,7 +32,28 @@
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
                 android:layout_height="wrap_content"/>
-
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/icon_layout"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
+                <ImageView
+                    android:visibility="visible"
+                    android:id="@+id/img_edit"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_edit_menu"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
@@ -48,12 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="0.37"
-            android:background="@color/transparent"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
+
     </LinearLayout>
 
 
@@ -94,18 +107,13 @@
                         android:text="Acquisition Executive Name" />
 
                     <EditText
-                        android:id="@+id/spinAcquisitionExecutiveName"
+                        android:id="@+id/textAcquisitionExecutiveName"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,19 +127,14 @@
                         android:layout_height="wrap_content"
                         android:text="Executive Email ID" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinExecutiveEmailID"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textExecutiveEmailID"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -152,12 +155,7 @@
                         android:drawableEnd="@drawable/icon_date"
                         android:hint="9890000009" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
 
@@ -178,12 +176,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Ajay Verma" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
 
@@ -205,12 +198,7 @@
                         android:layout_height="wrap_content"
                         android:text="ajay.verma@vil.com" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -230,12 +218,7 @@
                         android:layout_height="wrap_content"
                         android:text="9890000008" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -249,19 +232,14 @@
                         android:layout_height="wrap_content"
                         android:text="Acquisition Mode" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinAcquisitionMode"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textAcquisitionMode"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -275,19 +253,14 @@
                         android:layout_height="wrap_content"
                         android:text="Acquisition Type" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinAcquisitionType"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textAcquisitionType"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -307,12 +280,7 @@
                         android:layout_height="wrap_content"
                         android:text="8,000" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -333,12 +301,7 @@
                         android:drawableEnd="@drawable/icon_date"
                         android:text="27-Jun-22" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -352,19 +315,14 @@
                         android:layout_height="wrap_content"
                         android:text="Vendor Name" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinVendorName"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textVendorName"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -378,19 +336,14 @@
                         android:layout_height="wrap_content"
                         android:text="PO Number" />
 
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/spinPONumber"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/textPONumber"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
 
@@ -446,12 +399,7 @@
                         android:drawableRight="@drawable/rupee_symbol"
                         android:hint="8,000" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -471,12 +419,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Vishesh Sharma" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -497,12 +440,7 @@
                         android:drawableRight="@drawable/email"
                         android:text="vishesh.sharma@vde.c..." />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -523,13 +461,7 @@
                         android:layout_height="wrap_content"
                         android:text="989000323" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
-                </LinearLayout>
+                                 </LinearLayout>
 
 
             </GridLayout>
@@ -558,7 +490,6 @@
                     android:alpha="0.37"
                     android:background="#263238" />
             </LinearLayout>
-            <include layout="@layout/cancel_save_layout"/>
 
         </LinearLayout>
     </LinearLayout>

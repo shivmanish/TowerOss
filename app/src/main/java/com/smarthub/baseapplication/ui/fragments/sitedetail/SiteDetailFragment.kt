@@ -50,7 +50,6 @@ class SiteDetailFragment : Fragment() {
     private lateinit var ctx: Context
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     private lateinit var mainViewModel: MainViewModel
-    private val editPopMenu = EditPopMenu()
     var fabVisible = false
     private var isScroll = true
     private lateinit var v: TabItemBinding
@@ -64,7 +63,10 @@ class SiteDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
 
             if (it && isScroll) {
@@ -78,6 +80,7 @@ class SiteDetailFragment : Fragment() {
             }
         })
         setDataObserver()
+        setData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -86,9 +89,7 @@ class SiteDetailFragment : Fragment() {
         val root: View = binding.root
         tabNames = siteDetailViewModel.getStrings(requireActivity())
 
-        root.findViewById<View>(R.id.btn_back)
-            .setOnClickListener { requireActivity().onBackPressed() }
-
+        root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
 
         return root
     }
@@ -96,16 +97,16 @@ class SiteDetailFragment : Fragment() {
     fun setData(){
         setupViewPager(binding.viewpager)
 
-        binding.tabs?.setupWithViewPager(binding.viewpager)
+        binding.tabs.setupWithViewPager(binding.viewpager)
 //        binding.viewpager.offscreenPageLimit= 2
         binding.viewpager.currentItem = 0
         //disable swiping
 
 
-        setCustomTab(binding.root)
+        setCustomTab()
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
-        var addImage = binding.root.findViewById<ImageView>(R.id.add_image)
+        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
         addImage.setOnClickListener {
             val intent = Intent(activity, SiteImages::class.java)
             startActivity(intent)
@@ -189,7 +190,7 @@ class SiteDetailFragment : Fragment() {
     }
 
     @SuppressLint("SuspiciousIndentation")
-    fun setCustomTab(view: View) {
+    fun setCustomTab() {
 
         var typedImages = siteDetailViewModel.getImageArray(requireActivity())
         for (i in 0..tabNames?.size!!.minus(1)) {
@@ -294,19 +295,18 @@ class SiteDetailFragment : Fragment() {
                 constraintLayout.visibility = View.VISIBLE
                 constraintL.visibility = View.GONE
             }
-            binding.tabs!!.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
+            binding.tabs.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
         }
 
     }
 
 
     private fun setDataObserver() {
-        siteDetailViewModel?.fetchDropDown()
-        siteDetailViewModel?.dropDownResponse?.observe(requireActivity()) {
+        siteDetailViewModel.fetchDropDown()
+        siteDetailViewModel.dropDownResponse?.observe(requireActivity()) {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
-                    setData()
                     Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {
@@ -315,20 +315,19 @@ class SiteDetailFragment : Fragment() {
 
                 }
             } else {
-                Log.d("status", "${AppConstants.GENERIC_ERROR}")
+                Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
+
     }
 
     private fun saveDataToLocal(data: SiteInfoDropDownData) {
-        if (data != null) {
 
-            val gson = Gson()
-            var stringDatajson = gson.toJson(data)
-            AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
-            Toast.makeText(context, "Data Save Succsfully !", Toast.LENGTH_SHORT).show()
-        }
+        val gson = Gson()
+        var stringDatajson = gson.toJson(data)
+        AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
+        Toast.makeText(context, "Data Save Succsfully !", Toast.LENGTH_SHORT).show()
     }
 
 
