@@ -90,6 +90,14 @@
         <item name="android:maxLines">1</item>
         <item name="android:background">@color/white</item>
     </style>
+
+    <style name="MySwitch" parent="@style/Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:textColorPrimaryDisableOnly">#b71c1c</item>
+        <item name="android:colorControlActivated">#10BE10</item>
+        <item name="android:colorForeground">#323C47</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
     <style name="RowTextviewItem" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black</item>

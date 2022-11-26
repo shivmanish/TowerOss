@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.AtpListItem
 
 class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
+
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding : TaskListItemBinding = TaskListItemBinding.bind(itemView)
         init {
