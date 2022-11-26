@@ -104,8 +104,9 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
                 }*/
         }
     }
-    class AttachmentViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
+    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+        var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
+         var adapter =  ImageAttachmentAdapter(listener)
 
         init {
             binding.itemTitle.tag = false
@@ -116,7 +117,12 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
+                var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                         recyclerListener.adapter = adapter
 
+                         itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                             adapter.addItem()
+                         }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -145,7 +151,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.attachment_list_item, parent, false)
-                DetailsViewHold(view)
+                AttachmentViewHold(view,listener)
             }
 
             else -> {
@@ -160,7 +166,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         else if (list[position] == "Boundary Structures Details") BOUNDARY_VIEW_TYPE
         else if (list[position] == "Property Owner's Details") PROPERTY_VIEW_TYPE
         else if (list[position] == "PO Details") PO_DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {

@@ -24,7 +24,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
+        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -50,7 +50,6 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
-
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                 recyclerListener.adapter = adapter
 
@@ -67,7 +66,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.team_vendor_list_item, parent, false)
+                    .inflate(R.layout.nominals_list_item, parent, false)
                 DetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
@@ -78,7 +77,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
             else -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_list_item, parent, false)
+                    .inflate(R.layout.nominals_list_item, parent, false)
                 ViewHold(view)
             }
         }
@@ -86,7 +85,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Details") DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
 
