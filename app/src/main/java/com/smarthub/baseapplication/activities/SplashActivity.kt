@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.OpcoInfoSiteDialouge
+import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.RfEquipmentDialouge
+import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.SiteInfoBasicDetailsDialouge
 import com.smarthub.baseapplication.ui.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -27,15 +30,19 @@ class SplashActivity : BaseActivity() {
 
                 startActivity(intent)
                 finish()
+
 //                loginValidation()
             }else{
-                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+                /*val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
 
 //                var intent = Intent(this@SplashActivity,LoginActivity::class.java)
 //                startActivity(intent)
-                finish()
+                finish()*/
+
+                val dialouge = RfEquipmentDialouge()
+                dialouge.show(getSupportFragmentManager(),"")
             }
 
         }
