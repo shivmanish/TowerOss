@@ -66,12 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="0.37"
-            android:background="@color/transparent"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
+
     </LinearLayout>
 
 
@@ -118,12 +113,7 @@
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -144,12 +134,7 @@
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,12 +155,7 @@
                         android:drawableEnd="@drawable/icon_date"
                         android:hint="9890000009" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
 
@@ -196,12 +176,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Ajay Verma" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
 
@@ -223,12 +198,7 @@
                         android:layout_height="wrap_content"
                         android:text="ajay.verma@vil.com" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -248,12 +218,7 @@
                         android:layout_height="wrap_content"
                         android:text="9890000008" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -274,12 +239,7 @@
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -300,12 +260,7 @@
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -325,12 +280,7 @@
                         android:layout_height="wrap_content"
                         android:text="8,000" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -351,12 +301,7 @@
                         android:drawableEnd="@drawable/icon_date"
                         android:text="27-Jun-22" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -377,12 +322,7 @@
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -403,12 +343,7 @@
                         android:layout_height="wrap_content"
                         android:text="1" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
 
@@ -464,12 +399,7 @@
                         android:drawableRight="@drawable/rupee_symbol"
                         android:hint="8,000" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -489,12 +419,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Vishesh Sharma" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -515,12 +440,7 @@
                         android:drawableRight="@drawable/email"
                         android:text="vishesh.sharma@vde.c..." />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -541,13 +461,7 @@
                         android:layout_height="wrap_content"
                         android:text="989000323" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/dp8"
-                        android:alpha="0.37"
-                        android:background="#263238" />
-                </LinearLayout>
+                                 </LinearLayout>
 
 
             </GridLayout>

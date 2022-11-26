@@ -1,90 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp10"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/title_layout"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+    <ScrollView
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_expansion_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginBottom="@dimen/dp15"
-            android:id="@+id/collapsing_layout"
-            android:background="@drawable/bg_expansion_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:background="@drawable/bg_expansion_bar"
-                android:id="@+id/item_title"
-                android:text="Link Name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent=".5"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/icon_layout"
-                android:layout_width="0dp"
-                android:orientation="horizontal"
-                android:gravity="end"
-                app:layout_constraintStart_toEndOf="@+id/item_title"
-                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="0dp">
-                <ImageView
-                    android:visibility="visible"
-                    android:id="@+id/img_edit"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_edit_menu"
-                    android:paddingStart="@dimen/dp10"
-                    android:paddingEnd="@dimen/dp10"
-                    android:paddingTop="@dimen/dp10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/img_dropdown"
-                android:src="@drawable/ic_arrow_down_black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="0.37"
-            android:background="@color/transparent"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
-    </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
-        android:id="@+id/item_collapse"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <GridLayout
             android:columnCount="2"
             android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -98,13 +32,17 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txSiteName"
+                <EditText
                     android:text="Mangolpuri"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -116,14 +54,19 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txSiteID"
+                <EditText
                     android:text="CE-MH-MUM-SC10123"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -134,13 +77,18 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:text="On-Air"
-                    android:id="@+id/site_status"
-                    style="@style/RowTextviewItem"
+                    android:id="@+id/site_status_spinner"
+                    style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -152,13 +100,18 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:text="On-Air"
-                    android:id="@+id/site_category"
-                    style="@style/RowTextviewItem"
+                    android:id="@+id/site_category_spinner"
+                    style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
             <LinearLayout
@@ -171,13 +124,18 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:text="On-Air"
-                    android:id="@+id/site_type"
-                    style="@style/RowTextviewItem"
+                    android:id="@+id/site_type_spinner"
+                    style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -189,14 +147,19 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:text="On-Air"
-                    android:id="@+id/site_ownership"
-                    style="@style/RowTextviewItem"
+                    android:id="@+id/site_ownership_spinner"
+                    style="@style/SpinnerTheme"
                     android:gravity="left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
             <LinearLayout
@@ -210,13 +173,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txBuildingType"
                     android:text="Residential"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -229,14 +196,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtLocationZone"
-
                     android:text="Urban"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
             <LinearLayout
@@ -249,14 +219,17 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txtMaintenanceZone"
-
+                <EditText
                     android:hint="Thane"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -269,14 +242,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtProjectName"
-
                     android:text="Coverage 1"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
             <LinearLayout
@@ -290,13 +266,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtSiteInChargeName"
-
                     android:text="Praful SIngh"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -309,13 +288,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtSiteInChargeNumber"
                     android:text="9890000009"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
             <LinearLayout
@@ -329,14 +312,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtRentEscalation"
-
                     android:text="10"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -349,13 +335,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtRentEscalationPeriod"
                     android:text="2 Year"
-                    style="@style/RowTextviewItem"
+                    style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
-              
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
         </GridLayout>
@@ -372,7 +362,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="369, Hazelnut, Eastern Expressway, Mumbai"
-                style="@style/RowTextviewItem"
+                style="@style/RowTestItemEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View
@@ -382,5 +372,8 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dp8" />
         </LinearLayout>
+
+        <include layout="@layout/cancel_update_layout"/>
     </LinearLayout>
-</LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
