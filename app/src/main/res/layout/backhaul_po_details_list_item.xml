@@ -70,57 +70,15 @@
                     android:paddingTop="@dimen/dp10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                    android:id="@+id/ic_menu_close"
-                    android:backgroundTint="@color/color1"
-                    android:background="@color/color1"
-                    android:layout_width="@dimen/dp25"
-                    android:layout_height="@dimen/dp25"
+                <ImageView
+
+                    android:src="@drawable/add"
                     android:layout_gravity="center_vertical"
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10"
                     android:paddingTop="@dimen/dp10"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-
-                    android:elevation="@dimen/dp12"
-                    android:innerRadius="0dp"
-                    android:shape="ring"
-                    android:thicknessRatio="1.9"
-                    app:cardCornerRadius="@dimen/dp40">
-
-                    <ImageView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:src="@drawable/add"></ImageView>
-                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                <TextView
-                    android:paddingLeft="@dimen/dp10"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp30"
-                    android:gravity="center"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-
-                    android:layout_alignBaseline="@+id/ic_menu_close"
-
-                    android:layout_gravity="center_vertical"
-                    android:paddingStart="@dimen/dp10"
-                    android:paddingEnd="@dimen/dp10"
-                    android:paddingTop="@dimen/dp10"
-                    android:layout_marginStart="0dp"
-                    android:layout_toRightOf="@+id/ic_menu_close"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Add"
-                    android:textColor="@color/color1"
-                    android:textSize="@dimen/sp12" />
-
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"

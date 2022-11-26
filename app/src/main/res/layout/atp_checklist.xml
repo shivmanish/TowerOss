@@ -89,7 +89,7 @@
                     android:layout_alignBaseline="@+id/ic_menu_close"
                     android:layout_marginStart="0dp"
                     android:layout_toRightOf="@+id/ic_menu_close"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Acceptance Punch Points"
                     android:textColor="@color/color1"
                     android:textSize="@dimen/sp12" />
@@ -149,7 +149,7 @@
 
                                 android:layout_marginStart="0dp"
                                 android:layout_toRightOf="@+id/ic_menu_close"
-                                android:fontFamily="@font/montserrat_regular"
+                                android:fontFamily="@font/poppins_regular"
                                 android:text="Closed"
                                 android:textColor="@color/color1"
                                 android:textSize="@dimen/sp12" />
@@ -195,7 +195,7 @@
 
                                     android:layout_marginStart="0dp"
                                     android:layout_toRightOf="@+id/ic_menu_close"
-                                    android:fontFamily="@font/montserrat_regular"
+                                    android:fontFamily="@font/poppins_regular"
                                     android:text="Open"
                                     android:textColor="@color/color1"
                                     android:textSize="@dimen/sp12" />
@@ -253,7 +253,7 @@
 
                                 android:layout_marginStart="0dp"
                                 android:layout_toRightOf="@+id/ic_menu_close"
-                                android:fontFamily="@font/montserrat_regular"
+                                android:fontFamily="@font/poppins_regular"
                                 android:text="Add"
                                 android:textColor="@color/color1"
                                 android:textSize="@dimen/sp12" />

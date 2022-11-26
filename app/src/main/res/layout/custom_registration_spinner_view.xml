@@ -9,7 +9,7 @@
         android:text="Sample"
         android:textSize="@dimen/sp18"
         android:maxLines="1"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:paddingTop="@dimen/dp7"
         android:paddingBottom="@dimen/dp7"
         android:paddingLeft="@dimen/dp10"

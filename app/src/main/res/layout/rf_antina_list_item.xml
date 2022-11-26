@@ -631,7 +631,7 @@
                             android:text="Add"
                             android:gravity="center"
                             android:id="@+id/add_items"
-                            android:fontFamily="@font/montserrat"
+                            android:fontFamily="@font/poppins"
                             android:textColor="@color/black"
                             android:layout_marginStart="@dimen/dp25"
                             android:drawablePadding="10dp"
@@ -644,7 +644,7 @@
                 <TextView
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:text="Layout Part Not ready"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp100"/>

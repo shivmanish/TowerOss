@@ -638,7 +638,7 @@
 
                                 android:drawableLeft="@drawable/add_ico"
                                 android:background="@drawable/yellow_text_button"
-                                android:fontFamily="@font/montserrat"
+                                android:fontFamily="@font/poppins"
                                 android:text="ADD"
                                 android:id="@+id/txtAddbattry_module"
                                 android:layout_gravity="center|right"
@@ -841,7 +841,7 @@
 
                             android:drawableLeft="@drawable/add_ico"
                             android:background="@drawable/yellow_text_button"
-                            android:fontFamily="@font/montserrat"
+                            android:fontFamily="@font/poppins"
                             android:text="Continue"
                             android:id="@+id/addmore"
                             android:layout_gravity="center|right"
@@ -943,7 +943,7 @@
 
                                     android:drawableLeft="@drawable/add_ico"
                                     android:background="@drawable/yellow_text_button"
-                                    android:fontFamily="@font/montserrat"
+                                    android:fontFamily="@font/poppins"
                                     android:text="ADD"
 
                                     android:layout_gravity="center_vertical"
@@ -1093,7 +1093,7 @@
 
                             android:drawableLeft="@drawable/add_ico"
                             android:background="@drawable/yellow_text_button"
-                            android:fontFamily="@font/montserrat"
+                            android:fontFamily="@font/poppins"
                             android:text="ADD"
                             android:id="@+id/txtAddCommersial"
                             android:layout_gravity="center|right"
@@ -1167,7 +1167,7 @@
 
                             android:drawableLeft="@drawable/add_ico"
                             android:background="@drawable/yellow_text_button"
-                            android:fontFamily="@font/montserrat"
+                            android:fontFamily="@font/poppins"
                             android:text="ADD"
                             android:id="@+id/txtAddPo"
                             android:layout_gravity="center|right"
@@ -1201,7 +1201,7 @@
 
                             android:drawableLeft="@drawable/add_ico"
                             android:background="@drawable/yellow_text_button"
-                            android:fontFamily="@font/montserrat"
+                            android:fontFamily="@font/poppins"
                             android:text="ADD"
                             android:id="@+id/txtAddConsumableMaterials"
                             android:layout_gravity="center|right"
@@ -1322,7 +1322,7 @@
 
                             android:drawableLeft="@drawable/add_ico"
                             android:background="@drawable/yellow_text_button"
-                            android:fontFamily="@font/montserrat"
+                            android:fontFamily="@font/poppins"
                             android:text="ADD"
                             android:id="@+id/txtAddServiceDetails"
                             android:layout_gravity="center|right"

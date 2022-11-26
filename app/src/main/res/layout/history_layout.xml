@@ -53,7 +53,7 @@
         android:paddingTop="@dimen/dp15"
         android:paddingBottom="@dimen/dp10"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

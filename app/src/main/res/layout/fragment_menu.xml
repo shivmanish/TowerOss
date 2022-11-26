@@ -33,7 +33,7 @@
                android:textSize="18sp"
                android:text="Menu"
                android:textStyle="bold"
-               android:fontFamily="@font/montserrat"/>
+               android:fontFamily="@font/poppins"/>
 
            <TextView
                android:id="@+id/title_desc"
@@ -45,7 +45,7 @@
                android:textColor="@color/iconBlack"
                android:textSize="13sp"
                android:text="Welcome, FiberOSS Project!"
-               android:fontFamily="@font/montserrat"/>
+               android:fontFamily="@font/poppins"/>
 
            <com.google.android.material.card.MaterialCardView
                android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                                   android:textSize="13sp"
                                   android:ellipsize="marquee"
                                   android:textColor="#3D4E6D"
-                                  android:fontFamily="@font/montserrat"
+                                  android:fontFamily="@font/poppins"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"/>
                               <TextView
@@ -114,7 +114,7 @@
                                   android:textColor="#3D4E6D"
                                   android:maxLines="1"
                                   android:layout_marginEnd="@dimen/dp4"
-                                  android:fontFamily="@font/montserrat"
+                                  android:fontFamily="@font/poppins"
                                   style="@style/AutoResizeTextView"
                                   android:layout_alignTop="@+id/img_profile"
                                   android:layout_toRightOf="@+id/img_profile"
@@ -166,7 +166,7 @@
                                   android:textSize="13sp"
                                   android:ellipsize="marquee"
                                   android:textColor="@color/white"
-                                  android:fontFamily="@font/montserrat"
+                                  android:fontFamily="@font/poppins"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"/>
                               <TextView
@@ -178,7 +178,7 @@
                                   style="@style/AutoResizeTextView"
                                   android:layout_alignTop="@+id/img_profile"
                                   android:layout_toRightOf="@+id/img_profile"
-                                  android:fontFamily="@font/montserrat"
+                                  android:fontFamily="@font/poppins"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"/>
                           </LinearLayout>
@@ -249,7 +249,7 @@
                                android:layout_marginTop="15dp"
                                android:layout_marginEnd="15dp"
                                android:layout_marginBottom="15dp"
-                               android:fontFamily="@font/montserrat"
+                               android:fontFamily="@font/poppins"
                                android:text="Site QAT" />
                        </RelativeLayout>
                    </LinearLayout>
@@ -311,7 +311,7 @@
                                android:layout_marginTop="15dp"
                                android:layout_marginEnd="15dp"
                                android:layout_marginBottom="15dp"
-                               android:fontFamily="@font/montserrat"
+                               android:fontFamily="@font/poppins"
                                android:text="Analytic" />
                        </RelativeLayout>
                    </LinearLayout>
@@ -382,7 +382,7 @@
                                android:layout_marginTop="15dp"
                                android:layout_marginEnd="15dp"
                                android:layout_marginBottom="15dp"
-                               android:fontFamily="@font/montserrat"
+                               android:fontFamily="@font/poppins"
                                android:text="Location" />
                        </RelativeLayout>
                    </LinearLayout>
@@ -445,7 +445,7 @@
                                android:layout_marginTop="15dp"
                                android:layout_marginEnd="15dp"
                                android:layout_marginBottom="15dp"
-                               android:fontFamily="@font/montserrat"
+                               android:fontFamily="@font/poppins"
                                android:text="Manage Team" />
                        </RelativeLayout>
                    </LinearLayout>
@@ -511,7 +511,7 @@
                                android:text="language"
                                android:layout_margin="15dp"
                                android:layout_alignParentBottom="true"
-                               android:fontFamily="@font/montserrat"
+                               android:fontFamily="@font/poppins"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"/>
                        </RelativeLayout>
@@ -569,7 +569,7 @@
                                android:text="language"
                                android:layout_margin="15dp"
                                android:layout_alignParentBottom="true"
-                               android:fontFamily="@font/montserrat"
+                               android:fontFamily="@font/poppins"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"/>
                        </RelativeLayout>
@@ -623,7 +623,7 @@
                            android:textSize="13sp"
                            android:ellipsize="marquee"
                            android:textColor="#000000"
-                           android:fontFamily="@font/montserrat"
+                           android:fontFamily="@font/poppins"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"/>
                        <TextView
@@ -633,7 +633,7 @@
                            android:textColor="#6C6C70"
                            android:layout_alignTop="@+id/img_profile"
                            android:layout_toRightOf="@+id/img_profile"
-                           android:fontFamily="@font/montserrat"
+                           android:fontFamily="@font/poppins"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"/>
                    </LinearLayout>
@@ -654,7 +654,7 @@
                    android:textSize="13sp"
                    android:ellipsize="marquee"
                    android:textColor="#000000"
-                   android:fontFamily="@font/montserrat"
+                   android:fontFamily="@font/poppins"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"/>
                <TextView
@@ -664,7 +664,7 @@
                    android:textColor="#3D4E6D"
                    android:layout_alignTop="@+id/img_profile"
                    android:layout_toRightOf="@+id/img_profile"
-                   android:fontFamily="@font/montserrat"
+                   android:fontFamily="@font/poppins"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"/>
            </LinearLayout>

@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
     RecyclerView.Adapter<SiteLeaseListAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
@@ -24,7 +24,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
+        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -38,9 +38,14 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View,listener: SiteLeaseListListener) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
 
         init {
             binding.itemTitle.tag = false
@@ -50,7 +55,6 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
-
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                 recyclerListener.adapter = adapter
 
@@ -67,7 +71,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.team_vendor_list_item, parent, false)
+                    .inflate(R.layout.nominals_list_item, parent, false)
                 DetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
@@ -78,7 +82,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
             else -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_list_item, parent, false)
+                    .inflate(R.layout.nominals_list_item, parent, false)
                 ViewHold(view)
             }
         }
@@ -86,7 +90,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Details") DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
 
@@ -103,6 +107,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
 
+                listener.detailsItemClicked()
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
@@ -135,7 +140,8 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         return list.size
     }
 
-    interface ItemClickListener {
-        fun itemClicked()
+    interface SiteLeaseListListener {
+        fun attachmentItemClicked()
+        fun detailsItemClicked()
     }
 }

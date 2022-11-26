@@ -38,7 +38,7 @@
                     android:id="@+id/title_text"
                     android:textSize="@dimen/sp13"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/status"
@@ -56,7 +56,7 @@
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -91,7 +91,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     android:drawableEnd="@drawable/ic_edit_menu"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/poppins_regular"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -110,7 +110,7 @@
                     android:background="@drawable/atp_blank_border"
                     android:padding="5dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/poppins_regular"
                     app:layout_constraintTop_toBottomOf="@id/add_remark"
                     android:layout_width="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +137,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     android:drawableEnd="@drawable/ic_edit_menu"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/poppins_regular"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -183,7 +183,7 @@
                        android:textSize="@dimen/sp13"
                        android:textStyle="bold"
                        app:layout_constraintStart_toStartOf="parent"
-                       android:fontFamily="@font/montserrat_regular"
+                       android:fontFamily="@font/poppins_regular"
                        app:layout_constraintTop_toTopOf="parent"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>
@@ -197,7 +197,7 @@
                        android:textStyle="bold"
                        android:paddingLeft="@dimen/dp10"
                        app:layout_constraintStart_toEndOf="@+id/punch_point"
-                       android:fontFamily="@font/montserrat_bold"
+                       android:fontFamily="@font/poppins_bold"
                        app:layout_constraintTop_toTopOf="parent"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>
@@ -249,7 +249,7 @@
                        android:textStyle="bold"
                        app:layout_constraintTop_toTopOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
-                       android:fontFamily="@font/montserrat_regular"
+                       android:fontFamily="@font/poppins_regular"
                        android:layout_width="0dp"
                        app:layout_constraintEnd_toStartOf="@+id/date"
                        android:layout_height="wrap_content"/>
@@ -267,7 +267,7 @@
                        android:textStyle="bold"
                        app:layout_constraintTop_toTopOf="parent"
                        app:layout_constraintEnd_toEndOf="parent"
-                       android:fontFamily="@font/montserrat_regular"
+                       android:fontFamily="@font/poppins_regular"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>
                </androidx.constraintlayout.widget.ConstraintLayout>

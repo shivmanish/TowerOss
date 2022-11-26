@@ -36,7 +36,8 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
@@ -75,43 +76,42 @@ class SiteDetailFragment : Fragment() {
                 setSelectTab(it)
                 isScroll = true
             }
-
-
         })
         setDataObserver()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mainViewModel.isActionBarHide(true)
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         tabNames = siteDetailViewModel.getStrings(requireActivity())
-        setupViewPager(binding.viewpager)
 
         root.findViewById<View>(R.id.btn_back)
             .setOnClickListener { requireActivity().onBackPressed() }
+
+
+        return root
+    }
+
+    fun setData(){
+        setupViewPager(binding.viewpager)
 
         binding.tabs?.setupWithViewPager(binding.viewpager)
 //        binding.viewpager.offscreenPageLimit= 2
         binding.viewpager.currentItem = 0
         //disable swiping
-        binding.viewpager.beginFakeDrag()
 
-        setCustomTab(root)
+
+        setCustomTab(binding.root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
-        var addImage = root.findViewById<ImageView>(R.id.add_image)
+        var addImage = binding.root.findViewById<ImageView>(R.id.add_image)
         addImage.setOnClickListener {
             val intent = Intent(activity, SiteImages::class.java)
             startActivity(intent)
         }
-
-        return root
     }
+
 
     private fun setFabActionButton() {
         // for our add floating action button
@@ -254,12 +254,12 @@ class SiteDetailFragment : Fragment() {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
-                0-> SiteInfo()
-                1-> CustomerFragment.newInstance(tabNames?.get(0) ?: "OPCO Tenancy")
+                0-> SiteInfoNewFragment()
+                1-> OpcoTanacyFragment.newInstance(tabNames?.get(0) ?: "OPCO Tenancy")
                 2-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(1) ?: "SiteLease")
                 3-> BlackhaulFrag.newInstance(tabNames?.get(2) ?: "Blackhaul")
                 4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(3) ?: "Utilities")
-                else -> SiteInfo()
+                else -> SiteInfoNewFragment()
             }
         }
 
@@ -306,6 +306,7 @@ class SiteDetailFragment : Fragment() {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
+                    setData()
                     Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {

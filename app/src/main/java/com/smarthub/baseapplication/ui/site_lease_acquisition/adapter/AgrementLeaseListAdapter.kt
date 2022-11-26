@@ -94,16 +94,12 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
-    class AttachmentViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
+    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+        var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
+         var adapter =  ImageAttachmentAdapter(listener)
 
         init {
             binding.itemTitle.tag = false
@@ -114,12 +110,17 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
+                var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                         recyclerListener.adapter = adapter
 
+                         itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                             adapter.addItem()
+                         }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
-            LayoutInflater.from(parent.context).inflate(R.layout.feasibility_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.agreements_list_item, parent, false)
         return when (viewType) {
             AGREMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
@@ -138,12 +139,12 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.attachment_list_item, parent, false)
-                AgreementViewHold(view)
+                AttachmentViewHold(view,listener)
             }
 
             else -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.feasibility_list_item, parent, false)
+                    .inflate(R.layout.agreements_list_item, parent, false)
                 ViewHold(view)
             }
         }
@@ -153,7 +154,7 @@ class AgrementLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickLis
 
         else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
 
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {

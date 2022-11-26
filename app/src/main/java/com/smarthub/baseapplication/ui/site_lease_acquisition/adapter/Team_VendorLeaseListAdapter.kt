@@ -22,7 +22,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
       }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
+        var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -48,7 +48,6 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
-
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                 recyclerListener.adapter = adapter
                 itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
@@ -65,7 +64,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
         return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.nominals_list_item, parent, false)
+                    .inflate(R.layout.team_vendor_list_item, parent, false)
                 DetailsViewHold(view)
             }
             ATTACHMENT_VIEW_TYPE -> {
@@ -84,7 +83,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
 
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Details") DETAILS_VIEW_TYPE
-        else if (list[position] == "Attachment") ATTACHMENT_VIEW_TYPE
+        else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
 
@@ -100,8 +99,7 @@ class Team_VendorLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
 
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
 
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE

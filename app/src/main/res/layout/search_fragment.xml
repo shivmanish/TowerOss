@@ -23,7 +23,7 @@
             android:layout_marginStart="@dimen/dp8"
             android:text="@string/site_name_uid"
             android:textColor="@color/normalTextColor"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:alpha=".5"
             android:textSize="@dimen/sp10" />
 
@@ -33,7 +33,7 @@
             android:layout_marginStart="@dimen/dp8"
             android:text="@string/search_site"
             android:textColor="@color/normalTextColor"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:textSize="@dimen/sp15" />
 
         <com.google.android.material.card.MaterialCardView
@@ -58,7 +58,7 @@
                     android:layout_marginHorizontal="@dimen/dp24"
                     android:background="@android:color/transparent"
                     android:hint="**_****_**_****"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/poppins"
                     android:textColorHint="@color/search_star_color"
                     android:gravity="left"
                     android:textColor="@color/black"
@@ -76,7 +76,7 @@
             android:layout_marginStart="@dimen/dp8"
             android:text="@string/history"
             android:textColor="@color/normalTextColor"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:textSize="@dimen/sp15" />
     </LinearLayout>
     <!-- <View

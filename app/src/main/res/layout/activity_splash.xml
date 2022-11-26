@@ -75,7 +75,7 @@
                 android:textSize="@dimen/dp30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"/>
+                android:fontFamily="@font/poppins_bold"/>
             <TextView
                 android:paddingTop="3dp"
                 android:textStyle="italic|bold"
@@ -103,7 +103,7 @@
                     android:layout_height="@dimen/dp45"
                     android:paddingStart="@dimen/dp15"
                     android:paddingEnd="@dimen/dp20"
-                    android:fontFamily="@font/montserrat_bold"/>
+                    android:fontFamily="@font/poppins_bold"/>
             </LinearLayout>
         </LinearLayout>
         <View

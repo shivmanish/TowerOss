@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.ui.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -22,6 +23,8 @@ class SplashActivity : BaseActivity() {
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 var intent = Intent(this@SplashActivity,LoginActivity::class.java)
+//                var intent = Intent(this@SplashActivity, DemoActivity::class.java)
+
                 startActivity(intent)
                 finish()
 //                loginValidation()

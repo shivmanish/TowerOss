@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp10"
+    android:translationZ="5dp"
+    android:background="@drawable/task_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        android:orientation="vertical">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Site Acquisition"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp11" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/dp25"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/demo_user_image"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3D4E6D36"/>
+        <TextView
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/poppins"
+            android:text="1 Day"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/poppins"
+            android:text="07-Oct-2022"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp8" />
+        <View
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3D4E6D36"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins"
+                    android:text="Start date"
+                    android:gravity="center"
+                    android:textColor="#6D6D6D"
+                    android:textSize="@dimen/dp10" />
+                <TextView
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins"
+                    android:text="08-Oct-2022"
+                    android:gravity="center"
+                    android:textColor="#6D6D6D"
+                    android:textSize="@dimen/dp10" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins"
+                    android:text="Expected date"
+                    android:gravity="center"
+                    android:textColor="#6D6D6D"
+                    android:textSize="@dimen/dp10" />
+                <TextView
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins"
+                    android:text="08-Oct-2022"
+                    android:gravity="center"
+                    android:textColor="#6D6D6D"
+                    android:textSize="@dimen/dp10" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

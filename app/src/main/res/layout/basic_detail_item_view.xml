@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_title"
+        android:text="SO Details"
+        android:paddingStart="@dimen/dp10"
+        android:paddingEnd="@dimen/dp10"
+        android:paddingTop="@dimen/dp10"
+        style="@style/RowTestItemEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="0.37"
+        android:background="#263238"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp20" />
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <GridLayout
+            android:columnCount="2"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site Name"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:text="Mangolpuri"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site ID"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:text="CE-MH-MUM-SC10123"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site Status"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.smarthub.baseapplication.widgets.CustomSpinner
+                    android:text="On-Air"
+                    android:id="@+id/site_status_spinner"
+                    style="@style/SpinnerTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site Category"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.smarthub.baseapplication.widgets.CustomSpinner
+                    android:text="On-Air"
+                    android:id="@+id/site_category_spinner"
+                    style="@style/SpinnerTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site Type"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.smarthub.baseapplication.widgets.CustomSpinner
+                    android:text="On-Air"
+                    android:id="@+id/site_type_spinner"
+                    style="@style/SpinnerTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site Ownership"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.smarthub.baseapplication.widgets.CustomSpinner
+                    android:text="On-Air"
+                    android:id="@+id/site_ownership_spinner"
+                    style="@style/SpinnerTheme"
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Building Type"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Residential"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Location Zone"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Urban"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Maintenance Zone"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:hint="Thane"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Project Name"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Coverage 1"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site In-Charge Name"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Praful SIngh"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site In-Charge Number"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="9890000009"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Rent Escalation"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="10"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Rent Escalation Period"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="2 Year"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+            </LinearLayout>
+
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Address"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="369, Hazelnut, Eastern Expressway, Mumbai"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
