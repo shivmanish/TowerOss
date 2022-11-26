@@ -9,12 +9,13 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.SiteLeaseListItemBinding
 
-class SiteLeaseDataAdapter(var list : ArrayList<Any>) : Adapter<SiteLeaseDataViewHolder>() {
+class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var array: ArrayList<String>) : Adapter<SiteLeaseDataViewHolder>() {
 
-    fun addItem(item : Any){
-        list.add(item)
+    fun setData(data: ArrayList<String>) {
+        this.array.addAll(data)
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SiteLeaseDataViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.site_lease_list_item, parent, false)
         return SiteLeaseDataViewHolder(view)
@@ -22,13 +23,13 @@ class SiteLeaseDataAdapter(var list : ArrayList<Any>) : Adapter<SiteLeaseDataVie
 
     override fun onBindViewHolder(holder: SiteLeaseDataViewHolder, position: Int) {
 
-    /*    holder.binding?.parentRelative?.setOnClickListener {
-            list.clickedItem()
-        }*/
+        holder.binding?.parentRelative?.setOnClickListener {
+            listener.clickedItem()
+        }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return array.size
     }
 }
 
