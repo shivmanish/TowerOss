@@ -377,6 +377,7 @@
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
         </GridLayout>
+        <include layout="@layout/cancel_update_layout"/>
     </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
