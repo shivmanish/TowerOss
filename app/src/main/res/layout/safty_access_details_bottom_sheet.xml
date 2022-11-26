@@ -331,6 +331,7 @@
                   android:background="@drawable/login_yellow_bg"
                   app:layout_constraintTop_toBottomOf="@+id/items_list"/>
           </LinearLayout>
+          <include layout="@layout/cancel_update_layout"/>
 
       </LinearLayout>
   </ScrollView>
