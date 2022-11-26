@@ -4,21 +4,41 @@
     android:layout_height="match_parent"
     android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
-        android:background="@drawable/rounded_dialog_bg_light"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/ic_menu_close"
+        app:cardBackgroundColor="@color/tab_text_color"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:elevation="12dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="40dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:padding="2dp"
+            app:tint="@color/white"
+            android:src="@drawable/close"/>
+    </com.google.android.material.card.MaterialCardView>
+    <ScrollView
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="5dp"
             android:paddingBottom="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp15"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <GridLayout
                 android:columnCount="2"
                 android:orientation="horizontal"
@@ -400,8 +420,20 @@
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
-            <include layout="@layout/cancel_save_layout"/>
-
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="update"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:layout_gravity="end"
+                android:background="@drawable/login_yellow_bg"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

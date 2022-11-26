@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color1"
         android:text="Cancel"
+        android:id="@+id/cancel"
         android:textSize="14sp"
         android:layout_margin="@dimen/dp10"
         android:gravity="center"

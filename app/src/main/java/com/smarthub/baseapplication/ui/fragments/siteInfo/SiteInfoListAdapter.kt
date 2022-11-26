@@ -174,8 +174,9 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                      listener.detailsItemClicked()
                     }
 
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
                 }
                 holder.binding.itemTitle.text = list[position]
 
@@ -205,8 +206,8 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                         listener.operationInfoDetailsItemClicked()
                     }
 
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                 }
                 holder.binding.itemTitle.text = list[position]
             }
@@ -229,8 +230,9 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                         listener.geoConditionsDetailsItemClicked()
                     }
 
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
                 }
                 holder.binding.itemTitle.text = list[position]
             }
@@ -253,8 +255,9 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                         listener.siteAccessDetailsItemClicked()
                     }
 
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
                 }
                 holder.binding.itemTitle.text = list[position]
             }

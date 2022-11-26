@@ -16,7 +16,9 @@ class OperationsInfoBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = OperationsInfoDetailsBottomSheetBinding.bind(view)
-
+        binding.icMenuClose.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onDismiss(dialog: DialogInterface) {

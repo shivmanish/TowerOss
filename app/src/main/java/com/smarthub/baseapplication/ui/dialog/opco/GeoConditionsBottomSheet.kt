@@ -18,7 +18,9 @@ class GeoConditionsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = GeoConditionsDetailsBottomSheetBinding.bind(view)
-
+        binding.icMenuClose.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onDismiss(dialog: DialogInterface) {

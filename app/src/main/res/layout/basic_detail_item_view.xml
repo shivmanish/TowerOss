@@ -45,6 +45,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="0dp">
                 <ImageView
+                    app:tint="@color/black"
                     android:visibility="visible"
                     android:id="@+id/img_edit"
                     android:layout_gravity="center_vertical"

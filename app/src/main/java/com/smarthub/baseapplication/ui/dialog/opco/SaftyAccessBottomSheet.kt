@@ -18,7 +18,9 @@ class SaftyAccessBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(c
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = SaftyAccessDetailsBottomSheetBinding.bind(view)
-
+        binding.icMenuClose.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onDismiss(dialog: DialogInterface) {
