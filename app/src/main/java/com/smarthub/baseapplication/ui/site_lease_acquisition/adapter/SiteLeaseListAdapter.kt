@@ -104,7 +104,7 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 }
 
-                holder.binding.itemLine.visibility =
+                     holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
 
                 listener.detailsItemClicked()
@@ -122,7 +122,6 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
                 } else {
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 }
-
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.iconLayout.visibility =
@@ -131,7 +130,7 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
+             holder.binding.itemTitle.text = list[position]
         }
 
     }

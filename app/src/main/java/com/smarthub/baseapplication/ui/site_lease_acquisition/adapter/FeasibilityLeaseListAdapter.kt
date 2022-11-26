@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
 
-class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
     RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var DETAILS_VIEW_TYPE = 0
@@ -27,7 +26,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
       }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: FeasibilityListItemBinding= FeasibilityListItemBinding.bind(itemView)
+        var binding: BuildingDetailsListItemBinding= BuildingDetailsListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -104,9 +103,13 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
                 }*/
         }
     }
-    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View,listener: FeasibilityListItemListener) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-         var adapter =  ImageAttachmentAdapter(listener)
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
 
         init {
             binding.itemTitle.tag = false
@@ -127,11 +130,11 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
-            LayoutInflater.from(parent.context).inflate(R.layout.feasibility_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.building_details_list_item, parent, false)
         return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.feasibility_list_item, parent, false)
+                    .inflate(R.layout.building_details_list_item, parent, false)
                 DetailsViewHold(view)
             }
             BOUNDARY_VIEW_TYPE -> {
@@ -156,7 +159,7 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
 
             else -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.feasibility_list_item, parent, false)
+                    .inflate(R.layout.building_details_list_item, parent, false)
                 ViewHold(view)
             }
         }
@@ -274,7 +277,10 @@ class FeasibilityLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClick
     override fun getItemCount(): Int {
         return list.size
     }
-    interface ItemClickListener {
-        fun itemClicked()
+    interface FeasibilityListItemListener {
+        fun attachmentItemClicked()
+        fun detailsItemClicked()
     }
+
+
 }
