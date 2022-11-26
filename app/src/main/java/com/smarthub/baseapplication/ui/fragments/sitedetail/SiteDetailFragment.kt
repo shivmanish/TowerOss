@@ -76,8 +76,6 @@ class SiteDetailFragment : Fragment() {
                 setSelectTab(it)
                 isScroll = true
             }
-
-
         })
         setDataObserver()
     }
@@ -87,10 +85,16 @@ class SiteDetailFragment : Fragment() {
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         tabNames = siteDetailViewModel.getStrings(requireActivity())
-        setupViewPager(binding.viewpager)
 
         root.findViewById<View>(R.id.btn_back)
             .setOnClickListener { requireActivity().onBackPressed() }
+
+
+        return root
+    }
+
+    fun setData(){
+        setupViewPager(binding.viewpager)
 
         binding.tabs?.setupWithViewPager(binding.viewpager)
 //        binding.viewpager.offscreenPageLimit= 2
@@ -98,17 +102,16 @@ class SiteDetailFragment : Fragment() {
         //disable swiping
 
 
-        setCustomTab(root)
+        setCustomTab(binding.root)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
-        var addImage = root.findViewById<ImageView>(R.id.add_image)
+        var addImage = binding.root.findViewById<ImageView>(R.id.add_image)
         addImage.setOnClickListener {
             val intent = Intent(activity, SiteImages::class.java)
             startActivity(intent)
         }
-
-        return root
     }
+
 
     private fun setFabActionButton() {
         // for our add floating action button
@@ -303,6 +306,7 @@ class SiteDetailFragment : Fragment() {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
+                    setData()
                     Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {

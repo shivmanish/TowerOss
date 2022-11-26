@@ -16,8 +16,8 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
     var type1 = "Basic Details"
     var type2 = "Operational Info"
-    var type3 = "Rental/ Energy Charges"
-    var type4 = "Invoice/ Payment Status"
+    var type3 = "Geo Condition"
+    var type4 = "Safety / Access"
     var type5 = "OPCO Contact Details"
     private var data : BasicInfoModel?=null
 
@@ -29,6 +29,8 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
     init {
         list.add("Basic Details")
         list.add("Operational Info")
+        list.add("Geo Condition")
+        list.add("Safety / Access")
     }
 
     open class ViewHold(itemView: View, var listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView)
@@ -72,7 +74,7 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         }
     }
     class ViewHold3(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
-        var binding : CommercialListItem3Binding = CommercialListItem3Binding.bind(itemView)
+        var binding : GeoConditionListItemBinding = GeoConditionListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
@@ -91,8 +93,7 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         }
     }
     class ViewHold4(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView,listener) {
-        var binding : CommercialListItem4Binding = CommercialListItem4Binding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+        var binding : SafatyAccessListItemBinding = SafatyAccessListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -101,7 +102,6 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
             }
 
-            binding.listItem.adapter = CustomerInvoiceAdapter()
         }
     }
 
@@ -129,11 +129,11 @@ class SiteInfoListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 return ViewHold2(view,listener)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item3, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
                 return ViewHold3(view,listener)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item4, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.safaty_access_list_item, parent, false)
                 return ViewHold4(view,listener)
             }
             5 -> {
