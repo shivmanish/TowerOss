@@ -17,11 +17,14 @@ import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
+import com.smarthub.baseapplication.ui.dialog.opco.DetailsBottomSheet
 import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.SiteLeaseListAdapter
 
-class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
+class Nominals :Fragment(), SiteLeaseListAdapter.SiteLeaseListListener {
 
     var binding : NominalsFragmentBinding?=null
+    var bottomSheetDialogFragment : DetailsBottomSheet?=null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = NominalsFragmentBinding.inflate(inflater, container, false)
         return binding?.root
@@ -32,16 +35,19 @@ class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
     }
 
     fun initViews(view: View){
-//        var b = view.findViewById<View>(R.id.attach_card)
-//        b.setOnClickListener {
-//
-//        }
 
 
     }
 
-    override fun itemClicked() {
+    override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+    }
+    override fun detailsItemClicked() {
+        if (bottomSheetDialogFragment==null) {
+            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.details_bottom_sheet_view)
+            bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        }else bottomSheetDialogFragment?.show(childFragmentManager,"category")
+
     }
 
     fun fetchDropDown() {
@@ -54,13 +60,5 @@ class Nominals :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 //            binding!!.spinRequestCompany.setSpinnerData(siteInfoDropDownData!!.opcoinfo.)
         }
     }
-
-//    private fun openImageTemplatesBottomSheet(){
-//        if (bottomSheetDialogFragment==null) {
-//            bottomSheetDialogFragment = FrameSelectionBottomSheet(R.layout.image_templates_bottom_sheet, this)
-//            bottomSheetDialogFragment?.show(supportFragmentManager,"category")
-//        }else bottomSheetDialogFragment?.show(supportFragmentManager,"category")
-//
-//    }
 
 }

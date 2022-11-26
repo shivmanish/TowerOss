@@ -95,13 +95,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout android:paddingBottom="@dimen/dp10"
+        <LinearLayout
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingBottom="@dimen/dp10"
             android:layout_marginBottom="@dimen/dp15"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            android:layout_height="match_parent">
             <GridLayout
                 android:columnCount="2"
                 android:orientation="horizontal"
@@ -119,19 +120,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                    <TextView
                         android:id="@+id/spinRequestCompany"
-                        style="@style/SpinnerTheme"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -143,19 +138,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                    <TextView
                         android:id="@+id/spinTeamId"
-                        style="@style/SpinnerTheme"
+                        style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout

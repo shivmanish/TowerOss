@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
     RecyclerView.Adapter<SiteLeaseListAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
@@ -38,9 +38,14 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: ImageAttachmentAdapter.ItemClickListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View,listener: SiteLeaseListListener) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
 
         init {
             binding.itemTitle.tag = false
@@ -102,6 +107,7 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
 
+                listener.detailsItemClicked()
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
@@ -134,7 +140,8 @@ class SiteLeaseListAdapter(var listener: ImageAttachmentAdapter.ItemClickListene
         return list.size
     }
 
-    interface ItemClickListener {
-        fun itemClicked()
+    interface SiteLeaseListListener {
+        fun attachmentItemClicked()
+        fun detailsItemClicked()
     }
 }
