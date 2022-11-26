@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
 import com.smarthub.baseapplication.ui.dialog.opco.BasicInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.opco.GeoConditionsBottomSheet
+import com.smarthub.baseapplication.ui.dialog.opco.OperationsInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.opco.SaftyAccessBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
@@ -41,18 +44,18 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
 
     }
     override fun operationInfoDetailsItemClicked() {
-        var bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.operations_info_details_bottom_sheet)
+        var bottomSheetDialogFragment = OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
     override fun geoConditionsDetailsItemClicked() {
-        var  bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
+        var  bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
 
     override fun siteAccessDetailsItemClicked() {
-        var  bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.site_access_details_bottom_sheet)
+        var  bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
