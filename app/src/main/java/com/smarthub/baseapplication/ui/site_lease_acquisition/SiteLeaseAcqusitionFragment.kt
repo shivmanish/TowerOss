@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.site_lease_acquisition
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -15,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
+import com.smarthub.baseapplication.ui.adapter.AddMoreCustomerListAdapter
 import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapterListener
@@ -27,23 +29,19 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
     lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
     lateinit var viewmodel: SiteLeaseAcqusitionViewModel
     lateinit var siteLeaseDataAdapter: SiteLeaseDataAdapter
-
+    var list : ArrayList<Any> = ArrayList()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSiteLeaseBinding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[SiteLeaseAcqusitionViewModel::class.java]
-        initializeFragment()
+    //    initializeFragment()
         return fragmentSiteLeaseBinding.root
     }
 
-    private fun initializeFragment() {
+/*    private fun initializeFragment() {
         fragmentSiteLeaseBinding.siteLeaseListItem.layoutManager = LinearLayoutManager(requireContext())
         siteLeaseDataAdapter = SiteLeaseDataAdapter(this@SiteLeaseAcqusitionFragment, ArrayList())
         fragmentSiteLeaseBinding.siteLeaseListItem.adapter = siteLeaseDataAdapter
-        fragmentSiteLeaseBinding.addmore.setOnClickListener{
-            var arraydata = ArrayList<String>()
-            arraydata.add("anything")
-           siteLeaseDataAdapter.setData(arraydata)
-        }
+
      //   viewmodel.fetchData()
 
         viewmodel.fetchDropDown()
@@ -63,11 +61,11 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
             val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
             val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
             val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.ic_send_alert)
-/*            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
+*//*            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
             val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
             val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
             val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
-            val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)*/
+            val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)*//*
             dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
             close.setOnClickListener {
                 // on below line we are calling a dismiss
@@ -84,9 +82,31 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
             dialog.show()
         }
 
+    }*/
+
+    @SuppressLint("MissingInflatedId")
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(itemView, savedInstanceState)
+        var layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        list.add("Reliance jio pvt ltd")
+        list.add("Smart mile")
+        list.add("Airtel")
+
+        var myAdapter =
+            SiteLeaseDataAdapter(
+                list
+            )
+//        _binding?.rvAddMoreItems.apply {
+//            this?.layoutManager = layoutManager
+//            this?.adapter = myAdapter
+//        }
+//        _binding?.btnNext?.setOnClickListener{
+//            myAdapter.addItem("Item Added")
+//        }
+
+
     }
-
-
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
