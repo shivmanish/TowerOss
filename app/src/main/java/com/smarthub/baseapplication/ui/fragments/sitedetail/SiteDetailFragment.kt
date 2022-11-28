@@ -256,10 +256,10 @@ class SiteDetailFragment : Fragment() {
         override fun getItem(position: Int): Fragment {
             return when(position){
                 0-> SiteInfoNewFragment()
-                1-> OpcoTanacyFragment.newInstance(tabNames?.get(0) ?: "OPCO Tenancy")
-                2-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(1) ?: "SiteLease")
-                3-> BlackhaulFrag.newInstance(tabNames?.get(2) ?: "Blackhaul")
-                4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(3) ?: "Utilities")
+                1-> OpcoTanacyFragment.newInstance(tabNames?.get(1) ?: "OPCO Tenancy")
+                2-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(2) ?: "SiteLease")
+                3-> BlackhaulFrag.newInstance(tabNames?.get(3) ?: "Blackhaul")
+                4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilities")
                 else -> SiteInfoNewFragment()
             }
         }
