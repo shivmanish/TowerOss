@@ -48,7 +48,7 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
         return 0
     }
 
-    class ViewHold1(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+    class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : BasicDetailItemViewBinding = BasicDetailItemViewBinding.bind(itemView)
 
         init {
@@ -63,7 +63,7 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
 
         }
     }
-    class ViewHold2(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+    class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : OperationInfoViewBinding = OperationInfoViewBinding.bind(itemView)
 
         init {
@@ -78,13 +78,8 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
 
         }
     }
-    class ViewHold3(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+    class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding : GeoConditionListItemBinding = GeoConditionListItemBinding.bind(itemView)
-      /*  var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-            override fun itemClicked() {
-                listener.attachmentItemClicked()
-            }
-        })*/
 
         init {
             binding.itemTitle.tag = false
@@ -98,7 +93,7 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
 
         }
     }
-    class ViewHold4(itemView: View,listener: SiteInfoLisListener) : ViewHold(itemView) {
+    class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : SafatyAccessListItemBinding = SafatyAccessListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
@@ -130,19 +125,19 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
         when (viewType) {
             1 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.basic_detail_item_view, parent, false)
-                return ViewHold1(view,listener)
+                return ViewHold1(view)
             }
             2 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.operation_info_view, parent, false)
-                return ViewHold2(view,listener)
+                return ViewHold2(view)
             }
             3 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
-                return ViewHold3(view,listener)
+                return ViewHold3(view)
             }
             4 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.safaty_access_list_item, parent, false)
-                return ViewHold4(view,listener)
+                return ViewHold4(view)
             }
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item5, parent, false)
@@ -163,15 +158,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     }
-
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                     listener.detailsItemClicked()
+                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.setOnClickListener {
+                        listener.detailsItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
