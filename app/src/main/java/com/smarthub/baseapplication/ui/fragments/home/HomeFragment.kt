@@ -7,9 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.SearchActivity
 import com.smarthub.baseapplication.databinding.FragmentHomeBinding
+import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
+import com.smarthub.baseapplication.ui.fragments.sitedetail.BlackhaulFrag
+import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
+import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class HomeFragment : Fragment() {
@@ -25,15 +32,42 @@ class HomeFragment : Fragment() {
         mainViewModel?.isActionbarHide?.value = true
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.searchBoxContainer.searchCardView.setOnClickListener {
+        binding.searchBoxLayout.setOnClickListener {
             var intent = Intent(activity, SearchActivity::class.java)
             startActivity(intent)
         }
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.homePager.adapter = HomeViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        binding.homeTab.setupWithViewPager(binding.homePager)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    internal inner class HomeViewPagerAdapter(manager: FragmentManager, behaviour:Int) :
+        FragmentPagerAdapter(manager,behaviour) {
+
+        override fun getItem(position: Int): Fragment {
+            return when(position){
+                0-> MyTaskHomeFragment()
+                else -> MyTaskHomeFragment()
+            }
+        }
+
+
+        override fun getCount(): Int {
+            return 2
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return if (position==0) "My Tasks" else "My Team Tasks"
+        }
+
     }
 }
