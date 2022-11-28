@@ -27,9 +27,21 @@
         android:id="@+id/navigation_menu"
         android:name="com.smarthub.baseapplication.ui.fragments.menu.MenuFragment"
         android:label="MenuFragment"
-        tools:layout="@layout/fragment_menu"/>
+        tools:layout="@layout/fragment_menu">
+        <action
+            android:id="@+id/action_navigation_menu_to_projectsFragment2"
+            app:destination="@id/projectsFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.smarthub.baseapplication.ui.fragments.task.AddTaskInfoFragment"
         android:label="AddTaskFragment" />
+    <fragment
+        android:id="@+id/projectsFragment2"
+        android:name="com.smarthub.baseapplication.ui.project.ProjectsFragment"
+        android:label="ProjectsFragment" >
+        <action
+            android:id="@+id/action_projectsFragment2_to_navigation_menu"
+            app:destination="@id/navigation_menu" />
+    </fragment>
 </navigation>
