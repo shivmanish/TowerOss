@@ -27,7 +27,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ce-dlhi-sc-0179"
+            android:text="Add Task"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/dp17"
@@ -41,12 +41,10 @@
             android:id="@+id/camera"
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
-            android:layout_marginEnd="5dp"
-            android:paddingTop="5dp"
-            android:paddingLeft="2dp"
-            android:paddingBottom="2dp"
+            android:layout_marginEnd="10dp"
+            android:padding="3dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/camera_svg"
+            android:src="@drawable/qr_scanner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/add_image"
             app:layout_constraintTop_toTopOf="parent"
@@ -58,7 +56,7 @@
             android:layout_height="@dimen/dp30"
             android:padding="@dimen/dp5"
             android:adjustViewBounds="true"
-            android:src="@drawable/qr_svg"
+            android:src="@drawable/mic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,6 +67,7 @@
             android:id="@+id/search"
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
+            android:layout_marginRight="@dimen/dp10"
             android:padding="@dimen/dp5"
             android:adjustViewBounds="true"
             android:src="@drawable/search"
@@ -90,20 +89,20 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp25"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/progress_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginRight="@dimen/dp20"
-                android:layout_marginBottom="@dimen/dp45">
+                android:layout_marginLeft="@dimen/dp35"
+                android:layout_marginRight="@dimen/dp35"
+                android:layout_marginBottom="@dimen/dp35">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/p1"
                     android:layout_width="@dimen/dp60"
                     android:layout_height="@dimen/dp60"
-                    app:cardBackgroundColor="#3D4E6D"
+                    app:cardBackgroundColor="@color/card_bg"
                     app:cardCornerRadius="@dimen/dp60"
                     app:layout_constraintEnd_toEndOf="@+id/p_status1"
                     app:layout_constraintStart_toStartOf="@+id/p_status1"
@@ -132,7 +131,7 @@
                     android:id="@+id/l1"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp10"
-                    android:background="#3D4E6D"
+                    android:background="@color/card_bg"
                     app:layout_constraintBottom_toBottomOf="@+id/p1"
                     app:layout_constraintEnd_toStartOf="@+id/p2"
                     app:layout_constraintStart_toEndOf="@+id/p1"
@@ -144,7 +143,7 @@
                     android:layout_height="@dimen/dp60"
                     app:cardCornerRadius="@dimen/dp60"
                     app:cardBackgroundColor="#ffffff"
-                    app:strokeColor="#3D4E6D"
+                    app:strokeColor="@color/card_bg"
                     app:strokeWidth="1dp"
                     app:layout_constraintEnd_toEndOf="@id/p_status2"
                     app:layout_constraintStart_toStartOf="@+id/p_status2"
@@ -173,7 +172,7 @@
                     android:id="@+id/l2"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp10"
-                    android:background="#3D4E6D"
+                    android:background="@color/circle_color"
                     app:layout_constraintBottom_toBottomOf="@+id/p2"
                     app:layout_constraintEnd_toStartOf="@+id/p3"
                     app:layout_constraintStart_toEndOf="@+id/p2"
@@ -214,6 +213,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/progress_status">
                 <LinearLayout
@@ -228,6 +228,7 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         style="@style/RowTestItemEdit"
+                        android:text="Task"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -235,10 +236,11 @@
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp5"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
@@ -247,8 +249,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
                         style="@style/RowTestItemEdit"
+                        android:padding="@dimen/dp10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -256,7 +259,7 @@
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
                 <GridLayout
                     android:columnCount="2"
@@ -267,6 +270,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -285,11 +289,12 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -303,16 +308,18 @@
                             android:text="12-Nov-22"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                         <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp6"
+                            android:alpha="0.37"
+                            android:background="#263238" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -330,11 +337,12 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -352,7 +360,7 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                 </GridLayout>
                 <LinearLayout
@@ -367,7 +375,7 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="Yes"
-                        android:gravity="right"
+                        android:gravity="left"
                         style="@style/SpinnerTheme"
                         android:drawablePadding="20dp"
                         android:drawableEnd="@drawable/ic_arrow_down_black"
@@ -378,6 +386,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
+                    android:layout_marginTop="@dimen/dp5"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -403,6 +412,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
+                    android:layout_marginTop="@dimen/dp5"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -428,6 +438,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
+                    android:layout_marginTop="@dimen/dp5"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -453,6 +464,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
+                    android:layout_marginTop="@dimen/dp5"
                     android:layout_height="wrap_content">
 
                     <TextView
