@@ -22,31 +22,19 @@ class  DashboardActivity : BaseActivity() {
     private lateinit var mainViewModel: MainViewModel
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel = ViewModelProvider(this)[SiteDetailViewModel::class.java]
-        initializeCustomActionBar()
-        val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        navView.setupWithNavController(navController)
-        navView.itemIconTintList = null
-//        mainViewModel.isActionbarHide.observe(this, Observer {
-//            if (it)
-//            binding.searchBoxContainer.mainActionBar.visibility = View.GONE
-//            else
-                binding.searchBoxContainer.mainActionBar.visibility = View.VISIBLE
-//        })
+           binding = ActivityMainBinding.inflate(layoutInflater)
+           setContentView(binding.root)
+           mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+           viewModel = ViewModelProvider(this)[SiteDetailViewModel::class.java]
+           initializeCustomActionBar()
+           val navView: BottomNavigationView = binding.navView
+           val navController = findNavController(R.id.nav_host_fragment_activity_main)
+           navView.setupWithNavController(navController)
+           navView.itemIconTintList = null
 
-        findViewById<View>(R.id.search).setOnClickListener {
-            var intent = Intent(this,SearchActivity::class.java)
-            startActivity(intent)
-        }
-
-//        navController.navigate(R.id.navigation_menu)
-        AppLogger.log("access token :" + AppPreferences.getInstance().token)
-        AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
-    }
+           AppLogger.log("access token :" + AppPreferences.getInstance().token)
+           AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
+       }
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
