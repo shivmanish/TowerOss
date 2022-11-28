@@ -28,7 +28,7 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.listItem?.adapter = SiteInfoListAdapter(this@SiteInfoNewFragment)
-        var siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
+        val siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
         siteViewModel.fetchDropDown()
         siteViewModel.dropDownResponse?.observe(requireActivity()) {
             (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
@@ -39,23 +39,23 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
-        var bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet)
+        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
     override fun operationInfoDetailsItemClicked() {
-        var bottomSheetDialogFragment = OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet)
+        val bottomSheetDialogFragment = OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
     override fun geoConditionsDetailsItemClicked() {
-        var  bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
+        val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
 
     }
 
     override fun siteAccessDetailsItemClicked() {
-        var  bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet)
+        val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
