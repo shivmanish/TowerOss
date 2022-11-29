@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/progress_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp45">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p1"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
+            app:cardBackgroundColor="#3D4E6D"
+            app:cardCornerRadius="@dimen/dp60"
+            app:layout_constraintEnd_toEndOf="@+id/p_status1"
+            app:layout_constraintStart_toStartOf="@+id/p_status1"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp15"
+                android:src="@drawable/task_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Basic info"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+        <View
+            android:id="@+id/l1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp10"
+            android:background="#3D4E6D"
+            app:layout_constraintBottom_toBottomOf="@+id/p1"
+            app:layout_constraintEnd_toStartOf="@+id/p2"
+            app:layout_constraintStart_toEndOf="@+id/p1"
+            app:layout_constraintTop_toTopOf="@+id/p1" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p2"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
+            app:cardCornerRadius="@dimen/dp60"
+            app:cardBackgroundColor="#3D4E6D"
+            app:strokeColor="#3D4E6D"
+            app:strokeWidth="1dp"
+            app:layout_constraintEnd_toEndOf="@id/p_status2"
+            app:layout_constraintStart_toStartOf="@+id/p_status2"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_margin="@dimen/dp15"
+                android:src="@drawable/menu_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tint="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Job role info"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+        <View
+            android:id="@+id/l2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp10"
+            android:background="#f1f1f1"
+            app:layout_constraintBottom_toBottomOf="@+id/p2"
+            app:layout_constraintEnd_toStartOf="@+id/p3"
+            app:layout_constraintStart_toEndOf="@+id/p2"
+            app:layout_constraintTop_toTopOf="@+id/p3" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p3"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
+            app:cardBackgroundColor="#ffffff"
+            app:strokeColor="#3D4E6D"
+            app:strokeWidth="1dp"
+            app:cardCornerRadius="@dimen/dp60"
+            app:layout_constraintEnd_toEndOf="@id/p_status3"
+            app:layout_constraintStart_toStartOf="@+id/p_status3"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_margin="@dimen/dp15"
+                android:src="@drawable/notification_bell"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Manager Info"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#f1f1f1"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp38"
+            android:background="@color/tab_deselected"
+            android:layout_gravity="bottom"
+            app:tabPaddingEnd="@dimen/dp5"
+            app:tabMaxWidth="0dp"
+            app:tabIndicatorColor="@color/yellow"
+            app:tabGravity="fill"
+            app:tabBackground="@drawable/tab_color_selector"
+            app:tabMode="fixed"
+            app:tabPaddingStart="@dimen/dp5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabTextAppearance="@style/TabTextView"
+            />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
