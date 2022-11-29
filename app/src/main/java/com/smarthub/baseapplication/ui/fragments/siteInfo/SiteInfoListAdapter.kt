@@ -56,8 +56,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -71,8 +73,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -86,6 +90,7 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
@@ -100,8 +105,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -155,8 +162,11 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -182,8 +192,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
 
                     holder.binding.itemLine.visibility =
@@ -206,8 +218,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
 
                     holder.binding.itemLine.visibility =
@@ -231,8 +245,10 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
 
                     holder.binding.itemLine.visibility =

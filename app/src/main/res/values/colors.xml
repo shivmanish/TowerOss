@@ -53,4 +53,6 @@
     <color name="transparent">#00000000</color>
 
     <color name="text_color">#323C47</color>
+    <color name="view_color">#D4D6D7</color>
+
 </resources>

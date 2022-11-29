@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulF
 
 class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 5
+        return 4
     }
 
     override fun getItem(position: Int): Fragment {
@@ -17,16 +17,16 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             0 -> {
                 return CustomerInfo()
             }
+//            1 -> {
+//                return CommercialFragment()
+//            }
             1 -> {
-                return CommercialFragment()
-            }
-            2 -> {
                 return RfEquipmentFragment()
             }
-            3 -> {
+            2 -> {
                 return BackhaulFragment()
             }
-            4 -> {
+            3 -> {
                 return RfAntinaFragment()
             }
             else -> {
@@ -40,16 +40,16 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             0 -> {
                 return "OPCO Info"
             }
+//            1 -> {
+//                return "Commercials"
+//            }
             1 -> {
-                return "Commercials"
-            }
-            2 -> {
                 return "RF Equipment"
             }
-            3 -> {
+            2 -> {
                 return "Backhaul"
             }
-            4 -> {
+            3 -> {
                 return "RF Anteena"
             }
         }
