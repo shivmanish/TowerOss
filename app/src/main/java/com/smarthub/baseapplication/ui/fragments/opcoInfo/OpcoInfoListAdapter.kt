@@ -125,13 +125,13 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listener.opcoSiteInfoItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
@@ -155,13 +155,13 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listener.opcoSiteInfoItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
@@ -178,13 +178,7 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-//                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-//                    holder.binding.imgEdit.setOnClickListener {
-//                        listener.opcoSiteInfoItemClicked()
-//                    }
-
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-//                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
