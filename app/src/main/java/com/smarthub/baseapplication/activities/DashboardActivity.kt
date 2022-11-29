@@ -1,14 +1,16 @@
 package com.smarthub.baseapplication.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import androidx.appcompat.app.ActionBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -31,9 +33,32 @@ class  DashboardActivity : BaseActivity() {
            val navController = findNavController(R.id.nav_host_fragment_activity_main)
            navView.setupWithNavController(navController)
            navView.itemIconTintList = null
+//
+//           AppLogger.log("access token :" + AppPreferences.getInstance().token)
+//           AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
 
-           AppLogger.log("access token :" + AppPreferences.getInstance().token)
-           AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
+           binding.navView.setOnItemSelectedListener { item ->
+
+               if (navController.backQueue.size > 2) navController.popBackStack(
+                   R.id.navigation_home,
+                   false
+               )
+               item.isChecked = true
+               if (item.itemId != R.id.navigation_home) navController.navigate(item.itemId)
+
+               true
+           }
+
+           binding.navView.setOnItemReselectedListener(NavigationBarView.OnItemReselectedListener { item ->
+               navController.popBackStack(
+                   item.itemId,
+                   false
+               )
+           })
+
+//           navController.addOnDestinationChangedListener { navController, navDestination, bundle ->
+//               Log.d("status", "onMenuOpened:" + navDestination.navigatorName)
+//           }
        }
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
