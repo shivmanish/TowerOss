@@ -41,6 +41,9 @@ class LoginFragment : Fragment() {
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             loginValidation()
+
+
+
         }
         binding?.textRegister?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
@@ -60,6 +63,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginValidation(){
+
         loginViewModel?.loginResponse?.observe(requireActivity()) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
