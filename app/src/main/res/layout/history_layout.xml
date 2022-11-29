@@ -46,9 +46,58 @@
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp15"
+        android:id="@+id/lnButtonLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_box"
+        android:padding="@dimen/dp5"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:padding="@dimen/dp10"
+            android:text="View on iBoard"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/dp5"
+            android:id="@+id/view_on_ibo"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_iboard"
+            android:layout_height="@dimen/dp45"
+            android:gravity="center|center_vertical"
+            android:layout_marginBottom="@dimen/dp30"
+            android:background="@drawable/btn_blue"
+            android:fontFamily="@font/poppins_regular"
+            />
+        <TextView
+            android:layout_weight="1"
+            android:padding="@dimen/dp10"
+            android:text="View on Map"
+            android:textSize="15sp"
+            android:textColor="#3F4D68"
+            android:layout_margin="@dimen/dp5"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_view_map"
+            android:layout_height="@dimen/dp45"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/dp30"
+            android:background="@drawable/login_yellow_bg"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+    </LinearLayout>
+
+
+
     <TextView
         android:id="@+id/history_title"
         android:text="History"
+        android:layout_marginLeft="@dimen/dp10"
         android:textSize="13sp"
         android:paddingTop="@dimen/dp15"
         android:paddingBottom="@dimen/dp10"
@@ -57,35 +106,88 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_box"/>
-   <com.google.android.material.chip.ChipGroup
+        app:layout_constraintTop_toBottomOf="@+id/lnButtonLayout"/>
+
+    <TextView
+        android:id="@+id/clear_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="332dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp10"
+        android:text="Clear history"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lnButtonLayout" />
+
+    <com.google.android.material.chip.ChipGroup
        android:layout_width="match_parent"
+       android:id="@+id/chipLayout"
        android:layout_height="wrap_content"
        android:padding="@dimen/dp3"
        app:layout_constraintTop_toBottomOf="@+id/history_title">
        <com.google.android.material.chip.Chip
-           android:text="History test"
+           android:text="CE-DLHI-SC-0179"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
        <com.google.android.material.chip.Chip
-           android:text="History test"
+           android:text="Mangoluri"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
        <com.google.android.material.chip.Chip
-           android:text="History test"
+           android:text="CE-DLHI-SC-0185"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
        <com.google.android.material.chip.Chip
-           android:text="History"
+           android:text="Mangoluri"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
        <com.google.android.material.chip.Chip
-           android:text="History"
+           android:text="Mangoluri"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
        <com.google.android.material.chip.Chip
-           android:text="History Test"
+           android:text="CE-DLHI-SC-0185"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
    </com.google.android.material.chip.ChipGroup>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@color/bg_gray"
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipLayout"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/select_sear"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_alignParentTop="true"
+            android:text="Select Search Categories"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipLayout"
+            android:lineSpacingExtra="16sp"
+            android:gravity="center_vertical"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lang_list"
+            android:orientation="vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+
+            tools:listitem="@layout/select_serach_categories_items"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+      </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/dp15"
     android:layout_height="wrap_content"
 
-    android:background="@color/bg_gray"
+
     android:columnCount="2"
 
     android:orientation="horizontal">
