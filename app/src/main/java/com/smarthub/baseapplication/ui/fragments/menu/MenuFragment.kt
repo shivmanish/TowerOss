@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.activities.FAQActivity
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
@@ -51,6 +52,10 @@ class MenuFragment : Fragment() {
             var intent = Intent(requireActivity(),QATCheckActivity::class.java)
             startActivity(intent)
         }
+        binding.cardProject.setOnClickListener {
+            findNavController().navigate(MenuFragmentDirections.actionNavigationMenuToProjectsFragment2())
+        }
+
 
         binding.quickHelp.setOnClickListener {
             var intent = Intent(requireActivity(),FAQActivity::class.java)
@@ -61,9 +66,9 @@ class MenuFragment : Fragment() {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
-        binding.cardLocation.setOnClickListener {
-            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
-        }
+//        binding.cardLocation.setOnClickListener {
+//            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+//        }
         binding.cardTeam.setOnClickListener {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }

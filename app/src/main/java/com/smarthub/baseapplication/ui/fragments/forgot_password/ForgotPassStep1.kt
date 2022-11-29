@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ForgotPassStep1FragmentBinding
+import com.smarthub.baseapplication.listeners.DrawableClickListener
 import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
@@ -34,36 +36,45 @@ class ForgotPassStep1 : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-
-        binding?.back?.setOnClickListener {view->
+        binding.moNoEdit.setTag(false)
+        binding.back?.setOnClickListener {view->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 it?.onBackPressed()
             }
         }
 
-        binding?.signWithPhone?.setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-            if (!progressDialog.isShowing)
-                progressDialog.show()
-            loginViewModel?.getPhoneOtp(UserOTPGet(binding?.moNoEdit?.text?.toString()))
-        }
-
-        binding?.moNoEdit?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                if (binding?.moNoEdit?.text.toString().isNotEmpty() && binding?.moNoEdit?.text.toString().length>=10) {
-                    Utils.hideKeyboard(requireContext(), binding?.moNoEdit!!)
-                    binding?.signWithPhone?.visibility = View.VISIBLE
-                    binding?.signWithPhoneDisable?.visibility = View.GONE
-                }else{
-                    binding?.signWithPhoneDisable?.visibility = View.VISIBLE
-                    binding?.signWithPhone?.visibility = View.GONE
+        binding.moNoEdit.setOnTouchListener(object : DrawableClickListener(DRAWABLE_RIGHT) {
+            override fun onDrawableClick(): Boolean {
+                Log.d("status"," DRAWABLE_RIGHT : moNoEdit")
+                Utils.hideKeyboard(requireContext(),binding.moNoEdit)
+                binding.moNoEdit.clearFocus()
+                if (binding.moNoEdit.tag as Boolean){
+                    if (!progressDialog.isShowing)
+                        progressDialog.show()
+                    loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
                 }
+                return false
             }
         })
 
+        binding.moNoEdit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString().length>=10) {
+                    Utils.hideKeyboard(requireContext(), binding.moNoEdit)
+                    binding.moNoEdit.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.mo_no_next_outline_white,0)
+                    binding.moNoEdit.tag = true
+                }else{
+                    binding.moNoEdit.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.mo_no_next_outline,0)
+                    binding.moNoEdit.tag = false
+                }
+            }
+        })
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
         loginViewModel?.getOtpResponse?.observe(requireActivity()) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
@@ -84,7 +95,7 @@ class ForgotPassStep1 : Fragment() {
     }
 
     private fun enableErrorText(){
-        binding?.userMailLayout?.error = "enter valid mo no"
+        binding.userMailLayout?.error = "enter valid mo no"
     }
 
 }

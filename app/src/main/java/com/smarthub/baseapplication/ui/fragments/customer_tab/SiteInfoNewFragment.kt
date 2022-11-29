@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
@@ -20,19 +21,33 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     var binding : SiteInfoNewFragmentBinding?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
         binding = SiteInfoNewFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
+    lateinit var siteViewModel : BasicInfoDetailViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.listItem?.adapter = SiteInfoListAdapter(this@SiteInfoNewFragment)
-        val siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
         siteViewModel.fetchDropDown()
         siteViewModel.dropDownResponse?.observe(requireActivity()) {
             (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
         }
+        if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)
+            siteViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
+        siteViewModel.siteInfoResponse?.observe(viewLifecycleOwner){
+            if (it?.data != null){
+//                map data here
+                it.data?.let { it1 -> mapUIData(it1) }
+                Toast.makeText(requireContext(),"siteInfo fetched successfully",Toast.LENGTH_SHORT).show()
+            }
+        }
+        siteViewModel.fetchSiteInfo()
+    }
+
+    private fun mapUIData(data : SiteInfoModel){
+
     }
 
     override fun attachmentItemClicked() {

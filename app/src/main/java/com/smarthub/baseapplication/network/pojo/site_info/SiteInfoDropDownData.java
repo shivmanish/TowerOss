@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class SiteInfoDropDownData {
     @SerializedName("BasicInfo")
     @Expose
-    private BasicInfoModel basicInfoModel;
+    private BasicInfoModelDropDown basicInfoModelDropDown;
 
     @SerializedName("OperationalInfo")
     @Expose
@@ -54,13 +54,13 @@ public class SiteInfoDropDownData {
     @Expose
     private ComercialModel comercial;
 */
-    public BasicInfoModel getBasicInfoModel() {
-        return basicInfoModel;
+    public BasicInfoModelDropDown getBasicInfoModel() {
+        return basicInfoModelDropDown;
     }
 
 
-    public void setBasicInfoModel(BasicInfoModel basicInfoModel) {
-        this.basicInfoModel = basicInfoModel;
+    public void setBasicInfoModel(BasicInfoModelDropDown basicInfoModelDropDown) {
+        this.basicInfoModelDropDown = basicInfoModelDropDown;
     }
 
     public OperationalInfoModel getOperationalInfo() {

@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.network;
 
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
 import com.smarthub.baseapplication.model.otp.GetSuccessResponse;
@@ -50,6 +51,9 @@ public interface APIClient {
 //    Site Info Drop Down api integration
     @GET(EndPoints.SITE_INFO_DROP_DOWN)
     Call<SiteInfoDropDownData> siteInfoDropDown();
+
+    @GET(EndPoints.SITE_INFO_MODEL)
+    Call<SiteInfoModel> fetchSiteInfoData();
 
 
 

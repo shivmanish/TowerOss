@@ -16,6 +16,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ForgotPassStep2FragmentBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.listeners.DrawableClickListener
+import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -51,6 +53,17 @@ class ForgotPassStep2 : Fragment() {
                 Log.d("status","error e :${e.localizedMessage}")
             }
         }
+        binding.moNoEdit.setOnTouchListener(object : DrawableClickListener(DRAWABLE_RIGHT) {
+            override fun onDrawableClick(): Boolean {
+                Log.d("status"," DRAWABLE_RIGHT : moNoEdit")
+                Utils.hideKeyboard(requireContext(),binding.moNoEdit)
+                binding.moNoEdit.clearFocus()
+                findNavController().popBackStack()
+                return false
+            }
+        })
+
+
         binding.nextLayout.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{
@@ -119,7 +132,9 @@ class ForgotPassStep2 : Fragment() {
                 else binding.p5.requestFocus()
             }
         })
-
+        if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
+            loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
+        }
         loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()

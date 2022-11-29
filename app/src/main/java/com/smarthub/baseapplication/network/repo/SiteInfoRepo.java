@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.network.repo;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppConstants;
@@ -18,6 +19,7 @@ public class SiteInfoRepo {
     private static SiteInfoRepo sInstance;
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
+    private SingleLiveEvent<Resource<SiteInfoModel>> siteIndoResponse;
 
     public static SiteInfoRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -31,10 +33,15 @@ public class SiteInfoRepo {
     public SiteInfoRepo(APIClient apiClient) {
         this.apiClient = apiClient;
         dropDownResoonse = new SingleLiveEvent<>();
+        siteIndoResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
         return dropDownResoonse;
+    }
+
+    public SingleLiveEvent<Resource<SiteInfoModel>> getSiteInfoResponseData() {
+        return siteIndoResponse;
     }
 
     public void siteInfoDropDown() {
@@ -73,6 +80,44 @@ public class SiteInfoRepo {
                     dropDownResoonse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     dropDownResoonse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteInfoData() {
+
+        apiClient.fetchSiteInfoData().enqueue(new Callback<SiteInfoModel>() {
+            @Override
+            public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
+            }
+
+            @Override
+            public void onFailure(Call<SiteInfoModel> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteInfoModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteIndoResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteIndoResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteIndoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteIndoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

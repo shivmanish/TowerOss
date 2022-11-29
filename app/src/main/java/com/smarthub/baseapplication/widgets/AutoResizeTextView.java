@@ -9,11 +9,20 @@ import android.view.Gravity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.smarthub.baseapplication.listeners.DrawableClickListener;
+
 public class AutoResizeTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public AutoResizeTextView(@NonNull Context context) {
         super(context);
         init();
+        DrawableClickListener l = new DrawableClickListener(DrawableClickListener.DRAWABLE_RIGHT){
+
+            @Override
+            public boolean onDrawableClick() {
+                return false;
+            }
+        };
     }
 
     public AutoResizeTextView(@NonNull Context context, @Nullable AttributeSet attrs) {

@@ -79,8 +79,13 @@ class SiteDetailFragment : Fragment() {
                 isScroll = true
             }
         })
+
         setDataObserver()
         setData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -295,7 +300,7 @@ class SiteDetailFragment : Fragment() {
                 constraintLayout.visibility = View.VISIBLE
                 constraintL.visibility = View.GONE
             }
-            binding.tabs.background = getDrawable( requireActivity(),R.drawable.tablayout_selector);
+            binding.tabs.background = getDrawable( requireActivity(),R.drawable.tablayout_selector)
         }
 
     }
@@ -303,11 +308,13 @@ class SiteDetailFragment : Fragment() {
 
     private fun setDataObserver() {
         siteDetailViewModel.fetchDropDown()
+        if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
+            siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
         siteDetailViewModel.dropDownResponse?.observe(requireActivity()) {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
-                    Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
@@ -327,7 +334,7 @@ class SiteDetailFragment : Fragment() {
         val gson = Gson()
         var stringDatajson = gson.toJson(data)
         AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
-        Toast.makeText(context, "Data Save Succsfully !", Toast.LENGTH_SHORT).show()
+
     }
 
 

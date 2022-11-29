@@ -147,8 +147,12 @@
                     android:id="@+id/password_layout"
                     android:textColorHint="@color/white"
                     style="@style/TextInputLayout"
+                    app:endIconMode="password_toggle"
+                    app:passwordToggleEnabled="true"
+                    app:boxStrokeErrorColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:endIconTint="@color/white"
                     android:layout_marginBottom="@dimen/dp8"
                     app:layout_constraintBottom_toTopOf="@+id/forgot_error">
 
@@ -159,7 +163,6 @@
                         android:letterSpacing="0.1"
                         android:textColor="#fff"
                         android:id="@+id/password"
-                        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
                         android:nextFocusForward="@id/password"
                         android:drawablePadding="@dimen/dp10"
                         android:drawableStart="@drawable/ic_carbon_password"
