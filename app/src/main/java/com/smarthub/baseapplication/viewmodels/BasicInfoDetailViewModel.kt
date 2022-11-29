@@ -22,9 +22,11 @@ class BasicInfoDetailViewModel : ViewModel() {
         var jsonData: String =
             AppPreferences.getInstance().getString(AppPreferences.DROPDOWNDATA)
         val gson = Gson()
-        val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData,SiteInfoDropDownData::class.java)
-        if(siteInfoDropDownData != null) {
-            dropDownResponse?.postValue(siteInfoDropDownData)
+        if (jsonData.isNotEmpty()) {
+            val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData, SiteInfoDropDownData::class.java)
+            if (siteInfoDropDownData != null) {
+                dropDownResponse?.postValue(siteInfoDropDownData)
+            }
         }
     }
 

@@ -46,6 +46,7 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
         return ViewHold(view,listener)
