@@ -5,13 +5,21 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/ic_arrow_down_black.xml" value="0.186" />
+        <entry key="app/src/main/res/drawable/ic_rectangle_5.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/rectangle_5.xml" value="0.227" />
+        <entry key="app/src/main/res/drawable/utilities.xml" value="0.124" />
+        <entry key="app/src/main/res/layout/ac1_tab_utilities_fragment.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout/ac2_tab_utilities_fragment.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/activity_add_image.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/activity_gallery.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_utilities_noc.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/attachment_add.xml" value="0.24131011962890625" />
         <entry key="app/src/main/res/layout/fragment_add_image.xml" value="0.23645833333333333" />
-        <entry key="app/src/main/res/layout/fragment_add_task_info.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_add_task_info.xml" value="0.19444732666015627" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/layout/fragment_task.xml" value="0.18854166666666666" />
+        <entry key="app/src/main/res/layout/fragment_utilites_noc.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout/fragment_utilities.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/geo_conditional_info_fragment.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/layout/grid_image_view.xml" value="0.21927083333333333" />
         <entry key="app/src/main/res/layout/info_card_item.xml" value="0.24010416666666667" />
@@ -22,6 +30,7 @@
         <entry key="app/src/main/res/layout/site_release_bottom_sheet_dialog_layout.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/layout/task_activity.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/task_list_item.xml" value="0.15092592592592594" />
+        <entry key="app/src/main/res/layout/utilites_noc_list_item.xml" value="0.2375" />
       </map>
     </option>
   </component>

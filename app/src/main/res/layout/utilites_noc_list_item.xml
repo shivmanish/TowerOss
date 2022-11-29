@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="#F9F9F9"
     android:orientation="vertical"
     app:defaultNavHost="true"
     app:navGraph="@navigation/site_info"
@@ -13,54 +13,22 @@
         android:id="@+id/parentRelative"
         android:padding="@dimen/dp8"
         android:layout_gravity="center"
-        android:background="@drawable/rectangle_5"
+        android:background="@drawable/ic_rectangle_5"
+        android:elevation="5dp"
         android:layout_margin="@dimen/dp12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/lnLayout"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:padding="@dimen/dp5"
-
-                android:layout_weight=".8"
-                android:layout_width="wrap_content"
+        <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="SMPS"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAppearance="@style/RowTestItemEdit"
-                android:lineSpacingExtra="2sp"
-                android:gravity="center_vertical"
-                />
-     
-
-            <TextView
-                android:id="@+id/addsmp"
-                android:padding="@dimen/dp5"
-                
-                android:drawableLeft="@drawable/addmore"
-
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_weight=".2"
-                android:background="@drawable/rounded_textblue"
-                android:drawablePadding="@dimen/dp10"
                 android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingRight="@dimen/dp10"
-                android:text="Add More"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
-
-        </LinearLayout>
+                android:textAppearance="@style/RowTestItemEdit"
+                android:gravity="left"
+            android:drawableEnd="@drawable/forward_arrow"
+                />
 
         <LinearLayout
             android:orientation="vertical"
@@ -74,59 +42,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="italic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Count :"
+                    android:textSize="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:gravity="center"
+                    />
+                <TextView
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
                     android:layout_width="@dimen/dp25"
                     android:layout_height="@dimen/dp25"
                     android:text="2"
+                    android:textStyle="italic"
                     android:textSize="12sp"
-                    android:background="@drawable/rounded_textview"
-                    android:textColor="@android:color/white"
+                    android:textColor="#3D4E6D"
                     android:gravity="center"
                     android:id="@+id/mark" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Count "
+                    android:text="|"
                     android:textSize="@dimen/dp12"
-                    android:textColor="#3D4E6D"
-                    android:textAppearance="@style/RowTextItemInfo"
-                    android:lineSpacingExtra="2sp"
-                    android:gravity="center_vertical"
-                    />
-                <TextView
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
-                    android:layout_width="@dimen/dp25"
-                    android:layout_height="@dimen/dp25"
-                    android:text="5kw"
-
-                    android:textSize="12sp"
-                    android:background="@drawable/rounded_textblue"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                     />
-                <TextView
-                    android:layout_marginLeft="@dimen/dp10"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Capacity "
-                    android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/montserrat_light"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
                     android:gravity="center_vertical"
                     />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Capacity : "
+                    android:textStyle="italic"
+                    android:textSize="@dimen/dp12"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/color1"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:text="5kw"
+                    android:lineSpacingExtra="2sp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#3D4E6D"
+                    android:gravity="center" />
 
             </LinearLayout>
             <View
@@ -157,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text="Installation:"
+                        android:text="Installation Date:"
                         android:textSize="@dimen/dp12"
                         android:textAppearance="@style/RowTextItemInfo"
                         android:lineSpacingExtra="2sp"
@@ -169,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text=" 5-Nov-2018"
+                        android:text=" 05-Nov-2018"
                         android:textColor="@color/color1"
                         android:lineSpacingExtra="2sp"
                         android:gravity="center_vertical"
@@ -215,50 +191,22 @@
         android:id="@+id/parentRelative2"
         android:padding="@dimen/dp8"
         android:layout_gravity="center"
-        android:background="@drawable/rectangle_5"
+        android:background="@drawable/ic_rectangle_5"
+        android:elevation="5dp"
         android:layout_margin="@dimen/dp12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/lnLayout2"
-            android:orientation="horizontal"
-            android:weightSum="1"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight=".8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:text="DG"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAppearance="@style/RowTestItemEdit"
-                android:lineSpacingExtra="2sp"
-                android:gravity="center_vertical"
-                />
-            <TextView
-                android:id="@+id/addDG"
-                android:padding="@dimen/dp5"
-
-                android:drawableLeft="@drawable/addmore"
-
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_weight=".2"
-                android:background="@drawable/rounded_textblue"
-                android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingRight="@dimen/dp10"
-                android:text="Add More"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
-            
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="DG"
+            android:fontFamily="@font/montserrat"
+            android:textAppearance="@style/RowTestItemEdit"
+            android:gravity="left"
+            android:drawableEnd="@drawable/forward_arrow"
+            />
 
         <LinearLayout
             android:orientation="vertical"
@@ -267,68 +215,77 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="italic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Count :"
+                    android:textSize="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:gravity="center"
+                    />
+                <TextView
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
                     android:layout_width="@dimen/dp25"
                     android:layout_height="@dimen/dp25"
                     android:text="2"
+                    android:textStyle="italic"
                     android:textSize="12sp"
-                    android:background="@drawable/rounded_textview"
-                    android:textColor="@android:color/white"
+                    android:textColor="#3D4E6D"
                     android:gravity="center"
                     android:id="@+id/mark2" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Count "
+                    android:text="|"
                     android:textSize="@dimen/dp12"
-                    android:textColor="#3D4E6D"
-                    android:textAppearance="@style/RowTextItemInfo"
-                    android:lineSpacingExtra="2sp"
-                    android:gravity="center_vertical"
-                    />
-                <TextView
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
-                    android:layout_width="@dimen/dp25"
-                    android:layout_height="@dimen/dp25"
-                    android:text="5kw"
-
-                    android:textSize="12sp"
-                    android:background="@drawable/rounded_textblue"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                     />
-                <TextView
-                    android:layout_marginLeft="@dimen/dp10"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Capacity "
-                    android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/montserrat_light"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
                     android:gravity="center_vertical"
                     />
 
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Capacity : "
+                    android:textStyle="italic"
+                    android:textSize="@dimen/dp12"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/color1"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:text="5kw"
+                    android:lineSpacingExtra="2sp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#3D4E6D"
+                    android:gravity="center" />
+
             </LinearLayout>
             <View
                 android:layout_marginTop="@dimen/dp5"
+                android:id="@+id/bg_dark2"
                 android:alpha=".21"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp1"
@@ -354,7 +311,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text="Installation:"
+                        android:text="Installation Date:"
                         android:textSize="@dimen/dp12"
                         android:textAppearance="@style/RowTextItemInfo"
                         android:lineSpacingExtra="2sp"
@@ -366,7 +323,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text=" 5-Nov-2018"
+                        android:text=" 05-Nov-2018"
                         android:textColor="@color/color1"
                         android:lineSpacingExtra="2sp"
                         android:gravity="center_vertical"
@@ -402,9 +359,6 @@
                         android:gravity="center_vertical"
                         />
                 </LinearLayout>
-
-
-
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -412,50 +366,22 @@
         android:id="@+id/parentRelative3"
         android:padding="@dimen/dp8"
         android:layout_gravity="center"
-        android:background="@drawable/rectangle_5"
+        android:background="@drawable/ic_rectangle_5"
+        android:elevation="5dp"
         android:layout_margin="@dimen/dp12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/lnLayout3"
-            android:orientation="horizontal"
-            android:weightSum="1"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight=".8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:text="AC"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAppearance="@style/RowTestItemEdit"
-                android:lineSpacingExtra="2sp"
-                android:gravity="center_vertical"
-                />
-            <TextView
-                android:id="@+id/addAC"
-                android:padding="@dimen/dp5"
-
-                android:drawableLeft="@drawable/addmore"
-
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_weight=".2"
-                android:background="@drawable/rounded_textblue"
-                android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingRight="@dimen/dp10"
-                android:text="Add More"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="AC"
+            android:fontFamily="@font/montserrat"
+            android:textAppearance="@style/RowTestItemEdit"
+            android:gravity="left"
+            android:drawableEnd="@drawable/forward_arrow"
+            />
 
         <LinearLayout
             android:orientation="vertical"
@@ -464,67 +390,77 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
-                    android:layout_width="@dimen/dp25"
-                    android:layout_height="@dimen/dp25"
-                    android:text="2"
-                    android:textSize="12sp"
-                    android:background="@drawable/rounded_textview"
-                    android:textColor="@android:color/white"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
-
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="italic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Count "
+                    android:text="Count :"
                     android:textSize="@dimen/dp12"
                     android:textColor="#3D4E6D"
                     android:textAppearance="@style/RowTextItemInfo"
-                    android:lineSpacingExtra="2sp"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     />
                 <TextView
-                    android:layout_marginLeft="@dimen/dp10"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
                     android:layout_width="@dimen/dp25"
                     android:layout_height="@dimen/dp25"
-                    android:text="5kw"
-
+                    android:text="2"
+                    android:textStyle="italic"
                     android:textSize="12sp"
-                    android:background="@drawable/rounded_textblue"
-                    android:textColor="@android:color/white"
+                    android:textColor="#3D4E6D"
                     android:gravity="center"
-                     />
+                    android:id="@+id/mark3" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Capacity "
+                    android:text="|"
                     android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/montserrat_light"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
                     android:gravity="center_vertical"
                     />
 
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Capacity : "
+                    android:textStyle="italic"
+                    android:textSize="@dimen/dp12"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/color1"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:text="5kw"
+                    android:lineSpacingExtra="2sp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#3D4E6D"
+                    android:gravity="center" />
+
             </LinearLayout>
             <View
                 android:layout_marginTop="@dimen/dp5"
+                android:id="@+id/bg_dark3"
                 android:alpha=".21"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp1"
@@ -550,7 +486,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text="Installation:"
+                        android:text="Installation Date:"
                         android:textSize="@dimen/dp12"
                         android:textAppearance="@style/RowTextItemInfo"
                         android:lineSpacingExtra="2sp"
@@ -562,7 +498,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text=" 5-Nov-2018"
+                        android:text=" 05-Nov-2018"
                         android:textColor="@color/color1"
                         android:lineSpacingExtra="2sp"
                         android:gravity="center_vertical"
@@ -608,49 +544,22 @@
         android:id="@+id/parentRelative4"
         android:padding="@dimen/dp8"
         android:layout_gravity="center"
-        android:background="@drawable/rectangle_5"
+        android:background="@drawable/ic_rectangle_5"
+        android:elevation="5dp"
         android:layout_margin="@dimen/dp12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/lnLayout4"
-            android:orientation="horizontal"
-            android:weightSum="1"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight=".7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:text="Fire Extinguisher"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAppearance="@style/RowTestItemEdit"
-                android:lineSpacingExtra="2sp"
-                android:gravity="center_vertical"
-                />
-            <TextView
-                android:id="@+id/addFireExiting"
-                android:padding="@dimen/dp5"
-
-                android:drawableLeft="@drawable/addmore"
-
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_weight=".3"
-                android:background="@drawable/rounded_textblue"
-                android:drawablePadding="@dimen/dp10"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingRight="@dimen/dp10"
-                android:text="Add More"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Fire Extinguisher"
+            android:fontFamily="@font/montserrat"
+            android:textAppearance="@style/RowTestItemEdit"
+            android:gravity="left"
+            android:drawableEnd="@drawable/forward_arrow"
+            />
 
         <LinearLayout
             android:orientation="vertical"
@@ -659,67 +568,77 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
-                    android:layout_width="@dimen/dp25"
-                    android:layout_height="@dimen/dp25"
-                    android:text="2"
-                    android:textSize="12sp"
-                    android:background="@drawable/rounded_textview"
-                    android:textColor="@android:color/white"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:fontFamily="@font/montserrat_bold"
-
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="italic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Count "
+                    android:text="Count :"
                     android:textSize="@dimen/dp12"
                     android:textColor="#3D4E6D"
                     android:textAppearance="@style/RowTextItemInfo"
-                    android:lineSpacingExtra="2sp"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     />
                 <TextView
-                    android:layout_marginLeft="@dimen/dp10"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/txtCardHeading2"
                     android:layout_width="@dimen/dp25"
                     android:layout_height="@dimen/dp25"
-                    android:text="5kw"
-
+                    android:text="2"
+                    android:textStyle="italic"
                     android:textSize="12sp"
-                    android:background="@drawable/rounded_textblue"
-                    android:textColor="@android:color/white"
+                    android:textColor="#3D4E6D"
                     android:gravity="center"
-                     />
+                    android:id="@+id/mark4" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Capacity "
+                    android:text="|"
                     android:textSize="@dimen/dp12"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/montserrat_light"
                     android:textColor="@color/color1"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
                     android:gravity="center_vertical"
                     />
 
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Capacity : "
+                    android:textStyle="italic"
+                    android:textSize="@dimen/dp12"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/color1"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:text="5kw"
+                    android:lineSpacingExtra="2sp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#3D4E6D"
+                    android:gravity="center" />
+
             </LinearLayout>
             <View
                 android:layout_marginTop="@dimen/dp5"
+                android:id="@+id/bg_dark4"
                 android:alpha=".21"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp1"
@@ -745,7 +664,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text="Installation:"
+                        android:text="Installation Date:"
                         android:textSize="@dimen/dp12"
                         android:textAppearance="@style/RowTextItemInfo"
                         android:lineSpacingExtra="2sp"
@@ -757,7 +676,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text=" 5-Nov-2018"
+                        android:text=" 05-Nov-2018"
                         android:textColor="@color/color1"
                         android:lineSpacingExtra="2sp"
                         android:gravity="center_vertical"
