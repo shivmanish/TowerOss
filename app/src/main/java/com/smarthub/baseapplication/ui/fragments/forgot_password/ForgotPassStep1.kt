@@ -72,7 +72,9 @@ class ForgotPassStep1 : Fragment() {
                 }
             }
         })
-
+        if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
+            loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
+        }
         loginViewModel?.getOtpResponse?.observe(requireActivity()) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()

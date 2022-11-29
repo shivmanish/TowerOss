@@ -19,21 +19,15 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_height="?attr/actionBarSize"/>
 
-    <View
-        android:id="@+id/top_margin"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.3"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.88"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_margin">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/next_layout">
 
         <TextView
             android:text="Forgot password"
@@ -131,7 +125,7 @@
                     android:letterSpacing="0.1"
                     android:textColor="#33FFFFFF"
                     android:id="@+id/mo_no_edit"
-                    android:enabled="false"
+                    android:focusable="false"
                     android:text="1234567890"
                     android:nextFocusForward="@id/password"
                     android:drawablePadding="@dimen/dp10"
@@ -333,23 +327,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mo_no_title"/>
 
-        <TextView
-            android:padding="@dimen/dp10"
-            android:text="Submit"
-            android:textSize="15sp"
-            android:textColor="#3F4D68"
-            android:id="@+id/next_layout"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="@dimen/dp45"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/dp50"
-            android:background="@drawable/login_yellow_bg"
-            android:fontFamily="@font/poppins_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:padding="@dimen/dp10"
+        android:text="Submit"
+        android:textSize="15sp"
+        android:textColor="#3F4D68"
+        android:id="@+id/next_layout"
+        android:layout_width="0dp"
+        android:textStyle="bold"
+        android:layout_height="@dimen/dp45"
+        app:layout_constraintWidth_percent="0.88"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp50"
+        android:background="@drawable/login_yellow_bg"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
