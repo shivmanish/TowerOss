@@ -41,9 +41,6 @@ class LoginFragment : Fragment() {
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             loginValidation()
-
-
-
         }
         binding?.textRegister?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
