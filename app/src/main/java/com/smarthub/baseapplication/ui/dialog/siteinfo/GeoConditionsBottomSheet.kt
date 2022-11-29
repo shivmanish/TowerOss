@@ -1,14 +1,11 @@
-package com.smarthub.baseapplication.ui.dialog.opco
+package com.smarthub.baseapplication.ui.dialog.siteinfo
 
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
-import com.smarthub.baseapplication.databinding.DetailsBottomSheetViewBinding
 import com.smarthub.baseapplication.databinding.GeoConditionsDetailsBottomSheetBinding
 
 class GeoConditionsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {

@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
-import com.smarthub.baseapplication.ui.dialog.opco.BasicInfoBottomSheet
-import com.smarthub.baseapplication.ui.dialog.opco.GeoConditionsBottomSheet
-import com.smarthub.baseapplication.ui.dialog.opco.OperationsInfoBottomSheet
-import com.smarthub.baseapplication.ui.dialog.opco.SaftyAccessBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
