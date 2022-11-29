@@ -51,8 +51,8 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
             }
             holder.binding.itemCollapse.visibility=
                 if (holder.binding.taskListDropdown.tag as Boolean) View.VISIBLE else View.GONE
-            holder.binding.btnEditCard.visibility=
-                if (holder.binding.taskListDropdown.tag as Boolean) View.VISIBLE else View.GONE
+//            holder.binding.btnEditCard.visibility=
+//                if (holder.binding.taskListDropdown.tag as Boolean) View.VISIBLE else View.GONE
 
 
         }
