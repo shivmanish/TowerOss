@@ -63,8 +63,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginValidation(){
-
-        loginViewModel?.loginResponse?.observe(requireActivity()) {
+        if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
+            loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
+        }
+        loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {

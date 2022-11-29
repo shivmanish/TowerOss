@@ -65,15 +65,15 @@ class ForgotPassStep1 : Fragment() {
                 if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString().length>=10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
                     binding.moNoEdit.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.mo_no_next_outline_white,0)
-                    binding.moNoEdit.setTag(true)
+                    binding.moNoEdit.tag = true
                 }else{
                     binding.moNoEdit.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.mo_no_next_outline,0)
-                    binding.moNoEdit.setTag(false)
+                    binding.moNoEdit.tag = false
                 }
             }
         })
-        if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
-            loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
         }
         loginViewModel?.getOtpResponse?.observe(requireActivity()) {
             if (progressDialog.isShowing)

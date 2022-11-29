@@ -129,7 +129,7 @@
                     android:text="1234567890"
                     android:nextFocusForward="@id/password"
                     android:drawablePadding="@dimen/dp10"
-                    android:drawableEnd="@drawable/ic_edit_menu"
+                    android:drawableEnd="@drawable/mo_no_edit_icon"
                     android:layout_width="match_parent"
                     android:paddingStart="@dimen/dp10"
                     android:gravity="center_vertical"
