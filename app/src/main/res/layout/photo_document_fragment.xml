@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
             android:text="Picture"
             android:textSize="@dimen/dp12" />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
             android:text="Document"
             android:textSize="@dimen/dp12" />
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="@dimen/dp5"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:gravity="center_vertical"
         android:text="Remark"
         android:textSize="@dimen/dp12" />

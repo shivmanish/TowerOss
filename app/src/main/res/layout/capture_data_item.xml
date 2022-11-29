@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:gravity="center_vertical"
         android:text="Basic Info"
         android:textSize="@dimen/dp12" />
