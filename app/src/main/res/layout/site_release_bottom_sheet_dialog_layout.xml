@@ -91,7 +91,7 @@
                             android:layout_centerHorizontal="true"
                             android:background="@color/circle_color"
                             android:padding="@dimen/dp14"
-                            android:src="@drawable/ic_call"></ImageView>
+                            android:src="@drawable/ic_menu_call"></ImageView>
                     </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
                     <TextView
