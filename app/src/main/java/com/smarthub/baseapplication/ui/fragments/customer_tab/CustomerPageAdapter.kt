@@ -15,7 +15,7 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return CustomerInfo()
+                return OpcoSiteInfoFramgment()
             }
 //            1 -> {
 //                return CommercialFragment()
@@ -30,7 +30,7 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
                 return RfAntinaFragment()
             }
             else -> {
-                return CustomerInfo()
+                return OpcoSiteInfoFramgment()
             }
         }
     }

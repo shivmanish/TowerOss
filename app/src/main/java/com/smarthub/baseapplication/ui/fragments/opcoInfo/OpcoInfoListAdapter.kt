@@ -41,7 +41,7 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
     }
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : BasicDetailItemViewBinding = BasicDetailItemViewBinding.bind(itemView)
+        var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -58,7 +58,7 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : OperationInfoViewBinding = OperationInfoViewBinding.bind(itemView)
+        var binding : OpcoOperationsTeamItemBinding = OpcoOperationsTeamItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -75,7 +75,7 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : GeoConditionListItemBinding = GeoConditionListItemBinding.bind(itemView)
+        var binding : OpcoAttachmentBinding = OpcoAttachmentBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -95,15 +95,15 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.basic_detail_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.operation_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_operations_team_item, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_attachment, parent, false)
                 return ViewHold3(view)
             }
 
@@ -114,7 +114,7 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -125,16 +125,16 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked()
+                        listener.opcoSiteInfoItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
                 if (data!=null) {
                   /*  holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
@@ -144,57 +144,50 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
                 }
             }
             is ViewHold2 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                        listener.operationInfoDetailsItemClicked()
+                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.setOnClickListener {
+                        listener.opcoSiteInfoItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
             }
             is ViewHold3 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+
                     } else {
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                        listener.geoConditionsDetailsItemClicked()
-                    }
+                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+//                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+//                    holder.binding.imgEdit.setOnClickListener {
+//                        listener.opcoSiteInfoItemClicked()
+//                    }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+//                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
             }
         }
     }
