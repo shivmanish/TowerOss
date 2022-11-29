@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModel
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
 class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
@@ -18,9 +17,9 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
     var type3 = "Geo Condition"
     var type4 = "Safety / Access"
     var type5 = "OPCO Contact Details"
-    private var data : BasicInfoModel?=null
+    private var data : BasicInfoModelDropDown?=null
 
-    fun setData(data : BasicInfoModel){
+    fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class BasicInfoModel implements Serializable {
+public class BasicInfoModelDropDown implements Serializable {
 
     @SerializedName("Sitestatus")
     @Expose

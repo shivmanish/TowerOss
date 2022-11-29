@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.SiteInfoRepo
@@ -24,14 +25,11 @@ import com.smarthub.baseapplication.network.repo.SiteInfoRepo
 
 class SiteDetailViewModel: ViewModel() {
     var changeStatusPopUp:PopupWindow?=null
-    var tabNames= MutableLiveData<Array<String>>()
     var isScrollUp = MutableLiveData<Boolean>()
     var isScroll = MutableLiveData<SetTabData>()
-    var tabLayoutOnChange:Boolean = false
 
     var siteInfoRepo: SiteInfoRepo?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
-
 
     init {
         siteInfoRepo = SiteInfoRepo(APIInterceptor.get())
@@ -41,7 +39,7 @@ class SiteDetailViewModel: ViewModel() {
     fun  getStrings(ctx:Context): Array<String> {
        return ctx.resources.getStringArray(R.array.tab_names)
     }
-    fun  getImageArray(ctx:Context): TypedArray {
+    fun getImageArray(ctx:Context): TypedArray {
         return ctx.resources.obtainTypedArray(R.array.random_imgs)
     }
 
@@ -53,7 +51,7 @@ class SiteDetailViewModel: ViewModel() {
             return ctx.resources.getDrawable(R.drawable.close)
         }
     }
-     fun showStatusPopup(context: Activity,p: Point) {
+    fun showStatusPopup(context: Activity,p: Point) {
 
         // Inflate the popup_layout.xml
 //        val viewGroup = context.findViewById<View>(R.id.llStatusChangePopup) as LinearLayout
