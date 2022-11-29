@@ -220,6 +220,8 @@
                 android:layout_height="@dimen/dp38"
                 android:background="@color/tab_deselected"
                 android:layout_gravity="bottom"
+                app:tabIndicatorHeight="2dp"
+                app:tabIndicatorColor="@color/yellow"
                 app:tabMode="scrollable"
                 app:tabPaddingEnd="@dimen/dp5"
                 app:tabPaddingStart="@dimen/dp5"
