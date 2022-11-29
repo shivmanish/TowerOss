@@ -28,7 +28,6 @@ class OpcoSiteInfoFramgment :Fragment(), OpcoInfoListAdapter.OpcoInfoLisListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.listItem?.adapter = OpcoInfoListAdapter(this@OpcoSiteInfoFramgment)
-
     }
 
     override fun attachmentItemClicked() {
