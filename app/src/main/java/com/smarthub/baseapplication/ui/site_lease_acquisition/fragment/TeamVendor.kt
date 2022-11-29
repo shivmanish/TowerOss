@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
-import com.smarthub.baseapplication.ui.dialog.opco.DetailsBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
 import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.Team_VendorLeaseListAdapter
 
 class TeamVendor :Fragment(), Team_VendorLeaseListAdapter.TeamVendorListItemListner {

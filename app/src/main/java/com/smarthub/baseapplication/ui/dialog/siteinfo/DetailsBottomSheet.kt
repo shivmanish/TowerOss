@@ -1,23 +1,20 @@
-package com.smarthub.baseapplication.ui.dialog.opco
+package com.smarthub.baseapplication.ui.dialog.siteinfo
 
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.DetailsBottomSheetViewBinding
-import com.smarthub.baseapplication.databinding.SaftyAccessDetailsBottomSheetBinding
 
-class SaftyAccessBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class DetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
 
-    lateinit var binding : SaftyAccessDetailsBottomSheetBinding
+    lateinit var binding : DetailsBottomSheetViewBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = SaftyAccessDetailsBottomSheetBinding.bind(view)
+        binding = DetailsBottomSheetViewBinding.bind(view)
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
@@ -29,7 +26,7 @@ class SaftyAccessBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(c
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = SaftyAccessDetailsBottomSheetBinding.inflate(inflater)
+        binding = DetailsBottomSheetViewBinding.inflate(inflater)
         return binding.root
     }
 
