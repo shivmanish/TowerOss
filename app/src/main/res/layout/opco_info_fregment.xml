@@ -4,16 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:orientation="vertical"
         tools:itemCount="3"
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/list_item"
-        tools:listitem="@layout/commercial_list_item1"
+        android:paddingTop="@dimen/dp10"
+        tools:listitem="@layout/rf_equipment_list_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
