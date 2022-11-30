@@ -23,10 +23,7 @@ class OperationsInfoBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragmen
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
 
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = OperationsInfoDetailsBottomSheetBinding.inflate(inflater)

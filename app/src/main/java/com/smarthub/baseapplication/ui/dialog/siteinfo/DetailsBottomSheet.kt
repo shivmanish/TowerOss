@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.DetailsBottomSheetViewBinding
 
 class DetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
@@ -20,10 +21,7 @@ class DetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(conte
         }
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-
-    }
+    override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DetailsBottomSheetViewBinding.inflate(inflater)
