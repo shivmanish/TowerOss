@@ -37,30 +37,30 @@ class UtilitesNocDataAdapter(
             listener.clickedItem()
             Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
         }
-        holder.binding.addDG?.setOnClickListener {
-            listener.clickedItemDG()
-            Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
-        }
-        holder.binding.addAC?.setOnClickListener {
-            listener.clickedItemAC()
-     /*       val action =
-                UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag()
-            Navigation.findNavController(it).navigate(action);*/
-
-        }
-        holder.binding.addsmp?.setOnClickListener {
-           listener.clickedItemSMP()
-
-        }
-        holder.binding.addFireExiting?.setOnClickListener {
-            listener.clickedItemFireExiting()
-            Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
-        }
-        holder.binding.addAC?.setOnClickListener {
-          listener.clickedItemAC()
-        //    Navigation.findNavController(it).navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
-
-        }
+//        holder.binding.addDG?.setOnClickListener {
+//            listener.clickedItemDG()
+//            Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//        }
+//        holder.binding.addAC?.setOnClickListener {
+//            listener.clickedItemAC()
+//     /*       val action =
+//                UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag()
+//            Navigation.findNavController(it).navigate(action);*/
+//
+//        }
+//        holder.binding.addsmp?.setOnClickListener {
+//           listener.clickedItemSMP()
+//
+//        }
+//        holder.binding.addFireExiting?.setOnClickListener {
+//            listener.clickedItemFireExiting()
+//            Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//        }
+//        holder.binding.addAC?.setOnClickListener {
+//          listener.clickedItemAC()
+//        //    Navigation.findNavController(it).navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
+//
+//        }
     }
 
     override fun getItemCount(): Int {
