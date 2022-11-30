@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#004C4B4B"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/ic_menu_close"
-        android:translationZ="@dimen/dp6"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp5"
-        android:layout_width="@dimen/dp30"
-        android:layout_height="@dimen/dp30"
-        android:src="@drawable/cross_ico"
-        android:padding="@dimen/dp5"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="@color/tab_text_color"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:elevation="12dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/drawable_cross_back"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="40dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:padding="2dp"
+            app:tint="@color/white"
+            android:src="@drawable/close"/>
+    </com.google.android.material.card.MaterialCardView>
     <ScrollView
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -27,7 +36,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:visibility="visible"
             android:orientation="vertical"
-            android:background="@drawable/dialog_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <GridLayout
@@ -43,132 +51,73 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Potential Threat"
+                        android:text="Circle"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="Billable"
-                        android:id="@+id/potentioal_threat_spinner"
+                        android:id="@+id/spinCircle"
                         style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Altitude"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:text="360m"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Wind Zone"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="Billable"
-                        android:id="@+id/wind_zone_spinner"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Seismec Zone"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="Billable"
-                        android:id="@+id/seismec_zone_spinner"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Flood Zone"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="ETIPL"
-                        android:id="@+id/flood_zone_spinner"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Temp Zone"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:text="18-50 deg"
-                        style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:text="On-Air" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Cluster"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinCluster"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Maintenance Point"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinMaintenancePoint"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -183,16 +132,19 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Terrain Type"
+                        android:text="Area"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
+
                     <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:text="Costal"
-                        android:id="@+id/terrain_type_spinner"
+                        android:id="@+id/spinArea"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="22.968035,76.085596" />
+
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -200,34 +152,87 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinSiteType"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="22.968035,76.085596" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="OPCO Name &amp; Technology"
+                        style="@style/RowTextItemInfo"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinExecutiveEmailID"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site category"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinSiteCategory"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RTP" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
+                </LinearLayout>
+
 
             </GridLayout>
 
 
-            <LinearLayout
-                android:visibility="gone"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/layout_img_attachment"/>
-
-            </LinearLayout>
-
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="@dimen/dp120"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color1"
-                android:text="update"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-                android:layout_gravity="end"
-                android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

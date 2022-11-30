@@ -54,5 +54,6 @@
 
     <color name="text_color">#323C47</color>
     <color name="view_color">#D4D6D7</color>
+    <color name="bg_gray">#F1F1F1</color>
 
 </resources>
