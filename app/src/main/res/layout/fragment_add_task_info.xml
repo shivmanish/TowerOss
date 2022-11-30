@@ -69,7 +69,7 @@
             android:layout_marginRight="@dimen/dp10"
             android:padding="@dimen/dp5"
             android:adjustViewBounds="true"
-            android:src="@drawable/search"
+            android:src="@drawable/search_white"
             app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/camera"

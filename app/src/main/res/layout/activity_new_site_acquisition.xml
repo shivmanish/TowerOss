@@ -57,7 +57,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="Reliance jio pvt ltd"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp15" />
+                        android:textSize="@dimen/sp18" />
 
                     <TextView
                         android:padding="2dp"
@@ -67,7 +67,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="#DEL-VIL-SC-0001"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp15" />
 
                     <LinearLayout
                         android:visibility="gone"
@@ -198,6 +198,7 @@
         android:layout_gravity="bottom"
         app:tabMode="scrollable"
         app:tabPaddingEnd="@dimen/dp5"
+        app:tabMinWidth="@dimen/dp100"
         app:tabPaddingStart="@dimen/dp5"
         app:layout_constraintTop_toBottomOf="@+id/card"
         app:tabTextAppearance="@style/TabTextView"
