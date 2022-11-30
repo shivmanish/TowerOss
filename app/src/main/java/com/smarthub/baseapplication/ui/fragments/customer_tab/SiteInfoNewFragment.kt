@@ -55,23 +55,23 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     }
     override fun detailsItemClicked() {
         val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet)
-        bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
     override fun operationInfoDetailsItemClicked() {
         val bottomSheetDialogFragment = OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet)
-        bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
     override fun geoConditionsDetailsItemClicked() {
         val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
-        bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
     override fun siteAccessDetailsItemClicked() {
         val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet)
-        bottomSheetDialogFragment?.show(childFragmentManager,"category")
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OperationsInfoDetailsBottomSheetBinding
 
 class OperationsInfoBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
@@ -19,6 +20,8 @@ class OperationsInfoBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragmen
             dismiss()
         }
     }
+
+    override fun getTheme() = R.style.NewDialogTask
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
