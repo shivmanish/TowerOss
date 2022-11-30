@@ -202,6 +202,7 @@
         app:tabPaddingEnd="@dimen/dp5"
         app:tabPaddingStart="@dimen/dp5"
         app:tabIndicatorHeight="3dp"
+        app:tabMinWidth="@dimen/dp100"
         app:tabIndicatorColor="@color/yellow"
         app:tabMode="scrollable"
         app:layout_constraintTop_toBottomOf="@+id/card"
