@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9F9F9"
-    android:orientation="vertical"
-    tools:context=".ui.fragments.customer_tab.CustomerFragment">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_marginTop="@dimen/dp10"
@@ -29,7 +28,7 @@
         android:layout_height="@dimen/dp40"
         android:paddingLeft="@dimen/dp10"
         android:paddingRight="@dimen/dp10"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:text="Add New"
         android:id="@+id/addmore"
         android:layout_gravity="center|right"
