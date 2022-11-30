@@ -37,9 +37,9 @@ class SplashActivity : BaseActivity() {
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
 
-//                var intent = Intent(this@SplashActivity,LoginActivity::class.java)
+//                var intent = Intent(this@SplashActivity,DemoActivity::class.java)
 //                startActivity(intent)
-                finish()
+//                finish()
 
 //                val dialouge = RfEquipmentDialouge()
 //                dialouge.show(getSupportFragmentManager(),"")

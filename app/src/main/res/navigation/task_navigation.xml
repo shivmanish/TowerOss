@@ -7,5 +7,19 @@
     <fragment
         android:id="@+id/addTaskFragment2"
         android:name="com.smarthub.baseapplication.ui.fragments.task.AddTaskInfoFragment"
-        android:label="AddTaskFragment" />
+        android:label="AddTaskFragment" >
+        <action android:id="@+id/actionToMoveSecondFrag"
+            app:destination="@+id/taskSecondFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/taskSecondFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.TaskSecondFragment"
+        android:label="TaskSecondFragment" >
+        <action android:id="@+id/actionToMoveThirdFrag"
+            app:destination="@id/taskThirdFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/taskThirdFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.TaskThirdFragment"
+        android:label="TaskThirdFragment" />
 </navigation>

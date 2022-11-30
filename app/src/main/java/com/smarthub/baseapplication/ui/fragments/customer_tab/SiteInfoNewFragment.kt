@@ -47,6 +47,7 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     }
 
     private fun mapUIData(data : SiteInfoModel){
+        (binding?.listItem?.adapter as SiteInfoListAdapter).setValueData(data)
 
     }
 
