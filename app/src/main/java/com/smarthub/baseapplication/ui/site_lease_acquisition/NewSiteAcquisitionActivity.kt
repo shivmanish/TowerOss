@@ -2,7 +2,9 @@ package com.smarthub.baseapplication.ui.site_lease_acquisition
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
@@ -48,15 +50,8 @@ class NewSiteAcquisitionActivity : BaseActivity() {
             val dialog = BottomSheetDialog(this,R.style.NewDialog)
             // on below line we are inflating a layout file which we have created.
             val view = layoutInflater.inflate(R.layout.site_release_bottom_sheet_dialog_layout, null)
-            val close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
-            val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
-            val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
-            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.ic_send_alert)
-            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
-            val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
-            val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
-            val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
-            val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)
+            val close = view.findViewById<ImageView>(R.id.ic_menu_close)
+
             dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
             close.setOnClickListener {
                 // on below line we are calling a dismiss
