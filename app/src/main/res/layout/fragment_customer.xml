@@ -14,7 +14,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
       <include
-          android:id="@+id/includedLayout"
+          android:id="@+id/add_items_layout"
 
           layout="@layout/add_new_layout">
 

@@ -36,10 +36,12 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
             if ((binding.itemTitle.tag as Boolean)) {
                 //binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up, 0)
                 binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
             }
             else {
                 //binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.arrow_farword, 0)
                 binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
 
             }
 
@@ -57,24 +59,14 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-//                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-//                    0,
-//                    0,
-//                    R.drawable.ic_arrow_up,
-//                    0
-//                )
                 binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
 
             }
             else {
 
-//                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-//                    0,
-//                    0,
-//                    R.drawable.arrow_farword,
-//                    0
-//                )
                 binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
             }
 
             binding.itemLine.visibility =
@@ -130,21 +122,12 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
             holder.binding.itemTitle.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
-//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-//                        0,
-//                        0,
-//                        R.drawable.ic_arrow_up,
-//                        0
-//                    )
                     holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
+
                 } else {
-//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-//                        0,
-//                        0,
-//                        R.drawable.arrow_farword,
-//                        0
-//                    )
                     holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
@@ -160,22 +143,12 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
             holder.binding.itemTitle.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
-//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-//                        0,
-//                        0,
-//                        R.drawable.ic_arrow_up,
-//                        0
-//                    )
                     holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
                 }
                 else {
-//                    holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(
-//                        0,
-//                        0,
-//                        R.drawable.arrow_farword,
-//                        0
-//                    )
                     holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
