@@ -33,8 +33,10 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -47,18 +49,16 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
     class PropertyDetailsViewHold(itemView: View) :ViewHold(itemView) {
@@ -68,18 +68,16 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
     class PODetailsViewHold(itemView: View) :ViewHold(itemView) {
@@ -89,18 +87,16 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
     class AttachmentViewHold(itemView: View,listener: FeasibilityListItemListener) : ViewHold(itemView) {
@@ -116,9 +112,14 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
+
+
 
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                          recyclerListener.adapter = adapter
