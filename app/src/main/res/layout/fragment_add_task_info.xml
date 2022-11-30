@@ -378,7 +378,6 @@
                         android:gravity="left"
                         style="@style/SpinnerTheme"
                         android:drawablePadding="20dp"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -398,7 +397,6 @@
                         style="@style/SpinnerTheme"
                         android:drawablePadding="20dp"
                         android:gravity="left"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:text="CE-MHMUM-SC-A0123"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -424,7 +422,6 @@
                         style="@style/SpinnerTheme"
                         android:drawablePadding="20dp"
                         android:gravity="left"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:text="Acquisition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -450,7 +447,6 @@
                         style="@style/SpinnerTheme"
                         android:drawablePadding="20dp"
                         android:gravity="left"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:text="Umesh"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -476,7 +472,6 @@
                         style="@style/SpinnerTheme"
                         android:drawablePadding="20dp"
                         android:gravity="left"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:text="High"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
