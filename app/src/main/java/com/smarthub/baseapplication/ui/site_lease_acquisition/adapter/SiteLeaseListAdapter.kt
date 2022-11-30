@@ -20,8 +20,7 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
         list.add("Details")
         list.add("Attachments")
 
-        
-    }
+            }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
