@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F9F9F9"
-    android:orientation="vertical"
-    app:defaultNavHost="true"
-    app:navGraph="@navigation/site_info"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:id="@+id/parentRelative4"
+        android:id="@+id/parentRelative3"
         android:padding="@dimen/dp8"
         android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/ic_rectangle_5"
         android:elevation="5dp"
         android:layout_margin="@dimen/dp12"
@@ -24,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Fire Extinguisher"
+            android:text="AC"
             android:fontFamily="@font/poppins"
             android:textAppearance="@style/RowTestItemEdit"
             android:gravity="left"
@@ -64,7 +59,7 @@
                     android:textSize="12sp"
                     android:textColor="#3D4E6D"
                     android:gravity="center"
-                    android:id="@+id/mark4" />
+                    android:id="@+id/mark3" />
                 <TextView
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_width="wrap_content"
@@ -108,7 +103,7 @@
             </LinearLayout>
             <View
                 android:layout_marginTop="@dimen/dp5"
-                android:id="@+id/bg_dark4"
+                android:id="@+id/bg_dark3"
                 android:alpha=".21"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp1"
@@ -188,4 +183,4 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
