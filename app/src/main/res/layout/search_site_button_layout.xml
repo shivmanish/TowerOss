@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp5"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_weight="1"
+        android:padding="@dimen/dp10"
+        android:text="View on iBoard"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_margin="@dimen/dp5"
+        android:id="@+id/view_on_ibo"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_iboard"
+        android:layout_height="@dimen/dp45"
+        android:gravity="center|center_vertical"
+        android:layout_marginBottom="@dimen/dp30"
+        android:background="@drawable/btn_blue"
+        android:fontFamily="@font/poppins_regular"
+       />
+    <TextView
+        android:layout_weight="1"
+        android:padding="@dimen/dp10"
+        android:text="View on Map"
+        android:textSize="15sp"
+        android:textColor="#3F4D68"
+        android:layout_margin="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_view_map"
+        android:layout_height="@dimen/dp45"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp30"
+        android:background="@drawable/login_yellow_bg"
+        android:fontFamily="@font/poppins_regular"
+       />
+
+</LinearLayout>

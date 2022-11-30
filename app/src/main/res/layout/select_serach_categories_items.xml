@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/dp15"
+    android:paddingBottom="@dimen/dp15"
+    android:layout_height="wrap_content"
+
+
+    android:columnCount="2"
+
+    android:orientation="horizontal">
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:id="@+id/layout_item"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:id="@+id/button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:text="Site UID"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="Site Name"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="Site Alternate Name"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="OPCO UID"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="OPCO SAP ID"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="OPCO Site Name"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ColumnItemInfo"
+        android:layout_width="0dp"
+
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/bg_rect_white"
+            android:elevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp2">
+
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/btn_select_check"
+                    android:drawablePadding="10dp"
+                    android:enabled="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="Lat, Long and radius"
+                    android:textAppearance="@style/LanaguageSelectedText" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+
+</GridLayout>
+
