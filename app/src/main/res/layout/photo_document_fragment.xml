@@ -66,6 +66,7 @@
         android:textSize="@dimen/dp12" />
 
     <EditText
+        android:id="@+id/edit_remark"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -92,6 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
+            android:id="@+id/btn_next"
             android:paddingLeft="@dimen/dp15"
             android:paddingRight="@dimen/dp15"
             android:paddingTop="@dimen/dp10"

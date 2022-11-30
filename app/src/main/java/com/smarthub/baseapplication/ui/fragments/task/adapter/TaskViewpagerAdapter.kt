@@ -1,20 +1,13 @@
 package com.smarthub.baseapplication.ui.fragments.task.adapter
 
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.basic_info.fragment.BasicInfo
-import com.smarthub.baseapplication.ui.basic_info.fragment.GeoConditionalInfo
-import com.smarthub.baseapplication.ui.basic_info.fragment.OperationalInfo
-import com.smarthub.baseapplication.ui.basic_info.fragment.SafatyAccessFragment
 import com.smarthub.baseapplication.ui.fragments.task.ActivityCaptureSiteFragment
 import com.smarthub.baseapplication.ui.fragments.task.PhotoDocumentFragment
 
-class TaskViewpagerAdapter(fm: FragmentManager) :
-    FragmentPagerAdapter(fm) {
+class TaskViewpagerAdapter(fm: FragmentManager,var listener: PhotoDocumentFragment.PhotoDocumentListener) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return 2
@@ -23,7 +16,7 @@ class TaskViewpagerAdapter(fm: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> {
-                val photoDocumentFragment = PhotoDocumentFragment()
+                val photoDocumentFragment = PhotoDocumentFragment(listener)
                 return photoDocumentFragment
             }
             1 -> {
@@ -31,7 +24,7 @@ class TaskViewpagerAdapter(fm: FragmentManager) :
                 return capturefragment
             }
             else -> {
-                val photoDocumentFragment = PhotoDocumentFragment()
+                val photoDocumentFragment = PhotoDocumentFragment(listener)
                 return photoDocumentFragment
             }
         }
