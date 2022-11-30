@@ -10,6 +10,7 @@
         android:orientation="vertical"
         tools:itemCount="3"
         android:id="@+id/list_item"
+        android:layout_marginTop="@dimen/dp10"
         tools:listitem="@layout/commercial_list_item1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
