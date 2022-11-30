@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lst_item"
-        android:background="#EBEBEB"
+        android:background="@color/collapse_card_bg"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal">
         <LinearLayout
@@ -26,7 +26,7 @@
         android:paddingStart="@dimen/dp10"
         android:paddingEnd="@dimen/dp10"
         android:textStyle="bold"
-        android:background="#EBEBEB"
+        android:background="@color/transparent"
         style="@style/RowTestItemEdit"
         android:gravity="center_vertical"
         android:textColor="@color/black"
@@ -78,7 +78,7 @@
 
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"

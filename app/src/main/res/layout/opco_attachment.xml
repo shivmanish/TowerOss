@@ -79,7 +79,7 @@
 
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:layout_marginTop="@dimen/dp5"
         android:orientation="vertical"

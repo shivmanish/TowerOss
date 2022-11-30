@@ -30,7 +30,7 @@ class RfEquipmentFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener 
         adapter = RfEquipmentAdapter(this@RfEquipmentFragment)
         binding?.listItem?.adapter = adapter
 
-        binding?.addItems?.setOnClickListener {
+        binding?.addItemsLayout?.setOnClickListener {
             adapter?.addItem()
         }
     }

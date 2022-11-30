@@ -30,7 +30,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:padding="@dimen/dp5"
-            android:src="@drawable/add"></ImageView>
+            android:src="@drawable/ic_baseline_add_24"></ImageView>
     </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
     <TextView
