@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.network;
 
+import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
@@ -55,6 +56,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_MODEL)
     Call<SiteInfoModel> fetchSiteInfoData();
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.PROFILE)
+    Call<ProfileUpdate> fetchSiteInfoById(@Body IdData data, @Header("Authorization") String auth);
 
 
 }
