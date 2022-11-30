@@ -509,6 +509,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/next"
                         android:padding="5dp"
                         android:text="Next"
                         android:textStyle="bold"
