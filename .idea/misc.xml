@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/add_ico_white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/circleblue.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/circleblue_1.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/ic_arrow_down_black.xml" value="0.186" />
+        <entry key="app/src/main/res/drawable/ic_circle_icon.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/ic_rectangle_5.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/rectangle_5.xml" value="0.227" />
+        <entry key="app/src/main/res/drawable/rounded_textblue.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/rounded_textview.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/utilities.xml" value="0.124" />
         <entry key="app/src/main/res/layout/ac1_tab_utilities_fragment.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/ac2_tab_utilities_fragment.xml" value="0.22552083333333334" />
