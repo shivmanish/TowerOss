@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model;
 
+import android.widget.RadioGroup;
+
 import com.smarthub.baseapplication.network.RetrofitObjectInstance;
 
 import java.io.IOException;
