@@ -218,7 +218,6 @@
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinSiteCategory"
                         style="@style/SpinnerTheme"
-                        android:prompt="RTP"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="RTP" />
