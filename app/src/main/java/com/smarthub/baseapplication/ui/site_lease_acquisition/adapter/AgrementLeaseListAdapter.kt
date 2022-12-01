@@ -123,7 +123,8 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                          }
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+
+      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.agreements_list_item, parent, false)
         return when (viewType) {
@@ -158,8 +159,8 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
-    override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (holder is AgreementViewHold) {
+      override fun onBindViewHolder(holder: ViewHold, position: Int) {
+       if (holder is AgreementViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -181,7 +182,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             }
             holder.binding.itemTitle.text = list[position]
         }
-        else if (holder is BoundaryAgreementViewHold) {
+       else if (holder is BoundaryAgreementViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -201,8 +202,8 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             holder.binding.itemTitle.text = list[position]
 
         }
-        else if (holder is PropertyAgreementViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
+       else if (holder is PropertyAgreementViewHold) {
+       holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -218,10 +219,10 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
-
+       holder.binding.itemTitle.text = list[position]
         }
-        else if (holder is POAgreementViewHold) {
+
+         else if (holder is POAgreementViewHold) {
             holder.binding.itemTitleDropdown.setOnClickListener {
                 holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
                 if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
@@ -247,8 +248,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             holder.binding.itemTitleStr.text = list[position]
 
         }
-
-        else if (holder is AttachmentViewHold) {
+         else if (holder is AttachmentViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -266,7 +266,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
             holder.binding.itemTitle.text = list[position]
-        }
+         }
 
     }
     override fun getItemCount(): Int {
