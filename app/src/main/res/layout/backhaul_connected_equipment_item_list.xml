@@ -27,7 +27,7 @@
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:gravity="center_vertical"
-                android:textColor="@color/black"
+                android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp50"
                 />
