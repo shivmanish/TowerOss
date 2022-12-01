@@ -105,8 +105,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                          }
         }
     }
-
-      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.agreements_list_item, parent, false)
         return when (viewType) {
@@ -133,7 +132,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             }
         }
     }
-      override fun getItemViewType(position: Int): Int {
+    override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Agreement") AGREMENT_VIEW_TYPE
 
         else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
@@ -141,7 +140,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
     }
-      override fun onBindViewHolder(holder: ViewHold, position: Int) {
+    override fun onBindViewHolder(holder: ViewHold, position: Int) {
        if (holder is AgreementViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
