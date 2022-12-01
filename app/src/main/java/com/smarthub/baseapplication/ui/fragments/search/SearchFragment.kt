@@ -92,7 +92,11 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
                     isDataFetched = false
-                    siteViewModel.fetchSiteSearchData(fetchedData)
+                    if (selectedCategory!=null && selectedCategory?.isNotEmpty() == true){
+                        siteViewModel.fetchSiteSearchData(fetchedData,selectedCategory!!)
+                    }else {
+                        siteViewModel.fetchSiteSearchData(fetchedData)
+                    }
                     fetchedData = ""
                 }
                 else if(fetchedData.isEmpty()){
@@ -111,7 +115,9 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
         binding.blocker.visibility = if (item!=null) View.INVISIBLE else View.GONE
     }
 
-    override fun selectedCategory(item: Int) {
+    var selectedCategory: String?=null
+    override fun selectedCategory(item: String) {
+        this.selectedCategory = item
         Log.d("status", "selectedCategory:$item")
     }
 

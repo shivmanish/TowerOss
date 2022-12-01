@@ -49,4 +49,7 @@ class BasicInfoDetailViewModel : ViewModel() {
     fun fetchSiteSearchData(id:String) {
         siteInfoRepo?.siteSearchData(id)
     }
+    fun fetchSiteSearchData(id:String,category :String) {
+        siteInfoRepo?.siteSearchData(id,category)
+    }
 }

@@ -42,7 +42,7 @@ class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryL
         holder.binding.checkText.setOnClickListener {
             var old = currentPos
             currentPos = position
-            listener.selectedCategory(position)
+            listener.selectedCategory(list[position])
             if (old>=0 && old<list.size)
                 notifyItemChanged(old)
             notifyItemChanged(currentPos)
@@ -50,6 +50,6 @@ class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryL
     }
 
     interface SearchCategoryListener{
-        fun selectedCategory(item:Int)
+        fun selectedCategory(item:String)
     }
 }
