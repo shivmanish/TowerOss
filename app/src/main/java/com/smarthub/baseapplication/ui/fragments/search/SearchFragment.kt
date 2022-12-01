@@ -105,7 +105,8 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
             }
         })
         binding.viewOnIbo.setOnClickListener {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(item?.Siteid!!,item?.id!!))
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(if (item?.Siteid!=null)
+                item?.Siteid!! else "",if (item?.id!=null) item?.id!! else ""))
         }
     }
 
