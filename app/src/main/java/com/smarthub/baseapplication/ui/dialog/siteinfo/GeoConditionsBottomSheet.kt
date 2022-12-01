@@ -19,7 +19,6 @@ class GeoConditionsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment
             dismiss()
         }
     }
-
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

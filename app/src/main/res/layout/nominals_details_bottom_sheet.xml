@@ -1,98 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp5"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/title_layout"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+    android:layout_height="match_parent"
+    android:background="#004C4B4B"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/ic_menu_close"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_expansion_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginBottom="@dimen/dp15"
-            android:id="@+id/collapsing_layout"
-            android:background="@drawable/bg_expansion_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:background="@drawable/bg_expansion_bar"
-                android:id="@+id/item_title"
-                android:text="Link Name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent=".5"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:visibility="invisible"
-                android:id="@+id/icon_layout"
-                android:layout_width="0dp"
-                android:orientation="horizontal"
-                android:gravity="end"
-                app:layout_constraintStart_toEndOf="@+id/item_title"
-                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="0dp">
-                <ImageView
-                    android:visibility="visible"
-                    android:id="@+id/img_edit"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/edit_ico_black"
-                    android:paddingStart="@dimen/dp10"
-                    android:paddingEnd="@dimen/dp10"
-                    android:paddingTop="@dimen/dp10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/img_dropdown"
-                android:src="@drawable/ic_arrow_down_black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="0.37"
-            android:background="@color/transparent"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:layout_margin="5dp"
-        android:visibility="gone"
-        android:id="@+id/item_collapse"
-        android:orientation="vertical"
+        android:background="@drawable/drawable_cross_back"/>
+    <ScrollView
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/dialog_bg"
+            android:layout_margin="5dp"
             android:paddingBottom="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp15"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <GridLayout
                 android:columnCount="2"
                 android:orientation="horizontal"
@@ -110,13 +47,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textRequestCompany"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinRequestCompany"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -128,13 +71,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textTeamId"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinTeamId"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -153,7 +102,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/icon_date"/>
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
 
@@ -174,7 +128,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/icon_date"/>
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
 
@@ -191,15 +150,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/textProposedSelectedCount"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinProposedSelectedCount"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -211,14 +174,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textProposedAntinaHeight"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinProposedAntinaHeight"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -231,14 +199,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textPropertySiteType"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinPropertySiteType"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -250,14 +223,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textTelecomEquipmentType"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinTelecomEquipmentType"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="On-Air" />
 
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -272,14 +250,19 @@
                         android:layout_height="wrap_content"/>
 
 
-                    <TextView
-                        android:id="@+id/textNorminalLatLong"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinNorminalLatLong"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="22.968035,76.085596" />
 
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -291,14 +274,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textAntennaSlotUsed"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAntennaSlotUsed"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="22.968035,76.085596" />
 
-
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -316,8 +304,13 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
-
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -331,12 +324,17 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="Mohan Patil
-"                        style="@style/RowTestItemEdit"
-
+"
+                        style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
-
+                        android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -349,15 +347,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textExecutiveEmailID"
-                        style="@style/RowTextviewItem"
-                        android:text="modan.patil@vil.com"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinExecutiveEmailID"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:text="" />
 
-                
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -369,13 +371,18 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textExecutiveNumber"
-                        style="@style/RowTextviewItem"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinExecutiveNumber"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="9890000009" />
-
+                        android:text="" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
 
@@ -404,8 +411,20 @@
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
 
-
-
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="update"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:layout_gravity="end"
+                android:background="@drawable/login_yellow_bg"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
