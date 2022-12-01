@@ -20,8 +20,7 @@ class Agreements :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner 
         binding = AgreementFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+       override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.rvAgreementList?.adapter = AgrementLeaseListAdapter(this@Agreements)
         initViews(view)
     }
