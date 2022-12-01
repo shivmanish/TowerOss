@@ -10,10 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
-import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.UtilitesNocDataAdapter
-import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.UtilitesNocDataAdapterListener
+import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapter
+import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocActivity
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocViewModel
+
 class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
@@ -33,21 +34,21 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
 
     private fun initializeFragment() {
         nocBinding.utilitesNocList.layoutManager = LinearLayoutManager(requireContext())
-        nocDataAdapter = UtilitesNocDataAdapter(this@UtilitiesNocMainTabFragment, ArrayList())
+        nocDataAdapter = UtilitesNocDataAdapter(this@UtilitiesNocMainTabFragment)
         nocBinding.utilitesNocList.adapter = nocDataAdapter
-        nocBinding.addmore.setOnClickListener{
-            var arraydata = ArrayList<String>()
-            arraydata.add("anything")
-            nocDataAdapter.setData(arraydata)
-        }
+//        nocBinding.addmore.setOnClickListener{
+//            var arraydata = ArrayList<String>()
+//            arraydata.add("anything")
+//            nocDataAdapter.setData(arraydata)
+//        }
         viewmodel.fetchData()
-        viewmodel.utilites_noc_data.observe(requireActivity(), Observer {
-            // Data is get from server and ui work will be start from here
-            println("this is called data is $it")
-            var arraydata = ArrayList<String>()
-            arraydata.add(it)
-            nocDataAdapter.setData(arraydata)
-        })
+//        viewmodel.utilites_noc_data.observe(requireActivity(), Observer {
+//            // Data is get from server and ui work will be start from here
+//            println("this is called data is $it")
+//            var arraydata = ArrayList<String>()
+//            arraydata.add(it)
+//            nocDataAdapter.setData(arraydata)
+//        })
     }
 
 
@@ -68,13 +69,9 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
 
     override fun clickedItemAC() {
 
-       // (requireActivity() as SearchActivity).navigationFragment(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
-
-     // requireActivity().findNavController(R.id.nav_host).navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToAC1UtilitesFrag())
-
    }
     override fun clickedItemDG() {
-    //    findNavController().navigate(UtilitiesNocMainTabFragmentDirections.actionUtilitiesNocMainTabFragmentToDG1TabUtilitesFrag())
+
 
    }
     override fun clickedItemSMP() {

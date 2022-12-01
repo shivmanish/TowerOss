@@ -3,6 +3,8 @@ package com.smarthub.baseapplication.network.repo;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
+import com.smarthub.baseapplication.model.basicInfo.IdData;
+import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -20,6 +22,7 @@ public class SiteInfoRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
     private SingleLiveEvent<Resource<SiteInfoModel>> siteIndoResponse;
+    private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
 
     public static SiteInfoRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -34,6 +37,7 @@ public class SiteInfoRepo {
         this.apiClient = apiClient;
         dropDownResoonse = new SingleLiveEvent<>();
         siteIndoResponse = new SingleLiveEvent<>();
+        siteSearchResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
@@ -42,6 +46,10 @@ public class SiteInfoRepo {
 
     public SingleLiveEvent<Resource<SiteInfoModel>> getSiteInfoResponseData() {
         return siteIndoResponse;
+    }
+
+    public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
+        return siteSearchResponse;
     }
 
     public void siteInfoDropDown() {
@@ -118,6 +126,120 @@ public class SiteInfoRepo {
                     siteIndoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteIndoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteInfoById(String id) {
+
+        apiClient.fetchSiteInfoById(new IdData("323")).enqueue(new Callback<SiteInfoModel>() {
+            @Override
+            public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
+            }
+
+            @Override
+            public void onFailure(Call<SiteInfoModel> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteInfoModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteIndoResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteIndoResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteIndoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteIndoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteSearchData(String id) {
+
+        apiClient.searchSiteInfoData(id).enqueue(new Callback<SearchList>() {
+            @Override
+            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
+            }
+
+            @Override
+            public void onFailure(Call<SearchList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SearchList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteSearchData(String id,String category) {
+
+        apiClient.searchSiteInfoData(id,category).enqueue(new Callback<SearchList>() {
+            @Override
+            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
+            }
+
+            @Override
+            public void onFailure(Call<SearchList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SearchList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

@@ -107,11 +107,8 @@ class ProfileActivity : BaseActivity() {
         popupWindow?.showAsDropDown(view, 100, -160)
         // Closes the popup window when touch outside.
         popupWindow?.isOutsideTouchable = true
-//        popupWindow?.isFocusable = true
-        for (i in 0 until childContainer.childCount)
-            childContainer.getChildAt(i).setOnClickListener {
-                menuItemClicked(it.id)
-            }
+
+
 
     }
 

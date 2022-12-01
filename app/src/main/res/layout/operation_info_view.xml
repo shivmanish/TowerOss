@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="Billable"
-                    android:id="@+id/site_category_spinner"
+                    android:id="@+id/site_billing_status"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="ETIPL"
-                    android:id="@+id/site_type_spinner"
+                    android:id="@+id/cost_center"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="Solo"
-                    android:id="@+id/site_ownership_spinner"
+                    android:id="@+id/operator_sharing"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -213,8 +213,9 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <TextView
                     android:text="SEB/ DG"
+                    android:id="@+id/power_source"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -231,8 +232,9 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <TextView
                     android:text="5KW"
+                    android:id="@+id/design_dc_load"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -250,7 +252,8 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <TextView
+                    android:id="@+id/installed_dc_load"
                     android:text="3KW"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -267,7 +270,8 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <TextView
+                    android:id="@+id/operation_temp"
                     android:text="24 Ded"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -363,6 +367,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/RowTextviewItem"
+                    android:id="@+id/dismanting"
                     android:text="18-Nov-2022"
                     android:drawableEnd="@drawable/icon_date"
                     android:layout_width="match_parent"
