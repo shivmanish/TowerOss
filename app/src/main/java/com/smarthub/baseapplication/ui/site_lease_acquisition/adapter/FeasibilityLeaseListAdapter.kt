@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.site_lease_acquisition.adapter
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-
 class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
     RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>()  {
     var list: ArrayList<String> = ArrayList()

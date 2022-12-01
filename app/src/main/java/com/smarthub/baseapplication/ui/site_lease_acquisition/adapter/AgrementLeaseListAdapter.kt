@@ -27,13 +27,16 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     class AgreementViewHold(itemView: View) : ViewHold(itemView) {
         var binding: AgreementsListItemBinding= AgreementsListItemBinding.bind(itemView)
 
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
