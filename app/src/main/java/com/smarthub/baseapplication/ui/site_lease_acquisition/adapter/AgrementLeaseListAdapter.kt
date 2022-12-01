@@ -78,24 +78,6 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         }
 
     }
-    class POAgreementViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: BackhaulPoDetailsListItemBinding =
-            BackhaulPoDetailsListItemBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
-        init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-
-        }
-    }
     class AttachmentViewHold(itemView: View,listener: AgreementListItemlistner) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
@@ -222,32 +204,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
        holder.binding.itemTitle.text = list[position]
         }
 
-         else if (holder is POAgreementViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                }
 
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.editListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.addMoreListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.deletListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-            }
-            holder.binding.itemTitleStr.text = list[position]
-
-        }
          else if (holder is AttachmentViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)

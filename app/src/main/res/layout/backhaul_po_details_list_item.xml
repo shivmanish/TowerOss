@@ -8,89 +8,90 @@
 
     <LinearLayout
         android:id="@+id/title_layout"
-        android:orientation="horizontal"
-        android:background="@color/collapse_card_bg"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/collapse_card_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/dp50">
             <TextView
-                android:id="@+id/item_title_str"
-                android:text="ODU"
-                android:textSize="@dimen/dp14"
-                android:paddingStart="@dimen/dp10"
+                android:id="@+id/item_title"
+                android:text="Link Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
                 android:paddingEnd="@dimen/dp10"
-                android:textStyle="bold"
+                android:paddingTop="@dimen/dp10"
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
-                android:gravity="center_vertical"
-                android:textColor="@color/color1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp50"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_weight="4"
-            android:orientation="horizontal">
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".5"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/icon_layout"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_edit"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/edit_ico_black"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_delete"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_delete"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_add"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/add"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
             <ImageView
-                android:visibility="invisible"
-                android:layout_margin="@dimen/dp5"
-                android:id="@+id/edit_list_item"
-                android:layout_width="match_parent"
-                android:padding="@dimen/dp8"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:src="@drawable/edit_ico_black" />
-
-            <ImageView
-                android:visibility="invisible"
-                android:layout_margin="@dimen/dp5"
-                android:id="@+id/delet_list_item"
-                android:layout_width="match_parent"
-                android:padding="@dimen/dp8"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_delete" />
-
-            <ImageView
-                android:visibility="invisible"
-                android:layout_margin="@dimen/dp5"
-                android:id="@+id/add_more_list_item"
-                android:layout_width="match_parent"
-                android:padding="@dimen/dp8"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:src="@drawable/add_ico" />
-
-            <ImageView
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/dp5"
-                android:layout_marginTop="@dimen/dp5"
-                android:layout_marginBottom="@dimen/dp5"
-                android:layout_marginRight="@dimen/dp10"
-                android:id="@+id/item_title_dropdown"
-                android:padding="@dimen/dp5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_arrow_down_black" />
-
-        </LinearLayout>
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp58"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/item_line"
+            android:alpha="2"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
     </LinearLayout>
-    <View
-        android:id="@+id/item_line"
-        android:alpha="2"
-        app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:background="@color/view_color"
-        android:layout_height="1dp"
-        android:layout_width="match_parent"
-        />
+
 
 
     <LinearLayout

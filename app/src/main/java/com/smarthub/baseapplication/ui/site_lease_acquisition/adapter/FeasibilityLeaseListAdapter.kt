@@ -86,13 +86,11 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
             /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
@@ -103,7 +101,7 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
                 }*/
         }
     }
-    class AttachmentViewHold(itemView: View,listener: FeasibilityListItemListener) : ViewHold(itemView) {
+     class AttachmentViewHold(itemView: View,listener: FeasibilityListItemListener) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -128,10 +126,10 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
                          }
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view =
-            LayoutInflater.from(parent.context).inflate(R.layout.building_details_list_item, parent, false)
-        return when (viewType) {
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+     var view =
+     LayoutInflater.from(parent.context).inflate(R.layout.building_details_list_item, parent, false)
+     return when (viewType) {
             DETAILS_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.building_details_list_item, parent, false)
@@ -141,7 +139,8 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.boudry_details_list_item, parent, false)
                 BoundaryDetailsViewHold(view)
-            }  PROPERTY_VIEW_TYPE -> {
+            }
+            PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.property_details_list_item, parent, false)
                 PropertyDetailsViewHold(view)
@@ -156,7 +155,6 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
                     .inflate(R.layout.attachment_list_item, parent, false)
                 AttachmentViewHold(view,listener)
             }
-
             else -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.building_details_list_item, parent, false)
@@ -238,29 +236,23 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
 
         }
         else if (holder is PODetailsViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 } else {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.editListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.addMoreListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.deletListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitleStr.text = list[position]
+            holder.binding.itemTitle.text = list[position]
 
         }
 

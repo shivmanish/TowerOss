@@ -11,29 +11,22 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_expansion_bar"
+        android:background="@color/collapse_card_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
-
-
-            android:layout_marginBottom="@dimen/dp15"
             android:id="@+id/collapsing_layout"
-            android:background="@drawable/bg_expansion_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-
+            android:layout_height="@dimen/dp50">
             <TextView
-                android:background="@drawable/bg_expansion_bar"
                 android:id="@+id/item_title"
                 android:text="Link Name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp10"
+                android:paddingStart="@dimen/dp20"
                 android:paddingEnd="@dimen/dp10"
                 android:paddingTop="@dimen/dp10"
+                android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
@@ -44,46 +37,41 @@
                 android:layout_width="0dp"
                 android:orientation="horizontal"
                 android:gravity="end"
-
-
                 app:layout_constraintStart_toEndOf="@+id/item_title"
                 app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="0dp">
                 <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
                     android:id="@+id/img_edit"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/edit_ico_black"
-
-                    android:paddingStart="@dimen/dp10"
-                    android:paddingEnd="@dimen/dp10"
-                    android:paddingTop="@dimen/dp10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                  <ImageView
-
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_delete"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_delete"
-                      android:backgroundTint="@color/black"
-
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_add"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
                     android:layout_gravity="center_vertical"
-                    android:paddingStart="@dimen/dp10"
-                    android:paddingEnd="@dimen/dp10"
-                    android:paddingTop="@dimen/dp10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                  <ImageView
-                      android:backgroundTint="@color/black"
-
                     android:src="@drawable/add"
-                    android:layout_gravity="center_vertical"
-                    android:paddingStart="@dimen/dp10"
-                    android:paddingEnd="@dimen/dp10"
-                    android:paddingTop="@dimen/dp10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"
@@ -98,8 +86,8 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:id="@+id/item_line"
-            android:alpha="0.37"
-            android:background="@color/transparent"
+            android:alpha="2"
+            android:background="@color/view_color"
             android:layout_height="1dp"
             android:layout_width="match_parent" />
     </LinearLayout>
