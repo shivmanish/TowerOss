@@ -1,81 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp5"
+    android:elevation="@dimen/dp30"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@drawable/bg_expansion_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/title_layout"
+        android:background="@color/collapse_card_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
         <LinearLayout
-            android:layout_marginBottom="@dimen/dp15"
-            android:id="@+id/collapsing_layout"
-            android:background="@drawable/bg_expansion_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
             <TextView
-                android:visibility="gone"
-                android:background="@drawable/bg_expansion_bar"
-                android:layout_weight="1"
-                android:text="Link"
+                android:id="@+id/item_title_str"
+                android:text="ODU"
+                android:textSize="@dimen/dp14"
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
+                android:textStyle="bold"
+                android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:visibility="visible"
-                android:layout_weight="1"
-                android:text="Link Name"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:background="@drawable/bg_expansion_bar"
-                android:layout_weight="1"
-                android:id="@+id/item_title"
-                android:text=""
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                />
         </LinearLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="0.37"
-            android:background="@color/transparent"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+            <ImageView
+                android:visibility="invisible"
+                android:id="@+id/edit_list_item"
+                android:layout_margin="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/dp11"
+                android:layout_height="match_parent"
+                android:src="@drawable/edit_ico_black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/item_title_dropdown"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/list_item_dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_down_black"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="2"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
+
+
+
     <LinearLayout
-        android:layout_margin="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:paddingBottom="@dimen/dp10"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <GridLayout
+                android:visibility="visible"
                 android:columnCount="2"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -87,18 +104,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/editFiberCornType"
-                        android:hint="S3058940"
+                        android:text="S3058940"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,19 +125,13 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinBuildFiberCore"
-
                         style="@style/SpinnerTheme"
+                        android:background="@color/transparent"
                         android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
                         android:text="On-Air" />
 
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -139,18 +144,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/editLayingType"
-                        android:hint="xyz"
+                        android:text="xyz"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -164,18 +163,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/editZeroMHLatlong"
-                        android:hint="22.968035,76.085596"
+                        android:text="22.968035,76.085596"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -190,19 +183,12 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinInstallationVendor"
-
+                        android:background="@color/transparent"
                         style="@style/SpinnerTheme"
                         android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
                         android:text="On-Air" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -220,15 +206,8 @@
                         android:id="@+id/textinstallationDate"
                         android:text="210-Nov-22"
                         style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -247,12 +226,6 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -270,15 +243,8 @@
                         android:id="@+id/editInstallationExecutiveNumber"
                         android:text="9890000009"
                         style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/ic_call"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -298,12 +264,6 @@
                         android:drawableRight="@drawable/txt_subheading_regular_16_sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -324,12 +284,6 @@
                         android:drawableRight="@drawable/txt_subheading_regular_16_sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -344,19 +298,12 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinAcceptanceStatus"
-
+                        android:background="@color/transparent"
                         style="@style/SpinnerTheme"
                         android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
                         android:text="Completed" />
-
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -377,12 +324,6 @@
                         android:drawableRight="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -399,15 +340,8 @@
                         android:id="@+id/textFinalAcceptanceDate"
                         android:text="210-Nov-22"
                         style="@style/RowTestItemEdit"
-                        android:drawableRight="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -423,19 +357,12 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/spinOperationalStatus"
-
                         style="@style/SpinnerTheme"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
+                        android:background="@color/transparent"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
                         android:text="Completed" />
 
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -454,12 +381,6 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -479,12 +400,6 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -501,26 +416,14 @@
                         android:id="@+id/textBillableLength"
                         android:text="1200"
                         android:drawableRight="@drawable/txt_subheading_regular_16_sp"
-
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
             </GridLayout>
-
-            <include
-                android:id="@+id/includedLayout"
-                layout="@layout/cancel_save_layout">
-
-            </include>
 
 
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
