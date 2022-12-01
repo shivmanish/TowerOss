@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.network;
 
 import com.smarthub.baseapplication.model.basicInfo.IdData;
+import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
@@ -23,6 +24,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIClient {
 
@@ -57,9 +60,17 @@ public interface APIClient {
     Call<SiteInfoModel> fetchSiteInfoData();
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.PROFILE)
-    Call<ProfileUpdate> fetchSiteInfoById(@Body IdData data, @Header("Authorization") String auth);
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<SiteInfoModel> fetchSiteInfoById(@Body IdData data);
 
+    @GET(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<SearchList> searchSiteInfoData(@Query("id") String id);
+
+    @GET(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<SearchList> searchSiteInfoData(
+            @Query("id") String id,
+            @Query("category") String category
+    );
 
 }
 

@@ -69,7 +69,7 @@
             android:layout_marginRight="@dimen/dp10"
             android:padding="@dimen/dp5"
             android:adjustViewBounds="true"
-            android:src="@drawable/search"
+            android:src="@drawable/search_white"
             app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/camera"
@@ -490,7 +490,7 @@
                     android:layout_width="match_parent"
                     android:gravity="right"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="30dp">
                     <TextView
                         android:padding="5dp"
                         android:text="Cancel"
@@ -509,6 +509,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/next"
                         android:padding="5dp"
                         android:text="Next"
                         android:textStyle="bold"

@@ -3,14 +3,11 @@ package com.smarthub.baseapplication.activities
 import android.graphics.Path.Direction
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchActivityBinding
-import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailFragment
 import com.smarthub.baseapplication.viewmodels.SearchActivityViewModel
 
 class SearchActivity : BaseActivity() {

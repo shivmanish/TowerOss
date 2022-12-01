@@ -5,6 +5,7 @@
     android:height="117dp"
     android:viewportWidth="386"
     android:viewportHeight="117"
+    android:elevation="5dp"
     >
 
     <group>
@@ -15,7 +16,7 @@
 
         <path
             android:pathData="M0 0V117H386V0"
-            android:fillColor="#C4D3EE"
+            android:fillColor="#FFFFFF"
             />
 
     </group>

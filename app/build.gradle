@@ -90,5 +90,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //for sms auto read
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
+    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
 
 }

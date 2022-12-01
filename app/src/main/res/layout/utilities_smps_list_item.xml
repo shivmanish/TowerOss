@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/parentRelative"
+        android:padding="@dimen/dp8"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_rectangle_5"
+        android:elevation="5dp"
+        android:layout_margin="@dimen/dp12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="SMPS"
+            android:fontFamily="@font/poppins"
+            android:textAppearance="@style/RowTestItemEdit"
+            android:gravity="left"
+            android:drawableEnd="@drawable/forward_arrow"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="italic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Count :"
+                    android:textSize="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:text="2"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#3D4E6D"
+                    android:gravity="center"
+                    android:id="@+id/mark" />
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="|"
+                    android:textSize="@dimen/dp12"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/color1"
+                    android:textAppearance="@style/RowTextItemInfo"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Capacity : "
+                    android:textStyle="italic"
+                    android:textSize="@dimen/dp12"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/color1"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:text="5kw"
+                    android:lineSpacingExtra="2sp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#3D4E6D"
+                    android:gravity="center" />
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/dp5"
+                android:id="@+id/bg_dark"
+                android:alpha=".21"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/bg_dark"
+                />
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp10"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_weight=".5"
+                    android:orientation="horizontal"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Installation Date:"
+                        android:textSize="@dimen/dp12"
+                        android:textAppearance="@style/RowTextItemInfo"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                    <TextView
+                        android:textSize="@dimen/dp12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text=" 05-Nov-2018"
+                        android:textColor="@color/color1"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_gravity="end"
+                    android:layout_weight=".5"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/dp12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Last PM Date:"
+                        android:textAppearance="@style/RowTextItemInfo"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                    <TextView
+                        android:textSize="@dimen/dp12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text=" 10-Nov-2018"
+                        android:textColor="@color/color1"
+                        android:lineSpacingExtra="2sp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,7 +51,6 @@ class SiteDetailFragment : Fragment() {
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     private lateinit var mainViewModel: MainViewModel
     var fabVisible = false
-    private var isScroll = true
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
     override fun onAttach(context: Context) {
@@ -67,25 +66,21 @@ class SiteDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
-
-            if (it && isScroll) {
-                Log.d("scroll>>>", "up   $it")
-                setSelectTab(it)
-                isScroll = false
-            } else if (!it && !isScroll) {
-                Log.d("scroll>>>", "down   $it")
-                setSelectTab(it)
-                isScroll = true
-            }
-        })
+//        siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
+//
+//            if (it && isScroll) {
+//                Log.d("scroll>>>", "up   $it")
+//                setSelectTab(it)
+//                isScroll = false
+//            } else if (!it && !isScroll) {
+//                Log.d("scroll>>>", "down   $it")
+//                setSelectTab(it)
+//                isScroll = true
+//            }
+//        })
 
         setDataObserver()
         setData()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -100,15 +95,36 @@ class SiteDetailFragment : Fragment() {
     }
 
     fun setData(){
-        setupViewPager(binding.viewpager)
-
-        binding.tabs.setupWithViewPager(binding.viewpager)
-//        binding.viewpager.offscreenPageLimit= 2
-        binding.viewpager.currentItem = 0
-        //disable swiping
-
-
+        val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        binding.viewpager.adapter = adapter
+        binding.tabs.setupWithViewPager( binding.viewpager)
         setCustomTab()
+        binding.viewpager.currentItem = 0
+        binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                var view: View? = tab.customView
+                var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
+                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
+                Log.e("TAG", " $view  ${tab.position}")
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+//                viewPager.currentItem = tab.position
+                var view: View? = tab.customView
+                var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
+                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                texttabchange.setTextColor(resources.getColor(R.color.white))
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         setFabActionButton()
         val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
@@ -208,50 +224,17 @@ class SiteDetailFragment : Fragment() {
             imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
-        var constraintLayout: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
-        var constraintLay: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
-        var texttabchange =
-            constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+        var constraintLayout: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
+        var constraintLay: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
+        var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
         texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
 
-        constraintLayout.backgroundTintList =
-            ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+        constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-        viewPager.adapter = adapter
 
-        binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
 
-//                viewPager.currentItem = tab.position
-                var view: View? = tab.customView
-                if (view != null) {
-                    var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                    constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
-                    var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
-                    var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
-                    texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
-                }
-                Log.e("TAG", " $view  ${tab.position}")
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-//                viewPager.currentItem = tab.position
-                var view: View? = tab.customView
-                var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
-                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
-                texttabchange.setTextColor(resources.getColor(R.color.white))
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
     }
 
 

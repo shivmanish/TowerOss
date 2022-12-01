@@ -59,9 +59,9 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
             val dialog = BottomSheetDialog(requireActivity(), R.style.NewDialog)
             // on below line we are inflating a layout file which we have created.
             val view = layoutInflater.inflate(R.layout.site_release_bottom_sheet_dialog_layout, null)
-
+            val ic_menu_close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
 /*            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
-            val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
+            val ic_menu_close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
             val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
             val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
             val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)*/

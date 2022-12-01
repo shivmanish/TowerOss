@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.new_customer_detail_fragment.*
 import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
 import kotlinx.android.synthetic.main.tab_name_item.view.*
 
-/*activity_new_site_acquisition*/
 class UtilitiesNocActivity : BaseActivity() {
 
     lateinit var binding : ActivityUtilitiesNocBinding
