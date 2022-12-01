@@ -32,7 +32,7 @@
     </style>
 
 
-    <style name="LanaguageSelectedText" parent="Widget.AppCompat.TextView">
+    <style name="LanaguageSelectedText">
         <item name="android:text">English</item>
         <item name="android:textSize">17sp</item>
         <item name="android:fontFamily">@font/poppins</item>

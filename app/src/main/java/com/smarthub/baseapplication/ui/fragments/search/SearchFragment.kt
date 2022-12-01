@@ -3,24 +3,25 @@ package com.smarthub.baseapplication.ui.fragments.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
-import com.smarthub.baseapplication.ui.dialog.adapter.SearchChipAdapter
-import com.smarthub.baseapplication.ui.dialog.adapter.SearchResultAdapter
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
+import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
 
-class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener {
+class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
+    SearchCategoryAdapter.SearchCategoryListener {
 
     private lateinit var binding: SearchFragmentBinding
     lateinit var siteViewModel : BasicInfoDetailViewModel
@@ -39,8 +40,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener {
         super.onViewCreated(view, savedInstanceState)
         var searchChipAdapter = SearchChipAdapter(requireContext())
         binding.chipLayout.adapter = searchChipAdapter
-        val chipsLayoutManager =
-            ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
+        val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
                 .setChildGravity(Gravity.TOP) //whether RecyclerView can scroll. TRUE by default
                 .setScrollingEnabled(true) //set maximum views count in a particular row
                 .setMaxViewsInRow(5) //set gravity resolver where you can determine gravity for item in position.
@@ -53,11 +53,20 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener {
                 .withLastRow(true)
                 .build()
         binding.chipLayout.layoutManager = chipsLayoutManager
+        binding.chipLayout.setHasFixedSize(true)
+
+        var searchCategoryAdapter = SearchCategoryAdapter(requireContext(),this@SearchFragment)
+        binding.categoryList.adapter = searchCategoryAdapter
+        binding.categoryList.setHasFixedSize(true)
 
         searchResultAdapter = SearchResultAdapter(requireContext(),this@SearchFragment)
         binding.searchResult.adapter = searchResultAdapter
+        binding.searchResult.setHasFixedSize(true)
 
         siteViewModel.siteSearchResponse?.observe(viewLifecycleOwner){
+            if (binding.loadingProgress.visibility ==View.VISIBLE)
+                binding.loadingProgress.visibility = View.INVISIBLE
+            binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.search,0)
             isDataFetched = true
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
@@ -77,6 +86,9 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
+                if (binding.loadingProgress.visibility !=View.VISIBLE)
+                    binding.loadingProgress.visibility = View.VISIBLE
+                binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
                     isDataFetched = false
@@ -93,10 +105,13 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener {
         }
     }
 
-    override fun onItemSelected(item: SearchListItem?) {
-        if (item!=null){
+    override fun onSearchItemSelected(item: SearchListItem?) {
 
-        }
+        binding.blocker.visibility = if (item!=null) View.INVISIBLE else View.GONE
+    }
+
+    override fun selectedCategory(item: Int) {
+        Log.d("status", "selectedCategory:$item")
     }
 
 }
