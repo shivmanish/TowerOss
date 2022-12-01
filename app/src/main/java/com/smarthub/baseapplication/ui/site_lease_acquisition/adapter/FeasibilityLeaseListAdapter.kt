@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
-    RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>() {
+    RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>()  {
     var list: ArrayList<String> = ArrayList()
     var DETAILS_VIEW_TYPE = 0
     var BOUNDARY_VIEW_TYPE = 1
@@ -282,6 +282,4 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         fun attachmentItemClicked()
         fun detailsItemClicked()
     }
-
-
-}
+ }
