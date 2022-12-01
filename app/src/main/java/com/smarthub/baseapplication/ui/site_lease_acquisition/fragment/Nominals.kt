@@ -12,12 +12,13 @@ import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomSheet
 import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.SiteLeaseListAdapter
 
 class Nominals :Fragment(), SiteLeaseListAdapter.SiteLeaseListListener {
 
     var binding : NominalsFragmentBinding?=null
-    var bottomSheetDialogFragment : DetailsBottomSheet?=null
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = NominalsFragmentBinding.inflate(inflater, container, false)
@@ -37,11 +38,8 @@ class Nominals :Fragment(), SiteLeaseListAdapter.SiteLeaseListListener {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
-        if (bottomSheetDialogFragment==null) {
-            bottomSheetDialogFragment = DetailsBottomSheet(R.layout.details_bottom_sheet_view)
-            bottomSheetDialogFragment?.show(childFragmentManager,"category")
-        }else bottomSheetDialogFragment?.show(childFragmentManager,"category")
-
+        var bottomSheetDialogFragment = NominalsDetailsBottomSheet(R.layout.nominals_details_bottom_sheet)
+        bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
     fun fetchDropDown() {

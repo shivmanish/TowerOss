@@ -20,8 +20,7 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
         list.add("Details")
         list.add("Attachments")
 
-        
-    }
+            }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: NominalsListItemBinding = NominalsListItemBinding.bind(itemView)
@@ -31,8 +30,10 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -52,9 +53,14 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
+
+
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                 recyclerListener.adapter = adapter
 

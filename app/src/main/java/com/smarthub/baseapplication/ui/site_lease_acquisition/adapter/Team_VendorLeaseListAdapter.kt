@@ -29,8 +29,10 @@ class Team_VendorLeaseListAdapter(var listener: TeamVendorListItemListner) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -96,6 +98,7 @@ class Team_VendorLeaseListAdapter(var listener: TeamVendorListItemListner) :
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+
                 } else {
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 }

@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:elevation="@dimen/dp10"
+<com.google.android.material.card.MaterialCardView android:elevation="@dimen/dp10"
     android:layout_margin="@dimen/dp7"
+    android:padding="@dimen/dp10"
+    app:cardElevation="@dimen/dp10"
 
-    android:background="@color/white"
+
+    android:background="@drawable/card_top_rect"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:id="@+id/parentRelative"
-        android:padding="@dimen/dp7"
+        android:padding="@dimen/dp10"
 
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+
             android:id="@+id/lnLayout"
             android:orientation="horizontal"
             android:weightSum="1"
@@ -29,6 +33,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="Acquisition⌗1"
+                android:fontFamily="@font/poppins_semibold"
                 android:textAppearance="@style/RowTestItemEdit"
                 android:lineSpacingExtra="2sp"
                 android:gravity="center_vertical"
@@ -93,13 +98,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="3000 "
+                    android:text="3000 | "
+                    android:fontFamily="@font/poppins_semibold"
+
                     android:textSize="@dimen/dp12"
                     android:textColor="#3D4E6D"
                     android:textAppearance="@style/RowTextItemInfo"
                     android:lineSpacingExtra="2sp"
                     android:gravity="center_vertical"
                     />
+
                 <TextView
                     android:textSize="@dimen/dp12"
                     android:layout_width="wrap_content"
@@ -118,6 +126,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:text="3000 "
+                    android:fontFamily="@font/poppins_semibold"
+
                     android:textSize="@dimen/dp12"
                     android:textColor="#3D4E6D"
                     android:textAppearance="@style/RowTextItemInfo"
@@ -128,7 +138,7 @@
             </LinearLayout>
             <View
                 android:layout_marginTop="@dimen/dp5"
-                android:id="@+id/bg_dark"
+                android:id="@+id/bg1"
                 android:alpha=".21"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp1"
@@ -162,11 +172,15 @@
                         />
                     <TextView
                         android:textSize="@dimen/dp12"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text=" 5-Nov-2018"
+                        android:text="5-Nov-2018 | "
+                        android:drawableRight="@drawable/card_top_rect"
+                        android:fontFamily="@font/poppins_semibold"
+
                         android:textColor="@color/color1"
                         android:lineSpacingExtra="2sp"
                         android:gravity="center_vertical"
@@ -185,13 +199,15 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text="Expiry Date:"
+                        android:text=" Expiry Date:"
                         android:textAppearance="@style/RowTextItemInfo"
                         android:lineSpacingExtra="2sp"
                         android:gravity="center_vertical"
                         />
                     <TextView
                         android:textSize="@dimen/dp12"
+                        android:fontFamily="@font/poppins_semibold"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -208,4 +224,4 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

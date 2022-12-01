@@ -1,11 +1,10 @@
-package com.smarthub.baseapplication.ui.dialog.adapter
+package com.smarthub.baseapplication.ui.fragments.search
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.RadioGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchResultItemBinding
@@ -47,14 +46,19 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
             if (isChecked) {
                 var previous = checkedPosition
                 checkedPosition = position
-                notifyItemChanged(previous)
-                listener.onItemSelected(searchQatModels[position])
+                try {
+                    notifyItemChanged(previous)
+                }catch (e: java.lang.Exception){
+                    Log.d("status","e:"+e.localizedMessage)
+                }
+
+                listener.onSearchItemSelected(searchQatModels[position])
             }else if (checkedPosition == position)
-                listener.onItemSelected(null)
+                listener.onSearchItemSelected(null)
         }
     }
 
     interface SearchResultListener{
-        fun onItemSelected(item : SearchListItem?)
+        fun onSearchItemSelected(item : SearchListItem?)
     }
 }

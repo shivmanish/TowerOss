@@ -1,51 +1,32 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/dialog_bg"
-    android:orientation="vertical"
-    app:cardCornerRadius="@dimen/dp15"
-    app:cardElevation="5dp">
-
-    <LinearLayout
-        android:id="@+id/shareLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-<LinearLayout
-    android:gravity="end"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+    android:layout_height="match_parent"
+    android:background="#004C4B4B"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
         android:id="@+id/ic_menu_close"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
-        android:background="@color/white"
-        android:elevation="@dimen/dp12"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/drawable_cross_back"/>
+    <LinearLayout android:paddingBottom="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp15"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@drawable/dialog_bg"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        android:innerRadius="0dp"
-        android:shape="ring"
-        android:thicknessRatio="1.9"
-        app:cardCornerRadius="@dimen/dp40"
-        tools:ignore="MissingConstraints">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="end"
-            android:padding="@dimen/dp5"
-            android:src="@drawable/ic_menu_close"></ImageView>
-    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-</LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -56,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -119,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -184,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -307,7 +288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -373,7 +354,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -438,7 +419,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -509,7 +490,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -572,7 +553,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">
@@ -637,7 +618,7 @@
                 android:visibility="invisible"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/dp0.5"
+                android:layout_margin="@dimen/dp0.2"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/dp5"
                 app:cardElevation="@dimen/dp5">

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.dialog.adapter
+package com.smarthub.baseapplication.ui.fragments.search
 
 import android.content.Context
 import android.view.LayoutInflater
