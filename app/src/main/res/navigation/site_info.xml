@@ -30,10 +30,27 @@
         android:id="@+id/searchFragment"
         android:name="com.smarthub.baseapplication.ui.fragments.search.SearchFragment"
         android:label="SearchFragment" >
+        <argument
+            android:name="siteId"
+            app:argType="string"
+            android:defaultValue="1234"/>
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="1234"/>
         <action
             android:id="@+id/action_searchFragment_to_siteDetailFragment"
             app:destination="@id/siteDetailFragment"
-            app:popUpTo="@id/searchFragment" />
+            app:popUpTo="@id/searchFragment" >
+            <argument
+                android:name="siteId"
+                app:argType="string"
+                android:defaultValue="1234"/>
+            <argument
+                android:name="id"
+                app:argType="string"
+                android:defaultValue="1234"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/siteDetailFragment"
