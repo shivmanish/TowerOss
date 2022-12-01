@@ -67,25 +67,21 @@ class SiteDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
-
-            if (it && isScroll) {
-                Log.d("scroll>>>", "up   $it")
-                setSelectTab(it)
-                isScroll = false
-            } else if (!it && !isScroll) {
-                Log.d("scroll>>>", "down   $it")
-                setSelectTab(it)
-                isScroll = true
-            }
-        })
+//        siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
+//
+//            if (it && isScroll) {
+//                Log.d("scroll>>>", "up   $it")
+//                setSelectTab(it)
+//                isScroll = false
+//            } else if (!it && !isScroll) {
+//                Log.d("scroll>>>", "down   $it")
+//                setSelectTab(it)
+//                isScroll = true
+//            }
+//        })
 
         setDataObserver()
         setData()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -208,16 +204,12 @@ class SiteDetailFragment : Fragment() {
             imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
-        var constraintLayout: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
-        var constraintLay: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
-        var texttabchange =
-            constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+        var constraintLayout: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
+        var constraintLay: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
+        var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
         texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
 
-        constraintLayout.backgroundTintList =
-            ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+        constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
@@ -226,16 +218,12 @@ class SiteDetailFragment : Fragment() {
 
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-
-//                viewPager.currentItem = tab.position
                 var view: View? = tab.customView
-                if (view != null) {
-                    var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                    constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
-                    var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
-                    var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
-                    texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
-                }
+                var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
+                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 Log.e("TAG", " $view  ${tab.position}")
             }
 

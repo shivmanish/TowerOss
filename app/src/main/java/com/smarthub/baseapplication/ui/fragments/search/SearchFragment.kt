@@ -101,12 +101,13 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
             }
         })
         binding.viewOnIbo.setOnClickListener {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment())
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(item?.Siteid!!,item?.id!!))
         }
     }
 
+    var item: SearchListItem?=null
     override fun onSearchItemSelected(item: SearchListItem?) {
-
+        this.item = item
         binding.blocker.visibility = if (item!=null) View.INVISIBLE else View.GONE
     }
 
