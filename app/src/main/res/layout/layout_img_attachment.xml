@@ -4,15 +4,15 @@
 <LinearLayout android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-
+    android:layout_marginLeft="@dimen/dp5"
     android:paddingEnd="@dimen/dp20"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
-        android:visibility="gone"
-        android:textColor="@color/black"
+        android:visibility="visible"
         android:text="Attachments"
+        android:textStyle="bold"
         android:drawablePadding="3dp"
+        style="@style/RowTextItemInfo"
         android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -38,10 +38,7 @@
                 android:layout_height="@dimen/dp60">
                 <ImageView
                     android:src="@drawable/ic_attachment"
-
                     android:gravity="center"
-
-
                     android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -28,7 +27,7 @@
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:gravity="center_vertical"
-                android:textColor="@color/black"
+                android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp50"
                 />
@@ -40,7 +39,7 @@
             android:layout_weight="4"
             android:orientation="horizontal">
             <ImageView
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_margin="@dimen/dp5"
                 android:id="@+id/edit_list_item"
                 android:layout_width="match_parent"
@@ -50,7 +49,7 @@
                 android:src="@drawable/edit_ico_black" />
 
             <ImageView
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_margin="@dimen/dp5"
                 android:id="@+id/delet_list_item"
                 android:layout_width="match_parent"
@@ -60,7 +59,7 @@
                 android:src="@drawable/ic_delete" />
 
             <ImageView
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_margin="@dimen/dp5"
                 android:id="@+id/add_more_list_item"
                 android:layout_width="match_parent"
@@ -85,24 +84,22 @@
     </LinearLayout>
     <View
         android:id="@+id/item_line"
-        android:alpha="0.37"
+        android:alpha="2"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:background="#EBEBEB"
+        android:background="@color/view_color"
         android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/dp10"
-        android:layout_marginRight="@dimen/dp10"/>
+        android:layout_width="match_parent"/>
     <LinearLayout
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:layout_margin="5dp"
-        android:visibility="visible"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="@dimen/dp5"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:paddingBottom="@dimen/dp10"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -150,6 +147,7 @@
             <LinearLayout
                 android:layout_marginTop="@dimen/dp20"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp5"
                 android:layout_height="wrap_content">
                 <include
                     layout="@layout/cancel_save_layout"

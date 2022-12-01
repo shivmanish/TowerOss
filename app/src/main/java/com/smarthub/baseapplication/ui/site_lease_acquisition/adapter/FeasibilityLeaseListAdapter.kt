@@ -33,10 +33,8 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -49,16 +47,18 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
 
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
         }
     }
     class PropertyDetailsViewHold(itemView: View) :ViewHold(itemView) {
@@ -68,16 +68,18 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
 
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
         }
     }
     class PODetailsViewHold(itemView: View) :ViewHold(itemView) {
@@ -86,17 +88,21 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            binding.itemTitleDropdown.tag = false
+            if ((binding.itemTitleDropdown.tag as Boolean)) {
+                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
+            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+                recyclerListener.adapter = adapter
 
+                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
         }
     }
     class AttachmentViewHold(itemView: View,listener: FeasibilityListItemListener) : ViewHold(itemView) {
@@ -234,23 +240,29 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
 
         }
         else if (holder is PODetailsViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            holder.binding.itemTitleDropdown.setOnClickListener {
+                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
+                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
+                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.editListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.addMoreListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.deletListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
 
         }
 

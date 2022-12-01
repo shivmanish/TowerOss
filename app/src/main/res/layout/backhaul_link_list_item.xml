@@ -27,7 +27,7 @@
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:gravity="center_vertical"
-                android:textColor="@color/black"
+                android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp50"
                 />
@@ -65,13 +65,11 @@
     </LinearLayout>
     <View
         android:id="@+id/item_line"
-        android:alpha="0.37"
+        android:alpha="2"
         app:layout_constraintTop_toBottomOf="@+id/lst_item"
-        android:background="#EBEBEB"
+        android:background="@color/view_color"
         android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/dp10"
-        android:layout_marginRight="@dimen/dp10"/>
+        android:layout_width="match_parent"/>
 
 
 
@@ -82,10 +80,6 @@
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <GridLayout
                 android:visibility="visible"
                 android:columnCount="2"
@@ -278,52 +272,6 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
             </GridLayout>
-
-
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:id="@+id/rfEquipment_edit_save"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:gravity="right"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_marginRight="@dimen/dp5"
-                    android:text="Cancle"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/dp14"
-                    android:textColor="@color/card_bg"
-                    android:layout_width="88dp"
-                    android:layout_height="@dimen/dp32"
-                    />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    app:cardBackgroundColor="#FFD72B"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="@dimen/dp5"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:padding="5dp"
-                        android:text="Save"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/dp14"
-                        android:textColor="@color/card_bg"
-                        android:layout_width="88dp"
-                        android:layout_height="@dimen/dp32"
-                        />
-
-                </com.google.android.material.card.MaterialCardView>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

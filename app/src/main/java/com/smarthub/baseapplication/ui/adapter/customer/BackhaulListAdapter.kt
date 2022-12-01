@@ -159,21 +159,13 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         var binding: BackhaulLmcListItemBinding = BackhaulLmcListItemBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_arrow_up,
-                    0
-                )
+            binding.itemTitleDropdown.tag = false
+            if ((binding.itemTitleDropdown.tag as Boolean)) {
+                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.down_arrow,
-                    0
-                )
+                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -186,19 +178,14 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            binding.itemTitleDropdown.tag = false
+            if ((binding.itemTitleDropdown.tag as Boolean)) {
+                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
-
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
 
@@ -208,21 +195,13 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_arrow_up,
-                    0
-                )
+            binding.itemTitleDropdown.tag = false
+            if ((binding.itemTitleDropdown.tag as Boolean)) {
+                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.down_arrow,
-                    0
-                )
+                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
             /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
@@ -239,29 +218,14 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
         //  var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_arrow_up,
-                    0
-                )
+            binding.itemTitleDropdown.tag = false
+            if ((binding.itemTitleDropdown.tag as Boolean)) {
+                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.down_arrow,
-                    0
-                )
+                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-            /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-               recyclerListener.adapter = adapter
-
-               itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                   adapter.addItem()
-               }*/
         }
     }
 
@@ -362,7 +326,8 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
             }
             holder.binding.itemTitleStr.text = list[position]
-        } else if (holder is IDUViewHold) {
+        }
+        else if (holder is IDUViewHold) {
             holder.binding.itemTitleDropdown.setOnClickListener {
                 holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
                 if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
@@ -403,7 +368,8 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
             holder.binding.itemTitleStr.text = list[position]
 
-        } else if (holder is AntennaViewHold) {
+        }
+        else if (holder is AntennaViewHold) {
             holder.binding.itemTitleDropdown.setOnClickListener {
                 holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
                 if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
@@ -471,104 +437,98 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             holder.binding.itemTitleStr.text = list[position]
 
 
-        } else if (holder is LMCViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_arrow_up,
-                        0
-                    )
+        }
+        else if (holder is LMCViewHold) {
+            holder.binding.itemTitleDropdown.setOnClickListener {
+                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
+                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
+                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.down_arrow,
-                        0
-                    )
+                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.editListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is PODetailsViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+            holder.binding.itemTitleDropdown.setOnClickListener {
+                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
+                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
+                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.editListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.addMoreListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.deletListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is ATPCHECKViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_arrow_up,
-                        0
-                    )
+            holder.binding.itemTitleDropdown.setOnClickListener {
+                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
+                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
+                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.down_arrow,
-                        0
-                    )
+                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-            }
-            holder.binding.itemTitle.text = list[position]
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.shareLink.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
-        } else if (holder is CONNEVCTEDEQUIPMENTViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_arrow_up,
-                        0
-                    )
+
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
+            }
+            holder.binding.itemTitleStr.text = list[position]
+
+        }
+        else if (holder is CONNEVCTEDEQUIPMENTViewHold) {
+            holder.binding.itemTitleDropdown.setOnClickListener {
+                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
+                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
+                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.down_arrow,
-                        0
-                    )
+                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.editListItem.visibility =
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
 
         }
     }
