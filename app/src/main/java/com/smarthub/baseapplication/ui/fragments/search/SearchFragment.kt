@@ -86,12 +86,13 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.loadingProgress.visibility !=View.VISIBLE)
-                    binding.loadingProgress.visibility = View.VISIBLE
-                binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
                     isDataFetched = false
+                    if (binding.loadingProgress.visibility !=View.VISIBLE)
+                        binding.loadingProgress.visibility = View.VISIBLE
+                    binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
+
                     if (selectedCategory!=null && selectedCategory?.isNotEmpty() == true){
                         siteViewModel.fetchSiteSearchData(fetchedData,selectedCategory!!)
                     }else {
@@ -105,6 +106,8 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener,
             }
         })
         binding.viewOnIbo.setOnClickListener {
+//            binding.searchCardView.text.clear()
+
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(if (item?.Siteid!=null)
                 item?.Siteid!! else "",if (item?.id!=null) item?.id!! else ""))
         }

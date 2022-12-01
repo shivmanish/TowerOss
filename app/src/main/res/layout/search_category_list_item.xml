@@ -30,6 +30,6 @@
             android:text="OPCO SAP ID"
             android:textSize="13sp"
             android:gravity="center_vertical"
-            android:textColor="@color/tab_text_color"/>
+            android:textColor="#4F4D4D"/>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
