@@ -13,9 +13,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var AGREMENT_VIEW_TYPE = 0
-
     var PROPERTY_VIEW_TYPE = 1
-
     var ATTACHMENT_VIEW_TYPE =2
     init {
         list.add("Agreement")
@@ -49,40 +47,36 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
     class PropertyAgreementViewHold(itemView: View) :ViewHold(itemView) {
         var binding: PropertyDetailsListItemBinding =
             PropertyDetailsListItemBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
+            binding.itemTitle.tag = false
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
+
         }
+
     }
     class POAgreementViewHold(itemView: View) :ViewHold(itemView) {
         var binding: BackhaulPoDetailsListItemBinding =
@@ -114,9 +108,12 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
 
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                          recyclerListener.adapter = adapter
@@ -130,21 +127,17 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.agreements_list_item, parent, false)
         return when (viewType) {
-            AGREMENT_VIEW_TYPE -> {
+          AGREMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.agreements_list_item, parent, false)
                 AgreementViewHold(view)
             }
-
-
-            PROPERTY_VIEW_TYPE -> {
+                PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.property_details_list_item, parent, false)
                 PropertyAgreementViewHold(view)
             }
-
-
-            ATTACHMENT_VIEW_TYPE -> {
+             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.attachment_list_item, parent, false)
                 AttachmentViewHold(view,listener)
