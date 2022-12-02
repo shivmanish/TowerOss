@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerInvoiceAdapter
 
-class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
+class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener,var listner2: ItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -63,6 +63,10 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
+            holder.binding.editListItem.setOnClickListener {
+                listner2.editModeCliked()
+            }
+
             holder.binding.itemLine.visibility =
                 if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
             holder.binding.itemCollapse.visibility =
@@ -79,5 +83,6 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
     interface ItemClickListener{
         fun itemClicked()
+        fun editModeCliked()
     }
 }
