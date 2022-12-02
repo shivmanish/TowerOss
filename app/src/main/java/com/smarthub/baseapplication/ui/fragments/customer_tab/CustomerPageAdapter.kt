@@ -6,10 +6,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
+import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 
 class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 4
+        return 5
     }
 
     override fun getItem(position: Int): Fragment {
@@ -28,6 +29,9 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             }
             3 -> {
                 return RfAntinaFragment()
+            }
+            4 -> {
+                return PowerLoadFragment()
             }
             else -> {
                 return OpcoSiteInfoFramgment()
@@ -51,6 +55,9 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             }
             3 -> {
                 return "RF Anteena"
+            }
+            4 -> {
+                return "Power Load"
             }
         }
         return super.getPageTitle(position)
