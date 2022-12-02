@@ -11,4 +11,5 @@
         android:src="@drawable/img_profile"
         android:layout_width="@dimen/dp60"
         android:layout_height="@dimen/dp60"/>
+
 </com.google.android.material.card.MaterialCardView>

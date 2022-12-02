@@ -37,13 +37,13 @@
         <activity
             android:name=".ui.basic_info.SiteImages"
             android:exported="false" />
-     <!--   <activity
+        <activity
             android:name=".ui.site_lease_acquisition.NewSiteAcquisitionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>-->
+        </activity>
         <activity
             android:name=".ui.basic_info.BasicInfoDetailsActivity"
             android:exported="false">
@@ -58,7 +58,7 @@
             android:name=".ui.fragments.customer_tab.NewCustomerDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.site_lease_acquisition.NewSiteAcquisitionActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
