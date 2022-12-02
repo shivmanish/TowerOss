@@ -38,7 +38,6 @@ class  DashboardActivity : BaseActivity() {
 //           AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
 
            binding.navView.setOnItemSelectedListener { item ->
-
                if (navController.backQueue.size > 2) navController.popBackStack(
                    R.id.navigation_home,
                    false

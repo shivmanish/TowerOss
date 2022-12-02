@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AgreementFragmentBinding
+import com.smarthub.baseapplication.listeners.QatListListener
+import com.smarthub.baseapplication.ui.adapter.AtpCardListAdapter
 import com.smarthub.baseapplication.ui.dialog.siteinfo.AgrementsDetailsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
 import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.AgrementLeaseListAdapter
 
-class Agreements :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner {
+class Agreements :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner , QatListListener {
 
     var binding : AgreementFragmentBinding?=null
 
@@ -39,5 +41,17 @@ class Agreements :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner 
     override fun detailsItemClicked() {
        var bottomSheetDialogFragment = AgrementsDetailsBottomSheet(R.layout.agreement_details_botom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
+    }
+
+    override fun addNewClicked(adapter: AtpCardListAdapter) {
+        TODO("Not yet implemented")
+    }
+
+    override fun itemClicked() {
+        TODO("Not yet implemented")
+    }
+
+    override fun cardClicked() {
+        TODO("Not yet implemented")
     }
 }
