@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.OpcoI
 import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.RfEquipmentDialouge
 import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.SiteInfoBasicDetailsDialouge
 import com.smarthub.baseapplication.ui.project.DemoActivity
+import com.smarthub.baseapplication.ui.utilites.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -40,6 +41,15 @@ class SplashActivity : BaseActivity() {
 //                var intent = Intent(this@SplashActivity,DemoActivity::class.java)
 //                startActivity(intent)
 //                finish()
+/*
+                startActivity(
+                    Intent(
+                        this@SplashActivity,
+                        BatteryBankDetailsActivity::class.java
+                    )
+                )
+*/
+
 
 //                val dialouge = RfEquipmentDialouge()
 //                dialouge.show(getSupportFragmentManager(),"")

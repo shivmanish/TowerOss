@@ -63,7 +63,7 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
 
         if (holder is UtilitesSMPSViewHolder){
             holder.binding.parentRelative.setOnClickListener {
-                listener.clickedItem()
+                listener.clickedItem(position)
                 Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
@@ -95,7 +95,7 @@ class UtilitesFireViewHolder(itemview: View) : UtilitesMainDataViewHolder(itemvi
 }
 
 interface UtilitesNocDataAdapterListener {
-    fun clickedItem()
+    fun clickedItem(position:Int)
     fun clickedItemAC()
     fun clickedItemDG()
     fun clickedItemSMP()
