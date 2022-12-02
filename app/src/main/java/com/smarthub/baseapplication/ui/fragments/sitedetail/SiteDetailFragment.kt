@@ -150,7 +150,7 @@ class SiteDetailFragment : Fragment() {
                         constraintL.alpha = offset
                         constraintLayout.alpha = (1 - offset)
                     }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "${offset}  ${1 - offset}")
+                    Log.d("offsetvalues>>>onOffsetChanged>", "$offset  ${1 - offset}")
 
                 }
             }
@@ -163,8 +163,8 @@ class SiteDetailFragment : Fragment() {
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
                         var childconstraint: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                        parentconstraintLayout?.visibility = View.GONE
-                        childconstraint?.visibility = View.VISIBLE
+                        parentconstraintLayout.visibility = View.GONE
+                        childconstraint.visibility = View.VISIBLE
 //                            constraintL.alpha= 1f
 //                            constraintLayout.alpha = 0f
                     }
@@ -176,8 +176,8 @@ class SiteDetailFragment : Fragment() {
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
                         var childconstraint: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                        parentconstraintLayout?.visibility = View.VISIBLE
-                        childconstraint?.visibility = View.GONE
+                        parentconstraintLayout.visibility = View.VISIBLE
+                        childconstraint.visibility = View.GONE
 //                            constraintL.alpha= 0f
 //                            constraintLayout.alpha = 1f
                     }

@@ -39,7 +39,7 @@
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
+                    android:layout_height="@dimen/dp30"
                     android:gravity="top"
                     android:visibility="visible"
                     app:layout_collapseMode="pin"
