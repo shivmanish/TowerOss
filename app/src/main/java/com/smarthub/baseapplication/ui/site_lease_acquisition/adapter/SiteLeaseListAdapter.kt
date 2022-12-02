@@ -37,6 +37,8 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
             }
 
 
+
+
         }
     }
     class AttachmentViewHold(itemView: View,listener: SiteLeaseListListener) : ViewHold(itemView) {

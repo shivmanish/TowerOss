@@ -13,9 +13,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var AGREMENT_VIEW_TYPE = 0
-
     var PROPERTY_VIEW_TYPE = 1
-
     var ATTACHMENT_VIEW_TYPE =2
     init {
         list.add("Agreement")
@@ -27,13 +25,16 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     class AgreementViewHold(itemView: View) : ViewHold(itemView) {
         var binding: AgreementsListItemBinding= AgreementsListItemBinding.bind(itemView)
 
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -46,58 +47,36 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-            }
-
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
-
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
-        }
-    }
-    class PropertyAgreementViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: PropertyDetailsListItemBinding =
-            PropertyDetailsListItemBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
-        init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-            }
-
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
-
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
-        }
-    }
-    class POAgreementViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: BackhaulPoDetailsListItemBinding =
-            BackhaulPoDetailsListItemBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
-        init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
         }
+    }
+    class PropertyAgreementViewHold(itemView: View) :ViewHold(itemView) {
+        var binding: PropertyDetailsListItemBinding =
+            PropertyDetailsListItemBinding.bind(itemView)
+        init {
+            binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+
+
+        }
+
     }
     class AttachmentViewHold(itemView: View,listener: AgreementListItemlistner) : ViewHold(itemView) {
         var binding: AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
@@ -111,9 +90,12 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
 
                 var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
                          recyclerListener.adapter = adapter
@@ -127,21 +109,17 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.agreements_list_item, parent, false)
         return when (viewType) {
-            AGREMENT_VIEW_TYPE -> {
+          AGREMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.agreements_list_item, parent, false)
                 AgreementViewHold(view)
             }
-
-
-            PROPERTY_VIEW_TYPE -> {
+                PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.property_details_list_item, parent, false)
                 PropertyAgreementViewHold(view)
             }
-
-
-            ATTACHMENT_VIEW_TYPE -> {
+             ATTACHMENT_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.attachment_list_item, parent, false)
                 AttachmentViewHold(view,listener)
@@ -154,7 +132,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             }
         }
     }
-      override fun getItemViewType(position: Int): Int {
+    override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Agreement") AGREMENT_VIEW_TYPE
 
         else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
@@ -163,7 +141,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
       else 0
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (holder is AgreementViewHold) {
+       if (holder is AgreementViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -185,7 +163,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             }
             holder.binding.itemTitle.text = list[position]
         }
-        else if (holder is BoundaryAgreementViewHold) {
+       else if (holder is BoundaryAgreementViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -205,7 +183,28 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             holder.binding.itemTitle.text = list[position]
 
         }
-        else if (holder is PropertyAgreementViewHold) {
+       else if (holder is PropertyAgreementViewHold) {
+       holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                }
+
+                holder.binding.itemLine.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+            }
+       holder.binding.itemTitle.text = list[position]
+        }
+
+
+         else if (holder is AttachmentViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -223,54 +222,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
             holder.binding.itemTitle.text = list[position]
-
-        }
-        else if (holder is POAgreementViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.editListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.addMoreListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.deletListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-            }
-            holder.binding.itemTitleStr.text = list[position]
-
-        }
-
-        else if (holder is AttachmentViewHold) {
-            holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                } else {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-            }
-            holder.binding.itemTitle.text = list[position]
-        }
+         }
 
     }
     override fun getItemCount(): Int {
