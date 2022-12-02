@@ -12,7 +12,10 @@ import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
+import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
@@ -32,14 +35,18 @@ class OpcoSiteInfoFramgment :Fragment(), OpcoInfoListAdapter.OpcoInfoLisListener
 
     override fun attachmentItemClicked() {
 
-
     }
 
     override fun operationsItemClicked() {
+        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
     override fun opcoSiteInfoItemClicked() {
+
+        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 

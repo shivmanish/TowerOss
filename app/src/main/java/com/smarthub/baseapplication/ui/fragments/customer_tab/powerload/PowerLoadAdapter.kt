@@ -39,7 +39,6 @@ class PowerLoadAdapter (var listener: ImageAttachmentAdapter.ItemClickListener) 
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
