@@ -4,15 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
     </queries>
+
     <application
         android:name=".utils.AppController"
         android:allowBackup="true"
@@ -26,14 +28,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".BatteryBankDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.project.DemoActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.basic_info.AddImage"
             android:exported="false" />
         <activity
             android:name=".ui.fragments.task.TaskActivity"
             android:exported="false" />
+        <activity android:name=".ui.utilites.BatteryBankDetailsActivity"
+            android:exported="false"/>
         <activity
             android:name=".ui.basic_info.SiteImages"
             android:exported="false" />
@@ -94,7 +105,7 @@
             android:label="@string/setting" />
         <activity
             android:name=".activities.DashboardActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.FAQActivity"
             android:exported="true" />
@@ -111,11 +122,10 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-
         <activity
             android:name="com.smarthub.baseapplication.imagePicker.ui.album.ui.AlbumActivity"
             android:label="@string/album"
-            android:theme="@style/FishBunTheme"/>
+            android:theme="@style/FishBunTheme" />
         <activity
             android:name="com.smarthub.baseapplication.imagePicker.ui.picker.PickerActivity"
             android:theme="@style/FishBunTheme" />
