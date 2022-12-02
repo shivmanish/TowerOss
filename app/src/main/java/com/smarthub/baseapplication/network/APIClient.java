@@ -43,11 +43,11 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)
-    Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data,@Header("Authorization") String auth);
+    Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)
-    Call<ProfileUpdate> updateProfile(@Body UserProfileUpdate data, @Header("Authorization") String auth);
+    Call<ProfileUpdate> updateProfile(@Body UserProfileUpdate data);
 
     @POST(EndPoints.REGISTRATION)
     Call<RegstationResponse> registration(@Body RegisterData data);

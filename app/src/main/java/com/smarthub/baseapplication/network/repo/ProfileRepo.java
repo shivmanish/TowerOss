@@ -50,7 +50,7 @@ public class ProfileRepo {
 
     public void getProfileData(UserProfileGet data) {
 
-        apiClient.getProfile(data, AppPreferences.getInstance().getBearerToken()).enqueue(new Callback<List<ProfileDetails>>() {
+        apiClient.getProfile(data).enqueue(new Callback<List<ProfileDetails>>() {
             @Override
             public void onResponse(Call<List<ProfileDetails>> call, Response<List<ProfileDetails>> response) {
                 if (response.isSuccessful()){
@@ -89,7 +89,7 @@ public class ProfileRepo {
     }
     public void updateProfileData(UserProfileUpdate data) {
         AppLogger.INSTANCE.log("status","Update Profile Data in Profile Repo");
-        apiClient.updateProfile(data, AppPreferences.getInstance().getBearerToken()).enqueue(new Callback<ProfileUpdate>() {
+        apiClient.updateProfile(data).enqueue(new Callback<ProfileUpdate>() {
             @Override
             public void onResponse(Call<ProfileUpdate> call, Response<ProfileUpdate> response) {
                 if (response.isSuccessful()){

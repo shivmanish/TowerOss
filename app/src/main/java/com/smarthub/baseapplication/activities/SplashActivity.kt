@@ -34,18 +34,11 @@ class SplashActivity : BaseActivity() {
 
 //                loginValidation()
             }else{
-             //   val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-                val intent = Intent (this@SplashActivity, NewSiteAcquisitionActivity::class.java)
+                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+//                val intent = Intent (this@SplashActivity, NewSiteAcquisitionActivity::class.java)
 
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
-
-//                var intent = Intent(this@SplashActivity,DemoActivity::class.java)
-//                startActivity(intent)
-//                finish()
-
-//                val dialouge = RfEquipmentDialouge()
-//                dialouge.show(getSupportFragmentManager(),"")
             }
 
         }
