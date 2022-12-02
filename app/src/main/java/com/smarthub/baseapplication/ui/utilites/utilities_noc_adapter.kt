@@ -10,25 +10,19 @@ import com.smarthub.baseapplication.ui.utilites.fragment.*
 
 class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 5
+        return 2
     }
 
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return AC1UtilitesFrag()
+                return SMPS1UitilitiesFrag()
             }
             1 -> {
-                return BatteryBank1TabUtilitesFrag()
-            }
-            2 -> {
-                return FireExtinguisher1UtilitesFrag()
-            }
-            3 -> {
-                return DG1TabUtilitesFrag()
+                return SMPS2UitilitiesFrag()
             }
             else -> {
-                return SPD1TabUtilitesFrag()
+                return SMPS1UitilitiesFrag()
             }
         }
     }
@@ -36,20 +30,12 @@ class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "AC"
+                return "SMPS1"
             }
             1 -> {
-                return "Battery Bank"
+                return "SMPS2"
             }
-            2 -> {
-                return "Fire Extinguisher"
-            }
-            3 -> {
-                return "DG"
-            }
-            4 -> {
-                return "SPD1"
-            }
+
         }
         return super.getPageTitle(position)
     }
