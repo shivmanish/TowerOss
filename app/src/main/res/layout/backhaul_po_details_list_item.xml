@@ -7,7 +7,6 @@
     android:layout_marginLeft="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/title_layout"
         android:orientation="vertical"
@@ -98,9 +97,6 @@
             android:layout_height="1dp"
             android:layout_width="match_parent" />
     </LinearLayout>
-
-
-
     <LinearLayout
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
