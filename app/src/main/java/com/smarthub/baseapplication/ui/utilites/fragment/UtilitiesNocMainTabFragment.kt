@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
+import com.smarthub.baseapplication.ui.utilites.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocActivity
@@ -62,9 +63,24 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
             }
     }
 
-    override fun clickedItem() {
-     requireActivity().startActivity(Intent(requireContext(), UtilitiesNocActivity::class.java))
+    override fun clickedItem(position:Int) {
+        if(position==0) {
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    BatteryBankDetailsActivity::class.java
+                )
+            )
 
+        }else{
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    UtilitiesNocActivity::class.java
+                )
+            )
+
+        }
     }
 
     override fun clickedItemAC() {

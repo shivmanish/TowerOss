@@ -130,6 +130,10 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editRfEquipmentItem.setOnClickListener {
+                    listener.itemClicked()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
@@ -151,6 +155,10 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editRfEquipmentItem.setOnClickListener {
+                    listener.itemClicked()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
@@ -164,5 +172,10 @@ class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener)
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+
+    interface SiteInfoLisListener {
+        fun itemClicked()
     }
 }

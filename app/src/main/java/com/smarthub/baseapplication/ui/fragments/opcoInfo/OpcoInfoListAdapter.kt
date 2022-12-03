@@ -157,7 +157,7 @@ class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adap
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.opcoSiteInfoItemClicked()
+                        listener.operationsItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE

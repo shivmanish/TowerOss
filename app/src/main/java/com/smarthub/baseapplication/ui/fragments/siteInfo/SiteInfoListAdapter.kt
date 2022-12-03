@@ -220,17 +220,14 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                         holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-
                     holder.binding.itemLine.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.iconLayout.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
                     holder.binding.imgEdit.setOnClickListener()
                     {
                         listener.operationInfoDetailsItemClicked()
                     }
-
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                 }

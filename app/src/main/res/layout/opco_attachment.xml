@@ -81,21 +81,14 @@
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/item_collapse"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp15"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <include
                 layout="@layout/layout_img_attachment"/>
-
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding
+import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding.*
 import com.smarthub.baseapplication.databinding.CommercialFragmentBinding
 import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
 import com.smarthub.baseapplication.databinding.CustomerInfoTempFragmentBinding
@@ -20,7 +21,7 @@ class BackhaulFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = BackhaulFragmentBinding.inflate(inflater, container, false)
+        binding = inflate(inflater, container, false)
         return binding?.root
     }
 

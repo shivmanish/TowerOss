@@ -513,6 +513,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#3D4E6D"
                 android:text="@string/logout"
+                android:id="@+id/logout"
                 android:fontFamily="@font/poppins"
                 android:textSize="15sp"
                 app:layout_constraintTop_toBottomOf="@+id/items_list"/>

@@ -319,46 +319,40 @@
 
             </GridLayout>
 
-            <LinearLayout
-                android:visibility="gone"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <include layout="@layout/layout_img_attachment"/>
 
+
+            <LinearLayout
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <TextView
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
+                    android:id="@+id/canecel_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Save/Update"
-                    android:textSize="14sp"
-                    android:layout_margin="@dimen/dp10"
-                    android:gravity="center"
+                    android:text="Cancel"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:background="@drawable/yellow_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingRight="@dimen/dp15"
                     android:paddingTop="@dimen/dp10"
                     android:paddingBottom="@dimen/dp10"
-                    android:backgroundTint="#3F4D67"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:background="@drawable/login_yellow_bg"
-                    app:layout_constraintTop_toBottomOf="@+id/items_list"/>
-            </LinearLayout>
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
 
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="@dimen/dp120"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color1"
-                android:text="update"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-                android:layout_gravity="end"
-                android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
