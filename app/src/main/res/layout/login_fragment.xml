@@ -74,7 +74,7 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp2"
                     android:fontFamily="@font/poppins_bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
                     android:id="@+id/request_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp45"
+                    android:layout_marginBottom="@dimen/dp30"
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +119,7 @@
                         android:gravity="center_vertical"
                         style="@style/CustomTextInputEdit"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
+                        android:layout_marginBottom="@dimen/dp3"
                         android:fontFamily="@font/poppins_regular"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:layout_marginBottom="@dimen/dp20"
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/password_layout"/>
@@ -153,7 +152,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:endIconTint="@color/white"
-                    android:layout_marginBottom="@dimen/dp8"
+                    android:layout_marginBottom="@dimen/dp5"
                     app:layout_constraintBottom_toTopOf="@+id/forgot_error">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -171,7 +170,7 @@
                         android:gravity="center_vertical"
                         style="@style/CustomTextInputEdit"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
+                        android:layout_marginBottom="@dimen/dp3"
                         android:fontFamily="@font/poppins_regular"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -184,11 +183,10 @@
                     android:textSize="13sp"
                     android:textColor="#FF0303"
                     android:id="@+id/forgot_error"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:layout_marginBottom="@dimen/dp30"
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/forgot_password"/>
@@ -217,7 +215,7 @@
                     android:textStyle="bold"
                     android:layout_height="@dimen/dp45"
                     android:gravity="center"
-                    android:layout_marginBottom="@dimen/dp30"
+                    android:layout_marginBottom="@dimen/dp20"
                     android:background="@drawable/login_yellow_bg"
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
@@ -229,6 +227,7 @@
                     android:text="Or sign-in with phone OTP"
                     android:textSize="15sp"
                     android:textColor="#F7CB46"
+                    android:drawable="@drawable/mic"
                     android:id="@+id/sign_with_phone"
                     android:layout_width="match_parent"
                     android:textStyle="bold"
@@ -241,8 +240,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
 
+
                 <TextView
-                    android:text="Not a member yet?"
+                    android:text="Not a member yet? "
                     android:textSize="13sp"
                     android:textColor="#ffffff"
                     android:id="@+id/already_have_account"
@@ -253,9 +253,10 @@
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/text_register"/>
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <TextView
+                    android:paddingBottom="@dimen/dp10"
                     android:text="Register"
                     android:textSize="14sp"
                     android:textColor="#FFD72B"
@@ -264,9 +265,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toEndOf="@id/already_have_account"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
