@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentEditDialouge
 
-class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener {
+class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener, PowerLoadAdapter.ItemClickListener {
 
     var adapter : PowerLoadAdapter?=null
     var binding : PowerLoadFregmentBinding?=null
@@ -22,7 +24,7 @@ class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PowerLoadAdapter(this@PowerLoadFragment)
+        adapter = PowerLoadAdapter(this@PowerLoadFragment,this@PowerLoadFragment)
         binding?.listItem?.adapter = adapter
 
         binding?.addItemsLayout?.setOnClickListener {
@@ -33,6 +35,12 @@ class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener {
     override fun itemClicked() {
 
         Toast.makeText(requireContext(),"Commercial Item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun EditItemDialouge() {
+        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.power_load_list_item_dialouge)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
 }
