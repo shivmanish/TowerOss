@@ -26,9 +26,5 @@ class SearchActivity : BaseActivity() {
 
 
     }
-       fun  navigationFragment(id:Direction){
-       //  navController?.navigate(id)
-       }
-
 
 }
