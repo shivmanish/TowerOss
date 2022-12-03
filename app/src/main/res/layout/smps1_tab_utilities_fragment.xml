@@ -280,7 +280,7 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Indoor Unit Size" />
+                                android:text="Cabinet Size" />
                             <EditText
                                 android:id="@+id/editUinitSize"
                                 style="@style/RowTestItemEdit"
@@ -306,13 +306,13 @@
                                 android:gravity="start"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Indoor Unit Weight" />
+                                android:hint="Overall Weight" />
                             <LinearLayout
                                 android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <EditText
-                                    android:id="@+id/editIndoorUnit"
+                                    android:id="@+id/editOverallWeight"
                                     android:layout_weight=".3"
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
@@ -344,13 +344,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Outdoor Unit Size" />
+                                android:text="Operating Temp" />
                             <EditText
                                 android:id="@+id/editoutdoorUinitSize"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="L - | W - | H - CM" />
+                                android:hint="Min - | Max - °C" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -368,6 +368,7 @@
                                 android:layout_weight=".7"
                                 style="@style/RowTestItemEdit"
                                 android:gravity="start"
+                                android:text="Max Power Rating"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="" />
@@ -381,14 +382,14 @@
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="50" />
+                                    android:hint="0.2" />
                                 <TextView
                                     android:layout_weight=".7"
                                     style="@style/RowTestItemEdit"
                                     android:gravity="end"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="KG" />
+                                    android:hint="KW" />
                             </LinearLayout>
 
 
@@ -409,7 +410,7 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Owner Company" />
+                                android:text="Installed Location Type" />
 
                             <com.smarthub.baseapplication.widgets.CustomSpinner
                                 android:id="@+id/spinOwnerCompany"
@@ -434,10 +435,85 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Usage Company" />
+                                android:text="Location Mark" />
 
                             <com.smarthub.baseapplication.widgets.CustomSpinner
                                 android:id="@+id/spinUsageType"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Rack ID" />
+
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinRackID"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Owner Company" />
+
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinOwner"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="User Company" />
+
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinUser"
                                 style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
@@ -463,15 +539,15 @@
                 android:layout_height="60dp">
                 <LinearLayout
                     android:gravity="center_vertical"
-                    android:id="@+id/collapsing_layout_installation"
+                    android:id="@+id/collapsing_InstallationAcceptance"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
                         android:drawablePadding="5dp"
                         android:layout_weight="1"
-                        android:id="@+id/item_InstallationAcceptance"
-                        android:text="Installation/ Acceptance"
+                        android:id="@+id/InstallationText"
+                        android:text="Installation/Acceptance"
                         android:paddingStart="@dimen/dp10"
                         android:paddingEnd="@dimen/dp10"
                         android:paddingTop="@dimen/dp10"
@@ -917,15 +993,15 @@
                 android:layout_height="60dp">
                 <LinearLayout
                     android:gravity="center_vertical"
-                    android:id="@+id/collapsing_Maintenance"
+                    android:id="@+id/collapsing_Connected_loads"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
                         android:drawablePadding="5dp"
                         android:layout_weight="1"
-                        android:id="@+id/item_maintenance"
-                        android:text="Maintenance"
+                        android:id="@+id/connected_loads"
+                        android:text="Connected Loads"
                         android:paddingStart="@dimen/dp10"
                         android:paddingEnd="@dimen/dp10"
                         android:paddingTop="@dimen/dp10"

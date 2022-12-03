@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.activities
 
-import android.graphics.Path.Direction
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
@@ -11,10 +10,11 @@ import com.smarthub.baseapplication.databinding.SearchActivityBinding
 import com.smarthub.baseapplication.viewmodels.SearchActivityViewModel
 
 class SearchActivity : BaseActivity() {
+    var navController:NavController?=null
     private var dataBinding: SearchActivityBinding? = null
+
     private lateinit var mViewModel: SearchActivityViewModel
 
-    var navController:NavController?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val actionBar: ActionBar? = this.supportActionBar
@@ -26,9 +26,5 @@ class SearchActivity : BaseActivity() {
 
 
     }
-       fun  navigationFragment(id:Direction){
-       //  navController?.navigate(id)
-       }
-
 
 }
