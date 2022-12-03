@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:padding="@dimen/dp18"
         app:tint="@color/white"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_height="?attr/actionBarSize"/>
