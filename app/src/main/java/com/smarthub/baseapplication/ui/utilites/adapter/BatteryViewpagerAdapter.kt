@@ -4,39 +4,18 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
 
-class BatteryViewpagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class BatteryViewpagerAdapter(fm: FragmentManager,val fragmentlist:ArrayList<Fragment>,val titels:ArrayList<String> ) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
-        return 2
+        return fragmentlist.size
     }
 
     override fun getItem(position: Int): Fragment {
-        when (position) {
-            0 -> {
-                val batteryfragone = BatteryFragment()
-                return batteryfragone
-            }
-            1 -> {
-                val batteryfragtwo = BatteryFragment()
-                return batteryfragtwo
-            }
-            else -> {
-                val batteryfragone = BatteryFragment()
-                return batteryfragone
-            }
-        }
+       return fragmentlist.get(position)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when (position) {
-            0 -> {
-                return "Battery Bank#1"
-            }
-            1 -> {
-                return "Battery Bank#2"
-            }
-        }
-        return super.getPageTitle(position)
+        return titels.get(position)
     }
 
 }
