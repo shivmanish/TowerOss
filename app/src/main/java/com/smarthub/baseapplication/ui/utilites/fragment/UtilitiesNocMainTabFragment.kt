@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
 import com.smarthub.baseapplication.ui.utilites.BatteryBankDetailsActivity
+import com.smarthub.baseapplication.ui.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocActivity
@@ -68,6 +69,51 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
             requireActivity().startActivity(
                 Intent(
                     requireContext(),
+                    SMPSDetailsActivity::class.java
+                )
+            )
+
+        }
+        else if(position==1) {
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    BatteryBankDetailsActivity::class.java
+                )
+            )
+
+        }
+        else if(position==2) { //Change for AC
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    BatteryBankDetailsActivity::class.java
+                )
+            )
+
+        }
+        else if(position==3) { //Change for DG
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    BatteryBankDetailsActivity::class.java
+                )
+            )
+
+        }
+        else if(position==4) { // Change for Fire
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    BatteryBankDetailsActivity::class.java
+                )
+            )
+
+        }
+        else if(position==5) { // Change for SPD
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
                     BatteryBankDetailsActivity::class.java
                 )
             )
@@ -83,17 +129,4 @@ class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
         }
     }
 
-    override fun clickedItemAC() {
-
-   }
-    override fun clickedItemDG() {
-
-
-   }
-    override fun clickedItemSMP() {
-
-    }
-    override fun clickedItemFireExiting() {
-
-   }
 }

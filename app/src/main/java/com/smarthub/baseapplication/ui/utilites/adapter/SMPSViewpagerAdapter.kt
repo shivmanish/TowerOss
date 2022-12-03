@@ -1,41 +1,40 @@
-package com.smarthub.baseapplication.ui.utilites
-
-
+package com.smarthub.baseapplication.ui.utilites.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.databinding.Spd1TabUtilitiesFragmentBinding
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.*
 import com.smarthub.baseapplication.ui.utilites.fragment.*
 
-class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
+class SMPSViewpagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
     override fun getCount(): Int {
         return 2
     }
 
     override fun getItem(position: Int): Fragment {
-        when(position) {
+        when (position) {
             0 -> {
-                return SMPS1UitilitiesFrag()
+                val smpsfragone = SMPS1UitilitiesFrag()
+                return smpsfragone
             }
             1 -> {
-                return SMPS2UitilitiesFrag()
+                val smpsfragtwo = SMPS2UitilitiesFrag()
+                return smpsfragtwo
             }
             else -> {
-                return SMPS1UitilitiesFrag()
+                val smpsfragone = SMPS1UitilitiesFrag()
+                return smpsfragone
             }
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(position) {
+        when (position) {
             0 -> {
-                return "SMPS1"
+                return "SMPS #1"
             }
             1 -> {
-                return "SMPS2"
+                return "SMPS #2"
             }
-
         }
         return super.getPageTitle(position)
     }
