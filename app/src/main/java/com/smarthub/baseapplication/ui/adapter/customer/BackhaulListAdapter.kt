@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) :
+class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener,var listener1:ItemClickListener) :
     RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
@@ -323,11 +323,15 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editListItem.setOnClickListener {
+                    listener1.LinkItemEdit()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.editRfBackhaulLinkItem.visibility=
+                holder.binding.editListItem.visibility=
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
             }
             holder.binding.itemTitleStr.text = list[position]
@@ -341,6 +345,10 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 } else {
                     holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                }
+
+                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
+                    listener1.IduEditItem()
                 }
 
                 holder.binding.itemLine.visibility =
@@ -364,6 +372,10 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
+                    listener1.OduEditItem()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
@@ -385,6 +397,10 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
+                    listener1.AnteenaItemEdit()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.itemCollapse.visibility =
@@ -404,6 +420,10 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 } else {
                     holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                }
+
+                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
+                    listener1.InstllationItemEdit()
                 }
 
                 holder.binding.itemLine.visibility =
@@ -454,6 +474,10 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editListItem.setOnClickListener {
+                    listener1.LmcFiberItemEdit()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.editListItem.visibility =
@@ -477,7 +501,7 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -519,6 +543,10 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
+                holder.binding.editListItem.setOnClickListener {
+                    listener1.ConnectedEquipmentItemEdit()
+                }
+
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.editListItem.visibility =
@@ -538,5 +566,12 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
 
     interface ItemClickListener {
         fun itemClicked()
+        fun LinkItemEdit()
+        fun IduEditItem()
+        fun OduEditItem()
+        fun AnteenaItemEdit()
+        fun InstllationItemEdit()
+        fun LmcFiberItemEdit()
+        fun ConnectedEquipmentItemEdit()
     }
 }
