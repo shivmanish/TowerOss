@@ -28,7 +28,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".BatteryBankDetailsActivity"
+            android:name=".ui.utilites.SMPSDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.utilites.BatteryBankDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -38,13 +45,8 @@
             android:name=".ui.project.DemoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.basic_info.AddImage"
-            android:exported="false" />
-        <activity
             android:name=".ui.fragments.task.TaskActivity"
             android:exported="false" />
-        <activity android:name=".ui.utilites.BatteryBankDetailsActivity"
-            android:exported="false"/>
         <activity
             android:name=".ui.basic_info.SiteImages"
             android:exported="false" />
