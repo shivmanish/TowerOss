@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityDgDetailsBinding
-import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 import com.smarthub.baseapplication.ui.utilites.adapter.DGViewpagerAdapter
 import com.smarthub.baseapplication.ui.utilites.fragment.DGFragment
 
