@@ -5,65 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.home.HomeFragment">
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp8"
+        android:text="@string/site_name_uid"
+        android:textColor="@color/normalTextColor"
+        android:fontFamily="@font/poppins"
+        android:alpha=".5"
+        android:id="@+id/title_text"
+        android:textSize="@dimen/sp10" />
 
+    <TextView
+        app:layout_constraintStart_toStartOf="@+id/title_text"
+        app:layout_constraintTop_toBottomOf="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp8"
+        android:text="@string/search_site"
+        android:id="@+id/title_main"
+        android:textColor="@color/normalTextColor"
+        android:fontFamily="@font/poppins"
+        android:textSize="@dimen/sp15" />
+
+    <EditText
+        android:paddingStart="@dimen/dp10"
+        app:layout_constraintStart_toStartOf="@+id/title_main"
+        app:layout_constraintTop_toBottomOf="@+id/title_main"
+        android:id="@+id/search_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginVertical="@dimen/dp8"
+        android:drawablePadding="@dimen/dp10"
+        android:paddingEnd="@dimen/dp15"
+        android:layout_marginStart="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp10"
+        android:background="@drawable/bg_search_box"
+        android:drawableEnd="@drawable/search"/>
+
+    <ProgressBar
+        android:padding="10dp"
+        android:visibility="invisible"
+        android:id="@+id/loading_progress"
+        app:layout_constraintBottom_toBottomOf="@+id/search_card_view"
+        app:layout_constraintTop_toTopOf="@+id/search_card_view"
+        app:layout_constraintEnd_toEndOf="@+id/search_card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:progressDrawable="@color/tab_text_color"
+        android:progressTint="@color/tab_text_color"/>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_card_view">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp8"
-                android:text="@string/site_name_uid"
-                android:textColor="@color/normalTextColor"
-                android:fontFamily="@font/poppins"
-                android:alpha=".5"
-                android:id="@+id/title_text"
-                android:textSize="@dimen/sp10" />
 
-            <TextView
-                app:layout_constraintStart_toStartOf="@+id/title_text"
-                app:layout_constraintTop_toBottomOf="@+id/title_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp8"
-                android:text="@string/search_site"
-                android:id="@+id/title_main"
-                android:textColor="@color/normalTextColor"
-                android:fontFamily="@font/poppins"
-                android:textSize="@dimen/sp15" />
-
-            <EditText
-                android:paddingStart="@dimen/dp10"
-                app:layout_constraintStart_toStartOf="@+id/title_main"
-                app:layout_constraintTop_toBottomOf="@+id/title_main"
-                android:id="@+id/search_card_view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp45"
-                android:layout_marginVertical="@dimen/dp8"
-                android:drawablePadding="@dimen/dp10"
-                android:paddingEnd="@dimen/dp15"
-                android:layout_marginStart="@dimen/dp10"
-                android:layout_marginEnd="@dimen/dp10"
-                android:background="@drawable/bg_search_box"
-                android:drawableEnd="@drawable/search"/>
-
-            <ProgressBar
-                android:padding="10dp"
-                android:visibility="invisible"
-                android:id="@+id/loading_progress"
-                app:layout_constraintBottom_toBottomOf="@+id/search_card_view"
-                app:layout_constraintTop_toTopOf="@+id/search_card_view"
-                app:layout_constraintEnd_toEndOf="@+id/search_card_view"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:progressDrawable="@color/tab_text_color"
-                android:progressTint="@color/tab_text_color"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -72,7 +74,7 @@
                 android:padding="@dimen/dp10"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/search_card_view"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
