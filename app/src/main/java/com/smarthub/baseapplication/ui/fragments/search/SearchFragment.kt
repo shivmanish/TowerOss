@@ -93,8 +93,8 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
                         binding.loadingProgress.visibility = View.VISIBLE
                     binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
 
-                    if (selectedCategory!=null && selectedCategory?.isNotEmpty() == true){
-                        siteViewModel.fetchSiteSearchData(fetchedData,selectedCategory!!)
+                    if (selectedCategory.isNotEmpty()){
+                        siteViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
                     }else {
                         siteViewModel.fetchSiteSearchData(fetchedData)
                     }

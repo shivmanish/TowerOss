@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.network.repo;
 
+import com.google.gson.JsonObject;
+import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
@@ -208,16 +210,18 @@ public class SiteInfoRepo {
 
     public void siteSearchData(String id,String category) {
 
-        apiClient.searchSiteInfoData(id,category).enqueue(new Callback<SearchList>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty(id,category);
+        apiClient.searchSiteInfoData(jsonObject, AppPreferences.getInstance().getBearerToken()).enqueue(new Callback<SearchList>() {
             @Override
             public void onResponse(Call<SearchList> call, Response<SearchList> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
                     AppLogger.INSTANCE.log("error :"+response);
-                }else if (response!=null){
+                }else {
                     AppLogger.INSTANCE.log("error :"+response);
-                }else AppLogger.INSTANCE.log("getProfileData response is null");
+                }
             }
 
             @Override

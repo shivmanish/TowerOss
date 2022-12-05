@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.network;
 
+import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
@@ -66,8 +67,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SearchList> searchSiteInfoData(@Query("id") String id);
 
-    @GET(EndPoints.SITE_INFO_SEARCH_DATA_URL)
-    Call<SearchList> searchSiteInfoData(@Path("key") String key,@Path("value") String value);
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
+    Call<SearchList> searchSiteInfoData(@Body JsonObject data, @Header("Authorization") String auth);
 
 }
 
