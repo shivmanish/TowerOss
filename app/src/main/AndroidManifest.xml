@@ -115,7 +115,7 @@
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.BaseApplication"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustResize">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
