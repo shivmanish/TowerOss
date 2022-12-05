@@ -13,27 +13,17 @@ class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     }
 
     override fun getItem(position: Int): Fragment {
-        when(position) {
-            0 -> {
-                return SMPS1UitilitiesFrag()
-            }
-            1 -> {
-                return SMPS2UitilitiesFrag()
-            }
-            else -> {
-                return SMPS1UitilitiesFrag()
-            }
+        return when(position) {
+            0 -> SMPS1UitilitiesFrag()
+            1 -> SMPS2UitilitiesFrag()
+            else -> SMPS1UitilitiesFrag()
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
-            0 -> {
-                return "SMPS1"
-            }
-            1 -> {
-                return "SMPS2"
-            }
+            0 -> return "SMPS1"
+            1 -> return "SMPS2"
 
         }
         return super.getPageTitle(position)
