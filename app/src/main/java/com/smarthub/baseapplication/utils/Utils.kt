@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.utils
 
 import android.app.Activity
 import android.content.Context
+import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -204,6 +205,9 @@ object Utils {
     fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
 
+    }
+     fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
 }

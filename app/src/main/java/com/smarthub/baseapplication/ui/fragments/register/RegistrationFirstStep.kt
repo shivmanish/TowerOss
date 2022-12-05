@@ -58,6 +58,75 @@ class RegistrationFirstStep : Fragment() {
                 }
             }
         })
+        registrationFirstStepBinding.firstName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationFirstStepBinding.firstName.text.toString().length>=3){
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationFirstStepBinding.firstName.text.toString().length>=3){
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+
+
+            }
+        })
+        registrationFirstStepBinding.lastName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationFirstStepBinding.lastName.text.toString().length>=3){
+                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationFirstStepBinding.lastName.text.toString().length>=3){
+                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+
+
+            }
+        })
+        registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationFirstStepBinding.moNo.text.toString().length==10){
+                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationFirstStepBinding.moNo.text.toString().length==10){
+                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+
+
+            }
+        })
+        registrationFirstStepBinding.emailId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+
+
+            }
+        })
+
 
         registrationFirstStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
