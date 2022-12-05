@@ -18,14 +18,13 @@ import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
-import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
 
 class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
 
     var fetchedData = ""
     var isDataFetched = true
     var item: SearchListItem?=null
-    var selectedCategory: String?=null
+    var selectedCategory: String="name"
     private lateinit var binding: SearchFragmentBinding
     lateinit var siteViewModel : BasicInfoDetailViewModel
     lateinit var searchResultAdapter : SearchResultAdapter

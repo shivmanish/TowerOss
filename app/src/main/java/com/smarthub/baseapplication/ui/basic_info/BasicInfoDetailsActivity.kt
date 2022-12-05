@@ -11,9 +11,6 @@ import com.smarthub.baseapplication.databinding.BasicInfoDetailActivityBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
-import kotlinx.android.synthetic.main.new_customer_detail_fragment.*
-import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
-import kotlinx.android.synthetic.main.tab_name_item.view.*
 
 
 class BasicInfoDetailsActivity : BaseActivity() {
@@ -41,10 +38,10 @@ class BasicInfoDetailsActivity : BaseActivity() {
         for (i in 0..binding.tabs.tabCount.minus(1)) {
             if (i == 0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-            var itemBinding = TabNameItemBinding.inflate(layoutInflater).root
-            itemBinding.tab_name.text = viewpager.adapter?.getPageTitle(i)
-            itemBinding.tab_name.textSize = 10f
-            binding.tabs.getTabAt(i)?.customView = itemBinding.view
+            val itemBinding : TabNameItemBinding = TabNameItemBinding.inflate(layoutInflater)
+            itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
+            itemBinding.tabName.textSize = 10f
+            binding.tabs.getTabAt(i)?.customView = itemBinding.root
         }
     }
 

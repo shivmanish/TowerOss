@@ -4,9 +4,8 @@ package com.smarthub.baseapplication.ui.utilites
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.databinding.Spd1TabUtilitiesFragmentBinding
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.*
-import com.smarthub.baseapplication.ui.utilites.fragment.*
+import com.smarthub.baseapplication.ui.utilites.fragment.SMPS1UitilitiesFrag
+import com.smarthub.baseapplication.ui.utilites.fragment.SMPS2UitilitiesFrag
 
 class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {

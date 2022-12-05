@@ -13,10 +13,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerPageAdapter
-import kotlinx.android.synthetic.main.new_customer_detail_fragment.*
-import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
-import kotlinx.android.synthetic.main.tab_name_item.view.*
 
 /*activity_new_site_acquisition*/
 class NewSiteAcquisitionActivity : BaseActivity() {
@@ -41,10 +37,10 @@ class NewSiteAcquisitionActivity : BaseActivity() {
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-            var itemBinding = TabNameItemBinding.inflate(layoutInflater).root
-            itemBinding.tab_name.text = viewpager.adapter?.getPageTitle(i)
-            itemBinding.tab_name.textSize = 10f
-            binding.tabs.getTabAt(i)?.customView = itemBinding.view
+            var itemBinding = TabNameItemBinding.inflate(layoutInflater)
+            itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
+            itemBinding.tabName.textSize = 10f
+            binding.tabs.getTabAt(i)?.customView = itemBinding.root
         }
         binding.addMore.setOnClickListener(){
             val dialog = BottomSheetDialog(this,R.style.NewDialog)
