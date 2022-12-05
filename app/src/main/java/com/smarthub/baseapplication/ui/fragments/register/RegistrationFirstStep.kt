@@ -40,6 +40,25 @@ class RegistrationFirstStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        registrationFirstStepBinding.companyName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationFirstStepBinding.companyName.text.toString()!=""){
+                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationFirstStepBinding.companyName.text.toString()!=""){
+                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+            }
+        })
+
         registrationFirstStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {

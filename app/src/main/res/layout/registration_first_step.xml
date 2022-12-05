@@ -206,7 +206,6 @@
                     android:layout_marginBottom="5dp"
                     android:hint="Compnay Name"
                     android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
                     app:endIconMode="custom"
                     app:endIconTint="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/email_error"
