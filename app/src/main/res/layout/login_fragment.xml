@@ -66,6 +66,7 @@
                 app:layout_constraintWidth_percent="0.88"
                 android:layout_height="match_parent">
 
+
                 <TextView
                     android:text="Login"
                     android:textSize="@dimen/dp28"
@@ -238,36 +239,44 @@
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/already_have_account"/>
+                    app:layout_constraintBottom_toTopOf="@+id/already_have_account_layout"/>
 
-
-                <TextView
-                    android:text="Not a member yet? "
-                    android:textSize="13sp"
-                    android:textColor="#ffffff"
-                    android:id="@+id/already_have_account"
-                    android:paddingBottom="@dimen/dp10"
+                <LinearLayout
+                    android:id="@+id/already_have_account_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:fontFamily="@font/poppins_regular"
+                    android:layout_gravity="center"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent">
+                    <TextView
+                        android:text="Not a member yet? "
+                        android:textSize="13sp"
+                        android:textColor="#ffffff"
+                        android:id="@+id/already_have_account"
+                        android:paddingBottom="@dimen/dp10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/poppins_regular"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <TextView
-                    android:paddingBottom="@dimen/dp10"
-                    android:text="Register"
-                    android:textSize="14sp"
-                    android:textColor="#FFD72B"
-                    android:id="@+id/text_register"
-                    android:textStyle="italic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    app:layout_constraintStart_toEndOf="@id/already_have_account"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    <TextView
+                        android:paddingBottom="@dimen/dp10"
+                        android:text="Register"
+                        android:textSize="14sp"
+                        android:textColor="#FFD72B"
+                        android:id="@+id/text_register"
+                        android:textStyle="italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        app:layout_constraintStart_toEndOf="@id/already_have_account"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
