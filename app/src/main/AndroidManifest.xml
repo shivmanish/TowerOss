@@ -27,6 +27,7 @@
         android:theme="@style/Theme.MDemo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.utilites.SMPSDetailsActivity"
             android:exported="false">
@@ -71,7 +72,7 @@
             android:name=".ui.fragments.customer_tab.NewCustomerDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".ui.utilites.DGDetailsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

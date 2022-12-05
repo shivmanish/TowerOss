@@ -24,7 +24,7 @@
         android:label="AC1UtilitesFrag" />
     <fragment
         android:id="@+id/DG1TabUtilitesFrag4"
-        android:name="com.smarthub.baseapplication.ui.utilites.fragment.DG1TabUtilitesFrag"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.DGFragment"
         android:label="DG1TabUtilitesFrag" />
     <fragment
         android:id="@+id/searchFragment"
