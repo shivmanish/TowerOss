@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+        binding?.password?.transformationMethod= HideReturnsTransformationMethod.getInstance()
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             loginValidation()
