@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.AtpListItem
 
-class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
+class TaskItemAdapter(var listener: itemClickListner) : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding : TaskListItemBinding = TaskListItemBinding.bind(itemView)
@@ -31,6 +31,7 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -51,6 +52,9 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
             }
             holder.binding.itemCollapse.visibility=
                 if (holder.binding.taskListDropdown.tag as Boolean) View.VISIBLE else View.GONE
+            holder.binding.personTaskItem.setOnClickListener {
+                listener.taskAssignDialouge()
+            }
 //            holder.binding.btnEditCard.visibility=
 //                if (holder.binding.taskListDropdown.tag as Boolean) View.VISIBLE else View.GONE
 
@@ -61,5 +65,9 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.ViewHold>() {
 
     override fun getItemCount(): Int {
         return 5
+    }
+
+    interface itemClickListner {
+        fun taskAssignDialouge()
     }
 }

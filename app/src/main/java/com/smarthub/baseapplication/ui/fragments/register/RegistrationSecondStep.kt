@@ -90,8 +90,6 @@ class RegistrationSecondStep : Fragment() {
                 if(registrationSecondStepBinding.roleGeography.text.toString().length>=3){
                     registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
-
-
             }
         })
 
