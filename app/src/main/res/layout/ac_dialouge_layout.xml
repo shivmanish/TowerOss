@@ -37,19 +37,17 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/item_collapse_equipment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:visibility="visible"
+                    android:id="@+id/item_collapse_equipment"
                     android:orientation="vertical"
-                    android:visibility="visible">
-
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/dp10"
                         android:orientation="vertical"
-                        android:paddingBottom="@dimen/dp10">
-
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                         <GridLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -82,7 +80,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -109,7 +106,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -136,7 +132,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -163,7 +158,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -189,24 +183,23 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content">
 
                                 <TextView
+                                    android:maxLines="1"
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Manufacturing Month/Year" />
+                                    android:text="Manufacturing Month / Year" />
 
                                 <EditText
                                     android:id="@+id/editManufacturingMonthYear"
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-
                                     android:hint="Nov/2018" />
 
                                 <View
@@ -216,7 +209,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -227,7 +219,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Warranty Period" />
-
                                 <EditText
                                     android:id="@+id/editWarrantyPeriod"
                                     style="@style/RowTestItemEdit"
@@ -242,7 +233,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -253,13 +243,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Warranty Expiry Date" />
-
                                 <EditText
                                     android:id="@+id/editWarrantyExpiryDate"
+                                    android:drawableRight="@drawable/icon_date"
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:drawableRight="@drawable/icon_date"
                                     android:hint="10-Nov-22" />
 
                                 <View
@@ -269,7 +258,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -279,14 +267,13 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="SPD Type" />
-
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinSPDType"
-                                    style="@style/SpinnerTheme"
+                                    android:text="Indoor Unit Size" />
+                                <EditText
+                                    android:id="@+id/editUinitSize"
+                                    style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
+                                    android:layout_height="wrap_content"
+                                    android:hint="L - | W - | H - CM" />
 
                                 <View
                                     android:layout_width="match_parent"
@@ -295,24 +282,38 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content">
 
                                 <TextView
-                                    style="@style/RowTextItemInfo"
+                                    android:layout_weight=".7"
+                                    style="@style/RowTestItemEdit"
+                                    android:gravity="start"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Protection Mode" />
-
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinProtectionMode"
-                                    style="@style/SpinnerTheme"
+                                    android:hint="Indoor Unit Weight" />
+                                <LinearLayout
+                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
+                                    android:layout_height="wrap_content">
+                                    <EditText
+                                        android:id="@+id/editIndoorUnit"
+                                        android:layout_weight=".3"
+                                        style="@style/RowTestItemEdit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="50" />
+                                    <TextView
+                                        android:layout_weight=".7"
+                                        style="@style/RowTestItemEdit"
+                                        android:gravity="end"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="KG" />
+                                </LinearLayout>
+
 
                                 <View
                                     android:layout_width="match_parent"
@@ -321,7 +322,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -331,14 +331,13 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Mounting Style" />
-
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinMountingStyle"
-                                    style="@style/SpinnerTheme"
+                                    android:text="Outdoor Unit Size" />
+                                <EditText
+                                    android:id="@+id/editoutdoorUinitSize"
+                                    style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
+                                    android:layout_height="wrap_content"
+                                    android:hint="L - | W - | H - CM" />
 
                                 <View
                                     android:layout_width="match_parent"
@@ -347,24 +346,38 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content">
 
                                 <TextView
-                                    style="@style/RowTextItemInfo"
+                                    android:layout_weight=".7"
+                                    style="@style/RowTestItemEdit"
+                                    android:gravity="start"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Installation Point" />
-
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinInstallationPoint"
-                                    style="@style/SpinnerTheme"
+                                    android:hint="" />
+                                <LinearLayout
+                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
+                                    android:layout_height="wrap_content">
+                                    <EditText
+
+                                        android:layout_weight=".3"
+                                        style="@style/RowTestItemEdit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="50" />
+                                    <TextView
+                                        android:layout_weight=".7"
+                                        style="@style/RowTestItemEdit"
+                                        android:gravity="end"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="KG" />
+                                </LinearLayout>
+
 
                                 <View
                                     android:layout_width="match_parent"
@@ -399,7 +412,6 @@
                                     android:alpha="0.37"
                                     android:background="#263238" />
                             </LinearLayout>
-
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -409,7 +421,7 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Usage Type" />
+                                    android:text="Usage Company" />
 
                                 <com.smarthub.baseapplication.widgets.CustomSpinner
                                     android:id="@+id/spinUsageType"
