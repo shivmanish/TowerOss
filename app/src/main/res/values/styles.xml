@@ -89,7 +89,7 @@
 
     <style name="RowTestItemEdit" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/poppins</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/color1</item>
         <item name="fontWeight">400</item>
         <item name="android:textSize">@dimen/sp14</item>
         <item name="android:maxLines">1</item>

@@ -53,7 +53,7 @@ class RegistrationOtpFragment : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        binding.submitOtp.setOnClickListener { view ->
+        binding.enableSubmitOtp.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 val s = updateOtpValueIndex()
@@ -114,26 +114,22 @@ class RegistrationOtpFragment : Fragment() {
         })
         binding.p6.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                binding.submitOtp.setBackgroundResource(R.drawable.login_yellow_border)
-                binding.submitOtp.setTextColor(Color.parseColor("${R.color.color2}"))
-                binding.submitOtp.alpha= 0.2F
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (binding.p6.text.toString().isNotEmpty()){
                     Utils.hideKeyboard(requireContext(), binding.p6)
-                    binding.submitOtp.setBackgroundResource(R.drawable.login_yellow_bg)
-                    binding.submitOtp.setTextColor(Color.parseColor("${R.color.color1}"))
-                    binding.submitOtp.alpha= 1F
+                    binding.enableSubmitOtp.visibility =
+                        if(updateOtpValueIndex().length==6) View.VISIBLE else View.GONE
                 }
                 else {
+                    binding.disableSubmitOtp.visibility=
+                        if(updateOtpValueIndex().length==6) View.GONE else View.VISIBLE
                     binding.p5.requestFocus()
-                    binding.submitOtp.setBackgroundResource(R.drawable.login_yellow_border)
-                    binding.submitOtp.setTextColor(Color.parseColor("${R.color.color2}"))
-                    binding.submitOtp.alpha= 0.2F
                 }
             }
         })
+
 
         loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
