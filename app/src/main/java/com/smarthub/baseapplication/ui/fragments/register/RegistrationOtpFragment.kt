@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.register
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.databinding.OtpVerificationStep2FragmentBinding
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
+import com.smarthub.baseapplication.databinding.RegistrationOtpConfirmationBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.otp.UserOTPGet
@@ -28,29 +30,30 @@ class RegistrationOtpFragment : Fragment() {
     
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
-    lateinit var binding : OtpVerificationStep2FragmentBinding
+    lateinit var binding : RegistrationOtpConfirmationBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = OtpVerificationStep2FragmentBinding.inflate(inflater)
+        binding = RegistrationOtpConfirmationBinding.inflate(inflater)
         return binding.root
     }
 
-    private fun enableErrorText(){
-        binding.userMailLayout.error = "enter valid password"
-    }
+//    private fun enableErrorText(){
+//        binding.userMailLayout.error = "enter valid password"
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
 
         if (arguments!=null && arguments?.containsKey("phone") == true){
+            binding.moNo.text=arguments?.getString("phone")
             Log.d("status","phone:${arguments?.getString("phone")}")
             loginViewModel?.getPhoneOtp(UserOTPGet(arguments?.getString("phone")))
         }
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        binding.signWithPhone.setOnClickListener { view ->
+        binding.submitOtp.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 val s = updateOtpValueIndex()
@@ -110,12 +113,25 @@ class RegistrationOtpFragment : Fragment() {
             }
         })
         binding.p6.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                binding.submitOtp.setBackgroundResource(R.drawable.login_yellow_border)
+                binding.submitOtp.setTextColor(Color.parseColor("${R.color.color2}"))
+                binding.submitOtp.alpha= 0.2F
+            }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.p6.text.toString().isNotEmpty())
+                if (binding.p6.text.toString().isNotEmpty()){
                     Utils.hideKeyboard(requireContext(), binding.p6)
-                else binding.p5.requestFocus()
+                    binding.submitOtp.setBackgroundResource(R.drawable.login_yellow_bg)
+                    binding.submitOtp.setTextColor(Color.parseColor("${R.color.color1}"))
+                    binding.submitOtp.alpha= 1F
+                }
+                else {
+                    binding.p5.requestFocus()
+                    binding.submitOtp.setBackgroundResource(R.drawable.login_yellow_border)
+                    binding.submitOtp.setTextColor(Color.parseColor("${R.color.color2}"))
+                    binding.submitOtp.alpha= 0.2F
+                }
             }
         })
 
@@ -135,12 +151,11 @@ class RegistrationOtpFragment : Fragment() {
                 }else{
                     Log.d("status","${it.message}")
                     Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
-                    enableErrorText()
+
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
             }
 
         }
