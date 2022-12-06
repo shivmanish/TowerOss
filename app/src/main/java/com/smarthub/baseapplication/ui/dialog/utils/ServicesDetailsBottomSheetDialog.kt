@@ -5,17 +5,19 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
+import com.smarthub.baseapplication.databinding.MaintanaceBottomSheetBinding
+import com.smarthub.baseapplication.databinding.ServicesDetailsBottomSheetBinding
 
 
-class DgBottomSheetDialog : DialogFragment() {
-    lateinit var binding: DgEqipmentDialogLayoutBinding
+class ServicesDetailsBottomSheetDialog : DialogFragment() {
+    lateinit var binding: ServicesDetailsBottomSheetBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = DgEqipmentDialogLayoutBinding.inflate(inflater)
+        binding = ServicesDetailsBottomSheetBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)

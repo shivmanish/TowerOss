@@ -17,7 +17,7 @@
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
             android:textStyle="bold"
-            android:text="PM Date"
+            android:text="Item Desc"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -27,7 +27,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-            android:text="Executive No."
+            android:text="PO No."
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -38,7 +38,7 @@
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/dp30"
-            android:text="Vendor"
+            android:text="Item Code"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -48,7 +48,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-            android:text="Date"
+            android:text="Modal No."
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>
