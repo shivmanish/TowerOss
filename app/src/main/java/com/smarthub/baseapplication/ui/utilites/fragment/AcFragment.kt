@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.AcFragmentBinding
 import com.smarthub.baseapplication.databinding.BatteryFragmentBinding
+import com.smarthub.baseapplication.ui.utilites.editdialouge.AcEquipmentDialouge
+import com.smarthub.baseapplication.ui.utilites.editdialouge.AcMentenanceDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.Utils
@@ -27,11 +29,15 @@ class AcFragment:Fragment() {
 
     fun setView(){
         binding.equipmentEdit.setOnClickListener{
-            val dalouge = BatteryEquipmentDialouge()
+            val dalouge = AcEquipmentDialouge()
             dalouge.show(childFragmentManager,"")
         }
         binding.editInstanlation.setOnClickListener{
             val dalouge = InstalationAcceptanceDialouge()
+            dalouge.show(childFragmentManager,"")
+        }
+        binding.editMaintenance.setOnClickListener{
+            val dalouge = AcMentenanceDialouge()
             dalouge.show(childFragmentManager,"")
         }
         binding.equipmentRoot.setOnClickListener {
@@ -61,6 +67,20 @@ class AcFragment:Fragment() {
                 binding.editInstanlation.visibility = View.VISIBLE
             }
         }
+        binding.maintenanceRoot.setOnClickListener {
+            if(binding.itemCollapseAcceptance.visibility == View.VISIBLE){
+                Utils.collapse(binding.itemCollapseAcceptance)
+                binding.maintenanceRoot.isSelected = false
+                binding.maintenanceArrow.rotation = 0f
+                binding.editMaintenance.visibility = View.GONE
+            }else{
+                Utils.expand(binding.itemCollapseAcceptance)
+                binding.maintenanceRoot.isSelected = true
+                binding.maintenanceArrow.rotation = 180f
+                binding.editMaintenance.visibility = View.VISIBLE
+            }
+        }
+
 
     }
 
