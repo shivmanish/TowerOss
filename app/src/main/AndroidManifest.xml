@@ -72,7 +72,7 @@
             android:name=".ui.fragments.customer_tab.NewCustomerDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.utilites.FireExtinguisherDetailsActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
