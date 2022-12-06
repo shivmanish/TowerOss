@@ -121,7 +121,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/blocker"
+                android:id="@+id/overlay_card"
                 android:clickable="true"
                 app:layout_constraintTop_toTopOf="@+id/ln_button_layout"
                 app:layout_constraintBottom_toBottomOf="@+id/ln_button_layout"
@@ -129,7 +129,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/ln_button_layout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#717070"
+                android:background="#8E8E8E"
                 android:alpha="0.8"/>
             <TextView
                 android:id="@+id/history_title"

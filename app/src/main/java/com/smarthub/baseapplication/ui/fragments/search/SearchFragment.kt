@@ -115,7 +115,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
 
     override fun onSearchItemSelected(item: SearchListItem?) {
         this.item = item
-        binding.blocker.visibility = if (item!=null) View.INVISIBLE else View.GONE
+        binding.overlayCard.visibility = if (item!=null) View.INVISIBLE else View.GONE
     }
 
     override fun selectedCategory(item: String) {
