@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BatteryEquipmentDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.RfEquipmentDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.SiteInfoBasicDetailsDialougeLayoutBinding
+import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
 
 
-class BatteryEquipmentDialouge : DialogFragment() {
-lateinit var binding: BatteryEquipmentDialougeLayoutBinding
+class DgBottomSheetDialog : DialogFragment() {
+    lateinit var binding: DgEqipmentDialogLayoutBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         super.onCreateView(inflater, container, savedInstanceState)
-        binding = BatteryEquipmentDialougeLayoutBinding.inflate(inflater)
+        super.onCreateView(inflater, container, savedInstanceState)
+        binding = DgEqipmentDialogLayoutBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)
