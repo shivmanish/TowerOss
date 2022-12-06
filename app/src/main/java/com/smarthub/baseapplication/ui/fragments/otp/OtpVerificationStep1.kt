@@ -71,7 +71,9 @@ class OtpVerificationStep1 : Fragment() {
                 }
             }
         })
-
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
         loginViewModel?.getOtpResponse?.observe(requireActivity()) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()

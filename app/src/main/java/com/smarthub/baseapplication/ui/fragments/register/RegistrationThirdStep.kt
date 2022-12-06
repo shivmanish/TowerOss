@@ -105,7 +105,7 @@ class RegistrationThirdStep : Fragment() {
         }
         view.findViewById<View>(R.id.register).setOnClickListener {
             Utils.hideKeyboard(requireContext(), it)
-            findNavController().navigate(RegistrationThirdStepDirections.actionRegistrationThirdStepToRegistrationOtpFragment2("1234567890"))
+            findNavController().navigate(RegistrationThirdStepDirections.actionRegistrationThirdStepToRegistrationOtpFragment("1234567890"))
         }
     }
 
