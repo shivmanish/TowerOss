@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#3D4E6D"
     tools:context=".ui.fragments.home.HomeFragment">
     <TextView
         app:layout_constraintTop_toTopOf="parent"
@@ -37,12 +38,14 @@
         app:layout_constraintTop_toBottomOf="@+id/title_main"
         android:id="@+id/search_card_view"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
         android:layout_height="@dimen/dp45"
         android:layout_marginVertical="@dimen/dp8"
         android:drawablePadding="@dimen/dp10"
         android:paddingEnd="@dimen/dp15"
         android:layout_marginStart="@dimen/dp10"
         android:layout_marginEnd="@dimen/dp10"
+        android:drawableTint="@color/white"
         android:background="@drawable/bg_search_box"
         android:drawableEnd="@drawable/search"/>
 
@@ -50,13 +53,13 @@
         android:padding="10dp"
         android:visibility="invisible"
         android:id="@+id/loading_progress"
+        android:paddingEnd="@dimen/dp5"
+        android:indeterminateTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/search_card_view"
         app:layout_constraintTop_toTopOf="@+id/search_card_view"
         app:layout_constraintEnd_toEndOf="@+id/search_card_view"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:progressDrawable="@color/tab_text_color"
-        android:progressTint="@color/tab_text_color"/>
+        android:layout_height="0dp"/>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -90,16 +93,17 @@
                     android:padding="@dimen/dp10"
                     android:text="View on iBoard"
                     android:textSize="15sp"
-                    android:textColor="@color/white"
+                    android:textColor="#3D4E6D"
                     android:layout_margin="@dimen/dp5"
                     android:id="@+id/view_on_ibo"
                     android:layout_width="match_parent"
                     android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_iboard"
+                    android:drawableLeft="@drawable/siteicon"
                     android:layout_height="@dimen/dp45"
                     android:gravity="center|center_vertical"
                     android:layout_marginBottom="@dimen/dp30"
                     android:background="@drawable/btn_blue"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/poppins_regular"
                     />
                 <TextView
@@ -107,6 +111,7 @@
                     android:padding="@dimen/dp10"
                     android:text="View on Map"
                     android:textSize="15sp"
+                    android:id="@+id/view_on_map"
                     android:textColor="#3F4D68"
                     android:layout_margin="@dimen/dp5"
                     android:layout_width="match_parent"
@@ -120,86 +125,84 @@
                     />
             </LinearLayout>
 
-            <View
-                android:id="@+id/blocker"
-                android:clickable="true"
-                app:layout_constraintTop_toTopOf="@+id/ln_button_layout"
-                app:layout_constraintBottom_toBottomOf="@+id/ln_button_layout"
-                app:layout_constraintStart_toStartOf="@+id/ln_button_layout"
-                app:layout_constraintEnd_toEndOf="@+id/ln_button_layout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#717070"
-                android:alpha="0.8"/>
-            <TextView
-                android:id="@+id/history_title"
-                android:text="History"
-                android:layout_marginLeft="@dimen/dp10"
-                android:textSize="13sp"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-                android:textColor="@color/black"
-                android:fontFamily="@font/poppins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ln_button_layout"/>
-
-            <TextView
-                android:id="@+id/clear_title"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/poppins"
-                android:layout_marginEnd="@dimen/dp15"
-                android:text="Clear history"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/history_title"
-                app:layout_constraintBottom_toBottomOf="@+id/history_title"/>
-
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:id="@+id/chip_layout"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp10"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/history_title"/>
-
-            <LinearLayout
-                android:background="#E0E0E0"
-                android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dp10"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chip_layout"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:background="@drawable/dialog_bg"
+                android:paddingTop="@dimen/dp5"
+                app:layout_constraintTop_toBottomOf="@+id/ln_button_layout">
                 <TextView
-                    android:id="@+id/select_sear"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp20"
-                    android:textColor="#000000"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:id="@+id/history_title"
+                    android:text="History"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_alignParentTop="true"
-                    android:text="Select Search Categories"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chipLayout"
-                    android:lineSpacingExtra="16sp"
-                    android:gravity="center_vertical"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/category_list"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
+                    android:textSize="15sp"
+                    android:paddingTop="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp5"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:spanCount="2"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:listitem="@layout/search_category_list_item"/>
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/clear_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:text="Clear history"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/history_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/history_title"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/chip_layout"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp10"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/history_title"/>
+
+                <LinearLayout
+                    android:background="#E0E0E0"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chip_layout"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/select_sear"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:textColor="#000000"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_alignParentTop="true"
+                        android:text="Select Search Categories"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/chipLayout"
+                        android:lineSpacingExtra="16sp"
+                        android:gravity="center_vertical"
+                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/category_list"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:spanCount="2"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        tools:listitem="@layout/search_category_list_item"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

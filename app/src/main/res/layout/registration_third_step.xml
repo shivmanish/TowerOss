@@ -86,11 +86,11 @@
                         android:id="@+id/p1"
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"
-                        android:background="@drawable/circle"
+                        android:background="@drawable/circle_border"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:text="1"
-                        android:textColor="#3F4D68"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/p_status1"
@@ -105,7 +105,7 @@
                         android:gravity="center"
                         android:padding="@dimen/dp5"
                         android:text="Basic info"
-                        android:textColor="#E7C42C"
+                        android:textColor="@color/white"
                         android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -131,11 +131,11 @@
                         android:id="@+id/p2"
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"
-                        android:background="@drawable/circle"
+                        android:background="@drawable/circle_border"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:text="2"
-                        android:textColor="#3F4D68"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@id/p_status2"
@@ -150,7 +150,7 @@
                         android:gravity="center"
                         android:padding="@dimen/dp5"
                         android:text="Job role info"
-                        android:textColor="#F7CB46"
+                        android:textColor="@color/white"
                         android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +212,6 @@
                     android:layout_marginBottom="5dp"
                     android:hint="Manager name"
                     android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
                     app:endIconMode="custom"
                     app:endIconTint="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/email_error"
@@ -238,27 +237,26 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_id_root"
-                    android:visibility="gone"
                     style="@style/TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Email Id"
+                    android:hint="Email ID"
                     android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
                     app:endIconMode="custom"
                     app:endIconTint="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/email_error"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
 
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_id"
+                        android:inputType="textEmailAddress"
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
+                        android:layout_marginBottom="@dimen/dp5"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
                         android:letterSpacing="0.1"
@@ -270,48 +268,15 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/mobile_number_root"
+                    android:id="@+id/mo_no_root"
                     style="@style/TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:hint="Mobile Number"
                     android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
                     app:endIconMode="custom"
                     app:endIconTint="@color/white"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mobile_number"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.1"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/first_name_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    app:endIconMode="password_toggle"
-                    android:hint="New Password"
-                    app:endIconTint="@color/white"
-                    android:textColorHint="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/email_error"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
@@ -319,46 +284,16 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/mo_no"
-                        android:inputType="textPassword"
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp8"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
+                        android:inputType="number"
                         android:letterSpacing="0.1"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/confirm_password_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:hint="@string/confirm_password"
-                    android:textColorHint="@color/white"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/confirm_password"
-                        android:inputType="textPassword"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.1"
+                        android:maxEms="10"
+                        android:maxLength="10"
                         android:padding="@dimen/dp13"
                         android:paddingStart="@dimen/dp15"
                         android:textColor="#fff"

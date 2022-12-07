@@ -24,7 +24,6 @@ class SearchActivity : BaseActivity() {
         setContentView(dataBinding?.root)
         navController=Navigation.findNavController(dataBinding?.root?.findViewById(R.id.nav_host)!!)
 
-
     }
 
 }

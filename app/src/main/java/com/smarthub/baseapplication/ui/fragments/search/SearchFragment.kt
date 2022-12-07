@@ -88,6 +88,8 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
             override fun afterTextChanged(s: Editable) {
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
+                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData))
+                        return
                     isDataFetched = false
                     if (binding.loadingProgress.visibility !=View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
@@ -115,8 +117,24 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
 
     override fun onSearchItemSelected(item: SearchListItem?) {
         this.item = item
-        binding.blocker.visibility = if (item!=null) View.INVISIBLE else View.GONE
+        if (item!=null){
+            binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
+            binding.viewOnIbo.alpha = 1.0f
+            binding.viewOnMap.alpha = 1.0f
+
+            binding.viewOnIbo.isEnabled = true
+            binding.viewOnMap.isEnabled = true
+        }else{
+            binding.viewOnIbo.alpha = 0.2f
+            binding.viewOnMap.alpha = 0.2f
+
+            binding.viewOnIbo.isEnabled = false
+            binding.viewOnMap.isEnabled = false
+        }
+
     }
+
+    private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     override fun selectedCategory(item: String) {
         this.selectedCategory = item

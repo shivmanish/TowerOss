@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragmentContainerView"
     android:layout_width="match_parent"
@@ -8,19 +9,16 @@
     android:orientation="vertical">
     <include layout="@layout/register_bg" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:orientation="vertical"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3" />
-
+        android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/dp20"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp20">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -45,7 +43,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/dp10"
                     android:fontFamily="@font/poppins_bold"
                     android:text="User Registration"
                     android:textColor="#ffffff"
@@ -69,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp20"
                     android:layout_marginRight="@dimen/dp20"
-                    android:layout_marginBottom="@dimen/dp45">
+                    android:layout_marginBottom="@dimen/dp25">
 
                     <TextView
                         android:id="@+id/p1"
@@ -197,221 +194,220 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/company_name_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:hint="Compnay Name"
-                    android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
-                    app:endIconMode="custom"
-                    app:endIconTint="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/company_name"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.1"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/first_name_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:hint="First Name"
-                    android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
-                    app:endIconMode="custom"
-                    app:endIconTint="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/first_name"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.1"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/last_name_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:hint="Last Name"
-                    android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
-                    app:endIconMode="custom"
-                    app:endIconTint="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/last_name"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.1"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/mo_no_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:hint="Mobile Number"
-                    android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
-                    app:endIconMode="custom"
-                    app:endIconTint="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mo_no"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:inputType="number"
-                        android:letterSpacing="0.1"
-                        android:maxEms="10"
-                        android:maxLength="10"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/email_id_root"
-                    style="@style/TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:hint="Email ID"
-                    android:textColorHint="@color/white"
-                    app:endIconDrawable="@drawable/check_textview"
-                    app:endIconMode="custom"
-                    app:endIconTint="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/email_error"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/email_id"
-                        android:inputType="textEmailAddress"
-                        style="@style/CustomTextInputEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.1"
-                        android:padding="@dimen/dp13"
-                        android:paddingStart="@dimen/dp15"
-                        android:textColor="#fff"
-                        android:textColorHint="@color/white"
-                        android:textSize="15sp"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/next"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp45"
-                    android:layout_marginBottom="@dimen/dp30"
-                    android:background="@drawable/login_yellow_border"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp10"
-                    android:text="Next"
-                    android:textColor="#F7CB46"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/already_have_account"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:scrollbars="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/company_name_root"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Compnay Name"
+                        android:textColorHint="@color/white"
+                        app:endIconMode="custom"
+                        app:endIconTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/email_error"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/company_name"
+                            style="@style/CustomTextInputEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp3"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.1"
+                            android:focusableInTouchMode="false"
+                            android:padding="@dimen/dp13"
+                            android:paddingStart="@dimen/dp15"
+                            android:textColor="#fff"
+                            android:textColorHint="@color/white"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/first_name_root"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:hint="First Name"
+                        android:textColorHint="@color/white" app:endIconMode="custom"
+                        app:endIconTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/email_error"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/first_name"
+                            style="@style/CustomTextInputEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp8"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.1"
+                            android:padding="@dimen/dp13"
+                            android:paddingStart="@dimen/dp15"
+                            android:textColor="#fff"
+                            android:textColorHint="@color/white"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/last_name_root"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Last Name"
+                        android:textColorHint="@color/white"
+                        app:endIconMode="custom"
+                        app:endIconTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/email_error"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/last_name"
+                            style="@style/CustomTextInputEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp8"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.1"
+                            android:padding="@dimen/dp13"
+                            android:paddingStart="@dimen/dp15"
+                            android:textColor="#fff"
+                            android:textColorHint="@color/white"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/mo_no_root"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Mobile Number"
+                        android:textColorHint="@color/white"
+                        app:endIconMode="custom"
+                        app:endIconTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/email_error"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/mo_no"
+                            style="@style/CustomTextInputEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp8"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_vertical"
+                            android:inputType="number"
+                            android:letterSpacing="0.1"
+                            android:maxEms="10"
+                            android:maxLength="10"
+                            android:padding="@dimen/dp13"
+                            android:paddingStart="@dimen/dp15"
+                            android:textColor="#fff"
+                            android:textColorHint="@color/white"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/email_id_root"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Email ID"
+                        android:textColorHint="@color/white"
+                        app:endIconMode="custom"
+                        app:endIconTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/email_error"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/email_id"
+                            android:inputType="textEmailAddress"
+                            style="@style/CustomTextInputEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp8"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.1"
+                            android:padding="@dimen/dp13"
+                            android:paddingStart="@dimen/dp15"
+                            android:textColor="#fff"
+                            android:textColorHint="@color/white"
+                            android:textSize="15sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
-                        android:id="@+id/already_have_account"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/next"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp45"
+                        android:layout_marginBottom="@dimen/dp30"
+                        android:background="@drawable/login_yellow_border"
                         android:fontFamily="@font/poppins_regular"
-                        android:paddingBottom="@dimen/dp10"
-                        android:text="Already have account?"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="italic"
-                        app:layout_constraintBottom_toTopOf="@+id/text_register"
+                        android:gravity="center"
+                        android:padding="@dimen/dp10"
+                        android:text="Next"
+                        android:layout_marginTop="@dimen/dp30"
+                        android:textColor="#F7CB46"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/already_have_account"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/text_login"
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dp20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="   Login"
-                        android:textColor="#FFD72B"
-                        android:textSize="14sp"
-                        android:textStyle="italic"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/already_have_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:paddingBottom="@dimen/dp10"
+                            android:text="Already have account?"
+                            android:textColor="#ffffff"
+                            android:textSize="13sp"
+                            android:textStyle="italic"
+                            app:layout_constraintBottom_toTopOf="@+id/text_register"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="   Login"
+                            android:textColor="#FFD72B"
+                            android:textSize="14sp"
+                            android:textStyle="italic"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4" />
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

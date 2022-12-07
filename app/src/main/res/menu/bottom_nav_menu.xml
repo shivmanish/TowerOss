@@ -11,9 +11,9 @@
         android:title="@string/title_task" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/btn_notification_check"
-        android:title="@string/title_notifications" />
+        android:id="@+id/site_board"
+        android:icon="@drawable/nav_site_iboard"
+        android:title="@string/title_site_board" />
 
     <item
         android:id="@+id/navigation_menu"

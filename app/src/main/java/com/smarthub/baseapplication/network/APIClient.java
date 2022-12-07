@@ -1,7 +1,11 @@
 package com.smarthub.baseapplication.network;
 
 import com.google.gson.JsonObject;
+import com.smarthub.baseapplication.model.CommonResponse;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
+import com.smarthub.baseapplication.model.dropdown.DropDownItem;
+import com.smarthub.baseapplication.model.dropdown.DropDownList;
+import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
@@ -25,7 +29,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIClient {
@@ -52,6 +55,15 @@ public interface APIClient {
 
     @POST(EndPoints.REGISTRATION)
     Call<RegstationResponse> registration(@Body RegisterData data);
+
+    @POST(EndPoints.REGISTRATION)
+    Call<DropDownList> companyDropDown(@Body JsonObject data);
+
+    @POST(EndPoints.REGISTRATION)
+    Call<CommonResponse> commonResponse(@Body JsonObject data);
+
+    @POST(EndPoints.REGISTRATION)
+    Call<GetRegisterOtpResponse> commonRegisterOTPResponse(@Body JsonObject data);
 
 //    Site Info Drop Down api integration
     @GET(EndPoints.SITE_INFO_DROP_DOWN)

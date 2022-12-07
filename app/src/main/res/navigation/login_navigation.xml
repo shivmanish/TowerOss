@@ -102,13 +102,27 @@
         android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationThirdStep"
         android:label="RegistrationThirdStep" >
         <action
-            android:id="@+id/action_registrationThirdStep_to_registrationSuccessfull"
-            app:destination="@id/registrationSuccessfull"
-            app:popUpTo="@id/registrationThirdStep" />
+            android:id="@+id/action_registrationThirdStep_to_registrationOtpFragment"
+            app:destination="@id/registrationOtpFragment"
+            app:popUpTo="@id/registrationThirdStep" >
+            <argument
+                android:name="phone"
+                app:argType="string"
+                android:defaultValue="1234567890" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/registrationSuccessfull"
         android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationSuccessfull"
         android:label="RegistrationSuccessfull" />
+    <fragment
+        android:id="@+id/registrationOtpFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationOtpFragment"
+        android:label="RegistrationOtpFragment" >
+        <action
+            android:id="@+id/action_registrationOtpFragment2_to_registrationSuccessfull"
+            app:destination="@id/registrationSuccessfull"
+            app:popUpTo="@id/registrationThirdStep" />
+    </fragment>
 
 </navigation>
