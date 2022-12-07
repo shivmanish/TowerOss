@@ -119,10 +119,25 @@
         android:id="@+id/registrationOtpFragment"
         android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationOtpFragment"
         android:label="RegistrationOtpFragment" >
+
+         <action
+            android:id="@+id/action_registrationOtpFragment_to_registrationSetPassword"
+            app:destination="@id/registrationSetPassword"
+            app:popUpTo="@id/registrationFirstStep" >
+             <argument
+                 android:name="phone"
+                 app:argType="string"
+                 android:defaultValue="1234567890" />
+         </action>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationSetPassword"
+        android:name="com.smarthub.baseapplication.ui.fragments.register.RegistrationSetPassword"
+        android:label="RegistrationSetPassword" >
         <action
-            android:id="@+id/action_registrationOtpFragment2_to_registrationSuccessfull"
+            android:id="@+id/action_registrationSetPassword_to_registrationSuccessfull"
             app:destination="@id/registrationSuccessfull"
-            app:popUpTo="@id/registrationThirdStep" />
+            app:popUpTo="@id/loginFragment" />
     </fragment>
 
 </navigation>

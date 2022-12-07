@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.smarthub.baseapplication.R;
-import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem;
+import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 
 import java.util.List;
 

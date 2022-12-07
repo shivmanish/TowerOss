@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityAcDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivityBatteryBankDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivityFireExtinguisherDetailsBinding
+import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
+import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.utilites.editdialouge.DgBottomSheetDialog
 import com.smarthub.baseapplication.ui.utilites.fragment.AcFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.FireExtinguisherFragment
@@ -21,6 +24,10 @@ class FireExtinguisherDetailsActivity : AppCompatActivity() {
     }
 
     fun initview(){
+        binding.addMore.setOnClickListener{
+            val dalouge =CommonBottomSheetDialog()
+            dalouge.show(supportFragmentManager,"")
+        }
         val fragmentlist = ArrayList<Fragment>()
         fragmentlist.add(FireExtinguisherFragment())
         fragmentlist.add(FireExtinguisherFragment())

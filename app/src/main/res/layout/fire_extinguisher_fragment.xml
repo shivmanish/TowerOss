@@ -62,10 +62,11 @@
                 <LinearLayout
                     android:id="@+id/item_collapse_equipment"
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1008,7 +1009,236 @@
                         app:drawableLeftCompat="@drawable/add_ico" />
                 </LinearLayout>
             </LinearLayout>
+            <!--Po Details-->
+            <LinearLayout
+                android:id="@+id/po_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_po"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="PO Details" />
+                <ImageView
+                    android:id="@+id/po_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/po_collasp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/po_details"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/maintannace_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_maintannace_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Maintenance" />
+                <ImageView
+                    android:id="@+id/maintenance_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/maintannce_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/item_collapse_maintance"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
 
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Maintenance Vendor" />
+
+                        <TextView
+                            android:id="@+id/textMaintenanceVendor"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="On-Air" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:text="PM Interval" />
+
+                        <EditText
+                            android:id="@+id/editPMInterval"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="10 M" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:text="Next PM Date" />
+
+                        <TextView
+                            android:id="@+id/txtNextPmDate"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:hint="10-Nov-22" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
+                </GridLayout>
+
+
+            </LinearLayout>
+
+            <!-- Services Details-->
+            <LinearLayout
+                android:id="@+id/ServiceDetails_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_ServiceDetails"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Service Details" />
+                <ImageView
+                    android:id="@+id/ServiceDetails_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/ServiceDetails_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/ServiceDetails_collasp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/services_details_list"/>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
