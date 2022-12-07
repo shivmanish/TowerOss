@@ -22,10 +22,10 @@ class RegistrationSetPassword : Fragment() {
 
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
-    lateinit var binding : RegistrationSetPasswordBinding
+    lateinit var binding : RegistrationSetPassBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = RegistrationSetPasswordBinding.inflate(inflater)
+        binding = RegistrationSetPassBinding.inflate(inflater)
         return binding.root
     }
     var phone = "1234567890"
