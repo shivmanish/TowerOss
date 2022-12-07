@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.smarthub.baseapplication.databinding.AdditinalAccessoresBottomSheetBinding
 import com.smarthub.baseapplication.databinding.Dg1TabUtilitiesFragmentBinding
-import com.smarthub.baseapplication.ui.utilites.editdialouge.DgBottomSheetDialog
+import com.smarthub.baseapplication.databinding.MaintanaceBottomSheetBinding
+import com.smarthub.baseapplication.ui.utilites.editdialouge.*
 import com.smarthub.baseapplication.utils.Utils
 
 class DGFragment:Fragment() {
@@ -25,15 +27,31 @@ class DGFragment:Fragment() {
             val dalouge = DgBottomSheetDialog()
             dalouge.show(childFragmentManager,"")
         }
-      /*  binding.equipmentEdit.setOnClickListener{
-            val dalouge = BatteryEquipmentDialouge()
+         binding.additionalAccessoriesEdit.setOnClickListener{
+            val dalouge = AdditionalAccessoriesBottomSheetDialog()
             dalouge.show(childFragmentManager,"")
         }
-      *//*  binding.editInstanlation.setOnClickListener{
+        binding.consumableMaterialsEdit.setOnClickListener{
+            val dalouge = ConsumableMaterialsBottomSheetDialog()
+            dalouge.show(childFragmentManager,"")
+        }
+        binding.installationEdit.setOnClickListener{
             val dalouge = InstalationAcceptanceDialouge()
             dalouge.show(childFragmentManager,"")
-        }*/
-        // Equipment
+        }
+        binding.maintenanceEdit.setOnClickListener{
+            val dalouge = MaintanceBottomSheetDialog()
+            dalouge.show(childFragmentManager,"")
+        }
+        binding.poEdit.setOnClickListener{
+            val dalouge = PoDetailsBottomSheetDialog()
+            dalouge.show(childFragmentManager,"")
+        }
+        binding.ServiceDetailsEdit.setOnClickListener{
+            val dalouge = ServicesDetailsBottomSheetDialog()
+            dalouge.show(childFragmentManager,"")
+        }
+
         binding.equipmentRoot.setOnClickListener {
             if(binding.itemCollapseEquipment.visibility == View.VISIBLE){
                 Utils.collapse(binding.itemCollapseEquipment)
@@ -62,20 +80,7 @@ class DGFragment:Fragment() {
                 binding.installationEdit.visibility = View.VISIBLE
             }
         }
-        // Maintenance
-        binding.maintannaceRoot.setOnClickListener {
-            if(binding.itemCollapseMaintance.visibility == View.VISIBLE){
-                Utils.collapse(binding.itemCollapseMaintance)
-                binding.maintannceArrow.rotation = 0f
-                binding.maintenanceEdit.visibility = View.GONE
-                binding.maintannaceRoot.isSelected = false
-            }else{
-                Utils.expand(binding.itemCollapseMaintance)
-                binding.maintannaceRoot.isSelected = true
-                binding.maintannceArrow.rotation = 180f
-                binding.maintenanceEdit.visibility = View.VISIBLE
-            }
-        }
+
         //Additional Accessories`
         binding.additionalAccessoriesRoot.setOnClickListener {
             if(binding.additionalAccessoriesCollasp.visibility == View.VISIBLE){
@@ -104,6 +109,20 @@ class DGFragment:Fragment() {
                 binding.consumableMaterialsEdit.visibility = View.VISIBLE
             }
         }
+        // Maintenance
+        binding.maintannaceRoot.setOnClickListener {
+            if(binding.itemCollapseMaintance.visibility == View.VISIBLE){
+                Utils.collapse(binding.itemCollapseMaintance)
+                binding.maintannceArrow.rotation = 0f
+                binding.maintenanceEdit.visibility = View.GONE
+                binding.maintannaceRoot.isSelected = false
+            }else{
+                Utils.expand(binding.itemCollapseMaintance)
+                binding.maintannaceRoot.isSelected = true
+                binding.maintannceArrow.rotation = 180f
+                binding.maintenanceEdit.visibility = View.VISIBLE
+            }
+        }
         // PO Details
         binding.poRoot.setOnClickListener {
             if(binding.poCollasp.visibility == View.VISIBLE){
@@ -121,7 +140,7 @@ class DGFragment:Fragment() {
         // Service Details
         binding.ServiceDetailsRoot.setOnClickListener {
             if(binding.ServiceDetailsCollasp.visibility == View.VISIBLE){
-                Utils.collapse(binding.ServiceDetailsRoot)
+                Utils.collapse(binding.ServiceDetailsCollasp)
                 binding.ServiceDetailsArrow.rotation = 0f
                 binding.ServiceDetailsEdit.visibility = View.GONE
                 binding.ServiceDetailsRoot.isSelected = false

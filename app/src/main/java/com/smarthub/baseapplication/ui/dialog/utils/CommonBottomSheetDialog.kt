@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
 import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
 
 
-class DgBottomSheetDialog : DialogFragment() {
-    lateinit var binding: DgEqipmentDialogLayoutBinding
+class CommonBottomSheetDialog : DialogFragment() {
+    lateinit var binding: AddMoreBotomSheetDailogBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = DgEqipmentDialogLayoutBinding.inflate(inflater)
+        binding = AddMoreBotomSheetDailogBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)
