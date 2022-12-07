@@ -24,6 +24,7 @@
                 android:paddingStart="@dimen/dp20"
                 android:paddingEnd="@dimen/dp10"
                 android:paddingTop="@dimen/dp10"
+                android:textStyle="bold"
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:layout_width="0dp"
@@ -64,7 +65,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:id="@+id/item_line"
-            android:alpha="2"
+            android:alpha="1"
             android:background="@color/view_color"
             android:layout_height="1dp"
             android:layout_width="match_parent" />
