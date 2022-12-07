@@ -66,7 +66,7 @@ class LoginViewModel: ViewModel() {
         loginRepo?.getOtpOnPhone(data)
     }
 
-    fun getRegisterOtp(phone : String) {
+    fun getRegisterOtp(phone : String?) {
         loginRepo?.getRegisterOtpOnPhone(phone)
     }
 
@@ -90,7 +90,7 @@ class LoginViewModel: ViewModel() {
         registerRepo?.verifyDomain(ownername,email)
     }
 
-    fun registerOTPVerification(otp:String,phone:String) {
+    fun registerOTPVerification(otp:String,phone:String?) {
         registerRepo?.registerOTPVerification(otp,phone)
     }
 

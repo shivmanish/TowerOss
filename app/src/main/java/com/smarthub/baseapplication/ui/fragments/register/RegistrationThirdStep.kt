@@ -92,9 +92,7 @@ class RegistrationThirdStep : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-
-        val loginButton = view.findViewById<View>(R.id.text_register)
-        loginButton.setOnClickListener { view ->
+        registrationThirdStepBinding.textRegister.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
@@ -102,30 +100,17 @@ class RegistrationThirdStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-        view.findViewById<View>(R.id.register).setOnClickListener {
-            if (!progressDialog.isShowing){
-                progressDialog.show()
-            }
+        registrationThirdStepBinding.register.setOnClickListener {
             Utils.hideKeyboard(requireContext(), it)
-
             registrationViewModel.registerData.managername = registrationThirdStepBinding.managerName.text.toString()
             registrationViewModel.registerData.manageremail = registrationThirdStepBinding.emailId.text.toString()
             registrationViewModel.registerData.managerphone = registrationThirdStepBinding.moNo.text.toString()
 
-            registrationViewModel.registerUser()
+
+            findNavController().navigate(RegistrationThirdStepDirections.actionRegistrationThirdStepToRegistrationSetPassword())
 
         }
-        if (registrationViewModel.getRegister()?.hasActiveObservers() == true)
-            registrationViewModel.getRegister()?.removeObservers(viewLifecycleOwner)
-        registrationViewModel.getRegister()?.observe(viewLifecycleOwner){
-            if (progressDialog.isShowing){
-                progressDialog.dismiss()
-            }
-            if (it!=null && it.status == "success"){
-                findNavController().navigate(RegistrationThirdStepDirections.actionRegistrationThirdStepToRegistrationOtpFragment(
-                    registrationViewModel.registerData.phone))
-            }
-        }
+
     }
 
 }

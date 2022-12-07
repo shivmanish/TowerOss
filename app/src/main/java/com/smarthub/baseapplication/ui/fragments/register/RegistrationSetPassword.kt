@@ -4,16 +4,13 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.databinding.RegistrationSetPassBinding
-import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -27,15 +24,9 @@ class RegistrationSetPassword : Fragment() {
         binding = RegistrationSetPassBinding.inflate(inflater)
         return binding.root
     }
-    var phone = "1234567890"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments!=null && arguments?.containsKey("phone") == true){
-            phone = arguments?.getString("phone")!!
-            Log.d("status","onViewCreated phone:$phone")
-            loginViewModel?.getRegisterOtp(phone)
-        }
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
@@ -48,36 +39,31 @@ class RegistrationSetPassword : Fragment() {
                 if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString() == binding.confirmPass.text.toString()) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
                     binding.signWithPhone.alpha = 1.0f
+                    binding.signWithPhone.isEnabled = true
                 }else{
                     binding.signWithPhone.alpha = 0.3f
+                    binding.signWithPhone.isEnabled = false
                 }
             }
         })
 
-        if (loginViewModel?.getPassResponse?.hasActiveObservers() == true)
-            loginViewModel?.getPassResponse?.removeObservers(viewLifecycleOwner)
-        loginViewModel?.getPassResponse?.observe(requireActivity()) {
-            if (progressDialog.isShowing)
-                progressDialog.dismiss()
-
-            if (it?.data != null && it.data.success == true){
-                Log.d("status","observe getOtpResponse: ${it.data}")
-                findNavController().navigate(RegistrationSetPasswordDirections.actionRegistrationSetPasswordToRegistrationSuccessfull())
-            }else  if (it?.data != null){
-                Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText(it?.data?.error)
-            } else{
-                Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
-            }
-        }
         binding.signWithPhone.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.registerPassword(phone,binding.moNoEdit.text.toString())
+            loginViewModel?.registerData?.password = binding.moNoEdit.text.toString()
+            loginViewModel?.registerUser()
+        }
+
+        if (loginViewModel?.getRegister()?.hasActiveObservers() == true)
+            loginViewModel?.getRegister()?.removeObservers(viewLifecycleOwner)
+        loginViewModel?.getRegister()?.observe(viewLifecycleOwner){
+            if (progressDialog.isShowing){
+                progressDialog.dismiss()
+            }
+            if (it!=null && it.status == "success"){
+                findNavController().navigate(RegistrationSetPasswordDirections.actionRegistrationSetPasswordToRegistrationOtpFragment())
+            }
         }
     }
 

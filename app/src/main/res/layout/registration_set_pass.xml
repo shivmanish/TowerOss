@@ -64,7 +64,7 @@
                 android:padding="@dimen/dp10"
                 android:textSize="15sp"
                 android:letterSpacing="0.1"
-                android:textColor="#33FFFFFF"
+                android:textColor="#fff"
                 android:id="@+id/mo_no_edit"
 
                 android:inputType="textPassword"
@@ -104,7 +104,7 @@
                 android:padding="@dimen/dp10"
                 android:textSize="15sp"
                 android:letterSpacing="0.1"
-                android:textColor="#33FFFFFF"
+                android:textColor="#fff"
                 android:id="@+id/confirm_pass"
                 android:inputType="textPassword"
                 android:nextFocusForward="@id/password"
