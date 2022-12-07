@@ -44,25 +44,32 @@ class RegistrationOtpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
-
+        var phone = "1234567890"
         if (arguments!=null && arguments?.containsKey("phone") == true){
-            binding.moNo.text=arguments?.getString("phone")
-            Log.d("status","phone:${arguments?.getString("phone")}")
-            loginViewModel?.getPhoneOtp(UserOTPGet(arguments?.getString("phone")))
+            phone = arguments?.getString("phone")!!
+            binding.moNo.text = phone
+            Log.d("status","onViewCreated phone:$phone")
+            loginViewModel?.getRegisterOtp(phone)
         }
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
         binding.enableSubmitOtp.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
-            activity?.let{
-                val s = updateOtpValueIndex()
-                AppLogger.log("s : $s")
-                if (s.isNotEmpty() && s.length == 6){
-                    if (!progressDialog.isShowing)
-                        progressDialog.show()
-                    loginViewModel?.getLoginWithOtp(s)
-                }else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
+            val s = updateOtpValueIndex()
+            AppLogger.log("s : $s")
+            if (s.isNotEmpty() && s.length == 6){
+                if (!progressDialog.isShowing)
+                    progressDialog.show()
+            loginViewModel?.registerOTPVerification(s,phone)
+//            activity?.let{
+//                val s = updateOtpValueIndex()
+//                AppLogger.log("s : $s")
+//                if (s.isNotEmpty() && s.length == 6){
+//                    if (!progressDialog.isShowing)
+//                        progressDialog.show()
+//
+//                }else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -131,27 +138,20 @@ class RegistrationOtpFragment : Fragment() {
         })
 
 
-        loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
+        loginViewModel?.registerVerifyOtpResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
-            if (it != null && it.data?.access?.isNotEmpty() == true) {
-                if (it.status == Resource.Status.SUCCESS && it.data.access?.isNotEmpty() == true) {
-                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
-                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
-                    Log.d("status","loginResponse accessToken ${it.data.access}")
-                    Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
+            if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true &&
+                it.data.status == "success") {
+                Log.d("status","loginResponse accessToken ${it.data.status}")
+                Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
+                findNavController().navigate(RegistrationOtpFragmentDirections.actionRegistrationOtpFragment2ToRegistrationSuccessfull())
 
-                    findNavController().navigate(RegistrationOtpFragmentDirections.actionRegistrationOtpFragment2ToRegistrationSuccessfull())
-
-                    return@observe
-                }else{
-                    Log.d("status","${it.message}")
-                    Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
-
-                }
+                return@observe
             }else{
-                Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+                Log.d("status","${it.message}")
+                Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
+
             }
 
         }

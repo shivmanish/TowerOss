@@ -3,23 +3,21 @@ package com.smarthub.baseapplication.ui.fragments.register
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
+import com.smarthub.baseapplication.databinding.DropDownListViewBinding
 import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.ui.adapter.spinner.CustomRegistrationArrayAdapter
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -27,6 +25,9 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 @Suppress("DEPRECATION")
 class RegistrationFirstStep : Fragment() {
+
+    var list : List<DropDownItem> = ArrayList()
+    var dropDownMap = HashMap<String,String>()
     lateinit var loginViewModel: LoginViewModel
     lateinit var registrationFirstStepBinding: RegistrationFirstStepBinding
 
@@ -127,7 +128,9 @@ class RegistrationFirstStep : Fragment() {
             }
         })
 
-
+        registrationFirstStepBinding.companyName.setOnClickListener {
+            setupAutoCompleteView()
+        }
         registrationFirstStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {
@@ -136,13 +139,10 @@ class RegistrationFirstStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-        setupAutoCompleteView()
-        val regFragment2 = RegistrationSecondStep()
         registrationFirstStepBinding.next.setOnClickListener {
             if (!Utils.isValid(registrationFirstStepBinding.companyName.text.toString())) {
                 registrationFirstStepBinding.companyNameRoot.isErrorEnabled = true
                 registrationFirstStepBinding.companyNameRoot.error = "This field can not be empty!"
-
                 return@setOnClickListener
             }else{
                 registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
@@ -204,66 +204,62 @@ class RegistrationFirstStep : Fragment() {
                 ).show()
                 return@setOnClickListener
             }
-            loginViewModel.registerData!!.last_name =
+            loginViewModel.registerData.last_name =
                 registrationFirstStepBinding.lastName.text.toString()
-            loginViewModel.registerData!!.username =
+            loginViewModel.registerData.username =
                 registrationFirstStepBinding.firstName.text.toString()
-            loginViewModel.registerData!!.email =
+            loginViewModel.registerData.email =
                 registrationFirstStepBinding.emailId.text.toString()
-            loginViewModel.registerData!!.phone =
+            loginViewModel.registerData.phone =
                 registrationFirstStepBinding.moNo.text.toString()
-//            loginViewModel.registerData!!. =
-//                registrationFirstStepBinding.moNo.text.toString()
             Utils.hideKeyboard(requireContext(), it)
             findNavController().navigate(RegistrationFirstStepDirections.actionRegistrationFirstStepToRegistrationSecondStep())
         }
-
-
-        registrationFirstStepBinding?.moNo?.addTextChangedListener(object : TextWatcher {
+        registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (registrationFirstStepBinding?.moNo?.text.toString().isNotEmpty() && registrationFirstStepBinding?.moNo?.text.toString().length>=10)
-                    Utils.hideKeyboard(requireContext(),registrationFirstStepBinding?.moNo!!)
+                if (registrationFirstStepBinding.moNo.text.toString().isNotEmpty() && registrationFirstStepBinding.moNo.text.toString().length>=10)
+                    Utils.hideKeyboard(requireContext(), registrationFirstStepBinding.moNo)
             }
         })
 
+        if (loginViewModel.dropDownList?.hasActiveObservers() == true)
+            loginViewModel.dropDownList?.removeObservers(viewLifecycleOwner)
+
+        loginViewModel.dropDownList?.observe(viewLifecycleOwner){
+            if (it?.data != null && it.data.isNotEmpty()){
+                this.list = it.data
+                registrationFirstStepBinding.companyName.text = it.data[0].name?.toEditable()
+//                setupAutoCompleteView()
+                Log.d("status"," drop down list size :"+it.data.size)
+            }else if(it.Errors!=null){
+                Log.d("status","e:"+it.Errors)
+            }else{
+                Log.d("status","something went wrong")
+            }
+        }
+        loginViewModel.fetchCompanyDropDown()
     }
 
     private fun setupAutoCompleteView() {
-        val datalist=getlList()
-        registrationFirstStepBinding.companyName.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
-//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
-        registrationFirstStepBinding.companyName.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, arg1, position, id ->
-//                registrationFirstStepBinding.companyName.text = datalist.get(position)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext(),R.style.FullDialog)
+        var dialogBinding = DropDownListViewBinding.inflate(layoutInflater)
+        dialogBuilder.setView(dialogBinding.root)
+        val popUp: AlertDialog = dialogBuilder.create()
+        var adapter = CustomRegistrationArrayAdapter(list,
+            object : CustomRegistrationArrayAdapter.CustomRegistrationArrayAdapterListener{
+            override fun clickedItem(item: DropDownItem?) {
+                popUp.dismiss()
+                registrationFirstStepBinding.companyName.text = item?.name?.toEditable()
             }
-
-
+        })
+        dialogBinding.listView.adapter = adapter
+        popUp.setCancelable(true)
+        popUp.show()
     }
 
-    private fun getlList(): ArrayList<String> {
-        val dataList=ArrayList<String>()
-        dataList.add("SmartMile")
-        dataList.add("Jio Fiber")
-        dataList.add("Airtel India")
-        dataList.add("VI")
-        dataList.add("")
-        return dataList
-    }
-
-
-    fun isFilled(field:TextInputEditText,fieldroot:TextInputLayout):Boolean{
-        if (!Utils.isValid(field.text.toString())) {
-            fieldroot.isErrorEnabled = true
-            fieldroot.error = "This field can not be empty!"
-            return false
-        }else{
-            fieldroot.isErrorEnabled = false
-            fieldroot.error = null
-        return true
-        }
-    }
+    private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
 }
 

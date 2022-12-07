@@ -3,12 +3,14 @@ package com.smarthub.baseapplication.network.repo;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.ErrorUtils;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
+import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.otp.GetSuccessResponse;
 import com.smarthub.baseapplication.model.otp.UserOTPGet;
 import com.smarthub.baseapplication.model.otp.UserOTPVerify;
@@ -16,7 +18,6 @@ import com.smarthub.baseapplication.model.otp.UserPasswordGet;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.AppConstants;
-import com.smarthub.baseapplication.utils.AppLogger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +30,7 @@ public class LoginRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<RefreshToken>> logingResponse;
     private SingleLiveEvent<Resource<GetOtpResponse>> getOtpResponse;
+    private SingleLiveEvent<Resource<GetRegisterOtpResponse>> registerSendOtpResponse;
     private SingleLiveEvent<Resource<GetSuccessResponse>> passChangeResponse;
 
     public static LoginRepo getInstance(APIClient apiClient) {
@@ -45,6 +47,7 @@ public class LoginRepo {
         logingResponse = new SingleLiveEvent<>();
         getOtpResponse = new SingleLiveEvent<>();
         passChangeResponse = new SingleLiveEvent<>();
+        registerSendOtpResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<RefreshToken>> getLoginResponse() {
@@ -54,6 +57,7 @@ public class LoginRepo {
         return getOtpResponse;
     }
     public SingleLiveEvent<Resource<GetSuccessResponse>> getPassResponse() {return passChangeResponse;}
+    public SingleLiveEvent<Resource<GetRegisterOtpResponse>> getRegisterSendOtpResponse() {return registerSendOtpResponse;}
 
     public void getLoginToken(UserLoginPost data) {
         apiClient.getLoginForAccessToken(data).enqueue(new Callback<RefreshToken>() {
@@ -153,6 +157,43 @@ public class LoginRepo {
                     getOtpResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     getOtpResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void getRegisterOtpOnPhone(String phone) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("sendotp",true);
+        jsonObject.addProperty("phone",phone);
+        jsonObject.addProperty("signature","SMTMIL");
+        apiClient.commonRegisterOTPResponse(jsonObject).enqueue(new Callback<GetRegisterOtpResponse>() {
+            @Override
+            public void onResponse(Call<GetRegisterOtpResponse> call, Response<GetRegisterOtpResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    reportErrorResponse(error, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetRegisterOtpResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<GetRegisterOtpResponse> response) {
+                if (response.body() != null) {
+                    registerSendOtpResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    registerSendOtpResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    registerSendOtpResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    registerSendOtpResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

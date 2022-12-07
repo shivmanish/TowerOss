@@ -32,8 +32,7 @@ class RegistrationSecondStep : Fragment() {
     lateinit var loginViewModel: LoginViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        registrationSecondStepBinding =
-            RegistrationSecondStepBinding.inflate(inflater, container, false)
+        registrationSecondStepBinding = RegistrationSecondStepBinding.inflate(inflater, container, false)
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         return registrationSecondStepBinding.root
 
@@ -56,8 +55,6 @@ class RegistrationSecondStep : Fragment() {
                 if(registrationSecondStepBinding.jobRole.text.toString().length>=3){
                     registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
-
-
             }
         })
         registrationSecondStepBinding.department.addTextChangedListener(object : TextWatcher {
@@ -102,42 +99,15 @@ class RegistrationSecondStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-        setupAutoCompleteView()
 
         view.findViewById<View>(R.id.next).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
+            loginViewModel.registerData.rolestxt = registrationSecondStepBinding.jobRole.text.toString()
+            loginViewModel.registerData.departmenttxt = registrationSecondStepBinding.department.text.toString()
+            loginViewModel.registerData.rolegeographytxt = registrationSecondStepBinding.roleGeography.text.toString()
             findNavController().navigate(RegistrationSecondStepDirections.actionRegistrationSecondStepToRegistrationThirdStep())
         }
     }
-
-    private fun setupAutoCompleteView() {
-        val datalist=getlList()
-        registrationSecondStepBinding.jobRole.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
-//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
-        registrationSecondStepBinding.jobRole.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, arg1, position, id ->
-//                registrationFirstStepBinding.companyName.text = datalist.get(position)
-            }
-
-        registrationSecondStepBinding.department.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
-//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
-        registrationSecondStepBinding.department.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, arg1, position, id ->
-//                registrationFirstStepBinding.companyName.text = datalist.get(position)
-            }
-
-
-    }
-
-    private fun getlList(): ArrayList<String> {
-        val dataList=ArrayList<String>()
-        dataList.add("Jio Fiber")
-        dataList.add("Airtel India")
-        dataList.add("VI")
-        dataList.add("BSNL")
-        return dataList
-    }
-
 
 }
 

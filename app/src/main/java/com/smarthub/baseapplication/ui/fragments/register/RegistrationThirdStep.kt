@@ -20,7 +20,7 @@ import com.smarthub.baseapplication.databinding.RegistrationThirdStepBinding
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
-@Suppress("DEPRECATION")
+
 class RegistrationThirdStep : Fragment() {
     lateinit var progressDialog: ProgressDialog
     lateinit var registrationViewModel: LoginViewModel
@@ -85,14 +85,13 @@ class RegistrationThirdStep : Fragment() {
                 if(registrationThirdStepBinding.moNo.text.toString().length==10){
                     registrationThirdStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
-
-
             }
         })
 
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
+
 
         val loginButton = view.findViewById<View>(R.id.text_register)
         loginButton.setOnClickListener { view ->
@@ -104,12 +103,30 @@ class RegistrationThirdStep : Fragment() {
             }
         }
         view.findViewById<View>(R.id.register).setOnClickListener {
+            if (!progressDialog.isShowing){
+                progressDialog.show()
+            }
             Utils.hideKeyboard(requireContext(), it)
-            findNavController().navigate(RegistrationThirdStepDirections.actionRegistrationThirdStepToRegistrationOtpFragment("1234567890"))
+
+            registrationViewModel.registerData.managername = registrationThirdStepBinding.managerName.text.toString()
+            registrationViewModel.registerData.manageremail = registrationThirdStepBinding.emailId.text.toString()
+            registrationViewModel.registerData.managerphone = registrationThirdStepBinding.moNo.text.toString()
+
+            registrationViewModel.registerUser()
+
+        }
+        if (registrationViewModel.getRegister()?.hasActiveObservers() == true)
+            registrationViewModel.getRegister()?.removeObservers(viewLifecycleOwner)
+        registrationViewModel.getRegister()?.observe(viewLifecycleOwner){
+            if (progressDialog.isShowing){
+                progressDialog.dismiss()
+            }
+            if (it!=null && it.status == "success"){
+                findNavController().navigate(RegistrationThirdStepDirections.actionRegistrationThirdStepToRegistrationOtpFragment(
+                    registrationViewModel.registerData.phone))
+            }
         }
     }
-
-    private val regFragment2 = RegistrationSuccessfull()
 
 }
 

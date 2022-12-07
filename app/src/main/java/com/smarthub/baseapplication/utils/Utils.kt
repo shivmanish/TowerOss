@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.utils
 
-import android.app.Activity
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
@@ -10,16 +9,12 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.model.register.Commucationaddess
-import com.smarthub.baseapplication.model.register.Officeaddress
 import com.smarthub.baseapplication.model.register.RegisterData
-import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem
 
 
 object Utils {
@@ -152,52 +147,21 @@ object Utils {
         }
     }
 
-    fun getRegistationDummyData(phone: String): RegisterData {
-        var commucationaddess = Commucationaddess(
-            address = "new street , 96/56 2nd floor",
-            national = "SMRT_INDIA",
-            region = "East",
-            state = "Bihar",
-            maintenancepoint = "Arrah"
-        )
-
-        var officeaddress = Officeaddress(
-            address = "new street , 96/56 2nd floor",
-            national = "SMRT_INDIA",
-            region = "East",
-            state = "Bihar",
-            maintenancepoint = "Arrah"
-        )
-
-        var roles = arrayListOf<String>("Patroller", "Area_Executive")
-        var priviledgename = arrayListOf<String>(
-            "Fiber_Manage_Route_AddRoute",
-            "Addministration_UserManagem_Executive_AddExecutive"
-        )
-        var maintenancepoint = arrayListOf<String>("Arrah")
-        var state = arrayListOf<String>("Assam")
-        var region = arrayListOf<String>("East")
-
-
+    fun getRegistrationDummyData(): RegisterData {
         var registerData = RegisterData(
-            save = "",
-            title = "Mr.",
-            username = "Somnath",
-            last_name = "Lenka",
-            email = "somnath.lenka@smartmile.com",
-            phone = phone,
-            national = "SMRT_INDIA",
-            region = region,
-            gender = "M",
-            state = state,
-            maintenancepoint = maintenancepoint,
-            ownername = "SMRT",
-            requestname = "sandeep",
-            priviledgename = priviledgename,
-            roles = roles,
-            department = "D1",
-            commucationaddess = commucationaddess,
-            officeaddress = officeaddress
+            save = "NA",
+            ownername = "NA",
+            username = "NA",
+            last_name = "",
+            phone = "NA",
+            email = "NA",
+            rolestxt = "NA",
+            departmenttxt = "M",
+            rolegeographytxt = "NA",
+            managername = "NA",
+            manageremail= "NA",
+            managerphone= "NA",
+            password = ""
         )
         return registerData
     }
