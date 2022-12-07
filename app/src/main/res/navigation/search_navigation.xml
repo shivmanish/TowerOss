@@ -17,9 +17,9 @@
         tools:layout="@layout/fragment_task" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/site_board"
         android:name="com.smarthub.baseapplication.ui.fragments.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_site_board"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_menu"

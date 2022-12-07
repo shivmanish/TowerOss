@@ -9,7 +9,12 @@
         android:id="@+id/navigation_home"
         android:name="com.smarthub.baseapplication.ui.fragments.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_notificationsFragment"
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_task"
@@ -18,10 +23,10 @@
         tools:layout="@layout/fragment_task" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.smarthub.baseapplication.ui.fragments.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/site_board"
+        android:name="com.smarthub.baseapplication.ui.fragments.search.SearchFragment"
+        android:label="@string/title_site_board"
+        tools:layout="@layout/search_fragment" />
 
     <fragment
         android:id="@+id/navigation_menu"
@@ -44,4 +49,9 @@
             android:id="@+id/action_projectsFragment2_to_navigation_menu"
             app:destination="@id/navigation_menu" />
     </fragment>
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.notifications.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>
