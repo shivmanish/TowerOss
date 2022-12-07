@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:textColor="@color/white"
         android:layout_height="@dimen/dp45"
+        android:textCursorDrawable="@drawable/cursure_color"
         android:layout_marginVertical="@dimen/dp8"
         android:drawablePadding="@dimen/dp10"
         android:paddingEnd="@dimen/dp15"
