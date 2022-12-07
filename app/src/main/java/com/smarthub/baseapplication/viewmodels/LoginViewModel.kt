@@ -74,6 +74,10 @@ class LoginViewModel: ViewModel() {
         loginRepo?.changePassword(UserPasswordGet(userOTPGet?.userPhoneNumber,data))
     }
 
+    fun registerPassword(phone : String?,newPass : String,) {
+        loginRepo?.changePassword(UserPasswordGet(phone,newPass))
+    }
+
     fun registerUser() {
         registerRepo?.registerUser(registerData)
     }

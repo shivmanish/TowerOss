@@ -123,7 +123,12 @@
          <action
             android:id="@+id/action_registrationOtpFragment_to_registrationSetPassword"
             app:destination="@id/registrationSetPassword"
-            app:popUpTo="@id/registrationFirstStep" />
+            app:popUpTo="@id/registrationFirstStep" >
+             <argument
+                 android:name="phone"
+                 app:argType="string"
+                 android:defaultValue="1234567890" />
+         </action>
     </fragment>
     <fragment
         android:id="@+id/registrationSetPassword"

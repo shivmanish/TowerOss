@@ -5,18 +5,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ForgotPassStep3FragmentBinding
 import com.smarthub.baseapplication.databinding.RegistrationSetPassBinding
-import com.smarthub.baseapplication.model.otp.UserOTPGet
-import com.smarthub.baseapplication.model.otp.UserPasswordGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -31,17 +27,19 @@ class RegistrationSetPassword : Fragment() {
         binding = RegistrationSetPassBinding.inflate(inflater)
         return binding.root
     }
-
+    var phone = "1234567890"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (arguments!=null && arguments?.containsKey("phone") == true){
+            phone = arguments?.getString("phone")!!
+            Log.d("status","onViewCreated phone:$phone")
+            loginViewModel?.getRegisterOtp(phone)
+        }
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        binding.signWithPhone.setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-
-        }
 
         binding.confirmPass.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -56,6 +54,8 @@ class RegistrationSetPassword : Fragment() {
             }
         })
 
+        if (loginViewModel?.getPassResponse?.hasActiveObservers() == true)
+            loginViewModel?.getPassResponse?.removeObservers(viewLifecycleOwner)
         loginViewModel?.getPassResponse?.observe(requireActivity()) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
@@ -77,7 +77,7 @@ class RegistrationSetPassword : Fragment() {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.changePassword(binding.moNoEdit.text.toString())
+            loginViewModel?.registerPassword(phone,binding.moNoEdit.text.toString())
         }
     }
 

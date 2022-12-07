@@ -145,7 +145,7 @@ class RegistrationOtpFragment : Fragment() {
                 it.data.status == "success") {
                 Log.d("status","loginResponse accessToken ${it.data.status}")
                 Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
-                findNavController().navigate(RegistrationOtpFragmentDirections.actionRegistrationOtpFragment2ToRegistrationSuccessfull())
+                findNavController().navigate(RegistrationOtpFragmentDirections.actionRegistrationOtpFragmentToRegistrationSetPassword(phone))
 
                 return@observe
             }else{
