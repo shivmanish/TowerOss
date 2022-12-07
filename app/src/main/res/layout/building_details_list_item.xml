@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -22,14 +24,17 @@
                 android:text="Link Name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp20"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/icon_layout"
@@ -42,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="0dp">
                 <ImageView
-                    app:tint="@color/black"
+                    app:tint="@color/color1"
                     android:visibility="visible"
                     android:id="@+id/img_edit"
                     android:paddingStart="@dimen/dp20"

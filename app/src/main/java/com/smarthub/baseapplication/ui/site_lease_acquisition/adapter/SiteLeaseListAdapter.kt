@@ -57,7 +57,7 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -108,8 +108,10 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
 
                 holder.binding.itemLine.visibility =
@@ -133,8 +135,10 @@ class SiteLeaseListAdapter(var listener: SiteLeaseListListener) :
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                 if ((holder.binding.itemTitle.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
                 holder.binding.itemLine.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
