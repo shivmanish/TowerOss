@@ -140,7 +140,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.operation_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
