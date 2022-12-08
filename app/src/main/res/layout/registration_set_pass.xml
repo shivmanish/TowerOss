@@ -86,8 +86,7 @@
                 android:textSize="15sp"
                 android:letterSpacing="0.1"
                 android:textColor="#fff"
-                android:id="@+id/mo_no_edit"
-
+                android:id="@+id/password"
                 android:inputType="textPassword"
                 android:nextFocusForward="@id/password"
                 android:drawablePadding="@dimen/dp10"

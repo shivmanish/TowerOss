@@ -83,6 +83,7 @@ class RegistrationThirdStep : Fragment() {
             }
             override fun afterTextChanged(s: Editable) {
                 if(registrationThirdStepBinding.moNo.text.toString().length==10){
+                    Utils.hideKeyboard(requireContext(), registrationThirdStepBinding.moNo)
                     registrationThirdStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
             }
@@ -92,7 +93,7 @@ class RegistrationThirdStep : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-        registrationThirdStepBinding.textRegister.setOnClickListener { view ->
+        registrationThirdStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {
                 val intent = Intent(it, LoginActivity::class.java)
@@ -100,8 +101,37 @@ class RegistrationThirdStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-        registrationThirdStepBinding.register.setOnClickListener {
+        registrationThirdStepBinding.next.setOnClickListener {
             Utils.hideKeyboard(requireContext(), it)
+
+            if (!Utils.isValid(registrationThirdStepBinding.managerName.text.toString())) {
+                registrationThirdStepBinding.managerNameRoot.isErrorEnabled = true
+                registrationThirdStepBinding.managerNameRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationThirdStepBinding.managerNameRoot.isErrorEnabled = false
+                registrationThirdStepBinding.managerNameRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationThirdStepBinding.emailId.text.toString())) {
+                registrationThirdStepBinding.emailIdRoot.isErrorEnabled = true
+                registrationThirdStepBinding.emailIdRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationThirdStepBinding.emailIdRoot.isErrorEnabled = false
+                registrationThirdStepBinding.emailIdRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationThirdStepBinding.moNo.text.toString())) {
+                registrationThirdStepBinding.moNoRoot.isErrorEnabled = true
+                registrationThirdStepBinding.moNoRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationThirdStepBinding.moNoRoot.isErrorEnabled = false
+                registrationThirdStepBinding.moNoRoot.error = null
+
+            }
+
             registrationViewModel.registerData.managername = registrationThirdStepBinding.managerName.text.toString()
             registrationViewModel.registerData.manageremail = registrationThirdStepBinding.emailId.text.toString()
             registrationViewModel.registerData.managerphone = registrationThirdStepBinding.moNo.text.toString()

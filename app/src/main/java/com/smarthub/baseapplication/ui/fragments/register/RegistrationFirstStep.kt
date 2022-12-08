@@ -96,7 +96,7 @@ class RegistrationFirstStep : Fragment() {
         registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.moNo.text.toString().length==10){
+                if( registrationFirstStepBinding.moNo.text.toString().length==10){
                     registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
                 else
@@ -104,6 +104,7 @@ class RegistrationFirstStep : Fragment() {
             }
             override fun afterTextChanged(s: Editable) {
                 if(registrationFirstStepBinding.moNo.text.toString().length==10){
+                    Utils.hideKeyboard(requireContext(), registrationFirstStepBinding.moNo)
                     registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
 
@@ -215,14 +216,6 @@ class RegistrationFirstStep : Fragment() {
             Utils.hideKeyboard(requireContext(), it)
             findNavController().navigate(RegistrationFirstStepDirections.actionRegistrationFirstStepToRegistrationSecondStep())
         }
-        registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                if (registrationFirstStepBinding.moNo.text.toString().isNotEmpty() && registrationFirstStepBinding.moNo.text.toString().length>=10)
-                    Utils.hideKeyboard(requireContext(), registrationFirstStepBinding.moNo)
-            }
-        })
 
         if (loginViewModel.dropDownList?.hasActiveObservers() == true)
             loginViewModel.dropDownList?.removeObservers(viewLifecycleOwner)

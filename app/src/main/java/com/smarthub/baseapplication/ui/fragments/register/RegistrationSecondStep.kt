@@ -90,7 +90,7 @@ class RegistrationSecondStep : Fragment() {
             }
         })
 
-        val loginButton = view.findViewById<View>(R.id.text_register)
+        val loginButton = view.findViewById<View>(R.id.text_login)
         loginButton.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
@@ -102,6 +102,33 @@ class RegistrationSecondStep : Fragment() {
 
         view.findViewById<View>(R.id.next).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
+            if (!Utils.isValid(registrationSecondStepBinding.jobRole.text.toString())) {
+                registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = true
+                registrationSecondStepBinding.jobRoleRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = false
+                registrationSecondStepBinding.jobRoleRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationSecondStepBinding.department.text.toString())) {
+                registrationSecondStepBinding.departmentRoot.isErrorEnabled = true
+                registrationSecondStepBinding.departmentRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationSecondStepBinding.departmentRoot.isErrorEnabled = false
+                registrationSecondStepBinding.departmentRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationSecondStepBinding.roleGeography.text.toString())) {
+                registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = true
+                registrationSecondStepBinding.roleGeographyRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = false
+                registrationSecondStepBinding.roleGeographyRoot.error = null
+
+            }
             loginViewModel.registerData.rolestxt = registrationSecondStepBinding.jobRole.text.toString()
             loginViewModel.registerData.departmenttxt = registrationSecondStepBinding.department.text.toString()
             loginViewModel.registerData.rolegeographytxt = registrationSecondStepBinding.roleGeography.text.toString()
