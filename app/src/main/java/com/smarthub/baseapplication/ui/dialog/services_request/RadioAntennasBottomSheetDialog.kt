@@ -8,15 +8,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.EquipmentBottomSheetBinding
+import com.smarthub.baseapplication.databinding.RadioAntinaBottomSheetDialogBinding
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
 
-class EquipmentDetailsBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class RadioAntennasBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
 
-    lateinit var binding : EquipmentBottomSheetBinding
+    lateinit var binding : RadioAntinaBottomSheetDialogBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = EquipmentBottomSheetBinding.bind(view)
+        binding = RadioAntinaBottomSheetDialogBinding.bind(view)
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
@@ -25,7 +26,7 @@ class EquipmentDetailsBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialo
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = EquipmentBottomSheetBinding.inflate(inflater)
+        binding = RadioAntinaBottomSheetDialogBinding.inflate(inflater)
         return binding.root
     }
 

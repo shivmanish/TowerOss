@@ -70,7 +70,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : OperationInfoViewBinding = OperationInfoViewBinding.bind(itemView)
+        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -87,7 +87,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : GeoConditionListItemBinding = GeoConditionListItemBinding.bind(itemView)
+        var binding : RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -144,7 +144,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.radio_antine_list_item, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
@@ -235,21 +235,21 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
 
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).OperationalInfo!=null && fieldData!!.get(0).OperationalInfo.size >0){
                     val operationalInfo: OperationalInfo = fieldData!!.get(0).OperationalInfo.get(0)
-                    holder.binding.txtRFCDate.text = operationalInfo.RFCDate
-                    holder.binding.txtRFIDate.text = operationalInfo.RFIDate
-                    holder.binding.txtRFSDate.text = operationalInfo.RFSDate
-                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus.get(0).name
-                    holder.binding.costCenter.text = operationalInfo.Costcentre.get(0).name
-                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility.get(0).name
-                    holder.binding.powerSource.text = operationalInfo.Powersource
-                    holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
-                    holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
-                    holder.binding.operationTemp.text = operationalInfo.OperatingTemp
-                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory.get(0).name
-                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite.get(0).name
-                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca.get(0).name
-                    holder.binding.scdaSpinner.text = operationalInfo.Scda.get(0).name
-                    holder.binding.dismanting.text = operationalInfo.DismantlinglDate
+//                    holder.binding.txtRFCDate.text = operationalInfo.RFCDate
+//                    holder.binding.txtRFIDate.text = operationalInfo.RFIDate
+//                    holder.binding.txtRFSDate.text = operationalInfo.RFSDate
+//                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus.get(0).name
+//                    holder.binding.costCenter.text = operationalInfo.Costcentre.get(0).name
+//                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility.get(0).name
+//                    holder.binding.powerSource.text = operationalInfo.Powersource
+//                    holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
+//                    holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
+//                    holder.binding.operationTemp.text = operationalInfo.OperatingTemp
+//                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory.get(0).name
+//                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite.get(0).name
+//                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca.get(0).name
+//                    holder.binding.scdaSpinner.text = operationalInfo.Scda.get(0).name
+//                    holder.binding.dismanting.text = operationalInfo.DismantlinglDate
                 }
             }
             is ViewHold3 -> {
@@ -279,14 +279,14 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 }
                 holder.binding.itemTitle.text = list[position]
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).GeoCondition!=null && fieldData!!.get(0).GeoCondition.size >0){
-                    val geoCondition: GeoCondition = fieldData!!.get(0).GeoCondition.get(0)
+                   /* val geoCondition: GeoCondition = fieldData!!.get(0).GeoCondition.get(0)
                     holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat.get(0).name
                     holder.binding.textAltitude.text = geoCondition.Altitude
                     holder.binding.windZoneSpinner.text = geoCondition.Windzone.get(0).name
                     holder.binding.seismecZoneSpinner.text = geoCondition.Seismiczone.get(0).name
                     holder.binding.floodZoneSpinner.text = geoCondition.Floodzone.get(0).name
                     holder.binding.textTempZone.text = geoCondition.TempratureZone
-                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype.get(0).name
+                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype.get(0).name*/
                 }
 
             }

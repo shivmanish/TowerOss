@@ -6,27 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.BackhaulLinkListItemDialougeBinding
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.EquipmentBottomSheetBinding
+import com.smarthub.baseapplication.databinding.RadioAntinaBottomSheetDialogBinding
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
 
-class EquipmentDetailsBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
-
-    lateinit var binding : EquipmentBottomSheetBinding
-
+class BachhualLinkBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+    lateinit var binding : BackhaulLinkListItemDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = EquipmentBottomSheetBinding.bind(view)
-        binding.icMenuClose.setOnClickListener {
+        binding = BackhaulLinkListItemDialougeBinding.bind(view)
+        binding.canecl.setOnClickListener {
             dismiss()
         }
     }
-
     override fun getTheme() = R.style.NewDialogTask
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = EquipmentBottomSheetBinding.inflate(inflater)
+        binding = BackhaulLinkListItemDialougeBinding.inflate(inflater)
         return binding.root
     }
-
 }
