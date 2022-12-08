@@ -50,26 +50,6 @@ class RegistrationSetPassword : Fragment() {
                 }
             }
         })
-
-        if (loginViewModel?.getPassResponse?.hasActiveObservers() == true)
-            loginViewModel?.getPassResponse?.removeObservers(viewLifecycleOwner)
-        loginViewModel?.getPassResponse?.observe(requireActivity()) {
-            if (progressDialog.isShowing)
-                progressDialog.dismiss()
-
-            if (it?.data != null && it.data.success == true){
-                Log.d("status","observe getOtpResponse: ${it.data}")
-                findNavController().navigate(RegistrationSetPasswordDirections.actionRegistrationSetPasswordToRegistrationSuccessfull())
-            }else  if (it?.data != null){
-                Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText(it?.data?.error)
-            } else{
-                Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
-            }
-        }
         binding.submitPass.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
