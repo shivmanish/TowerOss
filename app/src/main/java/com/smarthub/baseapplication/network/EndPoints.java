@@ -11,4 +11,6 @@ public class EndPoints {
     public static final String SITE_INFO_DROP_DOWN = "/toweross/SiteInfoDropDownView/";
     public static final String SITE_INFO_MODEL = "/toweross/Basicinfoapi/";
     public static final String SITE_INFO_SEARCH_DATA = "/toweross/Basicinfosearchdata/";
+
+    public static final String BASIC_INFO_UPDATE = "/Basicinfoapi/";
 }
