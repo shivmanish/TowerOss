@@ -18,7 +18,6 @@ import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
 class NewCustomerDetailsActivity : BaseActivity() {
-
     private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NewCustomerDetailFragmentBinding

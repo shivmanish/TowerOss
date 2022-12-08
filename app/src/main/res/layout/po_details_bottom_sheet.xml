@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content">
                 <include layout="@layout/po_details"/>
             </LinearLayout>
-
         </ScrollView>
     </LinearLayout>
 </RelativeLayout>
