@@ -28,15 +28,9 @@ class RegistrationSetPassword : Fragment() {
         binding = RegistrationSetPassBinding.inflate(inflater)
         return binding.root
     }
-    var phone = "1234567890"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments!=null && arguments?.containsKey("phone") == true){
-            phone = arguments?.getString("phone")!!
-            Log.d("status","onViewCreated phone:$phone")
-            loginViewModel?.getRegisterOtp(phone)
-        }
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
@@ -48,10 +42,11 @@ class RegistrationSetPassword : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString() == binding.confirmPassword.text.toString()) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
-                    binding.submitPass.isClickable=true
+                    binding.submitPass.isEnabled=true
                     binding.submitPass.alpha = 1.0f
                 }else{
                     binding.submitPass.alpha = 0.3f
+                    binding.submitPass.isEnabled=false
                 }
             }
         })
@@ -79,7 +74,19 @@ class RegistrationSetPassword : Fragment() {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.registerPassword(phone,binding.moNoEdit.text.toString())
+            loginViewModel?.registerData?.password = binding.moNoEdit.text.toString()
+            loginViewModel?.registerUser()
+        }
+
+        if (loginViewModel?.getRegister()?.hasActiveObservers() == true)
+            loginViewModel?.getRegister()?.removeObservers(viewLifecycleOwner)
+        loginViewModel?.getRegister()?.observe(viewLifecycleOwner){
+            if (progressDialog.isShowing){
+                progressDialog.dismiss()
+            }
+            if (it!=null && it.status == "success"){
+                findNavController().navigate(RegistrationSetPasswordDirections.actionRegistrationSetPasswordToRegistrationOtpFragment())
+            }
         }
     }
 
