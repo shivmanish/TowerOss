@@ -26,7 +26,29 @@
         android:id="@+id/site_board"
         android:name="com.smarthub.baseapplication.ui.fragments.search.SearchFragment"
         android:label="@string/title_site_board"
-        tools:layout="@layout/search_fragment" />
+        tools:layout="@layout/search_fragment" >
+        <argument
+            android:name="siteId"
+            app:argType="string"
+            android:defaultValue="1234"/>
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="1234"/>
+        <action
+            android:id="@+id/action_searchFragment_to_siteDetailFragment"
+            app:destination="@id/siteDetailFragment"
+            app:popUpTo="@id/site_board" >
+            <argument
+                android:name="siteId"
+                app:argType="string"
+                android:defaultValue="1234"/>
+            <argument
+                android:name="id"
+                app:argType="string"
+                android:defaultValue="1234"/>
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_menu"
@@ -54,4 +76,32 @@
         android:name="com.smarthub.baseapplication.ui.fragments.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+<!--    search nav -->
+
+    <fragment
+        android:id="@+id/utilitiesNocMainTabFragment"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment"
+        android:label="UtilitiesNocMainTabFragment" >
+        <action
+            android:id="@+id/action_utilitiesNocMainTabFragment_to_AC1UtilitesFrag"
+            app:destination="@id/AC1UtilitesFrag"
+            app:popUpTo="@id/utilitiesNocMainTabFragment" />
+        <action
+            android:id="@+id/action_utilitiesNocMainTabFragment_to_DG1TabUtilitesFrag4"
+            app:destination="@id/DG1TabUtilitesFrag4"
+            app:popUpTo="@id/utilitiesNocMainTabFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AC1UtilitesFrag"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.AC1UtilitesFrag"
+        android:label="AC1UtilitesFrag" />
+    <fragment
+        android:id="@+id/DG1TabUtilitesFrag4"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.DGFragment"
+        android:label="DG1TabUtilitesFrag" />
+    <fragment
+        android:id="@+id/siteDetailFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailFragment"
+        android:label="SiteDetailFragment" />
 </navigation>
