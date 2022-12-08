@@ -40,8 +40,8 @@ class RegistrationSetPassword : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString() == binding.confirmPassword.text.toString()) {
-                    Utils.hideKeyboard(requireContext(), binding.moNoEdit)
+                if (binding.password.text.toString().isNotEmpty() && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                    Utils.hideKeyboard(requireContext(), binding.password)
                     binding.submitPass.isEnabled=true
                     binding.submitPass.alpha = 1.0f
                 }else{
@@ -54,7 +54,7 @@ class RegistrationSetPassword : Fragment() {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.registerData?.password = binding.moNoEdit.text.toString()
+            loginViewModel?.registerData?.password = binding.password.text.toString()
             loginViewModel?.registerUser()
         }
 
