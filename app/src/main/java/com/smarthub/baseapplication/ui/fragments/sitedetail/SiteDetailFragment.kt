@@ -248,9 +248,14 @@ class SiteDetailFragment : Fragment() {
                 0-> SiteInfoNewFragment()
                 1-> ServicesRequestFrqagment.newInstance(tabNames?.get(1) ?: "Service Request")
                 2-> OpcoTanacyFragment.newInstance(tabNames?.get(2) ?: "OPCO Tenancy")
-                3-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(3) ?: "SiteLease")
-                4-> BlackhaulFrag.newInstance(tabNames?.get(4) ?: "Blackhaul")
-                5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(5) ?: "Utilities")
+                3-> BlackhaulFrag.newInstance(tabNames?.get(3) ?: "PLAN & Design")
+                4-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(4) ?: "Site Agreement")
+                5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(5) ?: "Utilitie Equip")
+                6-> BlackhaulFrag.newInstance(tabNames?.get(6) ?: "Noc & Comp")
+                7-> BlackhaulFrag.newInstance(tabNames?.get(7) ?: "TWR & Civil Infra")
+                8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "EB Connection")
+                9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "Bill & Payments")
+                10-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
                 else -> SiteInfoNewFragment()
             }
         }

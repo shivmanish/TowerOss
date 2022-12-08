@@ -66,12 +66,16 @@ class LoginViewModel: ViewModel() {
         loginRepo?.getOtpOnPhone(data)
     }
 
-    fun getRegisterOtp(phone : String) {
+    fun getRegisterOtp(phone : String?) {
         loginRepo?.getRegisterOtpOnPhone(phone)
     }
 
     fun changePassword(data : String) {
         loginRepo?.changePassword(UserPasswordGet(userOTPGet?.userPhoneNumber,data))
+    }
+
+    fun registerPassword(phone : String?,newPass : String,) {
+        loginRepo?.changePassword(UserPasswordGet(phone,newPass))
     }
 
     fun registerUser() {
@@ -86,7 +90,7 @@ class LoginViewModel: ViewModel() {
         registerRepo?.verifyDomain(ownername,email)
     }
 
-    fun registerOTPVerification(otp:String,phone:String) {
+    fun registerOTPVerification(otp:String,phone:String?) {
         registerRepo?.registerOTPVerification(otp,phone)
     }
 

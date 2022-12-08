@@ -167,7 +167,7 @@ object Utils {
     }
 
     fun isValid(value: String):Boolean {
-        return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
+        return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)
 
     }
      fun isValidEmail(email: String): Boolean {

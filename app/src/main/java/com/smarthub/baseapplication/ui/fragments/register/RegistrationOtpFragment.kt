@@ -44,16 +44,10 @@ class RegistrationOtpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
-        var phone = "1234567890"
-        if (arguments!=null && arguments?.containsKey("phone") == true){
-            phone = arguments?.getString("phone")!!
-            binding.moNo.text = phone
-            Log.d("status","onViewCreated phone:$phone")
-            loginViewModel?.getRegisterOtp(phone)
-        }
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
+        loginViewModel?.getRegisterOtp(loginViewModel?.registerData?.phone)
         binding.enableSubmitOtp.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
             val s = updateOtpValueIndex()
@@ -61,7 +55,7 @@ class RegistrationOtpFragment : Fragment() {
             if (s.isNotEmpty() && s.length == 6){
                 if (!progressDialog.isShowing)
                     progressDialog.show()
-            loginViewModel?.registerOTPVerification(s,phone)
+            loginViewModel?.registerOTPVerification(s,loginViewModel?.registerData?.phone)
 //            activity?.let{
 //                val s = updateOtpValueIndex()
 //                AppLogger.log("s : $s")
@@ -145,7 +139,7 @@ class RegistrationOtpFragment : Fragment() {
                 it.data.status == "success") {
                 Log.d("status","loginResponse accessToken ${it.data.status}")
                 Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
-                findNavController().navigate(RegistrationOtpFragmentDirections.actionRegistrationOtpFragment2ToRegistrationSuccessfull())
+                findNavController().navigate(RegistrationOtpFragmentDirections.actionRegistrationOtpFragmentToRegistrationSuccessfull())
 
                 return@observe
             }else{
@@ -155,6 +149,7 @@ class RegistrationOtpFragment : Fragment() {
             }
 
         }
+
     }
     private fun updateOtpValueIndex() : String{
         return binding.p1.text.toString() +

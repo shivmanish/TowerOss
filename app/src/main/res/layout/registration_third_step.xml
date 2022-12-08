@@ -204,12 +204,24 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:scrollbars="vertical"
+                android:layout_height="match_parent"
+                android:requiresFadingEdge="vertical">
+            <LinearLayout
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/manager_name_root"
                     style="@style/TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="@dimen/dp10"
                     android:hint="Manager name"
                     android:textColorHint="@color/white"
                     app:endIconMode="custom"
@@ -224,7 +236,6 @@
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
                         android:letterSpacing="0.1"
@@ -240,7 +251,7 @@
                     style="@style/TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:hint="Email ID"
                     android:textColorHint="@color/white"
                     app:endIconMode="custom"
@@ -256,7 +267,6 @@
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp5"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
                         android:letterSpacing="0.1"
@@ -272,7 +282,7 @@
                     style="@style/TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="30dp"
                     android:hint="Mobile Number"
                     android:textColorHint="@color/white"
                     app:endIconMode="custom"
@@ -287,7 +297,6 @@
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp8"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
                         android:inputType="number"
@@ -302,7 +311,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/register"
+                    android:id="@+id/next"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp45"
                     android:layout_marginBottom="@dimen/dp30"
@@ -339,7 +348,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
-                        android:id="@+id/text_register"
+                        android:id="@+id/text_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
@@ -351,6 +360,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
                 </LinearLayout>
+            </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
