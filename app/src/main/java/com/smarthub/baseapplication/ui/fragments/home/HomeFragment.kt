@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
-                0-> SiteLeaseAcqusitionFragment()
+                0-> MyTaskHomeFragment()
                 else -> MyTaskHomeFragment()
             }
         }
