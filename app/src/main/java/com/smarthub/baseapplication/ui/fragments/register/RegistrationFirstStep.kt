@@ -191,10 +191,6 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.emailIdRoot.error = "email not verified"
 
                 return@setOnClickListener
-            }else{
-                registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
-                registrationFirstStepBinding.emailIdRoot.error = null
-
             }
             if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {
                 Snackbar.make(
@@ -248,7 +244,7 @@ class RegistrationFirstStep : Fragment() {
 //            isDataFetched = true
             if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success") {
                 Log.d("status","email verified")
-                Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(),"email verification successful", Toast.LENGTH_LONG).show()
                 registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
                 registrationFirstStepBinding.emailIdRoot.tag = true
                 return@observe
