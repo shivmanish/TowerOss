@@ -231,7 +231,6 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-
                         android:id="@+id/manager_name"
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
@@ -239,6 +238,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
                         android:letterSpacing="0.1"
+                        android:cursorVisible="true"
                         android:padding="@dimen/dp13"
                         android:paddingStart="@dimen/dp15"
                         android:textColor="#fff"
