@@ -43,6 +43,7 @@ class RegistrationFirstStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.ic_arrow_down)
         registrationFirstStepBinding.emailIdRoot.tag = false
         registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
         registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
@@ -56,10 +57,13 @@ class RegistrationFirstStep : Fragment() {
                 if(registrationFirstStepBinding.companyName.text.toString().isNotEmpty()){
                     registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
                     registrationFirstStepBinding.loadingProgress.visibility = View.GONE
+                    registrationFirstStepBinding.companyNameRoot.tag=true
+                    registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
                 }
                 else {
                     registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
                     registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.companyNameRoot.tag=false
                 }
                 if(registrationFirstStepBinding.emailIdRoot.isErrorEnabled){
                     registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
@@ -78,46 +82,58 @@ class RegistrationFirstStep : Fragment() {
         registrationFirstStepBinding.firstName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.firstName.text.toString().length>=3){
-                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(0)
             }
             override fun afterTextChanged(s: Editable) {
+                if(registrationFirstStepBinding.firstName.text.toString().length>=2){
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.firstNameRoot.tag=true
+                    registrationFirstStepBinding.firstNameRoot.isErrorEnabled = false
+                }
+                else{
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.firstNameRoot.tag=false
+                    registrationFirstStepBinding.firstNameRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.firstNameRoot.error = "Enter your first name"
+                }
+
+
 
             }
         })
         registrationFirstStepBinding.lastName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.lastName.text.toString().length>=3){
-                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if(registrationFirstStepBinding.lastName.text.toString().length>=3){
                     registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.lastNameRoot.tag=true
+                    registrationFirstStepBinding.lastNameRoot.isErrorEnabled = false
                 }
+                else{
+                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.lastNameRoot.tag=false
+                    registrationFirstStepBinding.lastNameRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.lastNameRoot.error = "Enter your last name"
+                }
+
 
 
             }
         })
         registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if( registrationFirstStepBinding.moNo.text.toString().length==10){
-                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if(registrationFirstStepBinding.moNo.text.toString().length==10){
                     Utils.hideKeyboard(requireContext(), registrationFirstStepBinding.moNo)
                     registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.moNoRoot.tag=true
+                    registrationFirstStepBinding.moNoRoot.isErrorEnabled = false
+                }else{
+                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.moNoRoot.tag=false
+                    registrationFirstStepBinding.moNoRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.moNoRoot.error = "Enter ten digit mobile number"
                 }
 
 
@@ -158,14 +174,10 @@ class RegistrationFirstStep : Fragment() {
             }
         }
         registrationFirstStepBinding.next.setOnClickListener {
-            if (!Utils.isValid(registrationFirstStepBinding.companyName.text.toString())) {
+            if (registrationFirstStepBinding.companyNameRoot.tag==false) {
                 registrationFirstStepBinding.companyNameRoot.isErrorEnabled = true
-                registrationFirstStepBinding.companyNameRoot.error = "This field can not be empty!"
+                registrationFirstStepBinding.companyNameRoot.error = "Company Name not loaded"
                 return@setOnClickListener
-            }else{
-                registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
-                registrationFirstStepBinding.companyNameRoot.error = null
-
             }
 
             if (!Utils.isValid(registrationFirstStepBinding.firstName.text.toString())) {
@@ -199,7 +211,6 @@ class RegistrationFirstStep : Fragment() {
             if (registrationFirstStepBinding.emailIdRoot.tag==false) {
                 registrationFirstStepBinding.emailIdRoot.isErrorEnabled = true
                 registrationFirstStepBinding.emailIdRoot.error = "email not verified"
-
                 return@setOnClickListener
             }
             if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {

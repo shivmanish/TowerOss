@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
         <TextView
-            android:text="Forgot password"
+            android:text="Succesfully Submited!"
             android:textSize="@dimen/dp28"
             android:textColor="#ffffff"
             android:id="@+id/forgot_password_text"
