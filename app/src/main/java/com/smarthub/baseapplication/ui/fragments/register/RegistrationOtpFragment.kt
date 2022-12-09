@@ -43,7 +43,7 @@ class RegistrationOtpFragment : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        binding.moNo.text=loginViewModel?.registerData?.phone
+        binding.moNo.text="+91"+loginViewModel?.registerData?.phone.toString()
         loginViewModel?.getRegisterOtp(loginViewModel?.registerData?.phone)
         binding.enableSubmitOtp.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
