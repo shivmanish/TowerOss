@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDow
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.viewmodel.BasicInfoDialougeViewmodel
+import com.smarthub.baseapplication.utils.Utils
 import kotlinx.android.synthetic.main.fragment_task.*
 
 class BasicInfoBottomSheet(
@@ -46,12 +47,12 @@ class BasicInfoBottomSheet(
                 it.Locationzone= binding.txtLocationZone.text.toString()
                 it.MaintenancePoint= ""
                 it.Projectname= binding.txtProjectName.text.toString()
-                it.Sitecategory= binding.siteCategory.getSelectedValue().id
-                it.Siteownership= binding.siteOwnership.getSelectedValue().id
-                it.Sitestatus= binding.siteStatus.getSelectedValue().id
-                it.Sitetype= binding.siteType.getSelectedValue().id
+//                it.Sitecategory = Utils.getSelectedSpinner(binding.siteCategory.getSelectedItem().toString(),data.sitecategory.data).id
+//                it.Siteownership = Utils.getSelectedSpinner(binding.siteOwnership.getSelectedItem().toString(),data.siteownership.data).id
+//                it.Sitestatus = Utils.getSelectedSpinner(binding.siteStatus.getSelectedItem().toString(),data.sitestatus.data).id
+//                it.Sitetype = Utils.getSelectedSpinner(binding.siteType.getSelectedItem().toString(),data.sitetype.data).id
                 it.aliasName= ""
-                it.id = 5
+                it.id = basicinfodata.id
                 it.siteID= binding.txSiteID.text.toString()
                 it.siteInChargeName= binding.txtSiteInChargeName.text.toString()
                 it.siteInChargeNumber= binding.txtSiteInChargeNumber.text.toString()

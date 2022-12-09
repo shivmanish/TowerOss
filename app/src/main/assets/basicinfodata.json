@@ -1,0 +1,86 @@
+{
+  "Basicinfo": [{
+    "id": 1,
+    "siteName": "siteNameechangeUJ_SC_0665",
+    "siteID": "siteIDchangeUJ_SC_0665",
+    "aliasName": "aliasName",
+    "siteInChargeName": "siteInChargeName",
+    "siteInChargeNumber": "siteInChargeNumber",
+    "siteaddress": "siteaddress",
+    "locLatitude": "0.000000",
+    "locLongitude": "0.000000",
+    "siteLayout": null,
+    "sitePicture": null,
+    "isActive": true,
+    "modified_at": "2022-10-12T09:27:37.173895",
+    "created_at": "2022-10-12T09:27:37.173895",
+    "Sitestatus": [{
+      "id": 1,
+      "name": "Planned",
+      "isActive": true,
+      "modified_at": "2022-10-07T10:25:54.145900",
+      "created_at": "2022-10-07T10:25:54.145927"
+    }],
+    "Sitecategory": [{
+      "id": 1,
+      "name": "GBT",
+      "isActive": true,
+      "modified_at": "2022-10-07T10:08:46.958053",
+      "created_at": "2022-10-07T10:08:46.958097"
+    }],
+    "Sitetype": [{
+      "id": 1,
+      "name": "Small Cell",
+      "isActive": true,
+      "modified_at": "2022-10-07T10:22:15.692402",
+      "created_at": "2022-10-07T10:22:15.692449"
+    }],
+    "Siteownership": [{
+      "id": 1,
+      "name": "Owned",
+      "ipColoName": null,
+      "isActive": true,
+      "modified_at": "2022-10-07T10:32:43.455191",
+      "created_at": "2022-10-07T10:32:43.455237"
+    }],
+    "Buildingtype": [{
+      "id": 2,
+      "name": "Residential",
+      "isActive": true,
+      "modified_at": "2022-10-08T17:55:06.727511",
+      "created_at": "2022-10-08T17:55:06.727564"
+    }],
+    "Locationzone": [{
+      "id": 1,
+      "name": "Urban",
+      "isActive": true,
+      "modified_at": "2022-10-07T10:44:35.469054",
+      "created_at": "2022-10-07T10:44:35.469098"
+    }],
+    "National": [],
+    "Region": [],
+    "State": [],
+    "MaintenancePoint": [{
+      "id": 687,
+      "maintenancepoint": "Thane",
+      "code": "THEN",
+      "createddate": "2022-06-27T13:38:51.107113",
+      "modifieddate": "2022-06-30T12:04:30.099611",
+      "area": [
+        1,
+        2
+      ],
+      "objectname": [],
+      "ownername": [
+        6
+      ]
+    }],
+    "Projectname": [{
+      "id": 1,
+      "name": "Phase1",
+      "isActive": true,
+      "modified_at": "2022-10-07T09:33:39.380960",
+      "created_at": "2022-10-07T09:33:39.380960"
+    }]
+  }]
+}
