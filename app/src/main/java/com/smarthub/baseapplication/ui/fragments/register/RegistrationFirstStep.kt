@@ -44,20 +44,34 @@ class RegistrationFirstStep : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registrationFirstStepBinding.emailIdRoot.tag = false
+        registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
+        registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
         registrationFirstStepBinding.companyName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.companyName.text.toString()!=""){
-                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.color.transparent)
             }
             override fun afterTextChanged(s: Editable) {
-                if(registrationFirstStepBinding.companyName.text.toString()!=""){
+                if(registrationFirstStepBinding.companyName.text.toString().isNotEmpty()){
                     registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.loadingProgress.visibility = View.GONE
+                }
+                else {
+                    registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
+                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
+                }
+                if(registrationFirstStepBinding.emailIdRoot.isErrorEnabled){
+                    registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
+                }
+                if(registrationFirstStepBinding.emailId.text.toString().isNotEmpty() && Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
+                    loginViewModel.emailVerification(registrationFirstStepBinding.emailId.text.toString(), item?.id)
+                }
+                else {
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
                 }
             }
         })
@@ -68,13 +82,9 @@ class RegistrationFirstStep : Fragment() {
                     registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
                 }
                 else
-                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(0)
             }
             override fun afterTextChanged(s: Editable) {
-                if(registrationFirstStepBinding.firstName.text.toString().length>=3){
-                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-
 
             }
         })

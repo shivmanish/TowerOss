@@ -12,7 +12,10 @@
     <androidx.core.widget.NestedScrollView
         android:orientation="vertical"
         android:scrollbars="vertical"
-        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.88"
+        android:layout_width="0dp"
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginTop="@dimen/dp20"
@@ -30,388 +33,397 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintWidth_percent="0.6" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+            <TextView
+                android:id="@+id/login1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_bold"
+                android:text="User Registration"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/dp28"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintWidth_percent="0.88">
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/request_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp35"
+                android:fontFamily="@font/poppins_regular"
+                app:layout_constraintTop_toBottomOf="@+id/login1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Please enter full detail for registration"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/progress_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/request_msg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp25">
 
                 <TextView
-                    android:id="@+id/login1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="User Registration"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/dp28"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/request_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/dp35"
+                    android:id="@+id/p1"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:background="@drawable/circle"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Please enter full detail for registration"
-                    android:textColor="#ffffff"
-                    android:textSize="13sp" />
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#3F4D68"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/p_status1"
+                    app:layout_constraintStart_toStartOf="@+id/p_status1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/progress_status"
+                <TextView
+                    android:id="@+id/p_status1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Basic info"
+                    android:textColor="#E7C42C"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+                <TextView
+                    android:id="@+id/l1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp35"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp5"
+                    android:text="- - - - - - - - - - "
+                    android:textColor="#F7CB46"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="@+id/p2"
+                    app:layout_constraintEnd_toStartOf="@+id/p2"
+                    app:layout_constraintStart_toEndOf="@+id/p1"
+                    app:layout_constraintTop_toTopOf="@+id/p2" />
+
+                <TextView
+                    android:id="@+id/p2"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:alpha="0.5"
+                    android:background="@drawable/circle_border"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/p_status2"
+                    app:layout_constraintStart_toStartOf="@+id/p_status2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/p_status2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Job role info"
+                    android:textColor="#ffffff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+                <TextView
+                    android:id="@+id/l2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp35"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp5"
+                    android:text="- - - - - - - - - - "
+                    android:textColor="#F7CB46"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="@+id/p2"
+                    app:layout_constraintEnd_toStartOf="@+id/p3"
+                    app:layout_constraintStart_toEndOf="@+id/p2"
+                    app:layout_constraintTop_toTopOf="@+id/p3" />
+
+                <TextView
+                    android:id="@+id/p3"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:alpha="0.5"
+                    android:background="@drawable/circle_border"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/p_status3"
+                    app:layout_constraintStart_toStartOf="@+id/p_status3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/p_status3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Manager Info"
+                    android:textColor="#ffffff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/company_name_root"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Compnay Name"
+                android:textColorHint="@color/white"
+                app:endIconMode="custom"
+                app:endIconTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/progress_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/company_name"
+                    style="@style/CustomTextInputEdit"
+                    android:textCursorDrawable="@drawable/cursure_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp20"
-                    android:layout_marginRight="@dimen/dp20"
-                    android:layout_marginBottom="@dimen/dp25">
+                    android:layout_marginBottom="@dimen/dp3"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="0.1"
+                    android:focusableInTouchMode="false"
+                    android:padding="@dimen/dp13"
+                    android:paddingStart="@dimen/dp15"
+                    android:textColor="#fff"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:id="@+id/p1"
-                        android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"
-                        android:background="@drawable/circle"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:text="1"
-                        android:textColor="#3F4D68"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/p_status1"
-                        app:layout_constraintStart_toStartOf="@+id/p_status1"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <ProgressBar
+                android:padding="15dp"
+                android:visibility="invisible"
+                android:id="@+id/loading_progress"
+                android:paddingEnd="@dimen/dp8"
+                android:indeterminateTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/company_name_root"
+                app:layout_constraintTop_toTopOf="@+id/company_name_root"
+                app:layout_constraintEnd_toEndOf="@+id/company_name_root"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
 
-                    <TextView
-                        android:id="@+id/p_status1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="Basic info"
-                        android:textColor="#E7C42C"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/p1" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/first_name_root"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="First Name"
+                android:textColorHint="@color/white"
+                app:endIconMode="custom"
+                app:endIconTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/company_name_root"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                    <TextView
-                        android:id="@+id/l1"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dp35"
-                        android:fontFamily="@font/poppins"
-                        android:gravity="center_vertical"
-                        android:maxLines="1"
-                        android:paddingStart="@dimen/dp5"
-                        android:text="- - - - - - - - - - "
-                        android:textColor="#F7CB46"
-                        android:textSize="@dimen/dp15"
-                        app:layout_constraintBottom_toBottomOf="@+id/p2"
-                        app:layout_constraintEnd_toStartOf="@+id/p2"
-                        app:layout_constraintStart_toEndOf="@+id/p1"
-                        app:layout_constraintTop_toTopOf="@+id/p2" />
-
-                    <TextView
-                        android:id="@+id/p2"
-                        android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"
-                        android:alpha="0.5"
-                        android:background="@drawable/circle_border"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:text="2"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@id/p_status2"
-                        app:layout_constraintStart_toStartOf="@+id/p_status2"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/p_status2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.5"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="Job role info"
-                        android:textColor="#ffffff"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/p1" />
-
-                    <TextView
-                        android:id="@+id/l2"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dp35"
-                        android:fontFamily="@font/poppins"
-                        android:gravity="center_vertical"
-                        android:maxLines="1"
-                        android:paddingStart="@dimen/dp5"
-                        android:text="- - - - - - - - - - "
-                        android:textColor="#F7CB46"
-                        android:textSize="@dimen/dp15"
-                        app:layout_constraintBottom_toBottomOf="@+id/p2"
-                        app:layout_constraintEnd_toStartOf="@+id/p3"
-                        app:layout_constraintStart_toEndOf="@+id/p2"
-                        app:layout_constraintTop_toTopOf="@+id/p3" />
-
-                    <TextView
-                        android:id="@+id/p3"
-                        android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"
-                        android:alpha="0.5"
-                        android:background="@drawable/circle_border"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:text="3"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@id/p_status3"
-                        app:layout_constraintStart_toStartOf="@+id/p_status3"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/p_status3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.5"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="Manager Info"
-                        android:textColor="#ffffff"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/p1" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:scrollbars="vertical"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/first_name"
+                    style="@style/CustomTextInputEdit"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp8"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="0.1"
+                    android:textCursorDrawable="@drawable/cursure_color"
+                    android:padding="@dimen/dp13"
+                    android:paddingStart="@dimen/dp15"
+                    android:textColor="#fff"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/company_name_root"
-                        style="@style/TextInputLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:hint="Compnay Name"
-                        android:textColorHint="@color/white"
-                        app:endIconMode="custom"
-                        app:endIconTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/email_error"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/last_name_root"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Last Name"
+                android:textColorHint="@color/white"
+                app:endIconMode="custom"
+                app:endIconTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/first_name_root"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/company_name"
-                            style="@style/CustomTextInputEdit"
-                            android:textCursorDrawable="@drawable/cursure_color"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp3"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:letterSpacing="0.1"
-                            android:focusableInTouchMode="false"
-                            android:padding="@dimen/dp13"
-                            android:paddingStart="@dimen/dp15"
-                            android:textColor="#fff"
-                            android:textColorHint="@color/white"
-                            android:textSize="15sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/last_name"
+                    style="@style/CustomTextInputEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp8"
+                    android:textCursorDrawable="@drawable/cursure_color"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="0.1"
+                    android:padding="@dimen/dp13"
+                    android:paddingStart="@dimen/dp15"
+                    android:textColor="#fff"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/first_name_root"
-                        style="@style/TextInputLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:hint="First Name"
-                        android:textColorHint="@color/white" app:endIconMode="custom"
-                        app:endIconTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/email_error"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mo_no_root"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Mobile Number"
+                android:textColorHint="@color/white"
+                app:endIconMode="custom"
+                app:endIconTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/last_name_root"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/first_name"
-                            style="@style/CustomTextInputEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp8"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:letterSpacing="0.1"
-                            android:textCursorDrawable="@drawable/cursure_color"
-                            android:padding="@dimen/dp13"
-                            android:paddingStart="@dimen/dp15"
-                            android:textColor="#fff"
-                            android:textColorHint="@color/white"
-                            android:textSize="15sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mo_no"
+                    style="@style/CustomTextInputEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp8"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:letterSpacing="0.1"
+                    android:textCursorDrawable="@drawable/cursure_color"
+                    android:maxEms="10"
+                    android:maxLength="10"
+                    android:padding="@dimen/dp13"
+                    android:paddingStart="@dimen/dp15"
+                    android:textColor="#fff"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/last_name_root"
-                        style="@style/TextInputLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:hint="Last Name"
-                        android:textColorHint="@color/white"
-                        app:endIconMode="custom"
-                        app:endIconTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/email_error"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_id_root"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Email ID"
+                android:textColorHint="@color/white"
+                app:endIconMode="custom"
+                app:endIconTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/mo_no_root"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/last_name"
-                            style="@style/CustomTextInputEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp8"
-                            android:textCursorDrawable="@drawable/cursure_color"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:letterSpacing="0.1"
-                            android:padding="@dimen/dp13"
-                            android:paddingStart="@dimen/dp15"
-                            android:textColor="#fff"
-                            android:textColorHint="@color/white"
-                            android:textSize="15sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_id"
+                    android:inputType="textEmailAddress"
+                    style="@style/CustomTextInputEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp8"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="0.1"
+                    android:textCursorDrawable="@drawable/cursure_color"
+                    android:padding="@dimen/dp13"
+                    android:paddingStart="@dimen/dp15"
+                    android:textColor="#fff"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/mo_no_root"
-                        style="@style/TextInputLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:hint="Mobile Number"
-                        android:textColorHint="@color/white"
-                        app:endIconMode="custom"
-                        app:endIconTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/email_error"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/next"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:background="@drawable/login_yellow_border"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:padding="@dimen/dp10"
+                android:text="Next"
+                android:layout_marginTop="@dimen/dp30"
+                android:textColor="#F7CB46"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/email_id_root"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/mo_no"
-                            style="@style/CustomTextInputEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp8"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:inputType="number"
-                            android:letterSpacing="0.1"
-                            android:textCursorDrawable="@drawable/cursure_color"
-                            android:maxEms="10"
-                            android:maxLength="10"
-                            android:padding="@dimen/dp13"
-                            android:paddingStart="@dimen/dp15"
-                            android:textColor="#fff"
-                            android:textColorHint="@color/white"
-                            android:textSize="15sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_gravity="center">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/email_id_root"
-                        style="@style/TextInputLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:hint="Email ID"
-                        android:textColorHint="@color/white"
-                        app:endIconMode="custom"
-                        app:endIconTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/email_error"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    android:id="@+id/already_have_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:paddingBottom="@dimen/dp10"
+                    android:text="Already have account?"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toTopOf="@+id/text_register"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/email_id"
-                            android:inputType="textEmailAddress"
-                            style="@style/CustomTextInputEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp8"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center_vertical"
-                            android:letterSpacing="0.1"
-                            android:textCursorDrawable="@drawable/cursure_color"
-                            android:padding="@dimen/dp13"
-                            android:paddingStart="@dimen/dp15"
-                            android:textColor="#fff"
-                            android:textColorHint="@color/white"
-                            android:textSize="15sp"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:id="@+id/next"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp45"
-                        android:layout_marginBottom="@dimen/dp30"
-                        android:background="@drawable/login_yellow_border"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10"
-                        android:text="Next"
-                        android:layout_marginTop="@dimen/dp30"
-                        android:textColor="#F7CB46"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/already_have_account"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <LinearLayout
-                        android:layout_marginTop="@dimen/dp20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/already_have_account"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
-                            android:paddingBottom="@dimen/dp10"
-                            android:text="Already have account?"
-                            android:textColor="#ffffff"
-                            android:textSize="13sp"
-                            android:textStyle="italic"
-                            app:layout_constraintBottom_toTopOf="@+id/text_register"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <TextView
-                            android:id="@+id/text_login"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="   Login"
-                            android:textColor="#FFD72B"
-                            android:textSize="14sp"
-                            android:textStyle="italic"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/text_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="   Login"
+                    android:textColor="#FFD72B"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
