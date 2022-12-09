@@ -18,7 +18,6 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
-import kotlinx.android.synthetic.main.search_fragment.*
 
 class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     var binding : SiteInfoNewFragmentBinding?=null
@@ -64,8 +63,8 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked(data: BasicInfoModelDropDown, basicinfodata: Basicinfo) {
-        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet,data,basicinfodata!!)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet,data,basicinfodata!!)
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
     override fun operationInfoDetailsItemClicked() {
