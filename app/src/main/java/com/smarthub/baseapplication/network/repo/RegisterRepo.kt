@@ -7,7 +7,6 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.CommonResponse
 import com.smarthub.baseapplication.model.dropdown.DropDownList
-import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse
 import com.smarthub.baseapplication.model.register.RegisterData
 import com.smarthub.baseapplication.model.register.RegstationResponse
 import com.smarthub.baseapplication.network.APIClient
@@ -24,9 +23,11 @@ class RegisterRepo(private val apiClient: APIClient) {
     val companyDropDownList: MutableLiveData<DropDownList> = MutableLiveData()
     val commonResponse: MutableLiveData<CommonResponse> = MutableLiveData()
     var verifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>> ?=null
+    var verifyEmailResponse: SingleLiveEvent<Resource<CommonResponse>> ?=null
 
     init {
         verifyOtpResponse = SingleLiveEvent<Resource<CommonResponse>>()
+        verifyEmailResponse = SingleLiveEvent<Resource<CommonResponse>>()
     }
 
     fun registerUser(data: RegisterData?) {
@@ -145,11 +146,6 @@ class RegisterRepo(private val apiClient: APIClient) {
     }
     fun registerOTPVerification(otp: String?,phone : String?) {
         var jsonObj = JsonObject()
-//        {
-//            "checkemaildomain": "true",
-//            "ownername": "smartmile",
-//            "email": "test@domain1.com"
-//        }
         jsonObj.addProperty("verifyotp",true)
         jsonObj.addProperty("phone",phone)
         jsonObj.addProperty("otp",otp)
@@ -183,6 +179,53 @@ class RegisterRepo(private val apiClient: APIClient) {
                 ) else verifyOtpResponse?.postValue(
                     Resource.error(AppConstants.GENERIC_ERROR, null, 500)
                 )
+            }
+
+//            private fun reportSuccessResponse(response: Response<CommonResponse?>) {
+//                if (response.body() != null) {
+//                    verifyOtpResponse?.postValue(response.body())
+//                }
+//            }
+//
+//            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+//                if (response != null) {
+//                    verifyOtpResponse?.postValue(CommonResponse("Failed", response.message))
+//                } else if (iThrowableLocalMessage != null)
+//                    verifyOtpResponse?.postValue(CommonResponse("Failed", iThrowableLocalMessage)
+//                ) else
+//                    verifyOtpResponse?.postValue(CommonResponse("Failed", AppConstants.GENERIC_ERROR)
+//                )
+//            }
+        })
+    }
+
+    fun emailVerification(email: String?, ownername : String?) {
+        var jsonObj = JsonObject()
+        jsonObj.addProperty("checkemaildomain",true)
+        jsonObj.addProperty("ownername",ownername)
+        jsonObj.addProperty("email",email)
+        apiClient.commonResponse(jsonObj).enqueue(object : Callback<CommonResponse?> {
+            override fun onResponse(call: Call<CommonResponse?>, response: Response<CommonResponse?>) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<CommonResponse?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<CommonResponse?>) {
+                if (response.body() != null) {
+                    verifyEmailResponse?.postValue(Resource.success(response.body()!!, 200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) verifyEmailResponse?.postValue(Resource.error(response.message, null, 400))
+                else if (iThrowableLocalMessage != null) verifyEmailResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500))
+                else verifyEmailResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
 
 //            private fun reportSuccessResponse(response: Response<CommonResponse?>) {
