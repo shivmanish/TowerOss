@@ -1,22 +1,22 @@
 package com.smarthub.baseapplication.ui.fragments.register
 
+import android.R.attr
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.databinding.RegistrationSetPassBinding
-import com.smarthub.baseapplication.databinding.RegistrationSetPasswordBinding
-import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 class RegistrationSetPassword : Fragment() {
 
@@ -35,11 +35,25 @@ class RegistrationSetPassword : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
+        binding.password.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                    Utils.hideKeyboard(requireContext(), binding.password)
+                    binding.submitPass.isEnabled=true
+                    binding.submitPass.alpha = 1.0f
+                }else{
+                    binding.submitPass.alpha = 0.3f
+                    binding.submitPass.isEnabled=false
+                }
+            }
+        })
         binding.confirmPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.password.text.toString().isNotEmpty() && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                if (validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
                     Utils.hideKeyboard(requireContext(), binding.password)
                     binding.submitPass.isEnabled=true
                     binding.submitPass.alpha = 1.0f
@@ -77,6 +91,16 @@ class RegistrationSetPassword : Fragment() {
 
     private fun enableErrorText(error:String?){
         binding.confirmPassLayout.error = "$error"
+    }
+    fun validatePass(password: String): Boolean {
+        if (password.length < 8) return false
+        if (password.filter { it.isDigit() }.firstOrNull() == null) return false
+        if (password.filter { it.isLetter() }.filter { it.isUpperCase() }.firstOrNull() == null) return false
+        if (password.filter { it.isLetter() }.filter { it.isLowerCase() }.firstOrNull() == null) return false
+        if (password.filter { !it.isLetterOrDigit() }.firstOrNull() == null) return false
+
+        return true
+
     }
 }
 
