@@ -52,7 +52,7 @@ class BasicInfoBottomSheet(
 //                it.Sitestatus = Utils.getSelectedSpinner(binding.siteStatus.getSelectedItem().toString(),data.sitestatus.data).id
 //                it.Sitetype = Utils.getSelectedSpinner(binding.siteType.getSelectedItem().toString(),data.sitetype.data).id
                 it.aliasName= ""
-                it.id = basicinfodata.id
+                it.id = 5
                 it.siteID= binding.txSiteID.text.toString()
                 it.siteInChargeName= binding.txtSiteInChargeName.text.toString()
                 it.siteInChargeNumber= binding.txtSiteInChargeNumber.text.toString()

@@ -65,8 +65,8 @@ class ServicesRequestFrqagment : Fragment(), ServicesRequestAdapter.SiteInfoLisL
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet)
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
     override fun operationInfoDetailsItemClicked() {
