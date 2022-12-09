@@ -29,7 +29,7 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 class RegistrationFirstStep : Fragment() {
 
     var list : List<DropDownItem> = ArrayList()
-    var isDataFetched = true
+//    var isDataFetched = true
     lateinit var loginViewModel: LoginViewModel
     lateinit var registrationFirstStepBinding: RegistrationFirstStepBinding
 
@@ -119,11 +119,16 @@ class RegistrationFirstStep : Fragment() {
 
             }
             override fun afterTextChanged(s: Editable) {
-                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString()) && isDataFetched){
-                    isDataFetched = false
+                if(registrationFirstStepBinding.emailIdRoot.isErrorEnabled){
+                    registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
+                }
+                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
                     loginViewModel.emailVerification(registrationFirstStepBinding.emailId.text.toString(), item?.id)
                 }
                 else {
+
                     registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
                     registrationFirstStepBinding.emailIdRoot.tag = false
                 }
@@ -225,6 +230,8 @@ class RegistrationFirstStep : Fragment() {
         loginViewModel.dropDownList?.observe(viewLifecycleOwner){
             if (it?.data != null && it.data.isNotEmpty()){
                 this.list = it.data
+                if (list.isNotEmpty())
+                    item = list[0]
                 registrationFirstStepBinding.companyName.text = it.data[0].name?.toEditable()
                 Log.d("status"," drop down list size :"+it.data.size)
             }else if(it.Errors!=null){
@@ -238,7 +245,7 @@ class RegistrationFirstStep : Fragment() {
             loginViewModel.emailVerifyOtpResponse?.removeObservers(viewLifecycleOwner)
 
         loginViewModel.emailVerifyOtpResponse?.observe(viewLifecycleOwner) {
-            isDataFetched = true
+//            isDataFetched = true
             if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success") {
                 Log.d("status","email verified")
                 Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
@@ -261,8 +268,6 @@ class RegistrationFirstStep : Fragment() {
         var dialogBinding = DropDownListViewBinding.inflate(layoutInflater)
         dialogBuilder.setView(dialogBinding.root)
         val popUp: AlertDialog = dialogBuilder.create()
-        if (list.isNotEmpty())
-            item = list[0]
         var adapter = CustomRegistrationArrayAdapter(list,
             object : CustomRegistrationArrayAdapter.CustomRegistrationArrayAdapterListener{
             override fun clickedItem(i: DropDownItem?) {
