@@ -36,8 +36,8 @@
         <item>Utilities Equip</item>
         <item>NOC &amp; Comp</item>
         <item>TWR &amp; Civil Infra</item>
-        <item>EB Connection</item>
-        <item>Bill &amp; Payment</item>
+        <item>Power Connection</item>
+        <item>Bill &amp; Payments</item>
         <item>QA &amp; Inspection</item>
     </string-array>
     <integer-array name="random_imgs">
@@ -50,7 +50,7 @@
         <item>@drawable/noc_comp</item>
         <item>@drawable/twr_civilinfra</item>
         <item>@drawable/eb_connection</item>
-        <item>@drawable/power_bill_fule</item>
+        <item>@drawable/bill_payments</item>
         <item>@drawable/qa_inspection</item>
     </integer-array>
     <string name="app_name">TowerOSS</string>
