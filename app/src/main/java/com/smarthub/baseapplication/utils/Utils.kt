@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.utils
 
-import android.app.Activity
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
@@ -10,16 +9,13 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.model.register.Commucationaddess
-import com.smarthub.baseapplication.model.register.Officeaddress
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
-import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem
 import java.io.IOException
 
 
@@ -29,7 +25,37 @@ object Utils {
         Log.i("TAG", message)
     }
 
-    fun clearBackStack(activity : FragmentActivity){
+    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun getSelectedSpinner(selsteddata: String, list: List<DropDownItem>): DropDownItem {
+        var returndata:DropDownItem? = null
+        println("data123 "+selsteddata)
+        println("data123 "+list.size)
+
+        for(i in list){
+            if(i.name.equals(selsteddata,true)){
+                println("data123 "+i.name)
+                returndata = i
+                break
+            }
+        }
+        return returndata!!
+    }
+
+    fun clearBackStack(activity: FragmentActivity) {
         val name: String? = activity.supportFragmentManager.getBackStackEntryAt(0).name
         activity.supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
@@ -46,8 +72,10 @@ object Utils {
     fun collapse(v: View) {
         val initialHeight = v.measuredHeight
 
-        val matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val matchParentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
+        val wrapContentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
 
         val a: Animation = object : Animation() {
@@ -55,7 +83,8 @@ object Utils {
                 if (interpolatedTime == 1f) {
                     v.visibility = View.GONE
                 } else {
-                    v.layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
+                    v.layoutParams.height =
+                        initialHeight - (initialHeight * interpolatedTime).toInt()
                     v.requestLayout()
                 }
             }
@@ -71,8 +100,10 @@ object Utils {
     }
 
     fun expand(v: View) {
-        val matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val matchParentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
+        val wrapContentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
         val targetHeight = v.measuredHeight
 
@@ -80,7 +111,8 @@ object Utils {
         val a: Animation = object : Animation() {
             override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
                 v.visibility = View.VISIBLE
-                v.layoutParams.height = if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
+                v.layoutParams.height =
+                    if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
                 v.requestLayout()
             }
 
@@ -153,57 +185,28 @@ object Utils {
         }
     }
 
-    fun getRegistationDummyData(phone: String): RegisterData {
-        var commucationaddess = Commucationaddess(
-            address = "new street , 96/56 2nd floor",
-            national = "SMRT_INDIA",
-            region = "East",
-            state = "Bihar",
-            maintenancepoint = "Arrah"
-        )
-
-        var officeaddress = Officeaddress(
-            address = "new street , 96/56 2nd floor",
-            national = "SMRT_INDIA",
-            region = "East",
-            state = "Bihar",
-            maintenancepoint = "Arrah"
-        )
-
-        var roles = arrayListOf<String>("Patroller", "Area_Executive")
-        var priviledgename = arrayListOf<String>(
-            "Fiber_Manage_Route_AddRoute",
-            "Addministration_UserManagem_Executive_AddExecutive"
-        )
-        var maintenancepoint = arrayListOf<String>("Arrah")
-        var state = arrayListOf<String>("Assam")
-        var region = arrayListOf<String>("East")
-
-
+    fun getRegistrationDummyData(): RegisterData {
         var registerData = RegisterData(
-            save = "",
-            title = "Mr.",
-            username = "Somnath",
-            last_name = "Lenka",
-            email = "somnath.lenka@smartmile.com",
-            phone = phone,
-            national = "SMRT_INDIA",
-            region = region,
-            gender = "M",
-            state = state,
-            maintenancepoint = maintenancepoint,
-            ownername = "SMRT",
-            requestname = "sandeep",
-            priviledgename = priviledgename,
-            roles = roles,
-            department = "D1",
-            commucationaddess = commucationaddess,
-            officeaddress = officeaddress
+            save = "NA",
+            ownername = "NA",
+            username = "NA",
+            last_name = "",
+            phone = "NA",
+            email = "NA",
+            rolestxt = "NA",
+            departmenttxt = "M",
+            rolegeographytxt = "NA",
+            managername = "NA",
+            manageremail= "NA",
+            managerphone= "NA",
+            password = ""
         )
         return registerData
     }
 
     fun isValid(value: String):Boolean {
+        return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)
+    fun isValid(value: String): Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
 
     }
@@ -223,7 +226,7 @@ object Utils {
     }
 
     fun getSelectedSpinner(selsteddata: String, list: List<DropDownItem>): DropDownItem {
-        var returndata:DropDownItem? = null
+        var returndata: DropDownItem? = null
         println("data123 "+selsteddata)
         println("data123 "+list.size)
 
@@ -237,4 +240,5 @@ object Utils {
         return returndata!!
     }
 
+    }
 }
