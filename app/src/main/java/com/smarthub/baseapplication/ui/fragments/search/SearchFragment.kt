@@ -38,6 +38,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        disableButton()
         var searchChipAdapter = SearchChipAdapter(requireContext())
         binding.chipLayout.adapter = searchChipAdapter
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
@@ -104,6 +105,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
                 }
                 else if(fetchedData.isEmpty()){
                     Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
+                    disableButton()
                 }
             }
         })
@@ -119,22 +121,29 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
         this.item = item
         if (item!=null){
             binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
-            binding.viewOnIbo.alpha = 1.0f
-            binding.viewOnMap.alpha = 1.0f
-
-            binding.viewOnIbo.isEnabled = true
-            binding.viewOnMap.isEnabled = true
+            enableButton()
         }else{
-            binding.viewOnIbo.alpha = 0.2f
-            binding.viewOnMap.alpha = 0.2f
-
-            binding.viewOnIbo.isEnabled = false
-            binding.viewOnMap.isEnabled = false
+            disableButton()
         }
-
     }
 
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+    fun disableButton(){
+        binding.viewOnIbo.alpha = 0.2f
+        binding.viewOnMap.alpha = 0.2f
+        binding.viewOnIbo.isEnabled = false
+        binding.viewOnMap.isEnabled = false
+
+    }
+
+    fun enableButton(){
+        binding.viewOnIbo.alpha = 1.0f
+        binding.viewOnMap.alpha = 1.0f
+        binding.viewOnIbo.isEnabled = true
+        binding.viewOnMap.isEnabled = true
+
+    }
 
     override fun selectedCategory(item: String) {
         this.selectedCategory = item

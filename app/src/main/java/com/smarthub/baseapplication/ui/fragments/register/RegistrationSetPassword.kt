@@ -35,7 +35,6 @@ class RegistrationSetPassword : Fragment() {
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-
         binding.confirmPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -65,7 +64,9 @@ class RegistrationSetPassword : Fragment() {
                 progressDialog.dismiss()
             }
             if (it!=null && it.status == "success"){
-                findNavController().navigate(RegistrationSetPasswordDirections.actionRegistrationSetPasswordToRegistrationOtpFragment())
+                findNavController().
+                navigate(RegistrationSetPasswordDirections.
+                actionRegistrationSetPasswordToRegistrationOtpFragment())
             }
         }
     }

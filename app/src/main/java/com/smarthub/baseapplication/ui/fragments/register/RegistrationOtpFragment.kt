@@ -1,30 +1,25 @@
 package com.smarthub.baseapplication.ui.fragments.register
 
 import android.app.ProgressDialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.os.CountDownTimer
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.smarthub.baseapplication.databinding.OtpVerificationStep2FragmentBinding
-import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.RegistrationOtpConfirmationBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.otp.UserOTPGet
-import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
+
 
 class RegistrationOtpFragment : Fragment() {
     
@@ -43,10 +38,12 @@ class RegistrationOtpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        otpCount_timer()
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
+        binding.moNo.text=loginViewModel?.registerData?.phone
         loginViewModel?.getRegisterOtp(loginViewModel?.registerData?.phone)
         binding.enableSubmitOtp.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
@@ -65,6 +62,14 @@ class RegistrationOtpFragment : Fragment() {
 //
 //                }else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.resendOtpText.setOnClickListener {
+            loginViewModel?.getRegisterOtp(loginViewModel?.registerData?.phone)
+            binding.otpCountDownTimer.visibility=View.VISIBLE
+            binding.resendOtpText.visibility=View.GONE
+            otpCount_timer()
+
+
         }
 
         binding.p1.addTextChangedListener(object : TextWatcher {
@@ -158,6 +163,25 @@ class RegistrationOtpFragment : Fragment() {
                 binding.p4.text.toString()+
                 binding.p5.text.toString()+
                 binding.p6.text.toString()
+    }
+
+    fun otpCount_timer(){
+        object : CountDownTimer(40000, 1000) {
+
+            // Callback function, fired on regular interval
+            override fun onTick(millisUntilFinished: Long) {
+//                val word: Spannable = SpannableString("Resend OTP in <font color=#FFD72B>" + millisUntilFinished / 1000+ "</font> minute?")
+//                word.setSpan(ForegroundColorSpan(Color.YELLOW), 3, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                binding.otpCountDownTimer.setText(Html.fromHtml("<font color=#FFFFFFFF>Resend OTP in </font><font color=#FFD72B>0." + millisUntilFinished / 1000+ "</font> <font color=#FFFFFFFF> minute?</font>"))
+            }
+
+            // Callback function, fired
+            // when the time is up
+            override fun onFinish() {
+                binding.otpCountDownTimer.visibility=View.GONE
+                binding.resendOtpText.visibility=View.VISIBLE
+            }
+        }.start()
     }
 
 }
