@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/DG1TabUtilitesFrag"
-        android:name="com.smarthub.baseapplication.ui.utilites.fragment.DG1TabUtilitesFrag"
+        android:name="com.smarthub.baseapplication.ui.utilites.fragment.DGFragment"
         android:label="DG1TabUtilitesFrag" >
         <action
             android:id="@+id/action_DG1TabUtilitesFrag_self"

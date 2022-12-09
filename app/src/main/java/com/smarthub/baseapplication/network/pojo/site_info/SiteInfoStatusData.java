@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.network.pojo.site_info;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 
 import java.util.List;
 

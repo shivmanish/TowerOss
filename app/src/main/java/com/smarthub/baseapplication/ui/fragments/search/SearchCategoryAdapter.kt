@@ -11,15 +11,24 @@ import com.smarthub.baseapplication.databinding.SearchCategoryListItemBinding
 class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryListener) : RecyclerView.Adapter<SearchCategoryAdapter.ViewHold>() {
 
     var currentPos = -1
+    var hashMap = HashMap<String,String>()
     private var list: ArrayList<String> = ArrayList()
     init {
-        list.add("Site UID")
-        list.add("Site Name")
-        list.add("Site Alternate Name")
-        list.add("OPCO UID")
-        list.add("OPCO SAP ID")
-        list.add("OPCO Site Name")
-        list.add("Lat, Long and radius")
+        list.add("name")
+        list.add("siteID")
+        list.add("siteName")
+        list.add("aliasName")
+        list.add("OpcoName")
+        list.add("OpcoSiteID")
+        list.add("LatLongRadius")
+
+        hashMap["name"] = "Name"
+        hashMap["siteID"] = "Site UID"
+        hashMap["siteName"] = "Site Name"
+        hashMap["aliasName"] = "Alias Name"
+        hashMap["OpcoName"] = "OPCO Site Name"
+        hashMap["OpcoSiteID"] = "OPCO UID"
+        hashMap["LatLongRadius"] = ""
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +45,7 @@ class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryL
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.checkText.text= list[position]
+        holder.binding.checkText.text= hashMap[list[position]]
         holder.binding.checkText.setCompoundDrawablesWithIntrinsicBounds(0,0,
             if (currentPos == position) R.drawable.btn_select_checked else R.drawable.btn_lang_unchecked,0)
         holder.binding.checkText.setOnClickListener {

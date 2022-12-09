@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/canecl"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+        android:padding="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp20">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="vertical">
+            <LinearLayout
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:text="Equipment Name"
+                    style="@style/RowTestItemEdit"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:gravity="center"
+                    android:textColor="@color/color1"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:background="@color/view_color"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_marginRight="@dimen/dp8"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp5" />
+
+                <LinearLayout
+                    android:id="@+id/item_collapse_equipment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:text="Task Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text="Task"
+                        style="@style/RowTestItemEdit"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+
+                        android:background="@color/view_color"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5" />
+
+                    <TextView
+                        android:text="Work Order Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text="CE-MHMUM-SC-A0123_0001"
+                        style="@style/RowTestItemEdit"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="@color/view_color"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5" />
+
+                    <TextView
+                        android:text="Assigny Department"
+                        style="@style/RowTextItemInfo"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp15"                        android:layout_marginRight="@dimen/dp10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:text="Acquisition"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:id="@+id/item_line"
+                        app:layout_constraintTop_toBottomOf="@+id/lst_item"
+                        android:background="@color/view_color"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5"/>
+
+                    <TextView
+                        android:text="Assigne To"
+                        style="@style/RowTextItemInfo"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginTop="@dimen/dp15"                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text="Umesh"
+                        style="@style/RowTestItemEdit"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="@color/view_color"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:background="@drawable/yellow_text_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Submit"
+                        android:paddingLeft="@dimen/dp15"
+                        android:paddingRight="@dimen/dp15"
+                        android:paddingTop="@dimen/dp10"
+                        android:paddingBottom="@dimen/dp10"
+                        android:textColor="#3D4E6D"
+                        android:textSize="@dimen/dp15"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</RelativeLayout>

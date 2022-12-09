@@ -47,9 +47,9 @@ class SplashActivity : BaseActivity() {
         loginViewModel?.loginResponse?.observe(this) {
             hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
-                if (it.status == Resource.Status.SUCCESS && it.data!=null) {
-                    AppPreferences.getInstance().saveString("accessToken", "${it.data?.access}")
-                    AppPreferences.getInstance().saveString("refreshToken", "${it.data?.refresh}")
+                if (it.status == Resource.Status.SUCCESS) {
+                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
+                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Log.d("status","${it.message}")
                     Toast.makeText(this@SplashActivity,"LoginSuccessful", Toast.LENGTH_LONG).show()
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)

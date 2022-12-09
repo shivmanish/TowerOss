@@ -29,17 +29,29 @@
     </array>
     <string-array name="tab_names">
         <item>Site Info</item>
+        <item>Service Request</item>
         <item>OPCO Tenancy</item>
-        <item>Site Lease</item>
-        <item>Blackhaul</item>
-        <item>Utilities</item>
+        <item>Plan &amp; Deisgn</item>
+        <item>Site Agreement</item>
+        <item>Utilities Equip</item>
+        <item>NOC &amp; Comp</item>
+        <item>TWR &amp; Civil Infra</item>
+        <item>Power Connection</item>
+        <item>Bill &amp; Payments</item>
+        <item>QA &amp; Inspection</item>
     </string-array>
     <integer-array name="random_imgs">
-        <item>@drawable/siteicon</item>
-        <item>@drawable/customer</item>
-        <item>@drawable/site_lease</item>
-        <item>@drawable/backhaul</item>
-        <item>@drawable/utilities</item>
+        <item>@drawable/site_info</item>
+        <item>@drawable/service_request</item>
+        <item>@drawable/opco_tenency</item>
+        <item>@drawable/plan_design</item>
+        <item>@drawable/site_agreement</item>
+        <item>@drawable/utilities_eqip</item>
+        <item>@drawable/noc_comp</item>
+        <item>@drawable/twr_civilinfra</item>
+        <item>@drawable/eb_connection</item>
+        <item>@drawable/bill_payments</item>
+        <item>@drawable/qa_inspection</item>
     </integer-array>
     <string name="app_name">TowerOSS</string>
     <string name="setting">Setting</string>
@@ -123,7 +135,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_task">Task</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_site_board">Site iBoard</string>
     <string name="title_menu">Menu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

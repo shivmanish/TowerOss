@@ -2,23 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:id="@+id/text_layout"
+    android:padding="@dimen/dp5"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@drawable/alpha_white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
-        android:id="@+id/text"
-        android:padding="@dimen/dp5"
+        android:id="@+id/text_name"
+        android:paddingStart="@dimen/dp5"
+        android:textSize="13sp"
         android:text="CE-DLHI-SC-0179"
+        android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#4F4D4D"
+        android:textColor="#fff"
         android:fontFamily="@font/poppins"/>
-    <CheckBox
-        android:id="@+id/check_box"
-        app:layout_constraintTop_toTopOf="@+id/text"
-        app:layout_constraintBottom_toBottomOf="@+id/text"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/text"
+        android:paddingStart="@dimen/dp5"
+        android:textSize="16sp"
+        android:text="CE-DLHI-SC-0179"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:fontFamily="@font/poppins"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

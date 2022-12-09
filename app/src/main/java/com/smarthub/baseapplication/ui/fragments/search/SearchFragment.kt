@@ -18,14 +18,13 @@ import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
-import kotlinx.android.synthetic.main.qat_punch_point_item.view.*
 
 class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
 
     var fetchedData = ""
     var isDataFetched = true
     var item: SearchListItem?=null
-    var selectedCategory: String?=null
+    var selectedCategory: String="name"
     private lateinit var binding: SearchFragmentBinding
     lateinit var siteViewModel : BasicInfoDetailViewModel
     lateinit var searchResultAdapter : SearchResultAdapter
@@ -39,6 +38,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        disableButton()
         var searchChipAdapter = SearchChipAdapter(requireContext())
         binding.chipLayout.adapter = searchChipAdapter
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
@@ -89,13 +89,15 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
             override fun afterTextChanged(s: Editable) {
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
+                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData))
+                        return
                     isDataFetched = false
                     if (binding.loadingProgress.visibility !=View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
                     binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
 
-                    if (selectedCategory!=null && selectedCategory?.isNotEmpty() == true){
-                        siteViewModel.fetchSiteSearchData(fetchedData,selectedCategory!!)
+                    if (selectedCategory.isNotEmpty()){
+                        siteViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
                     }else {
                         siteViewModel.fetchSiteSearchData(fetchedData)
                     }
@@ -103,6 +105,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
                 }
                 else if(fetchedData.isEmpty()){
                     Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
+                    disableButton()
                 }
             }
         })
@@ -116,7 +119,30 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
 
     override fun onSearchItemSelected(item: SearchListItem?) {
         this.item = item
-        binding.blocker.visibility = if (item!=null) View.INVISIBLE else View.GONE
+        if (item!=null){
+            binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
+            enableButton()
+        }else{
+            disableButton()
+        }
+    }
+
+    private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+    fun disableButton(){
+        binding.viewOnIbo.alpha = 0.2f
+        binding.viewOnMap.alpha = 0.2f
+        binding.viewOnIbo.isEnabled = false
+        binding.viewOnMap.isEnabled = false
+
+    }
+
+    fun enableButton(){
+        binding.viewOnIbo.alpha = 1.0f
+        binding.viewOnMap.alpha = 1.0f
+        binding.viewOnIbo.isEnabled = true
+        binding.viewOnMap.isEnabled = true
+
     }
 
     override fun selectedCategory(item: String) {

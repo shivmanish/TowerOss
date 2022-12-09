@@ -1,6 +1,11 @@
 package com.smarthub.baseapplication.network;
 
+import com.google.gson.JsonObject;
+import com.smarthub.baseapplication.model.CommonResponse;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
+import com.smarthub.baseapplication.model.dropdown.DropDownItem;
+import com.smarthub.baseapplication.model.dropdown.DropDownList;
+import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
@@ -52,6 +57,15 @@ public interface APIClient {
     @POST(EndPoints.REGISTRATION)
     Call<RegstationResponse> registration(@Body RegisterData data);
 
+    @POST(EndPoints.REGISTRATION)
+    Call<DropDownList> companyDropDown(@Body JsonObject data);
+
+    @POST(EndPoints.REGISTRATION)
+    Call<CommonResponse> commonResponse(@Body JsonObject data);
+
+    @POST(EndPoints.REGISTRATION)
+    Call<GetRegisterOtpResponse> commonRegisterOTPResponse(@Body JsonObject data);
+
 //    Site Info Drop Down api integration
     @GET(EndPoints.SITE_INFO_DROP_DOWN)
     Call<SiteInfoDropDownData> siteInfoDropDown();
@@ -66,11 +80,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SearchList> searchSiteInfoData(@Query("id") String id);
 
-    @GET(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<SearchList> searchSiteInfoData(
-            @Query("id") String id,
-            @Query("category") String category
-    );
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
+    Call<SearchList> searchSiteInfoData(@Body JsonObject data, @Header("Authorization") String auth);
 
     @POST(EndPoints.BASIC_INFO_UPDATE)
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);

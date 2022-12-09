@@ -15,8 +15,6 @@ class AddTaskInfoFragment : Fragment() {
 
     private var _binding: FragmentAddTaskInfoBinding? = null
     private lateinit var mainViewModel:MainViewModel
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

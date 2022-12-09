@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp5"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -23,18 +24,21 @@
                 android:text="Link Name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp20"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
                 android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/icon_layout"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="end"
                 app:layout_constraintStart_toEndOf="@+id/item_title"
@@ -43,34 +47,36 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="0dp">
                 <ImageView
-                    app:tint="@color/black"
                     android:visibility="visible"
                     android:id="@+id/img_edit"
-                    android:paddingStart="@dimen/dp20"
-                    android:paddingEnd="@dimen/dp20"
+                    android:paddingStart="@dimen/dp16"
+                    android:paddingEnd="@dimen/dp16"
+                    android:background="@color/transparent"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/edit_ico_black"
-                    android:layout_width="@dimen/dp58"
+                    android:layout_width="@dimen/dp50"
                     android:layout_height="match_parent"/>
                 <ImageView
                     app:tint="@color/black"
                     android:visibility="visible"
                     android:id="@+id/img_delete"
-                    android:paddingStart="@dimen/dp20"
-                    android:paddingEnd="@dimen/dp20"
+                    android:paddingStart="@dimen/dp16"
+                    android:paddingEnd="@dimen/dp16"
+                    android:background="@color/transparent"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_delete"
-                    android:layout_width="@dimen/dp58"
+                    android:layout_width="@dimen/dp50"
                     android:layout_height="match_parent"/>
                 <ImageView
-                    app:tint="@color/black"
+
                     android:visibility="visible"
                     android:id="@+id/img_add"
-                    android:paddingStart="@dimen/dp20"
-                    android:paddingEnd="@dimen/dp20"
+                    android:paddingStart="@dimen/dp16"
+                    android:paddingEnd="@dimen/dp16"
+                    android:background="@color/transparent"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/add"
-                    android:layout_width="@dimen/dp58"
+                    android:src="@drawable/add_ico"
+                    android:layout_width="@dimen/dp50"
                     android:layout_height="match_parent"/>
             </LinearLayout>
             <ImageView
@@ -78,10 +84,10 @@
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp20"
-                android:paddingEnd="@dimen/dp20"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp58"
+                android:layout_width="@dimen/dp50"
                 android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View

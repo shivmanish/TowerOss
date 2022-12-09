@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.utils
 
+import android.app.Activity
 import android.content.Context
+import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -26,7 +29,7 @@ object Utils {
         Log.i("TAG", message)
     }
 
-    fun clearBackStack(activity: FragmentActivity) {
+    fun clearBackStack(activity : FragmentActivity){
         val name: String? = activity.supportFragmentManager.getBackStackEntryAt(0).name
         activity.supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
@@ -43,10 +46,8 @@ object Utils {
     fun collapse(v: View) {
         val initialHeight = v.measuredHeight
 
-        val matchParentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
+        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
 
         val a: Animation = object : Animation() {
@@ -54,8 +55,7 @@ object Utils {
                 if (interpolatedTime == 1f) {
                     v.visibility = View.GONE
                 } else {
-                    v.layoutParams.height =
-                        initialHeight - (initialHeight * interpolatedTime).toInt()
+                    v.layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
                     v.requestLayout()
                 }
             }
@@ -71,10 +71,8 @@ object Utils {
     }
 
     fun expand(v: View) {
-        val matchParentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
+        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
         val targetHeight = v.measuredHeight
 
@@ -82,8 +80,7 @@ object Utils {
         val a: Animation = object : Animation() {
             override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
                 v.visibility = View.VISIBLE
-                v.layoutParams.height =
-                    if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
+                v.layoutParams.height = if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
                 v.requestLayout()
             }
 
@@ -206,9 +203,12 @@ object Utils {
         return registerData
     }
 
-    fun isValid(value: String): Boolean {
+    fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
 
+    }
+     fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun getJsonDataFromAsset(context: Context, fileName: String): String? {

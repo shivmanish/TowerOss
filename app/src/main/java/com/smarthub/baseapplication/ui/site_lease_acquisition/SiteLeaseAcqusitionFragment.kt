@@ -15,10 +15,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
-import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapterListener
-import kotlinx.android.synthetic.main.atp_checklist.*
 
 
 class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {

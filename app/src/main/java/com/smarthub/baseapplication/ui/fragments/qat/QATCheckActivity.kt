@@ -7,20 +7,22 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.smarthub.baseapplication.R
-import kotlinx.android.synthetic.main.activity_qatcheck.*
+import com.smarthub.baseapplication.databinding.ActivityQatcheckBinding
 
 class QATCheckActivity : AppCompatActivity() {
 
+    lateinit var binding : ActivityQatcheckBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_qatcheck)
-        setupViewPager(view_pager)
-        clear_search_query.setOnClickListener {
+        binding = ActivityQatcheckBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupViewPager(binding.viewPager)
+        binding.clearSearchQuery.setOnClickListener {
             var fragment = AtpMainFragment()
             addFragment(fragment)
         }
-        tab_view!!.setupWithViewPager(view_pager)
-        img_back.setOnClickListener {
+        binding.tabView.setupWithViewPager(binding.viewPager)
+        binding.imgBack.setOnClickListener {
             onBackPressed()
         }
     }

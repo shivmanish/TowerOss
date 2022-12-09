@@ -27,6 +27,7 @@
         android:theme="@style/Theme.MDemo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.utilites.SMPSDetailsActivity"
             android:exported="false">
@@ -46,7 +47,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.fragments.task.TaskActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MDemo.NoActionBar"/>
         <activity
             android:name=".ui.basic_info.SiteImages"
             android:exported="false" />
@@ -115,7 +117,7 @@
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.BaseApplication"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustResize">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

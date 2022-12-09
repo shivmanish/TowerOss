@@ -38,6 +38,8 @@ import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.ui.fragments.sitedetail.BlackhaulFrag.Companion.newInstance
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
@@ -244,10 +246,16 @@ class SiteDetailFragment : Fragment() {
         override fun getItem(position: Int): Fragment {
             return when(position){
                 0-> SiteInfoNewFragment()
-                1-> OpcoTanacyFragment.newInstance(tabNames?.get(1) ?: "OPCO Tenancy")
-                2-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(2) ?: "SiteLease")
-                3-> BlackhaulFrag.newInstance(tabNames?.get(3) ?: "Blackhaul")
-                4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilities")
+                1-> ServicesRequestFrqagment.newInstance(tabNames?.get(1) ?: "Service Request")
+                2-> OpcoTanacyFragment.newInstance(tabNames?.get(2) ?: "OPCO Tenancy")
+                3-> BlackhaulFrag.newInstance(tabNames?.get(3) ?: "PLAN & Design")
+                4-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(4) ?: "Site Agreement")
+                5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(5) ?: "Utilitie Equip")
+                6-> BlackhaulFrag.newInstance(tabNames?.get(6) ?: "Noc & Comp")
+                7-> BlackhaulFrag.newInstance(tabNames?.get(7) ?: "TWR & Civil Infra")
+                8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "EB Connection")
+                9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "Bill & Payments")
+                10-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
                 else -> SiteInfoNewFragment()
             }
         }

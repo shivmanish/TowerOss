@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
-import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem;
+import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.ui.adapter.spinner.CustomArrayAdapter;
 
 import java.util.ArrayList;

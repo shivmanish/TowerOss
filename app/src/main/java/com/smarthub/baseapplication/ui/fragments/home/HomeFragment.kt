@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.activities.SearchActivity
 import com.smarthub.baseapplication.databinding.FragmentHomeBinding
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
@@ -33,8 +34,8 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.searchBoxLayout.setOnClickListener {
-            var intent = Intent(activity, SearchActivity::class.java)
-            startActivity(intent)
+//            set menu selection for site iBoard
+
         }
         return root
     }
@@ -43,6 +44,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.homePager.adapter = HomeViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         binding.homeTab.setupWithViewPager(binding.homePager)
+        binding.notificationLayout.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
+        }
     }
 
     override fun onDestroyView() {

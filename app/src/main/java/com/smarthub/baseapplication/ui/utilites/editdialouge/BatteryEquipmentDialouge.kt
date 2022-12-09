@@ -22,7 +22,7 @@ lateinit var binding: BatteryEquipmentDialougeLayoutBinding
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)
-        dialog!!.window!!.setGravity( Gravity.BOTTOM)
+        dialog!!.window!!.setGravity(Gravity.BOTTOM)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog!!.window!!.setWindowAnimations(R.style.DialogAnimation)
         return binding.root

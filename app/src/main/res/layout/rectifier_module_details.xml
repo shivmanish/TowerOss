@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="@dimen/dp10"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Slot code"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="match_parent"
+            android:text="Serial No."
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="match_parent"
+
+            android:text="Rating(Amp)"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="match_parent"
+            android:text="Date"
+
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        tools:listitem="@layout/po_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</LinearLayout>

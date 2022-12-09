@@ -2,6 +2,8 @@ package com.smarthub.baseapplication.ui.fragments.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +32,7 @@ class RegistrationSecondStep : Fragment() {
     lateinit var loginViewModel: LoginViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        registrationSecondStepBinding =
-            RegistrationSecondStepBinding.inflate(inflater, container, false)
+        registrationSecondStepBinding = RegistrationSecondStepBinding.inflate(inflater, container, false)
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         return registrationSecondStepBinding.root
 
@@ -40,7 +41,56 @@ class RegistrationSecondStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginButton = view.findViewById<View>(R.id.text_register)
+
+        registrationSecondStepBinding.jobRole.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationSecondStepBinding.jobRole.text.toString().length>=3){
+                    registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationSecondStepBinding.jobRole.text.toString().length>=3){
+                    registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+            }
+        })
+        registrationSecondStepBinding.department.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationSecondStepBinding.department.text.toString().length>=3){
+                    registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationSecondStepBinding.department.text.toString().length>=3){
+                    registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+
+
+            }
+        })
+        registrationSecondStepBinding.roleGeography.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(registrationSecondStepBinding.roleGeography.text.toString().length>=3){
+                    registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+                else
+                    registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.color.transparent)
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(registrationSecondStepBinding.roleGeography.text.toString().length>=3){
+                    registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.drawable.check_textview)
+                }
+            }
+        })
+
+        val loginButton = view.findViewById<View>(R.id.text_login)
         loginButton.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
@@ -49,42 +99,42 @@ class RegistrationSecondStep : Fragment() {
                 it.startActivity(intent)
             }
         }
-        setupAutoCompleteView()
 
         view.findViewById<View>(R.id.next).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
+            if (!Utils.isValid(registrationSecondStepBinding.jobRole.text.toString())) {
+                registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = true
+                registrationSecondStepBinding.jobRoleRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = false
+                registrationSecondStepBinding.jobRoleRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationSecondStepBinding.department.text.toString())) {
+                registrationSecondStepBinding.departmentRoot.isErrorEnabled = true
+                registrationSecondStepBinding.departmentRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationSecondStepBinding.departmentRoot.isErrorEnabled = false
+                registrationSecondStepBinding.departmentRoot.error = null
+
+            }
+            if (!Utils.isValid(registrationSecondStepBinding.roleGeography.text.toString())) {
+                registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = true
+                registrationSecondStepBinding.roleGeographyRoot.error = "This field can not be empty!"
+                return@setOnClickListener
+            }else{
+                registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = false
+                registrationSecondStepBinding.roleGeographyRoot.error = null
+
+            }
+            loginViewModel.registerData.rolestxt = registrationSecondStepBinding.jobRole.text.toString()
+            loginViewModel.registerData.departmenttxt = registrationSecondStepBinding.department.text.toString()
+            loginViewModel.registerData.rolegeographytxt = registrationSecondStepBinding.roleGeography.text.toString()
             findNavController().navigate(RegistrationSecondStepDirections.actionRegistrationSecondStepToRegistrationThirdStep())
         }
     }
-
-    private fun setupAutoCompleteView() {
-        val datalist=getlList()
-        registrationSecondStepBinding.developer.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
-//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
-        registrationSecondStepBinding.developer.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, arg1, position, id ->
-//                registrationFirstStepBinding.companyName.text = datalist.get(position)
-            }
-
-        registrationSecondStepBinding.technology.setAdapter(CustomRegistrationArrayAdapter(context,datalist))
-//        registrationFirstStepBinding.companyNam/e.setInputType(InputType.TYPE_NULL);
-        registrationSecondStepBinding.technology.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, arg1, position, id ->
-//                registrationFirstStepBinding.companyName.text = datalist.get(position)
-            }
-
-
-    }
-
-    private fun getlList(): ArrayList<String> {
-        val dataList=ArrayList<String>()
-        dataList.add("Jio Fiber")
-        dataList.add("Airtel India")
-        dataList.add("VI")
-        dataList.add("BSNL")
-        return dataList
-    }
-
 
 }
 
