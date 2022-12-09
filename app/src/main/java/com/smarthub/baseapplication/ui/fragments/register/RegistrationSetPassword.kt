@@ -1,6 +1,4 @@
 package com.smarthub.baseapplication.ui.fragments.register
-
-import android.R.attr
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
@@ -14,8 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.databinding.RegistrationSetPassBinding
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 
 class RegistrationSetPassword : Fragment() {
@@ -46,6 +42,7 @@ class RegistrationSetPassword : Fragment() {
                 }else{
                     binding.submitPass.alpha = 0.3f
                     binding.submitPass.isEnabled=false
+                    enableErrorPassText()
                 }
             }
         })
@@ -60,6 +57,7 @@ class RegistrationSetPassword : Fragment() {
                 }else{
                     binding.submitPass.alpha = 0.3f
                     binding.submitPass.isEnabled=false
+                    enableErrorText()
                 }
             }
         })
@@ -85,12 +83,12 @@ class RegistrationSetPassword : Fragment() {
         }
     }
 
-    private fun enableErrorText(){
-        binding.passwordLayout.error = "enter valid mo no"
+    private fun enableErrorPassText(){
+        binding.passwordLayout.error = "Password not in correct format "
     }
 
-    private fun enableErrorText(error:String?){
-        binding.confirmPassLayout.error = "$error"
+    private fun enableErrorText(){
+        binding.confirmPassLayout.error = "Password mismatched or not in correct format"
     }
     fun validatePass(password: String): Boolean {
         if (password.length < 8) return false
