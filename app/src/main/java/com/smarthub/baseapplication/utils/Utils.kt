@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
-import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem
 import java.io.IOException
 
 
@@ -23,6 +23,36 @@ object Utils {
 
     fun log(message: String) {
         Log.i("TAG", message)
+    }
+
+    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun getSelectedSpinner(selsteddata: String, list: List<DropDownItem>): DropDownItem {
+        var returndata:DropDownItem? = null
+        println("data123 "+selsteddata)
+        println("data123 "+list.size)
+
+        for(i in list){
+            if(i.name.equals(selsteddata,true)){
+                println("data123 "+i.name)
+                returndata = i
+                break
+            }
+        }
+        return returndata!!
     }
 
     fun clearBackStack(activity: FragmentActivity) {
@@ -196,7 +226,7 @@ object Utils {
     }
 
     fun getSelectedSpinner(selsteddata: String, list: List<DropDownItem>): DropDownItem {
-        var returndata:DropDownItem? = null
+        var returndata: DropDownItem? = null
         println("data123 "+selsteddata)
         println("data123 "+list.size)
 
@@ -210,4 +240,5 @@ object Utils {
         return returndata!!
     }
 
+    }
 }
