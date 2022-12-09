@@ -82,7 +82,7 @@ class SiteDetailFragment : Fragment() {
 //        })
 
         setDataObserver()
-        setData()
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -306,6 +306,7 @@ class SiteDetailFragment : Fragment() {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
 //                    Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
+                    setData()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")

@@ -55,7 +55,6 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : BasicDetailItemViewBinding = BasicDetailItemViewBinding.bind(itemView)
-
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -174,9 +173,16 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
+                    if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0) {
+                        holder.binding.iconLayout.visibility =
+                            if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    }else{
+                        holder.binding.iconLayout.visibility = View.GONE
+                    }
+
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked()
+                        listener.detailsItemClicked(data!!,fieldData!!.get(0).Basicinfo.get(0))
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -185,12 +191,14 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                 }
                 holder.binding.itemTitle.text = list[position]
 
+/*
                 if (data!=null) {
-                  /*  holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
+                    holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
                     holder.binding.siteCategorySpinner.setSpinnerData(data?.sitecategory?.data)
                     holder.binding.siteOwnershipSpinner.setSpinnerData(data?.siteownership?.data)
-                    holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)*/
+                    holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)
                 }
+*/
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0){
                     val basicinfo:Basicinfo = fieldData!!.get(0).Basicinfo.get(0)
                     holder.binding.txSiteName.text = basicinfo.siteName
@@ -358,7 +366,7 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
 
     interface SiteInfoLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked()
+        fun detailsItemClicked(data: BasicInfoModelDropDown, basicinfo: Basicinfo)
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
