@@ -50,7 +50,7 @@ class BasicInfoBottomSheet(
                 it.Sitestatus= binding.siteStatus.selectedValue.id!!
                 it.Sitetype= binding.siteType.selectedValue.id!!
                 it.aliasName= ""
-                it.id = 5
+                it.id = basicinfodata.id
                 it.siteID= binding.txSiteID.text.toString()
                 it.siteInChargeName= binding.txtSiteInChargeName.text.toString()
                 it.siteInChargeNumber= binding.txtSiteInChargeNumber.text.toString()

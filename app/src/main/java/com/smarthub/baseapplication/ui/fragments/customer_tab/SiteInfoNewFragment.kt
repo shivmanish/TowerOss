@@ -31,24 +31,22 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = SiteInfoListAdapter(this@SiteInfoNewFragment)
+        binding?.listItem?.adapter = SiteInfoListAdapter(requireContext(),this@SiteInfoNewFragment)
         siteViewModel.fetchDropDown()
         siteViewModel.dropDownResponse?.observe(requireActivity()) {
             (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
         }
         if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)
             siteViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
-        if(siteViewModel.siteInfoResponse?.hasActiveObservers()!!){
-            siteViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
-        }
+
         siteViewModel.siteInfoResponse?.observe(viewLifecycleOwner){
-            if (it?.data != null){
+           /* if (it?.data != null){
 //                map data here
                 it.data?.let { it1 -> mapUIData(it1) }
                 Toast.makeText(requireContext(),"siteInfo fetched successfully",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(),"siteInfo fetched successfully but null",Toast.LENGTH_SHORT).show()
-            }
+            }*/
 
         }
         siteViewModel.fetchSiteInfo()
@@ -56,7 +54,6 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
 
     private fun mapUIData(data : SiteInfoModel){
         (binding?.listItem?.adapter as SiteInfoListAdapter).setValueData(data)
-
     }
 
     override fun attachmentItemClicked() {

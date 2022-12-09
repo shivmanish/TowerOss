@@ -41,6 +41,7 @@ public class CustomSpinner extends AppCompatSpinner {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selecteddata = data.get(position);
+                System.out.println("CustomSpinner.onItemSelected this is called "+selecteddata.getName());
             }
 
             @Override

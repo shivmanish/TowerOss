@@ -1,15 +1,18 @@
 package com.smarthub.baseapplication.ui.fragments.siteInfo
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.Utils
 
-class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
+class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -20,14 +23,15 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
     var type5 = "OPCO Contact Details"
     private var data : BasicInfoModelDropDown?=null
     private var fieldData : SiteInfoModel?=null
+    private var basicinfodata:BasicInfoModelItem? = null
 
     fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }
     fun setValueData(data : SiteInfoModel){
-        this.fieldData = data
-        notifyDataSetChanged()
+//        this.fieldData = data
+//        notifyDataSetChanged()
     }
 
     init {
@@ -35,6 +39,7 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
         list.add("Operational Info")
         list.add("Geo Condition")
         list.add("Safety / Access")
+        basicinfodata  = Gson().fromJson(Utils.getJsonDataFromAsset(context,"basicinfodata.json"), BasicInfoModelItem::class.java)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -174,15 +179,15 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
 
-                    if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0) {
+                   /* if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0) {
                         holder.binding.iconLayout.visibility =
                             if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     }else{
                         holder.binding.iconLayout.visibility = View.GONE
-                    }
+                    }*/
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked(data!!,fieldData!!.get(0).Basicinfo.get(0))
+                        listener.detailsItemClicked(data!!,basicinfodata!!.Basicinfo.get(0))
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -199,8 +204,8 @@ class SiteInfoListAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adap
                     holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)
                 }
 */
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0){
-                    val basicinfo:Basicinfo = fieldData!!.get(0).Basicinfo.get(0)
+                if(basicinfodata!!.Basicinfo!=null && basicinfodata!!.Basicinfo.size >0){
+                    val basicinfo:Basicinfo = basicinfodata!!.Basicinfo.get(0)
                     holder.binding.txSiteName.text = basicinfo.siteName
                     holder.binding.txSiteID.text = basicinfo.siteID
                     holder.binding.siteStatus.text = basicinfo.Sitestatus.get(0).name

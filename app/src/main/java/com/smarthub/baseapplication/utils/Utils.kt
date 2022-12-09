@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.register.RegisterData
+import com.smarthub.baseapplication.network.pojo.site_info.DropDownItem
+import java.io.IOException
 
 
 object Utils {
@@ -23,7 +25,7 @@ object Utils {
         Log.i("TAG", message)
     }
 
-    fun clearBackStack(activity : FragmentActivity){
+    fun clearBackStack(activity: FragmentActivity) {
         val name: String? = activity.supportFragmentManager.getBackStackEntryAt(0).name
         activity.supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
@@ -40,8 +42,10 @@ object Utils {
     fun collapse(v: View) {
         val initialHeight = v.measuredHeight
 
-        val matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val matchParentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
+        val wrapContentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
 
         val a: Animation = object : Animation() {
@@ -49,7 +53,8 @@ object Utils {
                 if (interpolatedTime == 1f) {
                     v.visibility = View.GONE
                 } else {
-                    v.layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
+                    v.layoutParams.height =
+                        initialHeight - (initialHeight * interpolatedTime).toInt()
                     v.requestLayout()
                 }
             }
@@ -65,8 +70,10 @@ object Utils {
     }
 
     fun expand(v: View) {
-        val matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val matchParentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
+        val wrapContentMeasureSpec =
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
         val targetHeight = v.measuredHeight
 
@@ -74,7 +81,8 @@ object Utils {
         val a: Animation = object : Animation() {
             override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
                 v.visibility = View.VISIBLE
-                v.layoutParams.height = if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
+                v.layoutParams.height =
+                    if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
                 v.requestLayout()
             }
 
@@ -168,10 +176,38 @@ object Utils {
 
     fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)
+    fun isValid(value: String): Boolean {
+        return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
 
     }
      fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+    fun getSelectedSpinner(selsteddata: String, list: List<DropDownItem>): DropDownItem {
+        var returndata:DropDownItem? = null
+        println("data123 "+selsteddata)
+        println("data123 "+list.size)
+
+        for(i in list){
+            if(i.name.equals(selsteddata,true)){
+                println("data123 "+i.name)
+                returndata = i
+                break
+            }
+        }
+        return returndata!!
     }
 
 }
