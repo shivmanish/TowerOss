@@ -38,18 +38,21 @@ class RegistrationThirdStep : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        registrationThirdStepBinding.managerNameRoot.tag=false
+        registrationThirdStepBinding.emailIdRoot.tag==false
+        registrationThirdStepBinding.moNo.tag==false
         registrationThirdStepBinding.managerName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationThirdStepBinding.managerName.text.toString().length>=3){
-                    registrationThirdStepBinding.managerNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationThirdStepBinding.managerNameRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if(registrationThirdStepBinding.managerName.text.toString().length>=3){
+                if(registrationThirdStepBinding.managerName.text.toString().isNotEmpty()){
                     registrationThirdStepBinding.managerNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationThirdStepBinding.managerNameRoot.tag=true
+                    registrationThirdStepBinding.managerNameRoot.isErrorEnabled = false
+                }
+                else {
+                    registrationThirdStepBinding.managerNameRoot.setEndIconDrawable(R.color.transparent)
+                    registrationThirdStepBinding.managerNameRoot.tag=false
                 }
 
 
@@ -57,16 +60,16 @@ class RegistrationThirdStep : Fragment() {
         })
         registrationThirdStepBinding.emailId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(Utils.isValidEmail(registrationThirdStepBinding.emailId.text.toString())){
-                    registrationThirdStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationThirdStepBinding.emailIdRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {  }
             override fun afterTextChanged(s: Editable) {
-                if(Utils.isValidEmail(registrationThirdStepBinding.emailId.text.toString())){
+                if(registrationThirdStepBinding.emailId.text.toString().isNotEmpty()){
                     registrationThirdStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationThirdStepBinding.emailIdRoot.tag=true
+                    registrationThirdStepBinding.emailIdRoot.isErrorEnabled = false
+                }
+                else {
+                    registrationThirdStepBinding.emailIdRoot.setEndIconDrawable(R.color.transparent)
+                    registrationThirdStepBinding.emailIdRoot.tag=false
                 }
 
 
@@ -74,17 +77,17 @@ class RegistrationThirdStep : Fragment() {
         })
         registrationThirdStepBinding.moNo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationThirdStepBinding.moNo.text.toString().length==10){
-                    registrationThirdStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationThirdStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) { }
             override fun afterTextChanged(s: Editable) {
                 if(registrationThirdStepBinding.moNo.text.toString().length==10){
                     Utils.hideKeyboard(requireContext(), registrationThirdStepBinding.moNo)
                     registrationThirdStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationThirdStepBinding.moNoRoot.tag=true
+                    registrationThirdStepBinding.moNoRoot.isErrorEnabled = false
+                }
+                else {
+                    registrationThirdStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
+                    registrationThirdStepBinding.moNoRoot.tag=false
                 }
             }
         })
@@ -103,33 +106,20 @@ class RegistrationThirdStep : Fragment() {
         }
         registrationThirdStepBinding.next.setOnClickListener {
             Utils.hideKeyboard(requireContext(), it)
-
-            if (!Utils.isValid(registrationThirdStepBinding.managerName.text.toString())) {
+            if (registrationThirdStepBinding.managerNameRoot.tag==false) {
                 registrationThirdStepBinding.managerNameRoot.isErrorEnabled = true
-                registrationThirdStepBinding.managerNameRoot.error = "This field can not be empty!"
+                registrationThirdStepBinding.managerNameRoot.error = "Enter job role"
                 return@setOnClickListener
-            }else{
-                registrationThirdStepBinding.managerNameRoot.isErrorEnabled = false
-                registrationThirdStepBinding.managerNameRoot.error = null
-
             }
-            if (!Utils.isValid(registrationThirdStepBinding.emailId.text.toString())) {
+            if (registrationThirdStepBinding.emailIdRoot.tag==false) {
                 registrationThirdStepBinding.emailIdRoot.isErrorEnabled = true
-                registrationThirdStepBinding.emailIdRoot.error = "This field can not be empty!"
+                registrationThirdStepBinding.emailIdRoot.error = "Enter job role"
                 return@setOnClickListener
-            }else{
-                registrationThirdStepBinding.emailIdRoot.isErrorEnabled = false
-                registrationThirdStepBinding.emailIdRoot.error = null
-
             }
-            if (!Utils.isValid(registrationThirdStepBinding.moNo.text.toString())) {
+            if (registrationThirdStepBinding.moNoRoot.tag==false) {
                 registrationThirdStepBinding.moNoRoot.isErrorEnabled = true
-                registrationThirdStepBinding.moNoRoot.error = "This field can not be empty!"
+                registrationThirdStepBinding.moNoRoot.error = "Enter job role"
                 return@setOnClickListener
-            }else{
-                registrationThirdStepBinding.moNoRoot.isErrorEnabled = false
-                registrationThirdStepBinding.moNoRoot.error = null
-
             }
 
             registrationViewModel.registerData.managername = registrationThirdStepBinding.managerName.text.toString()
