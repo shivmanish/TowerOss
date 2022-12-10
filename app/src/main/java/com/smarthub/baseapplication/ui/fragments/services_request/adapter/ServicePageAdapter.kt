@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.services_request
+package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentFragmen
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.OppoTssrTabFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.ServiceRequestTabFragment
 
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
@@ -25,7 +26,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
 //                return CommercialFragment()
 //            }
             1 -> {
-                return RfEquipmentFragment()
+                return OppoTssrTabFragment()
             }
             2 -> {
                 return BackhaulFragment()

@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 

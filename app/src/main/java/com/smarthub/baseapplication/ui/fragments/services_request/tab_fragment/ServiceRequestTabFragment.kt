@@ -8,11 +8,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoInfoListAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestAdapter
-import com.smarthub.baseapplication.ui.utilites.editdialouge.ServicesDetailsBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.services_request
+package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
+import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 
 
 class ServicesDataAdapter(var listener: ServicesRequestFrqagment, var array: ArrayList<String>) : RecyclerView.Adapter<CustomerDataViewHolder>() {

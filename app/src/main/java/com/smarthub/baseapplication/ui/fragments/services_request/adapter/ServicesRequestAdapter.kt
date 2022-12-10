@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.services_request
+package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
 import android.view.LayoutInflater
 import android.view.View

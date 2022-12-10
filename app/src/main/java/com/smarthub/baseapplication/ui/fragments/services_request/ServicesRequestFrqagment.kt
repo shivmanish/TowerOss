@@ -1,8 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.services_request
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
-import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
-import com.smarthub.baseapplication.ui.utilites.editdialouge.AdditionalAccessoriesBottomSheetDialog
 import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
 
 class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
