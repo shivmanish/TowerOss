@@ -333,7 +333,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 holder.binding.itemTitle.text = list[position]
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).SafetyAndAccess!=null && fieldData!!.get(0).SafetyAndAccess.size >0){
                     val geoCondition: SafetyAndAcces = fieldData!!.get(0).SafetyAndAccess.get(0)
-                    holder.binding.physicalSecurity.text = geoCondition.Physicalsecurity.get(0).name
+                  /*  holder.binding.physicalSecurity.text = geoCondition.Physicalsecurity.get(0).name
                     holder.binding.textGate.text = geoCondition.GateAndFence.get(0).name
                     holder.binding.videoMonitoringSpinner.text = geoCondition.Videomonitoring.get(0).name
                     holder.binding.siteAccessAreaSpinner.text = geoCondition.SiteAccessArea.get(0).name
@@ -345,7 +345,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                     holder.binding.textPoliceNumber.text = geoCondition.NearByPoliceStationNumber
                     holder.binding.textPoliceStation.text = geoCondition.NearByPoliceStation
                     holder.binding.textFireStation.text = geoCondition.NearByFireStation
-                    holder.binding.textFireNumber.text = geoCondition.NearByFireStationNumber
+                    holder.binding.textFireNumber.text = geoCondition.NearByFireStationNumber*/
                 }
             }
             is ViewHold5 -> {
