@@ -35,7 +35,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         list.add("Equipments")
         list.add("Radio Antennas")
         list.add("Backhaul Links")
-        list.add("Attachments")
+      //  list.add("Attachments")
         list.add("Requester Info")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -50,6 +50,8 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
             return 4
         else if (list[position] is String && list[position]==type5)
             return 5
+        else if (list[position] is String && list[position]==type6)
+            return 6
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
@@ -70,7 +72,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : OperationInfoViewBinding = OperationInfoViewBinding.bind(itemView)
+        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -87,7 +89,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : GeoConditionListItemBinding = GeoConditionListItemBinding.bind(itemView)
+        var binding : RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -103,7 +105,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : SafatyAccessListItemBinding = SafatyAccessListItemBinding.bind(itemView)
+        var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -112,7 +114,6 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -132,6 +133,24 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
 
+   class ViewHold6(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+        var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
+
+       init {
+           binding.itemTitle.tag = false
+           binding.itemTitle.tag = false
+           if ((binding.itemTitle.tag as Boolean)) {
+               binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+               binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+           } else {
+               binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+               binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+           }
+
+
+       }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
@@ -140,20 +159,23 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.operation_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.radio_antine_list_item, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.safaty_access_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_links_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item5, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
+            }   6-> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
+                return ViewHold6(view,listener)
             }
 
         }
@@ -235,21 +257,21 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
 
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).OperationalInfo!=null && fieldData!!.get(0).OperationalInfo.size >0){
                     val operationalInfo: OperationalInfo = fieldData!!.get(0).OperationalInfo.get(0)
-                    holder.binding.txtRFCDate.text = operationalInfo.RFCDate
-                    holder.binding.txtRFIDate.text = operationalInfo.RFIDate
-                    holder.binding.txtRFSDate.text = operationalInfo.RFSDate
-                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus.get(0).name
-                    holder.binding.costCenter.text = operationalInfo.Costcentre.get(0).name
-                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility.get(0).name
-                    holder.binding.powerSource.text = operationalInfo.Powersource
-                    holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
-                    holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
-                    holder.binding.operationTemp.text = operationalInfo.OperatingTemp
-                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory.get(0).name
-                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite.get(0).name
-                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca.get(0).name
-                    holder.binding.scdaSpinner.text = operationalInfo.Scda.get(0).name
-                    holder.binding.dismanting.text = operationalInfo.DismantlinglDate
+//                    holder.binding.txtRFCDate.text = operationalInfo.RFCDate
+//                    holder.binding.txtRFIDate.text = operationalInfo.RFIDate
+//                    holder.binding.txtRFSDate.text = operationalInfo.RFSDate
+//                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus.get(0).name
+//                    holder.binding.costCenter.text = operationalInfo.Costcentre.get(0).name
+//                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility.get(0).name
+//                    holder.binding.powerSource.text = operationalInfo.Powersource
+//                    holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
+//                    holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
+//                    holder.binding.operationTemp.text = operationalInfo.OperatingTemp
+//                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory.get(0).name
+//                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite.get(0).name
+//                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca.get(0).name
+//                    holder.binding.scdaSpinner.text = operationalInfo.Scda.get(0).name
+//                    holder.binding.dismanting.text = operationalInfo.DismantlinglDate
                 }
             }
             is ViewHold3 -> {
@@ -279,14 +301,14 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 }
                 holder.binding.itemTitle.text = list[position]
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).GeoCondition!=null && fieldData!!.get(0).GeoCondition.size >0){
-                    val geoCondition: GeoCondition = fieldData!!.get(0).GeoCondition.get(0)
+                   /* val geoCondition: GeoCondition = fieldData!!.get(0).GeoCondition.get(0)
                     holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat.get(0).name
                     holder.binding.textAltitude.text = geoCondition.Altitude
                     holder.binding.windZoneSpinner.text = geoCondition.Windzone.get(0).name
                     holder.binding.seismecZoneSpinner.text = geoCondition.Seismiczone.get(0).name
                     holder.binding.floodZoneSpinner.text = geoCondition.Floodzone.get(0).name
                     holder.binding.textTempZone.text = geoCondition.TempratureZone
-                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype.get(0).name
+                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype.get(0).name*/
                 }
 
             }
@@ -318,7 +340,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 holder.binding.itemTitle.text = list[position]
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).SafetyAndAccess!=null && fieldData!!.get(0).SafetyAndAccess.size >0){
                     val geoCondition: SafetyAndAcces = fieldData!!.get(0).SafetyAndAccess.get(0)
-                    holder.binding.physicalSecurity.text = geoCondition.Physicalsecurity.get(0).name
+                  /*  holder.binding.physicalSecurity.text = geoCondition.Physicalsecurity.get(0).name
                     holder.binding.textGate.text = geoCondition.GateAndFence.get(0).name
                     holder.binding.videoMonitoringSpinner.text = geoCondition.Videomonitoring.get(0).name
                     holder.binding.siteAccessAreaSpinner.text = geoCondition.SiteAccessArea.get(0).name
@@ -330,7 +352,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                     holder.binding.textPoliceNumber.text = geoCondition.NearByPoliceStationNumber
                     holder.binding.textPoliceStation.text = geoCondition.NearByPoliceStation
                     holder.binding.textFireStation.text = geoCondition.NearByFireStation
-                    holder.binding.textFireNumber.text = geoCondition.NearByFireStationNumber
+                    holder.binding.textFireNumber.text = geoCondition.NearByFireStationNumber*/
                 }
             }
             is ViewHold5 -> {
@@ -347,6 +369,29 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                         if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.itemCollapse.visibility =
                         if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                }
+                holder.binding.itemTitle.text = list[position]
+            }
+            is ViewHold6 -> {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                    if ((holder.binding.itemTitle.tag as Boolean)) {
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+
+                    } else {
+                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    }
+                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.setOnClickListener {
+                        listener.detailsItemClicked()
+                    }
+
+                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
                 }
                 holder.binding.itemTitle.text = list[position]
             }
