@@ -1,13 +1,21 @@
 package com.smarthub.baseapplication.ui.fragments.services_request
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FragmentCustomerBinding
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
@@ -15,43 +23,78 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
+import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
+import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapter
+import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.sitedetail.viewmodel.CustomerFragmentViewmodel
 
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
-class ServicesRequestFrqagment : Fragment(), ServicesRequestAdapter.SiteInfoLisListener {
-    var binding : FragmentServiceRequestBinding?=null
+class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
     private val ARG_PARAM1 = "param1"
+    private val ARG_PARAM2 = "param2"
+    lateinit var customerBinding: FragmentServiceRequestBinding
+    lateinit var viewmodel: CustomerFragmentViewmodel
+    lateinit var customerDataAdapter: CustomerDataAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
-        binding = FragmentServiceRequestBinding.inflate(inflater, container, false)
-        return binding?.root
+        customerBinding = FragmentServiceRequestBinding.inflate(inflater, container, false)
+        viewmodel = ViewModelProvider(requireActivity())[CustomerFragmentViewmodel::class.java]
+        initializeFragment()
+        return customerBinding.root
     }
-    lateinit var siteViewModel : BasicInfoDetailViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-     /*   binding?.listItem?.adapter = ServicesRequestAdapter(this@ServicesRequestFrqagment)
-        siteViewModel.fetchDropDown()
-        siteViewModel.dropDownResponse?.observe(requireActivity()) {
-            (binding?.listItem?.adapter as ServicesRequestAdapter).setData(it.basicInfoModel)
+    private fun initializeFragment() {
+        customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
+        customerDataAdapter = CustomerDataAdapter(this@ServicesRequestFrqagment, ArrayList())
+        customerBinding.customerList.adapter = customerDataAdapter
+        customerBinding.addMore.setOnClickListener{
+            customerDataAdapter.updateData("anything")
         }
-        if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)
-            siteViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
-        siteViewModel.siteInfoResponse?.observe(viewLifecycleOwner){
-            if (it?.data != null){
-//                map data here
-                it.data?.let { it1 -> mapUIData(it1) }
-                Toast.makeText(requireContext(),"siteInfo fetched successfully", Toast.LENGTH_SHORT).show()
+
+        customerBinding.addMore.setOnClickListener(){
+            val dialog = BottomSheetDialog(requireActivity(),R.style.NewDialog)
+            // on below line we are inflating a layout file which we have created.
+            val view = layoutInflater.inflate(R.layout.main_memu_bottom_sheet_dialog_layout, null)
+            val close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
+            val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
+            val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
+            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.ic_send_alert)
+            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
+            val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
+            val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
+            val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
+            val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)
+            dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
+            close.setOnClickListener {
+                // on below line we are calling a dismiss
+                // method to close our dialog.
+                dialog.dismiss()
             }
+            dialog.setCancelable(false)
+            // on below line we are setting
+            // content view to our view.
+            dialog.setContentView(view)
+            // on below line we are calling
+            // a show method to display a dialog.
+//            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
+            dialog.show()
         }
-        siteViewModel.fetchSiteInfo()*/
+
+
+
+        viewmodel.fetchData()
+        viewmodel.customer_data.observe(requireActivity(), Observer {
+            // Data is get from server and ui work will be start from here
+            println("this is called data is $it")
+            var arraydata = ArrayList<String>()
+            arraydata.add(it)
+            customerDataAdapter.setData(arraydata)
+        })
     }
 
-    private fun mapUIData(data : SiteInfoModel){
-      //  (binding?.listItem?.adapter as ServicesRequestAdapter).setValueData(data)
 
-    }
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
@@ -61,28 +104,10 @@ class ServicesRequestFrqagment : Fragment(), ServicesRequestAdapter.SiteInfoLisL
                 }
             }
     }
-    override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
-    }
-    override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
-    }
-    override fun operationInfoDetailsItemClicked() {
-        val bottomSheetDialogFragment = OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+    override fun clickedItem() {
+        requireActivity().startActivity(Intent(requireContext(),ServicesRequestActivity::class.java))
 
-    }
-    override fun geoConditionsDetailsItemClicked() {
-        val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-
-    }
-
-    override fun siteAccessDetailsItemClicked() {
-        val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
 }
