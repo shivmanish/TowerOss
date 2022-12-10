@@ -104,6 +104,7 @@
                     android:layout_width="0dp"
                     android:text="Equipment"
                     style="@style/RowTextItemInfo"
+                    android:gravity="center"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_weight="1"
@@ -112,12 +113,14 @@
                     android:fontFamily="@font/poppins_regular"
                     android:layout_width="0dp"
                     android:text="Type"
+                    android:gravity="center"
                     style="@style/RowTextItemInfo"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp14"
+                    android:gravity="center"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_width="0dp"
                     android:text="Cabinet Size"

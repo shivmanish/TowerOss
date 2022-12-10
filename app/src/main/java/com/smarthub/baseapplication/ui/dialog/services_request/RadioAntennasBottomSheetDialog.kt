@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
-import com.smarthub.baseapplication.databinding.EquipmentBottomSheetBinding
 import com.smarthub.baseapplication.databinding.RadioAntinaBottomSheetDialogBinding
-import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
 
 class RadioAntennasBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
 
