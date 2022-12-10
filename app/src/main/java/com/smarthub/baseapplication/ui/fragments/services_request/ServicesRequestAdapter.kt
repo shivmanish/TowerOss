@@ -35,7 +35,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         list.add("Equipments")
         list.add("Radio Antennas")
         list.add("Backhaul Links")
-        list.add("Attachments")
+      //  list.add("Attachments")
         list.add("Requester Info")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -50,6 +50,8 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
             return 4
         else if (list[position] is String && list[position]==type5)
             return 5
+        else if (list[position] is String && list[position]==type6)
+            return 6
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
@@ -133,15 +135,19 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
 
    class ViewHold6(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
-        init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-            } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
-                    R.drawable.down_arrow,0)
-            }
-        }
+       init {
+           binding.itemTitle.tag = false
+           binding.itemTitle.tag = false
+           if ((binding.itemTitle.tag as Boolean)) {
+               binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+               binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+           } else {
+               binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+               binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+           }
+
+
+       }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -166,9 +172,9 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
-            }   5 -> {
+            }   6-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
-                return ViewHold5(view,listener)
+                return ViewHold6(view,listener)
             }
 
         }
