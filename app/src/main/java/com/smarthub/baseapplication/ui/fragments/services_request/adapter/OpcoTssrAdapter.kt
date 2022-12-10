@@ -103,7 +103,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
+        var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -119,20 +119,20 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
     }
 
     class ViewHold5(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
-        var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
+        var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
+            binding.itemTitle.tag = true
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-            } else {
+            } /*else {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
                     R.drawable.down_arrow,0)
-            }
+            }*/
         }
     }
 
    class ViewHold6(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
-        var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
+        var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
 
        init {
            binding.itemTitle.tag = false
@@ -172,7 +172,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
             }   6-> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
                 return ViewHold6(view,listener)
             }
 

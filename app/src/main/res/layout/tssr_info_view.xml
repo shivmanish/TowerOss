@@ -27,7 +27,7 @@
                 android:paddingEnd="@dimen/dp10"
                 android:paddingTop="@dimen/dp10"
                 android:background="@color/transparent"
-                style="@style/RowTestItemEdit"
+                style="@style/RowTextviewItem"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
                 android:layout_height="wrap_content"/>
@@ -78,6 +78,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,14 +98,19 @@
                     android:text="Input Voltage" />
 
                 <TextView
-                    android:id="@+id/txtStatus"
+                    android:id="@+id/editStatus"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:hint="xxxx" />
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
             </LinearLayout>
             <LinearLayout
                 style="@style/ColumnItemInfo"
@@ -115,19 +121,23 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Max Total Power" />
+                    android:text="Email ID" />
 
                 <TextView
-                    android:id="@+id/editMaxTotalPower"
+                    android:id="@+id/editEmailID"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:hint="xxxx" />
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
             </LinearLayout>
-
             <LinearLayout
                 style="@style/ColumnItemInfo"
                 android:layout_width="0dp"
@@ -135,19 +145,24 @@
 
                 <TextView
                     style="@style/RowTextItemInfo"
-                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Input Voltage" />
+                    android:text="Phone Number" />
 
                 <TextView
-                    android:id="@+id/spinEquipmentName"
+                    android:id="@+id/editPhoneNumber"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    android:layout_height="wrap_content"
 
+                    android:hint="xxxx" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
             </LinearLayout>
             <LinearLayout
                 style="@style/ColumnItemInfo"
@@ -158,16 +173,24 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Battery Backup Required" />
+                    android:text="Phone Number" />
 
                 <TextView
-                    android:id="@+id/spinSectorCount"
-                    style="@style/SpinnerTheme"
+                    android:id="@+id/editServeyDate"
+                    style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    android:layout_height="wrap_content"
 
+                    android:hint="xxxx" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
             </LinearLayout>
+
 
 
 
@@ -182,86 +205,5 @@
 
 
         </GridLayout>
-        <TextView
-            android:textColor="@color/black"
-            android:textSize="@dimen/dp16"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_width="match_parent"
-            android:gravity="start"
-            android:padding="@dimen/dp10"
-            android:text="MCB Requirements"
-            style="@style/RowTextItemInfo"
-            android:layout_height="wrap_content"/>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:padding="@dimen/dp10"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:weightSum="4"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:maxLines="1"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp14"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_width="0dp"
-                    android:gravity="start"
-                    android:text="Sr. No"
-                    style="@style/RowTextItemInfo"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp14"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_width="0dp"
-                    android:maxLines="1"
-                    android:gravity="center"
-                    android:text="Technology"
-                    style="@style/RowTextItemInfo"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp14"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="TRX Count"
-                    style="@style/RowTextItemInfo"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp14"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-
-                    android:maxLines="1"
-                    android:text="Antenna Heigh"
-                    style="@style/RowTextItemInfo"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_boundry_item_list"
-                tools:listitem="@layout/po_item_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </androidx.recyclerview.widget.RecyclerView>
-   
-
-        </LinearLayout>
-
-
-
     </LinearLayout>
 </LinearLayout>
