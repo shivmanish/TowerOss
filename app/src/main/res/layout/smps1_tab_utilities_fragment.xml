@@ -573,6 +573,23 @@
                     android:src="@drawable/edit_fav_btn"
                     android:visibility="gone" />
                 <ImageView
+                    android:id="@+id/rectifier_module_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/rectifier_module_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+
+                <ImageView
                     android:id="@+id/rectifier_module_arrow"
                     android:layout_width="@dimen/dp50"
                     android:layout_height="@dimen/dp50"
@@ -593,7 +610,80 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <include layout="@layout/rectifier_module_details"/>
+                    <include layout="@layout/rectifier_module_details"
+                        android:id="@+id/rectifier_module_recycler"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/item_line_3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/connected_loads_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_connected_loads_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Connected Loads" />
+                <ImageView
+                    android:id="@+id/connected_loads_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/connected_loads_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/connected_loads_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/connected_loads_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/connected_loads_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/connected_loads_details"
+                        android:id="@+id/connected_loads_recycler"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -1087,6 +1177,150 @@
                         android:textColor="@color/normalTextColor"
                         android:textSize="@dimen/sp12"
                         app:drawableLeftCompat="@drawable/add_ico" />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/item_line_4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/consumable_materials_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_consumable_materials_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Consumable Materials" />
+                <ImageView
+                    android:id="@+id/consumable_materials_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/consumable_materials_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/consumable_materials_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/consumable_materials_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/consumable_materials_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/consumable_material_details"
+                        android:id="@+id/consumable_materials_recycler"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/item_line_5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/po_details_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_po_details_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="PO Details" />
+                <ImageView
+                    android:id="@+id/po_details_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_details_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_details_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_details_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/po_details_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/po_details_details"
+                        android:id="@+id/po_details_recycler"/>
                 </LinearLayout>
             </LinearLayout>
 
