@@ -93,9 +93,10 @@
 
                 <TextView
                     style="@style/RowTextItemInfo"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Technology" />
+                    android:text="Backhaul Node Type" />
 
                 <TextView
                     android:id="@+id/txtEquipmentName"
@@ -104,7 +105,12 @@
                     android:layout_height="@dimen/dp20"
                     android:text="On-Air" />
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
             </LinearLayout>
             <LinearLayout
                 style="@style/ColumnItemInfo"
@@ -115,7 +121,7 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sector Count" />
+                    android:text="Off-Set Pole Required" />
 
                 <TextView
                     android:id="@+id/txtSectorCount"
@@ -124,47 +130,14 @@
                     android:layout_height="@dimen/dp20"
                     android:text="On-Air" />
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
             </LinearLayout>
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="RRU Count" />
-
-                <TextView
-                    android:id="@+id/txtRRUCount"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Off-Set Pole Read" />
-
-                <TextView
-                    android:id="@+id/txtOfSetPoleRead"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
-
-            </LinearLayout>
 
 
 
@@ -256,7 +229,82 @@
 
 
         </LinearLayout>
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp16"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_width="match_parent"
+            android:gravity="start"
+            android:padding="@dimen/dp10"
+            android:text="Fiber"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:padding="@dimen/dp10"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:weightSum="4"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp14"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:gravity="start"
+                    android:text="Sr. No"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp14"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:text="OPCO for-end Site"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp14"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="OPCO for-end Site"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp14"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:gravity="center"
 
+                    android:maxLines="1"
+                    android:text="Cable Length"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/po_item_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
         <LinearLayout
             style="@style/ColumnItemInfo"
             android:layout_width="match_parent"
@@ -265,7 +313,7 @@
                 style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RF Feasibility Remarks" />
+                android:text="Backhaul Feasibility Remark" />
             <EditText
                 android:id="@+id/editRemarks"
                 style="@style/RowTestItemEdit"
