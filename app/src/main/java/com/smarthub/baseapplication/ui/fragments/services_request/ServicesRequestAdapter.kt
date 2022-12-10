@@ -135,6 +135,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
 
    class ViewHold6(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
+
        init {
            binding.itemTitle.tag = false
            binding.itemTitle.tag = false
@@ -372,19 +373,25 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 holder.binding.itemTitle.text = list[position]
             }
             is ViewHold6 -> {
-                holder.binding.itemTitle.setOnClickListener {
+                holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+
                     } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
-                            R.drawable.down_arrow,0)
+                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    }
+                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.setOnClickListener {
+                        listener.detailsItemClicked()
                     }
 
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+
                 }
                 holder.binding.itemTitle.text = list[position]
             }
