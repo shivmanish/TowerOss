@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
 import com.smarthub.baseapplication.databinding.MaintanaceBottomSheetBinding
 import com.smarthub.baseapplication.databinding.PoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.ServicesDetailsBottomSheetBinding
+import com.smarthub.baseapplication.ui.utilites.adapter.SMPSViewRecyclerAdapter
 
 
 class PoDetailsBottomSheetDialog : DialogFragment() {
@@ -42,6 +43,7 @@ class PoDetailsBottomSheetDialog : DialogFragment() {
             dialog!!.dismiss()
             dialog!!.cancel()
         }
+        binding.recyclerView.rv.adapter= SMPSViewRecyclerAdapter()
 //        binding.canecelText.setOnClickListener{
 //            dialog!!.dismiss()
 //            dialog!!.cancel()

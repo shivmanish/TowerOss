@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.databinding.RectifierModuleBottomSheetBindin
 import com.smarthub.baseapplication.ui.utilites.adapter.SMPSViewRecyclerAdapter
 
 
-class RectifierModuleBottomSheetDialog : DialogFragment() {
+class ConnectedLoadsBottomSheetDialog : DialogFragment() {
     lateinit var binding: RectifierModuleBottomSheetBinding
     override fun onCreateView(
         inflater: LayoutInflater,

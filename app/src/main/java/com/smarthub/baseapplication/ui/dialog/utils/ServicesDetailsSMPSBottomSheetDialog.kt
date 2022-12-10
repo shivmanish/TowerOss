@@ -1,24 +1,25 @@
-package com.smarthub.baseapplication.ui.dialog.utils
+package com.smarthub.baseapplication.ui.utilites.editdialouge
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AdditinalAccessoresBottomSheetBinding
 import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
-import com.smarthub.baseapplication.databinding.RectifierModuleBottomSheetBinding
+import com.smarthub.baseapplication.databinding.MaintanaceBottomSheetBinding
+import com.smarthub.baseapplication.databinding.ServicesDetailsBottomSheetBinding
+import com.smarthub.baseapplication.databinding.ServicesDetailsSmpsBottomSheetBinding
 import com.smarthub.baseapplication.ui.utilites.adapter.SMPSViewRecyclerAdapter
 
 
-class RectifierModuleBottomSheetDialog : DialogFragment() {
-    lateinit var binding: RectifierModuleBottomSheetBinding
+class ServicesDetailsSMPSBottomSheetDialog : DialogFragment() {
+    lateinit var binding: ServicesDetailsSmpsBottomSheetBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = RectifierModuleBottomSheetBinding.inflate(inflater)
+        binding = ServicesDetailsSmpsBottomSheetBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)
@@ -42,7 +43,8 @@ class RectifierModuleBottomSheetDialog : DialogFragment() {
             dialog!!.dismiss()
             dialog!!.cancel()
         }
-        binding.recyclerView.rv.adapter= SMPSViewRecyclerAdapter()
+        binding.recyclerView.rv.adapter=SMPSViewRecyclerAdapter()
+
 //        binding.canecelText.setOnClickListener{
 //            dialog!!.dismiss()
 //            dialog!!.cancel()

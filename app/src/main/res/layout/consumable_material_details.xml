@@ -18,7 +18,7 @@
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
             android:textStyle="bold"
-            android:text="Slot code"
+            android:text="Item code"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -28,7 +28,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-            android:text="Serial No."
+            android:text="Description"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -38,11 +38,12 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-
-            android:text="Rating(Amp)"
+            android:gravity="center"
+            android:text="Qty"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
+            android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="@dimen/dp14"

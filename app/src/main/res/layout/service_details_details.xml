@@ -18,7 +18,7 @@
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
             android:textStyle="bold"
-            android:text="Slot code"
+            android:text="Name"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -28,7 +28,8 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-            android:text="Serial No."
+            android:gravity="center"
+            android:text="Service Type"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -38,8 +39,8 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-
-            android:text="Rating(Amp)"
+            android:gravity="center"
+            android:text="Contact No."
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -49,8 +50,8 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
-            android:text="Date"
-
+            android:text="PM Date"
+            android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>

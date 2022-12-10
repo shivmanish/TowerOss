@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/maintannace_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_maintannace_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Maintenance" />
+                <ImageView
+                    android:id="@+id/maintenance_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/maintannce_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/item_collapse_maintance"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Maintenance Vendor" />
+
+                        <TextView
+                            android:id="@+id/textMaintenanceVendor"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="On-Air" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:text="PM Interval" />
+
+                        <EditText
+                            android:id="@+id/editPMInterval"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="10 M" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:text="Next PM Date" />
+
+                        <TextView
+                            android:id="@+id/txtNextPmDate"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:hint="10-Nov-22" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
+                </GridLayout>
+
+
+            </LinearLayout>
+            <View
+                android:id="@+id/item_line_5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/ServiceDetails_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_ServiceDetails"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Service Details" />
+                <ImageView
+                    android:id="@+id/ServiceDetails_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/ServiceDetails_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/ServiceDetails_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/ServiceDetails_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/ServiceDetails_collasp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/service_details_details"
+                        android:id="@+id/service_details_recycler"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
