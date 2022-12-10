@@ -1,21 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.services_request
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
-import com.smarthub.baseapplication.databinding.ServicesDetailsListBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerPageAdapter
 import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 

@@ -103,7 +103,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : SafatyAccessListItemBinding = SafatyAccessListItemBinding.bind(itemView)
+        var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -112,7 +112,6 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -121,6 +120,19 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
 
     class ViewHold5(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
         var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
+        init {
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+            } else {
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
+                    R.drawable.down_arrow,0)
+            }
+        }
+    }
+
+   class ViewHold6(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+        var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
@@ -148,11 +160,14 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.safaty_access_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_links_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item5, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
+                return ViewHold5(view,listener)
+            }   5 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
                 return ViewHold5(view,listener)
             }
 
@@ -334,6 +349,23 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                 }
             }
             is ViewHold5 -> {
+                holder.binding.itemTitle.setOnClickListener {
+                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                    if ((holder.binding.itemTitle.tag as Boolean)) {
+                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                    } else {
+                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
+                            R.drawable.down_arrow,0)
+                    }
+
+                    holder.binding.itemLine.visibility =
+                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility =
+                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                }
+                holder.binding.itemTitle.text = list[position]
+            }
+            is ViewHold6 -> {
                 holder.binding.itemTitle.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {

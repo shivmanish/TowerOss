@@ -9,15 +9,17 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentFragmen
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.ServiceRequestTabFragment
+
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
-        return 5
+        return 4
     }
 
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return OpcoSiteInfoFramgment()
+                return ServiceRequestTabFragment()
             }
 //            1 -> {
 //                return CommercialFragment()
@@ -31,9 +33,9 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             3 -> {
                 return RfAntinaFragment()
             }
-            4 -> {
+          /*  4 -> {
                 return PowerLoadFragment()
-            }
+            }*/
             else -> {
                 return OpcoSiteInfoFramgment()
             }
@@ -43,22 +45,22 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "OPCO Info"
+                return "Site Request"
             }
 //            1 -> {
 //                return "Commercials"
 //            }
             1 -> {
-                return "RF Equipment"
+                return "OPCO TSSR"
             }
             2 -> {
-                return "Backhaul"
+                return "Feasibility Plan"
             }
             3 -> {
-                return "RF Anteena"
+                return "Site Proposal"
             }
             4 -> {
-                return "Power Load"
+                return "Site Proposal"
             }
         }
         return super.getPageTitle(position)
