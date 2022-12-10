@@ -170,17 +170,6 @@
 
 
                     </GridLayout>
-                    <TextView
-                        android:drawableRight="@drawable/add_ico"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp16"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_width="match_parent"
-                        android:gravity="start"
-                        android:padding="@dimen/dp10"
-                        android:text="Sectors/ Cell Details"
-                        style="@style/RowTextItemInfo"
-                        android:layout_height="wrap_content"/>
 
                      <LinearLayout
                         style="@style/ColumnItemInfo"
