@@ -11,6 +11,8 @@
           android:id="@+id/txtItemCode"
           android:layout_weight="1"
           android:layout_width="0dp"
+          android:gravity="center"
+
           android:text="1st"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>

@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDow
 
 
 
-class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -120,7 +120,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
 
-    class ViewHold5(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
         var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
         init {
             binding.itemTitle.tag = false
@@ -133,7 +133,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
 
-   class ViewHold6(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+   class ViewHold6(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
         var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
 
        init {
@@ -386,7 +386,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked()
+                        listener.requestinfoClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -402,9 +402,10 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         return list.size
     }
 
-    interface SiteInfoLisListener {
+    interface ServicesRequestLisListener {
         fun attachmentItemClicked()
         fun detailsItemClicked()
+        fun requestinfoClicked()
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
