@@ -28,7 +28,7 @@ class RegistrationSuccessfull : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginButton = view.findViewById<View>(R.id.login)
+        val loginButton = view.findViewById<View>(R.id.text_login)
         loginButton.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{
@@ -36,12 +36,12 @@ class RegistrationSuccessfull : Fragment() {
             }
         }
 
-        view.findViewById<View>(R.id.back).setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-            activity?.let{
-                it.onBackPressed()
-            }
-        }
+//        view.findViewById<View>(R.id.back).setOnClickListener {
+//            Utils.hideKeyboard(requireContext(),it)
+//            activity?.let{
+//                it.onBackPressed()
+//            }
+//        }
     }
 
 }

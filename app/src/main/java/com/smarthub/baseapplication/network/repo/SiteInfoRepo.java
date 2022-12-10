@@ -2,6 +2,8 @@ package com.smarthub.baseapplication.network.repo;
 
 import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.helpers.AppPreferences;
+import android.widget.Toast;
+
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
@@ -118,6 +120,8 @@ public class SiteInfoRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
                     siteIndoResponse.postValue(Resource.success(response.body(), 200));
+                }else {
+                    System.out.println("SiteInfoRepo.reportSuccessResponse response body is null");
                 }
             }
 

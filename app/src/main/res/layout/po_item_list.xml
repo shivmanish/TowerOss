@@ -29,7 +29,6 @@
           android:id="@+id/txtItemQty"
           android:layout_weight="1"
           android:layout_width="match_parent"
-          android:layout_marginLeft="@dimen/dp35"
           android:text="3"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>

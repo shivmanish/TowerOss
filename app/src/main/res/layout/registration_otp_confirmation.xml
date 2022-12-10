@@ -51,7 +51,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:text="Please enter one time password (OTP) sent to"
+            android:text="Please enter one time password (OTP) sent on"
             android:textSize="13sp"
             android:textColor="@color/white"
             android:id="@+id/text_msg"
@@ -321,8 +321,22 @@
         <TextView
             android:text="@string/resend_otp"
             android:textSize="13sp"
+            android:visibility="gone"
             android:textColor="@color/yellow"
-            android:id="@+id/error_message"
+            android:id="@+id/resend_otp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:layout_marginTop="@dimen/dp8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mo_no_title"/>
+        <TextView
+            android:text="Resend OTP in 0.45 minute?"
+            android:textSize="14sp"
+            android:visibility="visible"
+            android:textColor="@color/white"
+            android:id="@+id/otp_count_down_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"

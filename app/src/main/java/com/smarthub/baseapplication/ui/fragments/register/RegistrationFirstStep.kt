@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.databinding.DropDownListViewBinding
 import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.ui.adapter.spinner.CustomRegistrationArrayAdapter
 import com.smarthub.baseapplication.utils.Utils
@@ -27,7 +29,7 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 class RegistrationFirstStep : Fragment() {
 
     var list : List<DropDownItem> = ArrayList()
-    var dropDownMap = HashMap<String,String>()
+//    var isDataFetched = true
     lateinit var loginViewModel: LoginViewModel
     lateinit var registrationFirstStepBinding: RegistrationFirstStepBinding
 
@@ -41,71 +43,97 @@ class RegistrationFirstStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.ic_arrow_down)
+        registrationFirstStepBinding.emailIdRoot.tag = false
+        registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
+        registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
         registrationFirstStepBinding.companyName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.companyName.text.toString()!=""){
-                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.color.transparent)
             }
             override fun afterTextChanged(s: Editable) {
-                if(registrationFirstStepBinding.companyName.text.toString()!=""){
+                if(registrationFirstStepBinding.companyName.text.toString().isNotEmpty()){
                     registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.loadingProgress.visibility = View.GONE
+                    registrationFirstStepBinding.companyNameRoot.tag=true
+                    registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
+                }
+                else {
+                    registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
+                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.companyNameRoot.tag=false
+                }
+                if(registrationFirstStepBinding.emailIdRoot.isErrorEnabled){
+                    registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
+                }
+                if(registrationFirstStepBinding.emailId.text.toString().isNotEmpty() && Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
+                    loginViewModel.emailVerification(registrationFirstStepBinding.emailId.text.toString(), item?.id)
+                }
+                else {
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
                 }
             }
         })
         registrationFirstStepBinding.firstName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.firstName.text.toString().length>=3){
-                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
             }
             override fun afterTextChanged(s: Editable) {
-                if(registrationFirstStepBinding.firstName.text.toString().length>=3){
+                if(registrationFirstStepBinding.firstName.text.toString().length>=2){
                     registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.firstNameRoot.tag=true
+                    registrationFirstStepBinding.firstNameRoot.isErrorEnabled = false
                 }
+                else{
+                    registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.firstNameRoot.tag=false
+                    registrationFirstStepBinding.firstNameRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.firstNameRoot.error = "Enter your first name"
+                }
+
 
 
             }
         })
         registrationFirstStepBinding.lastName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationFirstStepBinding.lastName.text.toString().length>=3){
-                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if(registrationFirstStepBinding.lastName.text.toString().length>=3){
                     registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.lastNameRoot.tag=true
+                    registrationFirstStepBinding.lastNameRoot.isErrorEnabled = false
                 }
+                else{
+                    registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.lastNameRoot.tag=false
+                    registrationFirstStepBinding.lastNameRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.lastNameRoot.error = "Enter your last name"
+                }
+
 
 
             }
         })
         registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if( registrationFirstStepBinding.moNo.text.toString().length==10){
-                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if(registrationFirstStepBinding.moNo.text.toString().length==10){
                     Utils.hideKeyboard(requireContext(), registrationFirstStepBinding.moNo)
                     registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationFirstStepBinding.moNoRoot.tag=true
+                    registrationFirstStepBinding.moNoRoot.isErrorEnabled = false
+                }else{
+                    registrationFirstStepBinding.moNoRoot.setEndIconDrawable(R.color.transparent)
+                    registrationFirstStepBinding.moNoRoot.tag=false
+                    registrationFirstStepBinding.moNoRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.moNoRoot.error = "Enter ten digit mobile number"
                 }
 
 
@@ -114,17 +142,22 @@ class RegistrationFirstStep : Fragment() {
         registrationFirstStepBinding.emailId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
-                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.color.transparent)
+
             }
             override fun afterTextChanged(s: Editable) {
-                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
-                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
+                if(registrationFirstStepBinding.emailIdRoot.isErrorEnabled){
+                    registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
                 }
+                if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
+                    loginViewModel.emailVerification(registrationFirstStepBinding.emailId.text.toString(), item?.id)
+                }
+                else {
 
+                    registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.emailIdRoot.tag = false
+                }
 
             }
         })
@@ -141,14 +174,10 @@ class RegistrationFirstStep : Fragment() {
             }
         }
         registrationFirstStepBinding.next.setOnClickListener {
-            if (!Utils.isValid(registrationFirstStepBinding.companyName.text.toString())) {
+            if (registrationFirstStepBinding.companyNameRoot.tag==false) {
                 registrationFirstStepBinding.companyNameRoot.isErrorEnabled = true
-                registrationFirstStepBinding.companyNameRoot.error = "This field can not be empty!"
+                registrationFirstStepBinding.companyNameRoot.error = "Company Name not loaded"
                 return@setOnClickListener
-            }else{
-                registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
-                registrationFirstStepBinding.companyNameRoot.error = null
-
             }
 
             if (!Utils.isValid(registrationFirstStepBinding.firstName.text.toString())) {
@@ -179,15 +208,10 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.moNoRoot.error = null
 
             }
-            if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {
+            if (registrationFirstStepBinding.emailIdRoot.tag==false) {
                 registrationFirstStepBinding.emailIdRoot.isErrorEnabled = true
-                registrationFirstStepBinding.emailIdRoot.error = "This field can not be empty!"
-
+                registrationFirstStepBinding.emailIdRoot.error = "email not verified"
                 return@setOnClickListener
-            }else{
-                registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
-                registrationFirstStepBinding.emailIdRoot.error = null
-
             }
             if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {
                 Snackbar.make(
@@ -223,8 +247,9 @@ class RegistrationFirstStep : Fragment() {
         loginViewModel.dropDownList?.observe(viewLifecycleOwner){
             if (it?.data != null && it.data.isNotEmpty()){
                 this.list = it.data
+                if (list.isNotEmpty())
+                    item = list[0]
                 registrationFirstStepBinding.companyName.text = it.data[0].name?.toEditable()
-//                setupAutoCompleteView()
                 Log.d("status"," drop down list size :"+it.data.size)
             }else if(it.Errors!=null){
                 Log.d("status","e:"+it.Errors)
@@ -232,9 +257,29 @@ class RegistrationFirstStep : Fragment() {
                 Log.d("status","something went wrong")
             }
         }
+
+        if (loginViewModel.emailVerifyOtpResponse?.hasActiveObservers() == true)
+            loginViewModel.emailVerifyOtpResponse?.removeObservers(viewLifecycleOwner)
+
+        loginViewModel.emailVerifyOtpResponse?.observe(viewLifecycleOwner) {
+//            isDataFetched = true
+            if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success") {
+                Log.d("status","email verified")
+                Toast.makeText(requireActivity(),"email verification successful", Toast.LENGTH_LONG).show()
+                registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
+                registrationFirstStepBinding.emailIdRoot.tag = true
+                return@observe
+            }else{
+                registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+                registrationFirstStepBinding.emailIdRoot.tag = false
+                Log.d("status","${it.message}")
+            }
+
+        }
         loginViewModel.fetchCompanyDropDown()
     }
 
+    var item: DropDownItem?=null
     private fun setupAutoCompleteView() {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext(),R.style.FullDialog)
         var dialogBinding = DropDownListViewBinding.inflate(layoutInflater)
@@ -242,8 +287,9 @@ class RegistrationFirstStep : Fragment() {
         val popUp: AlertDialog = dialogBuilder.create()
         var adapter = CustomRegistrationArrayAdapter(list,
             object : CustomRegistrationArrayAdapter.CustomRegistrationArrayAdapterListener{
-            override fun clickedItem(item: DropDownItem?) {
+            override fun clickedItem(i: DropDownItem?) {
                 popUp.dismiss()
+                item = i
                 registrationFirstStepBinding.companyName.text = item?.name?.toEditable()
             }
         })

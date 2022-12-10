@@ -20,6 +20,8 @@ import com.smarthub.baseapplication.model.register.RegstationResponse;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 
 import java.util.List;
 
@@ -82,6 +84,9 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
     Call<SearchList> searchSiteInfoData(@Body JsonObject data, @Header("Authorization") String auth);
+
+    @POST(EndPoints.BASIC_INFO_UPDATE)
+    Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
 
 }
 

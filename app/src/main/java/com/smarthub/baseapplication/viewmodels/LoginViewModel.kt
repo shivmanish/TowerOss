@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
@@ -24,6 +25,7 @@ class LoginViewModel: ViewModel() {
 
     var regstationResponse: MutableLiveData<RegstationResponse>?=null
     var registerVerifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>>?=null
+    var emailVerifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>>?=null
     var dropDownList: MutableLiveData<DropDownList>?=null
     var registerOtpResponse : SingleLiveEvent<Resource<GetRegisterOtpResponse>>?=null
     var registerRepo: RegisterRepo?=null
@@ -41,6 +43,7 @@ class LoginViewModel: ViewModel() {
         dropDownList = registerRepo?.companyDropDownList
         registerOtpResponse = loginRepo?.registerSendOtpResponse
         registerVerifyOtpResponse = registerRepo?.verifyOtpResponse
+        emailVerifyOtpResponse = registerRepo?.verifyEmailResponse
 
     }
 
@@ -92,6 +95,11 @@ class LoginViewModel: ViewModel() {
 
     fun registerOTPVerification(otp:String,phone:String?) {
         registerRepo?.registerOTPVerification(otp,phone)
+    }
+
+    fun emailVerification(email:String, ownername:String?) {
+        Log.d("status","emailVerification:$email:$ownername")
+        registerRepo?.emailVerification(email,ownername)
     }
 
 
