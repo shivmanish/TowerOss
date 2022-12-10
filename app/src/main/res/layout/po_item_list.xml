@@ -10,36 +10,31 @@
       <TextView
           android:id="@+id/txtItemCode"
           android:layout_weight="1"
-
-          android:layout_width="match_parent"
-
+          android:layout_width="0dp"
           android:text="1st"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>
       <TextView
           android:id="@+id/txtItemDescription"
-
           android:layout_weight="1"
-
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
           android:text="rgsgs"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>
       <TextView
           android:id="@+id/txtItemQty"
           android:layout_weight="1"
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
           android:text="3"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>
       <TextView
           android:id="@+id/txtDate"
           android:layout_weight="1"
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
           android:text="10-Nov-18"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>
-
   </LinearLayout>
     <View
         android:alpha="2"
