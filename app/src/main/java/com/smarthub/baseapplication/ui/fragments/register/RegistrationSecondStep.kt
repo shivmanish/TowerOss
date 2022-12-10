@@ -41,51 +41,55 @@ class RegistrationSecondStep : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        registrationSecondStepBinding.jobRoleRoot.tag=false
+        registrationSecondStepBinding.departmentRoot.tag=false
+        registrationSecondStepBinding.roleGeographyRoot.tag=false
         registrationSecondStepBinding.jobRole.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationSecondStepBinding.jobRole.text.toString().length>=3){
-                    registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if(registrationSecondStepBinding.jobRole.text.toString().length>=3){
+                if(registrationSecondStepBinding.jobRole.text.toString().isNotEmpty()){
                     registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationSecondStepBinding.jobRoleRoot.tag=true
+                    registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = false
+                }
+                else {
+                    registrationSecondStepBinding.jobRoleRoot.setEndIconDrawable(R.color.transparent)
+                    registrationSecondStepBinding.jobRoleRoot.tag=false
+
                 }
             }
         })
         registrationSecondStepBinding.department.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationSecondStepBinding.department.text.toString().length>=3){
-                    registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if(registrationSecondStepBinding.department.text.toString().length>=3){
+                if(registrationSecondStepBinding.department.text.toString().isNotEmpty()){
                     registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationSecondStepBinding.departmentRoot.tag=true
+                    registrationSecondStepBinding.departmentRoot.isErrorEnabled = false
                 }
+                else {
+                    registrationSecondStepBinding.departmentRoot.setEndIconDrawable(R.color.transparent)
+                    registrationSecondStepBinding.departmentRoot.tag=false
 
+                }
 
             }
         })
         registrationSecondStepBinding.roleGeography.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(registrationSecondStepBinding.roleGeography.text.toString().length>=3){
-                    registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.drawable.check_textview)
-                }
-                else
-                    registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.color.transparent)
-            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) { }
             override fun afterTextChanged(s: Editable) {
-                if(registrationSecondStepBinding.roleGeography.text.toString().length>=3){
+                if(registrationSecondStepBinding.roleGeography.text.toString().isNotEmpty()){
                     registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.drawable.check_textview)
+                    registrationSecondStepBinding.roleGeographyRoot.tag=true
+                    registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = false
+                }
+                else {
+                    registrationSecondStepBinding.roleGeographyRoot.setEndIconDrawable(R.color.transparent)
+                    registrationSecondStepBinding.roleGeographyRoot.tag=false
+
                 }
             }
         })
@@ -102,32 +106,20 @@ class RegistrationSecondStep : Fragment() {
 
         view.findViewById<View>(R.id.next).setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
-            if (!Utils.isValid(registrationSecondStepBinding.jobRole.text.toString())) {
+            if (registrationSecondStepBinding.jobRoleRoot.tag==false) {
                 registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = true
-                registrationSecondStepBinding.jobRoleRoot.error = "This field can not be empty!"
+                registrationSecondStepBinding.jobRoleRoot.error = "Enter job role"
                 return@setOnClickListener
-            }else{
-                registrationSecondStepBinding.jobRoleRoot.isErrorEnabled = false
-                registrationSecondStepBinding.jobRoleRoot.error = null
-
             }
-            if (!Utils.isValid(registrationSecondStepBinding.department.text.toString())) {
+            if (registrationSecondStepBinding.departmentRoot.tag==false) {
                 registrationSecondStepBinding.departmentRoot.isErrorEnabled = true
-                registrationSecondStepBinding.departmentRoot.error = "This field can not be empty!"
+                registrationSecondStepBinding.departmentRoot.error = "Enter your Department"
                 return@setOnClickListener
-            }else{
-                registrationSecondStepBinding.departmentRoot.isErrorEnabled = false
-                registrationSecondStepBinding.departmentRoot.error = null
-
             }
-            if (!Utils.isValid(registrationSecondStepBinding.roleGeography.text.toString())) {
+            if (registrationSecondStepBinding.roleGeographyRoot.tag==false) {
                 registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = true
-                registrationSecondStepBinding.roleGeographyRoot.error = "This field can not be empty!"
+                registrationSecondStepBinding.roleGeographyRoot.error = "Enter your role geography"
                 return@setOnClickListener
-            }else{
-                registrationSecondStepBinding.roleGeographyRoot.isErrorEnabled = false
-                registrationSecondStepBinding.roleGeographyRoot.error = null
-
             }
             loginViewModel.registerData.rolestxt = registrationSecondStepBinding.jobRole.text.toString()
             loginViewModel.registerData.departmenttxt = registrationSecondStepBinding.department.text.toString()
