@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.EquipmentBottomSheetBinding
 
 class EquipmentDetailsBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
 
