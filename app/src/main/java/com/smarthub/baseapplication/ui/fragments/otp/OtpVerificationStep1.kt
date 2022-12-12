@@ -8,15 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OtpVerificationStep1FragmentBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.otp.GetOtpResponse
 import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
@@ -73,21 +73,27 @@ class OtpVerificationStep1 : Fragment() {
         if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
             loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
         }
-        loginViewModel?.getOtpResponse?.observe(requireActivity()) {
+        loginViewModel?.getOtpResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
 
             if (it?.data != null && it.data.sucesss == true){
-                Log.d("status","getOtpResponse ${it.data}")
-                activity?.let{
-                    findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2("${binding.moNoEdit.text.toString()}"))
-                }
+                Log.d("status","getPhoneOtp: ${it.data}")
+                findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2("${binding.moNoEdit.text.toString()}"))
+
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
                 enableErrorText()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroyView()
     }
 
     private fun enableErrorText(){

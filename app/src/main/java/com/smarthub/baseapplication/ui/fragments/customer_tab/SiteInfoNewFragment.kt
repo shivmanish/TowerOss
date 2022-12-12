@@ -33,7 +33,11 @@ class SiteInfoNewFragment :Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
         super.onViewCreated(view, savedInstanceState)
         binding?.listItem?.adapter = SiteInfoListAdapter(requireContext(),this@SiteInfoNewFragment)
         siteViewModel.fetchDropDown()
-        siteViewModel.dropDownResponse?.observe(requireActivity()) {
+
+        if (siteViewModel.dropDownResponse?.hasActiveObservers() == true){
+            siteViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
+        }
+        siteViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
             (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
         }
         if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)

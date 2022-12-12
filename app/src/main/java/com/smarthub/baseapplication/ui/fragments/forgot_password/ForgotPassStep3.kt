@@ -57,7 +57,10 @@ class ForgotPassStep3 : Fragment() {
                 }
             }
         })
-        loginViewModel?.getPassResponse?.observe(requireActivity()) {
+        if (loginViewModel?.getPassResponse?.hasActiveObservers() == true){
+            loginViewModel?.getPassResponse?.removeObservers(viewLifecycleOwner)
+        }
+        loginViewModel?.getPassResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
 

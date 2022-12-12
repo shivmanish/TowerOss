@@ -161,19 +161,17 @@ class OtpVerificationStep2 : Fragment() {
                 }else{
                     Log.d("status","${it.message}")
                     Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
-                    enableErrorText()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
             }
 
         }
         if (loginViewModel?.getResendOtpResponse?.hasActiveObservers() == true){
             loginViewModel?.getResendOtpResponse?.removeObservers(viewLifecycleOwner)
         }
-        loginViewModel?.getResendOtpResponse?.observe(requireActivity()) {
+        loginViewModel?.getResendOtpResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
 

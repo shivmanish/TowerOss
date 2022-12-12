@@ -69,11 +69,22 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_msg"/>
 
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/nested"
+                    app:layout_constraintTop_toBottomOf="@+id/mo_no_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/mo_no_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/mo_no_text">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <com.smarthub.baseapplication.widgets.CustomTextInputLayout
                         android:layout_width="wrap_content"
@@ -195,6 +206,7 @@
                             android:maxLines="1"
                             android:ems="1"
                             android:text=""
+                            android:textColor="@color/white"
                             android:inputType="number"
                             android:maxEms="1"
                             android:maxLength="1"
@@ -217,6 +229,7 @@
                             android:maxEms="1"
                             android:maxLength="1"
                             android:id="@+id/p2"
+                            android:textColor="@color/white"
                             android:nextFocusLeft="@id/p1"
                             android:inputType="number"
                             android:gravity="center"
@@ -237,6 +250,7 @@
                             android:maxEms="1"
                             android:maxLength="1"
                             android:gravity="center"
+                            android:textColor="@color/white"
                             android:layout_margin="@dimen/dp7"
                             android:textSize="@dimen/dp20"
                             android:id="@+id/p3"
@@ -257,6 +271,7 @@
                             android:text=""
                             android:maxEms="1"
                             android:maxLength="1"
+                            android:textColor="@color/white"
                             android:inputType="number"
                             android:gravity="center"
                             android:layout_margin="@dimen/dp7"
@@ -277,6 +292,7 @@
                             android:ems="1"
                             android:text=""
                             android:maxEms="1"
+                            android:textColor="@color/white"
                             android:nextFocusLeft="@id/p4"
                             android:maxLength="1"
                             android:inputType="number"
@@ -298,6 +314,7 @@
                             android:ems="1"
                             android:text=""
                             android:maxEms="1"
+                            android:textColor="@color/white"
                             android:maxLength="1"
                             android:gravity="center"
                             android:layout_margin="@dimen/dp7"
@@ -364,12 +381,15 @@
                     android:alpha="0.3"
                     android:layout_height="@dimen/dp45"
                     android:gravity="center"
-                    android:layout_marginBottom="@dimen/dp50"
+                    android:layout_marginTop="@dimen/dp50"
                     android:background="@drawable/login_yellow_bg"
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/otp_count_down_timer"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.core.widget.NestedScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

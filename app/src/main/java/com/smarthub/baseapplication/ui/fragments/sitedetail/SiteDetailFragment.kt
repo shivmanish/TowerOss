@@ -300,7 +300,7 @@ class SiteDetailFragment : Fragment() {
         siteDetailViewModel.fetchDropDown()
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
             siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
-        siteDetailViewModel.dropDownResponse?.observe(requireActivity()) {
+        siteDetailViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)

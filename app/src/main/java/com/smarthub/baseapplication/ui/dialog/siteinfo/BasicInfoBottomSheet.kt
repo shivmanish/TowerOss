@@ -32,8 +32,10 @@ class BasicInfoBottomSheet(
             dismiss()
         }
         viewModel = ViewModelProvider(requireActivity()).get(BasicInfoDialougeViewmodel::class.java)
-
-        viewModel.basicinfoModel!!.observe(requireActivity()) {
+        if (viewModel.basicinfoModel?.hasActiveObservers() == true){
+            viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
+        }
+        viewModel.basicinfoModel?.observe(viewLifecycleOwner) {
             dialog!!.dismiss()
             dialog!!.cancel()
         }
