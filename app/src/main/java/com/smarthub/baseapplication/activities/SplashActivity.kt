@@ -1,19 +1,23 @@
 package com.smarthub.baseapplication.activities
 
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities.*
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.Q
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.OpcoInfoSiteDialouge
-import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.RfEquipmentDialouge
-import com.smarthub.baseapplication.ui.fragments.customer_tab.editdialouge.SiteInfoBasicDetailsDialouge
-import com.smarthub.baseapplication.ui.project.DemoActivity
-import com.smarthub.baseapplication.ui.site_lease_acquisition.NewSiteAcquisitionActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -26,23 +30,20 @@ class SplashActivity : BaseActivity() {
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
-                var intent = Intent(this@SplashActivity,LoginActivity::class.java)
-//                var intent = Intent(this@SplashActivity, DemoActivity::class.java)
-
-                startActivity(intent)
-                finish()
-
-//                loginValidation()
+                if (isNetworkConnected){
+                    var intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else {
+                    showNetworkAlert()
+                }
             }else{
                 val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-//                val intent = Intent (this@SplashActivity, NewSiteAcquisitionActivity::class.java)
-
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
 
         }
-
 
         loginViewModel?.loginResponse?.observe(this) {
             hideLoader()
@@ -60,10 +61,9 @@ class SplashActivity : BaseActivity() {
                 }else{
                     Log.d("status","${it.message}")
                     Toast.makeText(this@SplashActivity,"error:"+it.message, Toast.LENGTH_LONG).show()
-
                 }
             }else{
-                Log.d("status","${AppConstants.GENERIC_ERROR}")
+                Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(this@SplashActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
 
             }
@@ -71,8 +71,53 @@ class SplashActivity : BaseActivity() {
         }
     }
 
-//    private fun loginValidation(){
-//        progressDialog.show()
-//        loginViewModel?.getLoginToken(UserLoginPost(AppPreferences.getInstance().getString("userMail"), AppPreferences.getInstance().getString("password")))
-//    }
+    private fun showNetworkAlert() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogView: View = layoutInflater.inflate(R.layout.network_alert, null)
+        dialogBuilder.setView(dialogView)
+        var b = dialogBuilder.create()
+        b.setCancelable(false)
+        val exitText = dialogView.findViewById<TextView>(R.id.exittext)
+        val icon = dialogView.findViewById<ImageView>(R.id.icon)
+        val progressBar = dialogView.findViewById<ProgressBar>(R.id.progress)
+        Glide.with(this).load(R.mipmap.ic_launcher).apply(RequestOptions().centerCrop()).into(icon)
+        exitText.setText(R.string.internet_alert)
+        val cancel = dialogView.findViewById<Button>(R.id.try_again)
+        cancel.setOnClickListener {
+            cancel.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+            exitText.text = "Loading..."
+            Handler().postDelayed({
+                if (isNetworkConnected) {
+                    b.dismiss()
+                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                } else {
+                    ContextCompat.getMainExecutor(this@SplashActivity).execute {
+                        cancel.visibility = View.VISIBLE
+                        progressBar.visibility = View.GONE
+                        exitText.setText(R.string.internet_alert)
+                    }
+                }
+            }, 1000)
+        }
+        b.show()
+    }
+
+    private val isNetworkConnected: Boolean
+        get() {
+            val manager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+            return if (SDK_INT >= Q)
+                manager.getNetworkCapabilities(manager.activeNetwork)?.let {
+                    it.hasTransport(TRANSPORT_WIFI) || it.hasTransport(TRANSPORT_CELLULAR) ||
+                            it.hasTransport(TRANSPORT_BLUETOOTH) ||
+                            it.hasTransport(TRANSPORT_ETHERNET) ||
+                            it.hasTransport(TRANSPORT_VPN)
+                } ?: false
+            else
+                @Suppress("DEPRECATION")
+                manager.activeNetworkInfo?.isConnected == true
+        }
 }
