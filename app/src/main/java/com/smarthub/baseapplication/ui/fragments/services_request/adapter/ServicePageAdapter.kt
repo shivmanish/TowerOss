@@ -10,11 +10,13 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulF
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.OppoTssrTabFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.SPApprovalTabFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.ServiceRequestTabFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.SoftAcquisitionTabFragment
 
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
-        return 4
+        return 6
     }
 
     override fun getItem(position: Int): Fragment {
@@ -34,9 +36,12 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             3 -> {
                 return RfAntinaFragment()
             }
-          /*  4 -> {
-                return PowerLoadFragment()
-            }*/
+            4 -> {
+                return SPApprovalTabFragment()
+            }
+            5 -> {
+                return SoftAcquisitionTabFragment()
+            }
             else -> {
                 return OpcoSiteInfoFramgment()
             }
@@ -62,6 +67,10 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             }
             4 -> {
                 return "Site Proposal"
+            }  5 -> {
+                return "SP Approval / SO"
+            } 6 -> {
+                return "Soft Acquisition"
             }
         }
         return super.getPageTitle(position)
