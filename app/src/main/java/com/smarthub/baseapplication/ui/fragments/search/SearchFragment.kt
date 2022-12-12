@@ -29,11 +29,16 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
     lateinit var siteViewModel : BasicInfoDetailViewModel
     lateinit var searchResultAdapter : SearchResultAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SearchFragmentBinding.inflate(layoutInflater)
         siteViewModel = ViewModelProvider(this)[BasicInfoDetailViewModel::class.java]
 
         return binding.root
+    }
+
+    fun clearResult(){
+        searchResultAdapter.searchQatModels.clear()
+        searchResultAdapter.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
