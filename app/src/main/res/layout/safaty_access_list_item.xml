@@ -1,335 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/collapse_card_bg"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/collapse_card_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
 
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp50">
+
             <TextView
-                android:background="@color/transparent"
                 android:id="@+id/item_title"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingTop="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
                 android:text="Link Name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp20"
-                android:paddingEnd="@dimen/dp10"
-                android:paddingTop="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent=".5"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintWidth_percent=".5" />
+
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/icon_layout"
                 android:layout_width="0dp"
-                android:orientation="horizontal"
+                android:layout_height="0dp"
                 android:gravity="end"
-                app:layout_constraintStart_toEndOf="@+id/item_title"
-                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="0dp">
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintTop_toTopOf="parent">
+
                 <ImageView
-                    app:tint="@color/black"
-                    android:visibility="visible"
                     android:id="@+id/img_edit"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:paddingStart="@dimen/dp20"
                     android:paddingEnd="@dimen/dp20"
-                    android:layout_gravity="center_vertical"
                     android:src="@drawable/edit_ico_black"
-                    android:layout_width="@dimen/dp58"
-                    android:layout_height="match_parent"/>
+                    android:visibility="visible"
+                    app:tint="@color/black" />
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/img_dropdown"
-                android:src="@drawable/ic_arrow_down_black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="@dimen/dp58"
+                android:layout_height="match_parent"
                 android:paddingStart="@dimen/dp20"
                 android:paddingEnd="@dimen/dp20"
+                android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp58"
-                android:layout_height="match_parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <View
             android:id="@+id/item_line"
-            android:alpha="2"
-            android:background="@color/view_color"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:alpha="2"
+            android:background="@color/view_color" />
     </LinearLayout>
+
     <LinearLayout
-        android:visibility="gone"
-        android:layout_margin="5dp"
         android:id="@+id/item_collapse"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
-            android:paddingBottom="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/dp15"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:paddingBottom="@dimen/dp10">
 
             <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:columnCount="2"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Physical Security"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Physical Security" />
+
                     <TextView
                         android:id="@+id/physical_security"
-                        android:text="Available"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Gate &amp; Fence"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textGate"
-
-                        android:text="Yes"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Video Monitoring"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Billable"
-                        android:id="@+id/video_monitoring_spinner"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Site Access Area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Billable"
-                        android:id="@+id/site_access_area_spinner"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Danger Signage"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="ETIPL"
-                        android:id="@+id/danger_signage_spinner"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Caution Signage"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textCautionSignage"
-                        android:text="Available"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Site Access"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Billable"
-                        android:id="@+id/site_access"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Site Access Methodology"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/textSiteAccesseethodology"
-
-                        android:text="Key with Owner"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:text="Available" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Nearby Police Station"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Gate &amp; Fence" />
+
+                    <TextView
+                        android:id="@+id/textGate"
+
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Video Monitoring" />
+
+                    <TextView
+                        android:id="@+id/video_monitoring_spinner"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Billable" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Site Access Area" />
+
+                    <TextView
+                        android:id="@+id/site_access_area_spinner"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Billable" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Danger Signage" />
+
+                    <TextView
+                        android:id="@+id/danger_signage_spinner"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ETIPL" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Caution Signage" />
+
+                    <TextView
+                        android:id="@+id/textCautionSignage"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Available" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Site Access" />
+
+                    <TextView
+                        android:id="@+id/site_access"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Billable" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Site Access Methodology" />
+
+                    <TextView
+                        android:id="@+id/textSiteAccesseethodology"
+
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Key with Owner" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nearby Police Station" />
+
                     <TextView
                         android:id="@+id/textPoliceStation"
 
-                        android:text="Kapurwadi"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Kapurwadi" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Police Station Number"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Police Station Number" />
+
                     <TextView
                         android:id="@+id/textPoliceNumber"
 
-                        android:text="022-21763538"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="022-21763538" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Nearby Fire Station"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Nearby Fire Station" />
 
                     <TextView
                         android:id="@+id/textFireStation"
 
-                        android:text="Kapurwadi"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Kapurwadi" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Fire Station Number"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Fire Station Number" />
 
                     <TextView
                         android:id="@+id/textFireNumber"
 
-                        android:text="022-21763538"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="022-21763538" />
 
                 </LinearLayout>
 
             </GridLayout>
-
-
 
 
         </LinearLayout>

@@ -50,6 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/txtRFCDate"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:drawableEnd="@drawable/icon_date"
@@ -72,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/txtRFIDate"
                         style="@style/RowTestItemEdit"
                         android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
@@ -95,7 +97,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/site_status_spinner"
+
+                        android:id="@+id/txtRFSDate"
                         style="@style/RowTestItemEdit"
                         android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
@@ -119,7 +122,7 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:text="Billable"
-                        android:id="@+id/site_category_spinner"
+                        android:id="@+id/site_billing_status"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -143,7 +146,7 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:text="ETIPL"
-                        android:id="@+id/site_type_spinner"
+                        android:id="@+id/cost_center"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -167,7 +170,7 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:text="Solo"
-                        android:id="@+id/site_ownership_spinner"
+                        android:id="@+id/operatorSharing"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -190,6 +193,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/power_source"
                         android:text="SEB/ DG"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -213,6 +217,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/design_dc_load"
                         android:text="5KW"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -237,6 +242,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/installed_dc_load"
                         android:text="3KW"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -259,6 +265,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/operation_temp"
                         android:text="24 Ded"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -283,6 +290,7 @@
                         android:layout_height="wrap_content"/>
 
                     <com.smarthub.baseapplication.widgets.CustomSpinner
+
                         android:text="ETIPL"
                         android:id="@+id/town_category_spinner"
                         style="@style/SpinnerTheme"
@@ -378,6 +386,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/dismanting"
                         style="@style/RowTestItemEdit"
                         android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
@@ -409,6 +418,7 @@
                     android:textSize="@dimen/dp15"/>
 
                 <TextView
+                    android:id="@+id/update"
                     android:layout_marginLeft="@dimen/dp25"
                     android:background="@drawable/yellow_text_button"
                     android:layout_width="wrap_content"
