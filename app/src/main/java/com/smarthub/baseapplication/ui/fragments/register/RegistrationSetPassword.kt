@@ -20,7 +20,7 @@ class RegistrationSetPassword : Fragment() {
     private lateinit var progressDialog : ProgressDialog
     lateinit var binding : RegistrationSetPassBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = RegistrationSetPassBinding.inflate(inflater)
         return binding.root
     }

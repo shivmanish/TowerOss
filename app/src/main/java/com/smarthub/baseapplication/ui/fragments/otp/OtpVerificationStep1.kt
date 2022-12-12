@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
@@ -43,12 +46,6 @@ class OtpVerificationStep1 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-        view.findViewById<View>(R.id.back).setOnClickListener {view->
-            Utils.hideKeyboard(requireContext(),view)
-            activity?.let{
-                findNavController().popBackStack()
-            }
-        }
 
         binding.sendOtp.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
@@ -63,6 +60,7 @@ class OtpVerificationStep1 : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (binding.moNoEdit.text.toString().length>=10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
+                    binding.phoneNumLayout.isErrorEnabled = false
                     binding.sendOtp.isClickable=true
                     binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline_white)
 
@@ -82,7 +80,7 @@ class OtpVerificationStep1 : Fragment() {
             if (it?.data != null && it.data.sucesss == true){
                 Log.d("status","getOtpResponse ${it.data}")
                 activity?.let{
-                    findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2())
+                    findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2("${binding.moNoEdit.text.toString()}"))
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
@@ -93,7 +91,7 @@ class OtpVerificationStep1 : Fragment() {
     }
 
     private fun enableErrorText(){
-        binding.userMailLayout.error = "enter valid mo no"
+        binding.phoneNumLayout.error = "enter valid mo no"
     }
 
 }

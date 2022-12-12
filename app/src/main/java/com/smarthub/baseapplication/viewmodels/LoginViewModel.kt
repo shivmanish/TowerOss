@@ -21,6 +21,7 @@ class LoginViewModel: ViewModel() {
     var loginRepo: LoginRepo?=null
     var loginResponse : SingleLiveEvent<Resource<RefreshToken>>?=null
     var getOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
+    var getResendOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
     var getPassResponse : SingleLiveEvent<Resource<GetSuccessResponse>>?=null
 
     var regstationResponse: MutableLiveData<RegstationResponse>?=null
@@ -37,6 +38,7 @@ class LoginViewModel: ViewModel() {
         loginRepo = LoginRepo(APIInterceptor.get())
         loginResponse = loginRepo?.loginResponse
         getOtpResponse = loginRepo?.otpResponse
+        getResendOtpResponse = loginRepo?.resendOtpResponse
         getPassResponse = loginRepo?.passResponse
         registerRepo = RegisterRepo(APIInterceptor.get())
         regstationResponse = registerRepo?.registrationResponse
@@ -67,6 +69,10 @@ class LoginViewModel: ViewModel() {
     fun getPhoneOtp(data : UserOTPGet) {
         userOTPGet = data
         loginRepo?.getOtpOnPhone(data)
+    }
+    fun resendPhoneOtp(data : UserOTPGet) {
+        userOTPGet = data
+        loginRepo?.getResendOtpOnPhone(data)
     }
 
     fun getRegisterOtp(phone : String?) {

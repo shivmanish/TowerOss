@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Enter Mobile Number"
-                android:id="@+id/user_mail_layout"
+                android:id="@+id/phone_num_layout"
                 android:textColorHint="@color/white"
                 style="@style/TextInputLayout"
                 android:layout_marginBottom="5dp"
@@ -143,9 +143,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp15"
-                app:layout_constraintBottom_toBottomOf="@+id/user_mail_layout"
-                app:layout_constraintTop_toTopOf="@+id/user_mail_layout"
-                app:layout_constraintEnd_toEndOf="@+id/user_mail_layout"
+                app:layout_constraintBottom_toBottomOf="@+id/phone_num_layout"
+                app:layout_constraintTop_toTopOf="@+id/phone_num_layout"
+                app:layout_constraintEnd_toEndOf="@+id/phone_num_layout"
                 android:src="@drawable/mo_no_next_outline"
                 />
 
@@ -155,8 +155,9 @@
         <TextView
             android:text="Please enter one time password (OTP)"
             android:textSize="12sp"
-            android:textColor="@color/disabledColor"
+            android:textColor="@color/white"
             android:id="@+id/one_time_otp"
+            android:alpha="0.2"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -343,7 +344,7 @@
             android:textSize="15sp"
             android:textColor="#F7CB46"
             android:alpha="0.2"
-            android:id="@+id/sign_with_phone_disable"
+            android:id="@+id/submit_btn"
             android:layout_width="match_parent"
             android:textStyle="bold"
             android:layout_height="@dimen/dp45"
@@ -354,23 +355,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-        <TextView
-            android:padding="@dimen/dp10"
-            android:text="Submit"
-            android:visibility="gone"
-            android:textSize="15sp"
-            android:textColor="#3F4D68"
-            android:id="@+id/submit_otp"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="@dimen/dp45"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/dp50"
-            android:background="@drawable/login_yellow_bg"
-            android:fontFamily="@font/poppins_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
