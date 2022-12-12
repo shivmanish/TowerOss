@@ -20,16 +20,18 @@
         <item name="colorErrorContainer">@color/transparent</item>
         <item name="errorIconDrawable">@drawable/icon_error</item>
         <item name="boxStrokeErrorColor">@color/white</item>
+        <item name="errorTextColor">#ff5555</item>
+
     </style>
 
     <style name="ErrorText" parent="Widget.MaterialComponents.TextView">
-
-
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/poppins</item>
     </style>
 
     <style name="CustomTextInputEdit" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:colorPrimary">@color/white</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">15dp</item>
 
     </style>
 
