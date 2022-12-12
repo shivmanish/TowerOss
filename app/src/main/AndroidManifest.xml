@@ -122,8 +122,9 @@
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.BaseApplication"
             android:windowSoftInputMode="adjustResize">
+<!--            android:theme="@style/Theme.BaseApplication"-->
+
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
