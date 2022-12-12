@@ -40,7 +40,7 @@ class RegistrationThirdStep : Fragment() {
 
         registrationThirdStepBinding.managerNameRoot.tag=false
         registrationThirdStepBinding.emailIdRoot.tag==false
-        registrationThirdStepBinding.moNo.tag==false
+        registrationThirdStepBinding.moNoRoot.tag==false
         registrationThirdStepBinding.managerName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -60,9 +60,11 @@ class RegistrationThirdStep : Fragment() {
         })
         registrationThirdStepBinding.emailId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {  }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                registrationThirdStepBinding.emailIdRoot.isErrorEnabled = false
+            }
             override fun afterTextChanged(s: Editable) {
-                if(registrationThirdStepBinding.emailId.text.toString().isNotEmpty()){
+                if(Utils.isValidEmail(registrationThirdStepBinding.emailId.text.toString())){
                     registrationThirdStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
                     registrationThirdStepBinding.emailIdRoot.tag=true
                     registrationThirdStepBinding.emailIdRoot.isErrorEnabled = false
@@ -108,17 +110,17 @@ class RegistrationThirdStep : Fragment() {
             Utils.hideKeyboard(requireContext(), it)
             if (registrationThirdStepBinding.managerNameRoot.tag==false) {
                 registrationThirdStepBinding.managerNameRoot.isErrorEnabled = true
-                registrationThirdStepBinding.managerNameRoot.error = "Enter job role"
+                registrationThirdStepBinding.managerNameRoot.error = "Enter manager name"
                 return@setOnClickListener
             }
             if (registrationThirdStepBinding.emailIdRoot.tag==false) {
                 registrationThirdStepBinding.emailIdRoot.isErrorEnabled = true
-                registrationThirdStepBinding.emailIdRoot.error = "Enter job role"
+                registrationThirdStepBinding.emailIdRoot.error = "Enter valid email"
                 return@setOnClickListener
             }
             if (registrationThirdStepBinding.moNoRoot.tag==false) {
                 registrationThirdStepBinding.moNoRoot.isErrorEnabled = true
-                registrationThirdStepBinding.moNoRoot.error = "Enter job role"
+                registrationThirdStepBinding.moNoRoot.error = "Enter 10 digit mobile numbers"
                 return@setOnClickListener
             }
 

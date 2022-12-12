@@ -138,6 +138,7 @@ class RegistrationFirstStep : Fragment() {
             }
         })
 
+
         registrationFirstStepBinding.companyName.setOnClickListener {
             setupAutoCompleteView()
         }

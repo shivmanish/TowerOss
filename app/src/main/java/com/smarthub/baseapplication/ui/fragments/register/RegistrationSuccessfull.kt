@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.utils.Utils
 

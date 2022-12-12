@@ -36,8 +36,7 @@
         <item>Utilities Equip</item>
         <item>NOC &amp; Comp</item>
         <item>TWR &amp; Civil Infra</item>
-        <item>Power Connection</item>
-        <item>Bill &amp; Payments</item>
+        <item>Power &amp; fuel</item>
         <item>QA &amp; Inspection</item>
     </string-array>
     <integer-array name="random_imgs">
@@ -46,11 +45,10 @@
         <item>@drawable/opco_tenency</item>
         <item>@drawable/plan_design</item>
         <item>@drawable/site_agreement</item>
-        <item>@drawable/utilities_eqip</item>
+        <item>@drawable/utilities_equip</item>
         <item>@drawable/noc_comp</item>
         <item>@drawable/twr_civilinfra</item>
-        <item>@drawable/eb_connection</item>
-        <item>@drawable/bill_payments</item>
+        <item>@drawable/power_fuel</item>
         <item>@drawable/qa_inspection</item>
     </integer-array>
     <string name="app_name">TowerOSS</string>

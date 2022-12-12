@@ -8,17 +8,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/login_bg"/>
 
-    <ImageView
-        android:id="@+id/back"
-        android:visibility="invisible"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_back"
-        android:layout_width="wrap_content"
-        android:padding="@dimen/dp18"
-        app:tint="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_height="?attr/actionBarSize"/>
 
     <View
         android:id="@+id/top_margin"
@@ -26,6 +15,7 @@
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.3"
         app:layout_constraintTop_toTopOf="parent"/>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -133,7 +123,6 @@
                     android:id="@+id/mo_no_edit"
                     android:nextFocusForward="@id/password"
                     android:drawablePadding="@dimen/dp10"
-                    android:drawableEnd="@drawable/mo_no_next_outline"
                     android:layout_width="match_parent"
                     android:paddingStart="@dimen/dp10"
                     android:inputType="number"
@@ -147,6 +136,19 @@
                     app:layout_constraintBottom_toTopOf="@+id/email_error"/>
 
             </com.smarthub.baseapplication.widgets.CustomTextInputLayout>
+            <ImageView
+                android:id="@+id/send_otp"
+                android:visibility="visible"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp15"
+                app:layout_constraintBottom_toBottomOf="@+id/user_mail_layout"
+                app:layout_constraintTop_toTopOf="@+id/user_mail_layout"
+                app:layout_constraintEnd_toEndOf="@+id/user_mail_layout"
+                android:src="@drawable/mo_no_next_outline"
+                />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -337,7 +339,7 @@
 
         <TextView
             android:padding="@dimen/dp10"
-            android:text="Or sign-in with phone OTP"
+            android:text="Submit"
             android:textSize="15sp"
             android:textColor="#F7CB46"
             android:alpha="0.2"
@@ -358,7 +360,7 @@
             android:visibility="gone"
             android:textSize="15sp"
             android:textColor="#3F4D68"
-            android:id="@+id/sign_with_phone"
+            android:id="@+id/submit_otp"
             android:layout_width="match_parent"
             android:textStyle="bold"
             android:layout_height="@dimen/dp45"
@@ -371,5 +373,6 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

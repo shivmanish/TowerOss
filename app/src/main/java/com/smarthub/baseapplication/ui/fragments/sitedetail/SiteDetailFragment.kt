@@ -253,9 +253,8 @@ class SiteDetailFragment : Fragment() {
                 5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(5) ?: "Utilitie Equip")
                 6-> BlackhaulFrag.newInstance(tabNames?.get(6) ?: "Noc & Comp")
                 7-> BlackhaulFrag.newInstance(tabNames?.get(7) ?: "TWR & Civil Infra")
-                8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "EB Connection")
-                9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "Bill & Payments")
-                10-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
+                8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "Power & Fuel")
+                9-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
                 else -> SiteInfoNewFragment()
             }
         }

@@ -42,7 +42,6 @@ class RegistrationSetPassword : Fragment() {
                 }else{
                     binding.submitPass.alpha = 0.3f
                     binding.submitPass.isEnabled=false
-                    enableErrorPassText()
                 }
             }
         })
@@ -57,7 +56,6 @@ class RegistrationSetPassword : Fragment() {
                 }else{
                     binding.submitPass.alpha = 0.3f
                     binding.submitPass.isEnabled=false
-                    enableErrorText()
                 }
             }
         })
@@ -80,11 +78,14 @@ class RegistrationSetPassword : Fragment() {
                 navigate(RegistrationSetPasswordDirections.
                 actionRegistrationSetPasswordToRegistrationOtpFragment())
             }
+            else {
+                //Toast.makeText(RegistrationSetPassword,"You are Already Register. Go for Login",Toast.LENGTH_LONG).show()
+            }
         }
     }
 
     private fun enableErrorPassText(){
-        binding.passwordLayout.error = "Password not in correct format "
+        binding.passwordLayout.error = "Password not in correct/above format "
     }
 
     private fun enableErrorText(){

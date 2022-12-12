@@ -50,7 +50,7 @@ class OtpVerificationStep1 : Fragment() {
             }
         }
 
-        binding.signWithPhone.setOnClickListener {
+        binding.sendOtp.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
@@ -61,13 +61,14 @@ class OtpVerificationStep1 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString().length>=10) {
+                if (binding.moNoEdit.text.toString().length>=10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
-                    binding.signWithPhone.visibility = View.VISIBLE
-                    binding.signWithPhoneDisable.visibility = View.GONE
+                    binding.sendOtp.isClickable=true
+                    binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline_white)
+
                 }else{
-                    binding.signWithPhoneDisable.visibility = View.VISIBLE
-                    binding.signWithPhone.visibility = View.GONE
+                    binding.sendOtp.isClickable=false
+                    binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline)
                 }
             }
         })
