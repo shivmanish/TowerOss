@@ -80,7 +80,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
                     if (fetchedData.isNotEmpty())
                         siteViewModel.fetchSiteSearchData(fetchedData)
                     fetchedData = ""
-                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
                 }else {
                     Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
                 }
