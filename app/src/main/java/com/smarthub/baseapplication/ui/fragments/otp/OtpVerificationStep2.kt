@@ -144,6 +144,9 @@ class OtpVerificationStep2 : Fragment() {
             }
         })
 
+        if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
+            loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
+        }
         loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
@@ -187,6 +190,16 @@ class OtpVerificationStep2 : Fragment() {
             }
         }
     }
+
+    override fun onDestroyView() {
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
+        if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
+            loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroyView()
+    }
     private fun updateOtpValueIndex() : String{
         return binding.p1.text.toString() +
                 binding.p2.text.toString()+
@@ -207,6 +220,7 @@ class OtpVerificationStep2 : Fragment() {
             }
         }.start()
     }
+
 
 }
 

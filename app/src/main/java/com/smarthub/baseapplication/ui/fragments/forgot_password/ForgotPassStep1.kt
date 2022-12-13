@@ -53,15 +53,17 @@ class ForgotPassStep1 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().length>=10) {
+                if (binding.moNoEdit.text.toString().length==10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
                     binding.phoneNumLayout.isErrorEnabled = false
+                    binding.moNoEdit.tag=true
                     binding.sendOtp.isClickable=true
                     binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline_white)
 
                 }else{
                     binding.sendOtp.isClickable=false
                     binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline)
+                    binding.moNoEdit.tag=false
                 }
             }
         })

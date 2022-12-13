@@ -354,9 +354,9 @@
 
                 <TextView
                     android:padding="@dimen/dp10"
-                    android:text="Submit"
+                    android:text="Next"
                     android:textSize="15sp"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/yellow"
                     android:alpha="0.2"
                     android:id="@+id/submit_btn"
                     android:layout_width="match_parent"
@@ -364,7 +364,7 @@
                     android:layout_height="@dimen/dp45"
                     android:gravity="center"
                     android:layout_marginTop="@dimen/dp50"
-                    android:background="@drawable/login_yellow_bg"
+                    android:background="@drawable/login_yellow_border"
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

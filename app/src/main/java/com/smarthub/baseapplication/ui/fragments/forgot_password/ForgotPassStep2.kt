@@ -2,7 +2,9 @@ package com.smarthub.baseapplication.ui.fragments.forgot_password
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -35,36 +37,39 @@ class ForgotPassStep2 : Fragment() {
     }
 
     private fun enableErrorText(){
-        binding.userMailLayout.error = "enter valid password"
+        binding.phoneNumLayout.error = "enter valid password"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
-        progressDialog = ProgressDialog(requireContext())
-        progressDialog.setMessage("Please Wait...")
-        progressDialog.setCanceledOnTouchOutside(true)
-
+        var phoneNumber: String? = ""
         if (requireArguments().containsKey("phone")) {
             try {
-                Log.d("status","key :" + requireArguments().getString("phone"))
-                binding.moNoEdit.setText(requireArguments().getString("phone"))
+                phoneNumber=requireArguments().getString("phone")
+                binding.moNoEdit.setText(phoneNumber)
+                binding.moNoText.text = "+91$phoneNumber"
+
             } catch (e: Exception) {
                 Log.d("status","error e :${e.localizedMessage}")
             }
         }
-        binding.moNoEdit.setOnTouchListener(object : DrawableClickListener(DRAWABLE_RIGHT) {
-            override fun onDrawableClick(): Boolean {
-                Log.d("status"," DRAWABLE_RIGHT : moNoEdit")
-                Utils.hideKeyboard(requireContext(),binding.moNoEdit)
-                binding.moNoEdit.clearFocus()
-                findNavController().popBackStack()
-                return false
-            }
-        })
+        Log.d("status","phone key :" + requireArguments().getString("phone"))
+        otpCount_timer()
+        loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(true)
+        binding.editPhoneNum.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
-
-        binding.nextLayout.setOnClickListener {
+        binding.otpCountDownTimer.setOnClickListener {
+            if (!progressDialog.isShowing)
+                progressDialog.show()
+            loginViewModel?.resendPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
+            binding.otpCountDownTimer.isClickable=false
+        }
+        binding.submitBtn.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             activity?.let{
                 val s = updateOtpValueIndex()
@@ -127,9 +132,18 @@ class ForgotPassStep2 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.p6.text.toString().isNotEmpty())
+                if (binding.p6.text.toString().isNotEmpty()){
                     Utils.hideKeyboard(requireContext(), binding.p6)
-                else binding.p5.requestFocus()
+                    binding.submitBtn.alpha =
+                        if(updateOtpValueIndex().length==6) 1.0F else 0.3F
+                    binding.submitBtn.isClickable=if(updateOtpValueIndex().length==6) true else false
+                }
+                else {
+                    binding.submitBtn.alpha =
+                        if(updateOtpValueIndex().length==6) 1.0F else 0.3F
+                    binding.submitBtn.isClickable=if(updateOtpValueIndex().length==6) true else false
+                    binding.p5.requestFocus()
+                }
             }
         })
         if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
@@ -140,23 +154,42 @@ class ForgotPassStep2 : Fragment() {
                 progressDialog.dismiss()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS && it.data.access?.isNotEmpty() == true) {
-                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
-                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
-                    Log.d("status","loginResponse accessToken ${it.data.access}")
+//                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
+//                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
+//                    Log.d("status","loginResponse accessToken ${it.data.access}")
                     Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
-                    findNavController().navigate(ForgotPassStep2Directions.actionForgotPassStep2ToForgotPassStep3())
+                    findNavController().navigate(ForgotPassStep2Directions.actionForgotPassStep2ToForgotPassStep3(it.data.access,it.data.refresh, phoneNumber.toString()))
                     return@observe
                 }else{
                     Log.d("status","${it.message}")
                     Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
-                    enableErrorText()
+//                    enableErrorText()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
+//                enableErrorText()
             }
 
+        }
+
+        if (loginViewModel?.getResendOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getResendOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
+        loginViewModel?.getResendOtpResponse?.observe(viewLifecycleOwner) {
+            if (progressDialog.isShowing)
+                progressDialog.dismiss()
+
+            if (it?.data != null && it.data.sucesss == true){
+                Log.d("status","getOtpResponse ${it.data}")
+                activity?.let{
+                    Toast.makeText(it,"Otp has sent successfully",Toast.LENGTH_SHORT).show()
+                    otpCount_timer()
+                }
+            }else{
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
         }
     }
     private fun updateOtpValueIndex() : String{
@@ -166,6 +199,23 @@ class ForgotPassStep2 : Fragment() {
                 binding.p4.text.toString()+
                 binding.p5.text.toString()+
                 binding.p6.text.toString()
+    }
+
+    fun otpCount_timer(){
+        object : CountDownTimer(40000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.otpCountDownTimer.setText(Html.fromHtml("<font color=#FFFFFFFF>Resend OTP in</font><font color=#FFD72B>0." + millisUntilFinished / 1000+ "</font> <font color=#FFFFFFFF> minute?</font>"))
+                binding.otpCountDownTimer.isClickable=false
+            }
+            override fun onFinish() {
+                setResendText()
+            }
+        }.start()
+    }
+
+    fun setResendText(){
+        binding.otpCountDownTimer.setText(Html.fromHtml("<font color=#FFD72B><u>Resend OTP</u></font>"  ))
+        binding.otpCountDownTimer.isClickable=true
     }
 
 }
