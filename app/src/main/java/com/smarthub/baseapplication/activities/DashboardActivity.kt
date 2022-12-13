@@ -37,10 +37,6 @@ class  DashboardActivity : BaseActivity() {
            navController = findNavController(R.id.nav_host_fragment_activity_main)
            navView.setupWithNavController(navController)
            navView.itemIconTintList = null
-//
-//           AppLogger.log("access token :" + AppPreferences.getInstance().token)
-//           AppLogger.log("refresh token :" + AppPreferences.getInstance().refresh)
-
            binding.navView.setOnItemSelectedListener { item ->
                if (navController.backQueue.size > 2) navController.popBackStack(
                    R.id.navigation_home,

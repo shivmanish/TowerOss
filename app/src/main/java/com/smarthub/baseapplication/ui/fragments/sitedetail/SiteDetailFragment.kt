@@ -248,10 +248,12 @@ class SiteDetailFragment : BaseFragment() {
     }
 
     private fun setDataObserver() {
-        siteDetailViewModel.fetchDropDown()
+
+        showLoader()
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
             siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
-        siteDetailViewModel.dropDownResponse?.observe(requireActivity()) {
+        siteDetailViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+            hideLoader()
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
@@ -267,7 +269,7 @@ class SiteDetailFragment : BaseFragment() {
                 Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
-
+        siteDetailViewModel.fetchDropDown()
     }
 
     private fun saveDataToLocal(data: SiteInfoDropDownData) {

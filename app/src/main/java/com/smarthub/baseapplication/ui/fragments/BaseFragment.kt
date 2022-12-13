@@ -17,13 +17,13 @@ open class BaseFragment : Fragment(){
     }
 
     fun showLoader(){
-        if (progressDialog!=null && progressDialog?.isShowing == true){
+        if (progressDialog!=null && progressDialog?.isShowing == false){
             progressDialog?.show()
         }
     }
 
     fun hideLoader(){
-        if (progressDialog!=null && progressDialog?.isShowing == false){
+        if (progressDialog!=null && progressDialog?.isShowing == true){
             progressDialog?.hide()
         }
     }
