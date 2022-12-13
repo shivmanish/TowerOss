@@ -55,7 +55,8 @@ public  class APIInterceptor {
                 Request request2 = request.newBuilder()
                         .addHeader("Authorization", getAccessToken())
                         .build();
-                if (AppPreferences.getInstance().getToken()==null || AppPreferences.getInstance().getToken().isEmpty()) {
+                if (AppPreferences.getInstance().getToken()==null || AppPreferences.getInstance().getToken().isEmpty() ||
+                        AppPreferences.getInstance().getBearerToken()==null || AppPreferences.getInstance().getBearerToken().isEmpty()) {
                     request2 = request.newBuilder()
 //                            .addHeader("Authorization", getAccessToken())
                             .build();
