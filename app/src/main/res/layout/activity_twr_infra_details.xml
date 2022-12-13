@@ -1,9 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.towerCivilInfra.TwrInfraDetails">
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        android:id="@+id/card"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/card_bg">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp15"
+                android:paddingEnd="@dimen/dp15"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:padding="5dp"
+                    android:id="@+id/back"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_marginLeft="@dimen/dp10"
+                    app:tint="@color/white"
+                    android:src="@drawable/ic_back"
+                    android:adjustViewBounds="true"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/titel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Guj_VIL_SC_1026"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp18" />
+
+                    <TextView
+                        android:padding="2dp"
+                        android:id="@+id/sub_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="4567XCVG"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/dp14" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/menu"
+                    android:layout_width="@dimen/dp24"
+                    android:layout_height="@dimen/dp24"
+                    android:paddingTop="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="@dimen/dp5"
+                    android:rotation="90"
+                    app:tint="@color/white"
+                    android:src="@drawable/menu" />
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_gray"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp35">
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:text="RFI Date:"
+                        android:textColor="@color/milky_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="10-Oct-2018"
+                        android:textSize="14sp"
+                        android:paddingStart="5dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="right"
+                    android:layout_weight="2"
+                    android:layout_marginRight="@dimen/dp12"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:text="RFS Date:"
+                        android:textColor="@color/milky_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="10-Oct-2018"
+                        android:textSize="14sp"
+                        android:paddingStart="5dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:elevation="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp38"
+        android:background="@color/tab_deselected"
+        app:tabPaddingEnd="@dimen/dp5"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabGravity="fill"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabMode="fixed"
+        app:tabPaddingStart="@dimen/dp5"
+        app:layout_constraintTop_toBottomOf="@+id/card"
+        app:tabTextAppearance="@style/TabTextView"
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardElevation="5dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            app:backgroundTint="@color/tab_selected_color"
+            android:layout_marginBottom="@dimen/dp80"
+            app:srcCompat="@drawable/addmore" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

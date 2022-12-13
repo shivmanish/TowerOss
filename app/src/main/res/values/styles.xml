@@ -81,7 +81,9 @@
     <style name="TabTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textStyle">bold</item>
 
     </style>
     <style name="TabHomeTextView" parent="Widget.AppCompat.TextView">
