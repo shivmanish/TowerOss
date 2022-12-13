@@ -33,7 +33,7 @@ class ProjectsFragment : BaseFragment() {
     }
 
     private fun setList(){
-        val projectListAdapter = ProjectListAdapter()
+        val projectListAdapter = ProjectListAdapter(requireContext())
         projectFragmentLayoutBinding.projectList.layoutManager = LinearLayoutManager(context)
         projectFragmentLayoutBinding.projectList.adapter = projectListAdapter
         projectFragmentLayoutBinding.add.setOnClickListener{
