@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.smarthub.baseapplication.databinding.CivilInfraListItemBinding
+import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 
-class CivilInfraAdapter : Adapter<CivilInfraAdapter.ViewHold>() {
+class CivilInfraAdapter (var listner: CivilInfraAdapterListner): Adapter<CivilInfraAdapter.ViewHold>() {
 
     class ViewHold(view: View) : ViewHolder(view){
-
+        var binding= CivilInfraListItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -19,10 +21,18 @@ class CivilInfraAdapter : Adapter<CivilInfraAdapter.ViewHold>() {
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        holder.itemView.setOnClickListener{
+            listner.clickedItem()
+        }
 
     }
 
     override fun getItemCount(): Int {
         return 5
     }
+
+    interface CivilInfraAdapterListner{
+        fun clickedItem()
+    }
 }
+

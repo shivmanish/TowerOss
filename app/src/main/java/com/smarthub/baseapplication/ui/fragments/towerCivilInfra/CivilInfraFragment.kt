@@ -1,13 +1,15 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
 
-class CivilInfraFragment : Fragment() {
+class CivilInfraFragment : Fragment(),CivilInfraAdapter.CivilInfraAdapterListner {
 
     lateinit var binding : CivilInfraFragmentBinding
 
@@ -23,6 +25,10 @@ class CivilInfraFragment : Fragment() {
 
     fun initViews(){
 
-        binding.powerConnList.adapter = CivilInfraAdapter()
+        binding.powerConnList.adapter = CivilInfraAdapter(this@CivilInfraFragment)
+    }
+
+    override fun clickedItem() {
+        requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
     }
 }
