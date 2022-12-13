@@ -50,7 +50,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)
-    Call<List<ProfileDetails>> getProfile(@Body UserProfileGet data);
+    Call<List<ProfileDetails>> getProfile(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)

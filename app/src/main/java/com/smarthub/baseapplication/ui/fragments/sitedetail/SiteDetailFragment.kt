@@ -247,8 +247,7 @@ class SiteDetailFragment : Fragment() {
                 6-> BlackhaulFrag.newInstance(tabNames?.get(6) ?: "Noc & Comp")
                 7-> CivilInfraFragment()
                 8-> PowerConnection()
-                9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "Bill & Payments")
-                10-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
+                9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "QA Inspection")
                 else -> SiteInfoNewFragment()
             }
         }

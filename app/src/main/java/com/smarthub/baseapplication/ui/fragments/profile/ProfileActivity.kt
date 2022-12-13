@@ -4,6 +4,7 @@ import android.app.ActivityManager
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
@@ -31,34 +32,35 @@ class ProfileActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityProfileBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-//        showLoader()
-//        profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
-        profileViewModel?.getProfileData(UserProfileGet("7269024641"))
-//        profileViewModel?.profileResponse?.observe(this) {
-//            hideLoader()
-//            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
-//                if (it.status == Resource.Status.SUCCESS) {
-//                    AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")
-//                    uiDataMapping(it.data?.get(0)!!)
-//                    Log.d("status", "${it.message}")
-//                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
-//                    return@observe
-//                } else {
-//                    Log.d("status", "${it.message}")
-//                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
-//
-//                }
-//            } else {
-//                Log.d("status", "${AppConstants.GENERIC_ERROR}")
-//                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-//            }
-//        }
         initViews()
+        if (profileViewModel?.profileResponse?.hasActiveObservers()==true)
+            profileViewModel?.profileResponse?.removeObservers(this)
+        profileViewModel?.profileResponse?.observe(this) {
+            hideLoader()
+            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS) {
+                    AppPreferences.getInstance().saveString("data", "${it.data?.get(0)?.data}")
+                    uiDataMapping(it.data?.get(0)!!)
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+
+                }
+            } else {
+                Log.d("status", "${AppConstants.GENERIC_ERROR}")
+                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
+        showLoader()
+        profileViewModel?.getProfileData()
     }
 
     private fun uiDataMapping(profileDetails: ProfileDetails){
@@ -70,10 +72,6 @@ class ProfileActivity : BaseActivity() {
         binding.textRole.text = profileDetails.roles
         binding.textSDepartment.text = profileDetails.department
 
-
-
-
-//        databinding.textRole?.text = "${profileDetails?.}"
     }
 
     private var popupWindow: PopupWindow? = null

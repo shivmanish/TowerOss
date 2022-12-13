@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.network.repo;
 
+import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
@@ -44,13 +45,15 @@ public class ProfileRepo {
     public SingleLiveEvent<Resource<List<ProfileDetails>>> getProfileResponse() {
         return profileResponse;
     }
+
     public SingleLiveEvent<Resource<ProfileUpdate>> getProfileUpdate() {
         return profileUpdate;
     }
 
-    public void getProfileData(UserProfileGet data) {
-
-        apiClient.getProfile(data).enqueue(new Callback<List<ProfileDetails>>() {
+    public void getProfileData() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("get","");
+        apiClient.getProfile(jsonObject).enqueue(new Callback<List<ProfileDetails>>() {
             @Override
             public void onResponse(Call<List<ProfileDetails>> call, Response<List<ProfileDetails>> response) {
                 if (response.isSuccessful()){
@@ -87,6 +90,7 @@ public class ProfileRepo {
             }
         });
     }
+
     public void updateProfileData(UserProfileUpdate data) {
         AppLogger.INSTANCE.log("status","Update Profile Data in Profile Repo");
         apiClient.updateProfile(data).enqueue(new Callback<ProfileUpdate>() {

@@ -20,8 +20,8 @@ class ProfileViewModel: ViewModel() {
         profileResponse = profileRepo?.profileResponse
         profileUpdate = profileRepo?.profileUpdate
     }
-    fun getProfileData(data : UserProfileGet) {
-        profileRepo?.getProfileData(data)
+    fun getProfileData() {
+        profileRepo?.getProfileData()
     }
 
     fun updateProfileData(data : UserProfileUpdate?){
