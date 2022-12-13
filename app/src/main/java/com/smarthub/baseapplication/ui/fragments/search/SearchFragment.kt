@@ -68,7 +68,9 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
         searchResultAdapter = SearchResultAdapter(requireContext(),this@SearchFragment)
         binding.searchResult.adapter = searchResultAdapter
         binding.searchResult.setHasFixedSize(true)
-
+        if (siteViewModel.siteSearchResponse?.hasActiveObservers() == true){
+            siteViewModel.siteSearchResponse?.removeObservers(viewLifecycleOwner)
+        }
         siteViewModel.siteSearchResponse?.observe(viewLifecycleOwner){
             if (binding.loadingProgress.visibility ==View.VISIBLE)
                 binding.loadingProgress.visibility = View.INVISIBLE

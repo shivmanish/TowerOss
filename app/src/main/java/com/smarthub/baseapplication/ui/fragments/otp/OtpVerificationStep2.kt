@@ -3,7 +3,9 @@ package com.smarthub.baseapplication.ui.fragments.otp
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,11 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.databinding.OtpVerificationStep2FragmentBinding
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -34,16 +38,35 @@ class OtpVerificationStep2 : Fragment() {
     }
 
     private fun enableErrorText(){
-        binding.userMailLayout.error = "enter valid password"
+        binding.phoneNumLayout.error = "enter valid password"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (requireArguments().containsKey("phone")) {
+            try {
+                Log.d("status","key :" + requireArguments().getString("phone"))
+                binding.moNoEdit.setText(requireArguments().getString("phone"))
+            } catch (e: Exception) {
+                Log.d("status","error e :${e.localizedMessage}")
+            }
+        }
+        otpCount_timer()
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        binding.signWithPhone.setOnClickListener { view ->
+        binding.editPhoneNum.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.resensOtpText.setOnClickListener {
+            if (!progressDialog.isShowing)
+                progressDialog.show()
+            loginViewModel?.resendPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
+            binding.resensOtpText.visibility=View.GONE
+            binding.otpCountDownTimer.visibility=View.VISIBLE
+        }
+        binding.submitBtn.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(),view)
             activity?.let{
                 val s = updateOtpValueIndex()
@@ -106,9 +129,18 @@ class OtpVerificationStep2 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.p6.text.toString().isNotEmpty())
+                if (binding.p6.text.toString().isNotEmpty()){
                     Utils.hideKeyboard(requireContext(), binding.p6)
-                else binding.p5.requestFocus()
+                    binding.submitBtn.alpha =
+                        if(updateOtpValueIndex().length==6) 1.0F else 0.3F
+                    binding.submitBtn.isClickable=if(updateOtpValueIndex().length==6) true else false
+                }
+                else {
+                    binding.submitBtn.alpha =
+                        if(updateOtpValueIndex().length==6) 1.0F else 0.3F
+                    binding.submitBtn.isClickable=if(updateOtpValueIndex().length==6) true else false
+                    binding.p5.requestFocus()
+                }
             }
         })
 
@@ -129,14 +161,30 @@ class OtpVerificationStep2 : Fragment() {
                 }else{
                     Log.d("status","${it.message}")
                     Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
-                    enableErrorText()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
             }
 
+        }
+        if (loginViewModel?.getResendOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getResendOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
+        loginViewModel?.getResendOtpResponse?.observe(viewLifecycleOwner) {
+            if (progressDialog.isShowing)
+                progressDialog.dismiss()
+
+            if (it?.data != null && it.data.sucesss == true){
+                Log.d("status","getOtpResponse ${it.data}")
+                activity?.let{
+                    Toast.makeText(it,"Otp has sent successfully",Toast.LENGTH_SHORT).show()
+                    otpCount_timer()
+                }
+            }else{
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
         }
     }
     private fun updateOtpValueIndex() : String{
@@ -148,22 +196,16 @@ class OtpVerificationStep2 : Fragment() {
                 binding.p6.text.toString()
     }
 
-    fun addFragment(fragment: Fragment?) {
-        val backStateName: String = requireActivity().supportFragmentManager.javaClass.name
-        val manager = requireActivity().supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
-            val transaction = manager.beginTransaction()
-            transaction.setCustomAnimations(
-                R.anim.enter,
-                R.anim.exit,
-                R.anim.pop_enter,
-                R.anim.pop_exit
-            )
-            transaction.replace(R.id.fragmentContainerView, fragment!!)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
+    fun otpCount_timer(){
+        object : CountDownTimer(40000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.otpCountDownTimer.setText(Html.fromHtml("<font color=#FFFFFFFF>Resend OTP in </font><font color=#FFD72B>0." + millisUntilFinished / 1000+ "</font> <font color=#FFFFFFFF> minute?</font>"))
+            }
+            override fun onFinish() {
+                binding.otpCountDownTimer.visibility=View.GONE
+                binding.resensOtpText.visibility=View.VISIBLE
+            }
+        }.start()
     }
 
 }

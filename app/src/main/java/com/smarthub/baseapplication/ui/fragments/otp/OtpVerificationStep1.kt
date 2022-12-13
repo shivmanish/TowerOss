@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OtpVerificationStep1FragmentBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.otp.GetOtpResponse
 import com.smarthub.baseapplication.model.otp.UserOTPGet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.Utils
@@ -43,14 +46,8 @@ class OtpVerificationStep1 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-        view.findViewById<View>(R.id.back).setOnClickListener {view->
-            Utils.hideKeyboard(requireContext(),view)
-            activity?.let{
-                findNavController().popBackStack()
-            }
-        }
 
-        binding.signWithPhone.setOnClickListener {
+        binding.sendOtp.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
@@ -61,28 +58,29 @@ class OtpVerificationStep1 : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString().length>=10) {
+                if (binding.moNoEdit.text.toString().length>=10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
-                    binding.signWithPhone.visibility = View.VISIBLE
-                    binding.signWithPhoneDisable.visibility = View.GONE
+                    binding.phoneNumLayout.isErrorEnabled = false
+                    binding.sendOtp.isClickable=true
+                    binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline_white)
+
                 }else{
-                    binding.signWithPhoneDisable.visibility = View.VISIBLE
-                    binding.signWithPhone.visibility = View.GONE
+                    binding.sendOtp.isClickable=false
+                    binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline)
                 }
             }
         })
         if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
             loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
         }
-        loginViewModel?.getOtpResponse?.observe(requireActivity()) {
+        loginViewModel?.getOtpResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
 
             if (it?.data != null && it.data.sucesss == true){
-                Log.d("status","getOtpResponse ${it.data}")
-                activity?.let{
-                    findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2())
-                }
+                Log.d("status","getPhoneOtp: ${it.data}")
+                findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2("${binding.moNoEdit.text.toString()}"))
+
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
@@ -91,8 +89,15 @@ class OtpVerificationStep1 : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroyView()
+    }
+
     private fun enableErrorText(){
-        binding.userMailLayout.error = "enter valid mo no"
+        binding.phoneNumLayout.error = "enter valid mo no"
     }
 
 }

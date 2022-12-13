@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -126,8 +124,8 @@ class RegistrationFirstStep : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if(Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString())){
                     registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
-                    registrationFirstStepBinding.emailIdRoot.tag = true
                     registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
+                    registrationFirstStepBinding.loadingEmailProgress.visibility = View.VISIBLE
                     loginViewModel.emailVerification(registrationFirstStepBinding.emailId.text.toString(), item?.id)
                 }
                 else {
@@ -137,6 +135,7 @@ class RegistrationFirstStep : Fragment() {
 
             }
         })
+
 
         registrationFirstStepBinding.companyName.setOnClickListener {
             setupAutoCompleteView()
@@ -168,7 +167,8 @@ class RegistrationFirstStep : Fragment() {
             }
             else if (registrationFirstStepBinding.moNoRoot.tag==false) {
                 registrationFirstStepBinding.moNoRoot.isErrorEnabled = true
-                registrationFirstStepBinding.moNoRoot.error = "Enter ten digit mobile number"
+                registrationFirstStepBinding.moNoRoot.error = "Enter 10 digit mobile number"
+
                 return@setOnClickListener
             }
             else if (registrationFirstStepBinding.emailIdRoot.tag==false) {
@@ -217,8 +217,8 @@ class RegistrationFirstStep : Fragment() {
             loginViewModel.emailVerifyOtpResponse?.removeObservers(viewLifecycleOwner)
 
         loginViewModel.emailVerifyOtpResponse?.observe(viewLifecycleOwner) {
-//            isDataFetched = true
-            if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success") {
+            registrationFirstStepBinding.loadingEmailProgress.visibility = View.GONE
+            if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success" && Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString()) ) {
                 Log.d("status","email verified")
                 Toast.makeText(requireActivity(),"email verification successful", Toast.LENGTH_LONG).show()
                 registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)

@@ -75,7 +75,7 @@ class ForgotPassStep1 : Fragment() {
         if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
             loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
         }
-        loginViewModel?.getOtpResponse?.observe(requireActivity()) {
+        loginViewModel?.getOtpResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)
                 progressDialog.dismiss()
 

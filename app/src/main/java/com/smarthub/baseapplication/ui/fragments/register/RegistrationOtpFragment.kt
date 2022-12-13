@@ -135,7 +135,9 @@ class RegistrationOtpFragment : Fragment() {
                 }
             }
         })
-
+        if (loginViewModel?.registerVerifyOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.registerVerifyOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
 
         loginViewModel?.registerVerifyOtpResponse?.observe(viewLifecycleOwner) {
             if (progressDialog.isShowing)

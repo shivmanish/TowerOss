@@ -1,20 +1,32 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dialog_bg"
-    app:cardElevation="5dp"
     android:layout_gravity="bottom"
-    app:cardCornerRadius="@dimen/dp15"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/cancel"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/shareLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+        android:padding="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp20">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +49,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/task_list"/>
-
-
-     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</RelativeLayout>

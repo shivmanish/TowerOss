@@ -82,7 +82,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
 
                 <TextView
-                    android:text="Please enter you Login and your Password"
+                    android:text="Please enter your User Id and Password"
                     android:textSize="13sp"
                     android:textColor="#ffffff"
                     android:id="@+id/request_msg"

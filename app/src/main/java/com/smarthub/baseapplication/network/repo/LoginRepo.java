@@ -30,6 +30,7 @@ public class LoginRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<RefreshToken>> logingResponse;
     private SingleLiveEvent<Resource<GetOtpResponse>> getOtpResponse;
+    private SingleLiveEvent<Resource<GetOtpResponse>> resendOtpResponse;
     private SingleLiveEvent<Resource<GetRegisterOtpResponse>> registerSendOtpResponse;
     private SingleLiveEvent<Resource<GetSuccessResponse>> passChangeResponse;
 
@@ -48,6 +49,7 @@ public class LoginRepo {
         getOtpResponse = new SingleLiveEvent<>();
         passChangeResponse = new SingleLiveEvent<>();
         registerSendOtpResponse = new SingleLiveEvent<>();
+        resendOtpResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<RefreshToken>> getLoginResponse() {
@@ -55,6 +57,9 @@ public class LoginRepo {
     }
     public SingleLiveEvent<Resource<GetOtpResponse>> getOtpResponse() {
         return getOtpResponse;
+    }
+    public SingleLiveEvent<Resource<GetOtpResponse>> getResendOtpResponse() {
+        return resendOtpResponse;
     }
     public SingleLiveEvent<Resource<GetSuccessResponse>> getPassResponse() {return passChangeResponse;}
     public SingleLiveEvent<Resource<GetRegisterOtpResponse>> getRegisterSendOtpResponse() {return registerSendOtpResponse;}
@@ -157,6 +162,39 @@ public class LoginRepo {
                     getOtpResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     getOtpResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void getResendOtpOnPhone(UserOTPGet data) {
+        apiClient.getOTP(data).enqueue(new Callback<GetOtpResponse>() {
+            @Override
+            public void onResponse(Call<GetOtpResponse> call, Response<GetOtpResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    reportErrorResponse(error, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetOtpResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<GetOtpResponse> response) {
+                if (response.body() != null) {
+                    resendOtpResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    resendOtpResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    resendOtpResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    resendOtpResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

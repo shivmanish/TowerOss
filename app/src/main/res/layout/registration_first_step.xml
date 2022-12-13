@@ -21,7 +21,8 @@
             android:layout_marginTop="@dimen/dp20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dp20">
+            android:paddingBottom="@dimen/dp20"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -207,6 +208,7 @@
                 android:hint="Compnay Name"
                 android:textColorHint="@color/white"
                 app:endIconMode="custom"
+                app:errorTextAppearance="@style/ErrorText"
                 app:endIconTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/progress_status"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -251,6 +253,7 @@
                 android:hint="First Name"
                 android:textColorHint="@color/white"
                 app:endIconMode="custom"
+                app:errorTextAppearance="@style/ErrorText"
                 app:endIconTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/company_name_root"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -282,6 +285,7 @@
                 android:hint="Last Name"
                 android:textColorHint="@color/white"
                 app:endIconMode="custom"
+                app:errorTextAppearance="@style/ErrorText"
                 app:endIconTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/first_name_root"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -313,6 +317,8 @@
                 android:hint="Mobile Number"
                 android:textColorHint="@color/white"
                 app:endIconMode="custom"
+                app:errorTextAppearance="@style/ErrorText"
+                app:errorTextColor="#D85454"
                 app:endIconTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/last_name_root"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -369,6 +375,18 @@
                     android:textColorHint="@color/white"
                     android:textSize="15sp"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:padding="15dp"
+                android:visibility="invisible"
+                android:id="@+id/loading_email_progress"
+                android:paddingEnd="@dimen/dp8"
+                android:indeterminateTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/email_id_root"
+                app:layout_constraintTop_toTopOf="@+id/email_id_root"
+                app:layout_constraintEnd_toEndOf="@+id/email_id_root"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
 
             <TextView
                 android:id="@+id/next"

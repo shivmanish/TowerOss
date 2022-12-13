@@ -73,7 +73,12 @@
         <action
             android:id="@+id/action_otpVerificationStep1_to_otpVerificationStep2"
             app:destination="@id/otpVerificationStep2"
-            app:popUpTo="@id/otpVerificationStep1" />
+            app:popUpTo="@id/otpVerificationStep1" >
+            <argument
+                android:name="phone"
+                app:argType="string"
+                android:defaultValue="1234567890" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/otpVerificationStep2"
@@ -118,7 +123,7 @@
         <action
             android:id="@+id/action_registrationOtpFragment_to_registrationSuccessfull"
             app:destination="@id/registrationSuccessfull"
-            app:popUpTo="@id/registrationThirdStep" />
+            app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationSetPassword"
