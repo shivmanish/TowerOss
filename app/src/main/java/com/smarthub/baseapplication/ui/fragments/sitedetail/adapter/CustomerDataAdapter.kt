@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 
-class CustomerDataAdapter(var listener: CustomerDataAdapterListener, var array: ArrayList<String>) : Adapter<CustomerDataViewHolder>() {
+class CustomerDataAdapter(var listener: CustomerDataAdapterListener, var array: ArrayList<String>) :
+    Adapter<CustomerDataViewHolder>() {
 
     fun setData(data: ArrayList<String>) {
         this.array.addAll(data)

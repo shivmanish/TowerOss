@@ -123,7 +123,7 @@
                 android:padding="@dimen/dp10"
                 android:textSize="15sp"
                 android:letterSpacing="0.1"
-                android:textColor="#33FFFFFF"
+                android:textColor="@color/white"
                 android:id="@+id/confirm_password"
                 android:textCursorDrawable="@null"
                 android:inputType="textPassword"
