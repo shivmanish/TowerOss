@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.project
+package com.smarthub.baseapplication.ui.fragments.project
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

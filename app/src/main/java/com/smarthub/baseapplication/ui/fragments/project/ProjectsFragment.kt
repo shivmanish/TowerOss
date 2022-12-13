@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.project
+package com.smarthub.baseapplication.ui.fragments.project
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -6,41 +6,54 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProjectButtonSheetLayoutBinding
 import com.smarthub.baseapplication.databinding.ProjectFragmentLayoutBinding
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class ProjectsFragment : Fragment() {
+class ProjectsFragment : BaseFragment() {
+
+    var homeViewModel : HomeViewModel?=null
     lateinit var projectFragmentLayoutBinding: ProjectFragmentLayoutBinding
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         projectFragmentLayoutBinding = ProjectFragmentLayoutBinding.inflate(inflater)
-    setList()
-
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return projectFragmentLayoutBinding.root
     }
 
-    fun setList(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setList()
+    }
+
+    private fun setList(){
         val projectListAdapter = ProjectListAdapter()
         projectFragmentLayoutBinding.projectList.layoutManager = LinearLayoutManager(context)
         projectFragmentLayoutBinding.projectList.adapter = projectListAdapter
         projectFragmentLayoutBinding.add.setOnClickListener{
-            showbottomDialouge()
+            showBottomDialog()
         }
 
+        if (homeViewModel?.getProjectDataResponse?.hasActiveObservers() == true)
+            homeViewModel?.getProjectDataResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel?.getProjectDataResponse?.observe(viewLifecycleOwner){
+            hideLoader()
+            if (it!=null){
+                projectListAdapter.updateList(it.data!!)
+            }
+        }
+
+        showLoader()
+        homeViewModel?.fetchProjectsData()
     }
 
-    fun showbottomDialouge(){
+    private fun showBottomDialog(){
         val dialog = BottomSheetDialog(requireActivity(), R.style.NewDialogTask)
         val view : View = layoutInflater.inflate(R.layout.project_button_sheet_layout, null)
         var dialogBinding = ProjectButtonSheetLayoutBinding.bind(view)

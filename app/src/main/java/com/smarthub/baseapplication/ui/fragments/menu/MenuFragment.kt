@@ -39,8 +39,6 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileCard.setOnClickListener {
-//            var intent = Intent(requireContext(), NewSiteAcquisitionActivity::class.java)
-//            requireActivity().startActivity(intent)
             var intent = Intent(requireContext(), ProfileActivity::class.java)
             requireActivity().startActivity(intent)
         }

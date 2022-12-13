@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.project
+package com.smarthub.baseapplication.ui.fragments.project
 
 import android.view.LayoutInflater
 import android.view.View
