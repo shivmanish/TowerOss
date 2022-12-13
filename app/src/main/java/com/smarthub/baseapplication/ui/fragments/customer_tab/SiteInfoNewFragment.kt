@@ -38,6 +38,10 @@ class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener 
             siteViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
         }
         siteViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+            if (it!=null){
+                dropdowndata = it
+                (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it)
+            }
 //            (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
         }
         if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)

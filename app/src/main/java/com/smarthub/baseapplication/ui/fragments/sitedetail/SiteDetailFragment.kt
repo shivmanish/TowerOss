@@ -10,10 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +32,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
@@ -44,7 +44,7 @@ import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
-class SiteDetailFragment : Fragment() {
+class SiteDetailFragment : BaseFragment() {
     private var _sitebinding: SiteLocationDetailBinding? = null
     private val binding get() = _sitebinding!!
     private lateinit var ctx: Context
@@ -53,6 +53,7 @@ class SiteDetailFragment : Fragment() {
     var fabVisible = false
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.ctx = context
@@ -66,19 +67,6 @@ class SiteDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        siteDetailViewModel.isScrollUp.observe(requireActivity(), Observer {
-//
-//            if (it && isScroll) {
-//                Log.d("scroll>>>", "up   $it")
-//                setSelectTab(it)
-//                isScroll = false
-//            } else if (!it && !isScroll) {
-//                Log.d("scroll>>>", "down   $it")
-//                setSelectTab(it)
-//                isScroll = true
-//            }
-//        })
-
         setDataObserver()
 
     }
@@ -90,7 +78,6 @@ class SiteDetailFragment : Fragment() {
         tabNames = siteDetailViewModel.getStrings(requireActivity())
 
         root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
-
         return root
     }
 
@@ -133,7 +120,6 @@ class SiteDetailFragment : Fragment() {
             startActivity(intent)
         }
     }
-
 
     private fun setFabActionButton() {
         // for our add floating action button
@@ -232,9 +218,7 @@ class SiteDetailFragment : Fragment() {
         constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
 
-
-    internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) :
-        FragmentPagerAdapter(manager,behaviour) {
+    internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
@@ -263,32 +247,6 @@ class SiteDetailFragment : Fragment() {
 
     }
 
-    private fun setSelectTab(isUpScroll: Boolean) {
-        if (isUpScroll) {
-            for (i in 0..tabNames?.size!!.minus(1)) {
-                var constraintLayout: ConstraintLayout =
-                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                var constraintL: ConstraintLayout =
-                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                constraintLayout.visibility = View.GONE
-                constraintL.visibility = View.VISIBLE
-            }
-            binding.tabs!!.background = getDrawable(requireActivity(), R.drawable.tablayout_selector_change);
-        } else {
-            for (i in 0..tabNames?.size!!.minus(1)) {
-                var constraintLayout: ConstraintLayout =
-                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                var constraintL: ConstraintLayout =
-                    binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                constraintLayout.visibility = View.VISIBLE
-                constraintL.visibility = View.GONE
-            }
-            binding.tabs.background = getDrawable( requireActivity(),R.drawable.tablayout_selector)
-        }
-
-    }
-
-
     private fun setDataObserver() {
         siteDetailViewModel.fetchDropDown()
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
@@ -297,7 +255,6 @@ class SiteDetailFragment : Fragment() {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
-//                    Toast.makeText(context, "data fetched successfully", Toast.LENGTH_LONG).show()
                     setData()
                     return@observe
                 } else {
@@ -320,7 +277,5 @@ class SiteDetailFragment : Fragment() {
         AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
 
     }
-
-
 
 }

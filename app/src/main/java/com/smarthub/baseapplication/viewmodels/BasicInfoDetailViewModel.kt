@@ -32,9 +32,9 @@ class BasicInfoDetailViewModel : ViewModel() {
         val gson = Gson()
         if (jsonData.isNotEmpty()) {
             val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData, SiteInfoDropDownData::class.java)
-            if (siteInfoDropDownData != null) {
-                dropDownResponse?.postValue(siteInfoDropDownData)
-            }
+            dropDownResponse?.postValue(siteInfoDropDownData)
+        }else {
+//            fetch dropdown from api
         }
     }
 
