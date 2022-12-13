@@ -21,11 +21,7 @@ import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     var binding: SiteInfoNewFragmentBinding? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
         binding = SiteInfoNewFragmentBinding.inflate(inflater, container, false)
         return binding?.root
@@ -42,7 +38,7 @@ class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener 
             siteViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
         }
         siteViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
-            (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
+//            (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
         }
         if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)
             siteViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
@@ -104,33 +100,19 @@ class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener 
 
     override fun geoConditionsDetailsItemClicked(geoCondition: List<GeoCondition>) {
         if (dropdowndata != null) {
-            val bottomSheetDialogFragment =
-                GeoConditionsBottomSheet(
-                    R.layout.geo_conditions_details_bottom_sheet,
-                    dropdowndata.geoCondition,
-                    geoCondition
-                )
+            val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet, dropdowndata.geoCondition, geoCondition)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(
-                context,
-                "DropDownData not found, Please Try again !",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun siteAccessDetailsItemClicked(safetyAndAccess: List<SafetyAndAcces>) {
         if (dropdowndata != null) {
-        val bottomSheetDialogFragment =
-            SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,dropdowndata.safetyAndAccess,safetyAndAccess)
+        val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,dropdowndata.safetyAndAccess,safetyAndAccess)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(
-                context,
-                "DropDownData not found, Please Try again !",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 
