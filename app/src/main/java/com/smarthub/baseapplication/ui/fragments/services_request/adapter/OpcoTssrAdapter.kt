@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.services_request
+package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +9,14 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
-
-
-class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
-    var type1 = "SR Details"
-    var type2 = "Equipments"
-    var type3 = "Radio Antennas"
-    var type4 = "Backhaul Links"
+    var type1 = "RF Feasibility"
+    var type2 = "Backhaul Feasibility"
+    var type3 = "Equipments"
+    var type4 = "Power & MCB"
     var type5 = "Attachments"
-    var type6 = "Requester Info"
+    var type6 = "TSSR Executive Info"
     private var data : BasicInfoModelDropDown?=null
     private var fieldData : SiteInfoModel?=null
 
@@ -31,12 +29,12 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         notifyDataSetChanged()
     }
     init {
-        list.add("SR Details")
+        list.add("RF Feasibility")
+        list.add("Backhaul Feasibility")
         list.add("Equipments")
-        list.add("Radio Antennas")
-        list.add("Backhaul Links")
-      //  list.add("Attachments")
-        list.add("Requester Info")
+        list.add("Power & MCB")
+        list.add("Attachments")
+        list.add("TSSR Executive Info")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -55,7 +53,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : SrDetailItemViewBinding = SrDetailItemViewBinding.bind(itemView)
+        var binding : RfItemViewBinding = RfItemViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -72,7 +70,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
+        var binding : BachaulFeasibilityItemViewBinding = BachaulFeasibilityItemViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -89,7 +87,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
+        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -105,7 +103,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
+        var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -120,21 +118,21 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         }
     }
 
-    class ViewHold5(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
-        var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
+    class ViewHold5(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
+        var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
+            binding.itemTitle.tag = true
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-            } else {
+            } /*else {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
                     R.drawable.down_arrow,0)
-            }
+            }*/
         }
     }
 
-   class ViewHold6(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
-        var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
+   class ViewHold6(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
+        var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
 
        init {
            binding.itemTitle.tag = false
@@ -155,26 +153,26 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.sr_detail_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.rf_item_view, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.bachaul_feasibility_item_view, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.radio_antine_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_links_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
             }   6-> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
                 return ViewHold6(view,listener)
             }
 
@@ -386,7 +384,7 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked()
+                        listener.requestinfoClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -402,9 +400,10 @@ class ServicesRequestAdapter(var listener: SiteInfoLisListener) : RecyclerView.A
         return list.size
     }
 
-    interface SiteInfoLisListener {
+    interface OpcoTssrLisListener {
         fun attachmentItemClicked()
         fun detailsItemClicked()
+        fun requestinfoClicked()
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()

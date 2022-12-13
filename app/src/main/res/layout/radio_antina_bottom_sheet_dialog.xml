@@ -49,7 +49,8 @@
                         android:maxLines="1"
 
                         android:fontFamily="@font/poppins_regular"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:gravity="center"
 
                         android:text="Technology."
                         style="@style/RowTextItemInfo"
@@ -60,7 +61,8 @@
                         android:textSize="@dimen/dp14"
                         android:maxLines="1"
                         android:fontFamily="@font/poppins_regular"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:gravity="center"
                         android:text="Antenna Count"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
@@ -70,8 +72,8 @@
                         android:textSize="@dimen/dp14"
                         android:maxLines="1"
                         android:fontFamily="@font/poppins_regular"
-                        android:layout_width="match_parent"
-
+                        android:layout_width="0dp"
+                        android:gravity="center"
                         android:text="Antenna Shape"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
@@ -81,7 +83,8 @@
                         android:textSize="@dimen/dp14"
                         android:maxLines="1"
                         android:fontFamily="@font/poppins_regular"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:gravity="center"
                         android:text="Antenna Size"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>

@@ -48,6 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/physicalSecurity"
                         android:text="Available"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -70,6 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/textGate"
                         android:text="Yes"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -163,6 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/textCautionSignage"
                         android:text="Available"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -210,6 +213,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/textSiteAccesseethodology"
                         android:text="Key with Owner"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -234,6 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/textPoliceNumber"
                         android:text="Kapurwadi"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -257,6 +262,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/textPoliceStation"
                         android:text="022-21763538"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -281,6 +287,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/textFireStation"
                         android:text="Kapurwadi"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -305,6 +312,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/textFireNumber"
                         android:text="022-21763538"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -340,6 +348,7 @@
                     android:textSize="@dimen/dp15"/>
 
                 <TextView
+                    android:id="@+id/update"
                     android:layout_marginLeft="@dimen/dp25"
                     android:background="@drawable/yellow_text_button"
                     android:layout_width="wrap_content"

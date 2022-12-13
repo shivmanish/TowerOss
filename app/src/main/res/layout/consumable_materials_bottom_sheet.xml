@@ -35,7 +35,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <include layout="@layout/consumals_materials_items"/>
+                <include layout="@layout/consumable_material_details"
+                    android:id="@+id/recycler_view"/>
             </LinearLayout>
 
         </ScrollView>

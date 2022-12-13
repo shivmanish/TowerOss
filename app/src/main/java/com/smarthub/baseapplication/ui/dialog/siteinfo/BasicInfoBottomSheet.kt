@@ -43,14 +43,15 @@ class BasicInfoBottomSheet(
 
         binding.update.setOnClickListener {
             basicinfo!!.let{
+
                 it.Buildingtype = binding.txBuildingType.text.toString()
                 it.Locationzone= binding.txtLocationZone.text.toString()
                 it.MaintenancePoint= ""
                 it.Projectname= binding.txtProjectName.text.toString()
-                it.Sitecategory= binding.siteCategory.selectedValue.id!!
+               /* it.Sitecategory= binding.siteCategory.selectedValue.id!!
                 it.Siteownership= binding.siteOwnership.selectedValue.id!!
                 it.Sitestatus= binding.siteStatus.selectedValue.id!!
-                it.Sitetype= binding.siteType.selectedValue.id!!
+                it.Sitetype= binding.siteType.selectedValue.id!!*/
                 it.aliasName= ""
                 it.id = basicinfodata.id
                 it.siteID= binding.txSiteID.text.toString()

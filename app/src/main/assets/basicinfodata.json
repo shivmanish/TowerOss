@@ -1,86 +1,533 @@
 {
-  "Basicinfo": [{
-    "id": 1,
-    "siteName": "siteNameechangeUJ_SC_0665",
-    "siteID": "siteIDchangeUJ_SC_0665",
-    "aliasName": "aliasName",
-    "siteInChargeName": "siteInChargeName",
-    "siteInChargeNumber": "siteInChargeNumber",
-    "siteaddress": "siteaddress",
-    "locLatitude": "0.000000",
-    "locLongitude": "0.000000",
-    "siteLayout": null,
-    "sitePicture": null,
-    "isActive": true,
-    "modified_at": "2022-10-12T09:27:37.173895",
-    "created_at": "2022-10-12T09:27:37.173895",
-    "Sitestatus": [{
-      "id": 1,
-      "name": "Planned",
+  "id": 392,
+  "isActive": true,
+  "modified_at": "2022-12-10T10:32:01.130737",
+  "created_at": "2022-12-10T10:32:01.130783",
+  "ownername": [],
+  "Basicinfo": [
+    {
+      "id": 340,
+      "siteName": "site1",
+      "siteID": "site13",
+      "aliasName": "aliasName",
+      "siteInChargeName": "siteInChargeName",
+      "siteInChargeNumber": "siteInChargeNumber",
+      "siteaddress": "siteaddress",
+      "locLatitude": "0.000000",
+      "locLongitude": "0.000000",
+      "siteLayout": null,
+      "sitePicture": null,
       "isActive": true,
-      "modified_at": "2022-10-07T10:25:54.145900",
-      "created_at": "2022-10-07T10:25:54.145927"
-    }],
-    "Sitecategory": [{
-      "id": 1,
-      "name": "GBT",
-      "isActive": true,
-      "modified_at": "2022-10-07T10:08:46.958053",
-      "created_at": "2022-10-07T10:08:46.958097"
-    }],
-    "Sitetype": [{
-      "id": 1,
-      "name": "Small Cell",
-      "isActive": true,
-      "modified_at": "2022-10-07T10:22:15.692402",
-      "created_at": "2022-10-07T10:22:15.692449"
-    }],
-    "Siteownership": [{
-      "id": 1,
-      "name": "Owned",
-      "ipColoName": null,
-      "isActive": true,
-      "modified_at": "2022-10-07T10:32:43.455191",
-      "created_at": "2022-10-07T10:32:43.455237"
-    }],
-    "Buildingtype": [{
-      "id": 2,
-      "name": "Residential",
-      "isActive": true,
-      "modified_at": "2022-10-08T17:55:06.727511",
-      "created_at": "2022-10-08T17:55:06.727564"
-    }],
-    "Locationzone": [{
-      "id": 1,
-      "name": "Urban",
-      "isActive": true,
-      "modified_at": "2022-10-07T10:44:35.469054",
-      "created_at": "2022-10-07T10:44:35.469098"
-    }],
-    "National": [],
-    "Region": [],
-    "State": [],
-    "MaintenancePoint": [{
-      "id": 687,
-      "maintenancepoint": "Thane",
-      "code": "THEN",
-      "createddate": "2022-06-27T13:38:51.107113",
-      "modifieddate": "2022-06-30T12:04:30.099611",
-      "area": [
-        1,
-        2
+      "modified_at": "2022-12-10T10:46:55.409826",
+      "created_at": "2022-12-10T10:46:55.409871",
+      "Sitestatus": [
+        {
+          "id": 1,
+          "name": "Planned",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:25:54.145900",
+          "created_at": "2022-10-07T10:25:54.145927"
+        }
       ],
-      "objectname": [],
-      "ownername": [
-        6
+      "Sitecategory": [
+        {
+          "id": 1,
+          "name": "GBT",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:08:46.958053",
+          "created_at": "2022-10-07T10:08:46.958097"
+        }
+      ],
+      "Sitetype": [
+        {
+          "id": 2,
+          "name": "Macro Site",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:22:27.290336",
+          "created_at": "2022-10-07T10:22:27.290381"
+        }
+      ],
+      "Siteownership": [
+        {
+          "id": 1,
+          "name": "Owned",
+          "ipColoName": null,
+          "isActive": true,
+          "modified_at": "2022-10-07T10:32:43.455191",
+          "created_at": "2022-10-07T10:32:43.455237"
+        }
+      ],
+      "Buildingtype": [
+        {
+          "id": 2,
+          "name": "Residential",
+          "isActive": true,
+          "modified_at": "2022-10-08T17:55:06.727511",
+          "created_at": "2022-10-08T17:55:06.727564"
+        }
+      ],
+      "Locationzone": [
+        {
+          "id": 1,
+          "name": "Urban",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:44:35.469054",
+          "created_at": "2022-10-07T10:44:35.469098"
+        }
+      ],
+      "National": [],
+      "Region": [],
+      "State": [],
+      "MaintenancePoint": [
+        {
+          "id": 687,
+          "maintenancepoint": "Thane",
+          "code": "THEN",
+          "createddate": "2022-06-27T13:38:51.107113",
+          "modifieddate": "2022-06-30T12:04:30.099611",
+          "area": [
+            1,
+            2
+          ],
+          "objectname": [],
+          "ownername": [
+            6
+          ]
+        }
+      ],
+      "Projectname": [
+        {
+          "id": 1,
+          "name": "Phase1",
+          "isActive": true,
+          "modified_at": "2022-10-07T09:33:39.380960",
+          "created_at": "2022-10-07T09:33:39.380960"
+        }
       ]
-    }],
-    "Projectname": [{
-      "id": 1,
-      "name": "Phase1",
+    },
+    {
+      "id": 342,
+      "siteName": "site1",
+      "siteID": "site14",
+      "aliasName": "aliasName",
+      "siteInChargeName": "siteInChargeName",
+      "siteInChargeNumber": "siteInChargeNumber",
+      "siteaddress": "siteaddress",
+      "locLatitude": "0.000000",
+      "locLongitude": "0.000000",
+      "siteLayout": null,
+      "sitePicture": null,
       "isActive": true,
-      "modified_at": "2022-10-07T09:33:39.380960",
-      "created_at": "2022-10-07T09:33:39.380960"
-    }]
-  }]
+      "modified_at": "2022-12-10T10:47:59.525050",
+      "created_at": "2022-12-10T10:47:59.525099",
+      "Sitestatus": [
+        {
+          "id": 1,
+          "name": "Planned",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:25:54.145900",
+          "created_at": "2022-10-07T10:25:54.145927"
+        }
+      ],
+      "Sitecategory": [
+        {
+          "id": 1,
+          "name": "GBT",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:08:46.958053",
+          "created_at": "2022-10-07T10:08:46.958097"
+        }
+      ],
+      "Sitetype": [
+        {
+          "id": 2,
+          "name": "Macro Site",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:22:27.290336",
+          "created_at": "2022-10-07T10:22:27.290381"
+        }
+      ],
+      "Siteownership": [
+        {
+          "id": 1,
+          "name": "Owned",
+          "ipColoName": null,
+          "isActive": true,
+          "modified_at": "2022-10-07T10:32:43.455191",
+          "created_at": "2022-10-07T10:32:43.455237"
+        }
+      ],
+      "Buildingtype": [
+        {
+          "id": 2,
+          "name": "Residential",
+          "isActive": true,
+          "modified_at": "2022-10-08T17:55:06.727511",
+          "created_at": "2022-10-08T17:55:06.727564"
+        }
+      ],
+      "Locationzone": [
+        {
+          "id": 1,
+          "name": "Urban",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:44:35.469054",
+          "created_at": "2022-10-07T10:44:35.469098"
+        }
+      ],
+      "National": [],
+      "Region": [],
+      "State": [
+        {
+          "id": 38,
+          "state": "Delhi",
+          "code": null,
+          "isActive": true,
+          "createddate": "2022-06-27T13:38:55.495489",
+          "modifieddate": "2022-06-27T13:38:55.966708",
+          "cluster": [],
+          "maintenancepoint": [
+            521,
+            522,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530
+          ],
+          "area": [],
+          "objectname": [],
+          "ownername": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ]
+        }
+      ],
+      "MaintenancePoint": [
+        {
+          "id": 687,
+          "maintenancepoint": "Thane",
+          "code": "THEN",
+          "createddate": "2022-06-27T13:38:51.107113",
+          "modifieddate": "2022-06-30T12:04:30.099611",
+          "area": [
+            1,
+            2
+          ],
+          "objectname": [],
+          "ownername": [
+            6
+          ]
+        }
+      ],
+      "Projectname": [
+        {
+          "id": 1,
+          "name": "Phase1",
+          "isActive": true,
+          "modified_at": "2022-10-07T09:33:39.380960",
+          "created_at": "2022-10-07T09:33:39.380960"
+        }
+      ]
+    }
+  ],
+  "OperationalInfo": [
+    {
+      "id": 155,
+      "RFCDate": "2011-10-01T15:26:00",
+      "RFIDate": "2011-10-01T15:26:00",
+      "RFSDate": "2011-10-01T15:26:00",
+      "Powersource": "Powersource",
+      "DesignedDcLoad": "",
+      "InstalledDcLoad": "",
+      "OperatingTemp": "",
+      "DismantlinglDate": "2011-10-01T15:26:00",
+      "isActive": true,
+      "modified_at": "2022-12-10T11:35:46.824996",
+      "created_at": "2022-12-10T11:35:46.825025",
+      "Sitebillingstatus": [
+        {
+          "id": 1,
+          "name": "Billable",
+          "isActive": true,
+          "modified_at": "2022-10-10T08:11:23.686730",
+          "created_at": "2022-10-10T08:11:23.686791"
+        }
+      ],
+      "Costcentre": [
+        {
+          "id": 1,
+          "name": "ETIPL",
+          "isActive": true,
+          "modified_at": "2022-10-08T17:49:35.050031",
+          "created_at": "2022-10-08T17:49:35.050097"
+        }
+      ],
+      "Sharingfeasibility": [
+        {
+          "id": 1,
+          "name": "Solo",
+          "isActive": true,
+          "modified_at": "2022-10-07T11:23:49.664172",
+          "created_at": "2022-10-07T11:23:49.664221"
+        }
+      ],
+      "Towncategory": [
+        {
+          "id": 1,
+          "name": "Top10",
+          "isActive": true,
+          "modified_at": "2022-10-17T10:58:36.365508",
+          "created_at": "2022-10-17T10:58:36.365555"
+        }
+      ],
+      "Hubsite": [
+        {
+          "id": 1,
+          "name": "Yes",
+          "isActive": true,
+          "modified_at": "2022-10-08T17:54:17.654661",
+          "created_at": "2022-10-08T17:54:17.654711"
+        }
+      ],
+      "Ldca": [
+        {
+          "id": 1,
+          "name": "Mumbai",
+          "isActive": true,
+          "modified_at": "2022-10-17T10:59:58.050870",
+          "created_at": "2022-10-17T10:59:58.050916"
+        }
+      ],
+      "Scda": [
+        {
+          "id": 1,
+          "name": "Mumbai",
+          "isActive": true,
+          "modified_at": "2022-10-17T11:03:47.544354",
+          "created_at": "2022-10-17T11:03:47.544401"
+        }
+      ]
+    }
+  ],
+  "GeoCondition": [
+    {
+      "id": 146,
+      "Altitude": "360m",
+      "TempratureZone": "1",
+      "isActive": true,
+      "modified_at": "2022-12-10T11:37:19.822767",
+      "created_at": "2022-12-10T11:37:19.822817",
+      "Potentialthreat": [
+        {
+          "id": 1,
+          "name": "Building Redevelopment",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:31:28.001955",
+          "created_at": "2022-10-07T10:31:28.001999"
+        }
+      ],
+      "Windzone": [
+        {
+          "id": 1,
+          "name": "Heavy",
+          "isActive": true,
+          "modified_at": "2022-10-07T11:28:49.079313",
+          "created_at": "2022-10-07T11:28:49.079356"
+        }
+      ],
+      "Seismiczone": [
+        {
+          "id": 1,
+          "name": "3",
+          "isActive": true,
+          "modified_at": "2022-10-17T11:01:26.858050",
+          "created_at": "2022-10-17T11:01:26.858098"
+        }
+      ],
+      "Floodzone": [
+        {
+          "id": 1,
+          "name": "Heavy",
+          "isActive": true,
+          "modified_at": "2022-10-07T11:30:11.806998",
+          "created_at": "2022-10-07T11:30:11.807043"
+        }
+      ],
+      "Terraintype": [
+        {
+          "id": 1,
+          "name": "Costal",
+          "isActive": true,
+          "modified_at": "2022-10-17T11:05:00.455003",
+          "created_at": "2022-10-17T11:05:00.455054"
+        }
+      ]
+    }
+  ],
+  "SafetyAndAccess": [
+    {
+      "id": 138,
+      "Siteaccessmethodology": "",
+      "NearByPoliceStation": "",
+      "NearByPoliceStationNumber": "",
+      "NearByFireStation": "",
+      "NearByFireStationNumber": "",
+      "isActive": true,
+      "modified_at": "2022-12-10T11:37:49.180034",
+      "created_at": "2022-12-10T11:37:49.180083",
+      "Physicalsecurity": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:46:40.657981",
+          "created_at": "2022-10-07T10:46:40.658027"
+        }
+      ],
+      "GateAndFence": [
+        {
+          "id": 1,
+          "name": "Yes",
+          "isActive": true,
+          "createddate": "2022-10-17T13:57:43.143109",
+          "modifieddate": "2022-10-17T13:57:43.143192"
+        }
+      ],
+      "Videomonitoring": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:47:29.471875",
+          "created_at": "2022-10-07T10:47:29.471921"
+        }
+      ],
+      "SiteAccessArea": [
+        {
+          "id": 1,
+          "name": "clear",
+          "isActive": true,
+          "createddate": "2022-10-17T13:58:25.403372",
+          "modifieddate": "2022-10-17T13:58:25.403421"
+        }
+      ],
+      "DangerSignage": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-17T13:59:42.706986",
+          "created_at": "2022-10-17T13:59:42.706943"
+        }
+      ],
+      "CautionSignage": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-17T14:34:00.640440",
+          "created_at": "2022-10-17T14:34:00.640385"
+        }
+      ],
+      "Siteaccess": [
+        {
+          "id": 1,
+          "name": "24X7",
+          "isActive": true,
+          "modified_at": "2022-10-07T11:21:51.793968",
+          "created_at": "2022-10-07T11:21:51.794017"
+        }
+      ]
+    },
+    {
+      "id": 139,
+      "Siteaccessmethodology": "",
+      "NearByPoliceStation": "",
+      "NearByPoliceStationNumber": "",
+      "NearByFireStation": "",
+      "NearByFireStationNumber": "",
+      "isActive": true,
+      "modified_at": "2022-12-10T18:52:38.680459",
+      "created_at": "2022-12-10T18:52:38.680534",
+      "Physicalsecurity": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:46:40.657981",
+          "created_at": "2022-10-07T10:46:40.658027"
+        }
+      ],
+      "GateAndFence": [
+        {
+          "id": 1,
+          "name": "Yes",
+          "isActive": true,
+          "createddate": "2022-10-17T13:57:43.143109",
+          "modifieddate": "2022-10-17T13:57:43.143192"
+        }
+      ],
+      "Videomonitoring": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-07T10:47:29.471875",
+          "created_at": "2022-10-07T10:47:29.471921"
+        }
+      ],
+      "SiteAccessArea": [
+        {
+          "id": 1,
+          "name": "clear",
+          "isActive": true,
+          "createddate": "2022-10-17T13:58:25.403372",
+          "modifieddate": "2022-10-17T13:58:25.403421"
+        }
+      ],
+      "DangerSignage": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-17T13:59:42.706986",
+          "created_at": "2022-10-17T13:59:42.706943"
+        }
+      ],
+      "CautionSignage": [
+        {
+          "id": 1,
+          "name": "Available",
+          "isActive": true,
+          "modified_at": "2022-10-17T14:34:00.640440",
+          "created_at": "2022-10-17T14:34:00.640385"
+        }
+      ],
+      "Siteaccess": [
+        {
+          "id": 1,
+          "name": "24X7",
+          "isActive": true,
+          "modified_at": "2022-10-07T11:21:51.793968",
+          "created_at": "2022-10-07T11:21:51.794017"
+        }
+      ]
+    }
+  ],
+  "Operator": [],
+  "siteacquisition": [],
+  "utilities": [],
+  "Filesstorage": []
 }

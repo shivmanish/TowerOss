@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationBarView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.ui.fragments.search.SearchFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
@@ -21,6 +22,8 @@ import com.smarthub.baseapplication.viewmodels.MainViewModel
 class  DashboardActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SiteDetailViewModel
+    lateinit var navController : NavController
+
     private lateinit var mainViewModel: MainViewModel
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,8 @@ class  DashboardActivity : BaseActivity() {
            viewModel = ViewModelProvider(this)[SiteDetailViewModel::class.java]
            initializeCustomActionBar()
            val navView: BottomNavigationView = binding.navView
-           val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
+           navController = findNavController(R.id.nav_host_fragment_activity_main)
            navView.setupWithNavController(navController)
            navView.itemIconTintList = null
 //
@@ -59,6 +63,16 @@ class  DashboardActivity : BaseActivity() {
 //               Log.d("status", "onMenuOpened:" + navDestination.navigatorName)
 //           }
        }
+
+    override fun onBackPressed() {
+        val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+        val currentFragment = navFragment!!.childFragmentManager.primaryNavigationFragment
+        if (currentFragment is SearchFragment && currentFragment.searchResultAdapter.searchQatModels.size>0){
+            currentFragment.clearResult()
+        }else
+            super.onBackPressed()
+
+    }
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()

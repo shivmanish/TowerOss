@@ -15,7 +15,8 @@
             android:textColor="@color/black"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:gravity="center"
 
             android:text="Direction"
             style="@style/RowTextItemInfo"
@@ -24,8 +25,9 @@
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="@dimen/dp14"
+            android:layout_width="0dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
             android:text=" Bldg Name"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
@@ -34,8 +36,8 @@
             android:textColor="@color/black"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-
+            android:layout_width="0dp"
+            android:gravity="center"
             android:text="Bldg Type"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
@@ -44,8 +46,8 @@
             android:textColor="@color/black"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-            android:text="Bldg ht.(m)"
+            android:layout_width="0dp"
+            android:gravity="center"            android:text="Bldg ht.(m)"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>

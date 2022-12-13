@@ -13,7 +13,7 @@ import com.smarthub.baseapplication.model.search.SearchListItem
 
 class SearchResultAdapter(var context: Context?,var listener : SearchResultListener) : RecyclerView.Adapter<SearchResultAdapter.ViewHold>() {
 
-    private var searchQatModels: ArrayList<SearchListItem> = ArrayList()
+    var searchQatModels: ArrayList<SearchListItem> = ArrayList()
 
     fun updateList(searchQatModels: SearchList){
         this.searchQatModels = searchQatModels
