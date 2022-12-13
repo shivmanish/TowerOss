@@ -141,7 +141,7 @@
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"/>
                                     <TextView
-                                        android:id="@+id/sub_title1"
+                                        android:id="@+id/total_rfi"
                                         android:textSize="18sp"
                                         android:textColor="#629BE5"
                                         android:text="100"
@@ -193,7 +193,7 @@
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"/>
                                     <TextView
-                                        android:id="@+id/sub_title2"
+                                        android:id="@+id/total_on_air"
                                         android:textSize="18sp"
                                         android:textColor="#50B6BA"
                                         android:text="55"
@@ -244,7 +244,7 @@
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"/>
                                     <TextView
-                                        android:id="@+id/sub_title3"
+                                        android:id="@+id/total_in_progress"
                                         android:textSize="18sp"
                                         android:textColor="#748892"
                                         android:text="100"
@@ -383,6 +383,7 @@
                             <com.google.android.material.card.MaterialCardView
                                 android:layout_width="0dp"
                                 android:layout_marginStart="5dp"
+                                android:visibility="invisible"
                                 android:layout_height="match_parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:cardCornerRadius="@dimen/dp10"

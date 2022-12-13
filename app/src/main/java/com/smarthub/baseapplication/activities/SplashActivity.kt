@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class SplashActivity : BaseActivity() {
@@ -28,6 +29,10 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
+        AppLogger.log("token:${AppPreferences.getInstance().token}")
+        AppLogger.log("refresh:${AppPreferences.getInstance().refresh}")
+        AppLogger.log("refresh:${AppPreferences.getInstance().bearerToken}")
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 if (isNetworkConnected){

@@ -5,6 +5,7 @@ import com.smarthub.baseapplication.model.CommonResponse;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
+import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
@@ -83,10 +84,13 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
-    Call<SearchList> searchSiteInfoData(@Body JsonObject data, @Header("Authorization") String auth);
+    Call<SearchList> searchSiteInfoData(@Body JsonObject data);
 
     @POST(EndPoints.BASIC_INFO_UPDATE)
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.DASHBOARD_DATA_URL)
+    Call<HomeResponse> fetchHomeData(@Body JsonObject data);
 }
 

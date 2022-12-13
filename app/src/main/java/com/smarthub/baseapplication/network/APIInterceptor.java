@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.network;
 
+import android.util.Log;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import com.smarthub.baseapplication.BuildConfig;
 import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
+import com.smarthub.baseapplication.utils.AppLogger;
 import com.smarthub.baseapplication.utils.Utils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -50,7 +53,7 @@ public  class APIInterceptor {
 
                 Request request = chain.request();
                 Request request2 = request.newBuilder()
-//                        .addHeader("Authorization", getAccessToken())
+                        .addHeader("Authorization", getAccessToken())
                         .build();
                 Utils.INSTANCE.log("createInstance REtrofit 51");
                 Utils.INSTANCE.log("Request:" + request2);
@@ -197,11 +200,11 @@ public  class APIInterceptor {
             Gson gson = new Gson();
             RefreshToken refreshTokenResult = gson.fromJson(response.toString(), RefreshToken.class);
             AppPreferences.getInstance().saveString("accessToken", refreshTokenResult.getData());
-            Utils.INSTANCE.log("APIInterceptor 401 inside refresh token:"+refreshTokenResult.getData());
+            Log.d("status","APIInterceptor 200 inside refresh token:" + refreshTokenResult.getData());
 
             return true;
         } else if (responseCode == 401) {
-            Utils.INSTANCE.log("APIInterceptor 401 inside refresh token else if");
+            Log.d("status","APIInterceptor 401 inside refresh token else if");
 
             AppPreferences.getInstance().removeItem("accessToken");
             AppPreferences.getInstance().removeItem("refreshToken");

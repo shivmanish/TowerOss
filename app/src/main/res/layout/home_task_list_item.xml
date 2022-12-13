@@ -30,7 +30,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
             <TextView
-                android:id="@+id/item_title_text"
+                android:id="@+id/task_name"
                 android:text="Add Site Nominals"
                 android:textSize="14sp"
                 style="@style/AutoResizeTextView"
@@ -158,18 +158,20 @@
                 android:textSize="10sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/task_list_date"
+                app:layout_constraintEnd_toStartOf="@+id/task_due_data"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_arrow_down_black"
                 />
             <TextView
-                android:id="@+id/task_list_date"
+                android:id="@+id/task_due_data"
                 android:layout_width="wrap_content"
                 android:paddingEnd="@dimen/dp7"
                 android:paddingTop="@dimen/dp7"
                 android:paddingBottom="@dimen/dp7"
                 android:text="10-Nov-22"
                 android:textSize="10sp"
+                android:maxLength="10"
+                android:ellipsize="end"
                 android:textColor="@color/search_background"
                 android:fontFamily="@font/poppins_semibold"
                 app:layout_constraintTop_toTopOf="parent"

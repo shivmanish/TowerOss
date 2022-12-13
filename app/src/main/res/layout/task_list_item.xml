@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
             <TextView
-                android:id="@+id/item_title_text"
+                android:id="@+id/task_name"
                 android:text="SO Details:"
                 android:textSize="@dimen/dp11"
                 android:fontFamily="@font/poppins"
@@ -51,7 +51,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_title_text"/>
+                app:layout_constraintStart_toEndOf="@+id/task_name"/>
             <TextView
                 android:id="@+id/item_title_text1"
                 android:text="Acqusition Site Survey"
@@ -63,7 +63,7 @@
                 android:textColor="#4F4D4D"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/item_title_text"
+                app:layout_constraintTop_toBottomOf="@+id/task_name"
                 app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                 android:id="@+id/item_title_text2"

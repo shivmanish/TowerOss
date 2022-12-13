@@ -1,0 +1,30 @@
+package com.smarthub.baseapplication.model.home
+
+data class MyTeamTask(
+    val AssigneeDepartment: String,
+    val Auto: String,
+    val Automaticescalationofoverdueitems: String,
+    val FeatureName: String,
+    val NotificationSettingfornewaction: String,
+    val PrerequisiteTask: String,
+    val Processname: String,
+    val Projectname: String,
+    val ReWorkflow: String,
+    val Reminderofoutstandingactions: String,
+    val SLA: String,
+    val Status: String,
+    val Taskid: String,
+    val Taskinstruction: String,
+    val Taskname: String,
+    val Weightage: String,
+    val Where: String,
+    val Workflow: String,
+    val actorname: String,
+    val created_at: String,
+    val enddate: String,
+    val id: String,
+    val siteid: String,
+    val sitename: String,
+    val startdate: String,
+    val workorderid: String
+)

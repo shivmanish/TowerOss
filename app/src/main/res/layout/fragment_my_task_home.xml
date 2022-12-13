@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
-        android:id="@+id/sub_title1"
+        android:id="@+id/total_rfi"
         android:textSize="12sp"
         android:textColor="@color/black"
         android:text="Over"
@@ -44,9 +44,9 @@
         android:fontFamily="@font/poppins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/sub_title1"
-        app:layout_constraintTop_toTopOf="@+id/sub_title1"
-        app:layout_constraintStart_toEndOf="@+id/sub_title1"/>
+        app:layout_constraintBottom_toBottomOf="@+id/total_rfi"
+        app:layout_constraintTop_toTopOf="@+id/total_rfi"
+        app:layout_constraintStart_toEndOf="@+id/total_rfi"/>
 
     <TextView
         android:id="@+id/title2"
@@ -65,7 +65,7 @@
         android:layout_marginStart="@dimen/dp15"
         app:layout_constraintStart_toEndOf="@+id/status_title1"/>
     <TextView
-        android:id="@+id/sub_title2"
+        android:id="@+id/total_on_air"
         android:textSize="12sp"
         android:textColor="@color/black"
         android:text="Now"
@@ -88,9 +88,9 @@
         android:fontFamily="@font/poppins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/sub_title2"
-        app:layout_constraintTop_toTopOf="@+id/sub_title2"
-        app:layout_constraintStart_toEndOf="@+id/sub_title2"/>
+        app:layout_constraintBottom_toBottomOf="@+id/total_on_air"
+        app:layout_constraintTop_toTopOf="@+id/total_on_air"
+        app:layout_constraintStart_toEndOf="@+id/total_on_air"/>
 
     <TextView
         android:id="@+id/title3"
@@ -109,7 +109,7 @@
         android:layout_marginStart="@dimen/dp15"
         app:layout_constraintStart_toEndOf="@+id/status_title2"/>
     <TextView
-        android:id="@+id/sub_title3"
+        android:id="@+id/total_in_progress"
         android:textSize="12sp"
         android:textColor="@color/black"
         android:text="Now"
@@ -132,9 +132,9 @@
         android:fontFamily="@font/poppins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/sub_title3"
-        app:layout_constraintTop_toTopOf="@+id/sub_title3"
-        app:layout_constraintStart_toEndOf="@+id/sub_title3"/>
+        app:layout_constraintBottom_toBottomOf="@+id/total_in_progress"
+        app:layout_constraintTop_toTopOf="@+id/total_in_progress"
+        app:layout_constraintStart_toEndOf="@+id/total_in_progress"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/dp35"

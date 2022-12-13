@@ -216,7 +216,7 @@ public class SiteInfoRepo {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(id,category);
-        apiClient.searchSiteInfoData(jsonObject, AppPreferences.getInstance().getBearerToken()).enqueue(new Callback<SearchList>() {
+        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<SearchList>() {
             @Override
             public void onResponse(Call<SearchList> call, Response<SearchList> response) {
                 if (response.isSuccessful()){
