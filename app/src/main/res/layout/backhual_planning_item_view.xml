@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/collapse_card_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50">
+            <TextView
+                android:id="@+id/item_title"
+                android:text="Link Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:background="@color/transparent"
+                style="@style/RowTextviewItem"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".5"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/icon_layout"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_edit"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/edit_ico_black"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp58"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/item_line"
+            android:alpha="2"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="vertical">
+            <LinearLayout
+                android:paddingBottom="@dimen/dp10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:padding="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Backhaul type" />
+                <TextView
+                    android:padding="@dimen/dp10"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Microwave" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Antenna Count" />
+                        <TextView
+                            android:id="@+id/editAntennaCount"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Max height, AGL (m)" />
+                        <TextView
+                            android:id="@+id/editMaxheight"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total Waight" />
+                        <TextView
+                            android:id="@+id/editTotalWaight"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Offset Pole Count" />
+                        <TextView
+                            android:id="@+id/editOffsetPoleCount"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Antenna Space" />
+                        <TextView
+                            android:id="@+id/editAntennaSpace"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tower/Pole Height" />
+                        <TextView
+                            android:id="@+id/editTOCOUID"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Additional Pole Height" />
+                        <TextView
+                            android:id="@+id/editAdditionalPoleHeight"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Remark" />
+                        <TextView
+                            android:id="@+id/editRemark"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+                        
+                    </LinearLayout>
+
+                </GridLayout>
+                <TextView
+                    android:padding="@dimen/dp10"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fiber" />
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="LM Length" />
+                        <TextView
+                            android:id="@+id/editLMLength"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cable Length" />
+                        <TextView
+                            android:id="@+id/editCableLength"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Laying Type" />
+                        <TextView
+                            android:id="@+id/editLayingType"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fibre Core" />
+                        <TextView
+                            android:id="@+id/editFibreCore"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Remark1" />
+                        <TextView
+                            android:id="@+id/editRemark1"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xxxx" />
+
+                        
+                    </LinearLayout>
+
+
+                </GridLayout>
+
+                <include layout="@layout/cancel_save_layout"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</LinearLayout>

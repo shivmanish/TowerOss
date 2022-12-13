@@ -9,14 +9,11 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentFragmen
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.OppoTssrTabFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.SPApprovalTabFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.ServiceRequestTabFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.SoftAcquisitionTabFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
-        return 6
+        return 7
     }
 
     override fun getItem(position: Int): Fragment {
@@ -42,6 +39,9 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             5 -> {
                 return SoftAcquisitionTabFragment()
             }
+            6 -> {
+                return FeasibilityPlanningTabFragment()
+            }
             else -> {
                 return OpcoSiteInfoFramgment()
             }
@@ -53,9 +53,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             0 -> {
                 return "Site Request"
             }
-//            1 -> {
-//                return "Commercials"
-//            }
+
             1 -> {
                 return "OPCO TSSR"
             }
@@ -66,12 +64,15 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return "Site Proposal"
             }
             4 -> {
-                return "Site Proposal"
-            }  5 -> {
                 return "SP Approval / SO"
+            }  5 -> {
+                return "Soft Acquisition"
             } 6 -> {
                 return "Soft Acquisition"
+            } 7 -> {
+                return "Feasibility Planning"
             }
+
         }
         return super.getPageTitle(position)
     }
