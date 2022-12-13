@@ -39,8 +39,8 @@ class RegistrationThirdStep : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         registrationThirdStepBinding.managerNameRoot.tag=false
-        registrationThirdStepBinding.emailIdRoot.tag==false
-        registrationThirdStepBinding.moNoRoot.tag==false
+        registrationThirdStepBinding.emailIdRoot.tag=false
+        registrationThirdStepBinding.moNoRoot.tag=false
         registrationThirdStepBinding.managerName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}

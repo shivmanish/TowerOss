@@ -50,7 +50,20 @@
             android:id="@+id/action_forgotPassStep2_to_forgotPassStep3"
             app:destination="@id/forgotPassStep3"
             app:popUpTo="@id/forgotPassStep1"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="false" >
+            <argument
+                android:name="access"
+                app:argType="string"
+                android:defaultValue="" />
+            <argument
+                android:name="refresh"
+                app:argType="string"
+                android:defaultValue="" />
+            <argument
+                android:name="phone"
+                app:argType="string"
+                android:defaultValue="" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/forgotPassStep3"
@@ -123,7 +136,9 @@
         <action
             android:id="@+id/action_registrationOtpFragment_to_registrationSuccessfull"
             app:destination="@id/registrationSuccessfull"
-            app:popUpTo="@id/loginFragment" />
+            app:popUpTo="@id/loginFragment" >
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/registrationSetPassword"

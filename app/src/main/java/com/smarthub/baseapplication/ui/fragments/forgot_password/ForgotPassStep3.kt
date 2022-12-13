@@ -32,28 +32,63 @@ class ForgotPassStep3 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var acessToken: String = ""
+        var refresToken: String = ""
+        var phoneNumber: String = ""
+        if (requireArguments().containsKey("access")) {
+            try {
+                Log.d("status","access key :" + requireArguments().getString("access"))
+                acessToken= requireArguments().getString("access").toString()
+            } catch (e: Exception) {
+                Log.d("status","error e :${e.localizedMessage}")
+            }
+        }
+        if (requireArguments().containsKey("refresh")) {
+            try {
+                Log.d("status","refresh key :" + requireArguments().getString("refresh"))
+                refresToken= requireArguments().getString("refresh").toString()
+            } catch (e: Exception) {
+                Log.d("status","error e :${e.localizedMessage}")
+            }
+        }
+        if (requireArguments().containsKey("phone")) {
+            try {
+                Log.d("status","phone key :" + requireArguments().getString("phone"))
+                phoneNumber= requireArguments().getString("phone").toString()
+            } catch (e: Exception) {
+                Log.d("status","error e :${e.localizedMessage}")
+            }
+        }
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
-        binding.signWithPhone.setOnClickListener {
-            Utils.hideKeyboard(requireContext(),it)
-            activity?.let{
-                findNavController().navigate(ForgotPassStep3Directions.actionForgotPassStep3ToForgotPassStep4())
-            }
-        }
 
-        binding.confirmPass.addTextChangedListener(object : TextWatcher {
+        binding.password.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString() == binding.confirmPass.text.toString()) {
-                    Utils.hideKeyboard(requireContext(), binding.moNoEdit)
-                    binding.signWithPhone.visibility = View.VISIBLE
-                    binding.signWithPhoneDisable.visibility = View.GONE
+                if (Utils.validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                    Utils.hideKeyboard(requireContext(), binding.password)
+                    binding.submitPass.isEnabled=true
+                    binding.submitPass.alpha = 1.0f
                 }else{
-                    binding.signWithPhoneDisable.visibility = View.VISIBLE
-                    binding.signWithPhone.visibility = View.GONE
+                    binding.submitPass.alpha = 0.3f
+                    binding.submitPass.isEnabled=false
+                }
+            }
+        })
+        binding.confirmPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if (Utils.validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                    Utils.hideKeyboard(requireContext(), binding.password)
+                    binding.submitPass.isEnabled=true
+                    binding.submitPass.alpha = 1.0f
+                }else{
+                    binding.submitPass.alpha = 0.3f
+                    binding.submitPass.isEnabled=false
                 }
             }
         })
@@ -72,28 +107,19 @@ class ForgotPassStep3 : Fragment() {
             }else  if (it?.data != null){
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText(it?.data?.error)
             } else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
             }
         }
-        binding.signWithPhone.setOnClickListener {
+        binding.submitPass.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.changePassword(binding.moNoEdit.text.toString())
+            loginViewModel?.changePassword(phoneNumber,binding.confirmPassword.text.toString())
         }
     }
 
-    private fun enableErrorText(){
-        binding.userMailLayout.error = "enter valid mo no"
-    }
-
-    private fun enableErrorText(error:String?){
-        binding.userMailLayout.error = "$error"
-    }
 }
 
 

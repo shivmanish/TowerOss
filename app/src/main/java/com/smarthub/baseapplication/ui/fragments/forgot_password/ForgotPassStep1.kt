@@ -37,15 +37,7 @@ class ForgotPassStep1 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
         binding.moNoEdit.setTag(false)
-        binding.back?.setOnClickListener {view->
-            Utils.hideKeyboard(requireContext(),view)
-            activity?.let{
-                it?.onBackPressed()
-            }
-        }
-
-        binding.moNoEdit.setOnTouchListener(object : DrawableClickListener(DRAWABLE_RIGHT) {
-            override fun onDrawableClick(): Boolean {
+        binding.sendOtp.setOnClickListener  {
                 Log.d("status"," DRAWABLE_RIGHT : moNoEdit")
                 Utils.hideKeyboard(requireContext(),binding.moNoEdit)
                 binding.moNoEdit.clearFocus()
@@ -54,21 +46,24 @@ class ForgotPassStep1 : Fragment() {
                         progressDialog.show()
                     loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
                 }
-                return false
-            }
-        })
+
+        }
 
         binding.moNoEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().isNotEmpty() && binding.moNoEdit.text.toString().length>=10) {
+                if (binding.moNoEdit.text.toString().length==10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
-                    binding.moNoEdit.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.mo_no_next_outline_white,0)
-                    binding.moNoEdit.tag = true
+                    binding.phoneNumLayout.isErrorEnabled = false
+                    binding.moNoEdit.tag=true
+                    binding.sendOtp.isClickable=true
+                    binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline_white)
+
                 }else{
-                    binding.moNoEdit.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.mo_no_next_outline,0)
-                    binding.moNoEdit.tag = false
+                    binding.sendOtp.isClickable=false
+                    binding.sendOtp.setImageResource(R.drawable.mo_no_next_outline)
+                    binding.moNoEdit.tag=false
                 }
             }
         })
@@ -87,15 +82,22 @@ class ForgotPassStep1 : Fragment() {
                     )
                 }
             }else{
-                Log.d("status","${AppConstants.GENERIC_ERROR}")
+                Log.d("status ","AppConstants.GENERIC_ERROR ${AppConstants.GENERIC_ERROR}")
                 Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
                 enableErrorText()
             }
         }
     }
 
+    override fun onDestroyView() {
+        if (loginViewModel?.getOtpResponse?.hasActiveObservers() == true){
+            loginViewModel?.getOtpResponse?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroyView()
+    }
+
     private fun enableErrorText(){
-        binding.userMailLayout?.error = "enter valid mo no"
+        binding.phoneNumLayout?.error = "enter valid mo no"
     }
 
 }

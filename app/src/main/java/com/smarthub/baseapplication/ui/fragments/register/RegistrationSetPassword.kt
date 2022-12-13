@@ -35,7 +35,7 @@ class RegistrationSetPassword : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                if (Utils.validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
                     Utils.hideKeyboard(requireContext(), binding.password)
                     binding.submitPass.isEnabled=true
                     binding.submitPass.alpha = 1.0f
@@ -49,7 +49,7 @@ class RegistrationSetPassword : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
+                if (Utils.validatePass(binding.password.text.toString()) && binding.password.text.toString() == binding.confirmPassword.text.toString()) {
                     Utils.hideKeyboard(requireContext(), binding.password)
                     binding.submitPass.isEnabled=true
                     binding.submitPass.alpha = 1.0f
@@ -91,16 +91,7 @@ class RegistrationSetPassword : Fragment() {
     private fun enableErrorText(){
         binding.confirmPassLayout.error = "Password mismatched or not in correct format"
     }
-    fun validatePass(password: String): Boolean {
-        if (password.length < 8) return false
-        if (password.filter { it.isDigit() }.firstOrNull() == null) return false
-        if (password.filter { it.isLetter() }.filter { it.isUpperCase() }.firstOrNull() == null) return false
-        if (password.filter { it.isLetter() }.filter { it.isLowerCase() }.firstOrNull() == null) return false
-        if (password.filter { !it.isLetterOrDigit() }.firstOrNull() == null) return false
 
-        return true
-
-    }
 }
 
 

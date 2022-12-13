@@ -23,7 +23,6 @@ class LoginViewModel: ViewModel() {
     var getOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
     var getResendOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
     var getPassResponse : SingleLiveEvent<Resource<GetSuccessResponse>>?=null
-
     var regstationResponse: MutableLiveData<RegstationResponse>?=null
     var registerVerifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>>?=null
     var emailVerifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>>?=null
@@ -79,8 +78,11 @@ class LoginViewModel: ViewModel() {
         loginRepo?.getRegisterOtpOnPhone(phone)
     }
 
-    fun changePassword(data : String) {
-        loginRepo?.changePassword(UserPasswordGet(userOTPGet?.userPhoneNumber,data))
+//    fun changePassword(data : String) {
+//        loginRepo?.changePassword(UserPasswordGet(userOTPGet?.userPhoneNumber,data))
+//    }
+    fun changePassword(phone : String,data : String) {
+        loginRepo?.changePassword(UserPasswordGet(phone,data))
     }
 
     fun registerPassword(phone : String?,newPass : String,) {
