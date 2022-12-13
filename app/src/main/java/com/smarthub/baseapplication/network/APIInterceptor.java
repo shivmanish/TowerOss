@@ -55,6 +55,11 @@ public  class APIInterceptor {
                 Request request2 = request.newBuilder()
                         .addHeader("Authorization", getAccessToken())
                         .build();
+                if (AppPreferences.getInstance().getToken()==null || AppPreferences.getInstance().getToken().isEmpty()) {
+                    request2 = request.newBuilder()
+//                            .addHeader("Authorization", getAccessToken())
+                            .build();
+                }
                 Utils.INSTANCE.log("createInstance REtrofit 51");
                 Utils.INSTANCE.log("Request:" + request2);
 
