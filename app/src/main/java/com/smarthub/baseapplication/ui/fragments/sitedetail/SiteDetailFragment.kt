@@ -20,9 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -34,13 +32,12 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
-import com.smarthub.baseapplication.ui.fragments.sitedetail.BlackhaulFrag.Companion.newInstance
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
@@ -248,7 +245,7 @@ class SiteDetailFragment : Fragment() {
                 4-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(4) ?: "Site Agreement")
                 5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(5) ?: "Utilitie Equip")
                 6-> BlackhaulFrag.newInstance(tabNames?.get(6) ?: "Noc & Comp")
-                7-> BlackhaulFrag.newInstance(tabNames?.get(7) ?: "TWR & Civil Infra")
+                7-> CivilInfraFragment()
                 8-> PowerConnection()
                 9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "Bill & Payments")
                 10-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
