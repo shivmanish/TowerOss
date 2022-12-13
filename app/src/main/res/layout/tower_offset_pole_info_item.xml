@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-     android:orientation="vertical"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -13,51 +13,34 @@
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:textStyle="bold"
             android:text="1st"
             style="@style/RowTextItemInfo"
-            android:gravity="center"
             android:maxLines="1"
-            android:ellipsize="marquee"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-            android:text="ssggs"
+            android:layout_width="0dp"
+            android:text="rgsgs"
             style="@style/RowTextItemInfo"
             android:gravity="center"
-            android:maxLines="1"
-            android:ellipsize="marquee"
-            android:layout_height="wrap_content"/>
+            android:maxLines="1"            android:layout_height="wrap_content"/>
         <TextView
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp30"
+            android:layout_width="0dp"
             android:text="3"
             style="@style/RowTextItemInfo"
             android:gravity="center"
             android:maxLines="1"
-            android:ellipsize="marquee"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_weight="1"
-            android:textSize="@dimen/dp14"
-            android:textStyle="bold"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-            android:text="10-Nov-18"
-            android:gravity="center"
-            android:maxLines="1"
-            android:ellipsize="marquee"
-            style="@style/RowTextItemInfo"
-            android:layout_height="wrap_content"/>
+
     </LinearLayout>
     <View
         android:alpha="2"
