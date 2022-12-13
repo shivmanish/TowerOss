@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_item"
+    android:layout_margin="@dimen/dp10"
+    app:cardElevation="@dimen/dp5"
+    app:cardCornerRadius="@dimen/dp5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/top"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginStart="@dimen/dp5"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:id="@+id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/dummy_network_call" />
+
+        <TextView
+            android:id="@+id/titel"
+            android:maxLines="1"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Reliance jio pvt ltd"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15"
+            app:layout_constraintEnd_toStartOf="@+id/text1"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_marginStart="@dimen/dp10"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:maxLines="1"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="10kw"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp14"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/dp10"/>
+
+        <TextView
+            android:id="@+id/text_id"
+            android:maxLines="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="EB Connection"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/sp12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titel"
+            app:layout_constraintTop_toBottomOf="@+id/titel"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/text_id"
+            android:background="@color/tab_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:alpha="0.21"/>
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="20dp"
+            android:visibility="gone"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dp15"
+            android:adjustViewBounds="true"
+            android:src="@drawable/dummy_3g"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/text_rfi_date"
+            android:text="RFI Date 05-Oct"
+            android:maxLines="1"
+            android:layout_marginTop="@dimen/dp10"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp15"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:id="@+id/text_rfs_date"
+            android:maxLines="1"
+            app:layout_constraintTop_toTopOf="@+id/text_rfi_date"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/text_rfi_date"
+            android:text="Installation Date 10-Nov-2018"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/dp15"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
