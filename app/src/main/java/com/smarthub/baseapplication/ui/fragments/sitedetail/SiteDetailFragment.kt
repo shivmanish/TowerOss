@@ -38,6 +38,7 @@ import com.smarthub.baseapplication.popupmenu.EditPopMenu
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
+import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.BlackhaulFrag.Companion.newInstance
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
@@ -234,11 +235,6 @@ class SiteDetailFragment : Fragment() {
         constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
 
-    private fun setupViewPager(viewPager: ViewPager) {
-
-
-    }
-
 
     internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) :
         FragmentPagerAdapter(manager,behaviour) {
@@ -253,7 +249,7 @@ class SiteDetailFragment : Fragment() {
                 5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(5) ?: "Utilitie Equip")
                 6-> BlackhaulFrag.newInstance(tabNames?.get(6) ?: "Noc & Comp")
                 7-> BlackhaulFrag.newInstance(tabNames?.get(7) ?: "TWR & Civil Infra")
-                8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "EB Connection")
+                8-> PowerConnection()
                 9-> BlackhaulFrag.newInstance(tabNames?.get(9) ?: "Bill & Payments")
                 10-> BlackhaulFrag.newInstance(tabNames?.get(10) ?: "QA Inspection")
                 else -> SiteInfoNewFragment()
