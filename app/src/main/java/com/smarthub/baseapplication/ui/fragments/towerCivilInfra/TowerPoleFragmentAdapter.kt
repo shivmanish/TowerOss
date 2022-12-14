@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-class TowerPageAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class TowerPoleFragmentAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 2
     }
@@ -12,13 +12,13 @@ class TowerPageAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return TowerInfoFragment()
+                return TowerPoleInfoFragment()
             }
             1 -> {
-                return TowerInfoFragment()
+                return TowerPoleInfoFragment()
             }
             else -> {
-                return TowerInfoFragment()
+                return TowerPoleInfoFragment()
             }
         }
     }
@@ -26,10 +26,10 @@ class TowerPageAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "Tower1"
+                return "Equipment Room 1"
             }
             1 -> {
-                return "Tower2"
+                return "Equipment Room 2"
             }
 
 

@@ -8,27 +8,25 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerPoleInfoAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
-    var type1 = "Tower"
+    var type1 = "Equipment Room"
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
     var type4 = "Consumables"
     var type5 = "Attachment"
     init {
-        list.add("Tower")
+        list.add("Equipment Room")
         list.add("Installation & Acceptence")
         list.add("PO")
         list.add("Consumables")
         list.add("Attachment")
     }
-
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-    
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : TowerListItemBinding = TowerListItemBinding.bind(itemView)
+        var binding : PoleEquipmentRoomListBinding = PoleEquipmentRoomListBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -60,8 +58,8 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: TowerPoItemBinding =
-            TowerPoItemBinding.bind(itemView)
+        var binding: PolePoItemBinding =
+            PolePoItemBinding.bind(itemView)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
@@ -76,8 +74,8 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding: TowerConsumableItemBinding =
-            TowerConsumableItemBinding.bind(itemView)
+        var binding: PoleConsumableItemBinding =
+            PoleConsumableItemBinding.bind(itemView)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
@@ -91,8 +89,8 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerInfoListAdapter.TowerInfoListListener) : ViewHold(itemView) {
-        var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
+    class ViewHold5(itemView: View,listener: TowerPoleInfoAdapter.TowerPoleListListener) :ViewHold(itemView) {
+        var binding: PoleAttachmentBinding = PoleAttachmentBinding.bind(itemView)
 
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -137,29 +135,30 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
         return 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_equipment_room_list, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_installation_acceptence, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_installation_acceptence, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_po_item, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_consumable_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_consumable_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_attachment_info, parent, false)
-                return ViewHold5(view,listener)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_attachment, parent, false)
+                return ViewHold5(view,listner)
             }
+
 
         }
         return ViewHold(view)
@@ -167,7 +166,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
-            is TowerInfoListAdapter.ViewHold1 -> {
+            is ViewHold1 -> {
                 holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -181,7 +180,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.EditTowerItem()
+                        listner.EditTowerItem()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -191,7 +190,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                 holder.binding.itemTitleStr.text = list[position]
 
             }
-            is TowerInfoListAdapter.ViewHold2 -> {
+            is ViewHold2 -> {
                 holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
                     if ((holder.binding.itemTitle.tag as Boolean)) {
@@ -205,7 +204,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.EditInstallationAcceptence()
+                        listner.EditInstallationAcceptence()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -214,7 +213,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
-            is TowerInfoListAdapter.ViewHold3 -> {
+            is ViewHold3 -> {
                 holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
                     if ((holder.binding.imgDropdown.tag as Boolean)) {
@@ -233,7 +232,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
-            is TowerInfoListAdapter.ViewHold4 -> {
+            is ViewHold4 -> {
                 holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
                     if ((holder.binding.imgDropdown.tag as Boolean)) {
@@ -252,7 +251,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
-            is TowerInfoListAdapter.ViewHold5 -> {
+            is ViewHold5 -> {
                 holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
                     if ((holder.binding.imgDropdown.tag as Boolean)) {
@@ -273,6 +272,7 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
+
         }
     }
 
@@ -280,10 +280,9 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
         return list.size
     }
 
-    interface TowerInfoListListener {
-       fun attachmentItemClicked()
+    interface TowerPoleListListener {
+        fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditTowerItem()
     }
-
 }
