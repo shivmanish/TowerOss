@@ -11,6 +11,15 @@ import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 
 class CivilInfraAdapter (var listner: CivilInfraAdapterListner): Adapter<CivilInfraAdapter.ViewHold>() {
 
+    var list : ArrayList<String> = ArrayList()
+
+    var type1 = "Tower"
+    var type2 = "Pole"
+    init {
+        list.add("Tower")
+        list.add("Pole")
+    }
+
     class ViewHold(view: View) : ViewHolder(view){
         var binding= CivilInfraListItemBinding.bind(view)
     }
@@ -21,18 +30,36 @@ class CivilInfraAdapter (var listner: CivilInfraAdapterListner): Adapter<CivilIn
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.itemView.setOnClickListener{
-            listner.clickedItem()
+        if (list[position] is String && list[position]==type1) {
+            holder.binding.titalStr.setText("${list[position]}")
+            holder.itemView.setOnClickListener {
+                listner.clickedTowerItem()
+            }
+        }
+        else if (list[position] is String && list[position]==type2) {
+            holder.binding.titalStr.setText("${list[position]}")
+            holder.itemView.setOnClickListener {
+                listner.clickedPoleItem()
+            }
+        }
+        else{
+            holder.binding.titalStr.setText("${list[position]}")
+            holder.itemView.setOnClickListener {
+                listner.clickedTowerItem()
+            }
         }
 
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return list.size
     }
 
     interface CivilInfraAdapterListner{
-        fun clickedItem()
+        fun clickedTowerItem()
+        fun clickedPoleItem()
+        fun clickedEquipmentRoomItem()
+        fun clickedEarthingItem()
     }
 }
 

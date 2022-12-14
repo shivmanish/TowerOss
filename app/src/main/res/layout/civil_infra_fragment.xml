@@ -10,7 +10,6 @@
         android:id="@+id/power_conn_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:itemCount="5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
