@@ -37,7 +37,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/item_collapse_equipment"
+                    android:id="@+id/item_collapse_application_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -49,6 +49,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:paddingBottom="@dimen/dp10">
+
+                        <TextView
+                            android:layout_marginTop="@dimen/dp5"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_width="match_parent"
+                            android:fontFamily="@font/poppins_bold"
+                            android:layout_height="wrap_content"
+                            android:text="Initial" />
 
                         <GridLayout
                             android:layout_width="match_parent"
@@ -66,22 +74,21 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Equipment Name" />
+                                    android:text="Category" />
 
                                 <com.smarthub.baseapplication.widgets.CustomSpinner
-
                                     style="@style/SpinnerTheme"
+                                    android:id="@+id/spincategory"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:id="@+id/spinEquipmentName"/>
-
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -93,103 +100,104 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Serial Number" />
-
-                                <EditText
-                                    style="@style/RowTestItemEdit"
-                                    android:id="@+id/editSerialNumber"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="S3058940" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Make" />
-
-                                <EditText
-                                    android:id="@+id/editMake"
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="xxxx" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Model" />
-
-                                <EditText
-                                    android:id="@+id/editModel"
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="xxxx" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Rating/Capacity" />
+                                    android:text="Application Type" />
 
                                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinRationCapacity"
                                     style="@style/SpinnerTheme"
+                                    android:id="@+id/applycation_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Initial"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Name" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/application_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Number" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/aplication_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Status" />
+
+                                <com.smarthub.baseapplication.widgets.CustomSpinner
+                                    style="@style/SpinnerTheme"
+                                    android:id="@+id/application_status"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
-
+                                    android:text="---"
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -201,75 +209,22 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Manufacturing Month/Year" />
-
-                                <EditText
-                                    android:id="@+id/editManufacturingMonthYear"
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="Nov/2018" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
+                                    android:text="Application Date" />
 
                                 <TextView
-                                    style="@style/RowTextItemInfo"
+                                    android:id="@+id/application_date"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Warranty Period" />
-
-                                <EditText
-                                    android:id="@+id/editWarrantyPeriod"
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="xxxx" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Warranty Expiry Date" />
-
-                                <EditText
-                                    android:id="@+id/editWarrantyExpiryDate"
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:text="Nov/2018"
                                     android:drawableRight="@drawable/icon_date"
-                                    android:hint="10-Nov-22" />
-
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -281,21 +236,22 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="SPD Type" />
+                                    android:text="Issue Date" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinSPDType"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/issue_date"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
-
+                                    android:layout_height="wrap_content"
+                                    android:text="---"
+                                    android:drawableRight="@drawable/icon_date"
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -307,21 +263,22 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Protection Mode" />
+                                    android:text="Document No." />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinProtectionMode"
-                                    style="@style/SpinnerTheme"
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/document_no"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
-
+                                    android:layout_height="wrap_content"
+                                    android:text="34"
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -333,14 +290,15 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Mounting Style" />
+                                    android:text="Expiry Date" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinMountingStyle"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/expire_date"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
+                                    android:layout_height="wrap_content"
+                                    android:text="---"
+                                    android:drawableRight="@drawable/icon_date"
+                                    android:textColor="@color/black" />
 
                                 <View
                                     android:layout_width="match_parent"
@@ -348,6 +306,7 @@
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -359,14 +318,14 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Installation Point" />
+                                    android:text="Vendor Name" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinInstallationPoint"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/vandor_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
+                                    android:text="---"
+                                    android:textColor="@color/black" />
 
                                 <View
                                     android:layout_width="match_parent"
@@ -374,6 +333,7 @@
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -385,21 +345,23 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Owner Company" />
+                                    android:text="Vendor Executive" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinOwnerCompany"
-                                    style="@style/SpinnerTheme"
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/vender_excutivity"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
-
+                                    android:text="---"
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -411,25 +373,324 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Usage Type" />
+                                    android:text="Vendor Phone No." />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinUsageType"
-                                    style="@style/SpinnerTheme"
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/vender_phono_number"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air" />
-
+                                    android:text="---"
+                                    android:textColor="@color/black" />
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="@dimen/dp8"
                                     android:alpha="0.37"
                                     android:background="#263238" />
+
+
                             </LinearLayout>
+
 
                         </GridLayout>
 
+                        <TextView
+                            android:layout_marginTop="@dimen/dp5"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_width="match_parent"
+                            android:fontFamily="@font/poppins_bold"
+                            android:layout_height="wrap_content"
+                            android:text="Renewal-1" />
+
+                        <GridLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:columnCount="2"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Type" />
+
+                                <com.smarthub.baseapplication.widgets.CustomSpinner
+                                    style="@style/SpinnerTheme"
+                                    android:id="@+id/renwal_applycation_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Initial"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Name" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_application_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Number" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_aplication_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Document No." />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_document_no"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="34"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vendor Name" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_vandor_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="---"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vendor Executive" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_vender_excutivity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="---"
+                                    android:textColor="@color/black" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vendor Phone No." />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_vender_phono_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="---"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Application Status" />
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:id="@+id/renwal_application_status"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="---"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Renewal Date" />
+
+                                <TextView
+                                    android:id="@+id/renwal_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="---"
+                                    android:drawableRight="@drawable/icon_date"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Expiry Date" />
+
+                                <TextView
+                                    android:id="@+id/renwal_expire_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="---"
+                                    android:drawableRight="@drawable/icon_date"
+                                    android:textColor="@color/black" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
+
+
+                            </LinearLayout>
+
+
+                        </GridLayout>
 
                     </LinearLayout>
                 </LinearLayout>
