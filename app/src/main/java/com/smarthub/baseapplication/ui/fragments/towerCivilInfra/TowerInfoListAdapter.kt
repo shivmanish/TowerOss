@@ -8,9 +8,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoInfoListAdapter
-import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.SiteLeaseListAdapter
 
 class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
 
