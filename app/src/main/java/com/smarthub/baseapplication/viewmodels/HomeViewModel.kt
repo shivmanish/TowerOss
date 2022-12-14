@@ -15,24 +15,24 @@ class HomeViewModel : ViewModel() {
     var homeRepo: HomeRepo?=null
     var getHomeDataResponse : SingleLiveEvent<Resource<HomeResponse>>?=null
     var getProjectDataResponse : SingleLiveEvent<Resource<ProjectModelData>>?=null
-    var myTeamTask : SingleLiveEvent<List<MyTeamTask>>?=null
-    var myTask : SingleLiveEvent<List<MyTeamTask>>?=null
+    var myTeamTask : SingleLiveEvent<List<MyTeamTask>?>?=null
+    var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
         getHomeDataResponse = homeRepo?.homeResponse
         getProjectDataResponse = homeRepo?.projectResponse
-        myTeamTask  = SingleLiveEvent<List<MyTeamTask>>()
-        myTask  = SingleLiveEvent<List<MyTeamTask>>()
+        myTeamTask  = SingleLiveEvent<List<MyTeamTask>?>()
+        myTask  = SingleLiveEvent<List<MyTeamTask>?>()
     }
 
-    fun updateMyTeamTask(data : List<MyTeamTask>){
-        AppLogger.log("updateMyTeamTask : data ${data.size}")
+    fun updateMyTeamTask(data : List<MyTeamTask>?){
+        AppLogger.log("updateMyTeamTask : data ${data?.size}")
         myTeamTask?.postValue(data)
     }
 
-    fun updateMyTask(data : List<MyTeamTask>){
-        AppLogger.log("updateMyTask : data ${data.size}")
+    fun updateMyTask(data : List<MyTeamTask>?){
+        AppLogger.log("updateMyTask : data ${data?.size}")
         myTask?.postValue(data)
     }
 

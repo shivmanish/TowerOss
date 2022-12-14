@@ -14,9 +14,9 @@ class MyTaskFragment : Fragment() {
 
     lateinit var binding : FragmentMyTaskHomeBinding
     var homeViewModel : HomeViewModel?=null
-    lateinit var adapterList : MyTaskItemAdapter
+    private lateinit var adapterList : MyTaskItemAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMyTaskHomeBinding.inflate(inflater)
         return binding.root
     }
@@ -27,14 +27,22 @@ class MyTaskFragment : Fragment() {
         adapterList = MyTaskItemAdapter()
         binding.taskList.adapter = adapterList
 
+        adapterList.addItem("loading")
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
         if (homeViewModel?.myTask?.hasActiveObservers() == true)
             homeViewModel?.myTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTask?.observe(viewLifecycleOwner){
             if (it!=null && it.isNotEmpty()){
-                AppLogger.log("myTask list fetched with size :"+it.size)
-                adapterList.updateList(it)
+                AppLogger.log("myTask data not null")
+                val list :ArrayList<Any> = ArrayList()
+                list.add("header")
+                list.addAll(it)
+                adapterList.updateList(list)
+            }else{
+//                no data found
+                AppLogger.log("myTask data is null")
+                adapterList.addItem("no_data")
             }
         }
     }

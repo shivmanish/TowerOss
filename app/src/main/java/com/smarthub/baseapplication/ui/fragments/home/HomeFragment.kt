@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
         if (homeViewModel?.homeData()?.hasActiveObservers() == true)
             homeViewModel?.homeData()?.removeObservers(viewLifecycleOwner)
         homeViewModel?.homeData()?.observe(viewLifecycleOwner){
+            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 if (it.data!=null){
                     AppLogger.log("fetched data:"+ Gson().toJson(it))
@@ -59,6 +60,9 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel?.fetchHomeData()
+        binding.refreshLayout.setOnRefreshListener {
+            homeViewModel?.fetchHomeData()
+        }
     }
 
     private fun mapUIData(data: HomeResponse){
@@ -82,8 +86,10 @@ class HomeFragment : Fragment() {
 
         if (data.MyTask!=null && data.MyTask.isNotEmpty()){
             homeViewModel?.updateMyTask(data.MyTask)
-        }else if (data.MyTask!=null) AppLogger.log("empty list for MyTask")
-        else AppLogger.log("empty list for MyTask")
+        }else if (data.MyTask!=null) {
+            AppLogger.log("empty list for MyTask")
+            homeViewModel?.updateMyTask(null)
+        }else AppLogger.log("empty list for MyTask")
     }
 
     override fun onDestroyView() {
