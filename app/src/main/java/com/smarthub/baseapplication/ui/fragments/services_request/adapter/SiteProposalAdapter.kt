@@ -9,15 +9,14 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
-class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<SPApprovalAdapter.ViewHold>() {
+class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Adapter<SiteProposalAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
-    var type1 = "SP Approval"
-    var type2 = "SO Details"
-  /*  var type2 = "Backhaul Feasibility"
-    var type3 = "Equipments"
+    var type1 = "Commercial Details"
+    var type2 = "Generate Site Proposal"
+    var type3 = "SP Submission to OPCO"
     var type4 = "Power & MCB"
     var type5 = "Attachments"
-    var type6 = "TSSR Executive Info"*/
+    var type6 = "TSSR Executive Info"
     private var data : BasicInfoModelDropDown?=null
     private var fieldData : SiteInfoModel?=null
 
@@ -30,18 +29,19 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         notifyDataSetChanged()
     }
     init {
-        list.add("RF Feasibility")
-        list.add("SO Details")
-        list.add("Equipments")
+        list.add("Commercial Details")
+        list.add("Generate Site Proposal")
+        list.add("SP Submission to OPCO")
+     /*   list.add("Equipments")
         list.add("Power & MCB")
         list.add("Attachments")
-        list.add("TSSR Executive Info")
+        list.add("TSSR Executive Info")*/
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position]==type1)
             return 1
-    /*    else if (list[position] is String && list[position]==type2)
+        else if (list[position] is String && list[position]==type2)
             return 2
         else if (list[position] is String && list[position]==type3)
             return 3
@@ -50,11 +50,11 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         else if (list[position] is String && list[position]==type5)
             return 5
         else if (list[position] is String && list[position]==type6)
-            return 6*/
+            return 6
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : SpApprovalItemViewBinding = SpApprovalItemViewBinding.bind(itemView)
+        var binding : CommersalItemViewBinding = CommersalItemViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -71,7 +71,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : SrApprovalItemViewBinding = SrApprovalItemViewBinding.bind(itemView)
+        var binding : GenerateItemViewBinding = GenerateItemViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -88,7 +88,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
+        var binding : SpSubmissionInfoViewBinding = SpSubmissionInfoViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -119,7 +119,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         }
     }
 
-    class ViewHold5(itemView: View, listener: SPSoftLisListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View, listener: SiteProposalListener) : ViewHold(itemView) {
         var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = true
@@ -132,7 +132,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         }
     }
 
-   class ViewHold6(itemView: View, listener: SPSoftLisListener) : ViewHold(itemView) {
+   class ViewHold6(itemView: View, listener: SiteProposalListener) : ViewHold(itemView) {
         var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
 
        init {
@@ -154,15 +154,15 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.sp_approval_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.commersal_item_view, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.sr_approval_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.generate_item_view, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.sp_submission_info_view, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
@@ -401,7 +401,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         return list.size
     }
 
-    interface SPSoftLisListener {
+    interface SiteProposalListener {
         fun attachmentItemClicked()
         fun detailsItemClicked()
         fun requestinfoClicked()
