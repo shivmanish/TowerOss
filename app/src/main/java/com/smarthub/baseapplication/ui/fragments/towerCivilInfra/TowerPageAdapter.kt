@@ -14,13 +14,13 @@ class TowerPageAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return OpcoSiteInfoFramgment()
+                return TowerInfoFragment()
             }
             1 -> {
-                return RfEquipmentFragment()
+                return TowerInfoFragment()
             }
             else -> {
-                return OpcoSiteInfoFramgment()
+                return TowerInfoFragment()
             }
         }
     }
