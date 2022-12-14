@@ -37,6 +37,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.fragments.logs.LogsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.fragments.services_request.ServicesRequestActivity"
             android:exported="false">
             <meta-data
