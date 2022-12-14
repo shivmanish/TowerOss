@@ -14,7 +14,6 @@ import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
 import com.smarthub.baseapplication.ui.fragments.profile.ProfileActivity
 import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
-import com.smarthub.baseapplication.ui.site_lease_acquisition.NewSiteAcquisitionActivity
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class MenuFragment : Fragment() {
@@ -27,7 +26,7 @@ class MenuFragment : Fragment() {
     private lateinit var mainViewModel:MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val notificationsViewModel = ViewModelProvider(this)[MenuViewModel::class.java]
+        ViewModelProvider(this)[MenuViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         mainViewModel.isActionBarHide(false)
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
@@ -39,15 +38,15 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileCard.setOnClickListener {
-            var intent = Intent(requireContext(), ProfileActivity::class.java)
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
             requireActivity().startActivity(intent)
         }
         binding.setting.setOnClickListener {
-            var intent = Intent(requireContext(),SettingActivity::class.java)
+            val intent = Intent(requireContext(),SettingActivity::class.java)
             requireActivity().startActivity(intent)
         }
-        binding?.cardQat?.setOnClickListener {
-            var intent = Intent(requireActivity(),QATCheckActivity::class.java)
+        binding.cardQat.setOnClickListener {
+            val intent = Intent(requireActivity(),QATCheckActivity::class.java)
             startActivity(intent)
         }
         binding.cardProject.setOnClickListener {
@@ -56,7 +55,7 @@ class MenuFragment : Fragment() {
 
 
         binding.quickHelp.setOnClickListener {
-            var intent = Intent(requireActivity(),FAQActivity::class.java)
+            val intent = Intent(requireActivity(),FAQActivity::class.java)
             startActivity(intent)
         }
 

@@ -470,20 +470,19 @@
         android:background="@color/white"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <com.smarthub.baseapplication.widgets.NonDragableViewPager
                 android:layout_marginTop="@dimen/dp15"
                 android:id="@+id/home_pager"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp550"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                android:layout_height="@dimen/dp550"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
