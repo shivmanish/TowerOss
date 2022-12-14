@@ -12,13 +12,13 @@ class TowerPoleFragmentAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) 
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return TowerInfoFragment()
+                return TowerPoleInfoFragment()
             }
             1 -> {
-                return TowerInfoFragment()
+                return TowerPoleInfoFragment()
             }
             else -> {
-                return TowerInfoFragment()
+                return TowerPoleInfoFragment()
             }
         }
     }
