@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#3D4E6D"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3D4E6D"
-    android:id="@+id/refresh_layout"
     tools:context=".ui.fragments.home.HomeFragment">
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -449,9 +449,11 @@
                         android:layout_marginTop="@dimen/dp15"
                         android:background="@drawable/dialog_bg"
                         app:layout_constraintTop_toBottomOf="@+id/items">
+
                         <com.google.android.material.tabs.TabLayout
                             android:layout_width="0dp"
                             android:id="@+id/home_tab"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:tabSelectedTextColor="@color/white"
                             app:tabTextColor="#7F8694"
                             android:layout_marginTop="@dimen/dp10"
@@ -462,7 +464,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintWidth_percent="0.75"
-                            android:layout_height="match_parent"/>
+                            android:layout_height="@dimen/dp40"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -485,4 +487,4 @@
                 android:layout_height="@dimen/dp550"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

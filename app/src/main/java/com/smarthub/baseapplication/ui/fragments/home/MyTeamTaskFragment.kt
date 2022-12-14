@@ -33,6 +33,7 @@ class MyTeamTaskFragment : Fragment() {
         if (homeViewModel?.myTeamTask?.hasActiveObservers() == true)
             homeViewModel?.myTeamTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTeamTask?.observe(viewLifecycleOwner){
+            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
                 list.add("header")
@@ -42,6 +43,10 @@ class MyTeamTaskFragment : Fragment() {
 //                no data found
                 adapterList.addItem("no_data")
             }
+        }
+
+        binding.refreshLayout.setOnRefreshListener {
+            homeViewModel?.fetchHomeData()
         }
     }
 

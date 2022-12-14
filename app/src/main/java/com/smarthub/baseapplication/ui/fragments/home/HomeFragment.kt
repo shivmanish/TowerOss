@@ -45,7 +45,6 @@ class HomeFragment : Fragment() {
         if (homeViewModel?.homeData()?.hasActiveObservers() == true)
             homeViewModel?.homeData()?.removeObservers(viewLifecycleOwner)
         homeViewModel?.homeData()?.observe(viewLifecycleOwner){
-            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 if (it.data!=null){
                     AppLogger.log("fetched data:"+ Gson().toJson(it))
@@ -59,9 +58,6 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel?.fetchHomeData()
-        binding.refreshLayout.setOnRefreshListener {
-            homeViewModel?.fetchHomeData()
-        }
     }
 
     private fun mapUIData(data: HomeResponse){

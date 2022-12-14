@@ -20,11 +20,12 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class ProjectsFragment : BaseFragment() {
 
     var homeViewModel : HomeViewModel?=null
-    lateinit var projectFragmentLayoutBinding: ProjectFragmentLayoutBinding
+    lateinit var binding: ProjectFragmentLayoutBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        projectFragmentLayoutBinding = ProjectFragmentLayoutBinding.inflate(inflater)
+        binding = ProjectFragmentLayoutBinding.inflate(inflater)
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        return projectFragmentLayoutBinding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,15 +35,16 @@ class ProjectsFragment : BaseFragment() {
 
     private fun setList(){
         val projectListAdapter = ProjectListAdapter(requireContext())
-        projectFragmentLayoutBinding.projectList.layoutManager = LinearLayoutManager(context)
-        projectFragmentLayoutBinding.projectList.adapter = projectListAdapter
-        projectFragmentLayoutBinding.add.setOnClickListener{
+        binding.projectList.layoutManager = LinearLayoutManager(context)
+        binding.projectList.adapter = projectListAdapter
+        binding.add.setOnClickListener{
             showBottomDialog()
         }
 
         if (homeViewModel?.getProjectDataResponse?.hasActiveObservers() == true)
             homeViewModel?.getProjectDataResponse?.removeObservers(viewLifecycleOwner)
         homeViewModel?.getProjectDataResponse?.observe(viewLifecycleOwner){
+            binding.refreshLayout.isRefreshing = false
             hideLoader()
             if (it!=null){
                 projectListAdapter.updateList(it.data!!)
@@ -51,6 +53,10 @@ class ProjectsFragment : BaseFragment() {
 
         showLoader()
         homeViewModel?.fetchProjectsData()
+        binding.refreshLayout.setOnRefreshListener {
+
+            homeViewModel?.fetchProjectsData()
+        }
     }
 
     private fun showBottomDialog(){

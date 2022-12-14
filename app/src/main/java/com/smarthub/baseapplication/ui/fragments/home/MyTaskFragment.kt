@@ -33,6 +33,7 @@ class MyTaskFragment : Fragment() {
         if (homeViewModel?.myTask?.hasActiveObservers() == true)
             homeViewModel?.myTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTask?.observe(viewLifecycleOwner){
+            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.isNotEmpty()){
                 AppLogger.log("myTask data not null")
                 val list :ArrayList<Any> = ArrayList()
@@ -44,6 +45,10 @@ class MyTaskFragment : Fragment() {
                 AppLogger.log("myTask data is null")
                 adapterList.addItem("no_data")
             }
+        }
+
+        binding.refreshLayout.setOnRefreshListener {
+            homeViewModel?.fetchHomeData()
         }
     }
 
