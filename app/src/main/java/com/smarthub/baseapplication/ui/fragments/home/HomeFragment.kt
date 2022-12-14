@@ -18,10 +18,9 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    var homeViewModel : HomeViewModel ?=null
     private val binding get() = _binding!!
+    var homeViewModel : HomeViewModel ?=null
+    private var _binding: FragmentHomeBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
