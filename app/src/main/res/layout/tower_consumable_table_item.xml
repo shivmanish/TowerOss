@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-     android:orientation="vertical"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="4"
+            android:text="rgsgs"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -38,11 +38,11 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
-            android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
+            android:text="1234"
             android:layout_marginLeft="@dimen/dp10"
-            android:text="sssghh"
+            android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -51,12 +51,13 @@
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
+            android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="22-Dec-22"
-            android:gravity="center"
+            android:text="3"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
     <View
         android:alpha="2"
