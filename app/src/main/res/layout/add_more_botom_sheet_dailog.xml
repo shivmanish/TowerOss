@@ -35,12 +35,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
 
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@drawable/dialog_bg"
-                    android:layout_height="match_parent">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -82,13 +83,14 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
                                         android:background="@color/circle_color"
+                                        android:backgroundTint="#6585B4"
                                         android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_call" />
+                                        android:src="@drawable/ic_menu_call"
+                                        app:tint="@color/white" />
                                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
                                 <TextView
@@ -146,14 +148,16 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
                                         android:background="@color/circle_color"
+                                        android:backgroundTint="#FFB800"
+                                        app:tint="@color/white"
+                                        android:contentDescription="TODO"
                                         android:padding="@dimen/dp14"
                                         android:src="@drawable/ic_menu_map"
-                                        android:contentDescription="TODO"></ImageView>
+                                        ></ImageView>
                                 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
                                 <TextView
@@ -263,7 +267,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
+                                        android:backgroundTint="#5BB2B5"
+                                        app:tint="@color/white"
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
@@ -292,6 +297,7 @@
 
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -335,7 +341,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
+                                        android:backgroundTint="#F78973"
+                                        app:tint="@color/white"
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
@@ -400,7 +407,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
+                                        android:backgroundTint="#AF904B"
+                                        app:tint="@color/white"
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
@@ -464,7 +472,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
+                                        android:backgroundTint="#6C7B8A"
+                                        app:tint="@color/white"
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
@@ -492,14 +501,15 @@
                             </RelativeLayout>
 
 
-
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:weightSum="3"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
                         <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
@@ -533,7 +543,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
+                                        android:backgroundTint="#39AFD4"
+                                        app:tint="@color/white"
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
@@ -561,8 +572,8 @@
                             </RelativeLayout>
 
 
-
                         </androidx.cardview.widget.CardView>
+
                         <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
@@ -596,7 +607,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-
+                                        android:backgroundTint="#A785B6"
+                                        app:tint="@color/white"
                                         android:layout_height="@dimen/dp50"
                                         android:layout_alignParentTop="true"
                                         android:layout_centerHorizontal="true"
@@ -624,17 +636,16 @@
                             </RelativeLayout>
 
 
-
-
                         </androidx.cardview.widget.CardView>
+
                         <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
-                            android:visibility="invisible"
                             android:layout_height="@dimen/dp120"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/dp0.2"
                             android:layout_weight="1"
+                            android:visibility="invisible"
                             app:cardCornerRadius="@dimen/dp5"
                             app:cardElevation="@dimen/dp5">
 
@@ -687,12 +698,8 @@
                             </RelativeLayout>
 
 
-
-
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
-
-
 
 
                 </LinearLayout>
