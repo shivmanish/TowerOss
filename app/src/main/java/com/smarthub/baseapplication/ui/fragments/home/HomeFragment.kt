@@ -97,8 +97,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    internal inner class HomeViewPagerAdapter(manager: FragmentManager, behaviour:Int) :
-        FragmentPagerAdapter(manager,behaviour) {
+    internal inner class HomeViewPagerAdapter(manager: FragmentManager, behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
