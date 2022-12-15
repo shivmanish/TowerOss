@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ProjectButtonSheetLayoutBinding
+import com.smarthub.baseapplication.databinding.ProjectBottomSheetLayoutBinding
 import com.smarthub.baseapplication.databinding.ProjectFragmentLayoutBinding
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -54,29 +54,13 @@ class ProjectsFragment : BaseFragment() {
         showLoader()
         homeViewModel?.fetchProjectsData()
         binding.refreshLayout.setOnRefreshListener {
-
             homeViewModel?.fetchProjectsData()
         }
     }
 
     private fun showBottomDialog(){
-        val dialog = BottomSheetDialog(requireActivity(), R.style.NewDialogTask)
-        val view : View = layoutInflater.inflate(R.layout.project_button_sheet_layout, null)
-        var dialogBinding = ProjectButtonSheetLayoutBinding.bind(view)
-         dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(true)
-        // on below line we are setting
-        // content view to our view.
-        dialog.setContentView(view)
-        // on below line we are calling
-        // a show method to display a dialog.
-        dialogBinding.cancel.setOnClickListener {
-            dialog.dismiss()
-        }
-        val recyclerView = view.findViewById<RecyclerView>(R.id.task_list)
-        recyclerView!!.layoutManager = GridLayoutManager(context,2)
-        recyclerView.adapter = TaskAdapter()
-        dialog.show()
+        val bottomSheetDialogFragment = TemplateTaskBottomSheet(R.layout.project_bottom_sheet_layout, homeViewModel!!)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 
 
