@@ -58,8 +58,8 @@ class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.Tower
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: EarthingPoItemsBinding =
-            EarthingPoItemsBinding.bind(itemView)
+        var binding: EarthingPoItemsBinding = EarthingPoItemsBinding.bind(itemView)
+        var rvTableList : RecyclerView = binding.root.findViewById(R.id.rv_tables)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
@@ -70,6 +70,14 @@ class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.Tower
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+        }
+
+        fun addTableItem(item:String){
+            if (rvTableList.adapter!=null && rvTableList.adapter is CivilInfraTableAdapter){
+                var adapter = rvTableList.adapter as CivilInfraTableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -233,6 +241,8 @@ class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.Tower
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.rvTableList.adapter = CivilInfraTableAdapter()
+//                holder.addTableItem("itegbjdks")
             }
             is ViewHold4 -> {
                 holder.binding.imgDropdown.setOnClickListener {

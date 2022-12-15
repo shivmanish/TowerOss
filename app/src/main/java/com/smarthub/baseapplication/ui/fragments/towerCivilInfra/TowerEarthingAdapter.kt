@@ -10,15 +10,15 @@ class TowerEarthingAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
     }
 
     override fun getItem(position: Int): Fragment {
-        when(position) {
+        return when(position) {
             0 -> {
-                return TowerEarthingInfoFragment()
+                TowerEarthingInfoFragment()
             }
             1 -> {
-                return TowerEarthingInfoFragment()
+                TowerEarthingInfoFragment()
             }
             else -> {
-                return TowerEarthingInfoFragment()
+                TowerEarthingInfoFragment()
             }
         }
     }
