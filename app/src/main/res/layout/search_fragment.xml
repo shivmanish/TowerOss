@@ -62,83 +62,85 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_card_view">
 
-
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:id="@+id/search_result"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp10"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dp5"
-            android:id="@+id/ln_button_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_result"
-            android:padding="@dimen/dp5"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight="1"
-                android:padding="@dimen/dp10"
-                android:text="View on iBoard"
-                android:textSize="15sp"
-                android:textColor="#3D4E6D"
-                android:layout_margin="@dimen/dp5"
-                android:id="@+id/view_on_ibo"
-                android:layout_width="match_parent"
-                android:textStyle="bold"
-                android:drawableLeft="@drawable/siteicon"
-                android:layout_height="@dimen/dp45"
-                android:gravity="center|center_vertical"
-                android:layout_marginBottom="@dimen/dp30"
-                android:background="@drawable/btn_blue"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/poppins_regular"
-                />
-            <TextView
-                android:layout_weight="1"
-                android:padding="@dimen/dp10"
-                android:text="View on Map"
-                android:textSize="15sp"
-                android:id="@+id/view_on_map"
-                android:textColor="#3F4D68"
-                android:layout_margin="@dimen/dp5"
-                android:layout_width="match_parent"
-                android:textStyle="bold"
-                android:drawableLeft="@drawable/ic_view_map"
-                android:layout_height="@dimen/dp45"
-                android:gravity="center"
-                android:layout_marginBottom="@dimen/dp30"
-                android:background="@drawable/login_yellow_bg"
-                android:fontFamily="@font/poppins_regular"
-                />
-        </LinearLayout>
-
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:scrollbars="vertical"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/dp10"
-            android:background="@drawable/dialog_bg"
-            app:layout_constraintTop_toBottomOf="@+id/ln_button_layout">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_card_view">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/search_result"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp5"
+                android:id="@+id/ln_button_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_result"
+                android:padding="@dimen/dp5"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp10"
+                    android:text="View on iBoard"
+                    android:textSize="15sp"
+                    android:textColor="#3D4E6D"
+                    android:layout_margin="@dimen/dp5"
+                    android:id="@+id/view_on_ibo"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:drawableLeft="@drawable/siteicon"
+                    android:layout_height="@dimen/dp45"
+                    android:gravity="center|center_vertical"
+                    android:layout_marginBottom="@dimen/dp30"
+                    android:background="@drawable/btn_blue"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    />
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp10"
+                    android:text="View on Map"
+                    android:textSize="15sp"
+                    android:id="@+id/view_on_map"
+                    android:textColor="#3F4D68"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:drawableLeft="@drawable/ic_view_map"
+                    android:layout_height="@dimen/dp45"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/dp30"
+                    android:background="@drawable/login_yellow_bg"
+                    android:fontFamily="@font/poppins_regular"
+                    />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:scrollbars="vertical"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dp5">
+                android:scrollbars="vertical"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp10"
+                android:paddingTop="@dimen/dp5"
+                android:background="@drawable/dialog_bg"
+                app:layout_constraintTop_toBottomOf="@+id/ln_button_layout">
                 <TextView
                     android:id="@+id/history_title"
                     android:text="History"
@@ -177,7 +179,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/history_title"/>
 
                 <LinearLayout
-                    android:background="#E0E0E0"
+                    android:background="#80E0E0E0"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
@@ -206,16 +208,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:spanCount="2"
-                        android:minHeight="@dimen/dp450"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         tools:listitem="@layout/search_category_list_item"/>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
