@@ -12,8 +12,8 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class MyTaskFragment : Fragment() {
 
-    lateinit var binding : FragmentMyTaskHomeBinding
     var homeViewModel : HomeViewModel?=null
+    lateinit var binding : FragmentMyTaskHomeBinding
     private lateinit var adapterList : MyTaskItemAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

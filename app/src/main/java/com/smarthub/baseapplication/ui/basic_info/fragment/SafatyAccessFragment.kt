@@ -8,9 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.OperationalInfoFragmentBinding
 import com.smarthub.baseapplication.databinding.SafatyAccessFragmentBinding
-import com.smarthub.baseapplication.network.pojo.site_info.GeoConditionModel
 import com.smarthub.baseapplication.network.pojo.site_info.SafetyAndAccessModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 

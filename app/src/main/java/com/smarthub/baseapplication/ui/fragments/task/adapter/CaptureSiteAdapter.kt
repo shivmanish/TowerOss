@@ -11,27 +11,27 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.CaptureSiteDataItemLayoutBinding
 import com.smarthub.baseapplication.utils.Utils
 
 class CaptureSiteAdapter(val context: Context) : Adapter<CaptureSiteViewholder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CaptureSiteViewholder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.capture_site_data_item_layout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.capture_site_data_item_layout, parent, false)
         return CaptureSiteViewholder(view)
     }
 
     override fun onBindViewHolder(holder: CaptureSiteViewholder, position: Int) {
-        holder.top.setOnClickListener {
-            if(holder.list.visibility == View.GONE){
-                holder.arrow.rotation = 180f
-                Utils.expand(holder.list)
+        holder.binding.top.setOnClickListener {
+            if(holder.binding.list.visibility == View.GONE){
+                holder.binding.arrow.rotation = 180f
+                Utils.expand(holder.binding.list)
             }else{
-                Utils.collapse(holder.list)
-                holder.arrow.rotation = 0f
+                Utils.collapse(holder.binding.list)
+                holder.binding.arrow.rotation = 0f
             }
         }
-        holder.list.layoutManager = LinearLayoutManager(context)
-        holder.list.adapter = CaptureItemAdapter(context)
+        holder.binding.list.layoutManager = LinearLayoutManager(context)
+        holder.binding.list.adapter = CaptureItemAdapter(context)
     }
 
     override fun getItemCount(): Int {
@@ -41,7 +41,5 @@ class CaptureSiteAdapter(val context: Context) : Adapter<CaptureSiteViewholder>(
 }
 
 class CaptureSiteViewholder(itemView: View) : ViewHolder(itemView) {
-    val top = itemView.findViewById<LinearLayout>(R.id.top)
-    val list = itemView.findViewById<RecyclerView>(R.id.list)
-    val arrow = itemView.findViewById<ImageView>(R.id.arrow)
+    var binding = CaptureSiteDataItemLayoutBinding.bind(itemView)
 }

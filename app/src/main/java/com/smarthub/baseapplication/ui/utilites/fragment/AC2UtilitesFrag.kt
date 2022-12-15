@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class AC2UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener {

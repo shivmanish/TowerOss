@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
-class SPApprovalAdapter(var listener: SoftAcquisitionLisListener) : RecyclerView.Adapter<SPApprovalAdapter.ViewHold>() {
+class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<SPApprovalAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SP Approval"
     var type2 = "SO Details"
@@ -30,7 +30,7 @@ class SPApprovalAdapter(var listener: SoftAcquisitionLisListener) : RecyclerView
         notifyDataSetChanged()
     }
     init {
-        list.add("RF Feasibility")
+        list.add("SP Approval")
         list.add("SO Details")
         list.add("Equipments")
         list.add("Power & MCB")
@@ -119,7 +119,7 @@ class SPApprovalAdapter(var listener: SoftAcquisitionLisListener) : RecyclerView
         }
     }
 
-    class ViewHold5(itemView: View, listener: SoftAcquisitionLisListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View, listener: SPSoftLisListener) : ViewHold(itemView) {
         var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = true
@@ -132,7 +132,7 @@ class SPApprovalAdapter(var listener: SoftAcquisitionLisListener) : RecyclerView
         }
     }
 
-   class ViewHold6(itemView: View, listener: SoftAcquisitionLisListener) : ViewHold(itemView) {
+   class ViewHold6(itemView: View, listener: SPSoftLisListener) : ViewHold(itemView) {
         var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
 
        init {
@@ -401,7 +401,7 @@ class SPApprovalAdapter(var listener: SoftAcquisitionLisListener) : RecyclerView
         return list.size
     }
 
-    interface SoftAcquisitionLisListener {
+    interface SPSoftLisListener {
         fun attachmentItemClicked()
         fun detailsItemClicked()
         fun requestinfoClicked()

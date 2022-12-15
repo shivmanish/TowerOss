@@ -3,8 +3,6 @@ package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoSiteInfoFramgment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentFragment
 
 class TowerPageAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {

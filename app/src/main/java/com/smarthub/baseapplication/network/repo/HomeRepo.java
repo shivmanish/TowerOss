@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.network.repo;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
@@ -7,6 +9,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
+import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppConstants;
@@ -23,6 +26,7 @@ public class HomeRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<HomeResponse>> homeResponse;
     private SingleLiveEvent<Resource<ProjectModelData>> projectResponse;
+    private SingleLiveEvent<Resource<TaskModelData>> taskResponse;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -37,6 +41,7 @@ public class HomeRepo {
         this.apiClient = apiClient;
         homeResponse = new SingleLiveEvent<>();
         projectResponse = new SingleLiveEvent<>();
+        taskResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -45,6 +50,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<ProjectModelData>> getProjectResponse() {
         return projectResponse;
+    }
+
+    public SingleLiveEvent<Resource<TaskModelData>> getTaskResponse() {
+        return taskResponse;
     }
 
     public void fetchHomeData() {
@@ -87,7 +96,6 @@ public class HomeRepo {
         });
     }
 
-
     public void fetchProjectData() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("Gettemplate","all");
@@ -126,5 +134,83 @@ public class HomeRepo {
             }
         });
     }
+
+    public void fetchTaskData(String templateName) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Gettemplate",templateName);
+        apiClient.fetchTaskData(jsonObject).enqueue(new Callback<TaskModelData>() {
+            @Override
+            public void onResponse(@NonNull Call<TaskModelData> call, @NonNull Response<TaskModelData> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<TaskModelData> call, @NonNull Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<TaskModelData> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    taskResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    taskResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    taskResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    taskResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+//    public void fetchServiceRequestData(String templateName) {
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("Gettemplate",templateName);
+//        apiClient.fetchTaskData(jsonObject).enqueue(new Callback<ServiceRequestAllData>() {
+//            @Override
+//            public void onResponse(@NonNull Call<TaskModelData> call, @NonNull Response<TaskModelData> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody()!=null){
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<TaskModelData> call, @NonNull Throwable t) {
+//                reportErrorResponse(null, t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<TaskModelData> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+//                    taskResponse.postValue(Resource.success(response.body(), 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+//                if (response != null) {
+//                    taskResponse.postValue(Resource.error(response.getMessage(), null, 400));
+//                } else if (iThrowableLocalMessage != null)
+//                    taskResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    taskResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+//    }
 
 }

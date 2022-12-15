@@ -31,7 +31,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return BackhaulFragment()
             }
             3 -> {
-                return RfAntinaFragment()
+                return SiteProposalTabFragment()
             }
             4 -> {
                 return SPApprovalTabFragment()
@@ -41,6 +41,9 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             }
             6 -> {
                 return FeasibilityPlanningTabFragment()
+            }
+            7 -> {
+                return SiteProposalTabFragment()
             }
             else -> {
                 return OpcoSiteInfoFramgment()
@@ -67,10 +70,12 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return "SP Approval / SO"
             }  5 -> {
                 return "Soft Acquisition"
-            } 6 -> {
+            }
+            6 -> {
                 return "Soft Acquisition"
-            } 7 -> {
-                return "Feasibility Planning"
+            }
+            7 -> {
+                return "Site Proposal"
             }
 
         }

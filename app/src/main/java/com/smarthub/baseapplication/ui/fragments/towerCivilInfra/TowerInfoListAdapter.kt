@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
@@ -18,13 +17,6 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
     var type3 = "PO"
     var type4 = "Consumables"
     var type5 = "Attachment"
-    private var data : BasicInfoModelDropDown?=null
-
-    fun setData(data : BasicInfoModelDropDown){
-        this.data = data
-        notifyDataSetChanged()
-    }
-
     init {
         list.add("Tower")
         list.add("Installation & Acceptence")
@@ -198,12 +190,6 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                if (data!=null) {
-                    /*  holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
-                      holder.binding.siteCategorySpinner.setSpinnerData(data?.sitecategory?.data)
-                      holder.binding.siteOwnershipSpinner.setSpinnerData(data?.siteownership?.data)
-                      holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)*/
-                }
             }
             is TowerInfoListAdapter.ViewHold2 -> {
                 holder.binding.imgDropdown.setOnClickListener {

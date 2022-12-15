@@ -5,22 +5,20 @@ import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.ui.adapter.ProfileListAdapter
-import com.smarthub.baseapplication.ui.adapter.ProfileListItemAdapter
-import com.smarthub.baseapplication.ui.adapter.ProfileListViewAdapter
+import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityProfileEditBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.profile.UserProfileGet
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate
+import com.smarthub.baseapplication.model.register.Commucationaddess
 import com.smarthub.baseapplication.network.ProfileDetails
+import com.smarthub.baseapplication.ui.adapter.ProfileListItemAdapter
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
 
-class EditProfileActivity : AppCompatActivity() {
+class EditProfileActivity : BaseActivity() {
 
     private var dataBinding : ActivityProfileEditBinding?=null
     private var profileViewModel : ProfileViewModel?=null
@@ -45,75 +43,85 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         dataBinding?.profileItemsList?.adapter = ProfileListItemAdapter()
-        dataBinding?.imgMenu?.setOnClickListener {
-//            createPopWindow(it)
+
+        profileViewModel?.profileUpdate?.observe(this) {
+            hideLoader()
+            Log.d("status","Resource for profile update")
+            if (it != null && it.data?.status?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS) {
+                    AppPreferences.getInstance().saveString("data", it.data.status)
+                    Log.d("status", "${it.message}")
+                    if (it.data.status.equals("updated")) {
+                        Toast.makeText(this@EditProfileActivity, "Profile Update Successful", Toast.LENGTH_LONG).show()
+                    }
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@EditProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+
+                }
+            } else {
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(
+                    this@EditProfileActivity,
+                    AppConstants.GENERIC_ERROR,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
         Log.d("status","Creating Update profile button")
         dataBinding?.profileUpdate?.setOnClickListener {
             Log.d("status","Inside Update profile button")
-            var userProfileData:UserProfileUpdate?=uiDataMapping()
+            val userProfileData:UserProfileUpdate?=getProfileData()
+            showLoader()
             profileViewModel?.updateProfileData(userProfileData)
-            profileViewModel?.profileUpdate?.observe(this) {
-                Log.d("status","Resource for profile update")
-                if (it != null && it.data?.status?.isNotEmpty() == true) {
-                    if (it.status == Resource.Status.SUCCESS && it.data != null) {
-                        AppPreferences.getInstance().saveString("data", "${it.data?.status}")
-                        Log.d("status", "${it.message}")
-                        if (it.data.status.equals("updated")) {
-                            Toast.makeText(
-                                this@EditProfileActivity,
-                                "Profile Update Successful",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                        return@observe
-                    } else {
-                        Log.d("status", "${it.message}")
-                        Toast.makeText(
-                            this@EditProfileActivity,
-                            "error:" + it.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+        }
 
-                    }
+        showLoader()
+        profileViewModel?.getProfileData()
+        profileViewModel?.profileResponse?.observe(this) {
+            hideLoader()
+            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS) {
+                    AppPreferences.getInstance().saveString("data", it.data[0].data)
+                    uiDataMapping(it.data[0])
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@EditProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
+                    return@observe
                 } else {
-                    Log.d("status", "${AppConstants.GENERIC_ERROR}")
-                    Toast.makeText(
-                        this@EditProfileActivity,
-                        AppConstants.GENERIC_ERROR,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(this@EditProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+
                 }
+            } else {
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(this@EditProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
+
     }
 
-    private fun uiDataMapping(): UserProfileUpdate? {
+    private fun uiDataMapping(profileDetails: ProfileDetails){
         Log.d("status","UI Data mapping")
-        var profileUpdate: UserProfileUpdate?=UserProfileUpdate()
-        profileUpdate?.username = dataBinding?.tCName?.text.toString()
-        profileUpdate?.last_name =  dataBinding?.tDName?.text.toString()
-        profileUpdate?.email = dataBinding?.tMName?.text.toString()
+        dataBinding?.firstName?.text = profileDetails.first_name.toEditable()
+        dataBinding?.lastName?.text =  profileDetails.last_name.toEditable()
+        dataBinding?.email?.text = profileDetails.email.toEditable()
+        dataBinding?.editEmployeeId?.text = profileDetails.id.toEditable()
+    }
 
+    private fun getProfileData(): UserProfileUpdate {
+        Log.d("status","getProfileData")
+        val profileUpdate: UserProfileUpdate =UserProfileUpdate()
+        profileUpdate.username = dataBinding?.firstName?.text.toString()
+        profileUpdate.last_name =  dataBinding?.lastName?.text.toString()
+        profileUpdate.email = dataBinding?.email?.text.toString()
+        profileUpdate.communicationaddress = getCommunicationAddress()
         return profileUpdate
     }
-    private fun createPopWindow(view: View) {
-        val layoutInflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val customView = layoutInflater.inflate(R.layout.profile_custom_menu, null)
-        if (popupWindow != null && popupWindow?.isShowing == true) popupWindow?.dismiss()
 
-        //instantiate popup window
-        popupWindow = PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-
-        popupWindow?.elevation = 10.0f
-        popupWindow?.showAsDropDown(view, 100, -160)
-        // Closes the popup window when touch outside.
-        popupWindow?.isOutsideTouchable = true
-
-    }
-
-    fun menuItemClicked(id:Int){
-
+    private fun getCommunicationAddress() : Commucationaddess {
+        val commucationAddress = Commucationaddess()
+        return commucationAddress
     }
 
 

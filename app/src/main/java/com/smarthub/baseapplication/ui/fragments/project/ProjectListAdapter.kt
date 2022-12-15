@@ -12,21 +12,54 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProjectItemListBinding
 import com.smarthub.baseapplication.model.project.ProjectModelDataItem
 
-class ProjectListAdapter(var context : Context) : RecyclerView.Adapter<ProjectListAdapter.ViewHold>() {
+class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapterListener) : RecyclerView.Adapter<ProjectListAdapter.ViewHold>() {
 
-    var list : ArrayList<ProjectModelDataItem> = ArrayList()
+    var list : ArrayList<Any> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.project_item_list, parent, false)
-        return ViewHold(view)
+    fun addItem(item : Any){
+        for(i in this.list)
+            if (i is String && (i=="loading" || i=="no_data")) this.list.remove(i)
+        this.list.add(item)
+        notifyDataSetChanged()
     }
 
-    fun updateList(list : ArrayList<ProjectModelDataItem>){
+    fun addLoading(item : Any){
+        this.list.clear()
+        this.list.add(item)
+        notifyDataSetChanged()
+    }
+
+    fun addNoData(item : Any){
+        this.list.clear()
+        this.list.add(item)
+        notifyDataSetChanged()
+    }
+
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    fun updateList(list : ArrayList<Any>){
         this.list = list
         notifyDataSetChanged()
     }
 
-    class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+        return when (viewType) {
+            0 -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar,parent,false)
+                ViewHold(view)
+            }
+            1 -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.no_task_list_data,parent,false)
+                ViewHold(view)
+            }
+            else -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.project_item_list,parent,false)
+                ViewHoldItem(view,listener)
+            }
+        }
+    }
+
+    class ViewHoldItem(itemView: View,var listener : ProjectsListAdapterListener) : ViewHold(itemView){
         var binding = ProjectItemListBinding.bind(itemView)
 
         fun bindData(data : ProjectModelDataItem){
@@ -46,14 +79,30 @@ class ProjectListAdapter(var context : Context) : RecyclerView.Adapter<ProjectLi
                 ))
             }
         }
+
+        init {
+            binding.btnTask.setOnClickListener {
+                listener.showBottomDialog(binding.name.text.toString())
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if((list[position] is String) && (list[position]=="loading")) 0
+        else if((list[position] is String) && (list[position]=="no_data")) 1
+        else 2
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.bindData(list[position])
+        if (holder is ViewHoldItem && list[position] is ProjectModelDataItem) holder.bindData(list[position] as ProjectModelDataItem)
     }
 
     override fun getItemCount(): Int {
       return list.size
+    }
+
+    interface ProjectsListAdapterListener{
+        fun showBottomDialog(template : String)
     }
 
 }

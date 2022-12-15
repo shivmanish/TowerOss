@@ -5,17 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AtpHeaderTitleBinding
-import com.smarthub.baseapplication.databinding.CardItemBinding
-import com.smarthub.baseapplication.databinding.CommercialListInvoiceStatusBinding
-import com.smarthub.baseapplication.databinding.LangItemBinding
 import com.smarthub.baseapplication.databinding.RfEquipmentListItemsBinding
-import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.listeners.QatProfileListener
-import com.smarthub.baseapplication.model.LangModel
-import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
-import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
-import com.smarthub.baseapplication.model.atp.AtpListItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class RfEquipmentAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {

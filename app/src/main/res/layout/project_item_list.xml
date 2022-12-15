@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp10"
     android:elevation="@dimen/dp5"
-    android:translationZ="@dimen/dp5"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/dp10">
 
@@ -30,7 +29,8 @@
                 android:background="@drawable/rectangle_tag_back"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:text="1"
+                android:text="100"
+                android:maxLength="2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dp18" />
 
@@ -209,13 +209,14 @@
                     android:src="@drawable/demo_user_image"/>
             </LinearLayout>
             <TextView
+                android:id="@+id/btn_task"
                 android:layout_width="@dimen/dp100"
                 android:layout_height="@dimen/dp35"
                 android:background="@drawable/button_backround_normal"
                 android:textColor="@color/white"
                 android:text="Task"
                 android:gravity="center"
-                android:textSize="@dimen/dp11"
+                android:textSize="@dimen/dp14"
                 android:layout_gravity="center" />
         </LinearLayout>
     </LinearLayout>

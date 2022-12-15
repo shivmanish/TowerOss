@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
@@ -28,7 +29,19 @@ class CivilInfraFragment : Fragment(),CivilInfraAdapter.CivilInfraAdapterListner
         binding.powerConnList.adapter = CivilInfraAdapter(this@CivilInfraFragment)
     }
 
-    override fun clickedItem() {
+    override fun clickedTowerItem() {
         requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
+    }
+
+    override fun clickedPoleItem() {
+        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun clickedEquipmentRoomItem() {
+        requireActivity().startActivity(Intent(requireContext(), TowerPoleFragemnt::class.java))
+    }
+
+    override fun clickedEarthingItem() {
+        requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
     }
 }

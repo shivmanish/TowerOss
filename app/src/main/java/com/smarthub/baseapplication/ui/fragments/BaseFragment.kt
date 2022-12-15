@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.fragments
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import androidx.fragment.app.Fragment
 
@@ -15,6 +16,8 @@ open class BaseFragment : Fragment(){
         progressDialog?.setMessage("Loading ...")
         progressDialog?.setCancelable(true)
     }
+
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun showLoader(){
         if (progressDialog!=null && progressDialog?.isShowing == false){

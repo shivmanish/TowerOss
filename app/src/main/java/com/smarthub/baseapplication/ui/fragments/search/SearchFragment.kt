@@ -17,9 +17,11 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
-class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
+class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
 
     var fetchedData = ""
     var isDataFetched = true
@@ -78,10 +80,15 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
             isDataFetched = true
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
-                    it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
-                    if (fetchedData.isNotEmpty())
-                        siteViewModel.fetchSiteSearchData(fetchedData)
-                    fetchedData = ""
+
+                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
+
+                    }else {
+                        it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
+                        if (fetchedData.isNotEmpty())
+                            siteViewModel.fetchSiteSearchData(fetchedData)
+                        fetchedData = ""
+                    }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
                 }else {
                     Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
@@ -96,8 +103,13 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
             override fun afterTextChanged(s: Editable) {
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
-                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData))
+                    AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
+                            "${item?.Siteid},item?.id:${item?.id}")
+                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData)) {
+                        AppLogger.log("return : $fetchedData")
                         return
+                    }
+
                     isDataFetched = false
                     if (binding.loadingProgress.visibility !=View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
@@ -128,13 +140,14 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
         this.item = item
         if (item!=null){
             binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
+            binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
+            clearResult()
         }else{
             disableButton()
         }
     }
 
-    private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun disableButton(){
         binding.viewOnIbo.alpha = 0.2f
@@ -144,7 +157,7 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
 
     }
 
-    fun enableButton(){
+    private fun enableButton(){
         binding.viewOnIbo.alpha = 1.0f
         binding.viewOnMap.alpha = 1.0f
         binding.viewOnIbo.isEnabled = true
