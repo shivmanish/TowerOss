@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.databinding.EarthingPoTableItemBinding
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EditEarthingPOTableBottomSheet
 
 class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener): Adapter<EarthingPoTableAdapter.ViewHold>() {
 
@@ -77,6 +78,12 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
                         removeItem(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
+                    }
+
+                    R.id.action_view -> {
+                        popupMenu.dismiss()
+                        listener.viewClicked(position)
+                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 
                 }

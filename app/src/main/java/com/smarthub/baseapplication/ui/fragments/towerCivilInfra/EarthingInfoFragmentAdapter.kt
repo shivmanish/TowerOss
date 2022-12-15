@@ -306,5 +306,6 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         fun EditInstallationAcceptence()
         fun EditEarthingItem()
         fun editClicked(position:Int)
+        fun viewClicked(position:Int)
     }
 }
