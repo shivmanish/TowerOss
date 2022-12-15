@@ -19,7 +19,7 @@
             android:maxLines="1"
             android:ellipsize="marquee"
             android:textStyle="bold"
-            android:text="Item Name"
+            android:text="Vendor Name"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -32,7 +32,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="Item Code"
+            android:text="Vendor Code"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -46,7 +46,7 @@
             android:maxLines="1"
             android:ellipsize="marquee"
             android:layout_marginLeft="@dimen/dp10"
-            android:text=" Description"
+            android:text="PO Number"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -58,14 +58,14 @@
             android:layout_width="0dp"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="Qty"
+            android:text="Atatchments"
             android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
-        tools:listitem="@layout/pole_consumable_table_item"
+        tools:listitem="@layout/earthing_po_table_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
