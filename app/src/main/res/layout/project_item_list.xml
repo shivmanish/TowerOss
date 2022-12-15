@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp10"
     android:elevation="@dimen/dp5"
-    android:translationZ="@dimen/dp5"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/dp10">
 
@@ -216,7 +215,7 @@
                 android:textColor="@color/white"
                 android:text="Task"
                 android:gravity="center"
-                android:textSize="@dimen/dp11"
+                android:textSize="@dimen/dp14"
                 android:layout_gravity="center" />
         </LinearLayout>
     </LinearLayout>
