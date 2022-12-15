@@ -72,9 +72,13 @@ class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.Tower
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+
         }
 
-        fun addTableItem(item:String){
+        private fun addTableItem(item:String){
             if (rvTableList.adapter!=null && rvTableList.adapter is CivilInfraTableAdapter){
                 var adapter = rvTableList.adapter as CivilInfraTableAdapter
                 adapter.addItem(item)
