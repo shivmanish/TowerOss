@@ -209,6 +209,7 @@
                     android:src="@drawable/demo_user_image"/>
             </LinearLayout>
             <TextView
+                android:id="@+id/btn_task"
                 android:layout_width="@dimen/dp100"
                 android:layout_height="@dimen/dp35"
                 android:background="@drawable/button_backround_normal"
