@@ -30,7 +30,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
         notifyDataSetChanged()
     }
     init {
-        list.add("RF Feasibility")
+        list.add("SP Approval")
         list.add("SO Details")
         list.add("Equipments")
         list.add("Power & MCB")
