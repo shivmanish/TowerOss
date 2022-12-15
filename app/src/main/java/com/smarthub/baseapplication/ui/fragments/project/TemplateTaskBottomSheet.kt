@@ -24,7 +24,7 @@ class TemplateTaskBottomSheet(contentLayoutId: Int,var viewModel: HomeViewModel,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ProjectBottomSheetLayoutBinding.bind(view)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         adapter = TaskAdapter()
 
         binding.cancel.setOnClickListener {
@@ -39,9 +39,9 @@ class TemplateTaskBottomSheet(contentLayoutId: Int,var viewModel: HomeViewModel,
             viewModel.getTaskDataResponse?.removeObservers(viewLifecycleOwner)
         viewModel.getTaskDataResponse?.observe(viewLifecycleOwner){
             if (it?.data != null && it.data.isNotEmpty()){
-                val lm = GridLayoutManager(context,2)
-                lm.orientation = GridLayoutManager.VERTICAL
-                binding.taskList.layoutManager = lm
+                val layoutManager = GridLayoutManager(context,2)
+                layoutManager.orientation = GridLayoutManager.VERTICAL
+                binding.taskList.layoutManager = layoutManager
                 AppLogger.log("myTask data not null")
                 val list :ArrayList<Any> = ArrayList()
                 list.addAll(it.data)
@@ -49,9 +49,9 @@ class TemplateTaskBottomSheet(contentLayoutId: Int,var viewModel: HomeViewModel,
 
             }else{
 //                no data found
-                val lm = LinearLayoutManager(requireContext())
-                lm.orientation = LinearLayoutManager.VERTICAL
-                binding.taskList.layoutManager = lm
+                val layoutManager = LinearLayoutManager(requireContext())
+                layoutManager.orientation = LinearLayoutManager.VERTICAL
+                binding.taskList.layoutManager = layoutManager
                 adapter.addItem("no_data")
             }
         }

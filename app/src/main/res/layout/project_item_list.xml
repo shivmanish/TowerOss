@@ -29,7 +29,8 @@
                 android:background="@drawable/rectangle_tag_back"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:text="1"
+                android:text="100"
+                android:maxLength="2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dp18" />
 
