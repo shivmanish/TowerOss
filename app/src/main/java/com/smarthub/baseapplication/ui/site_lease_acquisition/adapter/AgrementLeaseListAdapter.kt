@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
 
 class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {

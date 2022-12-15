@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.GeoConditionalInfoFragmentBinding
 import com.smarthub.baseapplication.network.pojo.site_info.GeoConditionModel
-import com.smarthub.baseapplication.network.pojo.site_info.OperationalInfoModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class GeoConditionalInfo : Fragment(), ImageAttachmentAdapter.ItemClickListener {

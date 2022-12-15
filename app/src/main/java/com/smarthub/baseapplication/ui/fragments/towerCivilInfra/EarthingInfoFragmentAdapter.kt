@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class EarthingInfoFragmentAdapter(var listner: TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
+class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -79,8 +80,8 @@ class EarthingInfoFragmentAdapter(var listner: TowerEarthingListListener): Recyc
         }
 
         private fun addTableItem(item:String){
-            if (rvTableList.adapter!=null && rvTableList.adapter is CivilInfraTableAdapter){
-                var adapter = rvTableList.adapter as CivilInfraTableAdapter
+            if (rvTableList.adapter!=null && rvTableList.adapter is EarthingPoTableAdapter){
+                var adapter = rvTableList.adapter as EarthingPoTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -245,7 +246,10 @@ class EarthingInfoFragmentAdapter(var listner: TowerEarthingListListener): Recyc
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.rvTableList.adapter = CivilInfraTableAdapter()
+                holder.rvTableList.adapter = EarthingPoTableAdapter( context,listner)
+//                holder.binding.imgAdd.setOnClickListener {
+//                    addTableItem("gsfbgksf")
+//                }
 //                holder.addTableItem("itegbjdks")
             }
             is ViewHold4 -> {
@@ -301,5 +305,6 @@ class EarthingInfoFragmentAdapter(var listner: TowerEarthingListListener): Recyc
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditEarthingItem()
+        fun editClicked(position:Int)
     }
 }
