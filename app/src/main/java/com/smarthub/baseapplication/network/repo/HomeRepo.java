@@ -174,4 +174,43 @@ public class HomeRepo {
         });
     }
 
+//    public void fetchServiceRequestData(String templateName) {
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("Gettemplate",templateName);
+//        apiClient.fetchTaskData(jsonObject).enqueue(new Callback<ServiceRequestAllData>() {
+//            @Override
+//            public void onResponse(@NonNull Call<TaskModelData> call, @NonNull Response<TaskModelData> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody()!=null){
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<TaskModelData> call, @NonNull Throwable t) {
+//                reportErrorResponse(null, t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<TaskModelData> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+//                    taskResponse.postValue(Resource.success(response.body(), 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+//                if (response != null) {
+//                    taskResponse.postValue(Resource.error(response.getMessage(), null, 400));
+//                } else if (iThrowableLocalMessage != null)
+//                    taskResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    taskResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+//    }
+
 }
