@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.Ac1TabUtilitiesFragmentBinding
-import com.smarthub.baseapplication.databinding.FireExtinguisher1TabUtilitiesFragmentBinding
 import com.smarthub.baseapplication.databinding.FireExtinguisher2TabUtilitiesFragmentBinding
 
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter

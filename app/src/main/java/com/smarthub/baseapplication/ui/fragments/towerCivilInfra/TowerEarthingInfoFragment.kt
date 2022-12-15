@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingInfoFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EditEarthingPOTableBottomSheet
 
 class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
     var binding : TowerEarthingInfoFragmentBinding?=null
@@ -21,7 +22,7 @@ class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEa
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = EarthingInfoFragmentAdapter(this@TowerEarthingInfoFragment)
+        binding?.listItem?.adapter = EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment)
     }
 
     override fun attachmentItemClicked() {
@@ -39,6 +40,13 @@ class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEa
         val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
+    }
+
+    override fun editClicked(position: Int) {
+        var bm = EditEarthingPOTableBottomSheet(R.layout.earthing_po_item_dialouge)
+        bm.show(childFragmentManager, "category")
+
+        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
 
