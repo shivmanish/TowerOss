@@ -1,23 +1,17 @@
 package com.smarthub.baseapplication.ui.fragments.project
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ProjectBottomSheetLayoutBinding
 import com.smarthub.baseapplication.databinding.ProjectFragmentLayoutBinding
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class ProjectsFragment : BaseFragment() {
+class ProjectsFragment : BaseFragment(), ProjectListAdapter.ProjectsListAdapterListener {
 
     var homeViewModel : HomeViewModel?=null
     lateinit var binding: ProjectFragmentLayoutBinding
@@ -34,12 +28,10 @@ class ProjectsFragment : BaseFragment() {
     }
 
     private fun setList(){
-        val projectListAdapter = ProjectListAdapter(requireContext())
+        val projectListAdapter = ProjectListAdapter(requireContext(),this)
         binding.projectList.layoutManager = LinearLayoutManager(context)
         binding.projectList.adapter = projectListAdapter
-        binding.add.setOnClickListener{
-            showBottomDialog()
-        }
+
 
         if (homeViewModel?.getProjectDataResponse?.hasActiveObservers() == true)
             homeViewModel?.getProjectDataResponse?.removeObservers(viewLifecycleOwner)
@@ -58,8 +50,8 @@ class ProjectsFragment : BaseFragment() {
         }
     }
 
-    private fun showBottomDialog(){
-        val bottomSheetDialogFragment = TemplateTaskBottomSheet(R.layout.project_bottom_sheet_layout, homeViewModel!!)
+    override fun showBottomDialog(template : String){
+        val bottomSheetDialogFragment = TemplateTaskBottomSheet(R.layout.project_bottom_sheet_layout, homeViewModel!!,template)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 

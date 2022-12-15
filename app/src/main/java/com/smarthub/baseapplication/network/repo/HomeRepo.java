@@ -41,6 +41,7 @@ public class HomeRepo {
         this.apiClient = apiClient;
         homeResponse = new SingleLiveEvent<>();
         projectResponse = new SingleLiveEvent<>();
+        taskResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {

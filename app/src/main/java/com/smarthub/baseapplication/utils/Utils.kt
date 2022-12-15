@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -23,6 +24,10 @@ object Utils {
 
     fun log(message: String) {
         Log.i("TAG", message)
+    }
+
+    fun getScreenHeight(): Int {
+        return Resources.getSystem().displayMetrics.heightPixels
     }
 
     fun getJsonDataFromAsset(context: Context, fileName: String): String? {

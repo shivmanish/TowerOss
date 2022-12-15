@@ -12,13 +12,13 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProjectItemListBinding
 import com.smarthub.baseapplication.model.project.ProjectModelDataItem
 
-class ProjectListAdapter(var context : Context) : RecyclerView.Adapter<ProjectListAdapter.ViewHold>() {
+class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapterListener) : RecyclerView.Adapter<ProjectListAdapter.ViewHold>() {
 
     var list : ArrayList<ProjectModelDataItem> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.project_item_list, parent, false)
-        return ViewHold(view)
+        return ViewHold(view,listener)
     }
 
     fun updateList(list : ArrayList<ProjectModelDataItem>){
@@ -26,7 +26,7 @@ class ProjectListAdapter(var context : Context) : RecyclerView.Adapter<ProjectLi
         notifyDataSetChanged()
     }
 
-    class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHold(itemView: View,var listener : ProjectsListAdapterListener) : RecyclerView.ViewHolder(itemView){
         var binding = ProjectItemListBinding.bind(itemView)
 
         fun bindData(data : ProjectModelDataItem){
@@ -46,6 +46,12 @@ class ProjectListAdapter(var context : Context) : RecyclerView.Adapter<ProjectLi
                 ))
             }
         }
+
+        init {
+            binding.btnTask.setOnClickListener {
+                listener.showBottomDialog(binding.name.text.toString())
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -54,6 +60,10 @@ class ProjectListAdapter(var context : Context) : RecyclerView.Adapter<ProjectLi
 
     override fun getItemCount(): Int {
       return list.size
+    }
+
+    interface ProjectsListAdapterListener{
+        fun showBottomDialog(template : String)
     }
 
 }
