@@ -32,20 +32,24 @@ class ProjectsFragment : BaseFragment(), ProjectListAdapter.ProjectsListAdapterL
         binding.projectList.layoutManager = LinearLayoutManager(context)
         binding.projectList.adapter = projectListAdapter
 
-
+        projectListAdapter.addLoading("loading")
         if (homeViewModel?.getProjectDataResponse?.hasActiveObservers() == true)
             homeViewModel?.getProjectDataResponse?.removeObservers(viewLifecycleOwner)
         homeViewModel?.getProjectDataResponse?.observe(viewLifecycleOwner){
             binding.refreshLayout.isRefreshing = false
-            hideLoader()
-            if (it!=null){
-                projectListAdapter.updateList(it.data!!)
+            if (it?.data != null){
+                val list :ArrayList<Any> = ArrayList()
+                list.addAll(it.data)
+                projectListAdapter.updateList(list)
+//                projectListAdapter.updateList(it.data!!)
+            }else{
+                projectListAdapter.addNoData("no_data")
             }
         }
-
-        showLoader()
         homeViewModel?.fetchProjectsData()
         binding.refreshLayout.setOnRefreshListener {
+//            binding.refreshLayout.isRefreshing = false
+//            projectListAdapter.addLoading("loading")
             homeViewModel?.fetchProjectsData()
         }
     }
