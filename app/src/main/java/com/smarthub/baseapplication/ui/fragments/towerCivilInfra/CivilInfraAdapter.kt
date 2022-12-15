@@ -14,10 +14,12 @@ class CivilInfraAdapter (var listner: CivilInfraAdapterListner): Adapter<CivilIn
     var list : ArrayList<String> = ArrayList()
 
     var type1 = "Tower"
-    var type2 = "Pole"
+    var type2 = "Equipment Room"
+    var type3= "Earthing"
     init {
         list.add("Tower")
-        list.add("Pole")
+        list.add("Equipment Room")
+        list.add("Earthing")
     }
 
     class ViewHold(view: View) : ViewHolder(view){
@@ -39,7 +41,13 @@ class CivilInfraAdapter (var listner: CivilInfraAdapterListner): Adapter<CivilIn
         else if (list[position] is String && list[position]==type2) {
             holder.binding.titalStr.setText("${list[position]}")
             holder.itemView.setOnClickListener {
-                listner.clickedPoleItem()
+                listner.clickedEquipmentRoomItem()
+            }
+        }
+        else if (list[position] is String && list[position]==type3) {
+            holder.binding.titalStr.setText("${list[position]}")
+            holder.itemView.setOnClickListener {
+                listner.clickedEarthingItem()
             }
         }
         else{

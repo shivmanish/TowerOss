@@ -8,17 +8,17 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerPoleInfoAdapter.ViewHold>() {
+class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
-    var type1 = "Equipment Room"
+    var type1 = "Earthing"
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
     var type4 = "Consumables"
     var type5 = "Attachment"
     init {
-        list.add("Equipment Room")
+        list.add("Earthing")
         list.add("Installation & Acceptence")
         list.add("PO")
         list.add("Consumables")
@@ -26,7 +26,7 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : PoleEquipmentRoomListBinding = PoleEquipmentRoomListBinding.bind(itemView)
+        var binding : TowerEartrhingItemBinding = TowerEartrhingItemBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -43,7 +43,7 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : PoleInstallationAcceptenceBinding = PoleInstallationAcceptenceBinding.bind(itemView)
+        var binding : EarthingInstallationAcceptenceBinding = EarthingInstallationAcceptenceBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -58,8 +58,8 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: PolePoItemBinding =
-            PolePoItemBinding.bind(itemView)
+        var binding: EarthingPoItemsBinding =
+            EarthingPoItemsBinding.bind(itemView)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
@@ -74,8 +74,8 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding: PoleConsumableItemBinding =
-            PoleConsumableItemBinding.bind(itemView)
+        var binding: EarthingConsumableItemBinding =
+            EarthingConsumableItemBinding.bind(itemView)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
@@ -89,8 +89,9 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerPoleInfoAdapter.TowerPoleListListener) :ViewHold(itemView) {
-        var binding: PoleAttachmentBinding = PoleAttachmentBinding.bind(itemView)
+    class ViewHold5(itemView: View,listener: EarthingInfoFragmentAdapter.TowerEarthingListListener) :
+        ViewHold(itemView) {
+        var binding: EarthingAttachmentsBinding = EarthingAttachmentsBinding.bind(itemView)
 
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -135,61 +136,62 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         return 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHold {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_equipment_room_list, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_eartrhing_item, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_installation_acceptence, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_installation_acceptence, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_po_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_po_items, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_consumable_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_consumable_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_attachment, parent, false)
-                return ViewHold5(view,listner)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_attachments, parent, false)
+                return ViewHold5(view, listner)
             }
 
 
         }
         return ViewHold(view)
+
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            holder.binding.imgDropdown.setOnClickListener {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                    holder.binding.imgEdit.setOnClickListener {
-                        listner.EditTowerItem()
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                } else {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.imgEdit.setOnClickListener {
+                    listner.EditEarthingItem()
+                }
+
+                holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
             }
+            holder.binding.itemTitleStr.text = list[position]
+
+        }
             is ViewHold2 -> {
                 holder.binding.imgDropdown.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
@@ -273,6 +275,7 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
                 holder.binding.itemTitleStr.text = list[position]
             }
 
+
         }
     }
 
@@ -280,9 +283,9 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         return list.size
     }
 
-    interface TowerPoleListListener {
+    interface TowerEarthingListListener {
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
-        fun EditTowerItem()
+        fun EditEarthingItem()
     }
 }

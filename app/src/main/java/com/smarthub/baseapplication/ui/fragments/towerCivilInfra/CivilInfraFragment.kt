@@ -34,14 +34,14 @@ class CivilInfraFragment : Fragment(),CivilInfraAdapter.CivilInfraAdapterListner
     }
 
     override fun clickedPoleItem() {
-        requireActivity().startActivity(Intent(requireContext(), TowerPoleFragemnt::class.java))
+        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun clickedEquipmentRoomItem() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+        requireActivity().startActivity(Intent(requireContext(), TowerPoleFragemnt::class.java))
     }
 
     override fun clickedEarthingItem() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+        requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
     }
 }
