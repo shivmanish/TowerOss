@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
 class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
@@ -79,10 +80,15 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             isDataFetched = true
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
-                    it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
-                    if (fetchedData.isNotEmpty())
-                        siteViewModel.fetchSiteSearchData(fetchedData)
-                    fetchedData = ""
+
+                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
+
+                    }else {
+                        it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
+                        if (fetchedData.isNotEmpty())
+                            siteViewModel.fetchSiteSearchData(fetchedData)
+                        fetchedData = ""
+                    }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
                 }else {
                     Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
@@ -97,8 +103,13 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             override fun afterTextChanged(s: Editable) {
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
-                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData))
+                    AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
+                            "${item?.Siteid},item?.id:${item?.id}")
+                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData)) {
+                        AppLogger.log("return : $fetchedData")
                         return
+                    }
+
                     isDataFetched = false
                     if (binding.loadingProgress.visibility !=View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
@@ -129,7 +140,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         this.item = item
         if (item!=null){
             binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
+            binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
+            clearResult()
         }else{
             disableButton()
         }
@@ -144,7 +157,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
     }
 
-    fun enableButton(){
+    private fun enableButton(){
         binding.viewOnIbo.alpha = 1.0f
         binding.viewOnMap.alpha = 1.0f
         binding.viewOnIbo.isEnabled = true
