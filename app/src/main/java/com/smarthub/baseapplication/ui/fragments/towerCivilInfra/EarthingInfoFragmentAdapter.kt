@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
+class EarthingInfoFragmentAdapter(var listner: TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -101,7 +101,7 @@ class EarthingInfoFragmentAdapter(var listner: EarthingInfoFragmentAdapter.Tower
             }
         }
     }
-    class ViewHold5(itemView: View,listener: EarthingInfoFragmentAdapter.TowerEarthingListListener) :
+    class ViewHold5(itemView: View,listener: TowerEarthingListListener) :
         ViewHold(itemView) {
         var binding: EarthingAttachmentsBinding = EarthingAttachmentsBinding.bind(itemView)
 
