@@ -16,7 +16,7 @@ class MyTeamTaskFragment : Fragment() {
     lateinit var binding : FragmentMyTaskHomeBinding
     lateinit var adapterList : MyTaskItemAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMyTaskHomeBinding.inflate(inflater)
         return binding.root
     }
