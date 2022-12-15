@@ -17,9 +17,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
-class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
+class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
 
     var fetchedData = ""
     var isDataFetched = true
@@ -134,7 +135,6 @@ class SearchFragment : Fragment(), SearchResultAdapter.SearchResultListener, Sea
         }
     }
 
-    private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun disableButton(){
         binding.viewOnIbo.alpha = 0.2f

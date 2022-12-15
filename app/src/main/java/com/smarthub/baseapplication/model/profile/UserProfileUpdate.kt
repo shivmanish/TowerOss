@@ -4,7 +4,7 @@ import com.smarthub.baseapplication.model.register.Commucationaddess
 import com.smarthub.baseapplication.model.register.Officeaddress
 
 data class UserProfileUpdate(
-    var commucationaddess: Commucationaddess = Commucationaddess(),
+    var communicationaddress: Commucationaddess = Commucationaddess(),
     var department: String = "NA",
     var email: String = "NA",
     var gender: String = "M",
