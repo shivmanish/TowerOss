@@ -58,6 +58,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<TaskModelData>> getTaskResponse() {
         return taskResponse;
     }
+   public SingleLiveEvent<Resource<ServiceRequestAllData>> getServiceRequest() {
+        return serRequestData;
+    }
 
     public void fetchHomeData() {
         JsonObject jsonObject = new JsonObject();

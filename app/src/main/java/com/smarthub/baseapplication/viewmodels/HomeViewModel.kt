@@ -7,6 +7,8 @@ import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.repo.HomeRepo
 import com.smarthub.baseapplication.utils.AppLogger
@@ -17,6 +19,7 @@ class HomeViewModel : ViewModel() {
     var getHomeDataResponse : SingleLiveEvent<Resource<HomeResponse>>?=null
     var getProjectDataResponse : SingleLiveEvent<Resource<ProjectModelData>>?=null
     var getTaskDataResponse : SingleLiveEvent<Resource<TaskModelData>>?=null
+    var getServiceRequest : SingleLiveEvent<Resource<ServiceRequestAllData>>?=null
     var myTeamTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
 
@@ -25,6 +28,7 @@ class HomeViewModel : ViewModel() {
         getHomeDataResponse = homeRepo?.homeResponse
         getProjectDataResponse = homeRepo?.projectResponse
         getTaskDataResponse = homeRepo?.taskResponse
+        getServiceRequest = homeRepo?.serviceRequest
         myTeamTask  = SingleLiveEvent<List<MyTeamTask>?>()
         myTask  = SingleLiveEvent<List<MyTeamTask>?>()
     }
