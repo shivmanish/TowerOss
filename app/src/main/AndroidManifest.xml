@@ -146,6 +146,11 @@
             android:exported="true"
             android:label="@string/setting" />
         <activity
+            android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
+            android:exported="true"
+            android:label="@string/setting" />
+
+        <activity
             android:name=".activities.DashboardActivity"
             android:exported="true" />
         <activity
