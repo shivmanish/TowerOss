@@ -66,7 +66,7 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editClicked(position)
+                        listener.editConsumableClicked(position)
 
                         return true
                     }
@@ -81,7 +81,7 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewClicked(position)
+                        listener.viewConsumableClicked(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingConsumabletableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingPoTableAdapter
 
 class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
 
@@ -31,9 +32,9 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         var binding : TowerEartrhingItemBinding = TowerEartrhingItemBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -48,9 +49,9 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         var binding : EarthingInstallationAcceptenceBinding = EarthingInstallationAcceptenceBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -65,8 +66,8 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -92,8 +93,8 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         var ConsumableTableList : RecyclerView = binding.root.findViewById(R.id.consumable_table)
 
         init {
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -124,9 +125,8 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         })
 
         init {
-            binding.imgDropdown.tag = false
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -193,9 +193,9 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-            holder.binding.imgDropdown.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
+            holder.binding.collapsingLayout.setOnClickListener {
+                holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                if ((holder.binding.collapsingLayout.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -203,23 +203,23 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                 }
-                holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                 holder.binding.imgEdit.setOnClickListener {
                     listner.EditEarthingItem()
                 }
 
-                holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
             is ViewHold2 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -227,22 +227,22 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listner.EditInstallationAcceptence()
                     }
 
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
             is ViewHold3 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -250,19 +250,19 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgAdd.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 holder.rvTableList.adapter = EarthingPoTableAdapter( context,listner)
             }
             is ViewHold4 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -270,19 +270,19 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgAdd.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 holder.ConsumableTableList.adapter=EarthingConsumabletableAdapter(context,listner)
             }
             is ViewHold5 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     } else {
@@ -290,12 +290,10 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
 
                     holder.binding.itemCollapse.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
@@ -313,7 +311,10 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditEarthingItem()
-        fun editClicked(position:Int)
-        fun viewClicked(position:Int)
+        fun editPoClicked(position:Int)
+        fun viewPoClicked(position:Int)
+        fun editConsumableClicked(position:Int)
+        fun viewConsumableClicked(position:Int)
+
     }
 }
