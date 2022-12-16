@@ -142,7 +142,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-            clearResult()
         }else{
             disableButton()
         }

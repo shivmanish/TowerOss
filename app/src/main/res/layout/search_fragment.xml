@@ -208,6 +208,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:spanCount="2"
+                        android:minHeight="350dp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         tools:listitem="@layout/search_category_list_item"/>
                 </LinearLayout>
