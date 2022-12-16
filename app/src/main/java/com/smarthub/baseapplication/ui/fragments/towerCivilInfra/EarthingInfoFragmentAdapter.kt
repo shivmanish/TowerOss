@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingConsumabletableAdapter
 
 class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthingListListener): RecyclerView.Adapter<EarthingInfoFragmentAdapter.ViewHold>() {
 
@@ -87,10 +88,9 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding: EarthingConsumableItemBinding =
-            EarthingConsumableItemBinding.bind(itemView)
+        var binding: EarthingConsumableItemBinding = EarthingConsumableItemBinding.bind(itemView)
+        var ConsumableTableList : RecyclerView = binding.root.findViewById(R.id.consumable_table)
 
-        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
             binding.imgDropdown.tag = false
             if ((binding.imgDropdown.tag as Boolean)) {
@@ -99,6 +99,17 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+        }
+
+        private fun addTableItem(item:String){
+            if (ConsumableTableList.adapter!=null && ConsumableTableList.adapter is EarthingConsumabletableAdapter){
+                var adapter = ConsumableTableList.adapter as EarthingConsumabletableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -241,16 +252,12 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility =
+                    holder.binding.imgAdd.visibility =
                         if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 holder.rvTableList.adapter = EarthingPoTableAdapter( context,listner)
-//                holder.binding.imgAdd.setOnClickListener {
-//                    addTableItem("gsfbgksf")
-//                }
-//                holder.addTableItem("itegbjdks")
             }
             is ViewHold4 -> {
                 holder.binding.imgDropdown.setOnClickListener {
@@ -265,11 +272,12 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                     }
                     holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility =
+                    holder.binding.imgAdd.visibility =
                         if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.ConsumableTableList.adapter=EarthingConsumabletableAdapter(context,listner)
             }
             is ViewHold5 -> {
                 holder.binding.imgDropdown.setOnClickListener {
@@ -306,5 +314,6 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         fun EditInstallationAcceptence()
         fun EditEarthingItem()
         fun editClicked(position:Int)
+        fun viewClicked(position:Int)
     }
 }
