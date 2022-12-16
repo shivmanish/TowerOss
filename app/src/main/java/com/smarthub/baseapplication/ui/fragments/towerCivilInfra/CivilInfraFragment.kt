@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
-import com.smarthub.baseapplication.ui.fragments.customer_tab.NewCustomerDetailsActivity
 
 class CivilInfraFragment : Fragment(),CivilInfraAdapter.CivilInfraAdapterListner {
 
@@ -38,7 +37,7 @@ class CivilInfraFragment : Fragment(),CivilInfraAdapter.CivilInfraAdapterListner
     }
 
     override fun clickedEquipmentRoomItem() {
-        requireActivity().startActivity(Intent(requireContext(), TowerPoleFragemnt::class.java))
+        requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }
 
     override fun clickedEarthingItem() {

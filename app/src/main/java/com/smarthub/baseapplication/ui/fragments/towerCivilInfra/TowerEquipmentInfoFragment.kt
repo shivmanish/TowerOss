@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.databinding.TowerPoleInfoFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
 
-class TowerPoleInfoFragment: Fragment(), TowerPoleInfoAdapter.TowerPoleListListener {
+class TowerEquipmentInfoFragment: Fragment(), TowerEquipmentInfoAdapter.TowerPoleListListener {
     var binding : TowerPoleInfoFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -21,7 +21,7 @@ class TowerPoleInfoFragment: Fragment(), TowerPoleInfoAdapter.TowerPoleListListe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = TowerPoleInfoAdapter(this@TowerPoleInfoFragment)
+        binding?.listItem?.adapter = TowerEquipmentInfoAdapter(this@TowerEquipmentInfoFragment)
     }
 
     override fun attachmentItemClicked() {

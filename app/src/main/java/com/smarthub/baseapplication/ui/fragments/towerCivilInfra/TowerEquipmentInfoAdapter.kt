@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerPoleInfoAdapter.ViewHold>() {
+class TowerEquipmentInfoAdapter(var listner: TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -89,7 +89,7 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerPoleInfoAdapter.TowerPoleListListener) :ViewHold(itemView) {
+    class ViewHold5(itemView: View,listener: TowerEquipmentInfoAdapter.TowerPoleListListener) :ViewHold(itemView) {
         var binding: PoleAttachmentBinding = PoleAttachmentBinding.bind(itemView)
 
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
