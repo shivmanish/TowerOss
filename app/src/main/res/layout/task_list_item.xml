@@ -39,7 +39,7 @@
             <TextView
                 android:id="@+id/task_name"
                 android:text="@string/so_date"
-                android:textSize="@dimen/sp11"
+                android:textSize="@dimen/sp12"
                 android:fontFamily="@font/poppins"
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             <TextView
                 android:id="@+id/item_title_text_h"
                 android:text="@string/_10_nov_2022"
-                android:textSize="@dimen/sp10"
+                android:textSize="@dimen/sp11"
                 android:alpha="0.55"
                 android:layout_marginEnd="@dimen/dp15"
                 android:layout_marginStart="@dimen/dp5"
@@ -64,7 +64,7 @@
             <TextView
                 android:id="@+id/item_title_text1"
                 android:text="@string/ce_mhmum_sc_a0123_0001"
-                android:textSize="@dimen/sp11"
+                android:textSize="@dimen/sp12"
                 app:layout_constraintEnd_toStartOf="@+id/icon_layout"
                 android:fontFamily="@font/poppins"
                 android:gravity="center_vertical"
