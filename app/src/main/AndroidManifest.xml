@@ -172,6 +172,11 @@
             android:label="@string/setting"
             android:screenOrientation="portrait"/>
         <activity
+            android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
+            android:exported="true"
+            android:label="@string/setting" />
+
+        <activity
             android:name=".activities.DashboardActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
