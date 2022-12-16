@@ -46,7 +46,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         disableButton()
-        var searchChipAdapter = SearchChipAdapter(requireContext())
+        val searchChipAdapter = SearchChipAdapter(requireContext())
         binding.chipLayout.adapter = searchChipAdapter
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
                 .setChildGravity(Gravity.TOP) //whether RecyclerView can scroll. TRUE by default
