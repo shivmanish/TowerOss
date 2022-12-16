@@ -72,7 +72,7 @@ class SiteDetailFragment : BaseFragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel.isActionBarHide(true)
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -90,22 +90,22 @@ class SiteDetailFragment : BaseFragment() {
         binding.viewpager.currentItem = 0
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                var view: View? = tab.customView
-                var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
+                val view: View? = tab.customView
+                val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
-                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
-                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                val constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
+                val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 Log.e("TAG", " $view  ${tab.position}")
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
 //                viewPager.currentItem = tab.position
-                var view: View? = tab.customView
-                var constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
+                val view: View? = tab.customView
+                val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-                var constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
-                var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
+                val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.white))
 
             }
@@ -129,9 +129,9 @@ class SiteDetailFragment : BaseFragment() {
                 if (state === State.IDLE) {
 //						mToolbarTextView.setAlpha(offset);
                     for (i in 0..tabNames?.size!!.minus(1)) {
-                        var constraintLayout: ConstraintLayout =
+                        val constraintLayout: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        var constraintL: ConstraintLayout =
+                        val constraintL: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
 
                         constraintL.alpha = offset
@@ -146,9 +146,9 @@ class SiteDetailFragment : BaseFragment() {
                 if (state === State.COLLAPSED) {
 //						mToolbarTextView.setAlpha(1);
                     for (i in 0..tabNames?.size!!.minus(1)) {
-                        var parentconstraintLayout: ConstraintLayout =
+                        val parentconstraintLayout: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        var childconstraint: ConstraintLayout =
+                        val childconstraint: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
                         parentconstraintLayout.visibility = View.GONE
                         childconstraint.visibility = View.VISIBLE
@@ -159,9 +159,9 @@ class SiteDetailFragment : BaseFragment() {
                 } else if (state === State.EXPANDED) {
 //						mToolbarTextView.setAlpha(0);
                     for (i in 0..tabNames?.size!!.minus(1)) {
-                        var parentconstraintLayout: ConstraintLayout =
+                        val parentconstraintLayout: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        var childconstraint: ConstraintLayout =
+                        val childconstraint: ConstraintLayout =
                             binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
                         parentconstraintLayout.visibility = View.VISIBLE
                         childconstraint.visibility = View.GONE
@@ -200,7 +200,7 @@ class SiteDetailFragment : BaseFragment() {
     @SuppressLint("SuspiciousIndentation")
     fun setCustomTab() {
 
-        var typedImages = siteDetailViewModel.getImageArray(requireActivity())
+        val typedImages = siteDetailViewModel.getImageArray(requireActivity())
         for (i in 0..tabNames?.size!!.minus(1)) {
             v = TabItemBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
@@ -211,9 +211,9 @@ class SiteDetailFragment : BaseFragment() {
             imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
-        var constraintLayout: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
-        var constraintLay: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
-        var texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+        val constraintLayout: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
+        val constraintLay: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
+        val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
         texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
 
         constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
@@ -275,7 +275,7 @@ class SiteDetailFragment : BaseFragment() {
     private fun saveDataToLocal(data: SiteInfoDropDownData) {
 
         val gson = Gson()
-        var stringDatajson = gson.toJson(data)
+        val stringDatajson = gson.toJson(data)
         AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
 
     }
