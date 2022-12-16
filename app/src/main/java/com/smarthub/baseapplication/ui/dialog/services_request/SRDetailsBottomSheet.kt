@@ -8,8 +8,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SRDetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class SRDetailsBottomSheet(contentLayoutId: Int,var viewModel: HomeViewModel,var template: String) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding : SrDetailsBottomSheetDialogBinding
 
@@ -19,6 +20,8 @@ class SRDetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(con
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+
+        viewModel.fetchServiceRequestData(template)
     }
 
     override fun getTheme() = R.style.NewDialogTask

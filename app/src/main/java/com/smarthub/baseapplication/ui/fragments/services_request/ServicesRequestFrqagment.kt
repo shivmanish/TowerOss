@@ -47,6 +47,7 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
 
 
         viewmodel.fetchData()
+
         viewmodel.customer_data.observe(requireActivity(), Observer {
             // Data is get from server and ui work will be start from here
             println("this is called data is $it")

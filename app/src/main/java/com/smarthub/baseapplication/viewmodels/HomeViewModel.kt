@@ -54,5 +54,8 @@ class HomeViewModel : ViewModel() {
     fun fetchTaskData(templateName : String){
         homeRepo?.fetchTaskData(templateName)
     }
+    fun fetchServiceRequestData(templateName : String){
+        homeRepo?.fetchServiceRequestData(templateName)
+    }
 
 }
