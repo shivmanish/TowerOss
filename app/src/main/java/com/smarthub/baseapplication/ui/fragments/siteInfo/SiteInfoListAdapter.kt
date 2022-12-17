@@ -243,21 +243,24 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.txtRFCDate.text = operationalInfo.RFCDate
                     holder.binding.txtRFIDate.text = operationalInfo.RFIDate
                     holder.binding.txtRFSDate.text = operationalInfo.RFSDate
-                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus.get(0).name
-                    holder.binding.costCenter.text = operationalInfo.Costcentre.get(0).name
-                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility.get(0).name
+                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus[0].name
+                    holder.binding.costCenter.text = operationalInfo.Costcentre[0].name
+                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility[0].name
                     holder.binding.powerSource.text = operationalInfo.Powersource
                     holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
                     holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
                     holder.binding.operationTemp.text = operationalInfo.OperatingTemp
-                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory.get(0).name
-                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite.get(0).name
-                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca.get(0).name
-                    holder.binding.scdaSpinner.text = operationalInfo.Scda.get(0).name
+                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory[0].name
+                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite[0].name
+                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca[0].name
+                    holder.binding.scdaSpinner.text = operationalInfo.Scda[0].name
                     holder.binding.dismanting.text = operationalInfo.DismantlinglDate
                 }
             }
             is ViewHold3 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.geoConditionsDetailsItemClicked(basicinfodata!!.GeoCondition)
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -290,6 +293,9 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
 
             }
             is ViewHold4 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.siteAccessDetailsItemClicked(basicinfodata!!.SafetyAndAccess)
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
