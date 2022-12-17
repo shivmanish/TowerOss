@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -28,18 +28,40 @@
             android:text="rgsgs"
             style="@style/RowTextItemInfo"
             android:gravity="center"
-            android:maxLines="1"            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_weight="2"
-            android:textSize="@dimen/dp14"
-            android:textStyle="bold"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="0dp"
-            android:text="3"
-            style="@style/RowTextItemInfo"
-            android:gravity="center"
             android:maxLines="1"
             android:layout_height="wrap_content"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/dp14"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="3"
+                style="@style/RowTextItemInfo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="0dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_width="@dimen/dp24"
+                android:id="@+id/menu"
+                android:padding="5dp"
+                android:layout_marginEnd="@dimen/dp3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp5"
+                android:src="@drawable/menu"
+                android:rotation="90"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
     <View

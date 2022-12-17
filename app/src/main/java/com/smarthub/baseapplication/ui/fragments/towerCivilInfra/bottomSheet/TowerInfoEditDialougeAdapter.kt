@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EquiupmentInstallationEditDialougeBinding
+import com.smarthub.baseapplication.databinding.TowerInfoEditDialougeBinding
 
-class EquipmentInstallationEditAdapter (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : EquiupmentInstallationEditDialougeBinding
+class TowerInfoEditDialougeAdapter (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
+    lateinit var binding : TowerInfoEditDialougeBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,7 +21,7 @@ class EquipmentInstallationEditAdapter (contentLayoutId: Int): BottomSheetDialog
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = EquiupmentInstallationEditDialougeBinding.inflate(inflater)
+        binding = TowerInfoEditDialougeBinding.inflate(inflater)
         return binding.root
     }
 }
