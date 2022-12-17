@@ -35,8 +35,6 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
             dialog!!.dismiss()
             dialog!!.cancel()
         }
-
-
         binding.update.setOnClickListener {
             basicinfo!!.let{
 
@@ -59,7 +57,6 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
             basicinfoModel!!.basicinfo = basicinfo!!
             viewModel.updateData(basicinfoModel!!)
         }
-
         binding.txSiteName.setText(basicinfodata.siteName)
         binding.txSiteID.setText(basicinfodata.siteID)
         binding.siteStatus.setSpinnerData(data.sitestatus.data,basicinfodata.Sitestatus.get(0).name)

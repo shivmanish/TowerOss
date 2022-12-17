@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
@@ -102,5 +103,9 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROJECTS_DATA_URL)
     Call<TaskModelData> fetchTaskData(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
+    Call<ServiceRequestAllData> fetchsServiceRequestData(@Body JsonObject data);
 }
 
