@@ -23,6 +23,10 @@ class AlertHomeFragment : Fragment() {
         binding.customizeAlert.setOnClickListener {
             findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment())
         }
+
+        binding.back.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 }
 
