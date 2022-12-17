@@ -37,7 +37,7 @@ class TwrInfraDetails : BaseActivity() {
             val close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
             val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
             val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
-            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.ic_send_alert)
+            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.send_alert)
             val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
             val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
             val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)

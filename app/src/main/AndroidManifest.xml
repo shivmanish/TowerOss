@@ -29,6 +29,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AlertActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.fragments.towerCivilInfra.TowerEarthingFragment"
             android:exported="false">
             <meta-data
@@ -86,16 +93,16 @@
         <activity
             android:name=".ui.fragments.project.DemoActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.fragments.task.TaskActivity"
             android:exported="false"
-            android:theme="@style/Theme.MDemo.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MDemo.NoActionBar" />
         <activity
             android:name=".ui.basic_info.SiteImages"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.site_lease_acquisition.NewSiteAcquisitionActivity"
             android:exported="false"
@@ -123,11 +130,11 @@
         <activity
             android:name=".ui.fragments.qat.QATCheckActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.fragments.customer_tab.OpcoTenancyActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
@@ -142,67 +149,64 @@
             android:name=".ui.fragments.profile.ProfileActivity"
             android:exported="true"
             android:label="@string/setting"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.fragments.profile.EditProfileActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.utilites.UtilitiesNocActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LanguageActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.fragments.qat.AtpMainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SettingActivity"
             android:exported="true"
             android:label="@string/setting"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SearchActivity"
             android:exported="true"
             android:label="@string/setting"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
             android:exported="true"
             android:label="@string/setting" />
-
         <activity
             android:name=".activities.DashboardActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.FAQActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.smarthub.baseapplication.imagePicker.ui.album.ui.AlbumActivity"
             android:label="@string/album"
-            android:theme="@style/FishBunTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FishBunTheme" />
         <activity
             android:name="com.smarthub.baseapplication.imagePicker.ui.picker.PickerActivity"
-            android:theme="@style/FishBunTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FishBunTheme" />
         <activity
             android:name="com.smarthub.baseapplication.imagePicker.ui.detail.ui.DetailImageActivity"
-            android:theme="@style/DetailViewTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/DetailViewTheme" />
 
         <meta-data
             android:name="preloaded_fonts"
