@@ -8,21 +8,22 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EquipmentRoomPoViewDialougeBinding
+import com.smarthub.baseapplication.databinding.TowerConsumableEditDialougeBinding
+import com.smarthub.baseapplication.databinding.TowerOffsetEditDialougeBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class EquipmentPoViewDialougeAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId),
+class TowerOffsetEditAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId),
     ImageAttachmentAdapter.ItemClickListener {
 
-    lateinit var binding: EquipmentRoomPoViewDialougeBinding
+    lateinit var binding: TowerOffsetEditDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = EquipmentRoomPoViewDialougeBinding.bind(view)
+        binding = TowerOffsetEditDialougeBinding.bind(view)
         binding.canecl.setOnClickListener {
             dismiss()
         }
         var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
-        var adapter = ImageAttachmentAdapter(this@EquipmentPoViewDialougeAdapter)
+        var adapter = ImageAttachmentAdapter(this@TowerOffsetEditAdapter)
         attacmentsItem.adapter=adapter
         view.findViewById<View>(R.id.attach_card).setOnClickListener{
             adapter.addItem()
@@ -32,7 +33,7 @@ class EquipmentPoViewDialougeAdapter (contentLayoutId: Int) : BottomSheetDialogF
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = EquipmentRoomPoViewDialougeBinding.inflate(inflater)
+        binding = TowerOffsetEditDialougeBinding.inflate(inflater)
         return binding.root
     }
 

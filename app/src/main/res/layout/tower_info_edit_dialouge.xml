@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
+    android:layout_marginBottom="@dimen/dp20"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/canecl"
@@ -19,8 +20,7 @@
         android:orientation="vertical"
         android:translationZ="@dimen/dp5"
         android:background="@drawable/dialog_bg"
-        android:padding="@dimen/dp5"
-        >
+        android:padding="@dimen/dp5">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -31,8 +31,11 @@
             <LinearLayout
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginTop="@dimen/dp10"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <GridLayout
@@ -41,7 +44,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -49,16 +51,15 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Shelter Room"
+                            android:text="Tower/ Pole ID"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Shelter"
-                            android:paddingRight="@dimen/dp5"
+                        <EditText
+                            android:text="1"
+                            android:maxLines="1"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_height="wrap_content"/>
                         <View
                             android:alpha="0.37"
@@ -74,12 +75,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Shelter Size"
+                            android:text="Tower/ Pole Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="32x52x41"
+                        <TextView
+                            android:text="Lattice Tower"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -98,12 +103,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Foundation Size"
+                            android:text="Installed Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="32x52x41"
+                        <TextView
+                            android:text="Ground-Based"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -122,7 +131,113 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Foundation"
+                            android:text="Height"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="11"
+                            android:maxLines="1"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Comouflage"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Yes"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Anteena Slots"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="Thane"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Lightning Arrester"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Yes"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Foundation Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -130,8 +245,7 @@
                             android:text="Raft Foundation"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
+                            android:layout_height="wrap_content" />
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
@@ -147,40 +261,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="ID"
+                            android:text="Roundation Size"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="122"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Pit Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <View
@@ -189,8 +276,8 @@
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
                             android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
 
+                    </LinearLayout>
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -198,124 +285,47 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Installation Date"
+                            android:text="Tower Leg Count"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="10-Nov-22"
+                        <TextView
+                            android:text="3"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/calender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Operational Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="10-Nov-22"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/calender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Operational Status"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Complete"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Used for"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Shelter"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Earthing Road Material"
-                            style="@style/RowTextItemInfo"
                             android:maxLines="1"
                             android:ellipsize="marquee"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Owner Compnay"
+                            style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="GI"
+                            android:text="Cloudextel"
                             style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:paddingRight="@dimen/dp5"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:drawableEnd="@drawable/down_arrow"
-                            android:layout_height="wrap_content"
-                            />
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
@@ -330,13 +340,17 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Earthing Pit Depth"
+                            android:text="User Company"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="---"
+                        <TextView
+                            android:text="Airtel"
                             style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -349,40 +363,35 @@
                     </LinearLayout>
 
                 </GridLayout>
+                <TextView
+                    android:text="Location Mark"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:hint="Left Corner of Roof "
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text="xwerhtjyg"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/dp8"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <LinearLayout
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/canecel_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"/>
-
-            <TextView
-                android:layout_marginLeft="@dimen/dp25"
-                android:background="@drawable/yellow_text_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update"
-                android:paddingLeft="@dimen/dp15"
-                android:paddingRight="@dimen/dp15"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

@@ -9,10 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
+import com.smarthub.baseapplication.databinding.PoleConsumableTableItemBinding
+import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
-class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<EquipmentPoTableAdapter.ViewHold>() {
+class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 
@@ -34,11 +36,11 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= PolePoTableItemBinding.bind(view)
+        var binding= TowerConsumableTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.pole_po_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_consumable_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -66,7 +68,7 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
+                        listener.editConsumableClicked(position)
 
                         return true
                     }
@@ -81,7 +83,7 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position)
+                        listener.viewConsumableClicked(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

@@ -6,9 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/canecl"
-        android:translationZ="@dimen/dp6"
+        android:translationZ="@dimen/dp7"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp15"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:src="@drawable/cross_ico"
@@ -21,7 +20,7 @@
         android:translationZ="@dimen/dp5"
         android:background="@drawable/dialog_bg"
         android:padding="@dimen/dp5"
-        android:layout_marginTop="@dimen/dp20">
+        >
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -32,6 +31,7 @@
             <LinearLayout
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp10"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 

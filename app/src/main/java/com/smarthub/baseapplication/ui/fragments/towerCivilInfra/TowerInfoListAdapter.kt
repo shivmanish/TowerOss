@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
 
-class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapter.TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -29,28 +31,35 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
     
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : TowerListItemBinding = TowerListItemBinding.bind(itemView)
+        var offsetTableList: RecyclerView=binding.root.findViewById(R.id.tower_offset_table)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
+            binding.addItemsLayout.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (offsetTableList.adapter!=null && offsetTableList.adapter is TowerOffsetTableAdapter){
+                var adapter = offsetTableList.adapter as TowerOffsetTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : TowerInstallationAcceptenceBinding = TowerInstallationAcceptenceBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -62,16 +71,25 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: TowerPoItemBinding =
             TowerPoItemBinding.bind(itemView)
+        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
-        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
+                var adapter = poTableList.adapter as TowerPoTableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -79,15 +97,25 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
         var binding: TowerConsumableItemBinding =
             TowerConsumableItemBinding.bind(itemView)
 
-        //   var adapter =  ImageAttachmentAdapter(listener)
+        var TowerConsumableTableList : RecyclerView = binding.root.findViewById(R.id.tower_consumable_table)
         init {
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (TowerConsumableTableList.adapter!=null && TowerConsumableTableList.adapter is TowerConsumableTableAdapter){
+                var adapter = TowerConsumableTableList.adapter as TowerConsumableTableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -101,9 +129,8 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
         })
 
         init {
-            binding.imgDropdown.tag = false
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -168,9 +195,9 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is TowerInfoListAdapter.ViewHold1 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -178,23 +205,24 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listener.EditTowerItem()
                     }
 
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.offsetTableList.adapter=TowerOffsetTableAdapter(context,listener)
 
             }
             is TowerInfoListAdapter.ViewHold2 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -202,22 +230,22 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listener.EditInstallationAcceptence()
                     }
 
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
             is TowerInfoListAdapter.ViewHold3 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -225,18 +253,19 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgAdd.visibility =
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.poTableList.adapter=TowerPoTableAdapter(context,listener)
             }
             is TowerInfoListAdapter.ViewHold4 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -244,18 +273,19 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgAdd.visibility =
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.TowerConsumableTableList.adapter=TowerConsumableTableAdapter(context,listener)
             }
             is TowerInfoListAdapter.ViewHold5 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     } else {
@@ -263,12 +293,10 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
                     holder.binding.itemLine.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
 
                     holder.binding.itemCollapse.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
@@ -284,6 +312,12 @@ class TowerInfoListAdapter(var listener: TowerInfoListAdapter.TowerInfoListListe
        fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditTowerItem()
+        fun editPoClicked(position:Int)
+        fun viewPoClicked(position:Int)
+        fun editConsumableClicked(position:Int)
+        fun viewConsumableClicked(position:Int)
+        fun editOffsetClicked(position:Int)
+        fun viewOffsetClicked(position:Int)
     }
 
 }

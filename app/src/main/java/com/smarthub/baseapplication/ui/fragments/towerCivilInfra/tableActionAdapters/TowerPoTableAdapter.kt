@@ -10,9 +10,11 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
+import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
-class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<EquipmentPoTableAdapter.ViewHold>() {
+class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<TowerPoTableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 
@@ -34,11 +36,11 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= PolePoTableItemBinding.bind(view)
+        var binding= TowerPoTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.pole_po_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
         return ViewHold(view)
     }
 

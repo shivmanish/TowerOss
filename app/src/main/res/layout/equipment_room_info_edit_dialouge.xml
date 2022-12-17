@@ -1,96 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/dp5"
-    android:layout_marginLeft="@dimen/dp5"
-    android:elevation="@dimen/dp30"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/canecl"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_layout"
-        android:background="@color/collapse_card_bg"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/collapsing_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp42">
-            <TextView
-                android:id="@+id/item_title_str"
-                android:text="Equipment Room"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="@dimen/dp14"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:textColor="@color/color1"
-                android:background="@color/transparent"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent=".7"
-                android:layout_height="match_parent"/>
-            <ImageView
-                android:id="@+id/img_edit"
-                android:visibility="gone"
-                android:src="@drawable/edit_ico_black"
-                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="@dimen/dp12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
-            <ImageView
-                android:id="@+id/img_dropdown"
-                android:src="@drawable/ic_arrow_down_black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp16"
-                android:paddingEnd="@dimen/dp16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-    <View
-        android:id="@+id/item_line"
-        android:alpha="1"
-        app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:background="@color/view_color"
-        android:layout_height="1dp"
-        android:layout_width="match_parent"/>
-
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/item_collapse"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/item_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+        android:padding="@dimen/dp5"
+        >
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:scrollbars="vertical"
             android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:requiresFadingEdge="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:scrollbars="vertical"
-                android:layout_marginBottom="@dimen/dp10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:orientation="vertical">
+
                 <GridLayout
-                    android:visibility="visible"
                     android:columnCount="2"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -104,9 +55,17 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="Shelter"
+                            android:paddingRight="@dimen/dp5"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
+                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
                     <LinearLayout
                         android:paddingTop="0dp"
@@ -119,11 +78,17 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -137,12 +102,18 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
                     <LinearLayout
                         android:paddingTop="0dp"
@@ -155,16 +126,22 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
                             android:text="Raft Foundation"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
-                </GridLayout>
 
+                </GridLayout>
                 <TextView
                     android:text="Location Mark"
                     android:layout_marginTop="@dimen/dp10"
@@ -173,7 +150,7 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <EditText
                     android:hint="Left Corner of Roof "
                     android:textSize="15sp"
                     style="@style/RowTestItemEdit"
@@ -183,9 +160,48 @@
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/dp8"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/canecel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+            <TextView
+                android:layout_marginLeft="@dimen/dp25"
+                android:background="@drawable/yellow_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
