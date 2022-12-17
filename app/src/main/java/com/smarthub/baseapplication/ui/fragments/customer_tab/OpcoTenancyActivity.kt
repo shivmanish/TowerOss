@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
-class NewCustomerDetailsActivity : BaseActivity() {
+class OpcoTenancyActivity : BaseActivity() {
     private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NewCustomerDetailFragmentBinding

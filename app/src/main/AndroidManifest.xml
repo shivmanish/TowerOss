@@ -125,7 +125,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.fragments.customer_tab.NewCustomerDetailsActivity"
+            android:name=".ui.fragments.customer_tab.OpcoTenancyActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
