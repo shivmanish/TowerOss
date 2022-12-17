@@ -65,6 +65,7 @@ class NewCustomerDetailsActivity : BaseActivity() {
 //            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
             dialog.show()
         }
+
         binding.viewpager.adapter = CustomerPageAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
