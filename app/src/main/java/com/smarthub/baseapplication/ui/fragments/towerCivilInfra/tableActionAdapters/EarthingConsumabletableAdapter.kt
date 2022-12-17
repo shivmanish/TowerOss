@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.smarthub.baseapplication.databinding.EarthingPoTableItemBinding
+import com.smarthub.baseapplication.databinding.EarthingConsumableTableItemBinding
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
 
-class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener): Adapter<EarthingPoTableAdapter.ViewHold>() {
+class EarthingConsumabletableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener): RecyclerView.Adapter<EarthingConsumabletableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 
@@ -33,12 +33,12 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
         notifyItemRemoved(position)
     }
 
-    class ViewHold(view: View) : ViewHolder(view){
-        var binding= EarthingPoTableItemBinding.bind(view)
+    class ViewHold(view: View) : RecyclerView.ViewHolder(view){
+        var binding= EarthingConsumableTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_po_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_consumable_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -66,7 +66,7 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editClicked(position)
+                        listener.editConsumableClicked(position)
 
                         return true
                     }
@@ -79,6 +79,12 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
                         return true
                     }
 
+                    R.id.action_view -> {
+                        popupMenu.dismiss()
+                        listener.viewConsumableClicked(position)
+                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 return false
             }
@@ -86,4 +92,3 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
         popupMenu.show()
     }
 }
-

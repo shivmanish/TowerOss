@@ -1,204 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="3dp"
-    android:layout_marginLeft="8dp"
+    android:layout_margin="@dimen/dp5"
+    app:cardCornerRadius="@dimen/dp5"
+    app:cardElevation="@dimen/dp5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/title_layout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/collapse_card_bg">
+        android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingStart="@dimen/dp10"
-            android:paddingEnd="@dimen/dp10"
-            android:gravity="center_vertical"
-            android:layout_width="0dp"
-            android:id="@+id/item_title_str"
-            app:layout_constraintWidth_percent="0.55"
+            android:padding="@dimen/dp5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/title_layout"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/collapse_card_bg">
+
             <TextView
-                android:id="@+id/task_name"
-                android:text="SO Details:"
-                android:textSize="@dimen/dp11"
-                android:fontFamily="@font/poppins"
-                android:paddingEnd="@dimen/dp5"
-                android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-            <TextView
-                android:id="@+id/item_title_text_h"
-                android:text="10-Nov-2022"
-                android:textSize="@dimen/dp12"
-                android:paddingEnd="@dimen/dp10"
-                android:fontFamily="@font/poppins"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorRed"
-                android:layout_width="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/task_name"/>
-            <TextView
-                android:id="@+id/item_title_text1"
-                android:text="Acqusition Site Survey"
-                android:textSize="@dimen/dp14"
-                android:paddingEnd="@dimen/dp10"
+                android:id="@+id/item_title_text"
+                android:text="@string/acqusition_site_survey"
+                android:textSize="@dimen/sp14"
                 android:textStyle="bold"
+                android:paddingVertical="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp5"
                 android:fontFamily="@font/poppins"
                 android:gravity="center_vertical"
                 android:textColor="#4F4D4D"
-                android:layout_width="match_parent"
+                app:layout_constraintEnd_toStartOf="@+id/icon_layout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/task_name"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
+
             <TextView
-                android:id="@+id/item_title_text2"
-                android:text="CE-MHMUM-SC-A0123_0001"
-                android:textSize="@dimen/dp11"
+                android:id="@+id/task_name"
+                android:text="@string/so_date"
+                android:textSize="@dimen/sp12"
                 android:fontFamily="@font/poppins"
-                android:paddingEnd="@dimen/dp10"
                 android:gravity="center_vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/item_title_text1"
                 app:layout_constraintStart_toStartOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:id="@+id/icon_layout"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/item_title_str"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <ImageView
-                android:padding="5dp"
-                android:id="@+id/person_task_item"
+            <TextView
+                android:id="@+id/item_title_text_h"
+                android:text="@string/_10_nov_2022"
+                android:textSize="@dimen/sp11"
+                android:alpha="0.55"
+                android:layout_marginEnd="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp5"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorRed"
                 android:layout_width="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/edit_task_item_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/user_add"
-                />
-            <com.smarthub.baseapplication.widgets.SquareLinearLayout
-                android:id="@+id/edit_task_item_layout"
-                android:layout_width="@dimen/dp55"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                >
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:id="@+id/edit_task_item"
-                        android:layout_width="@dimen/dp30"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_height="@dimen/dp30"
-                        android:text="M"
-                        android:gravity="center"
-                        style="@style/AutoResizeTextView"
-                        android:textColor="@color/white"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:background="@drawable/circleblue_1"
-                        android:backgroundTint="#818181"
-                        />
-                    <com.google.android.material.card.MaterialCardView
-                        android:visibility="visible"
-                        android:padding="6dp"
-                        android:id="@+id/btn_edit_card"
-                        android:layout_width="@dimen/dp20"
-                        app:layout_constraintStart_toEndOf="@+id/edit_task_item"
-                        android:layout_height="@dimen/dp20"
-                        app:cardCornerRadius="@dimen/dp50"
-                        app:strokeWidth="1dp"
-                        app:cardBackgroundColor="@color/color1"
-                        app:strokeColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="@+id/edit_task_item"
-                        app:layout_constraintBottom_toBottomOf="@+id/edit_task_item">
-                        <ImageView
-                            android:padding="6dp"
-                            android:id="@+id/btn_edit"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_edit_menu"
-                            app:tint="@color/white" />
-                    </com.google.android.material.card.MaterialCardView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.smarthub.baseapplication.widgets.SquareLinearLayout>
+                app:layout_constraintTop_toTopOf="@+id/task_name"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-            <ImageView
-                android:id="@+id/task_list_dropdown"
+            <TextView
+                android:id="@+id/item_title_text1"
+                android:text="@string/ce_mhmum_sc_a0123_0001"
+                android:textSize="@dimen/sp12"
+                app:layout_constraintEnd_toStartOf="@+id/icon_layout"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
-                android:padding="@dimen/dp18"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/edit_task_item_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_arrow_down_black"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/item_title_text"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/item_collapse"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/icon_layout"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:padding="5dp"
+                    android:id="@+id/person_task_item"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_task_item_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/user_add"
+                    android:contentDescription="@string/edit_profile" />
+                <com.smarthub.baseapplication.widgets.SquareLinearLayout
+                    android:id="@+id/edit_task_item_layout"
+                    android:layout_width="@dimen/dp55"
+                    app:layout_constraintEnd_toStartOf="@+id/task_list_dropdown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/edit_task_item"
+                            android:layout_width="@dimen/dp30"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_height="@dimen/dp30"
+                            android:text="@string/m"
+                            android:gravity="center"
+                            style="@style/AutoResizeTextView"
+                            android:textColor="@color/white"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:background="@drawable/circleblue_1"
+                            android:backgroundTint="#818181"
+                            />
+                        <com.google.android.material.card.MaterialCardView
+                            android:visibility="visible"
+                            android:padding="6dp"
+                            android:id="@+id/btn_edit_card"
+                            android:layout_width="@dimen/dp20"
+                            app:layout_constraintStart_toEndOf="@+id/edit_task_item"
+                            android:layout_height="@dimen/dp20"
+                            app:cardCornerRadius="@dimen/dp50"
+                            app:strokeWidth="1dp"
+                            app:cardBackgroundColor="@color/color1"
+                            app:strokeColor="@color/white"
+                            app:layout_constraintEnd_toEndOf="@+id/edit_task_item"
+                            app:layout_constraintBottom_toBottomOf="@+id/edit_task_item">
+                            <ImageView
+                                android:padding="6dp"
+                                android:id="@+id/btn_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_edit_menu"
+                                app:tint="@color/white"
+                                android:contentDescription="@string/edit_profile" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.smarthub.baseapplication.widgets.SquareLinearLayout>
+
+                <ImageView
+                    android:id="@+id/task_list_dropdown"
+                    android:layout_width="0dp"
+                    android:padding="@dimen/dp18"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_down_black"
+                    android:contentDescription="@string/drop_down" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/item_collapse"
             android:orientation="vertical"
+            android:paddingEnd="@dimen/dp10"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp16"
             android:paddingBottom="@dimen/dp30"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/title"
                 android:text="Task Instructions:"
                 android:layout_marginStart="@dimen/dp10"
                 style="@style/RowTextItemInfo"
                 android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:hint="Type Here"
-                android:text="Please close this task and send attachments.."
+                android:id="@+id/edit_title"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                android:hint="@string/type_here"
+                android:text="@string/choose_attachments"
                 android:paddingStart="@dimen/dp5"
                 style="@style/RowTestItemEdit"
                 android:paddingTop="0dp"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_margin="@dimen/dp7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <LinearLayout
+                android:id="@+id/layout1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp10"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
                 <TextView
                     android:text="Site ID:"
                     android:layout_marginStart="@dimen/dp10"
@@ -216,13 +215,13 @@
                     />
             </LinearLayout>
 
-
             <GridLayout
                 android:visibility="visible"
                 android:columnCount="2"
+                android:id="@+id/grid"
+                app:layout_constraintTop_toBottomOf="@+id/layout1"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -382,143 +381,108 @@
                 </LinearLayout>
             </GridLayout>
 
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_margin="@dimen/dp10"
-                style="@style/RowTestItemEdit"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/RowTextItemInfo"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:text="Notification"
+                android:padding="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/grid"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/switch1"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="56dp"
+                android:checked="true"
+                android:textOff="OFF"
+                android:textOn="ON"
+                app:layout_constraintTop_toTopOf="@+id/textView1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:theme="@style/MySwitch"/>
 
-                <TableRow
-                    android:id="@+id/tableRow1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/RowTextItemInfo"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="Reminder"
+                android:layout_marginTop="@dimen/dp10"
+                app:layout_constraintTop_toBottomOf="@+id/textView1"
+                app:layout_constraintEnd_toStartOf="@+id/switch1"
+                app:layout_constraintStart_toStartOf="@+id/textView1"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="56dp"
+                android:checked="true"
+                android:textOff="OFF"
+                android:textOn="ON"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:theme="@style/MySwitch"/>
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:background="@drawable/cell_shape"
-                        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/RowTextItemInfo"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="Auto Selection"
+                android:layout_marginTop="@dimen/dp5"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toStartOf="@+id/switch1"
+                app:layout_constraintStart_toStartOf="@+id/textView1"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <Switch
+                android:id="@+id/switch3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="56dp"
+                android:checked="true"
+                android:textOff="OFF"
+                android:textOn="ON"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:theme="@style/MySwitch"/>
 
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/RowTextItemInfo"
-                            android:textColor="@color/text_color"
-                            android:textStyle="bold"
-                            android:padding="5dp"
-                            android:text="Notification"
-                            android:textAppearance="?android:attr/textAppearanceMedium"/>
-                        <Switch
-                            android:id="@+id/switch1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:switchMinWidth="56dp"
-                            android:checked="true"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            app:theme="@style/MySwitch"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:background="@drawable/cell_shape"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/RowTextItemInfo"
-                            android:textColor="@color/text_color"
-                            android:textStyle="bold"
-                            android:padding="5dp"
-                            android:text="Reminder"
-                            android:textAppearance="?android:attr/textAppearanceMedium"/>
-                        <Switch
-                            android:id="@+id/switch2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:switchMinWidth="56dp"
-                            android:checked="true"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            app:theme="@style/MySwitch"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:background="@drawable/cell_shape"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/RowTextItemInfo"
-                            android:textColor="@color/text_color"
-                            android:textStyle="bold"
-                            android:padding="5dp"
-                            android:text="Auto-esclation"
-                            android:textAppearance="?android:attr/textAppearanceMedium"/>
-                        <Switch
-                            android:id="@+id/switch3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:switchMinWidth="56dp"
-                            android:checked="false"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            app:theme="@style/MySwitch"/>
-
-                    </LinearLayout>
-
-                </TableRow>
-            </LinearLayout>
-
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                app:cardBackgroundColor="#FFD72B"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="@dimen/dp5"
                 android:layout_marginTop="20dp"
-                android:id="@+id/rfEquipment_edit_save"
-                android:visibility="visible"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:gravity="right"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+                <TextView
+                    android:padding="5dp"
+                    android:text="Close task"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="@dimen/dp14"
+                    android:textColor="@color/card_bg"
+                    android:layout_width="88dp"
+                    android:layout_height="@dimen/dp32"
+                    />
 
+            </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    app:cardBackgroundColor="#FFD72B"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="@dimen/dp5"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:padding="5dp"
-                        android:text="Close task"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/dp14"
-                        android:textColor="@color/card_bg"
-                        android:layout_width="88dp"
-                        android:layout_height="@dimen/dp32"
-                        />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </com.google.android.material.card.MaterialCardView>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

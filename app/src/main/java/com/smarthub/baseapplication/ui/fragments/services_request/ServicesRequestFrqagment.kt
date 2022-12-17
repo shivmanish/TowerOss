@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
-import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 
 class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
     private val ARG_PARAM1 = "param1"
@@ -39,7 +40,7 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
         }
 
         customerBinding.addMore.setOnClickListener(){
-            val dalouge = CommonBottomSheetDialog()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
         }
@@ -47,6 +48,7 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
 
 
         viewmodel.fetchData()
+
         viewmodel.customer_data.observe(requireActivity(), Observer {
             // Data is get from server and ui work will be start from here
             println("this is called data is $it")

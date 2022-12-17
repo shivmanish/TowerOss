@@ -96,7 +96,7 @@ class OpcoTanacyFragment : Fragment(), CustomerDataAdapterListener {
     }
 
     override fun clickedItem() {
-        requireActivity().startActivity(Intent(requireContext(), NewCustomerDetailsActivity::class.java))
+        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
 
     }
 }

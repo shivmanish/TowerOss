@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingInfoFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EditEarthingPOTableBottomSheet
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 
 class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
     var binding : TowerEarthingInfoFragmentBinding?=null
@@ -30,22 +30,38 @@ class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEa
     }
     //
     override fun EditInstallationAcceptence() {
-        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+        val bottomSheetDialogFragment = EarthingInstallationEditAdapter(R.layout.earthing_installation_edit_dilaouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
     override fun EditEarthingItem() {
 
-        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout)
+        val bottomSheetDialogFragment = EarthingInfoDialougeAdapter(R.layout.tower_earthing_info_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
-    override fun editClicked(position: Int) {
+    override fun editPoClicked(position: Int) {
         var bm = EditEarthingPOTableBottomSheet(R.layout.earthing_po_item_dialouge)
         bm.show(childFragmentManager, "category")
+        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
 
+    override fun viewPoClicked(position: Int) {
+        var bm = EarthingPoTableViewDialougeAdapter(R.layout.earthing_po_item_dialouge)
+        bm.show(childFragmentManager, "category")
+    }
+
+    override fun editConsumableClicked(position: Int) {
+        var bm = EarthingConsumableEditDialougeAdapter(R.layout.earthing_consumable_table_edit_dialouge)
+        bm.show(childFragmentManager, "category")
+        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewConsumableClicked(position: Int) {
+        var bm = EarthingConsumableTableViewDialougeAdapter(R.layout.earthing_consumable_table_view_dialouge)
+        bm.show(childFragmentManager, "category")
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 

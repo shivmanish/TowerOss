@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.smarthub.baseapplication.activities.LanguageActivity">
+
+    <item
+        android:id="@+id/action_view"
+        android:orderInCategory="100"
+        android:title="View"
+        android:icon="@drawable/black_eye_icon"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_edit"
         android:orderInCategory="100"
@@ -12,4 +19,5 @@
         android:orderInCategory="100"
         android:title="Delete"
         app:showAsAction="never" />
+
 </menu>

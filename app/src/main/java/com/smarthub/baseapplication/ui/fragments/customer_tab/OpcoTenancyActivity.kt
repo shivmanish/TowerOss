@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
-class NewCustomerDetailsActivity : BaseActivity() {
+class OpcoTenancyActivity : BaseActivity() {
     private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NewCustomerDetailFragmentBinding
@@ -65,6 +65,7 @@ class NewCustomerDetailsActivity : BaseActivity() {
 //            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
             dialog.show()
         }
+
         binding.viewpager.adapter = CustomerPageAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))

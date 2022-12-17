@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.utils.Utils
 class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
-
+    var currentOpened = -1
     var type1 = "Basic Details"
     var type2 = "Operational Info"
     var type3 = "Geo Condition"
@@ -173,54 +173,39 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.iconLayout.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitle.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.iconLayout.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-
-                   /* if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0) {
-                        holder.binding.iconLayout.visibility =
-                            if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    }else{
-                        holder.binding.iconLayout.visibility = View.GONE
-                    }*/
-
-                    holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked(basicinfodata!!.Basicinfo.get(0))
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
+                    updateList(position)
+                }
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.detailsItemClicked(basicinfodata!!.Basicinfo[0])
                 }
                 holder.binding.itemTitle.text = list[position]
-
-/*
-                if (data!=null) {
-                    holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
-                    holder.binding.siteCategorySpinner.setSpinnerData(data?.sitecategory?.data)
-                    holder.binding.siteOwnershipSpinner.setSpinnerData(data?.siteownership?.data)
-                    holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)
-                }
-*/
-                if(basicinfodata!!.Basicinfo!=null && basicinfodata!!.Basicinfo.size >0){
-                    val basicinfo:Basicinfo = basicinfodata!!.Basicinfo.get(0)
+                if(basicinfodata!!.Basicinfo.isNotEmpty()){
+                    val basicinfo:Basicinfo = basicinfodata!!.Basicinfo[0]
                     holder.binding.txSiteName.text = basicinfo.siteName
                     holder.binding.txSiteID.text = basicinfo.siteID
-                    holder.binding.siteStatus.text = basicinfo.Sitestatus.get(0).name
-                    holder.binding.siteCategory.text = basicinfo.Sitecategory.get(0).name
-                    holder.binding.siteType.text = basicinfo.Sitetype.get(0).name
-                    holder.binding.txBuildingType.text = basicinfo.Buildingtype.get(0).name
-                    holder.binding.txtLocationZone.text = basicinfo.Locationzone.get(0).name
-                    holder.binding.txtMaintenanceZone.text = basicinfo.MaintenancePoint.get(0).maintenancepoint
-                    holder.binding.txtProjectName.text = basicinfo.Projectname.get(0).name
+                    holder.binding.siteStatus.text = basicinfo.Sitestatus[0].name
+                    holder.binding.siteCategory.text = basicinfo.Sitecategory[0].name
+                    holder.binding.siteType.text = basicinfo.Sitetype[0].name
+                    holder.binding.txBuildingType.text = basicinfo.Buildingtype[0].name
+                    holder.binding.txtLocationZone.text = basicinfo.Locationzone[0].name
+                    holder.binding.txtMaintenanceZone.text = basicinfo.MaintenancePoint[0].maintenancepoint
+                    holder.binding.txtProjectName.text = basicinfo.Projectname[0].name
                     holder.binding.txtSiteInChargeName.text = basicinfo.siteInChargeName
                     holder.binding.txtSiteInChargeNumber.text = basicinfo.siteInChargeNumber
                     holder.binding.txtRentEscalation.text = ""
@@ -230,74 +215,72 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
             }
             is ViewHold2 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.iconLayout.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitle.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.iconLayout.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                        listener.operationInfoDetailsItemClicked(basicinfodata!!.OperationalInfo)
-                    }
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    updateList(position)
+                }
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.detailsItemClicked(basicinfodata!!.Basicinfo[0])
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if(basicinfodata!!.OperationalInfo!=null && basicinfodata!!.OperationalInfo.size >0){
+                if(basicinfodata!!.OperationalInfo.isNotEmpty()){
                     val operationalInfo: OperationalInfo = basicinfodata!!.OperationalInfo.get(0)
                     holder.binding.txtRFCDate.text = operationalInfo.RFCDate
                     holder.binding.txtRFIDate.text = operationalInfo.RFIDate
                     holder.binding.txtRFSDate.text = operationalInfo.RFSDate
-                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus.get(0).name
-                    holder.binding.costCenter.text = operationalInfo.Costcentre.get(0).name
-                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility.get(0).name
+                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus[0].name
+                    holder.binding.costCenter.text = operationalInfo.Costcentre[0].name
+                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility[0].name
                     holder.binding.powerSource.text = operationalInfo.Powersource
                     holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
                     holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
                     holder.binding.operationTemp.text = operationalInfo.OperatingTemp
-                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory.get(0).name
-                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite.get(0).name
-                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca.get(0).name
-                    holder.binding.scdaSpinner.text = operationalInfo.Scda.get(0).name
+                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory[0].name
+                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite[0].name
+                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca[0].name
+                    holder.binding.scdaSpinner.text = operationalInfo.Scda[0].name
                     holder.binding.dismanting.text = operationalInfo.DismantlinglDate
                 }
             }
             is ViewHold3 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.geoConditionsDetailsItemClicked(basicinfodata!!.GeoCondition)
+                }
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.iconLayout.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitle.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.iconLayout.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                        listener.geoConditionsDetailsItemClicked(basicinfodata!!.GeoCondition)
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
+                    updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata!!.GeoCondition!=null && basicinfodata!!.GeoCondition.size >0){
+                if(basicinfodata!!.GeoCondition.isNotEmpty()){
                     val geoCondition: GeoCondition = basicinfodata!!.GeoCondition.get(0)
                     holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat.get(0).name
                     holder.binding.textAltitude.text = geoCondition.Altitude
@@ -310,32 +293,29 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
 
             }
             is ViewHold4 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.siteAccessDetailsItemClicked(basicinfodata!!.SafetyAndAccess)
+                }
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.iconLayout.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitle.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.iconLayout.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                        listener.siteAccessDetailsItemClicked(basicinfodata!!.SafetyAndAccess)
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
+                    updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata!!.SafetyAndAccess!=null && basicinfodata!!.SafetyAndAccess.size >0){
+                if(basicinfodata!!.SafetyAndAccess.isNotEmpty()){
                     val saftyAcess: SafetyAndAcces = basicinfodata!!.SafetyAndAccess.get(0)
                     holder.binding.physicalSecurity.text = saftyAcess.Physicalsecurity.get(0).name
                     holder.binding.textGate.text = saftyAcess.GateAndFence.get(0).name
@@ -353,22 +333,36 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
             }
             is ViewHold5 -> {
+                if (currentOpened == position) {
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                }
+                else {
+                    holder.binding.itemTitle.tag = false
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                }
                 holder.binding.itemTitle.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-                    } else {
-                        holder.binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-                    }
-
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
             }
         }
+    }
+
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
+    }
+
+    var recyclerView: RecyclerView?=null
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        this.recyclerView = recyclerView
+        super.onAttachedToRecyclerView(recyclerView)
     }
 
     override fun getItemCount(): Int {

@@ -21,9 +21,6 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             0 -> {
                 return ServiceRequestTabFragment()
             }
-//            1 -> {
-//                return CommercialFragment()
-//            }
             1 -> {
                 return OppoTssrTabFragment()
             }

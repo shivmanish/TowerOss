@@ -2,7 +2,6 @@ package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
@@ -12,11 +11,10 @@ import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTowerPoleFragemntBinding
-import com.smarthub.baseapplication.databinding.ActivityTwrInfraDetailsBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class TowerPoleFragemnt : BaseActivity() {
+class TowerEquipmentFragemnt : BaseActivity() {
     private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : ActivityTowerPoleFragemntBinding
@@ -53,7 +51,7 @@ class TowerPoleFragemnt : BaseActivity() {
             dialog.setContentView(view)
             dialog.show()
         }
-        binding.viewpager.adapter = TowerPoleFragmentAdapter(supportFragmentManager)
+        binding.viewpager.adapter = TowerEquipmentFragmentAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
 //        binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
 //        binding.viewpager.beginFakeDrag()

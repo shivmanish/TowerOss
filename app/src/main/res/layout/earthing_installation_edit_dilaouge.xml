@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/canecl"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+        android:padding="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp20">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="vertical">
+
+            <LinearLayout
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installation Vendor"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Yes"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installation Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installation Excutive Name"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="Umesh"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Vendor Phone No."
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="9172125253"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/ic_call"
+                            android:paddingEnd="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Acceptance Status"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Completed"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Conditional Acceptance Date"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Final Acceptance Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Operational Status"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Live"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Next PM Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                </GridLayout>
+
+                <TextView
+                    android:text="Acceptance Punch Points"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingBottom="@dimen/dp5"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="4"
+                        android:id="@+id/add_items_layout_"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:padding="5dp"
+                            android:text="3"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:gravity="center"
+                            android:drawablePadding="10dp"
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="30dp"
+                            android:background="@drawable/circle_gray" />
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Closed"
+                            android:textSize="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/color1"
+                            android:drawablePadding="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                        <LinearLayout
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:id="@+id/add_items_layout_1"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:padding="5dp"
+                                android:text="3"
+                                android:textColor="@color/color1"
+                                android:layout_marginRight="@dimen/dp5"
+                                android:gravity="center"
+                                android:drawablePadding="10dp"
+                                android:layout_width="@dimen/dp30"
+                                android:layout_height="30dp"
+                                android:background="@drawable/circle_2" />
+                            <TextView
+                                android:padding="5dp"
+                                android:text="Open"
+                                android:textSize="@dimen/dp15"
+                                android:layout_marginRight="@dimen/dp10"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins"
+                                android:textColor="@color/color1"
+                                android:drawablePadding="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingBottom="@dimen/dp5"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:id="@+id/add_items_layout"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:padding="5dp"
+                            android:src="@drawable/add_ico_white"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:layout_gravity="center"
+                            android:drawablePadding="10dp"
+                            android:layout_width="@dimen/dp20"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circleblue_1" />
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Add New"
+                            android:textSize="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/color1"
+                            android:drawablePadding="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/canecel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+            <TextView
+                android:layout_marginLeft="@dimen/dp25"
+                android:background="@drawable/yellow_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

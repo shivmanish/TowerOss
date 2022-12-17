@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
@@ -39,14 +38,14 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     }
 
     fun clearResult(){
-        searchResultAdapter.searchQatModels.clear()
+        searchResultAdapter.list.clear()
         searchResultAdapter.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         disableButton()
-        var searchChipAdapter = SearchChipAdapter(requireContext())
+        val searchChipAdapter = SearchChipAdapter(requireContext())
         binding.chipLayout.adapter = searchChipAdapter
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
                 .setChildGravity(Gravity.TOP) //whether RecyclerView can scroll. TRUE by default
@@ -109,7 +108,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                         AppLogger.log("return : $fetchedData")
                         return
                     }
-
                     isDataFetched = false
                     if (binding.loadingProgress.visibility !=View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
@@ -142,7 +140,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-            clearResult()
         }else{
             disableButton()
         }

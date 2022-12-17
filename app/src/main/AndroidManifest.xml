@@ -36,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.fragments.towerCivilInfra.TowerPoleFragemnt"
+            android:name=".ui.fragments.towerCivilInfra.TowerEquipmentFragemnt"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -125,7 +125,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.fragments.customer_tab.NewCustomerDetailsActivity"
+            android:name=".ui.fragments.customer_tab.OpcoTenancyActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
@@ -171,6 +171,11 @@
             android:exported="true"
             android:label="@string/setting"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
+            android:exported="true"
+            android:label="@string/setting" />
+
         <activity
             android:name=".activities.DashboardActivity"
             android:exported="true"

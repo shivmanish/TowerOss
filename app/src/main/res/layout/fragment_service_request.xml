@@ -26,6 +26,7 @@
           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
           android:id="@+id/customer_list"/>
   </LinearLayout>
+
   <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_more"
         android:layout_width="wrap_content"
@@ -33,7 +34,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         app:backgroundTint="@color/tab_selected_color"
-        android:layout_marginBottom="@dimen/dp80"
+        android:layout_marginBottom="@dimen/dp10"
         app:srcCompat="@drawable/addmore" />
 
 
