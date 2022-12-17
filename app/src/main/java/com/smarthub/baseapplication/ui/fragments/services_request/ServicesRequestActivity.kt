@@ -21,7 +21,7 @@ class ServicesRequestActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewCustomerDetailFragmentBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
         initViews()
     }
 
@@ -44,7 +44,7 @@ class ServicesRequestActivity : BaseActivity() {
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-            var itemBinding = TabNameItemBinding.inflate(layoutInflater)
+            val itemBinding = TabNameItemBinding.inflate(layoutInflater)
             itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
             itemBinding.tabName.textSize = 10f
             binding.tabs.getTabAt(i)?.customView = itemBinding.root
