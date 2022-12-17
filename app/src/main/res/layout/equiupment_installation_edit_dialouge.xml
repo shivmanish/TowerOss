@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/canecl"
-        android:translationZ="@dimen/dp6"
+        android:translationZ="@dimen/dp7"
         android:layout_alignParentRight="true"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
@@ -42,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -49,114 +50,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Shelter Room"
+                            android:text="Installation Vendor"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="Shelter"
-                            android:paddingRight="@dimen/dp5"
+                            android:text="Yes"
                             style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
                             android:drawableEnd="@drawable/down_arrow"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Shelter Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="32x52x41"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Foundation Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="32x52x41"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Foundation"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="Raft Foundation"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="ID"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="122"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
                             android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
                             android:alpha="0.37"
@@ -165,32 +68,6 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Pit Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="32x52x41"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -203,88 +80,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="10-Nov-22"
+                            android:text="27-Dec-22"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
                             android:drawableEnd="@drawable/calender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Operational Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="10-Nov-22"
-                            style="@style/RowTestItemEdit"
                             android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/calender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Operational Status"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Complete"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Used for"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Shelter"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <View
@@ -302,18 +101,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Earthing Road Material"
+                            android:text="Installation Excutive Name"
                             style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="GI"
+                        <EditText
+                            android:text="Umesh"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_height="wrap_content"
                             />
                         <View
@@ -330,13 +127,15 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Earthing Pit Depth"
+                            android:text="Vendor Phone No."
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="---"
+                        <TextView
+                            android:text="9172125253"
                             style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/ic_call"
+                            android:paddingEnd="@dimen/dp5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -348,7 +147,253 @@
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Acceptance Status"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Completed"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Conditional Acceptance Date"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Final Acceptance Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Operational Status"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Live"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/down_arrow"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Next PM Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:text="27-Dec-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
                 </GridLayout>
+
+                <TextView
+                    android:text="Acceptance Punch Points"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingBottom="@dimen/dp5"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="4"
+                        android:id="@+id/add_items_layout_"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:padding="5dp"
+                            android:text="3"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:gravity="center"
+                            android:drawablePadding="10dp"
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="30dp"
+                            android:background="@drawable/circle_gray" />
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Closed"
+                            android:textSize="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/color1"
+                            android:drawablePadding="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                        <LinearLayout
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:id="@+id/add_items_layout_1"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:padding="5dp"
+                                android:text="3"
+                                android:textColor="@color/color1"
+                                android:layout_marginRight="@dimen/dp5"
+                                android:gravity="center"
+                                android:drawablePadding="10dp"
+                                android:layout_width="@dimen/dp30"
+                                android:layout_height="30dp"
+                                android:background="@drawable/circle_2" />
+                            <TextView
+                                android:padding="5dp"
+                                android:text="Open"
+                                android:textSize="@dimen/dp15"
+                                android:layout_marginRight="@dimen/dp10"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins"
+                                android:textColor="@color/color1"
+                                android:drawablePadding="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingBottom="@dimen/dp5"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:id="@+id/add_items_layout"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:padding="5dp"
+                            android:src="@drawable/add_ico_white"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:layout_gravity="center"
+                            android:drawablePadding="10dp"
+                            android:layout_width="@dimen/dp20"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circleblue_1" />
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Add New"
+                            android:textSize="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/color1"
+                            android:drawablePadding="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

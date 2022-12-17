@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingPoTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 
 class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<EquipmentPoTableAdapter.ViewHold>() {
@@ -35,11 +34,11 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= EarthingPoTableItemBinding.bind(view)
+        var binding= PolePoTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_po_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.pole_po_table_item,parent,false)
         return ViewHold(view)
     }
 

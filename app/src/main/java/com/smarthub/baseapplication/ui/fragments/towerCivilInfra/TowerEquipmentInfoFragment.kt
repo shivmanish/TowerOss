@@ -30,14 +30,14 @@ class TowerEquipmentInfoFragment: Fragment(), TowerEquipmentInfoAdapter.TowerPol
     }
     //
     override fun EditInstallationAcceptence() {
-        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+        val bottomSheetDialogFragment = EquipmentInstallationEditAdapter(R.layout.equiupment_installation_edit_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
-    override fun EditTowerItem() {
+    override fun EditEquipmentRoomItem() {
 
-        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout)
+        val bottomSheetDialogFragment = EquipmentRoomInfoEditAdapter(R.layout.equipment_room_info_edit_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
@@ -48,18 +48,18 @@ class TowerEquipmentInfoFragment: Fragment(), TowerEquipmentInfoAdapter.TowerPol
     }
 
     override fun viewPoClicked(position: Int) {
-        var bm = EquipmentPoViewDialougeAdapter(R.layout.equipment_room_view_dialouge)
+        var bm = EquipmentPoViewDialougeAdapter(R.layout.equipment_room_po_view_dialouge)
         bm.show(childFragmentManager, "category")
     }
 
     override fun editConsumableClicked(position: Int) {
-        var bm = EarthingConsumableEditDialougeAdapter(R.layout.earthing_consumable_table_edit_dialouge)
+        var bm = EquipmentConsumEditAdapter(R.layout.equipment_consumable_edit_dialouge)
         bm.show(childFragmentManager, "category")
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
     override fun viewConsumableClicked(position: Int) {
-        var bm = EarthingConsumableTableViewDialougeAdapter(R.layout.earthing_consumable_table_view_dialouge)
+        var bm = EquipmentConsumViewAdapter(R.layout.equipment_consumable_table_view_dialouge)
         bm.show(childFragmentManager, "category")
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
