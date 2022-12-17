@@ -11,6 +11,7 @@
         tools:itemCount="3"
         android:id="@+id/list_item"
         android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp5"
         tools:listitem="@layout/commercial_list_item1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

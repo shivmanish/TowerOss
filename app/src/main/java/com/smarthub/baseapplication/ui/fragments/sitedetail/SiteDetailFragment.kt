@@ -124,76 +124,76 @@ class SiteDetailFragment : BaseFragment() {
 
     private fun setFabActionButton() {
         // for our add floating action button
-        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
-            override fun onOffsetChanged(state: State?, offset: Float) {
-                if (state === State.IDLE) {
-//						mToolbarTextView.setAlpha(offset);
-                    for (i in 0..tabNames?.size!!.minus(1)) {
-                        val constraintLayout: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        val constraintL: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-
-                        constraintL.alpha = offset
-                        constraintLayout.alpha = (1 - offset)
-                    }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "$offset  ${1 - offset}")
-
-                }
-            }
-
-            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
-                if (state === State.COLLAPSED) {
-//						mToolbarTextView.setAlpha(1);
-                    for (i in 0..tabNames?.size!!.minus(1)) {
-                        val parentconstraintLayout: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        val childconstraint: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                        parentconstraintLayout.visibility = View.GONE
-                        childconstraint.visibility = View.VISIBLE
-//                            constraintL.alpha= 1f
-//                            constraintLayout.alpha = 0f
-                    }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
-                } else if (state === State.EXPANDED) {
-//						mToolbarTextView.setAlpha(0);
-                    for (i in 0..tabNames?.size!!.minus(1)) {
-                        val parentconstraintLayout: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        val childconstraint: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                        parentconstraintLayout.visibility = View.VISIBLE
-                        childconstraint.visibility = View.GONE
-//                            constraintL.alpha= 0f
-//                            constraintLayout.alpha = 1f
-                    }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
-                }
-            }
-        })
-        binding.fabbtn.setOnClickListener {
-
-            if (!fabVisible) {
-                binding.fabbtn.setImageDrawable(
-                    siteDetailViewModel.getDrawable(
-                        requireActivity(),
-                        true
-                    )
-                )
-                siteDetailViewModel.openPopup(binding.fabbtn, requireActivity())
-                fabVisible = true
-            } else {
-                binding.fabbtn.setImageDrawable(
-                    siteDetailViewModel.getDrawable(
-                        requireActivity(),
-                        false
-                    )
-                )
-                siteDetailViewModel.dismissPopub()
-                fabVisible = false
-            }
-        }
+//        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+//            override fun onOffsetChanged(state: State?, offset: Float) {
+//                if (state === State.IDLE) {
+////						mToolbarTextView.setAlpha(offset);
+//                    for (i in 0..tabNames?.size!!.minus(1)) {
+//                        val constraintLayout: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+//                        val constraintL: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+//
+//                        constraintL.alpha = offset
+//                        constraintLayout.alpha = (1 - offset)
+//                    }
+//                    Log.d("offsetvalues>>>onOffsetChanged>", "$offset  ${1 - offset}")
+//
+//                }
+//            }
+//
+//            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+//                if (state === State.COLLAPSED) {
+////						mToolbarTextView.setAlpha(1);
+//                    for (i in 0..tabNames?.size!!.minus(1)) {
+//                        val parentconstraintLayout: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+//                        val childconstraint: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+//                        parentconstraintLayout.visibility = View.GONE
+//                        childconstraint.visibility = View.VISIBLE
+////                            constraintL.alpha= 1f
+////                            constraintLayout.alpha = 0f
+//                    }
+//                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
+//                } else if (state === State.EXPANDED) {
+////						mToolbarTextView.setAlpha(0);
+//                    for (i in 0..tabNames?.size!!.minus(1)) {
+//                        val parentconstraintLayout: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+//                        val childconstraint: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+//                        parentconstraintLayout.visibility = View.VISIBLE
+//                        childconstraint.visibility = View.GONE
+////                            constraintL.alpha= 0f
+////                            constraintLayout.alpha = 1f
+//                    }
+//                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
+//                }
+//            }
+//        })
+//        binding.fabbtn.setOnClickListener {
+//
+//            if (!fabVisible) {
+//                binding.fabbtn.setImageDrawable(
+//                    siteDetailViewModel.getDrawable(
+//                        requireActivity(),
+//                        true
+//                    )
+//                )
+//                siteDetailViewModel.openPopup(binding.fabbtn, requireActivity())
+//                fabVisible = true
+//            } else {
+//                binding.fabbtn.setImageDrawable(
+//                    siteDetailViewModel.getDrawable(
+//                        requireActivity(),
+//                        false
+//                    )
+//                )
+//                siteDetailViewModel.dismissPopub()
+//                fabVisible = false
+//            }
+//        }
 
     }
 
