@@ -33,6 +33,9 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+
+        holder.binding.textName.text =if (searchQatModels[position].Siteid!=null) searchQatModels[position].Siteid else "null"
+        holder.binding.text.text = if (searchQatModels[position].id!=null) searchQatModels[position].id else "null"
        holder.binding.textLayout.setOnClickListener {
            listener.onSearchItemSelected(searchQatModels[position])
            searchQatModels.clear()
