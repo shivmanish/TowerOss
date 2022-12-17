@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
-import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 
 class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
     private val ARG_PARAM1 = "param1"

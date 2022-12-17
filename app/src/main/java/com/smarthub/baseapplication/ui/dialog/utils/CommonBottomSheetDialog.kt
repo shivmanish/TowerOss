@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.utilites.editdialouge
+package com.smarthub.baseapplication.ui.dialog.utils
 
 import android.os.Bundle
 import android.view.*
@@ -10,11 +10,7 @@ import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
 
 class CommonBottomSheetDialog : DialogFragment() {
     lateinit var binding: AddMoreBotomSheetDailogBinding
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = AddMoreBotomSheetDailogBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT

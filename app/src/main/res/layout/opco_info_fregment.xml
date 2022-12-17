@@ -14,7 +14,6 @@
         tools:itemCount="3"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/list_item"
-        android:paddingTop="@dimen/dp10"
         tools:listitem="@layout/rf_equipment_list_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

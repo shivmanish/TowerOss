@@ -152,7 +152,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:cardElevation="5dp"
-        android:layout_margin="10dp"
+        android:layout_marginStart="@dimen/dp5"
+        android:layout_marginEnd="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs">
         <androidx.viewpager.widget.ViewPager
@@ -168,7 +170,8 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
             app:backgroundTint="@color/tab_selected_color"
-            app:srcCompat="@drawable/addmore" />
+            app:srcCompat="@drawable/addmore"
+            android:layout_margin="@dimen/dp10"/>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

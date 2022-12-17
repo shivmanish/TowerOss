@@ -35,7 +35,6 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
         list.add("Equipments")
         list.add("Radio Antennas")
         list.add("Backhaul Links")
-      //  list.add("Attachments")
         list.add("Requester Info")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -185,6 +184,9 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.detailsItemClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -214,6 +216,9 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                 }
             }
             is ViewHold2 -> {
+                holder.binding.imgEdit.setOnClickListener{
+                    listener.operationInfoDetailsItemClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -240,6 +245,9 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                 }
             }
             is ViewHold3 -> {
+                holder.binding.imgEdit.setOnClickListener() {
+                    listener.geoConditionsDetailsItemClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -265,6 +273,9 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
             }
             is ViewHold4 -> {
+                holder.binding.imgEdit.setOnClickListener() {
+                    listener.siteAccessDetailsItemClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -310,6 +321,9 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                 holder.binding.itemTitle.text = list[position]
             }
             is ViewHold6 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.requestinfoClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)

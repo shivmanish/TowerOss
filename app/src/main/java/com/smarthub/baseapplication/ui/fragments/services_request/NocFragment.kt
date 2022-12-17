@@ -9,11 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
-import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 
 class NocFragment : Fragment(), NocDataAdapterListener {
     private val ARG_PARAM1 = "param1"
