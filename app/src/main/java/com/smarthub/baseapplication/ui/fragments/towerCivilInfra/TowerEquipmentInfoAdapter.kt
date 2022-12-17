@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingConsumabletableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingPoTableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentConsumableTableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentPoTableAdapter
 
-class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerPoleInfoAdapter.ViewHold>() {
+class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -60,16 +65,24 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: PolePoItemBinding =
             PolePoItemBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
+        var poTableList: RecyclerView=binding.root.findViewById(R.id.po_tables)
         init {
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (poTableList.adapter!=null && poTableList.adapter is EquipmentPoTableAdapter){
+                var adapter = poTableList.adapter as EquipmentPoTableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -77,19 +90,28 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         var binding: PoleConsumableItemBinding =
             PoleConsumableItemBinding.bind(itemView)
 
-        //   var adapter =  ImageAttachmentAdapter(listener)
+        var EquipmentConsumableTableList : RecyclerView = binding.root.findViewById(R.id.equipment_consumable_table)
         init {
-            binding.imgDropdown.tag = false
-            if ((binding.imgDropdown.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (EquipmentConsumableTableList.adapter!=null && EquipmentConsumableTableList.adapter is EquipmentConsumableTableAdapter){
+                var adapter = EquipmentConsumableTableList.adapter as EquipmentConsumableTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerPoleInfoAdapter.TowerPoleListListener) :ViewHold(itemView) {
+    class ViewHold5(itemView: View,listener: TowerEquipmentInfoAdapter.TowerPoleListListener) :ViewHold(itemView) {
         var binding: PoleAttachmentBinding = PoleAttachmentBinding.bind(itemView)
 
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
@@ -214,9 +236,9 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
                 holder.binding.itemTitleStr.text = list[position]
             }
             is ViewHold3 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -224,18 +246,19 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgAdd.visibility =
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.poTableList.adapter=EquipmentPoTableAdapter(context,listner)
             }
             is ViewHold4 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.imgDropdown.tag = !(holder.binding.imgDropdown.tag as Boolean)
-                    if ((holder.binding.imgDropdown.tag as Boolean)) {
+                holder.binding.collapsingLayout.setOnClickListener {
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                         holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
@@ -243,13 +266,14 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
                         holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                         holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     }
-                    holder.binding.itemLine.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.imgDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgAdd.visibility =
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.EquipmentConsumableTableList.adapter=EquipmentConsumableTableAdapter(context,listner)
             }
             is ViewHold5 -> {
                 holder.binding.imgDropdown.setOnClickListener {
@@ -284,5 +308,9 @@ class TowerPoleInfoAdapter(var listner: TowerPoleInfoAdapter.TowerPoleListListen
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditTowerItem()
+        fun editPoClicked(position:Int)
+        fun viewPoClicked(position:Int)
+        fun editConsumableClicked(position:Int)
+        fun viewConsumableClicked(position:Int)
     }
 }

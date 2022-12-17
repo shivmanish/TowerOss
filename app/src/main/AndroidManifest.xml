@@ -36,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.fragments.towerCivilInfra.TowerPoleFragemnt"
+            android:name=".ui.fragments.towerCivilInfra.TowerEquipmentFragemnt"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

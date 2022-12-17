@@ -10,10 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingInfoFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EarthingConsumableEditDialougeAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EarthingConsumableTableViewDialougeAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EarthingPoTableViewDialougeAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EditEarthingPOTableBottomSheet
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 
 class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
     var binding : TowerEarthingInfoFragmentBinding?=null
@@ -33,14 +30,14 @@ class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEa
     }
     //
     override fun EditInstallationAcceptence() {
-        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+        val bottomSheetDialogFragment = EarthingInstallationEditAdapter(R.layout.earthing_installation_edit_dilaouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
     override fun EditEarthingItem() {
 
-        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout)
+        val bottomSheetDialogFragment = EarthingInfoDialougeAdapter(R.layout.tower_earthing_info_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
