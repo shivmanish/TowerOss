@@ -34,7 +34,7 @@ class ServicesRequestActivity : BaseActivity() {
             onBackPressed()
         }
         binding.addMore.setOnClickListener(){
-            val dalouge = CommonBottomSheetDialog()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
         binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager)

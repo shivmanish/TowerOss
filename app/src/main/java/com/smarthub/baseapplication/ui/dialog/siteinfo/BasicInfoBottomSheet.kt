@@ -19,6 +19,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
     lateinit var viewModel: BasicInfoDialougeViewmodel
     var basicinfoModel: BasicinfoModel? = null
     var basicinfo: BasicinfoServiceData? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         basicinfoModel = BasicinfoModel()
@@ -27,7 +28,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
-        viewModel = ViewModelProvider(requireActivity()).get(BasicInfoDialougeViewmodel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[BasicInfoDialougeViewmodel::class.java]
         if (viewModel.basicinfoModel?.hasActiveObservers() == true){
             viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
         }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
@@ -39,7 +40,7 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
         }
 
         customerBinding.addMore.setOnClickListener(){
-            val dalouge = CommonBottomSheetDialog()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
         }

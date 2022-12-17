@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.utilites
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityDgDetailsBinding
 import com.smarthub.baseapplication.ui.utilites.adapter.DGViewpagerAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -21,7 +22,7 @@ class DGDetailsActivity : AppCompatActivity() {
 
 
         binding.addMore.setOnClickListener{
-            val dalouge = CommonBottomSheetDialog()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
         val fragmentlist = ArrayList<Fragment>()
