@@ -31,7 +31,6 @@
         <item>Site Info</item>
         <item>Service Request</item>
         <item>OPCO Tenancy</item>
-        <item>Plan &amp; Deisgn</item>
         <item>Site Agreement</item>
         <item>Utilities Equip</item>
         <item>NOC &amp; Comp</item>
@@ -249,4 +248,11 @@
     <string name="msg_minimum_image">Please select at least <b>%d</b> images.</string>
     <string name="done">Done</string>
     <string name="internet_alert">Check Your Internet Connection</string>
+    <string name="acqusition_site_survey">Acqusition Site Survey</string>
+    <string name="so_date">SO Date :</string>
+    <string name="_10_nov_2022">10-Nov-2022</string>
+    <string name="ce_mhmum_sc_a0123_0001">CE-MHMUM-SC-A0123_0001</string>
+    <string name="m">M</string>
+    <string name="drop_down">Drop Down</string>
+    <string name="choose_attachments">Please close this task and send attachments..</string>
 </resources>

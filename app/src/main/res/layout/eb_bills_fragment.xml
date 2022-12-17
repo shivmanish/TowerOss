@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/collapsing_layout_equipment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/equipment_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_title_eqipment"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="EB Details" />
+
+                    <ImageView
+                        android:id="@+id/equipment_edit"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/equipment_arrow"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/item_collapse_equipment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dp10">
+
+                        <GridLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:columnCount="2"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bill Number *" />
+
+                                <TextView
+                                    android:id="@+id/bill_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="000001802484884"
+                                    android:textColor="@color/black"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Consumer Number *" />
+
+                                <TextView
+                                    android:id="@+id/consumer_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="12181761"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bill Month *" />
+
+                                <TextView
+                                    android:id="@+id/Bill_Month"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="27-Nov-22 kw"
+                                    android:drawableEnd="@drawable/calender"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bill Date *" />
+
+                                <TextView
+                                    android:id="@+id/bill_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="27-Nov-22"
+                                    android:drawableEnd="@drawable/calender"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Previous Reading" />
+
+                                <TextView
+                                    android:id="@+id/previous_reading"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="46582"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Current Reading Date" />
+
+                                <TextView
+                                    android:id="@+id/current_reading_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="27-Nov-22"
+                                    android:drawableEnd="@drawable/calender"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Previous Reading Date" />
+
+                                <TextView
+                                    android:id="@+id/previous_reading_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="27-Nov-22"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Current Reading" />
+
+                                <TextView
+                                    android:id="@+id/current_reading"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="46737"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bill Month" />
+                                <TextView
+                                    android:id="@+id/bill_month"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="3 Month"
+                                    android:textColor="@color/black" />
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="MF" />
+
+                                <TextView
+                                    android:id="@+id/mf"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="1"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Unit" />
+
+                                <TextView
+                                    android:id="@+id/unit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="155"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Adj. Unit" />
+
+                                <TextView
+                                    android:id="@+id/adj_unit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Units" />
+
+                                <TextView
+                                    android:id="@+id/total_units"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="155"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bill Amount *" />
+
+                                <TextView
+                                    android:id="@+id/bill_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="4,035.90"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bill Due Date *" />
+
+                                <TextView
+                                    android:id="@+id/bill_due_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="27-Nov-22"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Prompt Pay Date *" />
+
+                                <TextView
+                                    android:id="@+id/prompt_pay_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="27-Nov-22"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Prompt Pay Amount" />
+
+                                <TextView
+                                    android:id="@+id/prompt_pay_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="4,020.00"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Late Pay Date" />
+
+                                <TextView
+                                    android:id="@+id/late_pay_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="27-Nov-22"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Late Pay Amount" />
+
+                                <TextView
+                                    android:id="@+id/late_pay_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="4,060.00"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+
+
+
+
+
+
+
+                        </GridLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

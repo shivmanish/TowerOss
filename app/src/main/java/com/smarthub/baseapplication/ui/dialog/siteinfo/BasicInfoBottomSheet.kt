@@ -13,11 +13,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.viewmodel.BasicInfoDialougeViewmodel
 
-class BasicInfoBottomSheet(
-    contentLayoutId: Int,
-    val data: BasicInfoModelDropDown,
-    val basicinfodata: com.smarthub.baseapplication.model.siteInfo.Basicinfo
-) : BottomSheetDialogFragment(contentLayoutId) {
+class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDown, val basicinfodata: com.smarthub.baseapplication.model.siteInfo.Basicinfo) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: BasicInfoDetailsBottomSheetBinding
     lateinit var viewModel: BasicInfoDialougeViewmodel
@@ -85,11 +81,7 @@ class BasicInfoBottomSheet(
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = BasicInfoDetailsBottomSheetBinding.inflate(inflater)
         return binding.root
     }

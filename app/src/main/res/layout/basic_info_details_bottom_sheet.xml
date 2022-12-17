@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/ic_menu_close"
         android:translationZ="@dimen/dp6"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp5"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:src="@drawable/cross_ico"

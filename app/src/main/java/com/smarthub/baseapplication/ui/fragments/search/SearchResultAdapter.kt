@@ -35,7 +35,8 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
        holder.binding.textLayout.setOnClickListener {
            listener.onSearchItemSelected(searchQatModels[position])
-
+           searchQatModels.clear()
+           notifyDataSetChanged()
        }
     }
 

@@ -1,0 +1,1022 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/collapsing_layout_equipment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/equipment_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_title_eqipment"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="EB Details" />
+
+                    <ImageView
+                        android:id="@+id/equipment_edit"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/equipment_arrow"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/item_collapse_equipment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dp10">
+
+                        <GridLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:columnCount="2"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Power Connection Type" />
+
+                                <TextView
+                                    android:id="@+id/power_connection_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="EB Connection"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Electricity Supplier" />
+
+                                <TextView
+                                    android:id="@+id/electricity_supplier"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="MSEB company LTD"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="EB Sanctioned Load" />
+
+                                <TextView
+                                    android:id="@+id/eb_sanctioned_load"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="10 kw"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Connected Load" />
+
+                                <TextView
+                                    android:id="@+id/connected_load"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="5 kw"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Consumer No." />
+
+                                <TextView
+                                    android:id="@+id/consumer_no"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="."
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Meter Type" />
+
+                                <TextView
+                                    android:id="@+id/meter_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="."
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Meter Serial Number" />
+
+                                <TextView
+                                    android:id="@+id/meter_serial_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="."
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Supply Voltage" />
+
+                                <TextView
+                                    android:id="@+id/supply_voltage"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="54V"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cabinet Size" />
+                                <TextView
+                                    android:id="@+id/cabinet_size"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="."
+                                    android:textColor="@color/black" />
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Location Mark" />
+
+                                <TextView
+                                    android:id="@+id/location_mark"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="."
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Avg Availibillity (hrs)" />
+
+                                <TextView
+                                    android:id="@+id/avg_availibillity_hrs"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="."
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Owner Company" />
+
+                                <TextView
+                                    android:id="@+id/owner_company"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="."
+                                    android:textColor="@color/black" />
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="User Company" />
+
+                                <TextView
+                                    android:id="@+id/userCompany"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text=""
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Connection Type" />
+
+                                <TextView
+                                    android:id="@+id/connection_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="Permanent"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+
+
+
+
+
+
+                        </GridLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/item_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/instanlation_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_title_instalation"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="Installation/ Acceptance" />
+
+                    <ImageView
+                        android:id="@+id/edit_instanlation"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/instalation_arrow"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_collapse_acceptance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp10">
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Installation Vendor" />
+
+                            <TextView
+                                android:id="@+id/spinInstallationVendor"
+                                android:textColor="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Installation Date" />
+
+                            <EditText
+                                android:id="@+id/editInstallationDate"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableRight="@drawable/icon_date"
+
+                                android:text="24" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Installation Executive Name" />
+
+                            <EditText
+                                android:id="@+id/editExcutiveName"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="xxxx" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Installation Executive Num..." />
+
+                            <EditText
+                                android:id="@+id/editExcutiveNum"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableRight="@drawable/ic_call"
+                                android:text="9890000009" />
+
+                        </LinearLayout>
+
+
+                    </GridLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_gravity="center_vertical"
+                    android:background="#f9f9f9"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp12">
+
+                    <TextView
+                        android:id="@+id/atp_checkli"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight=".3"
+                        android:gravity="start"
+                        android:text="ATP Checklist"
+                        android:textColor="#3D4E6D" />
+
+                    <TextView
+                        android:id="@+id/addmore"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp40"
+                        android:layout_gravity="center|right"
+                        android:layout_weight=".7"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:text="Continue"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/sp12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp12">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight=".3"
+                        android:gravity="start"
+                        android:text="Acceptance Punch Points"
+                        android:textColor="#3D4E6D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/mark"
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/roundedtextblack"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_marginLeft="@dimen/dp5"
+                                    android:textSize="@dimen/dp12"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_toRightOf="@+id/mark"
+                                    android:gravity="center_vertical"
+                                    android:text=" Closed"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/mark2"
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/roundedtextview_yellow"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_marginLeft="@dimen/dp5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center|start"
+                                    android:layout_toRightOf="@+id/mark2"
+                                    android:gravity="center_vertical"
+                                    android:textSize="@dimen/dp12"
+                                    android:text=" OPEN"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/add"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp40"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_bold"
+                                android:gravity="center"
+                                android:text="ADD"
+                                android:textColor="@color/normalTextColor"
+                                android:textSize="@dimen/sp12" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Acceptance Status" />
+
+                        <EditText
+                            android:id="@+id/editAcceptanceStatus"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Completed" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Conditional Acceptance Da.." />
+
+                        <EditText
+                            android:id="@+id/editCondtionalAcceptance"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:text="10-Nov-22" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Final Acceptance Date" />
+
+                        <EditText
+                            android:id="@+id/editFinalDateAcceptance"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:text="10-Nov-22" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Operational Status" />
+
+                        <TextView
+                            android:id="@+id/spinOperationalStatus"
+                            android:textColor="@color/black"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="On-Air" />
+
+                    </LinearLayout>
+                </GridLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/rectangle_9"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp12"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight=".3"
+                        android:gravity="start"
+                        android:text="@string/po_details"
+                        android:textColor="#3D4E6D" />
+
+                    <TextView
+                        android:id="@+id/txtAddCommersial"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp40"
+
+                        android:layout_gravity="center|right"
+                        android:layout_weight=".7"
+                        android:background="@drawable/yellow_text_button"
+                        android:drawableLeft="@drawable/add_ico"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:text="ADD"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/sp12"
+                        app:drawableLeftCompat="@drawable/add_ico" />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="Tarrif" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="DN &amp; Payments" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="PO" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expand_colaps_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:padding="@dimen/dp15"
+                        android:text="Consumables" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/edit_fav_btn"
+                        android:visibility="gone"
+                        app:tint="@color/black" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:padding="@dimen/dp18"
+                        android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
