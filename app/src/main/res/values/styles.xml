@@ -330,6 +330,22 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="AlertGridItemStyles">
+        <item name="android:layout_marginStart">@dimen/dp20</item>
+        <item name="android:layout_marginTop">@dimen/dp20</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="android:layout_marginBottom">@dimen/dp20</item>
+        <item name="android:layout_marginEnd">@dimen/dp20</item>
+    </style>
+
+    <style name="AlertGridLayoutStyles">
+
+    </style>
+    <style name="AlertGridViewStyles">
+        <item name="android:layout_marginBottom">@dimen/dp10</item>
+    </style>
+
 
 
 

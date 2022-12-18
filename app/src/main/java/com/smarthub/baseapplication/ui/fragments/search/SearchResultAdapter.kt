@@ -19,7 +19,7 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
         this.list = ArrayList()
         for (i in data){
             try {
-                if (i.Siteid!=null && i.id!=null)
+//                if (i.Siteid!=null && i.id!=null)
                     list.add(i)
             }catch (e:java.lang.Exception){
                 AppLogger.log("e:${e.localizedMessage}")

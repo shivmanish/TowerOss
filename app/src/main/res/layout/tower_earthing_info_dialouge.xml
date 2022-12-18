@@ -8,7 +8,6 @@
         android:id="@+id/canecl"
         android:translationZ="@dimen/dp6"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp15"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:src="@drawable/cross_ico"
@@ -21,7 +20,7 @@
         android:translationZ="@dimen/dp5"
         android:background="@drawable/dialog_bg"
         android:padding="@dimen/dp5"
-        android:layout_marginTop="@dimen/dp20">
+        >
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -33,6 +32,7 @@
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
                 android:orientation="vertical">
 
                 <GridLayout
@@ -102,11 +102,9 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -128,11 +126,9 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
                             android:text="Raft Foundation"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -155,10 +151,12 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
                             android:text="122"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
+                            android:paddingRight="@dimen/dp5"
+                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_height="wrap_content"/>
                         <View
                             android:alpha="0.37"
@@ -178,10 +176,11 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
-
+                            android:paddingRight="@dimen/dp5"
+                            android:drawableEnd="@drawable/down_arrow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <View

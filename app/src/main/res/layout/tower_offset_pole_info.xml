@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-   android:layout_marginLeft="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/dp10"
     android:layout_marginRight="@dimen/dp10"
     android:layout_marginTop="@dimen/dp5"
     xmlns:tools="http://schemas.android.com/tools"
@@ -38,7 +39,7 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:textColor="@color/black"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
@@ -53,10 +54,12 @@
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/tower_offset_table"
         tools:listitem="@layout/tower_offset_pole_info_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/dp10"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -50,7 +51,7 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_weight="1"
+            android:layout_weight="1.3"
             android:textColor="@color/black"
             android:textSize="@dimen/dp13"
             android:textStyle="bold"
@@ -64,26 +65,12 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/tower_po_tables"
+        android:orientation="vertical"
         tools:listitem="@layout/tower_po_table_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
     </androidx.recyclerview.widget.RecyclerView>
-
-    <TextView
-        android:id="@+id/txtAddTable"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dp14"
-        android:textStyle="bold"
-        android:layout_gravity="end"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_width="wrap_content"
-        android:text="ADD"
-        android:gravity=""
-        style="@style/RowTextItemInfo"
-        android:layout_height="wrap_content"/>
-
 
 </LinearLayout>

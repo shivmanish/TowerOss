@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.ui.alert.AlertActivity
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.viewmodel.BasicInfoDialougeViewmodel
@@ -31,6 +32,12 @@ class CommonBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(
 
         binding.cardLogs.setOnClickListener {
             val intent = Intent(requireContext(),LogsActivity::class.java)
+            startActivity(intent)
+            dismiss()
+        }
+
+        binding.sendAlert.setOnClickListener {
+            val intent = Intent(requireContext(),AlertActivity::class.java)
             startActivity(intent)
             dismiss()
         }

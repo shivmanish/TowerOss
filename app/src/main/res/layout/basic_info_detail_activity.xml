@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:id="@+id/text1"
+                            android:id="@+id/text7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"
@@ -89,7 +89,7 @@
                             android:alpha="0.8"
                             android:layout_height="match_parent"/>
                         <TextView
-                            android:id="@+id/text2"
+                            android:id="@+id/text8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"
@@ -104,7 +104,7 @@
                             android:alpha="0.8"
                             android:layout_height="match_parent"/>
                         <TextView
-                            android:id="@+id/text3"
+                            android:id="@+id/text9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"

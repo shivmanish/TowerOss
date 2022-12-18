@@ -8,17 +8,16 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingPoItemViewDialougeBinding
-import com.smarthub.baseapplication.databinding.EquipmentRoomViewDialougeBinding
+import com.smarthub.baseapplication.databinding.EquipmentRoomPoViewDialougeBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class EquipmentPoViewDialougeAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId),
     ImageAttachmentAdapter.ItemClickListener {
 
-    lateinit var binding: EquipmentRoomViewDialougeBinding
+    lateinit var binding: EquipmentRoomPoViewDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = EquipmentRoomViewDialougeBinding.bind(view)
+        binding = EquipmentRoomPoViewDialougeBinding.bind(view)
         binding.canecl.setOnClickListener {
             dismiss()
         }
@@ -33,7 +32,7 @@ class EquipmentPoViewDialougeAdapter (contentLayoutId: Int) : BottomSheetDialogF
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = EquipmentRoomViewDialougeBinding.inflate(inflater)
+        binding = EquipmentRoomPoViewDialougeBinding.inflate(inflater)
         return binding.root
     }
 

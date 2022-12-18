@@ -38,13 +38,13 @@
             android:text="Reliance jio pvt ltd"
             android:textColor="@color/black"
             android:textSize="@dimen/sp15"
-            app:layout_constraintEnd_toStartOf="@+id/text1"
+            app:layout_constraintEnd_toStartOf="@+id/text7"
             app:layout_constraintTop_toTopOf="@+id/image"
             app:layout_constraintStart_toEndOf="@+id/image"
             android:layout_marginStart="@dimen/dp10"/>
 
         <TextView
-            android:id="@+id/text1"
+            android:id="@+id/text7"
             android:maxLines="1"
             android:layout_marginEnd="@dimen/dp10"
             android:layout_width="0dp"
