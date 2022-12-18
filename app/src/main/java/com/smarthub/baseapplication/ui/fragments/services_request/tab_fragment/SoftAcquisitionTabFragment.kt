@@ -29,7 +29,7 @@ class SoftAcquisitionTabFragment : Fragment(), SoftAcquisitionAdapter.SoftAcquis
 
     }
     override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = RFFeasibilityBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
+        val bottomSheetDialogFragment = RFFeasibilityBottomSheet(R.layout.soft_aqution_feasibility)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {
