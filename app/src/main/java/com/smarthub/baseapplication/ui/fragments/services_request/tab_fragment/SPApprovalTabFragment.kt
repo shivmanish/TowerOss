@@ -9,8 +9,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SPApprovalAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SoftAcquisitionAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class SPApprovalTabFragment : Fragment(), SPApprovalAdapter.SPSoftLisListener {

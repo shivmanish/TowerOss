@@ -5,10 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoSiteInfoFramgment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
@@ -19,7 +16,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return ServiceRequestTabFragment()
+                return ServiceSiteRequestTabFragment()
             }
 //            1 -> {
 //                return CommercialFragment()

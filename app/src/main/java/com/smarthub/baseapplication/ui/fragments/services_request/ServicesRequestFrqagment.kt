@@ -20,14 +20,12 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
     lateinit var customerBinding: FragmentServiceRequestBinding
     lateinit var viewmodel: ServiceFragmentViewModel
     lateinit var customerDataAdapter: ServicesDataAdapter
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         customerBinding = FragmentServiceRequestBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[ServiceFragmentViewModel::class.java]
         initializeFragment()
         return customerBinding.root
     }
-
     private fun initializeFragment() {
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
         customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment, ArrayList())
@@ -56,8 +54,6 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
             customerDataAdapter.setData(arraydata)
         })
     }
-
-
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
@@ -67,7 +63,6 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
                 }
             }
     }
-
     override fun clickedItem() {
         requireActivity().startActivity(Intent(requireContext(), ServicesRequestActivity::class.java))
 

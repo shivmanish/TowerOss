@@ -9,7 +9,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SoftAcquisitionAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
@@ -30,7 +29,7 @@ class SoftAcquisitionTabFragment : Fragment(), SoftAcquisitionAdapter.SoftAcquis
 
     }
     override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
+        val bottomSheetDialogFragment = RFFeasibilityBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {

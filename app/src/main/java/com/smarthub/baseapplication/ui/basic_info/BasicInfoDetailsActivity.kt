@@ -14,10 +14,8 @@ import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
 
 class BasicInfoDetailsActivity : BaseActivity() {
-
     lateinit var binding: BasicInfoDetailActivityBinding
     lateinit var siteViewModel: BasicInfoDetailViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = BasicInfoDetailActivityBinding.inflate(layoutInflater)
@@ -25,7 +23,6 @@ class BasicInfoDetailsActivity : BaseActivity() {
         setViewModel()
 
     }
-
     private fun initViews(siteInfoDropDownData: SiteInfoDropDownData) {
         binding.back.setOnClickListener {
             onBackPressed()
