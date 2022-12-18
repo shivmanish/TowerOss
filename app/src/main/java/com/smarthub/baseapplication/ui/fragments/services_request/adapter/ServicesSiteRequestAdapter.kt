@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDow
 
 
 
-class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesSiteRequestAdapter(var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesSiteRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -38,6 +38,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
       //  list.add("Attachments")
         list.add("Requester Info")
     }
+
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position]==type1)
@@ -198,7 +199,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked()
+                        listener.detailsItemClicked(holder.binding.txSiteName.toString());
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
@@ -404,7 +405,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
     interface ServicesRequestLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked()
+        fun detailsItemClicked(template : String)
         fun requestinfoClicked()
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()

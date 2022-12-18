@@ -58,7 +58,7 @@ class ServiceSiteRequestTabFragment : Fragment(), ServicesSiteRequestAdapter.Ser
 
     }
     override fun detailsItemClicked(template : String) {
-        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog, homeViewModel!!,template)
+        val bottomSheetDialogFragment = ServicesSiteDetailsBottomSheet(R.layout.service_site_bottom_sheet_dialog, homeViewModel!!,template)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {
