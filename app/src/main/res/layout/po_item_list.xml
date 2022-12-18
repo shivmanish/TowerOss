@@ -18,6 +18,7 @@
             android:ellipsize="marquee"
             android:textStyle="bold"
             android:text="1st"
+            android:id="@+id/txtItemCode"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
