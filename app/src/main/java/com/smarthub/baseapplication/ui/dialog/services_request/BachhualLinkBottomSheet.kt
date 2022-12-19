@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BackhaulLinkListItemDialougeBinding
+import com.smarthub.baseapplication.utils.Utils
 
 class BachhualLinkBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : BackhaulLinkListItemDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = BackhaulLinkListItemDialougeBinding.bind(view)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+
         binding.canecl.setOnClickListener {
             dismiss()
         }

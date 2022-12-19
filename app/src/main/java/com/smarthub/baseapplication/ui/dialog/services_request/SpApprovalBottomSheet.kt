@@ -12,12 +12,15 @@ import com.smarthub.baseapplication.databinding.PowerMsbBottomSheetDialogBinding
 import com.smarthub.baseapplication.databinding.SpApprovalDialogBinding
 import com.smarthub.baseapplication.databinding.SpSubmissionDialogBinding
 import com.smarthub.baseapplication.databinding.TssrExecutiveBottomSheetDialogBinding
+import com.smarthub.baseapplication.utils.Utils
 
 class SpApprovalBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : SpApprovalDialogBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = SpApprovalDialogBinding.bind(view)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
