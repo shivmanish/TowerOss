@@ -55,13 +55,11 @@
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
-
                             <TextView
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="SP Submission Date" />
-
                             <EditText
                                 android:id="@+id/editSPSubmissionDate"
                                 style="@style/RowTestItemEdit"

@@ -3,11 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/dp120"
-    android:layout_gravity="bottom"
-
-
-    android:paddingTop="@dimen/dp150">
+    android:id="@+id/constraint"
+    android:minHeight="@dimen/dp300"
+    android:layout_gravity="bottom">
 
     <ImageView
         android:id="@+id/ic_menu_close"
