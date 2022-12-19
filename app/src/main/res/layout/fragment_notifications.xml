@@ -1,61 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.notifications.NotificationsFragment">
-   <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       tools:ignore="MissingConstraints">
-      <LinearLayout
-          android:layout_gravity="center_vertical"
-          android:orientation="horizontal"
-          android:gravity="center_horizontal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/txtNotification"
-            android:layout_width="match_parent"
-            android:layout_weight=".5"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:fontFamily="@font/poppins_bold"
-            android:gravity="center"
-            android:text="@string/title_site_board"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/iconBlack"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <ImageView
-            android:id="@+id/imgMenu"
-            android:layout_width="@dimen/dp20"
-            android:layout_height="@dimen/dp20"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:fontFamily="@font/poppins_bold"
-            android:gravity="center"
-            android:text="@string/title_site_board"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:layout_toRightOf="@+id/txtNotification"
-            android:src="@drawable/menu" />
-      </LinearLayout>
-     <androidx.recyclerview.widget.RecyclerView
-         android:orientation="vertical"
-         android:id="@+id/rvNotificationList"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         tools:itemCount="5"
-         tools:listitem="@layout/notifications_item_list" />
-   </LinearLayout>
+            android:id="@+id/back_image"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="@dimen/dp5"
+            android:layout_marginStart="@dimen/dp10"
+            android:adjustViewBounds="true"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            android:layout_marginEnd="@dimen/dp20"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp17"
+            android:id="@+id/title_text"
+            android:layout_marginStart="@dimen/dp10"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/back_image"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unread"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp14"
+            android:id="@+id/subtitle_text"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintStart_toEndOf="@id/back_image"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subtitle_text_unread"
+            android:text="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp14"
+            android:layout_marginStart="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintStart_toEndOf="@id/subtitle_text"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subtitle_text_mark_read"
+            android:text="Marks As all read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp14"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintStart_toEndOf="@id/subtitle_text_unread"
+            />
+
+        <CheckBox
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleX="0.70"
+            android:scaleY="0.70"
+            android:layout_marginLeft="@dimen/dp2"
+            android:buttonTint="@color/white"
+            android:layout_marginBottom="@dimen/dp12"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintStart_toEndOf="@id/subtitle_text_mark_read"/>
+
+        <ImageView
+            android:id="@+id/mic_image"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="@dimen/dp5"
+            android:adjustViewBounds="true"
+            android:src="@drawable/filter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421"
+            android:layout_marginEnd="@dimen/dp20"/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginRight="@dimen/dp10"
+            android:padding="@dimen/dp5"
+            android:adjustViewBounds="true"
+            android:src="@drawable/search"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/mic_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:id="@+id/list"
+       tools:itemCount="1"
+       tools:listitem="@layout/notification_list_title"
+       app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
