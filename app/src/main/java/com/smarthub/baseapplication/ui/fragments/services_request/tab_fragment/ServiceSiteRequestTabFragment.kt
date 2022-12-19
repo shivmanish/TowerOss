@@ -37,7 +37,7 @@ class ServiceSiteRequestTabFragment : Fragment(), ServicesSiteRequestAdapter.Ser
         binding!!.listItem.layoutManager = LinearLayoutManager(context)
         binding!!.listItem.adapter = projectListAdapter
        // projectListAdapter.addLoading("loading")
-        if (homeViewModel?.getServiceRequest?.hasActiveObservers() == true)
+/*        if (homeViewModel?.getServiceRequest?.hasActiveObservers() == true)
             homeViewModel?.getServiceRequest?.removeObservers(viewLifecycleOwner)
            homeViewModel?.getServiceRequest?.observe(viewLifecycleOwner){
 
@@ -50,7 +50,7 @@ class ServiceSiteRequestTabFragment : Fragment(), ServicesSiteRequestAdapter.Ser
             }else{
              //   projectListAdapter.addNoData("no_data")
             }
-        }
+        }*/
     //    homeViewModel?.fetchServiceRequestData(templateName : String)
 
     }
