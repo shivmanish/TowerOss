@@ -16,7 +16,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return ServiceSiteRequestTabFragment()
+                return ServiceRequestTabFragment()
             }
             1 -> {
                 return OppoTssrTabFragment()
