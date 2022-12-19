@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.BatteryFragmentBinding
 import com.smarthub.baseapplication.databinding.EbConnectionFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.TarifftableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerConnection.dialouge.EbDetailsDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.Utils
 
-class EbConnectionFragment:Fragment() {
+class EbConnectionFragment:Fragment(),TarifftableAdapter.TrafilListiner {
 
     lateinit var binding:EbConnectionFragmentBinding
 
@@ -62,7 +63,12 @@ class EbConnectionFragment:Fragment() {
                 binding.editInstanlation.visibility = View.VISIBLE
             }
         }
+        binding.tarifftable.adapter = TarifftableAdapter(requireContext(),this)
 
+    }
+
+    override fun trafil(position: Int) {
+//        TODO("Not yet implemented")
     }
 
 }

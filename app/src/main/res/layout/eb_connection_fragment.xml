@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -863,7 +864,79 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:textStyle="bold"
+                            android:text="Meter Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Item Code"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Tarrif Effective Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1.5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Added By / \nDate-Time"
+                            android:gravity="center"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/tarifftable"
+                        tools:listitem="@layout/tariff_table_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -910,6 +983,78 @@
                         android:clickable="false"
                         android:padding="@dimen/dp18"
                         android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:textStyle="bold"
+                            android:text="DN No."
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="DN No."
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="DN Amount"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Due Date"
+                            android:gravity="center"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        tools:listitem="@layout/dn_payment_table_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                    </androidx.recyclerview.widget.RecyclerView>
+
 
                 </LinearLayout>
 
@@ -962,6 +1107,78 @@
                         android:src="@drawable/ic_arrow_down_black" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:textStyle="bold"
+                            android:text="Vendor Name"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Vendor Code"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="PO Number"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Atatchments"
+                            android:gravity="center"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        tools:listitem="@layout/po_table_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -1010,6 +1227,78 @@
                         android:clickable="false"
                         android:padding="@dimen/dp18"
                         android:src="@drawable/ic_arrow_down_black" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:textStyle="bold"
+                            android:text="Item Name"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Item Code"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Description"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="0dp"
+                            android:maxLines="2"
+                            android:ellipsize="marquee"
+                            android:text="Qty"
+                            android:gravity="center"
+                            style="@style/RowTextItemInfo"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        tools:listitem="@layout/dn_payment_table_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                    </androidx.recyclerview.widget.RecyclerView>
+
 
                 </LinearLayout>
 
