@@ -160,7 +160,7 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_planning_item_view, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
