@@ -30,7 +30,7 @@ class SPApprovalTabFragment : Fragment(), SPApprovalAdapter.SPSoftLisListener {
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
+        val bottomSheetDialogFragment = SoApprovalBottomSheet(R.layout.so_approval_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {

@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/dialog_bg"
-
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/dp120"
     android:layout_gravity="bottom"
-    android:id="@+id/containerLayout">
+
+
+    android:paddingTop="@dimen/dp150">
 
     <ImageView
         android:id="@+id/ic_menu_close"
@@ -22,10 +23,10 @@
         android:background="@drawable/drawable_cross_back"/>
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp20"
+        android:background="@drawable/dialog_bg"
         android:orientation="vertical"
         android:padding="@dimen/dp5"
         android:translationZ="@dimen/dp5">
@@ -60,12 +61,11 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="SP Submission Date" />
+                                android:text="SO Number" />
 
                             <EditText
-                                android:id="@+id/editSPSubmissionDate"
+                                android:id="@+id/editSONumber"
                                 style="@style/RowTestItemEdit"
-                                android:drawableRight="@drawable/icon_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="xxxx" />
@@ -86,14 +86,15 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="SP Approval Date" />
+                                android:text="SO Date" />
 
                             <EditText
-                                android:id="@+id/editSPApprovalDate"
-                                style="@style/RowTestItemEdit"
+                                android:id="@+id/editSODate"
                                 android:drawableRight="@drawable/icon_date"
+                                style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+
                                 android:hint="xxxx" />
 
                             <View
@@ -112,13 +113,14 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Approved By" />
+                                android:text="SO Value" />
 
                             <EditText
-                                android:id="@+id/editApprovedBy"
+                                android:id="@+id/editSOValue"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+
                                 android:hint="xxxx" />
 
                             <View
@@ -128,7 +130,7 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
-                            <LinearLayout
+                        <LinearLayout
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
@@ -137,13 +139,14 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Approver Email ID" />
+                                android:text="SO line item no." />
 
                             <EditText
-                                android:id="@+id/editApprovedEmail"
+                                android:id="@+id/editSO"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+
                                 android:hint="xxxx" />
 
                             <View
@@ -153,6 +156,8 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
+
+
 
 
 
@@ -172,6 +177,7 @@
                     </GridLayout>
 
                     <include layout="@layout/cancel_save_layout"/>
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
