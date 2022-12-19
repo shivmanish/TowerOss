@@ -28,7 +28,7 @@ import com.smarthub.baseapplication.utils.Utils
 class SMPS1UitilitiesFrag: Fragment() {
 
     lateinit var binding: Smps1TabUtilitiesFragmentBinding
-
+    var openedDropdown: Int = -1
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -75,7 +75,9 @@ class SMPS1UitilitiesFrag: Fragment() {
                 binding.equipmentEdit.visibility = View.GONE
                 binding.equipmentRoot.isSelected = false
             }else{
+                closeOtherViews()
                 Utils.expand(binding.itemCollapseEquipment)
+                openedDropdown =0
                 binding.equipmentRoot.isSelected = true
                 binding.equipmentArrow.rotation = 180f
                 binding.equipmentEdit.visibility = View.VISIBLE
@@ -89,7 +91,9 @@ class SMPS1UitilitiesFrag: Fragment() {
                 binding.instalationArrow.rotation = 0f
                 binding.editInstanlation.visibility = View.GONE
             }else{
+                closeOtherViews()
                 Utils.expand(binding.itemCollapseAcceptance)
+                openedDropdown =1
                 binding.instanlationRoot.isSelected = true
                 binding.instalationArrow.rotation = 180f
                 binding.editInstanlation.visibility = View.VISIBLE
@@ -105,7 +109,9 @@ class SMPS1UitilitiesFrag: Fragment() {
                 binding.rectifierModuleDelete.visibility = View.GONE
                 binding.rectifierModuleAdd.visibility = View.GONE
             }else{
+                closeOtherViews()
                 Utils.expand(binding.rectifierModuleCollapse)
+                openedDropdown =2
                 binding.rectifierModuleRoot.isSelected = true
                 binding.rectifierModuleArrow.rotation = 180f
                 binding.rectifierModuleEdit.visibility = View.VISIBLE
@@ -122,7 +128,9 @@ class SMPS1UitilitiesFrag: Fragment() {
                 binding.connectedLoadsDelete.visibility = View.GONE
                 binding.connectedLoadsAdd.visibility = View.GONE
             }else{
+                closeOtherViews()
                 Utils.expand(binding.connectedLoadsCollapse)
+                openedDropdown =3
                 binding.connectedLoadsRoot.isSelected = true
                 binding.connectedLoadsArrow.rotation = 180f
                 binding.connectedLoadsEdit.visibility = View.VISIBLE
@@ -139,7 +147,9 @@ class SMPS1UitilitiesFrag: Fragment() {
                 binding.consumableMaterialsDelete.visibility = View.GONE
                 binding.consumableMaterialsAdd.visibility = View.GONE
             }else{
+                closeOtherViews()
                 Utils.expand(binding.consumableMaterialsCollapse)
+                openedDropdown =4
                 binding.consumableMaterialsRoot.isSelected = true
                 binding.consumableMaterialsArrow.rotation = 180f
                 binding.consumableMaterialsEdit.visibility = View.VISIBLE
@@ -156,7 +166,9 @@ class SMPS1UitilitiesFrag: Fragment() {
                 binding.poDetailsDelete.visibility = View.GONE
                 binding.poDetailsAdd.visibility = View.GONE
             }else{
+                closeOtherViews()
                 Utils.expand(binding.poDetailsCollapse)
+                openedDropdown =5
                 binding.poDetailsRoot.isSelected = true
                 binding.poDetailsArrow.rotation = 180f
                 binding.poDetailsEdit.visibility = View.VISIBLE
@@ -165,5 +177,64 @@ class SMPS1UitilitiesFrag: Fragment() {
             }
         }
 
+    }
+    fun closeOtherViews(){
+        if(openedDropdown==0)
+        {
+            Utils.collapse(binding.itemCollapseEquipment)
+            binding.equipmentArrow.rotation = 0f
+            binding.equipmentEdit.visibility = View.GONE
+            binding.equipmentRoot.isSelected = false
+            openedDropdown = -1
+        }
+        else if(openedDropdown==1)
+        {
+            Utils.collapse(binding.itemCollapseAcceptance)
+            binding.instanlationRoot.isSelected = false
+            binding.instalationArrow.rotation = 0f
+            binding.editInstanlation.visibility = View.GONE
+            openedDropdown = -1
+
+        }
+        else if(openedDropdown==2)
+        {
+            Utils.collapse(binding.rectifierModuleCollapse)
+            binding.rectifierModuleRoot.isSelected = false
+            binding.rectifierModuleArrow.rotation = 0f
+            binding.rectifierModuleEdit.visibility = View.GONE
+            binding.rectifierModuleDelete.visibility = View.GONE
+            binding.rectifierModuleAdd.visibility = View.GONE
+            openedDropdown = -1
+        }
+        else if(openedDropdown==3)
+        {
+            Utils.collapse(binding.connectedLoadsCollapse)
+            binding.connectedLoadsRoot.isSelected = false
+            binding.connectedLoadsArrow.rotation = 0f
+            binding.connectedLoadsEdit.visibility = View.GONE
+            binding.connectedLoadsDelete.visibility = View.GONE
+            binding.connectedLoadsAdd.visibility = View.GONE
+            openedDropdown = -1
+        }
+        else if(openedDropdown==4)
+        {
+            Utils.collapse(binding.consumableMaterialsCollapse)
+            binding.consumableMaterialsRoot.isSelected = false
+            binding.consumableMaterialsArrow.rotation = 0f
+            binding.consumableMaterialsEdit.visibility = View.GONE
+            binding.consumableMaterialsDelete.visibility = View.GONE
+            binding.consumableMaterialsAdd.visibility = View.GONE
+            openedDropdown = -1
+        }
+        else if(openedDropdown==5)
+        {
+            Utils.collapse(binding.poDetailsCollapse)
+            binding.poDetailsRoot.isSelected = false
+            binding.poDetailsArrow.rotation = 0f
+            binding.poDetailsEdit.visibility = View.GONE
+            binding.poDetailsDelete.visibility = View.GONE
+            binding.poDetailsAdd.visibility = View.GONE
+            openedDropdown = -1
+        }
     }
 }
