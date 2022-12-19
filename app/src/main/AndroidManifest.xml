@@ -114,7 +114,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.smarthub.baseapplication.ui.fragments.services_request.NocDetailsActivity"
+            android:name="com.smarthub.baseapplication.ui.fragments.noc.NocDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

@@ -38,41 +38,7 @@ class ServicesSiteDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeVi
 
         }
 
-        viewModel.fetchServiceRequestData(template)
-
-     /*   binding.icMenuClose.setOnClickListener {
-            basicinfo!!.let{
-
-                it.Buildingtype = binding.txBuildingType.text.toString()
-                it.Locationzone= binding.txtLocationZone.text.toString()
-                it.MaintenancePoint= ""
-                it.Projectname= binding.txtProjectName.text.toString()
-                 it.Sitecategory= binding.siteCategory.selectedValue.id!!
-                 it.Siteownership= binding.siteOwnership.selectedValue.id!!
-                 it.Sitestatus= binding.siteStatus.selectedValue.id!!
-                 it.Sitetype= binding.siteType.selectedValue.id!!
-                it.aliasName= ""
-                it.id = srDetail.id
-                it.siteID= binding.txSiteID.text.toString()
-                it.siteInChargeName= binding.txtSiteInChargeName.text.toString()
-                it.siteInChargeNumber= binding.txtSiteInChargeNumber.text.toString()
-                it.siteName= binding.txSiteName.text.toString()
-                it.siteaddress= binding.address.text.toString()
-            }
-            basicinfoModel!!.basicinfo = basicinfo!!
-            viewModel.updateData(basicinfoModel!!)
-        }*/
-    //    binding.s.setText(srDetail?.SRType)
-
-
-        // spiner data
-      /*  binding.spinEquipmentName.setText(srDetail?.SRType)
-        binding.spinStatus.setText(srDetail?.SRStatus)
-        binding.spinRequesterCompany.setText(srDetail?.RequesterCompany)
-        binding.spinPriority.setText(srDetail?.Priority)
-        binding.spinNominals.setText(srDetail?.locLongitude)
-        binding.spinCircle.setText(srDetail?.Circle)
-        binding.spinCity.setText(srDetail?.CityOrTown)*/
+        viewModel.fetchServiceRequestData("97")
 
         //EditText
         binding.editRequestDate.setText(srDetail?.RequestDate)

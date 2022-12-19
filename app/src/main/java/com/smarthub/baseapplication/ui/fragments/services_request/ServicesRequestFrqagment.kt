@@ -11,22 +11,29 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.CustomerDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
+
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
-    lateinit var customerBinding: FragmentServiceRequestBinding
-    lateinit var viewmodel: ServiceFragmentViewModel
+    lateinit var viewmodel: HomeViewModel
     lateinit var customerDataAdapter: ServicesDataAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    lateinit var customerBinding: FragmentServiceRequestBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         customerBinding = FragmentServiceRequestBinding.inflate(inflater, container, false)
-        viewmodel = ViewModelProvider(requireActivity())[ServiceFragmentViewModel::class.java]
+        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         initializeFragment()
         return customerBinding.root
     }
+
     private fun initializeFragment() {
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
         customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment, ArrayList())
@@ -42,19 +49,26 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
             dalouge.show(childFragmentManager,"")
 
         }
-
-
-
-        viewmodel.fetchData()
-
-        viewmodel.customer_data.observe(requireActivity(), Observer {
-            // Data is get from server and ui work will be start from here
-            println("this is called data is $it")
-            var arraydata = ArrayList<String>()
-            arraydata.add(it)
-            customerDataAdapter.setData(arraydata)
-        })
+        if (viewmodel.getServiceRequest?.hasActiveObservers() == true)
+            viewmodel.getServiceRequest?.removeObservers(viewLifecycleOwner)
+        viewmodel.getServiceRequest?.observe(viewLifecycleOwner){
+            if (it.status == Resource.Status.SUCCESS){
+                if (it.data!=null){
+                    mapUIData(it.data)
+                }
+                AppLogger.log("Site request data fetched successfully")
+            }else{
+                AppLogger.log("Something went wrong")
+            }
+        }
+        viewmodel.fetchServiceRequestData("97")
     }
+
+    private fun mapUIData(data : ServiceRequestAllData){
+        AppLogger.log("data fetched")
+
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
@@ -64,6 +78,7 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
                 }
             }
     }
+
     override fun clickedItem() {
         requireActivity().startActivity(Intent(requireContext(), ServicesRequestActivity::class.java))
 

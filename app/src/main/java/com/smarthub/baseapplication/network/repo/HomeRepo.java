@@ -45,6 +45,7 @@ public class HomeRepo {
         homeResponse = new SingleLiveEvent<>();
         projectResponse = new SingleLiveEvent<>();
         taskResponse = new SingleLiveEvent<>();
+        serRequestData = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -180,10 +181,11 @@ public class HomeRepo {
         });
     }
 
-    public void fetchServiceRequestData(String templateName) {
+    public void fetchServiceRequestData(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("Gettemplate",templateName);
-        apiClient.fetchsServiceRequestData(jsonObject).enqueue(new Callback<ServiceRequestAllData>() {
+        jsonObject.addProperty("id",id);
+        Call<ServiceRequestAllData> request = apiClient.fetchsServiceRequestData(jsonObject);
+        request.enqueue(new Callback<ServiceRequestAllData>() {
             @Override
             public void onResponse(@NonNull Call<ServiceRequestAllData> call, @NonNull Response<ServiceRequestAllData> response) {
                 if (response.isSuccessful()){

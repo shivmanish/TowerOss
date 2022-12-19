@@ -107,5 +107,6 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<ServiceRequestAllData> fetchsServiceRequestData(@Body JsonObject data);
+
 }
 
