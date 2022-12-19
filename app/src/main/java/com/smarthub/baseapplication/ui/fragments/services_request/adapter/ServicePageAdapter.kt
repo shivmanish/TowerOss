@@ -22,7 +22,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return OppoTssrTabFragment()
             }
             2 -> {
-                return BackhaulFragment()
+                return FeasibilityPlanningTabFragment()
             }
             3 -> {
                 return SiteProposalTabFragment()

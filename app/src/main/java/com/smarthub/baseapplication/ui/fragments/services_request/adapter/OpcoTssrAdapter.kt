@@ -218,38 +218,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
 
                 }
             }
-            is ViewHold1 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
-                }
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitle.text = list[position]
 
-                if (data!=null) {
-
-                }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
-
-                }
-            }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
                     listener.requestinfoClicked()
