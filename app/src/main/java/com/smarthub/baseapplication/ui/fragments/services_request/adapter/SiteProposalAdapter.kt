@@ -119,36 +119,6 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
         }
     }
 
-    class ViewHold5(itemView: View, listener: SiteProposalListener) : ViewHold(itemView) {
-        var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-        init {
-            binding.itemTitle.tag = true
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-            } /*else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
-                    R.drawable.down_arrow,0)
-            }*/
-        }
-    }
-
-   class ViewHold6(itemView: View, listener: SiteProposalListener) : ViewHold(itemView) {
-        var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
-
-       init {
-           binding.itemTitle.tag = false
-           binding.itemTitle.tag = false
-           if ((binding.itemTitle.tag as Boolean)) {
-               binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-               binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-           } else {
-               binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-               binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-           }
-
-
-       }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
@@ -169,13 +139,7 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
                 view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
                 return ViewHold4(view)
             }
-            5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
-                return ViewHold5(view,listener)
-            }   6-> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
-                return ViewHold6(view,listener)
-            }
+
 
         }
         return ViewHold(view)
@@ -303,51 +267,7 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
                     val geoCondition: SafetyAndAcces = fieldData!![0].SafetyAndAccess[0]
                 }
             }
-            is ViewHold5 -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
-                holder.binding.itemTitle.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitle.text = list[position]
-            }
-            is ViewHold6 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
-                }
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitle.text = list[position]
-            }
+
         }
     }
 
