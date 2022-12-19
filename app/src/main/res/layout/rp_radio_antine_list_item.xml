@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/collapse_card_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50">
+            <TextView
+                android:id="@+id/item_title"
+                android:text="Link Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:background="@color/transparent"
+                style="@style/RowTextviewItem"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".5"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/icon_layout"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_edit"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/edit_ico_black"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp58"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/item_line"
+            android:alpha="2"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <GridLayout
+            android:visibility="visible"
+            android:columnCount="2"
+            android:layout_marginBottom="@dimen/dp30"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Technology"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="3G"
+                    android:id="@+id/editTechnology"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="RRU Count"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="3G"
+                    android:id="@+id/editRRUCount"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Sectoc Count"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="3G"
+                    android:id="@+id/editSectocCount"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Max Antenna Height,AGL (m)"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editMaxAntenna"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Antenna Type"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editAntennaType"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Tower/Pole Height"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editTower"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Additional Pole Height"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editAdditional"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Total Waight"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editTotalWaight"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Offset Pole Count"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editOffsetPoleCount"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Antenna Space"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editAntennaSpace"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:maxLines="1"
+                    android:text="Timeline"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint=""
+                    android:id="@+id/editTimeline"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:maxLines="1"
+                android:text="Remark"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:hint=""
+                android:id="@+id/editRemark"
+                style="@style/RowTextviewItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

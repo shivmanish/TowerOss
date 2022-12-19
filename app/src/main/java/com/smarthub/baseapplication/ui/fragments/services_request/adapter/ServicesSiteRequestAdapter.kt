@@ -183,6 +183,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
+
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
                     listener.detailsItemClicked()
@@ -216,8 +217,8 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                 }
             }
             is ViewHold2 -> {
-                holder.binding.imgEdit.setOnClickListener{
-                    listener.operationInfoDetailsItemClicked()
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.requestinfoClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -239,8 +240,11 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].OperationalInfo.isNotEmpty()){
-                    val operationalInfo: OperationalInfo = fieldData!![0].OperationalInfo[0]
+                if (data!=null) {
+
+                }
+                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
+                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
 
                 }
             }

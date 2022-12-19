@@ -30,6 +30,11 @@ class FeasibilityPlanningTabFragment : Fragment(),
         val bottomSheetDialogFragment = SiteDetailsBottomSheet(R.layout.site_detail_bootom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
+    override fun requestinfoClicked() {
+        val bottomSheetDialogFragment = RPadioAntennasBottomSheet(R.layout.fp_antina_botom_sheet_dialog)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+    }
+
     override fun operationInfoDetailsItemClicked() {
         val bottomSheetDialogFragment = PowerMsbPlanningBottomSheet(R.layout.power_msb_planning_bootom_shhet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
@@ -40,10 +45,6 @@ class FeasibilityPlanningTabFragment : Fragment(),
     }
     override fun siteAccessDetailsItemClicked() {
         val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
