@@ -98,7 +98,7 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
+        var binding : PowerMsbPlanningItemViewBinding = PowerMsbPlanningItemViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -271,7 +271,7 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
             }
             is  ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.siteAccessDetailsItemClicked()
+                    listener.operationInfoDetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
