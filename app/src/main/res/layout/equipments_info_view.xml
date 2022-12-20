@@ -79,11 +79,81 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include
-                android:id="@+id/includedLayout"
-                layout="@layout/equipment_table">
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:padding="@dimen/dp10"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            </include>
+                    <TextView
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"
+                        android:text="Technology"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text="Equipment"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:text="Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="1.3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text="Size(cm)"
+                        android:gravity="center"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tower_po_tables"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/equipment_table_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
 
 
         </LinearLayout>

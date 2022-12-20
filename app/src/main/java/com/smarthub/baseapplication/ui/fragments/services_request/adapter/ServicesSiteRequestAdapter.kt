@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,14 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
+import org.mozilla.javascript.commonjs.module.Require
+import kotlin.coroutines.coroutineContext
 
 
-class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -70,7 +75,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
         }
     }
-    class ViewHold2(itemView: View) : ServicesRequestAdapter.ViewHold(itemView) {
+    class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding =
             EquipmentsInfoViewBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
@@ -244,7 +249,34 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
+                 holder.poTableList.adapter= EquipmentTableAdapter(context,object :TowerInfoListAdapter.TowerInfoListListener{
+                     override fun attachmentItemClicked() {
+                     }
+
+                     override fun EditInstallationAcceptence() {
+                     }
+
+                     override fun EditTowerItem() {
+                     }
+
+                     override fun editPoClicked(position: Int) {
+                     }
+
+                     override fun viewPoClicked(position: Int) {
+                     }
+
+                     override fun editConsumableClicked(position: Int) {
+                     }
+
+                     override fun viewConsumableClicked(position: Int) {
+                     }
+
+                     override fun editOffsetClicked(position: Int) {
+                     }
+
+                     override fun viewOffsetClicked(position: Int) {
+                     }
+                 })
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener() {
