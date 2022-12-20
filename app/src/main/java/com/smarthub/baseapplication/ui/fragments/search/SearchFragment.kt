@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,10 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.LanguageActivity
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -148,6 +151,11 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 AppLogger.log("Something went wrong")
                 Toast.makeText(requireContext(),"Something went wrong",Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.viewOnMap.setOnClickListener {
+            var intent = Intent(requireContext(), MapActivity::class.java)
+            startActivity(intent)
+
         }
     }
 
