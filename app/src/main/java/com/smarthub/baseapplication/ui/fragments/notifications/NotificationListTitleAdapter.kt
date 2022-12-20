@@ -30,8 +30,9 @@ class NotificationListTitleAdapter(val context: Context) : Adapter<NotificationL
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
 
+        var item =  list[position]
         holder.binding.textList.text = list[position].title
-        holder.binding.list.adapter = NotificationListSubtitleAdapter(context)
+        holder.binding.list.adapter = NotificationListSubtitleAdapter(context,item.list)
     }
 
     override fun getItemCount(): Int {
