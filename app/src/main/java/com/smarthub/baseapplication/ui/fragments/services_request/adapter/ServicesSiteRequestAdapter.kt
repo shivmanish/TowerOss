@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
 
 
 class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
@@ -70,23 +70,32 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
         }
     }
-    class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
+    class ViewHold2(itemView: View) : ServicesRequestAdapter.ViewHold(itemView) {
+        var binding: EquipmentsInfoViewBinding =
+            EquipmentsInfoViewBinding.bind(itemView)
+        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
+                var adapter = poTableList.adapter as TowerPoTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
+
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding : RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
 
@@ -96,7 +105,8 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
+            }
+            else {
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
 
@@ -217,36 +227,24 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
                 }
             }
             is ViewHold2 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
-                }
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitle.text = list[position]
+                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
-                if (data!=null) {
+                    } else {
+                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    }
+                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
+                    holder.binding.imgAdd.visibility =
+                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
-
-                }
+                holder.binding.itemTitleStr.text = list[position]
+                //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener() {

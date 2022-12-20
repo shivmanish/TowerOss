@@ -86,22 +86,6 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
 
         }
     }
-    class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-
-        init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-            }
-
-
-        }
-    }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
         init {
@@ -160,10 +144,7 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
                 view = LayoutInflater.from(parent.context).inflate(R.layout.bachaul_feasibility_item_view, parent, false)
                 return ViewHold2(view)
             }
-            3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
-                return ViewHold3(view)
-            }
+
             4 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
                 return ViewHold4(view)
@@ -171,7 +152,8 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
-            }   6-> {
+            }
+            6-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
                 return ViewHold6(view,listener)
             }
@@ -272,44 +254,7 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
 //                    holder.binding.dismanting.text = operationalInfo.DismantlinglDate
                 }
             }
-            is ViewHold3 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
 
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.iconLayout.visibility =
-                        if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener()
-                    {
-                        listener.geoConditionsDetailsItemClicked()
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
-                }
-                holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).GeoCondition!=null && fieldData!!.get(0).GeoCondition.size >0){
-                   /* val geoCondition: GeoCondition = fieldData!!.get(0).GeoCondition.get(0)
-                    holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat.get(0).name
-                    holder.binding.textAltitude.text = geoCondition.Altitude
-                    holder.binding.windZoneSpinner.text = geoCondition.Windzone.get(0).name
-                    holder.binding.seismecZoneSpinner.text = geoCondition.Seismiczone.get(0).name
-                    holder.binding.floodZoneSpinner.text = geoCondition.Floodzone.get(0).name
-                    holder.binding.textTempZone.text = geoCondition.TempratureZone
-                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype.get(0).name*/
-                }
-
-            }
             is ViewHold4 -> {
                 holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
