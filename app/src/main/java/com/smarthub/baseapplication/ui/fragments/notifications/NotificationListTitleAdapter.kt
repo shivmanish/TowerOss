@@ -12,9 +12,13 @@ import com.smarthub.baseapplication.model.notification.NotificationData
 import com.smarthub.baseapplication.model.notification.NotificationListItem
 import com.smarthub.baseapplication.model.notification.NotificationListModel
 
-class NotificationListTitleAdapter(val context: Context) : Adapter<NotificationListTitleAdapter.Viewholder>() {
+class NotificationListTitleAdapter(val context: Context, var list : ArrayList<NotificationListModel> = ArrayList()) : Adapter<NotificationListTitleAdapter.Viewholder>() {
 
-    var list : ArrayList<NotificationListModel> = ArrayList()
+    fun updateList(list : ArrayList<NotificationListModel>){
+        this.list.clear()
+        this.list = list
+        notifyDataSetChanged()
+    }
 
     init {
         list.add(NotificationListModel("Today",ArrayList()))
