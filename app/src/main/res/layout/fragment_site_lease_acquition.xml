@@ -32,7 +32,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         app:backgroundTint="@color/tab_selected_color"
-        android:layout_marginBottom="@dimen/dp80"
+        android:layout_marginBottom="@dimen/dp15"
         app:srcCompat="@drawable/addmore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapterListener
 
@@ -22,7 +23,6 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDat
 class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
 
     val ARG_PARAM1 = "param1"
-    private val ARG_PARAM2 = "param2"
     lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
     lateinit var viewmodel: SiteLeaseAcqusitionViewModel
     lateinit var siteLeaseDataAdapter: SiteLeaseDataAdapter
@@ -54,29 +54,8 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
         })
 
         fragmentSiteLeaseBinding.addMore.setOnClickListener(){
-            val dialog = BottomSheetDialog(requireActivity(), R.style.NewDialog)
-            // on below line we are inflating a layout file which we have created.
-            val view = layoutInflater.inflate(R.layout.site_release_bottom_sheet_dialog_layout, null)
-            val ic_menu_close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
-/*            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
-            val ic_menu_close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
-            val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
-            val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
-            val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)*/
-            dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
-            ic_menu_close.setOnClickListener {
-                // on below line we are calling a dismiss
-                // method to close our dialog.
-                dialog.dismiss()
-            }
-            dialog.setCancelable(false)
-            // on below line we are setting
-            // content view to our view.
-            dialog.setContentView(view)
-            // on below line we are calling
-            // a show method to display a dialog.
-//            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
-            dialog.show()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
         }
 
     }
