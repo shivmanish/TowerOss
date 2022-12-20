@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class HomeFragment : Fragment() {
         binding.homeTab.setupWithViewPager(binding.homePager)
         binding.notificationLayout.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
+            Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
 
         if (homeViewModel?.homeData()?.hasActiveObservers() == true)
