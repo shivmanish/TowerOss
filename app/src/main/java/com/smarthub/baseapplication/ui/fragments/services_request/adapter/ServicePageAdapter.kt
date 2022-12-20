@@ -7,10 +7,13 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoSiteInfoFramgment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
+import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Agreements
+import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Feasibility
+import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.TeamVendor
 
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
-        return 6
+        return 8
     }
 
     override fun getItem(position: Int): Fragment {
@@ -22,16 +25,22 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return OppoTssrTabFragment()
             }
             2 -> {
-                return FeasibilityPlanningTabFragment()
+                return TeamVendor()
             }
-            3 -> {
-                return SiteProposalTabFragment()
+            3-> {
+                return Feasibility()
             }
             4 -> {
-                return SPApprovalTabFragment()
+                return FeasibilityPlanningTabFragment()
             }
             5 -> {
-                return SoftAcquisitionTabFragment()
+                return SiteProposalTabFragment()
+            }
+            6-> {
+                return SPApprovalTabFragment()
+            }
+            7 -> {
+                return Agreements()
             }
 
             else -> {
@@ -50,14 +59,21 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return "OPCO TSSR"
             }
             2 -> {
-                return "Feasibility Plan"
+                return "Assign ACQ Team"
             }
             3 -> {
-                return "Site Proposal"
+                return "Acquisition Survery"
             }
             4 -> {
+                return "Feasibility Plan"
+            }
+            5 -> {
+                return "Site Proposal"
+            }
+            6 -> {
                 return "SP Approval / SO"
-            }  5 -> {
+            }
+            7-> {
                 return "Soft Acquisition"
             }
 
