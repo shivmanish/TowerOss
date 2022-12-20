@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.gson.Gson
@@ -36,7 +35,7 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
-import com.smarthub.baseapplication.ui.fragments.services_request.NocFragment
+import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.site_lease_acquisition.SiteLeaseAcqusitionFragment
@@ -124,76 +123,76 @@ class SiteDetailFragment : BaseFragment() {
 
     private fun setFabActionButton() {
         // for our add floating action button
-        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
-            override fun onOffsetChanged(state: State?, offset: Float) {
-                if (state === State.IDLE) {
-//						mToolbarTextView.setAlpha(offset);
-                    for (i in 0..tabNames?.size!!.minus(1)) {
-                        val constraintLayout: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        val constraintL: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-
-                        constraintL.alpha = offset
-                        constraintLayout.alpha = (1 - offset)
-                    }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "$offset  ${1 - offset}")
-
-                }
-            }
-
-            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
-                if (state === State.COLLAPSED) {
-//						mToolbarTextView.setAlpha(1);
-                    for (i in 0..tabNames?.size!!.minus(1)) {
-                        val parentconstraintLayout: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        val childconstraint: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                        parentconstraintLayout.visibility = View.GONE
-                        childconstraint.visibility = View.VISIBLE
-//                            constraintL.alpha= 1f
-//                            constraintLayout.alpha = 0f
-                    }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
-                } else if (state === State.EXPANDED) {
-//						mToolbarTextView.setAlpha(0);
-                    for (i in 0..tabNames?.size!!.minus(1)) {
-                        val parentconstraintLayout: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
-                        val childconstraint: ConstraintLayout =
-                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
-                        parentconstraintLayout.visibility = View.VISIBLE
-                        childconstraint.visibility = View.GONE
-//                            constraintL.alpha= 0f
-//                            constraintLayout.alpha = 1f
-                    }
-                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
-                }
-            }
-        })
-        binding.fabbtn.setOnClickListener {
-
-            if (!fabVisible) {
-                binding.fabbtn.setImageDrawable(
-                    siteDetailViewModel.getDrawable(
-                        requireActivity(),
-                        true
-                    )
-                )
-                siteDetailViewModel.openPopup(binding.fabbtn, requireActivity())
-                fabVisible = true
-            } else {
-                binding.fabbtn.setImageDrawable(
-                    siteDetailViewModel.getDrawable(
-                        requireActivity(),
-                        false
-                    )
-                )
-                siteDetailViewModel.dismissPopub()
-                fabVisible = false
-            }
-        }
+//        binding.appBar.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+//            override fun onOffsetChanged(state: State?, offset: Float) {
+//                if (state === State.IDLE) {
+////						mToolbarTextView.setAlpha(offset);
+//                    for (i in 0..tabNames?.size!!.minus(1)) {
+//                        val constraintLayout: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+//                        val constraintL: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+//
+//                        constraintL.alpha = offset
+//                        constraintLayout.alpha = (1 - offset)
+//                    }
+//                    Log.d("offsetvalues>>>onOffsetChanged>", "$offset  ${1 - offset}")
+//
+//                }
+//            }
+//
+//            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+//                if (state === State.COLLAPSED) {
+////						mToolbarTextView.setAlpha(1);
+//                    for (i in 0..tabNames?.size!!.minus(1)) {
+//                        val parentconstraintLayout: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+//                        val childconstraint: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+//                        parentconstraintLayout.visibility = View.GONE
+//                        childconstraint.visibility = View.VISIBLE
+////                            constraintL.alpha= 1f
+////                            constraintLayout.alpha = 0f
+//                    }
+//                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
+//                } else if (state === State.EXPANDED) {
+////						mToolbarTextView.setAlpha(0);
+//                    for (i in 0..tabNames?.size!!.minus(1)) {
+//                        val parentconstraintLayout: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_id)
+//                        val childconstraint: ConstraintLayout =
+//                            binding.tabs.getTabAt(i)?.customView!!.findViewById(R.id.parent_tab_child)
+//                        parentconstraintLayout.visibility = View.VISIBLE
+//                        childconstraint.visibility = View.GONE
+////                            constraintL.alpha= 0f
+////                            constraintLayout.alpha = 1f
+//                    }
+//                    Log.d("offsetvalues>>>onOffsetChanged>", "${state}")
+//                }
+//            }
+//        })
+//        binding.fabbtn.setOnClickListener {
+//
+//            if (!fabVisible) {
+//                binding.fabbtn.setImageDrawable(
+//                    siteDetailViewModel.getDrawable(
+//                        requireActivity(),
+//                        true
+//                    )
+//                )
+//                siteDetailViewModel.openPopup(binding.fabbtn, requireActivity())
+//                fabVisible = true
+//            } else {
+//                binding.fabbtn.setImageDrawable(
+//                    siteDetailViewModel.getDrawable(
+//                        requireActivity(),
+//                        false
+//                    )
+//                )
+//                siteDetailViewModel.dismissPopub()
+//                fabVisible = false
+//            }
+//        }
 
     }
 
@@ -228,7 +227,7 @@ class SiteDetailFragment : BaseFragment() {
                 2-> OpcoTanacyFragment.newInstance(tabNames?.get(2) ?: "OPCO Tenancy")
                 3-> SiteLeaseAcqusitionFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
                 4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
-                5-> NocFragment.newInstance(tabNames?.get(5) ?: "Noc & Comp")
+                5-> NocFragment()
                 6-> CivilInfraFragment()
                 7-> PowerConnection()
                 8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "QA Inspection")

@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
-import com.smarthub.baseapplication.ui.utilites.editdialouge.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class ServicesRequestActivity : BaseActivity() {
@@ -21,7 +21,7 @@ class ServicesRequestActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewCustomerDetailFragmentBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
         initViews()
     }
 
@@ -34,7 +34,7 @@ class ServicesRequestActivity : BaseActivity() {
             onBackPressed()
         }
         binding.addMore.setOnClickListener(){
-            val dalouge = CommonBottomSheetDialog()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
         binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager)
@@ -44,7 +44,7 @@ class ServicesRequestActivity : BaseActivity() {
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-            var itemBinding = TabNameItemBinding.inflate(layoutInflater)
+            val itemBinding = TabNameItemBinding.inflate(layoutInflater)
             itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
             itemBinding.tabName.textSize = 10f
             binding.tabs.getTabAt(i)?.customView = itemBinding.root

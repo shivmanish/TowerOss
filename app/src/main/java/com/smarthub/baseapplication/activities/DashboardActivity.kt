@@ -1,22 +1,18 @@
 package com.smarthub.baseapplication.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.fragments.search.SearchFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class  DashboardActivity : BaseActivity() {
@@ -63,7 +59,7 @@ class  DashboardActivity : BaseActivity() {
     override fun onBackPressed() {
         val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
         val currentFragment = navFragment!!.childFragmentManager.primaryNavigationFragment
-        if (currentFragment is SearchFragment && currentFragment.searchResultAdapter.searchQatModels.size>0){
+        if (currentFragment is SearchFragment && currentFragment.searchResultAdapter.list.size>0){
             currentFragment.clearResult()
         }else
             super.onBackPressed()

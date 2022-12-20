@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.PowerConnectionFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataDataDataAdapterListener
-import com.smarthub.baseapplication.ui.fragments.services_request.NocDetailsActivity
 
 class PowerConnection : Fragment(),PowerConnDataDataDataAdapterListener {
 

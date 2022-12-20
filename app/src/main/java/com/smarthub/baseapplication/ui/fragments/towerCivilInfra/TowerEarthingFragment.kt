@@ -2,7 +2,6 @@ package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
@@ -12,7 +11,6 @@ import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTowerEarthingFragmentBinding
-import com.smarthub.baseapplication.databinding.ActivityTowerPoleFragemntBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
@@ -39,7 +37,7 @@ class TowerEarthingFragment : BaseActivity() {
             val close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
             val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
             val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
-            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.ic_send_alert)
+            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.send_alert)
             val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
             val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
             val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)

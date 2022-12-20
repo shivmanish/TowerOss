@@ -1,7 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.search
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,37 +9,74 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchResultItemBinding
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.search.SearchListItem
+import com.smarthub.baseapplication.utils.AppLogger
 
 class SearchResultAdapter(var context: Context?,var listener : SearchResultListener) : RecyclerView.Adapter<SearchResultAdapter.ViewHold>() {
 
-    var searchQatModels: ArrayList<SearchListItem> = ArrayList()
+    var list: ArrayList<Any> = ArrayList()
 
-    fun updateList(searchQatModels: SearchList){
-        this.searchQatModels = searchQatModels
+    fun updateList(data: SearchList){
+        this.list = ArrayList()
+        for (i in data){
+            try {
+//                if (i.Siteid!=null && i.id!=null)
+                    list.add(i)
+            }catch (e:java.lang.Exception){
+                AppLogger.log("e:${e.localizedMessage}")
+            }
+            AppLogger.log("i : $i , size : ${list.size}")
+        }
+
+        if (this.list.isEmpty())
+            this.list.add("no_data")
         notifyDataSetChanged()
     }
-    override fun getItemCount(): Int {
-        return searchQatModels.size
+
+    override fun getItemViewType(position: Int): Int {
+        return if((list[position] is String) && (list[position]=="no_data")) 0
+        else 1
     }
 
-    class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var binding : SearchResultItemBinding = SearchResultItemBinding.bind(itemView)
+    override fun getItemCount(): Int {
+        return list.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.search_result_item, parent, false)
-        return ViewHold(view)
+        return if (viewType == 0) {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.no_search_list_data, parent, false)
+            ViewHold(view)
+        }else{
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.search_result_item, parent, false)
+            ItemViewHold(view)
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-       holder.binding.textLayout.setOnClickListener {
-           listener.onSearchItemSelected(searchQatModels[position])
-           searchQatModels.clear()
-           notifyDataSetChanged()
+
+       when(holder){
+           is ItemViewHold->{
+               var item  = list[position] as SearchListItem
+               holder.binding.textName.text =if (item.Siteid!=null) item.Siteid else "null"
+               holder.binding.text.text = if (item.id!=null) item.id else "null"
+               holder.binding.textLayout.setOnClickListener {
+                   listener.onSearchItemSelected(item)
+                   list.clear()
+                   notifyDataSetChanged()
+               }
+           }
        }
     }
 
     interface SearchResultListener{
         fun onSearchItemSelected(item : SearchListItem?)
     }
+
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+    }
+
+    open class ItemViewHold(itemView: View) : ViewHold(itemView){
+        var binding : SearchResultItemBinding = SearchResultItemBinding.bind(itemView)
+    }
+
 }

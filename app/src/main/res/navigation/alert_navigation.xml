@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/alert_navigation"
+    app:startDestination="@id/alertHomeFragment">
+
+    <fragment
+        android:id="@+id/alertHomeFragment"
+        android:name="com.smarthub.baseapplication.ui.alert.AlertHomeFragment"
+        android:label="AlertHomeFragment" >
+        <action
+            android:id="@+id/action_alertHomeFragment_to_alertStatusFragment"
+            app:destination="@id/alertStatusFragment"
+            app:popUpTo="@id/alertHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/alertStatusFragment"
+        android:name="com.smarthub.baseapplication.ui.alert.AlertStatusFragment"
+        android:label="AlertStatusFragment" />
+</navigation>

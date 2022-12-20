@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
-    android:paddingTop="@dimen/dp150">
+    android:layout_gravity="bottom">
 
     <ImageView
         android:id="@+id/canecl"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp25"
         android:background="@drawable/drawable_cross_back"
         android:padding="@dimen/dp5"
         android:src="@drawable/cross_ico"
@@ -20,690 +18,683 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/dialog_bg"
         android:orientation="vertical"
         android:padding="@dimen/dp5"
         android:translationZ="@dimen/dp5">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:requiresFadingEdge="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/dialog_bg"
                 android:orientation="vertical">
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dialog_bg"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
 
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
 
-                            <RelativeLayout
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_menu_call"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:backgroundTint="#6585B4"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_call"
+                                    app:tint="@color/white" />
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="start"
+                                android:layout_below="@+id/ic_menu_call"
 
+
+                                android:layout_marginTop="0dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Call" />
+                        </RelativeLayout>
 
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                    </androidx.cardview.widget.CardView>
 
-                                    android:id="@+id/ic_menu_call"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:backgroundTint="#6585B4"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_call"
-                                        app:tint="@color/white" />
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_menu_call"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Call" />
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:layout_gravity="start"
-
-
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
-
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_map_view"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:backgroundTint="#FFB800"
-                                        app:tint="@color/white"
-                                        android:contentDescription="TODO"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_map"
-                                        ></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_map_view"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Map View" />
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-
-
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
-
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_alert"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_map"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_alert"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Map View" />
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-
-                                android:layout_height="match_parent"
-                                android:layout_gravity="start"
-
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
-
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_send_alert"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:backgroundTint="#5BB2B5"
-                                        app:tint="@color/white"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_send_alert"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_send_alert"
-                                    android:layout_centerHorizontal="true"
-
-
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Send Alert" />
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
 
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
+                            android:layout_height="wrap_content"
+
+                            android:layout_gravity="start"
+
+
                             android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
 
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
-                            <RelativeLayout
+                                android:id="@+id/ic_map_view"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:backgroundTint="#FFB800"
+                                    app:tint="@color/white"
+                                    android:contentDescription="TODO"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_map"
+                                    ></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_below="@+id/ic_map_view"
 
-                                android:layout_gravity="start"
 
-
+                                android:layout_marginTop="0dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Map View" />
+                        </RelativeLayout>
 
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                    </androidx.cardview.widget.CardView>
 
-                                    android:id="@+id/ic_open_faults"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:backgroundTint="#F78973"
-                                        app:tint="@color/white"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_open_faults"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_open_faults"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Open faults" />
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:layout_gravity="start"
-
-
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
-
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_pm_tsk"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:backgroundTint="#AF904B"
-                                        app:tint="@color/white"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_pm_task"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_pm_tsk"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="PM tsk" />
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-
-
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
-
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_card_attachment"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:backgroundTint="#6C7B8A"
-                                        app:tint="@color/white"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_attachment"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_card_attachment"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Attachment" />
-                            </RelativeLayout>
-
-
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
 
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
 
-                            <RelativeLayout
+
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_alert"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_map"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="start"
+                                android:layout_below="@+id/ic_alert"
+
+
+                                android:layout_marginTop="0dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Map View" />
+                        </RelativeLayout>
 
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_menu_escalations"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:backgroundTint="#39AFD4"
-                                        app:tint="@color/white"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_escalations"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_menu_escalations"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Escalation" />
-                            </RelativeLayout>
-
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
 
-                            <RelativeLayout
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/send_alert"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:backgroundTint="#5BB2B5"
+                                    app:tint="@color/white"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_send_alert"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="start"
+                                android:layout_below="@+id/send_alert"
+                                android:layout_centerHorizontal="true"
+
+
                                 android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Send Alert" />
+                        </RelativeLayout>
 
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:id="@+id/ic_menu_logs"
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:backgroundTint="#A785B6"
-                                        app:tint="@color/white"
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_logs"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/ic_menu_logs"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Logs" />
-                            </RelativeLayout>
-
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp120"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/dp0.2"
-                            android:layout_weight="1"
-                            android:visibility="invisible"
-                            app:cardCornerRadius="@dimen/dp5"
-                            app:cardElevation="@dimen/dp5">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_menu"
-                                android:gravity="center_vertical">
-
-                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-
-                                    android:layout_width="@dimen/dp50"
-                                    android:layout_height="@dimen/dp50"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/black"
-                                    android:elevation="@dimen/dp12"
-                                    android:innerRadius="0dp"
-                                    android:shape="ring"
-                                    android:thicknessRatio="1.9"
-                                    app:cardCornerRadius="40dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-
-                                        android:layout_height="@dimen/dp50"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:background="@color/circle_color"
-                                        android:padding="@dimen/dp14"
-                                        android:src="@drawable/ic_menu_logs"></ImageView>
-                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                <TextView
-                                    style="@style/RowTestItemEdit"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-
-                                    android:layout_marginTop="0dp"
-                                    android:layout_weight="1"
-                                    android:drawablePadding="5dp"
-                                    android:gravity="center"
-                                    android:paddingStart="@dimen/dp10"
-                                    android:paddingTop="@dimen/dp10"
-                                    android:paddingEnd="@dimen/dp10"
-                                    android:text="Logs" />
-                            </RelativeLayout>
-
-
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-
-
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_gravity="start"
+
+
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_open_faults"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:backgroundTint="#F78973"
+                                    app:tint="@color/white"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_open_faults"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ic_open_faults"
+
+
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Open faults" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_gravity="start"
+
+
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_pm_tsk"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:backgroundTint="#AF904B"
+                                    app:tint="@color/white"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_pm_task"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ic_pm_tsk"
+
+
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="PM tsk" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+
+
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_card_attachment"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:backgroundTint="#6C7B8A"
+                                    app:tint="@color/white"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_attachment"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ic_card_attachment"
+
+
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Attachment" />
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_menu_escalations"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:backgroundTint="#39AFD4"
+                                    app:tint="@color/white"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_escalations"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ic_menu_escalations"
+
+
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Escalation" />
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_logs"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:id="@+id/ic_menu_logs"
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:backgroundTint="#A785B6"
+                                    app:tint="@color/white"
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_logs"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ic_menu_logs"
+
+
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Logs" />
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp120"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dp0.2"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        app:cardCornerRadius="@dimen/dp5"
+                        app:cardElevation="@dimen/dp5">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_menu"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+
+                                android:layout_width="@dimen/dp50"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_centerHorizontal="true"
+                                android:background="@color/black"
+                                android:elevation="@dimen/dp12"
+                                android:innerRadius="0dp"
+                                android:shape="ring"
+                                android:thicknessRatio="1.9"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="@dimen/dp50"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/circle_color"
+                                    android:padding="@dimen/dp14"
+                                    android:src="@drawable/ic_menu_logs"></ImageView>
+                            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                            <TextView
+                                style="@style/RowTestItemEdit"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp10"
+                                android:paddingTop="@dimen/dp10"
+                                android:paddingEnd="@dimen/dp10"
+                                android:text="Logs" />
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
             </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

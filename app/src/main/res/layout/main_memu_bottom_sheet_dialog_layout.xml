@@ -164,7 +164,7 @@
 
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
-                    android:id="@+id/ic_send_alert"
+                    android:id="@+id/send_alert"
                     android:layout_width="@dimen/dp50"
                     android:layout_height="@dimen/dp50"
                     android:layout_centerHorizontal="true"
@@ -192,7 +192,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ic_send_alert"
+                    android:layout_below="@+id/send_alert"
                     android:layout_centerHorizontal="true"
 
 

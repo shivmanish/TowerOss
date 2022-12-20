@@ -9,8 +9,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SPApprovalAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SoftAcquisitionAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class SPApprovalTabFragment : Fragment(), SPApprovalAdapter.SPSoftLisListener {
@@ -28,7 +26,7 @@ class SPApprovalTabFragment : Fragment(), SPApprovalAdapter.SPSoftLisListener {
 
     }
     override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
+        val bottomSheetDialogFragment = SpSubmisstioniteProposalBottomSheet(R.layout.sp_submission_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {

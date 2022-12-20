@@ -11,9 +11,6 @@ import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-
-
-
 class ServiceRequestTabFragment : Fragment(), ServicesRequestAdapter.ServicesRequestLisListener {
     var siteViewModel : SiteInfoViewModel?=null
     var binding : OpcoInfoFregmentBinding?=null
