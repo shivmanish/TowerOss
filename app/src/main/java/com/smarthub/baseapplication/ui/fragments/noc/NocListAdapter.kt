@@ -236,6 +236,10 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : Re
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+
+                    holder.binding.imgEdit.setOnClickListener {
+                        listner.EditAppDetailsItem()
+                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -258,6 +262,10 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : Re
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+
+                    holder.binding.imgEdit.setOnClickListener {
+                        listner.EditAuthorityDetails()
+                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -378,8 +386,8 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : Re
 
     interface NOCListListener {
         fun attachmentItemClicked()
-        fun EditInstallationAcceptence()
-        fun EditEarthingItem()
+        fun EditAuthorityDetails()
+        fun EditAppDetailsItem()
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)
         fun editfeePaymentClicked(position:Int)
