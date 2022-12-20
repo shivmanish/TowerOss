@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.utils.Utils
 
 class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
+    var list : ArrayList<Any> = ArrayList()
     var currentOpened = -1
     var type1 = "What?*"
     var type2 = "When?"
@@ -195,7 +195,7 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitle.text = list[position] as String
 
             }
             is ViewHold2 -> {
@@ -217,7 +217,7 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitle.text = list[position] as String
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -238,7 +238,7 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitle.text = list[position] as String
 
             }
             is ViewHold4 -> {
@@ -260,7 +260,7 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitle.text = list[position] as String
             }
             is ViewHold5 -> {
                 if (currentOpened == position) {
@@ -281,7 +281,7 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitle.text = list[position] as String
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {
@@ -302,7 +302,7 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitle.text = list[position] as String
             }
         }
     }
