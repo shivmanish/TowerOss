@@ -18,7 +18,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
 
@@ -27,12 +27,12 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     var item: SearchListItem?=null
     var selectedCategory: String="name"
     private lateinit var binding: SearchFragmentBinding
-    lateinit var siteViewModel : BasicInfoDetailViewModel
+    lateinit var homeViewModel : HomeViewModel
     lateinit var searchResultAdapter : SearchResultAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SearchFragmentBinding.inflate(layoutInflater)
-        siteViewModel = ViewModelProvider(this)[BasicInfoDetailViewModel::class.java]
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         return binding.root
     }
@@ -62,17 +62,17 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         binding.chipLayout.layoutManager = chipsLayoutManager
         binding.chipLayout.setHasFixedSize(true)
 
-        var searchCategoryAdapter = SearchCategoryAdapter(requireContext(),this@SearchFragment)
+        val searchCategoryAdapter = SearchCategoryAdapter(requireContext(),this@SearchFragment)
         binding.categoryList.adapter = searchCategoryAdapter
         binding.categoryList.setHasFixedSize(true)
 
         searchResultAdapter = SearchResultAdapter(requireContext(),this@SearchFragment)
         binding.searchResult.adapter = searchResultAdapter
         binding.searchResult.setHasFixedSize(true)
-        if (siteViewModel.siteSearchResponse?.hasActiveObservers() == true){
-            siteViewModel.siteSearchResponse?.removeObservers(viewLifecycleOwner)
+        if (homeViewModel.siteSearchResponse?.hasActiveObservers() == true){
+            homeViewModel.siteSearchResponse?.removeObservers(viewLifecycleOwner)
         }
-        siteViewModel.siteSearchResponse?.observe(viewLifecycleOwner){
+        homeViewModel.siteSearchResponse?.observe(viewLifecycleOwner){
             if (binding.loadingProgress.visibility ==View.VISIBLE)
                 binding.loadingProgress.visibility = View.INVISIBLE
             binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.search,0)
@@ -85,7 +85,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     }else {
                         it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
                         if (fetchedData.isNotEmpty())
-                            siteViewModel.fetchSiteSearchData(fetchedData)
+                            homeViewModel.fetchSiteSearchData(fetchedData)
                         fetchedData = ""
                     }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
@@ -114,9 +114,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
 
                     if (selectedCategory.isNotEmpty()){
-                        siteViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
+                        homeViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
                     }else {
-                        siteViewModel.fetchSiteSearchData(fetchedData)
+                        homeViewModel.fetchSiteSearchData(fetchedData)
                     }
                     fetchedData = ""
                 }
@@ -128,9 +128,26 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         })
         binding.viewOnIbo.setOnClickListener {
 //            binding.searchCardView.text.clear()
-
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(if (item?.Siteid!=null)
-                item?.Siteid!! else "",if (item?.id!=null) item?.id!! else ""))
+            homeViewModel.fetchSiteInfoData(item?.id!!)
+        }
+        if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
+            homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner){
+            if(it!=null){
+                if (it.status==Resource.Status.SUCCESS){
+                    if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
+                        homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
+                    AppLogger.log("Site data fetched")
+                    Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(item?.Siteid!!,item?.id!!))
+                }else{
+                    Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
+                    AppLogger.log("Request failed e :${it.message}")
+                }
+            }else {
+                AppLogger.log("Something went wrong")
+                Toast.makeText(requireContext(),"Something went wrong",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

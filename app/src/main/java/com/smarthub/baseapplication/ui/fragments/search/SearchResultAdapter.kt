@@ -19,16 +19,21 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
         this.list = ArrayList()
         for (i in data){
             try {
-//                if (i.Siteid!=null && i.id!=null)
+                if (i.Siteid!=null && i.id!=null) {
                     list.add(i)
+                    AppLogger.log("data i : $i , size : ${list.size}")
+                }else{
+                    AppLogger.log("null data i : $i , size : ${list.size}")
+                }
             }catch (e:java.lang.Exception){
                 AppLogger.log("e:${e.localizedMessage}")
             }
-            AppLogger.log("i : $i , size : ${list.size}")
+//            AppLogger.log("i : $i , size : ${list.size}")
         }
 
         if (this.list.isEmpty())
             this.list.add("no_data")
+        this.list.reverse()
         notifyDataSetChanged()
     }
 

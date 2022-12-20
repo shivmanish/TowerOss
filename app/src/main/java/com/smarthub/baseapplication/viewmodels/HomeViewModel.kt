@@ -7,10 +7,15 @@ import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
+import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.APIInterceptor
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
 import com.smarthub.baseapplication.utils.AppLogger
 
 class HomeViewModel : ViewModel() {
@@ -22,6 +27,10 @@ class HomeViewModel : ViewModel() {
     var getServiceRequest : SingleLiveEvent<Resource<ServiceRequestAllData>>?=null
     var myTeamTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
+    var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
+    var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
+    var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
+    var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -31,6 +40,13 @@ class HomeViewModel : ViewModel() {
         getServiceRequest = homeRepo?.serviceRequest
         myTeamTask  = SingleLiveEvent<List<MyTeamTask>?>()
         myTask  = SingleLiveEvent<List<MyTeamTask>?>()
+        siteSearchResponse = homeRepo?.siteSearchResponseData
+        siteInfoResponse = homeRepo?.siteInfoResponse
+        siteDropData = homeRepo?.siteDropDownDataResponse
+    }
+
+    fun updateData(basicinfoModel: BasicinfoModel){
+        homeRepo?.updateData(basicinfoModel)
     }
 
     fun updateMyTeamTask(data : List<MyTeamTask>?){
@@ -62,4 +78,19 @@ class HomeViewModel : ViewModel() {
         homeRepo?.fetchServiceRequestData(id)
     }
 
+    fun fetchSiteInfoData(id : String){
+        homeRepo?.siteInfoById(id)
+    }
+
+    fun fetchSiteSearchData(id:String) {
+        homeRepo?.siteSearchData(id)
+    }
+
+    fun fetchSiteSearchData(id:String,category :String) {
+        homeRepo?.siteSearchData(id,category)
+    }
+
+    fun fetchSiteDropDownData() {
+        homeRepo?.siteInfoDropDown()
+    }
 }

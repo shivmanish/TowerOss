@@ -3,18 +3,10 @@ package com.smarthub.baseapplication.ui.dialog.utils
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
-import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.alert.AlertActivity
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
-import com.smarthub.baseapplication.ui.dialog.siteinfo.viewmodel.BasicInfoDialougeViewmodel
 import com.smarthub.baseapplication.ui.logs.LogsActivity
 
 

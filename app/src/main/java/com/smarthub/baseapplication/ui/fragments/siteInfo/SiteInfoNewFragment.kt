@@ -9,67 +9,72 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
-import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
+class SiteInfoNewFragment(var id : String) : Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
     var dropdowndata: SiteInfoDropDownData ?= null
-    var binding: SiteInfoNewFragmentBinding? = null
-    lateinit var siteViewModel: BasicInfoDetailViewModel
+    lateinit var binding: SiteInfoNewFragmentBinding
+    lateinit var homeViewModel: HomeViewModel
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         binding = SiteInfoNewFragmentBinding.inflate(inflater, container, false)
-        return binding?.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment)
-        siteViewModel.fetchDropDown()
 
-        if (siteViewModel.dropDownResponse?.hasActiveObservers() == true){
-            siteViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
+        if (homeViewModel.siteDropData?.hasActiveObservers() == true){
+            homeViewModel.siteDropData?.removeObservers(viewLifecycleOwner)
         }
-        siteViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+        homeViewModel.siteDropData?.observe(viewLifecycleOwner) {
             if (it!=null){
-                dropdowndata = it
-                (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it)
+                dropdowndata = it.data
+            }else homeViewModel.fetchSiteDropDownData()
+        }
+
+        if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
+            homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner) {
+            binding.swipeLayout.isRefreshing = false
+            if (it!=null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully")
+                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data?.get(0)!!)
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
+            }else{
+                AppLogger.log("SiteInfoNewFragment Something went wrong")
+                Toast.makeText(requireContext(),"SiteInfoNewFragment Something went wrong",Toast.LENGTH_SHORT).show()
             }
-//            (binding?.listItem?.adapter as SiteInfoListAdapter).setData(it.basicInfoModel)
         }
-        if (siteViewModel.siteInfoResponse?.hasActiveObservers() == true)
-            siteViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
 
-        siteViewModel.siteInfoResponse?.observe(viewLifecycleOwner) {
-            /* if (it?.data != null){
- //                map data here
-                 it.data?.let { it1 -> mapUIData(it1) }
-                 Toast.makeText(requireContext(),"siteInfo fetched successfully",Toast.LENGTH_SHORT).show()
-             }else{
-                 Toast.makeText(requireContext(),"siteInfo fetched successfully but null",Toast.LENGTH_SHORT).show()
-             }*/
-
+        binding.swipeLayout.setOnRefreshListener {
+            homeViewModel.fetchSiteInfoData(id)
         }
-        siteViewModel.fetchSiteInfo()
     }
 
     private fun mapUIData(data: SiteInfoModel) {
-        (binding?.listItem?.adapter as SiteInfoListAdapter).setValueData(data)
+        (binding.listItem?.adapter as SiteInfoListAdapter).setValueData(data)
     }
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(), "Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun detailsItemClicked(basicinfodata: Basicinfo) {
+    override fun detailsItemClicked(basicinfodata: SiteBasicinfo,id : String) {
         if (dropdowndata != null) {
-            val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, dropdowndata?.basicInfoModel!!, basicinfodata)
+            val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, dropdowndata?.basicInfoModel!!, basicinfodata,id,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
@@ -79,7 +84,7 @@ class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener 
     override fun operationInfoDetailsItemClicked(operationalInfo: List<OperationalInfo>) {
         if (dropdowndata != null) {
             val bottomSheetDialogFragment =
-                OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, dropdowndata?.operationalInfo!!, operationalInfo)
+                OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, dropdowndata?.operationalInfo!!, operationalInfo,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()

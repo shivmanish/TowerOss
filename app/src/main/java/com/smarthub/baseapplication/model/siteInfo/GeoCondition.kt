@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.siteInfo
 
 data class GeoCondition(
-    val Altitude: String,
-    val Floodzone: List<Floodzone>,
-    val Potentialthreat: List<Potentialthreat>,
-    val Seismiczone: List<Seismiczone>,
+    val Altitude: String?,
+    val Floodzone: String?,
+    val Potentialthreat: String?,
+    val Seismiczone: String?,
     val TempratureZone: String,
-    val Terraintype: List<Terraintype>,
-    val Windzone: List<Windzone>,
+    val Terraintype: String?,
+    val Windzone: String?,
     val createddate: String,
     val id: Int,
     val isActive: Boolean,

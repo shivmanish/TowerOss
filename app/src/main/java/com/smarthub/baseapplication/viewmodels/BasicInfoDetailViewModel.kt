@@ -27,8 +27,7 @@ class BasicInfoDetailViewModel : ViewModel() {
     }
 
     fun fetchDropDown() {
-        var jsonData: String =
-            AppPreferences.getInstance().getString(AppPreferences.DROPDOWNDATA)
+        var jsonData: String = AppPreferences.getInstance().getString(AppPreferences.DROPDOWNDATA)
         val gson = Gson()
         if (jsonData.isNotEmpty()) {
             val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData, SiteInfoDropDownData::class.java)

@@ -1,14 +1,14 @@
 package com.smarthub.baseapplication.model.siteInfo
 
-data class Basicinfo(
-    val Buildingtype: List<Buildingtype>,
-    val Locationzone: List<Locationzone>,
-    val MaintenancePoint: List<MaintenancePoint>,
-    val Projectname: List<Projectname>,
-    val Sitecategory: List<Sitecategory>,
-    val Siteownership: List<Siteownership>,
-    val Sitestatus: List<Sitestatu>,
-    val Sitetype: List<Sitetype>,
+data class SiteBasicinfo(
+    val Buildingtype: String?,
+    val Locationzone: String?,
+    val MaintenancePoint: String?,
+    val Projectname: String?,
+    val Sitecategory: String,
+    val Siteownership: String?,
+    val Sitestatus: String?,
+    val Sitetype: String?,
     val aliasName: String,
     val created_at: String,
     val id: Int,

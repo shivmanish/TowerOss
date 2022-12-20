@@ -26,13 +26,13 @@ class SaftyAccessBottomSheet(
         }
 
         val saftyAcess: SafetyAndAcces = safetyAndAccess.get(0)
-        binding.physicalSecurity.setText(saftyAcess.Physicalsecurity.get(0).name)
-        binding.textGate.setText(saftyAcess.GateAndFence.get(0).name)
-        binding.videoMonitoringSpinner.setSpinnerData(dropdown.videomonitoring.data,saftyAcess.Videomonitoring.get(0).name)
-        binding.siteAccessAreaSpinner.setSpinnerData(dropdown.siteAccessArea.data ,saftyAcess.SiteAccessArea.get(0).name)
-        binding.dangerSignageSpinner.setSpinnerData(dropdown.dangerSignage.data ,saftyAcess.DangerSignage.get(0).name)
-        binding.textCautionSignage.setText(saftyAcess.CautionSignage.get(0).name)
-        binding.siteAccess.setSpinnerData(dropdown.siteaccess.data ,saftyAcess.Siteaccess.get(0).name)
+        binding.physicalSecurity.setText(saftyAcess.Physicalsecurity)
+        binding.textGate.setText(saftyAcess.GateAndFence)
+        binding.videoMonitoringSpinner.setSpinnerData(dropdown.videomonitoring.data,saftyAcess.Videomonitoring)
+        binding.siteAccessAreaSpinner.setSpinnerData(dropdown.siteAccessArea.data ,saftyAcess.SiteAccessArea)
+        binding.dangerSignageSpinner.setSpinnerData(dropdown.dangerSignage.data ,saftyAcess.DangerSignage)
+        binding.textCautionSignage.setText(saftyAcess.CautionSignage)
+        binding.siteAccess.setSpinnerData(dropdown.siteaccess.data ,saftyAcess.Siteaccess)
 
         binding.textSiteAccesseethodology.setText(saftyAcess.Siteaccessmethodology)
         binding.textPoliceNumber.setText(saftyAcess.NearByPoliceStationNumber)
@@ -44,7 +44,7 @@ class SaftyAccessBottomSheet(
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SaftyAccessDetailsBottomSheetBinding.inflate(inflater)
         return binding.root
     }

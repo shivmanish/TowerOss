@@ -89,7 +89,8 @@ public interface APIClient {
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
     Call<SearchList> searchSiteInfoData(@Body JsonObject data);
 
-    @POST(EndPoints.BASIC_INFO_UPDATE)
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})

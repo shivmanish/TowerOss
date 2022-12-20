@@ -213,7 +213,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
                       holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)*/
                 }
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0){
-                    val basicinfo: Basicinfo = fieldData!!.get(0).Basicinfo.get(0)
+                    val siteBasicinfo: SiteBasicinfo = fieldData!!.get(0).Basicinfo.get(0)
       /*              holder.binding.txSiteName.text = basicinfo.siteName
                     holder.binding.txSiteID.text = basicinfo.siteID
                     holder.binding.siteStatus.text = basicinfo.Sitestatus.get(0).name

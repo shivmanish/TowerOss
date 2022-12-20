@@ -3,17 +3,20 @@ package com.smarthub.baseapplication.network.repo;
 import androidx.annotation.NonNull;
 
 import com.google.gson.JsonObject;
-import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
+import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
+import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem;
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppLogger;
 
@@ -30,6 +33,10 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<ProjectModelData>> projectResponse;
     private SingleLiveEvent<Resource<TaskModelData>> taskResponse;
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serRequestData;
+    private SingleLiveEvent<Resource<BasicInfoDialougeResponse>> basicInfoUpdate;
+    private SingleLiveEvent<Resource<SiteInfoModel>> siteInfoResponse;
+    private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
+    private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -40,16 +47,31 @@ public class HomeRepo {
         return sInstance;
     }
 
+    public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
+        return siteSearchResponse;
+    }
+
     public HomeRepo(APIClient apiClient) {
         this.apiClient = apiClient;
         homeResponse = new SingleLiveEvent<>();
         projectResponse = new SingleLiveEvent<>();
         taskResponse = new SingleLiveEvent<>();
         serRequestData = new SingleLiveEvent<>();
+        basicInfoUpdate = new SingleLiveEvent<>();
+        siteInfoResponse = new SingleLiveEvent<>();
+        siteSearchResponse = new SingleLiveEvent<>();
+        dropDownResoonse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
         return homeResponse;
+    }
+    public SingleLiveEvent<Resource<SiteInfoDropDownData>> getSiteDropDownDataResponse() {
+        return dropDownResoonse;
+    }
+
+    public SingleLiveEvent<Resource<SiteInfoModel>> getSiteInfoResponse() {
+        return siteInfoResponse;
     }
 
     public SingleLiveEvent<Resource<ProjectModelData>> getProjectResponse() {
@@ -59,8 +81,49 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<TaskModelData>> getTaskResponse() {
         return taskResponse;
     }
+
    public SingleLiveEvent<Resource<ServiceRequestAllData>> getServiceRequest() {
         return serRequestData;
+    }
+
+    public void updateData(BasicinfoModel basicinfoModel) {
+        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+        basicInfoUpdate.postValue(Resource.loading(d, 200));
+        apiClient.updateBasicInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BasicInfoDialougeResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    basicInfoUpdate.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
     }
 
     public void fetchHomeData() {
@@ -221,4 +284,159 @@ public class HomeRepo {
         });
     }
 
+    public void siteInfoById(String id) {
+
+        apiClient.fetchSiteInfoById(new IdData(id)).enqueue(new Callback<SiteInfoModel>() {
+            @Override
+            public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
+            }
+
+            @Override
+            public void onFailure(Call<SiteInfoModel> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteInfoModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteInfoResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteInfoResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteInfoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteInfoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteSearchData(String id) {
+
+        apiClient.searchSiteInfoData(id).enqueue(new Callback<SearchList>() {
+            @Override
+            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else if (response!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else AppLogger.INSTANCE.log("getProfileData response is null");
+            }
+
+            @Override
+            public void onFailure(Call<SearchList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SearchList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteSearchData(String id,String category) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty(id,category);
+        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<SearchList>() {
+            @Override
+            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SearchList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteInfoDropDown() {
+
+        apiClient.siteInfoDropDown().enqueue(new Callback<SiteInfoDropDownData>() {
+            @Override
+            public void onResponse(Call<SiteInfoDropDownData> call, Response<SiteInfoDropDownData> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SiteInfoDropDownData> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteInfoDropDownData> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+//                    Logger.getLogger("ProfileRepo").warning(response.toString());
+                    dropDownResoonse.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    dropDownResoonse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    dropDownResoonse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    dropDownResoonse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
 }

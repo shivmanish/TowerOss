@@ -212,7 +212,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
                 }
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
+                    val siteBasicinfo: SiteBasicinfo = fieldData!![0].Basicinfo[0]
 
                 }
             }
@@ -244,7 +244,7 @@ class ServicesRequestAdapter(var listener: ServicesRequestLisListener) : Recycle
 
                 }
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
+                    val siteBasicinfo: SiteBasicinfo = fieldData!![0].Basicinfo[0]
 
                 }
             }

@@ -60,6 +60,7 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel?.fetchHomeData()
+        homeViewModel?.fetchSiteDropDownData()
     }
 
     private fun mapUIData(data: HomeResponse){

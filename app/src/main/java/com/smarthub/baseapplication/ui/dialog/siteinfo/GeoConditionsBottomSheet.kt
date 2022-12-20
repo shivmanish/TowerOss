@@ -27,22 +27,22 @@ class GeoConditionsBottomSheet(
         var geoCondition = geoCondition.get(0)
         binding.potentioalThreatSpinner.setSpinnerData(
             dropdownData.potentialthreat.data,
-            geoCondition.Potentialthreat.get(0).name
+            geoCondition.Potentialthreat
         )
         binding.textAltitude.setText(geoCondition.Altitude)
         binding.windZoneSpinner.setSpinnerData(
             dropdownData.windzone.data,
-            geoCondition.Windzone.get(0).name
+            geoCondition.Windzone
         )
         binding.seismecZoneSpinner.setSpinnerData(
-            dropdownData.seismiczone.data, geoCondition.Seismiczone.get(0).name
+            dropdownData.seismiczone.data, geoCondition.Seismiczone
         )
         binding.floodZoneSpinner.setSpinnerData(
-            dropdownData.floodzone.data, geoCondition.Floodzone.get(0).name
+            dropdownData.floodzone.data, geoCondition.Floodzone
         )
         binding.textTempZone.setText(geoCondition.TempratureZone)
         binding.terrainTypeSpinner.setSpinnerData(
-            dropdownData.terraintype.data, geoCondition.Terraintype.get(0).name
+            dropdownData.terraintype.data, geoCondition.Terraintype
         )
 
     }

@@ -1,7 +1,7 @@
 package com.smarthub.baseapplication.model.siteInfo
 
 data class BasicInfoModelItem(
-    val Basicinfo: List<Basicinfo>,
+    val Basicinfo: List<SiteBasicinfo>,
     val Filesstorage: List<Any>,
     val GeoCondition: List<GeoCondition>,
     val OperationalInfo: List<OperationalInfo>,

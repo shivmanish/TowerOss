@@ -136,44 +136,6 @@ public class SiteInfoRepo {
         });
     }
 
-    public void siteInfoById(String id) {
-
-        apiClient.fetchSiteInfoById(new IdData("323")).enqueue(new Callback<SiteInfoModel>() {
-            @Override
-            public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
-                if (response.isSuccessful()){
-                    reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else if (response!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else AppLogger.INSTANCE.log("getProfileData response is null");
-            }
-
-            @Override
-            public void onFailure(Call<SiteInfoModel> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
-            }
-
-            private void reportSuccessResponse(Response<SiteInfoModel> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    siteIndoResponse.postValue(Resource.success(response.body(), 200));
-                }
-            }
-
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    siteIndoResponse.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
-                    siteIndoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    siteIndoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
-    }
-
     public void siteSearchData(String id) {
 
         apiClient.searchSiteInfoData(id).enqueue(new Callback<SearchList>() {

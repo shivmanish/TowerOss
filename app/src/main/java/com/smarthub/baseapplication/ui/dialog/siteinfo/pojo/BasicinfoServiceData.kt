@@ -10,7 +10,7 @@ data class BasicinfoServiceData(
     var Sitestatus: String = "",
     var Sitetype: String = "",
     var aliasName: String = "",
-    var id: Int = 0,
+    var id: String = "430",
     var siteID: String = "",
     var siteInChargeName: String = "",
     var siteInChargeNumber: String = "",

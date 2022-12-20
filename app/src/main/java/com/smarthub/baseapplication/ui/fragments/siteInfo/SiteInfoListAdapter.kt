@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
-import com.smarthub.baseapplication.utils.Utils
 
-class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
+class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:BasicInfoModelItem) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
@@ -25,8 +23,8 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     private var operationalInfoDropdown : OperationalInfoModel?=null
     private var geoConditionDropdown : GeoConditionModel?=null
     private var safetyAndAccessDropdown : SafetyAndAccessModel?=null
-    private var fieldData : SiteInfoModel?=null
-    private var basicinfodata:BasicInfoModelItem? = null
+//    private var fieldData : SiteInfoModel?=null
+//    private var basicinfodata:BasicInfoModelItem? = null
     private var dropdowndata: SiteInfoDropDownData? = null
 
     fun setData(datadrop : SiteInfoDropDownData){
@@ -37,6 +35,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
         safetyAndAccessDropdown = datadrop.safetyAndAccess
         notifyDataSetChanged()
     }
+
     fun setValueData(data : SiteInfoModel){
 //        this.fieldData = data
 //        notifyDataSetChanged()
@@ -47,7 +46,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
         list.add("Operational Info")
         list.add("Geo Condition")
         list.add("Safety / Access")
-        basicinfodata  = Gson().fromJson(Utils.getJsonDataFromAsset(context,"basicinfodata.json"), BasicInfoModelItem::class.java)
+
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -192,24 +191,24 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked(basicinfodata!!.Basicinfo[0])
+                    listener.detailsItemClicked(basicinfodata.Basicinfo[0],basicinfodata.id.toString())
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata!!.Basicinfo.isNotEmpty()){
-                    val basicinfo:Basicinfo = basicinfodata!!.Basicinfo[0]
-                    holder.binding.txSiteName.text = basicinfo.siteName
-                    holder.binding.txSiteID.text = basicinfo.siteID
-                    holder.binding.siteStatus.text = basicinfo.Sitestatus[0].name
-                    holder.binding.siteCategory.text = basicinfo.Sitecategory[0].name
-                    holder.binding.siteType.text = basicinfo.Sitetype[0].name
-                    holder.binding.txBuildingType.text = basicinfo.Buildingtype[0].name
-                    holder.binding.txtLocationZone.text = basicinfo.Locationzone[0].name
-                    holder.binding.txtMaintenanceZone.text = basicinfo.MaintenancePoint[0].maintenancepoint
-                    holder.binding.txtProjectName.text = basicinfo.Projectname[0].name
-                    holder.binding.txtSiteInChargeName.text = basicinfo.siteInChargeName
-                    holder.binding.txtSiteInChargeNumber.text = basicinfo.siteInChargeNumber
+                if(basicinfodata.Basicinfo.isNotEmpty()){
+                    val siteBasicinfo:SiteBasicinfo = basicinfodata.Basicinfo[0]
+                    holder.binding.txSiteName.text = siteBasicinfo.siteName
+                    holder.binding.txSiteID.text = siteBasicinfo.siteID
+                    holder.binding.siteStatus.text = siteBasicinfo.Sitestatus
+                    holder.binding.siteCategory.text = siteBasicinfo.Sitecategory
+                    holder.binding.siteType.text = siteBasicinfo.Sitetype
+                    holder.binding.txBuildingType.text = siteBasicinfo.Buildingtype
+                    holder.binding.txtLocationZone.text = siteBasicinfo.Locationzone
+                    holder.binding.txtMaintenanceZone.text = siteBasicinfo.MaintenancePoint
+                    holder.binding.txtProjectName.text = siteBasicinfo.Projectname
+                    holder.binding.txtSiteInChargeName.text = siteBasicinfo.siteInChargeName
+                    holder.binding.txtSiteInChargeNumber.text = siteBasicinfo.siteInChargeNumber
                     holder.binding.txtRentEscalation.text = ""
-                    holder.binding.address.text = basicinfo.siteaddress
+                    holder.binding.address.text = siteBasicinfo.siteaddress
 
 
                 }
@@ -234,32 +233,32 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked(basicinfodata!!.Basicinfo[0])
+                    listener.detailsItemClicked(basicinfodata.Basicinfo[0],basicinfodata?.id.toString())
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if(basicinfodata!!.OperationalInfo.isNotEmpty()){
-                    val operationalInfo: OperationalInfo = basicinfodata!!.OperationalInfo.get(0)
+                if(basicinfodata.OperationalInfo.isNotEmpty()){
+                    val operationalInfo: OperationalInfo = basicinfodata.OperationalInfo.get(0)
                     holder.binding.txtRFCDate.text = operationalInfo.RFCDate
                     holder.binding.txtRFIDate.text = operationalInfo.RFIDate
                     holder.binding.txtRFSDate.text = operationalInfo.RFSDate
-                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus[0].name
-                    holder.binding.costCenter.text = operationalInfo.Costcentre[0].name
-                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility[0].name
+                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus
+                    holder.binding.costCenter.text = operationalInfo.Costcentre
+                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility
                     holder.binding.powerSource.text = operationalInfo.Powersource
                     holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
                     holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
                     holder.binding.operationTemp.text = operationalInfo.OperatingTemp
-                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory[0].name
-                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite[0].name
-                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca[0].name
-                    holder.binding.scdaSpinner.text = operationalInfo.Scda[0].name
+                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory
+                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite
+                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca
+                    holder.binding.scdaSpinner.text = operationalInfo.Scda
                     holder.binding.dismanting.text = operationalInfo.DismantlinglDate
                 }
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.geoConditionsDetailsItemClicked(basicinfodata!!.GeoCondition)
+                    listener.geoConditionsDetailsItemClicked(basicinfodata.GeoCondition)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -280,21 +279,21 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata!!.GeoCondition.isNotEmpty()){
-                    val geoCondition: GeoCondition = basicinfodata!!.GeoCondition.get(0)
-                    holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat.get(0).name
+                if(basicinfodata.GeoCondition.isNotEmpty()){
+                    val geoCondition: GeoCondition = basicinfodata.GeoCondition[0]
+                    holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat
                     holder.binding.textAltitude.text = geoCondition.Altitude
-                    holder.binding.windZoneSpinner.text = geoCondition.Windzone.get(0).name
-                    holder.binding.seismecZoneSpinner.text = geoCondition.Seismiczone.get(0).name
-                    holder.binding.floodZoneSpinner.text = geoCondition.Floodzone.get(0).name
+                    holder.binding.windZoneSpinner.text = geoCondition.Windzone
+                    holder.binding.seismecZoneSpinner.text = geoCondition.Seismiczone
+                    holder.binding.floodZoneSpinner.text = geoCondition.Floodzone
                     holder.binding.textTempZone.text = geoCondition.TempratureZone
-                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype.get(0).name
+                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype
                 }
 
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.siteAccessDetailsItemClicked(basicinfodata!!.SafetyAndAccess)
+                    listener.siteAccessDetailsItemClicked(basicinfodata.SafetyAndAccess)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -315,15 +314,15 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata!!.SafetyAndAccess.isNotEmpty()){
-                    val saftyAcess: SafetyAndAcces = basicinfodata!!.SafetyAndAccess.get(0)
-                    holder.binding.physicalSecurity.text = saftyAcess.Physicalsecurity.get(0).name
-                    holder.binding.textGate.text = saftyAcess.GateAndFence.get(0).name
-                    holder.binding.videoMonitoringSpinner.text = saftyAcess.Videomonitoring.get(0).name
-                    holder.binding.siteAccessAreaSpinner.text = saftyAcess.SiteAccessArea.get(0).name
-                    holder.binding.dangerSignageSpinner.text = saftyAcess.DangerSignage.get(0).name
-                    holder.binding.textCautionSignage.text = saftyAcess.CautionSignage.get(0).name
-                    holder.binding.siteAccess.text = saftyAcess.Siteaccess.get(0).name
+                if(basicinfodata.SafetyAndAccess.isNotEmpty()){
+                    val saftyAcess: SafetyAndAcces = basicinfodata.SafetyAndAccess.get(0)
+                    holder.binding.physicalSecurity.text = saftyAcess.Physicalsecurity
+                    holder.binding.textGate.text = saftyAcess.GateAndFence
+                    holder.binding.videoMonitoringSpinner.text = saftyAcess.Videomonitoring
+                    holder.binding.siteAccessAreaSpinner.text = saftyAcess.SiteAccessArea
+                    holder.binding.dangerSignageSpinner.text = saftyAcess.DangerSignage
+                    holder.binding.textCautionSignage.text = saftyAcess.CautionSignage
+                    holder.binding.siteAccess.text = saftyAcess.Siteaccess
 
                     holder.binding.textSiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
                     holder.binding.textPoliceNumber.text = saftyAcess.NearByPoliceStationNumber
@@ -371,7 +370,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
 
     interface SiteInfoLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked( basicinfo: Basicinfo)
+        fun detailsItemClicked(siteBasicinfo: SiteBasicinfo,id : String)
         fun operationInfoDetailsItemClicked(operationalInfo: List<OperationalInfo>)
         fun geoConditionsDetailsItemClicked(geoCondition: List<GeoCondition>)
         fun siteAccessDetailsItemClicked(safetyAndAccess: List<SafetyAndAcces>)
