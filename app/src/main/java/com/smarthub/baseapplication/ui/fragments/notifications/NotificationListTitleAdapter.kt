@@ -23,12 +23,12 @@ class NotificationListTitleAdapter(val context: Context) : Adapter<NotificationL
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
 
-        holder.binding.textList.text = list[position].title+"$position"
+//        holder.binding.textList.text = list[position].title+"$position"
         holder.binding.list.adapter = NotificationListSubtitleAdapter(context)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return 2
     }
 
     class Viewholder(item:View) : RecyclerView.ViewHolder(item) {

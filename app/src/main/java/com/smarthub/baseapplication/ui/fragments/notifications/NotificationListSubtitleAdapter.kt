@@ -20,16 +20,16 @@ class NotificationListSubtitleAdapter(val context: Context) : Adapter<Notificati
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        holder.binding.textList.text=list[position].subTitle
-        holder.binding.clocktimeTextSubtitle.setText("$position +${list[position].time}")
-        holder.binding.dateTextSubtitle.setText("$position +${list[position].Date}")
-        holder.binding.actionLayout.visibility= if(list[position].Action) View.VISIBLE else View.GONE
+//        holder.binding.textList.text=list[position].subTitle
+//        holder.binding.clocktimeTextSubtitle.setText("$position +${list[position].time}")
+//        holder.binding.dateTextSubtitle.setText("$position +${list[position].Date}")
+//        holder.binding.actionLayout.visibility= if(list[position].Action) View.VISIBLE else View.GONE
 
         holder.binding.list.adapter = NotificationListItemAdapter(context)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return 1
     }
 
     class Viewholder(item:View) : RecyclerView.ViewHolder(item) {

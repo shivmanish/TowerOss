@@ -25,14 +25,14 @@ class NotificationListItemAdapter(val context: Context) : Adapter<NotificationLi
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        if(list[position].files=="yes"){
-            holder.binding.fileLayout.visibility=View.VISIBLE
-        }
-        else holder.binding.fileLayout.visibility=View.GONE
+//        if(list[position].files=="yes"){
+//            holder.binding.fileLayout.visibility=View.VISIBLE
+//        }
+//        else holder.binding.fileLayout.visibility=View.GONE
 
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return 2
     }
 }
