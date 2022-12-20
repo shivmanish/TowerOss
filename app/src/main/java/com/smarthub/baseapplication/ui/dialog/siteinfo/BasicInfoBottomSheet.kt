@@ -76,7 +76,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
                 it.siteName= binding.txSiteName.text.toString()
                 it.siteaddress= binding.address.text.toString()
             }
-            basicinfoModel?.basicinfo = basicinfo!!
+            basicinfoModel?.Basicinfo = basicinfo!!
             basicinfoModel?.id = id
             viewModel.updateData(basicinfoModel!!)
         }
