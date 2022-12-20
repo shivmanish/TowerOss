@@ -10,11 +10,13 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
+import com.smarthub.baseapplication.databinding.RadioAntineListItemBinding
+import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
-class EquipmentTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<EquipmentTableAdapter.ViewHold>() {
+class RadioAntinaTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
     var list  = ArrayList<String>()
     init {
         list.add("item1")
@@ -22,7 +24,6 @@ class EquipmentTableAdapter (var context : Context, var listener : TowerInfoList
         list.add("item1")
         list.add("item1")
     }
-
     fun addItem(item:String){
         list.add(item)
         notifyItemInserted(list.size.plus(1))
@@ -34,10 +35,10 @@ class EquipmentTableAdapter (var context : Context, var listener : TowerInfoList
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= TowerPoTableItemBinding.bind(view)
+        var binding= SiteRequestRadioTableItemBinding.bind(view)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.site_request_radio_table_item,parent,false)
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
