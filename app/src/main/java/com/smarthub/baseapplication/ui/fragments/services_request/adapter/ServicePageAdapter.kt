@@ -21,26 +21,27 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             0 -> {
                 return ServiceRequestTabFragment()
             }
+
             1 -> {
-                return OppoTssrTabFragment()
-            }
-            2 -> {
                 return TeamVendor()
             }
-            3-> {
+            2-> {
                 return Feasibility()
+            }
+            3 -> {
+                return OppoTssrTabFragment()
             }
             4 -> {
                 return FeasibilityPlanningTabFragment()
             }
             5 -> {
-                return SiteProposalTabFragment()
+                return Agreements()
             }
             6-> {
-                return SPApprovalTabFragment()
+                return SiteProposalTabFragment()
             }
             7 -> {
-                return Agreements()
+                return SPApprovalTabFragment()
             }
 
             else -> {
@@ -55,26 +56,29 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
                 return "Site Request"
             }
 
+
             1 -> {
-                return "OPCO TSSR"
-            }
-            2 -> {
                 return "Assign ACQ Team"
             }
-            3 -> {
+            2 -> {
                 return "Acquisition Survery"
+            }
+            3 -> {
+                return "OPCO TSSR"
             }
             4 -> {
                 return "Feasibility Plan"
             }
-            5 -> {
-                return "Site Proposal"
+
+            5-> {
+                return "Soft Acquisition"
             }
             6 -> {
-                return "SP Approval / SO"
+                return "Site Proposal"
             }
+
             7-> {
-                return "Soft Acquisition"
+                return "SP Approval / SO"
             }
 
 
