@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,10 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.LanguageActivity
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
@@ -133,6 +136,11 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(if (item?.Siteid!=null)
                 item?.Siteid!! else "",if (item?.id!=null) item?.id!! else ""))
+        }
+        binding.viewOnMap.setOnClickListener {
+            var intent = Intent(requireContext(), MapActivity::class.java)
+            startActivity(intent)
+
         }
     }
 
