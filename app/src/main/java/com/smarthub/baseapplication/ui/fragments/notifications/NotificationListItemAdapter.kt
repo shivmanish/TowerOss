@@ -11,13 +11,18 @@ import com.smarthub.baseapplication.databinding.NotificationItemBinding
 import com.smarthub.baseapplication.model.notification.NotificationData
 import com.smarthub.baseapplication.model.notification.NotificationListItem
 
-class NotificationListItemAdapter(val context: Context) : Adapter<NotificationListItemAdapter.Viewholder>() {
+class NotificationListItemAdapter(val context: Context,var list : ArrayList<NotificationData>) : Adapter<NotificationListItemAdapter.Viewholder>() {
 
+    init {
+        list.add(NotificationData("item"))
+        list.add(NotificationData("item1"))
+        list.add(NotificationData("item2"))
+        list.add(NotificationData("item3"))
+        list.add(NotificationData("item4"))
+    }
     class Viewholder(item:View) : RecyclerView.ViewHolder(item) {
         var binding = NotificationItemBinding.bind(item)
     }
-
-    var list : ArrayList<NotificationData> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false)
@@ -25,14 +30,11 @@ class NotificationListItemAdapter(val context: Context) : Adapter<NotificationLi
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-//        if(list[position].files=="yes"){
-//            holder.binding.fileLayout.visibility=View.VISIBLE
-//        }
-//        else holder.binding.fileLayout.visibility=View.GONE
-
+        var item = list[position]
+        holder.binding.fileName.text = item.files
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return list.size
     }
 }

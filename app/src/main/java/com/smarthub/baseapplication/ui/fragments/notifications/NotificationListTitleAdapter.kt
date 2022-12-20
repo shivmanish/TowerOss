@@ -12,9 +12,20 @@ import com.smarthub.baseapplication.model.notification.NotificationData
 import com.smarthub.baseapplication.model.notification.NotificationListItem
 import com.smarthub.baseapplication.model.notification.NotificationListModel
 
-class NotificationListTitleAdapter(val context: Context) : Adapter<NotificationListTitleAdapter.Viewholder>() {
+class NotificationListTitleAdapter(val context: Context, var list : ArrayList<NotificationListModel> = ArrayList()) : Adapter<NotificationListTitleAdapter.Viewholder>() {
 
-    var list : ArrayList<NotificationListModel> = ArrayList()
+    fun updateList(list : ArrayList<NotificationListModel>){
+        this.list.clear()
+        this.list = list
+        notifyDataSetChanged()
+    }
+
+    init {
+        list.add(NotificationListModel("Today",ArrayList()))
+        list.add(NotificationListModel("Today1",ArrayList()))
+        list.add(NotificationListModel("Today2",ArrayList()))
+        list.add(NotificationListModel("Today3",ArrayList()))
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_list_title, parent, false)
@@ -23,12 +34,13 @@ class NotificationListTitleAdapter(val context: Context) : Adapter<NotificationL
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
 
-//        holder.binding.textList.text = list[position].title+"$position"
-        holder.binding.list.adapter = NotificationListSubtitleAdapter(context)
+        var item =  list[position]
+        holder.binding.textList.text = list[position].title
+        holder.binding.list.adapter = NotificationListSubtitleAdapter(context,item.list)
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return list.size
     }
 
     class Viewholder(item:View) : RecyclerView.ViewHolder(item) {

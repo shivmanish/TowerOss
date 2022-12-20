@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab
+package com.smarthub.baseapplication.ui.fragments.siteInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +20,9 @@ import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.viewmodels.BasicInfoDetailViewModel
 
 class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
+    var dropdowndata: SiteInfoDropDownData ?= null
     var binding: SiteInfoNewFragmentBinding? = null
+    lateinit var siteViewModel: BasicInfoDetailViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         siteViewModel = ViewModelProvider(requireActivity())[BasicInfoDetailViewModel::class.java]
@@ -28,8 +30,6 @@ class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener 
         return binding?.root
     }
 
-    lateinit var siteViewModel: BasicInfoDetailViewModel
-    var dropdowndata: SiteInfoDropDownData ?= null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.listItem?.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment)
@@ -76,35 +76,20 @@ class SiteInfoNewFragment : Fragment(), SiteInfoListAdapter.SiteInfoLisListener 
 
     override fun detailsItemClicked(basicinfodata: Basicinfo) {
         if (dropdowndata != null) {
-            val bottomSheetDialogFragment = BasicInfoBottomSheet(
-                R.layout.basic_info_details_bottom_sheet,
-                dropdowndata?.basicInfoModel!!,
-                basicinfodata
-            )
+            val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, dropdowndata?.basicInfoModel!!, basicinfodata)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(
-                context,
-                "DropDownData not found, Please Try again !",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun operationInfoDetailsItemClicked(operationalInfo: List<OperationalInfo>) {
         if (dropdowndata != null) {
             val bottomSheetDialogFragment =
-                OperationsInfoBottomSheet(
-                    R.layout.operations_info_details_bottom_sheet, dropdowndata?.operationalInfo!!,
-                    operationalInfo
-                )
+                OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, dropdowndata?.operationalInfo!!, operationalInfo)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(
-                context,
-                "DropDownData not found, Please Try again !",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 
