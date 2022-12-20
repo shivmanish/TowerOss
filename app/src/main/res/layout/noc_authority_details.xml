@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_layout"
+        android:background="@color/collapse_card_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45">
+            <TextView
+                android:id="@+id/item_title_str"
+                android:text="Authority Details"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:id="@+id/img_edit"
+                android:visibility="gone"
+                android:src="@drawable/edit_ico_black"
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Name"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="NOC / Compliance"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Contact Person"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Muncipal/ SACFA"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Contact Number"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="9636000032"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="FounEmail IDdation"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="learning@gmail.com"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Preferred Language"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="English"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Address"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Mangolpuri"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </GridLayout>
+
+                <TextView
+                    android:text="Location Mark"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:hint="Left Corner of Roof "
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text="xwerhtjyg"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,34 +53,9 @@ class TwrInfraDetails : BaseActivity() {
         }
         binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
-//        binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
-//        binding.viewpager.beginFakeDrag()
-//        for (i in 0..binding.tabs.tabCount.minus(1)){
-//            if (i==0)
-//                binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-//            var itemBinding = TabNameItemBinding.inflate(layoutInflater)
-//            itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
-//            itemBinding.tabName.textSize = 15f
-//            binding.tabs.getTabAt(i)?.customView = itemBinding.root
-//        }
 
         profileViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
 
-//        profileViewModel?.profileResponse?.observe(this) {
-//            hideLoader()
-//            if (it != null) {
-//                if (it.status == Resource.Status.SUCCESS && it.data != null) {
-//                    mapUiData(it.data)
-//                    return@observe
-//                } else {
-//                    Log.d("status", "${it.message}")
-//                    Toast.makeText(this@NewCustomerDetailsActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
-//                }
-//            } else {
-//                Log.d("status", AppConstants.GENERIC_ERROR)
-//                Toast.makeText(this@NewCustomerDetailsActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-//            }
-//        }
     }
 
     private fun onTabSelectedListener(pager: ViewPager): TabLayout.OnTabSelectedListener {

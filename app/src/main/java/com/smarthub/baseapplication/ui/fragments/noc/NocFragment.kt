@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
@@ -41,18 +40,10 @@ class NocFragment : Fragment(), NocDataAdapterListener {
         }
 
         nocDataViewHolder.updateData("anything")
-        customerBinding.addMore.setOnClickListener{
+        customerBinding.addmoreItems.setOnClickListener{
             nocDataViewHolder.updateData("anything")
         }
 
-//        viewmodel.fetchData()
-//        viewmodel.customer_data.observe(requireActivity(), Observer {
-//            // Data is get from server and ui work will be start from here
-//            println("this is called data is $it")
-//            var arraydata = ArrayList<String>()
-//            arraydata.add(it)
-//            nocDataViewHolder.setData(arraydata)
-//        })
     }
 
     override fun clickedItem() {

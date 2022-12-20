@@ -1,18 +1,20 @@
 package com.smarthub.baseapplication.ui.fragments.noc
 
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
-import com.smarthub.baseapplication.databinding.NocActivityDetailsBinding
 import com.smarthub.baseapplication.databinding.NocNewActivityDetailsBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.fragments.services_request.editdialouge.NocApplicationDetailsDialouge
-import com.smarthub.baseapplication.ui.fragments.services_request.editdialouge.NocAuthorityDetailsDialouge
-import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
-import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
-import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.FeePaymentEditDialougeAdapter
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.FeePaymentViewDialougeAdapter
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.PoEditDialougeDapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EarthingPoTableViewDialougeAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.EditEarthingPOTableBottomSheet
 
-class NocDetailsActivity : BaseActivity() {
+class NocDetailsActivity : BaseActivity(), NocListAdapter.NOCListListener {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NocNewActivityDetailsBinding
 
@@ -24,47 +26,43 @@ class NocDetailsActivity : BaseActivity() {
     }
 
     private fun initViews(){
-        binding.list.adapter = NocListAdapter(this)
+        binding.list.adapter = NocListAdapter(this,this@NocDetailsActivity)
     }
-//    fun setView(){
-//        binding.applicationDetailsEdit.setOnClickListener{
-//            val dalouge = NocApplicationDetailsDialouge()
-//            dalouge.show(supportFragmentManager,"")
-//        }
-//        binding.authorityEdit.setOnClickListener{
-//            val dalouge = NocAuthorityDetailsDialouge()
-//            dalouge.show(supportFragmentManager,"")
-//        }
-//        binding.applicationDetailsRoot.setOnClickListener {
-//            if(binding.itemCollapseApplicationStatus.visibility == View.VISIBLE){
-//                Utils.collapse(binding.itemCollapseApplicationStatus)
-//                binding.applicationDetailsArrow.rotation = 0f
-//                binding.applicationDetailsEdit.visibility = View.GONE
-//                binding.applicationDetailsRoot.isSelected = false
-//            }else{
-//                Utils.expand(binding.itemCollapseApplicationStatus)
-//                binding.applicationDetailsRoot.isSelected = true
-//                binding.applicationDetailsArrow.rotation = 180f
-//                binding.applicationDetailsEdit.visibility = View.VISIBLE
-//            }
-//        }
-//
-//        binding.authorityRoot.setOnClickListener {
-//            if(binding.itemCollapseAuthorityDetails.visibility == View.VISIBLE){
-//                Utils.collapse(binding.itemCollapseAuthorityDetails)
-//                binding.authorityRoot.isSelected = false
-//                binding.authorityArrow.rotation = 0f
-//                binding.authorityEdit.visibility = View.GONE
-//            }else{
-//                Utils.expand(binding.itemCollapseAuthorityDetails)
-//                binding.authorityRoot.isSelected = true
-//                binding.authorityArrow.rotation = 180f
-//                binding.authorityEdit.visibility = View.VISIBLE
-//            }
-//        }
-//
-//    }
 
+    override fun attachmentItemClicked() {
+        Toast.makeText(this,"Item Clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun EditInstallationAcceptence() {
+        Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun EditEarthingItem() {
+        Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editPoClicked(position: Int) {
+        var bm = PoEditDialougeDapter(R.layout.noc_po_edit_dialouge)
+        bm.show(supportFragmentManager,"categoery")
+        Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewPoClicked(position: Int) {
+        var bm = EarthingPoTableViewDialougeAdapter(R.layout.earthing_po_item_dialouge)
+        bm.show(supportFragmentManager, "category")
+    }
+
+    override fun editfeePaymentClicked(position: Int) {
+        var bm = FeePaymentEditDialougeAdapter(R.layout.noc_fee_pay_edit_dialouge)
+        bm.show(supportFragmentManager,"categoery")
+        Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewfeePaymentClicked(position: Int) {
+        var bm = FeePaymentViewDialougeAdapter(R.layout.noc_fee_payment_view_dialouge)
+        bm.show(supportFragmentManager,"categoery")
+        Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
 
 
 }
