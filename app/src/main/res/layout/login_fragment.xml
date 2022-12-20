@@ -92,6 +92,7 @@
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:inputType="text"
                     app:layout_constraintBottom_toTopOf="@+id/user_mail_layout"/>
                 <com.smarthub.baseapplication.widgets.CustomTextInputLayout
                     android:layout_width="match_parent"
@@ -111,7 +112,10 @@
                         android:textSize="15sp"
                         android:letterSpacing="0.1"
                         android:textColor="#fff"
+                        android:maxLines="1"
                         android:id="@+id/user_mail"
+                        android:inputType="text"
+
                         android:nextFocusForward="@id/password"
                         android:drawablePadding="@dimen/dp10"
                         android:drawableStart="@drawable/ic_profile_border"
@@ -162,6 +166,9 @@
                         android:textSize="15sp"
                         android:letterSpacing="0.1"
                         android:textColor="#fff"
+                        android:maxLines="1"
+                        android:inputType="text"
+
                         android:id="@+id/password"
                         android:nextFocusForward="@id/password"
                         android:drawablePadding="@dimen/dp10"

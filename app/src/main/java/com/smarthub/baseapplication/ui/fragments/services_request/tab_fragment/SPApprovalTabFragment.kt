@@ -26,7 +26,11 @@ class SPApprovalTabFragment : Fragment(), SPApprovalAdapter.SPSoftLisListener {
 
     }
     override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = SpSubmisstioniteProposalBottomSheet(R.layout.sp_submission_dialog)
+        val bottomSheetDialogFragment = SpApprovalBottomSheet(R.layout.sp_approval_dialog)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+    }
+    override fun requestinfoClicked() {
+        val bottomSheetDialogFragment = SoApprovalBottomSheet(R.layout.so_approval_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {
@@ -41,10 +45,7 @@ class SPApprovalTabFragment : Fragment(), SPApprovalAdapter.SPSoftLisListener {
         val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-    override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
+
 
 
 }

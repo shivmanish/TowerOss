@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 
 class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
-        return 7
+        return 6
     }
 
     override fun getItem(position: Int): Fragment {
@@ -33,12 +33,7 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             5 -> {
                 return SoftAcquisitionTabFragment()
             }
-            6 -> {
-                return FeasibilityPlanningTabFragment()
-            }
-            7 -> {
-                return SiteProposalTabFragment()
-            }
+
             else -> {
                 return OpcoSiteInfoFramgment()
             }
@@ -65,12 +60,8 @@ class ServicePageAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
             }  5 -> {
                 return "Soft Acquisition"
             }
-            6 -> {
-                return "Soft Acquisition"
-            }
-            7 -> {
-                return "Site Proposal"
-            }
+
+
 
         }
         return super.getPageTitle(position)

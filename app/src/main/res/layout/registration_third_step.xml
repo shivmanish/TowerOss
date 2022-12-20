@@ -230,7 +230,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/manager_name"
                         style="@style/CustomTextInputEdit"
                         android:layout_width="match_parent"
@@ -238,6 +238,8 @@
                         android:textCursorDrawable="@null"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:inputType="text"
                         android:letterSpacing="0.1"
                         android:cursorVisible="true"
                         android:padding="@dimen/dp13"
@@ -246,7 +248,6 @@
                         android:textColorHint="@color/white"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_id_root"
                     style="@style/TextInputLayout"
@@ -254,6 +255,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="Email ID"
+                    android:maxLines="1"
+                    android:inputType="text"
                     android:textColorHint="@color/white"
                     app:endIconMode="custom"
                     app:endIconTint="@color/white"
@@ -278,7 +281,6 @@
                         android:textColorHint="@color/white"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/mo_no_root"
                     style="@style/TextInputLayout"
@@ -287,6 +289,8 @@
                     android:layout_marginBottom="30dp"
                     android:textCursorDrawable="@drawable/cursure_color"
                     android:hint="Mobile Number"
+                    android:maxLines="1"
+                    android:inputType="text"
                     android:textColorHint="@color/white"
                     app:endIconMode="custom"
                     app:endIconTint="@color/white"
@@ -313,7 +317,6 @@
                         android:textColorHint="@color/white"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <TextView
                     android:id="@+id/next"
                     android:layout_width="match_parent"
@@ -330,8 +333,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/already_have_account"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
-
-                <LinearLayout
+               <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
