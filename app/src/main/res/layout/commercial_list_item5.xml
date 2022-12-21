@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dp10"
@@ -73,17 +74,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_margin="5dp"
+        android:paddingBottom="@dimen/dp20"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:paddingBottom="@dimen/dp20"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <GridLayout
                 android:columnCount="2"
                 android:orientation="horizontal"
@@ -106,12 +104,6 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -129,13 +121,7 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/icon_date"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -152,14 +138,7 @@
                         android:text="9890000009"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:drawableEnd="@drawable/ic_arrow_down_black"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -169,20 +148,18 @@
                     <TextView
                         android:text="OPCO Commercial Number"
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="9890000008"
                         style="@style/RowTestItemEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/rupee_symbol"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -194,18 +171,16 @@
                         android:text="OPCO Commercial Email ID"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="modan.patil@vil.com"
                         style="@style/RowTestItemEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -215,20 +190,17 @@
                     <TextView
                         android:text="OPCO Commercial Number"
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="9890000008"
                         style="@style/RowTestItemEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
-                        android:drawableEnd="@drawable/rupee_symbol"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -238,53 +210,36 @@
                     <TextView
                         android:text="Operator’s Maintenance Location"
                         style="@style/RowTextItemInfo"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="102, Ahmedabad, Gujrat - xxxx"
                         style="@style/RowTestItemEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_width="match_parent"
-                        android:drawableEnd="@drawable/rupee_symbol"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
 
             </GridLayout>
             <TextView
                 android:text="Remark"
-                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp15"
                 style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <EditText
+            <TextView
                 android:hint="Type Here"
                 android:textSize="15sp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
                 android:layout_margin="@dimen/dp5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Save/Update"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
-                android:backgroundTint="#3F4D67"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
-
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
