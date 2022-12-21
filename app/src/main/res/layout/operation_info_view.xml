@@ -90,9 +90,7 @@
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
-
                 <TextView
-
                     android:text="RFC Date"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
@@ -102,15 +100,12 @@
                     android:text="12-Nov-22"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/icon_date"
                     android:layout_height="wrap_content"/>
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:text="RFI Date"
                     style="@style/RowTextItemInfo"
@@ -120,17 +115,14 @@
                     android:id="@+id/txtRFIDate"
                     android:text="12-Nov-22"
                     style="@style/RowTextviewItem"
-                    android:drawableEnd="@drawable/icon_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:text="RFS Date"
                     style="@style/RowTextItemInfo"
@@ -140,10 +132,8 @@
                     android:id="@+id/txtRFSDate"
                     style="@style/RowTextviewItem"
                     android:text="12-Nov-22"
-                    android:drawableEnd="@drawable/icon_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -369,12 +359,11 @@
                     style="@style/RowTextviewItem"
                     android:id="@+id/dismanting"
                     android:text="18-Nov-2022"
-                    android:drawableEnd="@drawable/icon_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-        </GridLayout>
 
+        </GridLayout>
     </LinearLayout>
 </LinearLayout>

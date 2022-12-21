@@ -75,7 +75,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -92,7 +92,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -109,7 +109,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
             }
         }
     }
@@ -122,7 +122,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -137,7 +137,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down_black,0)
             }
         }
     }
@@ -182,7 +182,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -222,7 +222,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -273,7 +273,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -308,7 +308,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -345,7 +345,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.itemTitle.tag = false
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down_black,0)
                 }
                 holder.binding.itemTitle.setOnClickListener {
                     updateList(position)

@@ -17,6 +17,7 @@ class CustomerDataAdapter(var listener: CustomerDataAdapterListener) :
     var list : ArrayList<OpcoCardListItem> = ArrayList()
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: OpcoCardList) {
+        this.list.clear()
         this.list.addAll(data)
         notifyDataSetChanged()
     }
