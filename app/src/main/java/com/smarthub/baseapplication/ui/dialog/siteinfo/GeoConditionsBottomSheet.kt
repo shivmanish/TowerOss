@@ -34,17 +34,17 @@ class GeoConditionsBottomSheet(contentLayoutId: Int,var id : String, var dropdow
             dismiss()
         }
         binding.update.setOnClickListener {
-            geoConditionUpdateModel!!.let{
+            geoConditionUpdateModel?.let{
                 it.id = geoCondition.id.toString()
                 it.Altitude = binding.textAltitude.text.toString()
-                it.Floodzone = binding.floodZoneSpinner.selectedValue.name
-                it.Seismiczone = binding.seismecZoneSpinner.selectedValue.name
-                it.Potentialthreat = binding.potentioalThreatSpinner.selectedValue.name
-                it.Terraintype = binding.terrainTypeSpinner.selectedValue.name
-                it.Windzone = binding.windZoneSpinner.selectedValue.name
+                it.Floodzone = binding.floodZoneSpinner.selectedValue.id
+                it.Seismiczone = binding.seismecZoneSpinner.selectedValue.id
+                it.Potentialthreat = binding.potentioalThreatSpinner.selectedValue.id
+                it.Terraintype = binding.terrainTypeSpinner.selectedValue.id
+                it.Windzone = binding.windZoneSpinner.selectedValue.id
                 it.TempratureZone = binding.textTempZone.text.toString()
             }
-            basicinfoModel?.GeoConditionUpdateModel = geoConditionUpdateModel!!
+            basicinfoModel?.GeoCondition = geoConditionUpdateModel!!
             basicinfoModel?.id = id
             viewModel.updateBasicInfo(basicinfoModel!!)
         }

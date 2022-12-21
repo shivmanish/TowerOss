@@ -13,7 +13,7 @@ import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding
 import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding.*
 import com.smarthub.baseapplication.databinding.ActivitySettingBinding
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity : BaseActivity() {
 
    private var binding: ActivityForgotPasswordBinding?=null
     override fun onCreate(savedInstanceState: Bundle?) {

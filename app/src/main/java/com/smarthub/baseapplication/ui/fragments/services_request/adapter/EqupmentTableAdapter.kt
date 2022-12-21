@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,12 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
-class EquipmentTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<EquipmentTableAdapter.ViewHold>() {
+class EquipmentTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener): RecyclerView.Adapter<EquipmentTableAdapter.ViewHold>() {
     var list  = ArrayList<String>()
     init {
         list.add("item1")

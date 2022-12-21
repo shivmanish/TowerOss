@@ -16,20 +16,8 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
     var list: ArrayList<Any> = ArrayList()
 
     fun updateList(data: SearchList){
-        this.list = ArrayList()
-        for (i in data){
-            try {
-                if (i.Siteid!=null && i.id!=null) {
-                    list.add(i)
-                    AppLogger.log("data i : $i , size : ${list.size}")
-                }else{
-                    AppLogger.log("null data i : $i , size : ${list.size}")
-                }
-            }catch (e:java.lang.Exception){
-                AppLogger.log("e:${e.localizedMessage}")
-            }
-//            AppLogger.log("i : $i , size : ${list.size}")
-        }
+        this.list.clear()
+        this.list.addAll(data)
 
         if (this.list.isEmpty())
             this.list.add("no_data")

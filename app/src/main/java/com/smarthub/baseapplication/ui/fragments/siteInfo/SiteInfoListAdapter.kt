@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
+import com.smarthub.baseapplication.utils.AppLogger
 
 class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:BasicInfoModelItem) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
@@ -20,26 +21,19 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     var type3 = "Geo Condition"
     var type4 = "Safety / Access"
     var type5 = "OPCO Contact Details"
-    private var data : BasicInfoModelDropDown?=null
+    private var basicInfoModelDropDown : BasicInfoModelDropDown?=null
     private var operationalInfoDropdown : OperationalInfoModel?=null
     private var geoConditionDropdown : GeoConditionModel?=null
     private var safetyAndAccessDropdown : SafetyAndAccessModel?=null
-//    private var fieldData : SiteInfoModel?=null
-//    private var basicinfodata:BasicInfoModelItem? = null
     private var dropdowndata: SiteInfoDropDownData? = null
 
     fun setData(datadrop : SiteInfoDropDownData){
         this.dropdowndata = datadrop
-        data = datadrop.basicInfoModel
+        basicInfoModelDropDown = datadrop.basicInfoModel
         operationalInfoDropdown = datadrop.operationalInfo
         geoConditionDropdown = datadrop.geoCondition
         safetyAndAccessDropdown = datadrop.safetyAndAccess
         notifyDataSetChanged()
-    }
-
-    fun setValueData(data : SiteInfoModel){
-//        this.fieldData = data
-//        notifyDataSetChanged()
     }
 
     init {
@@ -75,7 +69,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -92,7 +86,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -109,7 +103,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
         }
     }
@@ -122,7 +116,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -130,14 +124,14 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
         }
     }
 
-    class ViewHold5(itemView: View, listener: SiteInfoLisListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View) : ViewHold(itemView) {
         var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down_black,0)
+                binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
             }
         }
     }
@@ -163,7 +157,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
             }
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item5, parent, false)
-                return ViewHold5(view,listener)
+                return ViewHold5(view)
             }
 
         }
@@ -182,7 +176,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -222,7 +216,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -273,7 +267,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -297,7 +291,10 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.siteAccessDetailsItemClicked(basicinfodata.SafetyAndAccess)
+                    if (basicinfodata.GeoCondition.isNotEmpty())
+                        listener.siteAccessDetailsItemClicked(basicinfodata.SafetyAndAccess[0],basicinfodata.id.toString())
+                    else
+                        Toast.makeText(context,"Geo Condition data not found",Toast.LENGTH_SHORT).show()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -308,7 +305,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 else {
                     holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -319,20 +316,27 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 holder.binding.itemTitle.text = list[position]
                 if(basicinfodata.SafetyAndAccess.isNotEmpty()){
-                    val saftyAcess: SafetyAndAcces = basicinfodata.SafetyAndAccess.get(0)
-                    holder.binding.physicalSecurity.text = saftyAcess.Physicalsecurity
-                    holder.binding.textGate.text = saftyAcess.GateAndFence
-                    holder.binding.videoMonitoringSpinner.text = saftyAcess.Videomonitoring
-                    holder.binding.siteAccessAreaSpinner.text = saftyAcess.SiteAccessArea
-                    holder.binding.dangerSignageSpinner.text = saftyAcess.DangerSignage
-                    holder.binding.textCautionSignage.text = saftyAcess.CautionSignage
-                    holder.binding.siteAccess.text = saftyAcess.Siteaccess
+                    val saftyAcess: SafetyAndAcces = basicinfodata.SafetyAndAccess[0]
+                    if (safetyAndAccessDropdown!=null) {
+                        holder.binding.physicalSecurity.text = saftyAcess.Physicalsecurity
+                        holder.binding.textGate.text = saftyAcess.GateAndFence
+                        holder.binding.videoMonitoringSpinner.text = saftyAcess.Videomonitoring
+                        holder.binding.siteAccessAreaSpinner.text = saftyAcess.SiteAccessArea
+                        holder.binding.textCautionSignage.text = saftyAcess.CautionSignage
+                        holder.binding.siteAccess.text = saftyAcess.Siteaccess
 
-                    holder.binding.textSiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
-                    holder.binding.textPoliceNumber.text = saftyAcess.NearByPoliceStationNumber
-                    holder.binding.textPoliceStation.text = saftyAcess.NearByPoliceStation
-                    holder.binding.textFireStation.text = saftyAcess.NearByFireStation
-                    holder.binding.textFireNumber.text = saftyAcess.NearByFireStationNumber
+                        holder.binding.textSiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
+                        holder.binding.textPoliceNumber.text = saftyAcess.NearByPoliceStationNumber
+                        holder.binding.textPoliceStation.text = saftyAcess.NearByPoliceStation
+                        holder.binding.textFireStation.text = saftyAcess.NearByFireStation
+                        holder.binding.textFireNumber.text = saftyAcess.NearByFireStationNumber
+
+                        try {
+                            holder.binding.dangerSignageSpinner.text = safetyAndAccessDropdown?.dangerSignage!!.data[saftyAcess.DangerSignage!!.toInt()].name
+                        }catch (e:java.lang.Exception){
+                            AppLogger.log("e : ${e.localizedMessage}")
+                        }
+                    }
                 }
             }
             is ViewHold5 -> {
@@ -345,7 +349,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.itemTitle.tag = false
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down_black,0)
+                    holder.binding.itemTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
                 }
                 holder.binding.itemTitle.setOnClickListener {
                     updateList(position)
@@ -377,6 +381,6 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
         fun detailsItemClicked(siteBasicinfo: SiteBasicinfo,id : String)
         fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo,id : String)
         fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition,id : String)
-        fun siteAccessDetailsItemClicked(safetyAndAccess: List<SafetyAndAcces>)
+        fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces,id : String)
     }
 }
