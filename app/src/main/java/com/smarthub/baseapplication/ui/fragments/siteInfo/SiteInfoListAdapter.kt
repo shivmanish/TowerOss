@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
@@ -209,8 +210,6 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.txtSiteInChargeNumber.text = siteBasicinfo.siteInChargeNumber
                     holder.binding.txtRentEscalation.text = ""
                     holder.binding.address.text = siteBasicinfo.siteaddress
-
-
                 }
             }
             is ViewHold2 -> {
@@ -233,12 +232,14 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked(basicinfodata.Basicinfo[0],basicinfodata?.id.toString())
+                    if (basicinfodata.OperationalInfo.isNotEmpty())
+                        listener.operationInfoDetailsItemClicked(basicinfodata.OperationalInfo[0], basicinfodata.id.toString())
+                    else Toast.makeText(context,"OperationalInfo not found",Toast.LENGTH_SHORT).show()
                 }
                 holder.binding.itemTitle.text = list[position]
 
                 if(basicinfodata.OperationalInfo.isNotEmpty()){
-                    val operationalInfo: OperationalInfo = basicinfodata.OperationalInfo.get(0)
+                    val operationalInfo: OperationalInfo = basicinfodata.OperationalInfo[0]
                     holder.binding.txtRFCDate.text = operationalInfo.RFCDate
                     holder.binding.txtRFIDate.text = operationalInfo.RFIDate
                     holder.binding.txtRFSDate.text = operationalInfo.RFSDate
@@ -371,7 +372,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     interface SiteInfoLisListener {
         fun attachmentItemClicked()
         fun detailsItemClicked(siteBasicinfo: SiteBasicinfo,id : String)
-        fun operationInfoDetailsItemClicked(operationalInfo: List<OperationalInfo>)
+        fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo,id : String)
         fun geoConditionsDetailsItemClicked(geoCondition: List<GeoCondition>)
         fun siteAccessDetailsItemClicked(safetyAndAccess: List<SafetyAndAcces>)
     }

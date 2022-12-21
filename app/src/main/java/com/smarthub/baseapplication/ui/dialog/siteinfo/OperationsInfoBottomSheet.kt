@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.dialog.siteinfo
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,15 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OperationsInfoDetailsBottomSheetBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.OperationalInfo
 import com.smarthub.baseapplication.network.pojo.site_info.OperationalInfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.OperationalInfoUploadModel
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OperationsInfoBottomSheet(contentLayoutId: Int, var dropdowndata: OperationalInfoModel, var operationalInfoList: List<OperationalInfo>, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
     var basicinfoModel: BasicinfoModel? = null
     var operationalInfoUploadModel: OperationalInfoUploadModel? = null
     lateinit var binding : OperationsInfoDetailsBottomSheetBinding
@@ -28,6 +31,7 @@ class OperationsInfoBottomSheet(contentLayoutId: Int, var dropdowndata: Operatio
         }
         binding.update.setOnClickListener {
             operationalInfoUploadModel!!.let{
+                it.id = operationalInfo.id.toString()
                it.Costcentre = "1"
                it.DesignedDcLoad= binding.designDcLoad.text.toString()
                it.DismantlinglDate= binding.dismanting.text.toString()
@@ -44,11 +48,12 @@ class OperationsInfoBottomSheet(contentLayoutId: Int, var dropdowndata: Operatio
                it.Sitebillingstatus= ""
                it.Towncategory= ""
             }
-            basicinfoModel!!.operationalInfoUploadModel = operationalInfoUploadModel!!
-            viewModel.updateData(basicinfoModel!!)
+            basicinfoModel?.OperationalInfo = operationalInfoUploadModel!!
+            basicinfoModel?.id = id
+            viewModel.updateBasicInfo(basicinfoModel!!)
         }
 
-        val operationalInfo:OperationalInfo = operationalInfoList[0]
+        val operationalInfo:OperationalInfo = operationalInfo
         binding.txtRFCDate.text = operationalInfo.RFCDate
         binding.txtRFIDate.text = operationalInfo.RFIDate
         binding.txtRFSDate.text = operationalInfo.RFSDate
@@ -65,6 +70,42 @@ class OperationsInfoBottomSheet(contentLayoutId: Int, var dropdowndata: Operatio
         binding.scdaSpinner.setSpinnerData(dropdowndata.scda.data, operationalInfo.Scda)
         binding.dismanting.setText(operationalInfo.DismantlinglDate)
 
+        hideProgressLayout()
+        if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
+            viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
+        viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
+            if (it!=null){
+                if (it.status == Resource.Status.LOADING){
+                    showProgressLayout()
+                }else{
+                    hideProgressLayout()
+                }
+                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
+                    AppLogger.log("Successfully updated all fields")
+                    dismiss()
+                    viewModel.fetchSiteInfoData(id)
+                }else{
+                    AppLogger.log("UnExpected Error found")
+                }
+            }else{
+                AppLogger.log("Something went wrong")
+            }
+        }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        if (viewModel.basicinfoModel?.hasActiveObservers() == true)
+            viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
+    }
+
+    fun showProgressLayout(){
+        if (binding.progressLayout.visibility != View.VISIBLE)
+            binding.progressLayout.visibility = View.VISIBLE
+    }
+    fun hideProgressLayout(){
+        if (binding.progressLayout.visibility == View.VISIBLE)
+            binding.progressLayout.visibility = View.GONE
     }
 
     override fun getTheme() = R.style.NewDialogTask

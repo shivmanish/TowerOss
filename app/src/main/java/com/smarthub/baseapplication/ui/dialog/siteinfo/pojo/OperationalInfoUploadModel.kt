@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.dialog.siteinfo.pojo
 
 data class OperationalInfoUploadModel(
+    var id: String = "",
     var Costcentre: String = "",
     var DesignedDcLoad: String= "",
     var DismantlinglDate: String= "",

@@ -107,10 +107,10 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
     }
 
-    override fun operationInfoDetailsItemClicked(operationalInfo: List<OperationalInfo>) {
+    override fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo, id : String) {
         if (dropdowndata != null) {
             val bottomSheetDialogFragment =
-                OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, dropdowndata?.operationalInfo!!, operationalInfo,homeViewModel)
+                OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, id, dropdowndata?.operationalInfo!!, operationalInfo,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()

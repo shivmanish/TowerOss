@@ -146,8 +146,8 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<BasicInfoDialougeResponse> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
+            public void onFailure(@NonNull Call<BasicInfoDialougeResponse> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
             }
 
             private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
@@ -159,10 +159,8 @@ public class HomeRepo {
                 }
             }
 
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    basicInfoUpdate.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
                     basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
