@@ -5,18 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OperationsInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.OperationalInfo
 import com.smarthub.baseapplication.network.pojo.site_info.OperationalInfoModel
+import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.OperationalInfoUploadModel
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment(contentLayoutId) {
     var basicinfoModel: BasicinfoModel? = null
     var operationalInfoUploadModel: OperationalInfoUploadModel? = null
     lateinit var binding : OperationsInfoDetailsBottomSheetBinding
@@ -24,6 +25,7 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = OperationsInfoDetailsBottomSheetBinding.bind(view)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         basicinfoModel = BasicinfoModel()
         operationalInfoUploadModel = OperationalInfoUploadModel()
         binding.icMenuClose.setOnClickListener {

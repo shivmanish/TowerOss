@@ -117,9 +117,9 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
     }
 
-    override fun geoConditionsDetailsItemClicked(geoCondition: List<GeoCondition>) {
+    override fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition,id : String) {
         if (dropdowndata != null) {
-            val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet, dropdowndata?.geoCondition!!, geoCondition)
+            val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet,id, dropdowndata?.geoCondition!!, geoCondition,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()

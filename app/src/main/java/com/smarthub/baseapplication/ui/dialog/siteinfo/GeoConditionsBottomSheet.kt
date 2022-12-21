@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.dialog.siteinfo
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,53 +8,96 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.GeoConditionsDetailsBottomSheetBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.GeoCondition
 import com.smarthub.baseapplication.network.pojo.site_info.GeoConditionModel
+import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.GeoConditionUpdateModel
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.OperationalInfoUploadModel
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class GeoConditionsBottomSheet(
-    contentLayoutId: Int,
-    var dropdownData: GeoConditionModel,
-    var geoCondition: List<GeoCondition>
-) : BottomSheetDialogFragment(contentLayoutId) {
-
+class GeoConditionsBottomSheet(contentLayoutId: Int,var id : String, var dropdownData: GeoConditionModel, var geoCondition: GeoCondition,var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment(contentLayoutId) {
+    var basicinfoModel: BasicinfoModel? = null
+    var geoConditionUpdateModel: GeoConditionUpdateModel? = null
     lateinit var binding: GeoConditionsDetailsBottomSheetBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = GeoConditionsDetailsBottomSheetBinding.bind(view)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+        basicinfoModel = BasicinfoModel()
+        geoConditionUpdateModel = GeoConditionUpdateModel()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
-        var geoCondition = geoCondition.get(0)
-        binding.potentioalThreatSpinner.setSpinnerData(
-            dropdownData.potentialthreat.data,
-            geoCondition.Potentialthreat
-        )
+        binding.update.setOnClickListener {
+            geoConditionUpdateModel!!.let{
+                it.id = geoCondition.id.toString()
+                it.Altitude = binding.textAltitude.text.toString()
+                it.Floodzone = binding.floodZoneSpinner.selectedValue.name
+                it.Seismiczone = binding.seismecZoneSpinner.selectedValue.name
+                it.Potentialthreat = binding.potentioalThreatSpinner.selectedValue.name
+                it.Terraintype = binding.terrainTypeSpinner.selectedValue.name
+                it.Windzone = binding.windZoneSpinner.selectedValue.name
+                it.TempratureZone = binding.textTempZone.text.toString()
+            }
+            basicinfoModel?.GeoConditionUpdateModel = geoConditionUpdateModel!!
+            basicinfoModel?.id = id
+            viewModel.updateBasicInfo(basicinfoModel!!)
+        }
+        binding.potentioalThreatSpinner.setSpinnerData(dropdownData.potentialthreat.data, geoCondition.Potentialthreat)
         binding.textAltitude.setText(geoCondition.Altitude)
-        binding.windZoneSpinner.setSpinnerData(
-            dropdownData.windzone.data,
-            geoCondition.Windzone
-        )
-        binding.seismecZoneSpinner.setSpinnerData(
-            dropdownData.seismiczone.data, geoCondition.Seismiczone
-        )
-        binding.floodZoneSpinner.setSpinnerData(
-            dropdownData.floodzone.data, geoCondition.Floodzone
-        )
+        binding.windZoneSpinner.setSpinnerData(dropdownData.windzone.data, geoCondition.Windzone)
+        binding.seismecZoneSpinner.setSpinnerData(dropdownData.seismiczone.data, geoCondition.Seismiczone)
+        binding.floodZoneSpinner.setSpinnerData(dropdownData.floodzone.data, geoCondition.Floodzone)
         binding.textTempZone.setText(geoCondition.TempratureZone)
-        binding.terrainTypeSpinner.setSpinnerData(
-            dropdownData.terraintype.data, geoCondition.Terraintype
-        )
+        binding.terrainTypeSpinner.setSpinnerData(dropdownData.terraintype.data, geoCondition.Terraintype)
 
+        hideProgressLayout()
+        if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
+            viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
+        viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
+            if (it!=null){
+                if (it.status == Resource.Status.LOADING){
+                    showProgressLayout()
+                }else{
+                    hideProgressLayout()
+                }
+                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
+                    AppLogger.log("Successfully updated all fields")
+                    dismiss()
+                    viewModel.fetchSiteInfoData(id)
+                }else{
+                    AppLogger.log("UnExpected Error found")
+                }
+            }else{
+                AppLogger.log("Something went wrong")
+            }
+        }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        if (viewModel.basicinfoModel?.hasActiveObservers() == true)
+            viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
+    }
+
+    fun showProgressLayout(){
+        if (binding.progressLayout.visibility != View.VISIBLE)
+            binding.progressLayout.visibility = View.VISIBLE
+    }
+
+    fun hideProgressLayout(){
+        if (binding.progressLayout.visibility == View.VISIBLE)
+            binding.progressLayout.visibility = View.GONE
     }
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = GeoConditionsDetailsBottomSheetBinding.inflate(inflater)
         return binding.root
     }

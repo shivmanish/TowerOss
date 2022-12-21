@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.dialog.siteinfo.pojo
 
 data class GeoConditionUpdateModel(
+    var id: String= "",
     var Altitude: String= "",
     var Floodzone: String= "",
     var Potentialthreat: String= "",

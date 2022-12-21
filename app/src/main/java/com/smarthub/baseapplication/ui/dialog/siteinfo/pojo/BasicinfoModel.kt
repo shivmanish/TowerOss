@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.ui.dialog.siteinfo.pojo
 
 data class BasicinfoModel(
     var Basicinfo: BasicinfoServiceData? = null,
-    var geoConditionUpdateModel: GeoConditionUpdateModel? = null,
+    var GeoConditionUpdateModel: GeoConditionUpdateModel? = null,
     var OperationalInfo: OperationalInfoUploadModel? = null ,
     var safetyAndAccessUpdateModel: SafetyAndAccessUpdateModel? = null,
     var id: String = "392",

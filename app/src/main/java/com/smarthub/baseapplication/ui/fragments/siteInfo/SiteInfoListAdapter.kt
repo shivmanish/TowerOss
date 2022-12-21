@@ -259,7 +259,10 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.geoConditionsDetailsItemClicked(basicinfodata.GeoCondition)
+                    if (basicinfodata.GeoCondition.isNotEmpty())
+                        listener.geoConditionsDetailsItemClicked(basicinfodata.GeoCondition[0],basicinfodata.id.toString())
+                    else
+                        Toast.makeText(context,"Geo Condition data not found",Toast.LENGTH_SHORT).show()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -373,7 +376,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
         fun attachmentItemClicked()
         fun detailsItemClicked(siteBasicinfo: SiteBasicinfo,id : String)
         fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo,id : String)
-        fun geoConditionsDetailsItemClicked(geoCondition: List<GeoCondition>)
+        fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition,id : String)
         fun siteAccessDetailsItemClicked(safetyAndAccess: List<SafetyAndAcces>)
     }
 }
