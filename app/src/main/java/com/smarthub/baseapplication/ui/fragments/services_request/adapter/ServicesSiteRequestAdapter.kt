@@ -234,7 +234,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
                 }
                 if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
+//                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
 
                 }
             }
