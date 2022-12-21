@@ -394,7 +394,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/dismanting"
+                        android:id="@+id/dismanting_date"
                         style="@style/RowTestItemEdit"
                         android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
@@ -407,29 +407,32 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
             </GridLayout>
-
-            <LinearLayout
+            <TextView
+                android:text="Address"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp15"
+                style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/address"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:text="sdfgsffssr"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8"
+                android:layout_marginBottom="8dp"/>
 
-                <TextView
-                    android:text="Address"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    android:id="@+id/address"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <LinearLayout
