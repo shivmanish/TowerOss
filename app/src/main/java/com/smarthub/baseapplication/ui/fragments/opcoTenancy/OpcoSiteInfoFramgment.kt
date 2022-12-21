@@ -20,7 +20,6 @@ import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class OpcoSiteInfoFramgment :Fragment(), OpcoInfoListAdapter.OpcoInfoLisListener {
-    var siteViewModel : SiteInfoViewModel?=null
     var binding : OpcoInfoFregmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

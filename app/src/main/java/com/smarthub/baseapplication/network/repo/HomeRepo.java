@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
@@ -37,6 +38,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteInfoModel>> siteInfoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
+    private SingleLiveEvent<Resource<OpcoCardList>> opcoCardListResponce;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -65,10 +67,14 @@ public class HomeRepo {
         siteInfoResponse = new SingleLiveEvent<>();
         siteSearchResponse = new SingleLiveEvent<>();
         dropDownResoonse = new SingleLiveEvent<>();
+        opcoCardListResponce= new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
         return homeResponse;
+    }
+    public SingleLiveEvent<Resource<OpcoCardList>> getOpcoCardListResponce() {
+        return opcoCardListResponce;
     }
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getSiteDropDownDataResponse() {
         return dropDownResoonse;
@@ -204,6 +210,45 @@ public class HomeRepo {
                     homeResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     homeResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void fetchOpcoCardList() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("OPCOTenancy","");
+        apiClient.fetchOpcoCardList(jsonObject).enqueue(new Callback<OpcoCardList>() {
+            @Override
+            public void onResponse(Call<OpcoCardList> call, Response<OpcoCardList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OpcoCardList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<OpcoCardList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    opcoCardListResponce.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    opcoCardListResponce.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    opcoCardListResponce.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    opcoCardListResponce.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

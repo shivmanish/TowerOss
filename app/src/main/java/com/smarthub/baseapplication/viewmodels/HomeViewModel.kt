@@ -5,6 +5,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
@@ -32,6 +33,7 @@ class HomeViewModel : ViewModel() {
     var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
+    var opcoCardListResponse: SingleLiveEvent<Resource<OpcoCardList>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -45,6 +47,7 @@ class HomeViewModel : ViewModel() {
         siteInfoResponse = homeRepo?.siteInfoResponse
         siteDropData = homeRepo?.siteDropDownDataResponse
         basicInfoUpdate = homeRepo?.basicInfoUpdate
+        opcoCardListResponse=homeRepo?.opcoCardListResponce
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -71,6 +74,10 @@ class HomeViewModel : ViewModel() {
 
     fun fetchHomeData(){
         homeRepo?.fetchHomeData()
+    }
+
+    fun fetchOpcoCardLiostData(){
+        homeRepo?.fetchOpcoCardList()
     }
 
     fun fetchProjectsData(){
