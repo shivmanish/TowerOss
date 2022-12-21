@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class ServiceRequestTabFragment : Fragment(), ServicesRequestAdapter.ServicesRequestLisListener {
+class ServiceRequestTabFragment : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
     var siteViewModel : SiteInfoViewModel?=null
     var binding : OpcoInfoFregmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

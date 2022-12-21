@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.FeasibilityoplanningAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class FeasibilityPlanningTabFragment : Fragment(),
+class FeasibilityPlanningTabFragment : BaseFragment(),
     FeasibilityoplanningAdapter.FeasibilityoplanningLisListener {
     var siteViewModel : SiteInfoViewModel?=null
     var binding : OpcoInfoFregmentBinding?=null
