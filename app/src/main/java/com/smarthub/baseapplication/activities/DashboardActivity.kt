@@ -50,10 +50,6 @@ class  DashboardActivity : BaseActivity() {
                    false
                )
            })
-
-//           navController.addOnDestinationChangedListener { navController, navDestination, bundle ->
-//               Log.d("status", "onMenuOpened:" + navDestination.navigatorName)
-//           }
        }
 
     override fun onBackPressed() {
@@ -65,26 +61,12 @@ class  DashboardActivity : BaseActivity() {
             super.onBackPressed()
 
     }
+
+    fun openSearchMenu(){
+        navController.navigate(R.id.site_board)
+    }
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()
-    }
-
-    fun addFragment(fragment: Fragment?) {
-        val backStateName: String = supportFragmentManager.javaClass.name
-        val manager = supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
-            val transaction = manager.beginTransaction()
-            transaction.setCustomAnimations(
-                R.anim.enter,
-                R.anim.exit,
-                R.anim.pop_enter,
-                R.anim.pop_exit
-            )
-            transaction.replace(R.id.container, fragment!!)
-            transaction.addToBackStack(backStateName)
-            transaction.commit()
-        }
     }
 }
