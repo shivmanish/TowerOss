@@ -31,6 +31,9 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        binding.cancel.setOnClickListener {
+            dismiss()
+        }
         binding.update.setOnClickListener {
             operationalInfoUploadModel!!.let{
                 it.id = operationalInfo.id.toString()
@@ -93,6 +96,8 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
                 AppLogger.log("Something went wrong")
             }
         }
+
+        setDatePickerView(binding.txtRFCDate)
     }
 
     override fun onDismiss(dialog: DialogInterface) {

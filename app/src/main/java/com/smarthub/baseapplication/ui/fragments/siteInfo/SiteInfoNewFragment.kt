@@ -46,6 +46,9 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         homeViewModel.siteDropData?.observe(viewLifecycleOwner) {
             if (it!=null){
                 dropdowndata = it.data
+                if (binding.listItem.adapter is SiteInfoListAdapter){
+                    (binding.listItem.adapter as SiteInfoListAdapter).setData(it.data!!)
+                }
             }else homeViewModel.fetchSiteDropDownData()
         }
 
@@ -91,7 +94,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     }
 
     private fun mapUIData(data: SiteInfoModel) {
-        (binding.listItem.adapter as SiteInfoListAdapter).setValueData(data)
+//        (binding.listItem.adapter as SiteInfoListAdapter).setValueData(data)
     }
 
     override fun attachmentItemClicked() {
@@ -126,9 +129,9 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
     }
 
-    override fun siteAccessDetailsItemClicked(safetyAndAccess: List<SafetyAndAcces>) {
+    override fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces,id : String) {
         if (dropdowndata != null) {
-        val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,dropdowndata?.safetyAndAccess!!,safetyAndAccess)
+        val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,id,dropdowndata?.safetyAndAccess!!,safetyAndAccess,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
