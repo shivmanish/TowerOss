@@ -69,6 +69,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
                 it.MaintenancePoint= ""
                 it.Projectname= binding.txtProjectName.text.toString()
                 it.aliasName= ""
+                it.National = binding.siteNational.selectedValue.name
                 it.id = basicinfodata.id.toString()
                 it.siteID= binding.txSiteID.text.toString()
                 it.siteInChargeName= binding.txtSiteInChargeName.text.toString()

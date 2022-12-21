@@ -1,12 +1,10 @@
 package com.smarthub.baseapplication.ui.fragments.siteInfo
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
@@ -57,6 +55,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             binding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
                showLoader()
+                return@observe
             }
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
@@ -92,16 +91,16 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     }
 
     private fun mapUIData(data: SiteInfoModel) {
-        (binding.listItem?.adapter as SiteInfoListAdapter).setValueData(data)
+        (binding.listItem.adapter as SiteInfoListAdapter).setValueData(data)
     }
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(), "Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun detailsItemClicked(basicinfodata: SiteBasicinfo,id : String) {
+    override fun detailsItemClicked(siteBasicinfo: SiteBasicinfo, id : String) {
         if (dropdowndata != null) {
-            val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, dropdowndata?.basicInfoModel!!, basicinfodata,id,homeViewModel)
+            val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, dropdowndata?.basicInfoModel!!, siteBasicinfo,id,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
