@@ -20,7 +20,7 @@ class ServiceRequestTabFragment : Fragment(), ServicesRequestAdapter.ServicesReq
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = ServicesRequestAdapter(this@ServiceRequestTabFragment)
+        binding?.listItem?.adapter = ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment)
     }
     override fun attachmentItemClicked() {
 
