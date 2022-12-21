@@ -11,12 +11,17 @@
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
-      <include
-          android:id="@+id/add_items_layout"
+      <LinearLayout
+          android:id="@+id/addmore_items"
+          android:layout_gravity="right"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+        <include
+            layout="@layout/add_new_layout">
 
-          layout="@layout/add_new_layout">
-
-      </include>
+        </include>
+      </LinearLayout>
       <androidx.recyclerview.widget.RecyclerView
           tools:itemCount="3"
           android:layout_width="match_parent"
@@ -33,7 +38,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         app:backgroundTint="@color/tab_selected_color"
-        android:layout_marginBottom="@dimen/dp80"
+        android:layout_marginBottom="@dimen/dp15"
         app:srcCompat="@drawable/addmore" />
 
 

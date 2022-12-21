@@ -1,60 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F9F9F9"
-    android:orientation="vertical">
+    android:background="#F0F0F0"
+    android:orientation="vertical"
+    android:padding="@dimen/dp10"
+    tools:context=".ui.fragments.customer_tab.OpcoTanacyFragment">
 
     <LinearLayout
-        android:layout_marginTop="@dimen/dp10"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right">
-        <ImageView
-        android:layout_width="@dimen/dp30"
-        android:layout_height="@dimen/dp30"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10"
-        android:src="@drawable/add_ico_white"
-        android:background="@drawable/circleblue_1"
-        android:gravity="right"
-        android:layout_gravity="center|right"
-         />
-    <TextView
-        android:layout_marginRight="@dimen/dp10"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp40"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10"
-        android:fontFamily="@font/poppins"
-        android:text="Add New"
-        android:id="@+id/addmore"
-        android:layout_gravity="center|right"
-        android:gravity="center"
-        android:textColor="@color/normalTextColor"
-        android:textSize="@dimen/sp14"
-    />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addmore_item"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+            <include
+                layout="@layout/add_new_layout">
+
+            </include>
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:id="@+id/utilites_noc_list"/>
+
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/utilites_noc_list"/>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/add_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/color1"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/dp16"
+        app:backgroundTint="@color/tab_selected_color"
+        android:layout_marginBottom="@dimen/dp15"
+        app:srcCompat="@drawable/addmore" />
 
-        android:layout_gravity="end|bottom"
-        android:src="@android:drawable/ic_menu_add"
 
-        android:layout_margin="16dp" />
+</FrameLayout>
 
-</LinearLayout>

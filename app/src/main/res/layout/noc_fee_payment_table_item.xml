@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp10"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1.3"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp13"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:textStyle="bold"
+            android:text="Payment Type"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp13"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:text="App No."
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp13"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:layout_marginLeft="@dimen/dp10"
+            android:text="Date"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="1.3"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp13"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:text="Amount(RS)"
+            android:gravity="center"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp8"
+        android:id="@+id/noc_feePay_tables"
+        android:orientation="vertical"
+        tools:listitem="@layout/noc_fee_payment_table_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>

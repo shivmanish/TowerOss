@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -33,6 +34,11 @@ class SiteInfoNewFragment(var id : String) : Fragment(), SiteInfoListAdapter.Sit
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding?.addMore?.setOnClickListener{
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
+        }
 
         if (homeViewModel.siteDropData?.hasActiveObservers() == true){
             homeViewModel.siteDropData?.removeObservers(viewLifecycleOwner)
