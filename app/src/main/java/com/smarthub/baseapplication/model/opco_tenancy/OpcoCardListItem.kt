@@ -1,0 +1,32 @@
+package com.smarthub.baseapplication.model.opco_tenancy
+
+data class OpcoCardListItem(
+    val BackhaulTypeMW: String,
+    val Basicinfoid: String,
+    val Latitude: String,
+    val Longitude: String,
+    val MaintenancePoint: String,
+    val National: String,
+    val OPCOBillingInterval: Any,
+    val OPCOBillingStartDate: Any,
+    val OPCOName: String,
+    val OPCOSapId: Any,
+    val OPCOSignOffDate: String,
+    val OPCOSiteId: String,
+    val OPCOSiteType: String,
+    val RFIDate: String,
+    val RFRDate: String,
+    val Region: String,
+    val RequestDate: Any,
+    val Rftechnology: String,
+    val SODate: String,
+    val SONumber: String,
+    val SiteAlternateName: String,
+    val SiteStatus: String,
+    val SiteType: String,
+    val State: String,
+    val Technology: Any,
+    val id: String,
+    val siteID: String,
+    val siteName: String
+)

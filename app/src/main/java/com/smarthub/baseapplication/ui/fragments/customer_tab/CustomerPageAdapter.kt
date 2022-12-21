@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoSiteInfoFramgment
 
 class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {

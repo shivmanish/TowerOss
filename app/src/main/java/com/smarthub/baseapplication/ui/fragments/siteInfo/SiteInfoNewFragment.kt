@@ -35,7 +35,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.addMore?.setOnClickListener{
+        binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
+import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerPageAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
@@ -25,7 +26,7 @@ class OpcoTenancyActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewCustomerDetailFragmentBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
         initViews()
     }
 
@@ -73,7 +74,7 @@ class OpcoTenancyActivity : BaseActivity() {
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-            var itemBinding = TabNameItemBinding.inflate(layoutInflater)
+            val itemBinding = TabNameItemBinding.inflate(layoutInflater)
             itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
             itemBinding.tabName.textSize = 10f
             binding.tabs.getTabAt(i)?.customView = itemBinding.root
@@ -81,21 +82,6 @@ class OpcoTenancyActivity : BaseActivity() {
 
         profileViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
 
-//        profileViewModel?.profileResponse?.observe(this) {
-//            hideLoader()
-//            if (it != null) {
-//                if (it.status == Resource.Status.SUCCESS && it.data != null) {
-//                    mapUiData(it.data)
-//                    return@observe
-//                } else {
-//                    Log.d("status", "${it.message}")
-//                    Toast.makeText(this@NewCustomerDetailsActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
-//                }
-//            } else {
-//                Log.d("status", AppConstants.GENERIC_ERROR)
-//                Toast.makeText(this@NewCustomerDetailsActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-//            }
-//        }
     }
 
     private fun onTabSelectedListener(pager: ViewPager): OnTabSelectedListener {

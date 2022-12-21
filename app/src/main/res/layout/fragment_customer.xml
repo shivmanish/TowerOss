@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F0F0"
     android:orientation="vertical"
+    android:id="@+id/swipe_layout"
     android:padding="@dimen/dp10"
-    tools:context=".ui.fragments.customer_tab.OpcoTanacyFragment">
+    tools:context=".ui.fragments.opcoTenancy.OpcoTanacyFragment">
 
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      <include
-          android:id="@+id/add_items_layout"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                android:id="@+id/add_items_layout"
 
-          layout="@layout/add_new_layout">
+                layout="@layout/add_new_layout">
 
-      </include>
+            </include>
 
-      <androidx.recyclerview.widget.RecyclerView
-          tools:itemCount="3"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          tools:listitem="@layout/customer_list_item"
-          android:orientation="vertical"
-          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-          android:id="@+id/customer_list"/>
+            <androidx.recyclerview.widget.RecyclerView
+                tools:itemCount="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/customer_list_item"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/customer_list"/>
 
-  </LinearLayout>
+        </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/dp16"
-        app:backgroundTint="@color/tab_selected_color"
-        android:layout_marginBottom="@dimen/dp15"
-        app:srcCompat="@drawable/addmore" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/dp16"
+            app:backgroundTint="@color/tab_selected_color"
+            android:layout_marginBottom="@dimen/dp15"
+            app:srcCompat="@drawable/addmore" />
 
 
-</FrameLayout>
+    </FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

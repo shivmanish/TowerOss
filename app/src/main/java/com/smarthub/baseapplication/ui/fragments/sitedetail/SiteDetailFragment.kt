@@ -32,7 +32,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoTanacyFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment

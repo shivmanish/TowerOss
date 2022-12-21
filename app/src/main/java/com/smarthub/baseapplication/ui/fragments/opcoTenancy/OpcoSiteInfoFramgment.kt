@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.os.Bundle
 import android.view.LayoutInflater

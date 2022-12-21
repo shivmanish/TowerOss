@@ -4,8 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-import com.smarthub.baseapplication.ui.fragments.customer_tab.OpcoSiteInfoFramgment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoSiteInfoFramgment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Agreements
 import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Feasibility
