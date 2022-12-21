@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp42">
             <TextView
-                android:id="@+id/item_title"
+                android:id="@+id/item_title_str"
                 android:text="PO"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

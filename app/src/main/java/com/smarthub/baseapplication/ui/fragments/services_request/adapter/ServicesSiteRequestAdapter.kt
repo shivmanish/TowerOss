@@ -243,7 +243,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 //                    holder.binding.iconLayout.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
+                    holder.binding.itemTitleStr.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
@@ -253,7 +253,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
                 if (data!=null) {
 
@@ -281,7 +281,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                         if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
                  holder.poTableList.adapter= RadioAntinaTableAdapter(context,object :TowerInfoListAdapter.TowerInfoListListener{
                      override fun attachmentItemClicked() {
                      }

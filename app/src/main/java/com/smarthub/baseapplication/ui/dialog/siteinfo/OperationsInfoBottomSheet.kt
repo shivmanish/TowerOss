@@ -39,7 +39,7 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
                 it.id = operationalInfo.id.toString()
                it.Costcentre = "1"
                it.DesignedDcLoad= binding.designDcLoad.text.toString()
-               it.DismantlinglDate= binding.dismanting.text.toString()
+               it.DismantlinglDate= binding.dismantingDate.text.toString()
                it.Hubsite= ""
                it.InstalledDcLoad= binding.installedDcLoad.text.toString()
                it.Ldca= ""
@@ -73,7 +73,7 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
         binding.hubCitySpinner.setSpinnerData(dropdowndata.hubsite.data, operationalInfo.Hubsite)
         binding.ldcaSpinner.setSpinnerData(dropdowndata.ldca.data, operationalInfo.Ldca)
         binding.scdaSpinner.setSpinnerData(dropdowndata.scda.data, operationalInfo.Scda)
-        binding.dismanting.setText(operationalInfo.DismantlinglDate)
+        binding.dismantingDate.setText(operationalInfo.DismantlinglDate)
 
         hideProgressLayout()
         if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
@@ -98,6 +98,9 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
         }
 
         setDatePickerView(binding.txtRFCDate)
+        setDatePickerView(binding.txtRFIDate)
+        setDatePickerView(binding.txtRFSDate)
+        setDatePickerView(binding.dismantingDate)
     }
 
     override fun onDismiss(dialog: DialogInterface) {
