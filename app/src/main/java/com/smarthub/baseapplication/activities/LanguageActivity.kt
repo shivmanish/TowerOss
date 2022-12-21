@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLanguageBinding
 import com.smarthub.baseapplication.model.LangModel
 
-class LanguageActivity : AppCompatActivity() {
+class LanguageActivity : BaseActivity() {
 
     private var dataBinding : ActivityLanguageBinding ?=null
 

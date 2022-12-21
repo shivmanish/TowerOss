@@ -8,7 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.ui.adapter.PageAdapter_faq
 
-class FAQActivity : AppCompatActivity() {
+class FAQActivity : BaseActivity() {
     private val pageTitles = arrayOf("Ventos","Catering","Cancellations","Reservations","ABC","XYZ")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

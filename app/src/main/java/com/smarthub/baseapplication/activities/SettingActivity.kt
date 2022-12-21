@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivitySettingBinding
 import com.smarthub.baseapplication.ui.fragments.profile.ProfileActivity
 
-class SettingActivity : AppCompatActivity() {
+class SettingActivity : BaseActivity() {
     private var dataBinding : ActivitySettingBinding ?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
