@@ -31,6 +31,7 @@ class HomeViewModel : ViewModel() {
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
     var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
+    var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -43,10 +44,15 @@ class HomeViewModel : ViewModel() {
         siteSearchResponse = homeRepo?.siteSearchResponseData
         siteInfoResponse = homeRepo?.siteInfoResponse
         siteDropData = homeRepo?.siteDropDownDataResponse
+        basicInfoUpdate = homeRepo?.basicInfoUpdate
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
         homeRepo?.updateData(basicinfoModel)
+    }
+
+    fun updateBasicInfo(basicinfoModel: BasicinfoModel){
+        homeRepo?.updateSiteInfo(basicinfoModel)
     }
 
     fun updateMyTeamTask(data : List<MyTeamTask>?){

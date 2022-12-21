@@ -10,6 +10,7 @@ public class EndPoints {
     public static final String REGISTRATION = "/toweross/Userregistration/";
     public static final String SITE_INFO_DROP_DOWN = "/toweross/SiteInfoDropDownView/";
     public static final String SITE_INFO_MODEL = "/toweross/Basicinfoapi/";
+    public static final String SITE_INFO_DATA = "/toweross/SiteInfoApi/";
     public static final String SITE_INFO_SEARCH_DATA = "/toweross/Basicinfosearchdata/";
     public static final String SITE_INFO_SEARCH_DATA_URL = "/toweross/Sitebasicgetdata/";
     public static final String DASHBOARD_DATA_URL = "/toweross/dashboard/";

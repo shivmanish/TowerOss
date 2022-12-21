@@ -51,6 +51,10 @@ public class HomeRepo {
         return siteSearchResponse;
     }
 
+    public SingleLiveEvent<Resource<BasicInfoDialougeResponse>> getBasicInfoUpdate() {
+        return basicInfoUpdate;
+    }
+
     public HomeRepo(APIClient apiClient) {
         this.apiClient = apiClient;
         homeResponse = new SingleLiveEvent<>();
@@ -90,6 +94,46 @@ public class HomeRepo {
         BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.updateBasicInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BasicInfoDialougeResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    basicInfoUpdate.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void updateSiteInfo(BasicinfoModel basicinfoModel) {
+        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+        basicInfoUpdate.postValue(Resource.loading(d, 200));
+        apiClient.updateSiteInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
             @Override
             public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
                 if (response.isSuccessful()) {
@@ -285,7 +329,9 @@ public class HomeRepo {
     }
 
     public void siteInfoById(String id) {
-
+        siteInfoResponse.postValue(Resource.loading(
+                (siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null,
+                200));
         apiClient.fetchSiteInfoById(new IdData(id)).enqueue(new Callback<SiteInfoModel>() {
             @Override
             public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
@@ -293,9 +339,9 @@ public class HomeRepo {
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
                     AppLogger.INSTANCE.log("error :"+response);
-                }else if (response!=null){
+                }else {
                     AppLogger.INSTANCE.log("error :"+response);
-                }else AppLogger.INSTANCE.log("getProfileData response is null");
+                }
             }
 
             @Override

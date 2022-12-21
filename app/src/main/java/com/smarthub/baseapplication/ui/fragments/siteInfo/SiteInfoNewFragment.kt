@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.siteInfo
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,10 +18,11 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SiteInfoNewFragment(var id : String) : Fragment(), SiteInfoListAdapter.SiteInfoLisListener {
+class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter.SiteInfoLisListener {
     var dropdowndata: SiteInfoDropDownData ?= null
     lateinit var binding: SiteInfoNewFragmentBinding
     lateinit var homeViewModel: HomeViewModel
@@ -35,7 +37,7 @@ class SiteInfoNewFragment(var id : String) : Fragment(), SiteInfoListAdapter.Sit
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.addMore?.setOnClickListener{
+        binding.addMore?.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
@@ -53,10 +55,23 @@ class SiteInfoNewFragment(var id : String) : Fragment(), SiteInfoListAdapter.Sit
             homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
         homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner) {
             binding.swipeLayout.isRefreshing = false
+            if (it!=null && it.status == Resource.Status.LOADING){
+               showLoader()
+            }
             if (it!=null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
                 AppLogger.log("SiteInfoNewFragment Site Data fetched successfully")
-                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
+                var currentOpened = -1
+                if (binding.listItem.adapter is SiteInfoListAdapter){
+                    var adapter = binding.listItem.adapter as SiteInfoListAdapter
+                    currentOpened = adapter.currentOpened
+                }
                 binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data?.get(0)!!)
+                AppLogger.log("currentOpened:$currentOpened")
+                if (currentOpened>=0){
+                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
+                }
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
             }else{
@@ -68,6 +83,12 @@ class SiteInfoNewFragment(var id : String) : Fragment(), SiteInfoListAdapter.Sit
         binding.swipeLayout.setOnRefreshListener {
             homeViewModel.fetchSiteInfoData(id)
         }
+    }
+
+    override fun onDestroy() {
+        if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
+            homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
+        super.onDestroy()
     }
 
     private fun mapUIData(data: SiteInfoModel) {

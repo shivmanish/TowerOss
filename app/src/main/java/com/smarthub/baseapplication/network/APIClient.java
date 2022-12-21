@@ -94,6 +94,10 @@ public interface APIClient {
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<BasicInfoDialougeResponse> updateSiteInfo(@Body BasicinfoModel basicinfoModel);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DASHBOARD_DATA_URL)
     Call<HomeResponse> fetchHomeData(@Body JsonObject data);
 

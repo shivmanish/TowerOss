@@ -78,25 +78,26 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
             }
             basicinfoModel?.Basicinfo = basicinfo!!
             basicinfoModel?.id = id
-            viewModel.updateData(basicinfoModel!!)
+            viewModel.updateBasicInfo(basicinfoModel!!)
         }
         binding.cancelTxt.setOnClickListener {
             dismiss()
         }
 
         hideProgressLayout()
-        if (viewModel.basicinfoModel?.hasActiveObservers() == true)
-            viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
-        viewModel.basicinfoModel?.observe(viewLifecycleOwner){
+        if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
+            viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
+        viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
             if (it!=null){
                 if (it.status == Resource.Status.LOADING){
                     showProgressLayout()
                 }else{
                     hideProgressLayout()
                 }
-                if (it.status == Resource.Status.SUCCESS){
+                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
+                    viewModel.fetchSiteInfoData(id)
                 }else{
                     AppLogger.log("UnExpected Error found")
                 }

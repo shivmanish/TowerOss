@@ -21,6 +21,9 @@ data class SiteBasicinfo(
     val siteInChargeNumber: String,
     val siteLayout: Any,
     val siteName: String,
+    val National: String,
+    val Region: String,
+    val State: String,
     val sitePicture: Any,
     val siteaddress: String
 )

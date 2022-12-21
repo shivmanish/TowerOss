@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#004C4B4B"
+    android:background="@drawable/dialog_bg"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:minHeight="@dimen/dp400"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/container_layout"
@@ -26,8 +27,9 @@
         <androidx.core.widget.NestedScrollView
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical">
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
             <LinearLayout
                 android:scrollbars="vertical"
                 android:layout_margin="5dp"
@@ -35,7 +37,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:visibility="visible"
                 android:orientation="vertical"
-                android:background="@drawable/dialog_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <GridLayout
@@ -367,6 +368,73 @@
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="National"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/siteNational"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Region"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/siteRegion"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="State"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/siteState"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
                 </GridLayout>
 
                 <LinearLayout
@@ -391,45 +459,53 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp8" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/dp15"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginBottom="@dimen/dp15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/cancel_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Cancel"
-                        android:textColor="#3D4E6D"
-                        android:textSize="@dimen/dp15"/>
-
-                    <TextView
-                        android:id="@+id/update"
-                        android:layout_marginLeft="@dimen/dp25"
-                        android:background="@drawable/yellow_text_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Update"
-                        android:paddingLeft="@dimen/dp15"
-                        android:paddingRight="@dimen/dp15"
-                        android:paddingTop="@dimen/dp10"
-                        android:paddingBottom="@dimen/dp10"
-                        android:textColor="#3D4E6D"
-                        android:textSize="@dimen/dp15"/>
-
-                </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp5"
+            android:background="#1A807E7E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/cancel_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cancel"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+            <TextView
+                android:id="@+id/update"
+                android:layout_marginLeft="@dimen/dp25"
+                android:background="@drawable/yellow_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Update"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+        </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/progress_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
             android:background="@drawable/dialog_bg"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
