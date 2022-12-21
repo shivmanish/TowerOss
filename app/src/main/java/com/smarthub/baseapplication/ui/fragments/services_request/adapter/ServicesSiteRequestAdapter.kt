@@ -10,11 +10,8 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.RadioAntinaTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
-import org.mozilla.javascript.commonjs.module.Require
-import kotlin.coroutines.coroutineContext
 
 
 class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
@@ -77,8 +74,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding =
-            EquipmentsInfoViewBinding.bind(itemView)
+        var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
@@ -239,51 +235,34 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
             }
             is ViewHold2 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+//                    holder.binding.iconLayout.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitle.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+//                    holder.binding.iconLayout.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    updateList(position)
+                }
+                holder.binding.itemTitle.text = list[position]
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                if (data!=null) {
 
                 }
-                holder.binding.itemTitleStr.text = list[position]
-                 holder.poTableList.adapter= EquipmentTableAdapter(context,object :TowerInfoListAdapter.TowerInfoListListener{
-                     override fun attachmentItemClicked() {
-                     }
+                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
+//                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
 
-                     override fun EditInstallationAcceptence() {
-                     }
-
-                     override fun EditTowerItem() {
-                     }
-
-                     override fun editPoClicked(position: Int) {
-                     }
-
-                     override fun viewPoClicked(position: Int) {
-                     }
-
-                     override fun editConsumableClicked(position: Int) {
-                     }
-
-                     override fun viewConsumableClicked(position: Int) {
-                     }
-
-                     override fun editOffsetClicked(position: Int) {
-                     }
-
-                     override fun viewOffsetClicked(position: Int) {
-                     }
-                 })
+                }
+                holder.poTableList.adapter= EquipmentTableAdapter(context,listener)
             }
             is ViewHold3 -> {
                 holder.binding.collapsingLayout.setOnClickListener {
@@ -302,7 +281,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                         if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemTitle.text = list[position]
                  holder.poTableList.adapter= RadioAntinaTableAdapter(context,object :TowerInfoListAdapter.TowerInfoListListener{
                      override fun attachmentItemClicked() {
                      }
@@ -429,5 +408,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
+
+        fun EditInstallationAcceptence()
+        fun EditTowerItem()
+        fun editPoClicked(position:Int)
+        fun viewPoClicked(position:Int)
+        fun editConsumableClicked(position:Int)
+        fun viewConsumableClicked(position:Int)
+        fun editOffsetClicked(position:Int)
+        fun viewOffsetClicked(position:Int)
     }
 }

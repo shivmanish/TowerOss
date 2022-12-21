@@ -41,6 +41,39 @@ class ServiceRequestTabFragment : Fragment(), ServicesRequestAdapter.ServicesReq
         val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
+
+    override fun EditInstallationAcceptence() {
+
+    }
+
+    override fun EditTowerItem() {
+
+    }
+
+    override fun editPoClicked(position: Int) {
+
+    }
+
+    override fun viewPoClicked(position: Int) {
+
+    }
+
+    override fun editConsumableClicked(position: Int) {
+
+    }
+
+    override fun viewConsumableClicked(position: Int) {
+
+    }
+
+    override fun editOffsetClicked(position: Int) {
+
+    }
+
+    override fun viewOffsetClicked(position: Int) {
+
+    }
+
     override fun requestinfoClicked() {
         val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")

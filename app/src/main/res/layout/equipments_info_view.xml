@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp42">
             <TextView
-                android:id="@+id/itemTitleStr"
+                android:id="@+id/item_title"
                 android:text="PO"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +47,7 @@
                 android:layout_height="40dp"/>
             <ImageView
                 android:id="@+id/img_dropdown"
+                android:adjustViewBounds="true"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
