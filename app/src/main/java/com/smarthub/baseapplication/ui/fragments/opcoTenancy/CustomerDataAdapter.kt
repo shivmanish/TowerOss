@@ -1,5 +1,6 @@
-package com.smarthub.baseapplication.ui.fragments.sitedetail.adapter
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,19 +8,19 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
+import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList
+import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardListItem
 
-class CustomerDataAdapter(var listener: CustomerDataAdapterListener, var array: ArrayList<String>) :
+class CustomerDataAdapter(var listener: CustomerDataAdapterListener) :
     Adapter<CustomerDataViewHolder>() {
 
-    fun setData(data: ArrayList<String>) {
-        this.array.addAll(data)
+    var list : ArrayList<OpcoCardListItem> = ArrayList()
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: OpcoCardList) {
+        this.list.addAll(data)
         notifyDataSetChanged()
     }
 
-    fun updateData(s : String) {
-        this.array.add(s)
-        notifyItemChanged(array.size.minus(1))
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerDataViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.customer_list_item, parent, false)
@@ -34,7 +35,7 @@ class CustomerDataAdapter(var listener: CustomerDataAdapterListener, var array: 
     }
 
     override fun getItemCount(): Int {
-        return array.size
+        return list.size
     }
 }
 

@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
@@ -112,6 +113,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<ServiceRequestAllData> fetchsServiceRequestData(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.DASHBOARD_DATA_URL)
+    Call<OpcoCardList> fetchOpcoCardList(@Body JsonObject data);
 
 }
 

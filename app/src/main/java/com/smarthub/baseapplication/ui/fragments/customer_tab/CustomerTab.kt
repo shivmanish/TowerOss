@@ -10,20 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.ui.adapter.AddMoreCustomerListAdapter
-
-
-import com.smarthub.baseapplication.databinding.FragmentCustomerBinding
+import com.smarthub.baseapplication.databinding.OpcoTenencyFragmentBinding
 
 
 class CustomerTab : Fragment() {
-    private var _binding: FragmentCustomerBinding? = null
+    private var _binding: OpcoTenencyFragmentBinding? = null
     private lateinit var customerViewModel: CustomerViewModel
     var list : ArrayList<Any> = ArrayList()
     private val binding get() = _binding!!
     private var layoutManager: RecyclerView.LayoutManager? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         customerViewModel = ViewModelProvider(requireActivity())[CustomerViewModel::class.java]
-        _binding = FragmentCustomerBinding.inflate(inflater, container, false)
+        _binding = OpcoTenencyFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
