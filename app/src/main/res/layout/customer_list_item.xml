@@ -49,7 +49,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp15" />
             <TextView
-                android:id="@+id/text_id"
+                android:id="@+id/Site_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
@@ -127,6 +127,7 @@
             android:id="@+id/text_rfi_date"
             android:text="RFI Date 05-Oct-2018"
             android:layout_marginTop="@dimen/dp10"
+            android:maxLength="10"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

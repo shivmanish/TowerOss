@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     Adapter<CustomerDataViewHolder>() {
-
+    var data1 = AppController.getInstance().siteInfoModel
     var data : List<OpcoDataItem> = ArrayList()
 
     fun setOpData(data: List<OpcoDataItem>) {
@@ -26,8 +28,10 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     }
 
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
-
-        holder.binding.cardItem?.setOnClickListener {
+        holder.binding.SiteId.text= data1[0].Basicinfo[0].siteID
+        holder.binding.textRfiDate.text= data[position].Opcoinfo[0].rfiAcceptanceDate
+        holder.binding.textRfsDate.text=data[position].Opcoinfo[0].rfiAcceptanceDate
+        holder.binding.cardItem.setOnClickListener {
             listener.clickedItem()
         }
     }
