@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.Backhaul
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BackhaulLinkListItemDialougeBinding
-import com.smarthub.baseapplication.databinding.PowerLoadListItemDialougeBinding
+import com.smarthub.baseapplication.databinding.BackhaulConnectedEquipmentItemListDialougeBinding
+import com.smarthub.baseapplication.databinding.BackhaulLmcListItemDialougeBinding
 
-class backhaulLinkItemEditDialouge (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : BackhaulLinkListItemDialougeBinding
+class BackhaulConnectedEquipmentEditDialouge (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
+    lateinit var binding : BackhaulConnectedEquipmentItemListDialougeBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,7 +22,7 @@ class backhaulLinkItemEditDialouge (contentLayoutId: Int): BottomSheetDialogFrag
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = BackhaulLinkListItemDialougeBinding.inflate(inflater)
+        binding = BackhaulConnectedEquipmentItemListDialougeBinding.inflate(inflater)
         return binding.root
     }
 }

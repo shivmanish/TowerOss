@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.customer_tab.RfEquipmentEditDialouge
 
 class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener, PowerLoadAdapter.ItemClickListener {
 

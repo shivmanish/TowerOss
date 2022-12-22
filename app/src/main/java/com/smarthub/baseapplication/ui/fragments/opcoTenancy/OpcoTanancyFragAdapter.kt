@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +7,15 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
-import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList
-import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardListItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 
-class CustomerDataAdapter(var listener: CustomerDataAdapterListener) :
+class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     Adapter<CustomerDataViewHolder>() {
 
-    var list : ArrayList<OpcoCardListItem> = ArrayList()
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: OpcoCardList) {
-        this.list.clear()
-        this.list.addAll(data)
+    var data : List<OpcoDataItem> = ArrayList()
+
+    fun setOpData(data: List<OpcoDataItem>) {
+        this.data = data
         notifyDataSetChanged()
     }
 
@@ -30,13 +27,13 @@ class CustomerDataAdapter(var listener: CustomerDataAdapterListener) :
 
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
 
-        holder.binding?.cardItem?.setOnClickListener {
+        holder.binding.cardItem?.setOnClickListener {
             listener.clickedItem()
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return data.size
     }
 }
 

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.opcoInfo
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater

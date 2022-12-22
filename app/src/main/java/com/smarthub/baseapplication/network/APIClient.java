@@ -114,9 +114,6 @@ public interface APIClient {
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<ServiceRequestAllData> fetchsServiceRequestData(@Body JsonObject data);
 
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.DASHBOARD_DATA_URL)
-    Call<OpcoCardList> fetchOpcoCardList(@Body JsonObject data);
 
 }
 

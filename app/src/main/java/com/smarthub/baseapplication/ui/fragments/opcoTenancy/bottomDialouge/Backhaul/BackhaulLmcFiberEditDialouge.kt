@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.Backhaul
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerFragmentBinding
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 
 class TowerInfoFragment: Fragment(), TowerInfoListAdapter.TowerInfoListListener {

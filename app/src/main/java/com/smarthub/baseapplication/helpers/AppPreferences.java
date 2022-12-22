@@ -32,28 +32,24 @@ public static String DROPDOWNDATA = "dropdowndata";
     public void saveBoolean(String iKey, boolean iValue) {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putBoolean(iKey, iValue);
-        prefsEditor.commit();
         prefsEditor.apply();
     }
 
     public void saveInteger(String iKey, int iValue) {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putInt(iKey, iValue);
-        prefsEditor.commit();
         prefsEditor.apply();
     }
 
     public void saveLong(String iKey, Long iValue) {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putLong(iKey, iValue);
-        prefsEditor.commit();
         prefsEditor.apply();
     }
 
     public void saveString(String iKey, String iValue) {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(iKey, iValue);
-        prefsEditor.commit();
         prefsEditor.apply();
     }
     public boolean getBoolean(String iKey) {

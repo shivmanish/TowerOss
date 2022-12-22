@@ -85,6 +85,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         binding.swipeLayout.setOnRefreshListener {
             homeViewModel.fetchSiteInfoData(id)
         }
+        homeViewModel.fetchSiteInfoData(id)
     }
 
     override fun onDestroy() {

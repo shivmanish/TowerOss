@@ -8,12 +8,14 @@ import androidx.lifecycle.Observer;
 
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 
 import java.util.ArrayList;
 
 public class AppController extends Application {
 
     static AppController mInstance;
+    public SiteInfoModel siteInfoModel;
 
     @Override
     public void onCreate() {

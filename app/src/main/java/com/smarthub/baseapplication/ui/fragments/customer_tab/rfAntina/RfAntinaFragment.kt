@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.adapter.customer.RfAntinaListAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
 
 class RfAntinaFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener,RfAntinaListAdapter.ItemClickListener {
 
