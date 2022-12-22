@@ -277,7 +277,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                         if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
 
                 }
-              //  holder.binding.imgAdd = list[position]
+                holder.binding.itemTitleStr.text = list[position]
              //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
             }
             is ViewHold4 -> {

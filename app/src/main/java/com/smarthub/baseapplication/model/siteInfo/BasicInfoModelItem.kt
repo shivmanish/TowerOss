@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model.siteInfo
 
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+
 data class BasicInfoModelItem(
     val Basicinfo: List<SiteBasicinfo>,
     val Filesstorage: List<Any>,
@@ -8,6 +10,7 @@ data class BasicInfoModelItem(
     val Operator: List<Operator>,
     val SafetyAndAccess: List<SafetyAndAcces>,
     val created_at: String,
+    val Servicerequestmain: ServiceRequestAllData,
     val id: Int,
     val National: String,
     val Region: String,
