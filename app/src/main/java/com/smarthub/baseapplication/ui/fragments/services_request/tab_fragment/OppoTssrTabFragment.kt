@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
-class OppoTssrTabFragment : Fragment(), OpcoTssrAdapter.OpcoTssrLisListener {
+class OppoTssrTabFragment : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener {
     var siteViewModel : SiteInfoViewModel?=null
     var binding : OpsrTabFragmaentLayoutBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,6 +45,4 @@ class OppoTssrTabFragment : Fragment(), OpcoTssrAdapter.OpcoTssrLisListener {
         val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-
-
 }

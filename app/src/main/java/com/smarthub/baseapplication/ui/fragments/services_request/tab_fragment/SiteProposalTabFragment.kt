@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SiteProposalAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
-class SiteProposalTabFragment : Fragment(), SiteProposalAdapter.SiteProposalListener {
+class SiteProposalTabFragment : BaseFragment(), SiteProposalAdapter.SiteProposalListener {
     var siteViewModel : SiteInfoViewModel?=null
     var binding : OpsrTabFragmaentLayoutBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
