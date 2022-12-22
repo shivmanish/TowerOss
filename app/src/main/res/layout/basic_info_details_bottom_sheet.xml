@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:minHeight="@dimen/dp400"
+        android:minHeight="@dimen/dp500"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/container_layout"
@@ -57,6 +57,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/txSiteName"
+                            android:text="xyz"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -80,6 +81,7 @@
                         <EditText
                             android:id="@+id/txSiteID"
                             style="@style/RowTestItemEdit"
+                            android:text="sdsfgdghg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -195,6 +197,7 @@
                         <EditText
                             android:id="@+id/txBuildingType"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -218,6 +221,7 @@
                         <EditText
                             android:id="@+id/txtLocationZone"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -242,6 +246,7 @@
                         <EditText
                             android:id="@+id/txtMaintenanceZone"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -264,6 +269,7 @@
                         <EditText
                             android:id="@+id/txtProjectName"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -288,6 +294,7 @@
                         <EditText
                             android:id="@+id/txtSiteInChargeName"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -310,6 +317,7 @@
                         <EditText
                             android:id="@+id/txtSiteInChargeNumber"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -334,6 +342,7 @@
                         <EditText
                             android:id="@+id/txtRentEscalation"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -357,6 +366,7 @@
                         <EditText
                             android:id="@+id/txtRentEscalationPeriod"
                             style="@style/RowTestItemEdit"
+                            android:text="sdgdfsbggf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -450,6 +460,7 @@
                     <EditText
                         android:id="@+id/address"
                         style="@style/RowTestItemEdit"
+                        android:text="sdgdfsbggf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
+import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.FragmentHomeBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
 //            set menu selection for site iBoard
 
         }
+
         return root
     }
 
@@ -42,6 +44,10 @@ class HomeFragment : Fragment() {
         binding.notificationLayout.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
             Log.d("notification Nvigate","navigated from home to navigation fragment")
+        }
+
+        binding.searchBoxLayout.setOnClickListener {
+            (requireActivity() as DashboardActivity).openSearchMenu()
         }
 
         if (homeViewModel?.homeData()?.hasActiveObservers() == true)

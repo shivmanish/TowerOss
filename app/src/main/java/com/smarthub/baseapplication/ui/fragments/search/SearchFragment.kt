@@ -75,6 +75,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         if (homeViewModel.siteSearchResponse?.hasActiveObservers() == true){
             homeViewModel.siteSearchResponse?.removeObservers(viewLifecycleOwner)
         }
+
         homeViewModel.siteSearchResponse?.observe(viewLifecycleOwner){
             if (binding.loadingProgress.visibility ==View.VISIBLE)
                 binding.loadingProgress.visibility = View.INVISIBLE
