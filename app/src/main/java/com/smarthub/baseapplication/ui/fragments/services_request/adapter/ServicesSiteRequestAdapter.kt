@@ -99,8 +99,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
 
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding =
-            EquipmentsInfoViewBinding.bind(itemView)
+        var binding: RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {

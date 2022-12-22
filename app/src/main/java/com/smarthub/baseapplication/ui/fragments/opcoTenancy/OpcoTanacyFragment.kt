@@ -17,11 +17,11 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 
-class OpcoTanacyFragment : BaseFragment(), CustomerDataAdapterListener {
+class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterListener {
     private val ARG_PARAM1 = "param1"
     lateinit var binding: OpcoTenencyFragmentBinding
     lateinit var viewmodel: HomeViewModel
-    lateinit var customerDataAdapter: CustomerDataAdapter
+    lateinit var customerDataAdapter: OpcoTanancyFragAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = OpcoTenencyFragmentBinding.inflate(inflater, container, false)
@@ -33,17 +33,17 @@ class OpcoTanacyFragment : BaseFragment(), CustomerDataAdapterListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = CustomerDataAdapter(this@OpcoTanacyFragment)
+        customerDataAdapter = OpcoTanancyFragAdapter(this@OpcoTanacyFragment)
         binding.customerList.adapter = customerDataAdapter
 
-        binding.addMore.setOnClickListener(){
+        binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
 
-        if (viewmodel.opcoCardListResponse?.hasActiveObservers() == true)
-            viewmodel.opcoCardListResponse?.removeObservers(viewLifecycleOwner)
-        viewmodel.opcoCardListResponse?.observe(viewLifecycleOwner) {
+        if (viewmodel.opcoTenancyListResponse?.hasActiveObservers() == true)
+            viewmodel.opcoTenancyListResponse?.removeObservers(viewLifecycleOwner)
+        viewmodel.opcoTenancyListResponse?.observe(viewLifecycleOwner) {
             binding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
                 showLoader()
@@ -52,7 +52,7 @@ class OpcoTanacyFragment : BaseFragment(), CustomerDataAdapterListener {
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("OpcoTenencyFragment card Data fetched successfully")
-                customerDataAdapter.setData(it.data!!)
+                customerDataAdapter.setOpData(it.data!!.list)
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"OpcoTenencyFragment error :${it.message}", Toast.LENGTH_SHORT).show()
             }else{
@@ -60,26 +60,12 @@ class OpcoTanacyFragment : BaseFragment(), CustomerDataAdapterListener {
                 Toast.makeText(requireContext(),"OpcoTenencyFragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing = false
+            showLoader()
+        }
     }
-
-
-    override fun onDestroy() {
-        if (viewmodel.opcoCardListResponse?.hasActiveObservers() == true)
-            viewmodel.opcoCardListResponse?.removeObservers(viewLifecycleOwner)
-        super.onDestroy()
-    }
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String) =
-            OpcoTanacyFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
-    }
-
     override fun clickedItem() {
         requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
 

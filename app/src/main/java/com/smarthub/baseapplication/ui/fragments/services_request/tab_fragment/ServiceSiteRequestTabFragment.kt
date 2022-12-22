@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class ServiceRequestTabFragment : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
-    var siteViewModel : SiteInfoViewModel?=null
+class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
     var binding : OpcoInfoFregmentBinding?=null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
         return binding?.root

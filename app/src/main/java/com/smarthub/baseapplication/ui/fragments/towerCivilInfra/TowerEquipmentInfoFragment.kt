@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoleInfoFragmentBinding
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 
 class TowerEquipmentInfoFragment: Fragment(), TowerEquipmentInfoAdapter.TowerPoleListListener {

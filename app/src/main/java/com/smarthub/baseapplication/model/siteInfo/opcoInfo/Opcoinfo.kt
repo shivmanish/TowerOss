@@ -1,0 +1,35 @@
+package com.smarthub.baseapplication.model.siteInfo.opcoInfo
+
+data class Opcoinfo(
+    val Alarmsextension: String,
+    val Antenacount: String,
+    val Antenaslotused: String,
+    val Backhaultechnology: String,
+    val InstallationVendor: String,
+    val MaintenanceVendor: String,
+    val Operatornetworktype: String,
+    val OpcoName: String,
+    val OpcoSiteID: String,
+    val OpcoSiteName: String,
+    val Opcosignoffdate: String,
+    val Opcositestatus: String,
+    val Opcositetype: String,
+    val Operatormaintenancelocation: String,
+
+    val Rackcount: String,
+    val Rftechnology: String,
+    val Rrucount: String,
+    val Sectorcount: String,
+    val Siteinchargeemail: String,
+    val Siteinchargename: String,
+    val Siteinchargenumber: String,
+    val Telecomequipmenttype: String,
+    val committedNWA: String,
+    val created_at: String,
+    val id: Int,
+    val isActive: Boolean,
+    val modified_at: String,
+    val opcofilesattachments: Any,
+    val rfiAcceptanceDate: String,
+    val rfrDate: String
+)

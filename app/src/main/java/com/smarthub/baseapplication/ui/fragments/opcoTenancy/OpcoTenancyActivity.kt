@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerPageAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
@@ -35,6 +35,7 @@ class OpcoTenancyActivity : BaseActivity() {
     }
 
     private fun initViews(){
+        var data = AppController.getInstance().siteInfoModel
         binding.back.setOnClickListener {
             onBackPressed()
         }
@@ -67,7 +68,7 @@ class OpcoTenancyActivity : BaseActivity() {
             dialog.show()
         }
 
-        binding.viewpager.adapter = CustomerPageAdapter(supportFragmentManager)
+        binding.viewpager.adapter = OpcoTenancyPageAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()

@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.model.siteInfo
 
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 
 data class BasicInfoModelItem(
@@ -7,7 +8,7 @@ data class BasicInfoModelItem(
     val Filesstorage: List<Any>,
     val GeoCondition: List<GeoCondition>,
     val OperationalInfo: List<OperationalInfo>,
-    val Operator: List<Operator>,
+    val Operator: List<OpcoDataItem>,
     val SafetyAndAccess: List<SafetyAndAcces>,
     val created_at: String,
     val Servicerequestmain: ServiceRequestAllData,

@@ -5,13 +5,13 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
-import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
@@ -29,11 +29,12 @@ class HomeViewModel : ViewModel() {
     var myTeamTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
+    var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
+    var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
     var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
-    var opcoCardListResponse: SingleLiveEvent<Resource<OpcoCardList>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -47,11 +48,16 @@ class HomeViewModel : ViewModel() {
         siteInfoResponse = homeRepo?.siteInfoResponse
         siteDropData = homeRepo?.siteDropDownDataResponse
         basicInfoUpdate = homeRepo?.basicInfoUpdate
-        opcoCardListResponse=homeRepo?.opcoCardListResponce
+        opcoTenancyListResponse = homeRepo?.opcoResponseData
+        serviceRequestAllData = homeRepo?.serviceRequestAllData
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
         homeRepo?.updateData(basicinfoModel)
+    }
+
+    fun updateOpcoTenancy(opcoListData: List<OpcoDataItem>){
+        opcoTenancyListResponse?.postValue(Resource.success<OpcoDataList>(OpcoDataList(opcoListData), 200))
     }
 
     fun updateBasicInfo(basicinfoModel: BasicinfoModel){
@@ -76,9 +82,6 @@ class HomeViewModel : ViewModel() {
         homeRepo?.fetchHomeData()
     }
 
-    fun fetchOpcoCardLiostData(){
-        homeRepo?.fetchOpcoCardList()
-    }
 
     fun fetchProjectsData(){
         homeRepo?.fetchProjectData()

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.opcoInfo
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
-class OpcoInfoListAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adapter<OpcoInfoListAdapter.ViewHold>() {
+class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 

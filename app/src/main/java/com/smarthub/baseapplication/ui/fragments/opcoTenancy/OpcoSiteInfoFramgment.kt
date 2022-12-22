@@ -4,22 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
-import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoInfoListAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OpcoSiteInfoEditDialouge
-import com.smarthub.baseapplication.ui.fragments.opcoInfo.OperationsItemsEditDialouge
-import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
-import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OpcoSiteInfoEditDialouge
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
 
-class OpcoSiteInfoFramgment :Fragment(), OpcoInfoListAdapter.OpcoInfoLisListener {
+class OpcoSiteInfoFramgment :Fragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
     var binding : OpcoInfoFregmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -29,7 +20,7 @@ class OpcoSiteInfoFramgment :Fragment(), OpcoInfoListAdapter.OpcoInfoLisListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = OpcoInfoListAdapter(this@OpcoSiteInfoFramgment)
+        binding?.listItem?.adapter = OpcoSiteInfoFragAdapter(this@OpcoSiteInfoFramgment)
     }
 
     override fun attachmentItemClicked() {

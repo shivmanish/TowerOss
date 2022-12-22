@@ -2,12 +2,12 @@ package com.smarthub.baseapplication.ui.fragments.services_request
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -17,6 +17,10 @@ class ServicesRequestActivity : BaseActivity() {
     private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NewCustomerDetailFragmentBinding
+
+    companion object{
+        var data : ServiceRequestAllDataItem?=null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +37,13 @@ class ServicesRequestActivity : BaseActivity() {
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.addMore.setOnClickListener(){
+        binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager)
+        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, data!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
-        binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
+        binding.tabs.setOnTabSelectedListener(onTabSelectedListener())
         binding.viewpager.beginFakeDrag()
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
@@ -52,24 +56,9 @@ class ServicesRequestActivity : BaseActivity() {
 
         profileViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
 
-//        profileViewModel?.profileResponse?.observe(this) {
-//            hideLoader()
-//            if (it != null) {
-//                if (it.status == Resource.Status.SUCCESS && it.data != null) {
-//                    mapUiData(it.data)
-//                    return@observe
-//                } else {
-//                    Log.d("status", "${it.message}")
-//                    Toast.makeText(this@NewCustomerDetailsActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
-//                }
-//            } else {
-//                Log.d("status", AppConstants.GENERIC_ERROR)
-//                Toast.makeText(this@NewCustomerDetailsActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-//            }
-//        }
     }
 
-    private fun onTabSelectedListener(pager: ViewPager): TabLayout.OnTabSelectedListener {
+    private fun onTabSelectedListener(): TabLayout.OnTabSelectedListener {
         return object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 tab.view.setBackgroundResource(R.color.white)

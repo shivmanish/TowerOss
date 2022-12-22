@@ -1,12 +1,12 @@
-package com.smarthub.baseapplication.model.siteInfo
+package com.smarthub.baseapplication.model.siteInfo.opcoInfo
 
-data class Operator(
+data class OpcoDataItem(
     val Backhaullink: List<Any>,
-    val Commercials: List<Commercial>,
+    val Commercials: List<Any>,
     val Opcoinfo: List<Opcoinfo>,
     val PowerLoad: List<Any>,
     val RfAntena: List<Any>,
-    val RfEquipment: List<RfEquipment>,
+    val RfEquipment: List<Any>,
     val created_at: String,
     val id: Int,
     val isActive: Boolean,
