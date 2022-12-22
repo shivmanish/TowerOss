@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.adapter.customer
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener,var listener1:ItemClickListener) :
+class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener,var listener1: ItemClickListener) :
     RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()

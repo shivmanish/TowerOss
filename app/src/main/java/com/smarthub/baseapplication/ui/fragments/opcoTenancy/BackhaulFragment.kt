@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding.*
-import com.smarthub.baseapplication.databinding.CommercialFragmentBinding
-import com.smarthub.baseapplication.databinding.CustomerInfoFragmentInfoBinding
-import com.smarthub.baseapplication.databinding.CustomerInfoTempFragmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.BackhaulListAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.CommercialListAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadEditDialouge
 
 class BackhaulFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener , BackhaulListAdapter.ItemClickListener{

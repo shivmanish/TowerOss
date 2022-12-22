@@ -1,11 +1,13 @@
 package com.smarthub.baseapplication.model.siteInfo
 
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+
 data class BasicInfoModelItem(
     val Basicinfo: List<SiteBasicinfo>,
     val Filesstorage: List<Any>,
     val GeoCondition: List<GeoCondition>,
     val OperationalInfo: List<OperationalInfo>,
-    val Operator: List<Operator>,
+    val Operator: List<OpcoDataItem>,
     val SafetyAndAccess: List<SafetyAndAcces>,
     val created_at: String,
     val id: Int,

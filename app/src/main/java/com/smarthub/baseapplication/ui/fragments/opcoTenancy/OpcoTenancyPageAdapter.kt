@@ -1,15 +1,13 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
-import com.smarthub.baseapplication.ui.fragments.customer_tab.backhaul.BackhaulFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoSiteInfoFramgment
 
-class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
+class OpcoTenancyPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 5
     }
@@ -19,9 +17,7 @@ class CustomerPageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
             0 -> {
                 return OpcoSiteInfoFramgment()
             }
-//            1 -> {
-//                return CommercialFragment()
-//            }
+
             1 -> {
                 return RfEquipmentFragment()
             }
