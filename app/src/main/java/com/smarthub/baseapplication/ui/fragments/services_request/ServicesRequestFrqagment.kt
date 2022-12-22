@@ -48,19 +48,10 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
             dalouge.show(childFragmentManager,"")
 
         }
-        if (viewmodel.getServiceRequest?.hasActiveObservers() == true)
-            viewmodel.getServiceRequest?.removeObservers(viewLifecycleOwner)
-        viewmodel.getServiceRequest?.observe(viewLifecycleOwner){
-            if (it.status == Resource.Status.SUCCESS){
-                if (it.data!=null){
-                    mapUIData(it.data)
-                }
-                AppLogger.log("Site request data fetched successfully")
-            }else{
-                AppLogger.log("Something went wrong")
-            }
+
+        if (viewmodel.siteInfoResponse!=null && viewmodel.siteInfoResponse?.value!=null){
+            mapUIData(viewmodel.siteInfoResponse?.value?.data!![0].Servicerequestmain)
         }
-        viewmodel.fetchServiceRequestData("97")
     }
 
     private fun mapUIData(data : ServiceRequestAllData){
