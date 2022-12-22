@@ -27,7 +27,7 @@ class ServicesDataAdapter(var listener: ServicesRequestFrqagment) : RecyclerView
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
 
         holder.binding?.cardItem?.setOnClickListener {
-            listener.clickedItem()
+            listener.clickedItem(list[position])
         }
     }
 
