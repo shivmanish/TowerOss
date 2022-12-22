@@ -12,13 +12,16 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.CustomerDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
+class ServicesRequestFrqagment : Fragment(), ServicesDataAdapterListener {
 
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
@@ -35,22 +38,21 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
 
     private fun initializeFragment() {
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment, ArrayList())
+        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment)
         customerBinding.customerList.adapter = customerDataAdapter
-        customerDataAdapter.updateData("anything")
-        customerDataAdapter.updateData("anything")
-        customerBinding.addMore.setOnClickListener{
-            customerDataAdapter.updateData("anything")
-        }
 
-        customerBinding.addMore.setOnClickListener(){
+        customerBinding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
         }
-
-        if (viewmodel.siteInfoResponse!=null && viewmodel.siteInfoResponse?.value!=null){
-            mapUIData(viewmodel.siteInfoResponse?.value?.data!![0].Servicerequestmain)
+        if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
+            viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
+            if (it!=null){
+                customerDataAdapter.setData(it.data!!)
+            }
         }
     }
 
@@ -69,7 +71,8 @@ class ServicesRequestFrqagment : Fragment(), CustomerDataAdapterListener {
             }
     }
 
-    override fun clickedItem() {
+    override fun clickedItem(data : ServiceRequestAllDataItem) {
+        ServicesRequestActivity.data = data
         requireActivity().startActivity(Intent(requireContext(), ServicesRequestActivity::class.java))
 
     }

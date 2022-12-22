@@ -6,19 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 
 
-class ServicesDataAdapter(var listener: ServicesRequestFrqagment, var array: ArrayList<String>) : RecyclerView.Adapter<CustomerDataViewHolder>() {
+class ServicesDataAdapter(var listener: ServicesRequestFrqagment) : RecyclerView.Adapter<CustomerDataViewHolder>() {
 
-    fun setData(data: ArrayList<String>) {
-        this.array.addAll(data)
+    var list = ArrayList<ServiceRequestAllDataItem>()
+
+    fun setData(data: ArrayList<ServiceRequestAllDataItem>) {
+        this.list = data
         notifyDataSetChanged()
-    }
-
-    fun updateData(s : String) {
-        this.array.add(s)
-        notifyItemChanged(array.size.minus(1))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerDataViewHolder {
@@ -34,7 +32,7 @@ class ServicesDataAdapter(var listener: ServicesRequestFrqagment, var array: Arr
     }
 
     override fun getItemCount(): Int {
-        return array.size
+        return list.size
     }
 }
 
@@ -42,6 +40,6 @@ class CustomerDataViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemv
     var binding = CustomerListItemBinding.bind(itemView)
 }
 
-interface CustomerDataAdapterListener{
-    fun clickedItem()
+interface ServicesDataAdapterListener{
+    fun clickedItem(data : ServiceRequestAllDataItem)
 }

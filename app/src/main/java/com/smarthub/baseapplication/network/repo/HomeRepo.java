@@ -40,6 +40,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteInfoModel>> siteInfoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
     private SingleLiveEvent<Resource<OpcoDataList>> opcoDataResponse;
+    private SingleLiveEvent<Resource<ServiceRequestAllData>> serviceRequestAllData;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
 
     public static HomeRepo getInstance(APIClient apiClient) {
@@ -58,6 +59,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
         return opcoDataResponse;
     }
+    public SingleLiveEvent<Resource<ServiceRequestAllData>> getServiceRequestAllData() {
+        return serviceRequestAllData;
+    }
 
     public SingleLiveEvent<Resource<BasicInfoDialougeResponse>> getBasicInfoUpdate() {
         return basicInfoUpdate;
@@ -74,6 +78,7 @@ public class HomeRepo {
         siteSearchResponse = new SingleLiveEvent<>();
         dropDownResoonse = new SingleLiveEvent<>();
         opcoDataResponse = new SingleLiveEvent<>();
+        serviceRequestAllData = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -367,6 +372,7 @@ public class HomeRepo {
 //                   data update
                     if (!data.isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.get(0).getOperator()), 200));
+                        serviceRequestAllData.postValue(Resource.success(data.get(0).getServicerequestmain(), 200));
                     }
                 }
             }

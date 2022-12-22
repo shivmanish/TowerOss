@@ -30,6 +30,7 @@ class HomeViewModel : ViewModel() {
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
     var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
+    var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
     var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
@@ -48,6 +49,7 @@ class HomeViewModel : ViewModel() {
         siteDropData = homeRepo?.siteDropDownDataResponse
         basicInfoUpdate = homeRepo?.basicInfoUpdate
         opcoTenancyListResponse = homeRepo?.opcoResponseData
+        serviceRequestAllData = homeRepo?.serviceRequestAllData
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
