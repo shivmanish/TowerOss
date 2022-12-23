@@ -36,6 +36,7 @@ import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
+import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
@@ -157,7 +158,7 @@ class SiteDetailFragment : BaseFragment() {
                 5-> NocFragment()
                 6-> CivilInfraFragment()
                 7-> PowerConnection()
-                8-> BlackhaulFrag.newInstance(tabNames?.get(8) ?: "QA Inspection")
+                8-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
                 else -> SiteInfoNewFragment(id)
             }
         }

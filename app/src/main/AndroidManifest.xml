@@ -217,6 +217,10 @@
             android:exported="true"
             android:label="@string/setting" />
         <activity
+            android:name="com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity"
+            android:exported="true"
+            android:label="@string/setting" />
+        <activity
             android:name=".activities.DashboardActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
