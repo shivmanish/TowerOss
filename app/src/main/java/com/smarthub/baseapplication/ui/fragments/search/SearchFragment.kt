@@ -154,7 +154,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             }
         }
         binding.viewOnMap.setOnClickListener {
-            var intent = Intent(requireContext(), MapActivity::class.java)
+            val intent = Intent(requireContext(), MapActivity::class.java)
             startActivity(intent)
 
         }
