@@ -1,13 +1,11 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition
+package com.smarthub.baseapplication.ui.site_agreement
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
@@ -15,7 +13,7 @@ import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBindin
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 
 /*activity_new_site_acquisition*/
-class NewSiteAcquisitionActivity : BaseActivity() {
+class siteAgreementCaredItemActivity : BaseActivity() {
 
     lateinit var binding : ActivityNewSiteAcquisitionBinding
 

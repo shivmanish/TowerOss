@@ -1,8 +1,6 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition
+package com.smarthub.baseapplication.ui.site_agreement
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -20,23 +16,23 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDat
 import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapterListener
 
 
-class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
+class SiteAgreementFragment : Fragment(), SiteLeaseDataAdapterListener {
 
     val ARG_PARAM1 = "param1"
     lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
-    lateinit var viewmodel: SiteLeaseAcqusitionViewModel
+    lateinit var viewmodel: SiteAgreementViewModel
     lateinit var siteLeaseDataAdapter: SiteLeaseDataAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSiteLeaseBinding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
-        viewmodel = ViewModelProvider(requireActivity())[SiteLeaseAcqusitionViewModel::class.java]
+        viewmodel = ViewModelProvider(requireActivity())[SiteAgreementViewModel::class.java]
         initializeFragment()
         return fragmentSiteLeaseBinding.root
     }
 
     private fun initializeFragment() {
         fragmentSiteLeaseBinding.siteLeaseListItem.layoutManager = LinearLayoutManager(requireContext())
-        siteLeaseDataAdapter = SiteLeaseDataAdapter(this@SiteLeaseAcqusitionFragment, ArrayList())
+        siteLeaseDataAdapter = SiteLeaseDataAdapter(this@SiteAgreementFragment, ArrayList())
         fragmentSiteLeaseBinding.siteLeaseListItem.adapter = siteLeaseDataAdapter
         var arraydata = ArrayList<String>()
         arraydata.add("anything")
@@ -64,7 +60,7 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
-            SiteLeaseAcqusitionFragment().apply {
+            SiteAgreementFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                 }
@@ -72,7 +68,7 @@ class SiteLeaseAcqusitionFragment : Fragment(), SiteLeaseDataAdapterListener {
     }
 
     override fun clickedItem() {
-        requireActivity().startActivity(Intent(requireContext(), NewSiteAcquisitionActivity::class.java))
+        requireActivity().startActivity(Intent(requireContext(), siteAgreementCaredItemActivity::class.java))
 
     }
 }

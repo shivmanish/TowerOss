@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.adapter
+package com.smarthub.baseapplication.ui.site_agreement.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BuildingDetailsListItemBinding
-import com.smarthub.baseapplication.databinding.PoItemListBinding
 import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.ui.site_lease_acquisition.pojo.BuildingStructure
+import com.smarthub.baseapplication.ui.site_agreement.pojo.BuildingStructure
 
 
 class BuildingStructureTableAdapter(var list : ArrayList<BuildingStructure>, var listener: QatListListener) : RecyclerView.Adapter<BuildingStructureTableAdapter.ViewHold>() {

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.fragment
+package com.smarthub.baseapplication.ui.site_agreement.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

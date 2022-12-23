@@ -24,7 +24,6 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class ServicesRequestFrqagment : Fragment(), ServicesDataAdapterListener {
 
     private val ARG_PARAM1 = "param1"
-    private val ARG_PARAM2 = "param2"
     lateinit var viewmodel: HomeViewModel
     lateinit var customerDataAdapter: ServicesDataAdapter
     lateinit var customerBinding: FragmentServiceRequestBinding
