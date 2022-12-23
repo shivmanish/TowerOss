@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.pojo
+package com.smarthub.baseapplication.ui.site_agreement.pojo
 
 data class ConsumableMaterials(
     val ItemCode: String,

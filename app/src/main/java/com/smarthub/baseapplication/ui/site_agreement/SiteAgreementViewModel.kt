@@ -1,14 +1,13 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition
+package com.smarthub.baseapplication.ui.site_agreement
 
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.network.repo.SiteInfoRepo
 import com.smarthub.baseapplication.network.repo.SiteLeaseListRepo
 
-class SiteLeaseAcqusitionViewModel : ViewModel() {
+class SiteAgreementViewModel : ViewModel() {
 
     var site_lease_data = SingleLiveEvent<String>()
 

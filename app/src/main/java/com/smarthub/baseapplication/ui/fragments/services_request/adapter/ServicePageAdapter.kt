@@ -7,9 +7,9 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoSiteInfoFramgment
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Agreements
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.Feasibility
-import com.smarthub.baseapplication.ui.site_lease_acquisition.fragment.TeamVendor
+import com.smarthub.baseapplication.ui.site_agreement.fragment.Agreements
+import com.smarthub.baseapplication.ui.site_agreement.fragment.Feasibility
+import com.smarthub.baseapplication.ui.site_agreement.fragment.TeamVendor
 
 class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDataItem) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {

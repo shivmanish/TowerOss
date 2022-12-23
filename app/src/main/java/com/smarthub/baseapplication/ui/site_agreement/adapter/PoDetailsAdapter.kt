@@ -1,25 +1,24 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.adapter
+package com.smarthub.baseapplication.ui.site_agreement.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BuildingDetailsListItemBinding
 import com.smarthub.baseapplication.databinding.PoItemListBinding
 import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.ui.site_lease_acquisition.pojo.BuildingStructure
-import com.smarthub.baseapplication.ui.site_lease_acquisition.pojo.PropertyOwners
+import com.smarthub.baseapplication.ui.site_agreement.pojo.AddPoDetails
 
 
-class PropertyOwnerTableAdapter(var list : ArrayList<PropertyOwners>, var listener: QatListListener) : RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {
+class PoDetailsAdapter(var list : ArrayList<AddPoDetails>, var listener: QatListListener) : RecyclerView.Adapter<PoDetailsAdapter.ViewHold>() {
 
     init {
-        list.add(PropertyOwners("Site Name","Mangolpuri","2","333"))
-        list.add(PropertyOwners("Site Name","Mangolpuri","2","333"))
-        list.add(PropertyOwners("Site Name","Mangolpuri","2","333"))
-        list.add(PropertyOwners("Site Name","Mangolpuri","2","333"))
-        list.add(PropertyOwners("Site Name","Mangolpuri","2","333"))
+        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
+        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
+        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
+        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
+        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
+        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
 
     }
 

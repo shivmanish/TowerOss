@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.fragment
+package com.smarthub.baseapplication.ui.site_agreement.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,7 @@ import com.smarthub.baseapplication.databinding.AgreementFragmentBinding
 import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.ui.adapter.AtpCardListAdapter
 import com.smarthub.baseapplication.ui.dialog.siteinfo.AgrementsDetailsBottomSheet
-import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
-import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.AgrementLeaseListAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.AgrementLeaseListAdapter
 
 class Agreements :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner , QatListListener {
 

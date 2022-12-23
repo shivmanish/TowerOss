@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.adapter
+package com.smarthub.baseapplication.ui.site_agreement.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoItemListBinding
 import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.ui.site_lease_acquisition.pojo.AddPoDetails
+import com.smarthub.baseapplication.ui.site_agreement.pojo.ConnectedLoad
 
 
-class PoDetailsAdapter(var list : ArrayList<AddPoDetails>, var listener: QatListListener) : RecyclerView.Adapter<PoDetailsAdapter.ViewHold>() {
+class ConnrctLoadTableAdapter(var list : ArrayList<ConnectedLoad>, var listener: QatListListener) : RecyclerView.Adapter<ConnrctLoadTableAdapter.ViewHold>() {
 
     init {
-        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
-        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
-        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
-        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
-        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
-        list.add(AddPoDetails("Site Name","Mangolpuri","2","333"))
+        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
+        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
+        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
+        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
+        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
+
 
     }
 
@@ -27,7 +27,7 @@ class PoDetailsAdapter(var list : ArrayList<AddPoDetails>, var listener: QatList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.po_item_list,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_connected_equipment_item_list,parent,false)
         return ViewHold(view)
     }
 

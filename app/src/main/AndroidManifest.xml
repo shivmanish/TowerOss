@@ -129,7 +129,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.site_lease_acquisition.NewSiteAcquisitionActivity"
+            android:name=".ui.site_agreement.siteAgreementCaredItemActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.fragment
+package com.smarthub.baseapplication.ui.site_agreement.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FeasibilityFragmentBinding
 import com.smarthub.baseapplication.ui.dialog.siteinfo.BuildingDetailsBottomSheet
-import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
-import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.FeasibilityLeaseListAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.FeasibilityLeaseListAdapter
 
 class Feasibility :Fragment(), FeasibilityLeaseListAdapter.FeasibilityListItemListener {
     var binding : FeasibilityFragmentBinding?=null
