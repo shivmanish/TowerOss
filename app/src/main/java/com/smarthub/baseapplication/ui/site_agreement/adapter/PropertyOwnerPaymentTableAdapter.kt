@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.adapter
+package com.smarthub.baseapplication.ui.site_agreement.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,18 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoItemListBinding
 import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.ui.site_lease_acquisition.pojo.AddPoDetails
-import com.smarthub.baseapplication.ui.site_lease_acquisition.pojo.ConnectedLoad
+import com.smarthub.baseapplication.ui.site_agreement.pojo.PropertyOwnerPayment
 
 
-class ConnrctLoadTableAdapter(var list : ArrayList<ConnectedLoad>, var listener: QatListListener) : RecyclerView.Adapter<ConnrctLoadTableAdapter.ViewHold>() {
+class PropertyOwnerPaymentTableAdapter(var list : ArrayList<PropertyOwnerPayment>, var listener: QatListListener) : RecyclerView.Adapter<PropertyOwnerPaymentTableAdapter.ViewHold>() {
 
     init {
-        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
-        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
-        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
-        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
-        list.add(ConnectedLoad("Site Name","Mangolpuri","2","333"))
+        list.add(PropertyOwnerPayment("Site Name","Mangolpuri","2","333"))
+        list.add(PropertyOwnerPayment("Site Name","Mangolpuri","2","333"))
+        list.add(PropertyOwnerPayment("Site Name","Mangolpuri","2","333"))
+        list.add(PropertyOwnerPayment("Site Name","Mangolpuri","2","333"))
+        list.add(PropertyOwnerPayment("Site Name","Mangolpuri","2","333"))
 
 
     }
@@ -28,7 +27,7 @@ class ConnrctLoadTableAdapter(var list : ArrayList<ConnectedLoad>, var listener:
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_connected_equipment_item_list,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.po_item_list,parent,false)
         return ViewHold(view)
     }
 

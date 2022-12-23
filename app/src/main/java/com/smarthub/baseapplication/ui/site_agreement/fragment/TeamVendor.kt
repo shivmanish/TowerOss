@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.fragment
+package com.smarthub.baseapplication.ui.site_agreement.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
-import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.TeamVendorDetailsBottomSheet
-import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.Team_VendorLeaseListAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.Team_VendorLeaseListAdapter
 
 class TeamVendor :Fragment(), Team_VendorLeaseListAdapter.TeamVendorListItemListner {
     var binding : TeamVendorFragmentBinding?=null

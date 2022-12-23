@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_lease_acquisition.fragment
+package com.smarthub.baseapplication.ui.site_agreement.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.dialog.siteinfo.DetailsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomSheet
-import com.smarthub.baseapplication.ui.site_lease_acquisition.adapter.SiteLeaseListAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseListAdapter
 
 class Nominals :Fragment(), SiteLeaseListAdapter.SiteLeaseListListener {
 
