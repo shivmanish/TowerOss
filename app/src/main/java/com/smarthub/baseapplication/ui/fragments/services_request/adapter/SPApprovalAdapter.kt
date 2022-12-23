@@ -127,7 +127,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
 
 
                 }
@@ -159,7 +159,7 @@ class SPApprovalAdapter(var listener: SPSoftLisListener) : RecyclerView.Adapter<
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
 
 
                 }

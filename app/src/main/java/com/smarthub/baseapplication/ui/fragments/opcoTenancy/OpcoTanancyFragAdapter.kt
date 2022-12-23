@@ -13,7 +13,7 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     Adapter<CustomerDataViewHolder>() {
-    var data1 = AppController.getInstance().siteInfoModel
+    var data1 = AppController.getInstance().siteInfoModel.item
     var data : List<OpcoDataItem> = ArrayList()
 
     fun setOpData(data: List<OpcoDataItem>) {
@@ -28,9 +28,9 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     }
 
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
-        holder.binding.SiteId.text= data1[0].Basicinfo[0].siteID
-        holder.binding.textRfiDate.text= data[position].Opcoinfo[0].rfiAcceptanceDate
-        holder.binding.textRfsDate.text=data[position].Opcoinfo[0].rfiAcceptanceDate
+        holder.binding.SiteId.text= "${data1?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        holder.binding.textRfiDate.text= "RFI Date: ${data[position].Opcoinfo[0].rfiAcceptanceDate}"
+        holder.binding.textRfsDate.text="RFS Date: ${data[position].Opcoinfo[0].rfiAcceptanceDate}"
         holder.binding.cardItem.setOnClickListener {
             listener.clickedItem()
         }

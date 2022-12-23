@@ -36,7 +36,6 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         customerDataAdapter = OpcoTanancyFragAdapter(this@OpcoTanacyFragment)
         binding.customerList.adapter = customerDataAdapter
 
-        var x =viewmodel.siteInfoResponse?.value?.data?.get(0)?.Basicinfo?.get(0)?.siteID
 
         binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)

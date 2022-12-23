@@ -365,8 +365,8 @@ public class HomeRepo {
                     AppController.getInstance().siteInfoModel = data;
                     siteInfoResponse.postValue(Resource.success(response.body(), 200));
 //                   data update
-                    if (!data.isEmpty()) {
-                        opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.get(0).getOperator()), 200));
+                    if (data.getItem()!=null && !data.getItem().isEmpty()) {
+                        opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.getItem().get(0).getOperator()), 200));
                     }
                 }
             }
