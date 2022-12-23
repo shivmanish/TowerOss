@@ -387,11 +387,15 @@
                                 <com.google.android.material.card.MaterialCardView
                                     android:layout_width="0dp"
                                     android:layout_marginStart="5dp"
-                                    android:visibility="invisible"
                                     android:layout_height="match_parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:cardCornerRadius="@dimen/dp10"
-                                    android:layout_weight="0.33">
+                                    android:layout_weight="0.33"
+                                    app:strokeWidth="1dp"
+                                    android:id="@+id/add_new_site"
+                                    app:strokeColor="@color/white"
+                                    android:background="@color/transparent"
+                                    app:cardBackgroundColor="#3D4E6D">
                                     <androidx.constraintlayout.widget.ConstraintLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent">

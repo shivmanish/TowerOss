@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
+import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.network.APIClient;
@@ -40,6 +41,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
     private SingleLiveEvent<Resource<OpcoDataList>> opcoDataResponse;
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serviceRequestAllData;
+    private SingleLiveEvent<Resource<GenerateSiteIdResponse>> generateSiteIdResponse;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
 
     public static HomeRepo getInstance(APIClient apiClient) {
@@ -62,6 +64,10 @@ public class HomeRepo {
         return serviceRequestAllData;
     }
 
+    public SingleLiveEvent<Resource<GenerateSiteIdResponse>> getGenerateSiteIdResponse() {
+        return generateSiteIdResponse;
+    }
+
     public SingleLiveEvent<Resource<BasicInfoDialougeResponse>> getBasicInfoUpdate() {
         return basicInfoUpdate;
     }
@@ -78,6 +84,7 @@ public class HomeRepo {
         dropDownResoonse = new SingleLiveEvent<>();
         opcoDataResponse = new SingleLiveEvent<>();
         serviceRequestAllData = new SingleLiveEvent<>();
+        generateSiteIdResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -140,6 +147,45 @@ public class HomeRepo {
                     basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void generateSiteId(GenerateSiteIdResponse basicinfoModel) {
+        GenerateSiteIdResponse d = (generateSiteIdResponse.getValue()!=null) ? generateSiteIdResponse.getValue().data : null;
+        generateSiteIdResponse.postValue(Resource.loading(d, 200));
+        apiClient.generateSiteId(basicinfoModel).enqueue(new Callback<GenerateSiteIdResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<GenerateSiteIdResponse> call, Response<GenerateSiteIdResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GenerateSiteIdResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<GenerateSiteIdResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    generateSiteIdResponse.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    generateSiteIdResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    generateSiteIdResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    generateSiteIdResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

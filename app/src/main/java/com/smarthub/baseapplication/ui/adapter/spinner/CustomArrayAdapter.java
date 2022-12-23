@@ -27,8 +27,6 @@ public class CustomArrayAdapter extends ArrayAdapter<DropDownItem> {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        convertView.getRootView().setLayoutParams(new LinearLayout.LayoutParams(200, ViewGroup.LayoutParams.WRAP_CONTENT));
-
         return initView(position, convertView, parent);
     }
 
