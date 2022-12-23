@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.utils.AppController
 
@@ -34,7 +35,7 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
         holder.binding.textRfiDate.text= "RFI Date: ${data[position].Opcoinfo[0].rfiAcceptanceDate}"
         holder.binding.textRfsDate.text="RFS Date: ${data[position].Opcoinfo[0].rfiAcceptanceDate}"
         holder.binding.cardItem.setOnClickListener {
-            listener.clickedItem()
+            listener.clickedItem(data[position])
         }
     }
 
@@ -48,5 +49,5 @@ class CustomerDataViewHolder(var itemview: View) : ViewHolder(itemview) {
 }
 
 interface CustomerDataAdapterListener{
-    fun clickedItem()
+    fun clickedItem(data : OpcoDataItem)
 }

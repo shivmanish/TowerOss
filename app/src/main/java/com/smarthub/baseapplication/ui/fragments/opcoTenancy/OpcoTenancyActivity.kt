@@ -13,7 +13,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
@@ -22,6 +25,10 @@ class OpcoTenancyActivity : BaseActivity() {
     private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NewCustomerDetailFragmentBinding
+
+    companion object{
+        var Opcodata : OpcoDataItem?=null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,40 +42,19 @@ class OpcoTenancyActivity : BaseActivity() {
     }
 
     private fun initViews(){
-        var data = AppController.getInstance().siteInfoModel
+        var data = AppController.getInstance().siteInfoModel.item
         binding.back.setOnClickListener {
             onBackPressed()
         }
+        binding.siteId.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        binding.rfiDate.text= Opcodata?.Opcoinfo?.get(0)?.rfiAcceptanceDate
         binding.addMore.setOnClickListener(){
-            val dialog = BottomSheetDialog(this,R.style.NewDialog)
-            // on below line we are inflating a layout file which we have created.
-            val view = layoutInflater.inflate(R.layout.main_memu_bottom_sheet_dialog_layout, null)
-            val close = view.findViewById<CircularRevealCardView>(R.id.ic_menu_close)
-            val ic_menu_call = view.findViewById<CircularRevealCardView>(R.id.ic_menu_call)
-            val ic_map_view = view.findViewById<CircularRevealCardView>(R.id.ic_map_view)
-            val ic_send_alert = view.findViewById<CircularRevealCardView>(R.id.send_alert)
-            val ic_menu_open_faults = view.findViewById<CircularRevealCardView>(R.id.ic_menu_open_faults)
-            val ic_menu_escalations = view.findViewById<CircularRevealCardView>(R.id.ic_menu_escalations)
-            val ic_menu_picture = view.findViewById<CircularRevealCardView>(R.id.ic_menu_picture)
-            val ic_pm_task = view.findViewById<CircularRevealCardView>(R.id.ic_pm_task)
-            val ic_menu_logs = view.findViewById<CircularRevealCardView>(R.id.ic_menu_logs)
-            dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
-            close.setOnClickListener {
-                // on below line we are calling a dismiss
-                // method to close our dialog.
-                dialog.dismiss()
-            }
-            dialog.setCancelable(false)
-            // on below line we are setting
-            // content view to our view.
-            dialog.setContentView(view)
-            // on below line we are calling
-            // a show method to display a dialog.
-//            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
-            dialog.show()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(supportFragmentManager,"")
         }
 
-        binding.viewpager.adapter = OpcoTenancyPageAdapter(supportFragmentManager)
+        binding.viewpager.adapter = OpcoTenancyPageAdapter(supportFragmentManager, Opcodata!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()
@@ -77,7 +63,7 @@ class OpcoTenancyActivity : BaseActivity() {
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
             val itemBinding = TabNameItemBinding.inflate(layoutInflater)
             itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
-            itemBinding.tabName.textSize = 10f
+            itemBinding.tabName.textSize = 12f
             binding.tabs.getTabAt(i)?.customView = itemBinding.root
         }
 
