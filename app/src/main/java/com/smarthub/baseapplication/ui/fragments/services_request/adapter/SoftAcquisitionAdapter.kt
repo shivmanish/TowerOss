@@ -193,8 +193,8 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
                       holder.binding.siteOwnershipSpinner.setSpinnerData(data?.siteownership?.data)
                       holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)*/
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).Basicinfo!=null && fieldData!!.get(0).Basicinfo.size >0){
-                    val siteBasicinfo: SiteBasicinfo = fieldData!!.get(0).Basicinfo.get(0)
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!!.get(0).Basicinfo!=null && fieldData?.item!!.get(0).Basicinfo.size >0){
+                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!!.get(0).Basicinfo.get(0)
       /*              holder.binding.txSiteName.text = basicinfo.siteName
                     holder.binding.txSiteID.text = basicinfo.siteID
                     holder.binding.siteStatus.text = basicinfo.Sitestatus.get(0).name
@@ -235,8 +235,8 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).OperationalInfo!=null && fieldData!!.get(0).OperationalInfo.size >0){
-                    val operationalInfo: OperationalInfo = fieldData!!.get(0).OperationalInfo.get(0)
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!!.get(0).OperationalInfo!=null && fieldData?.item!!.get(0).OperationalInfo.size >0){
+                    val operationalInfo: OperationalInfo = fieldData?.item!!.get(0).OperationalInfo.get(0)
 //                    holder.binding.txtRFCDate.text = operationalInfo.RFCDate
 //                    holder.binding.txtRFIDate.text = operationalInfo.RFIDate
 //                    holder.binding.txtRFSDate.text = operationalInfo.RFSDate
@@ -281,8 +281,8 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
 
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!!.get(0).SafetyAndAccess!=null && fieldData!!.get(0).SafetyAndAccess.size >0){
-                    val geoCondition: SafetyAndAcces = fieldData!!.get(0).SafetyAndAccess.get(0)
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!!.get(0).SafetyAndAccess!=null && fieldData?.item!!.get(0).SafetyAndAccess.size >0){
+                    val geoCondition: SafetyAndAcces = fieldData?.item!!.get(0).SafetyAndAccess.get(0)
                   /*  holder.binding.physicalSecurity.text = geoCondition.Physicalsecurity.get(0).name
                     holder.binding.textGate.text = geoCondition.GateAndFence.get(0).name
                     holder.binding.videoMonitoringSpinner.text = geoCondition.Videomonitoring.get(0).name

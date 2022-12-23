@@ -228,8 +228,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
             }
@@ -257,8 +257,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData!![0].Basicinfo[0]
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
                 holder.poTableList.adapter= EquipmentTableAdapter(context,listener)
@@ -334,8 +334,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].SafetyAndAccess.isNotEmpty()){
-                    val geoCondition: SafetyAndAcces = fieldData!![0].SafetyAndAccess[0]
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
+                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
                 }
             }
             is ViewHold5 -> {
