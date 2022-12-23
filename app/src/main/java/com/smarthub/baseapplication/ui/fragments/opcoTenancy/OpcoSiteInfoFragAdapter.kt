@@ -6,21 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
-class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
+class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: OpcoDataItem?) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
+    var currentOpened = -1
 
     var type1 = "OPCO/Site Info"
     var type2 = "Operations Team"
     var type3 = "Attachments"
-    private var data : BasicInfoModelDropDown?=null
+    private var data : Opcoinfo? = opcodata?.Opcoinfo?.get(0) ?:null
 
-    fun setData(data : BasicInfoModelDropDown){
-        this.data = data
-        notifyDataSetChanged()
-    }
 
     init {
         list.add("OPCO/Site Info")
@@ -44,13 +43,13 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.
         var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -61,13 +60,12 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.
         var binding : OpcoOperationsTeamItemBinding = OpcoOperationsTeamItemBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -78,13 +76,13 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.
         var binding : OpcoAttachmentBinding = OpcoAttachmentBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -114,73 +112,102 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                    holder.binding.imgEdit.setOnClickListener {
-                        listener.opcoSiteInfoItemClicked()
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.operationsItemClicked()
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                if(currentOpened==position){
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility=View.GONE
+                    holder.binding.itemCollapse.visibility=View.VISIBLE
+                    holder.binding.imgEdit.visibility=View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag=false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility=View.VISIBLE
+                    holder.binding.itemCollapse.visibility=View.GONE
+                    holder.binding.imgEdit.visibility=View.GONE
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                if (data!=null) {
-                  /*  holder.binding.siteStatusSpinner.setSpinnerData(data?.sitestatus?.data)
-                    holder.binding.siteCategorySpinner.setSpinnerData(data?.sitecategory?.data)
-                    holder.binding.siteOwnershipSpinner.setSpinnerData(data?.siteownership?.data)
-                    holder.binding.siteTypeSpinner.setSpinnerData(data?.sitetype?.data)*/
+                if (data!=null && opcodata?.Opcoinfo?.isNotEmpty()!!) {
+                    holder.binding.OpcoName.text=data?.OpcoName
+                    holder.binding.opcoSiteId.text=data?.OpcoSiteID
+                    holder.binding.opcoSiteName.text=data?.OpcoSiteName
+                    holder.binding.opcoSiteStatus.text=data?.Opcositestatus
+                    holder.binding.opcoSiteType.text=data?.Opcositetype
+                    holder.binding.networkType.text=data?.Operatornetworktype
+                    holder.binding.rfiAcceptenceDate.text=data?.rfiAcceptanceDate
+                    holder.binding.rfrDate.text=data?.rfrDate
+                    holder.binding.OPCOSignOffDate.text=data?.Opcosignoffdate
+                    holder.binding.CommittedNWA.text=data?.committedNWA
+                    holder.binding.AlarmExtension.text=data?.Alarmsextension
+                    holder.binding.RFTechnology.text=data?.Rftechnology
+                    holder.binding.TelecomEquipmentType.text=data?.Telecomequipmenttype
+                    holder.binding.RRUCount.text=data?.Rrucount
+                    holder.binding.SectorCount.text=data?.Sectorcount
+                    holder.binding.RackCount.text=data?.Rackcount
+                    holder.binding.AntennaCount.text=data?.Antenacount
+                    holder.binding.AntennaSlotUsed.text=data?.Antenaslotused
                 }
             }
             is ViewHold2 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                    holder.binding.imgEdit.setOnClickListener {
-                        listener.operationsItemClicked()
-                    }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.operationsItemClicked()
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                if(currentOpened==position){
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility=View.GONE
+                    holder.binding.itemCollapse.visibility=View.VISIBLE
+                    holder.binding.imgEdit.visibility=View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag=false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility=View.VISIBLE
+                    holder.binding.itemCollapse.visibility=View.GONE
+                    holder.binding.imgEdit.visibility=View.GONE
                 }
                 holder.binding.itemTitleStr.text = list[position]
+
+                if (data!=null && opcodata?.Opcoinfo?.isNotEmpty()!!) {
+                    holder.binding.InstallationVendor.text=data?.InstallationVendor
+                    holder.binding.MaintenanceVendor.text=data?.MaintenanceVendor
+                    holder.binding.BackhaulTechnology.text=data?.Backhaultechnology
+                    holder.binding.SiteInChargeName.text=data?.Siteinchargename
+                    holder.binding.SiteInChargeEmailID.text=data?.Siteinchargeemail
+                    holder.binding.SiteInChargeNumber.text=data?.Siteinchargenumber
+                    holder.binding.OperatorMaintenanceLocation.text=data?.Operatormaintenancelocation
+                }
             }
             is ViewHold3 -> {
-                holder.binding.imgDropdown.setOnClickListener {
-                    holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                    if ((holder.binding.itemTitle.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
                 }
+                if(currentOpened==position){
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility=View.GONE
+                    holder.binding.itemCollapse.visibility=View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag=false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility=View.VISIBLE
+                    holder.binding.itemCollapse.visibility=View.GONE
+                }
+
                 holder.binding.itemTitleStr.text = list[position]
             }
         }
@@ -188,6 +215,14 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener) : RecyclerView.
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    var recyclerView: RecyclerView?=null
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
     }
 
     interface OpcoInfoLisListener {

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoTenencyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
@@ -67,7 +69,8 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
             showLoader()
         }
     }
-    override fun clickedItem() {
+    override fun clickedItem(data : OpcoDataItem) {
+        OpcoTenancyActivity.Opcodata=data
         requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
 
     }
