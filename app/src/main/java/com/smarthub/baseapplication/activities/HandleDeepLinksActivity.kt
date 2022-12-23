@@ -24,7 +24,7 @@ class HandleDeepLinksActivity : AppCompatActivity() {
 
         val intent = Intent (this@HandleDeepLinksActivity, DashboardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        intent.putExtra("key","task")
+        intent.putExtra("key",path)
         startActivity(intent)
         finish()
 

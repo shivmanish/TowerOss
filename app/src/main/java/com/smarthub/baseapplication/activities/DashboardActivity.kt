@@ -56,10 +56,7 @@ class  DashboardActivity : BaseActivity() {
                var path = intent.getStringExtra("key")
                when (path) {
                    "task" -> {
-                       navController.navigate(R.id.navigation_task)
-                   }
-                   "home" -> {
-                       navController.navigate(R.id.navigation_home)
+                       navController.navigate(R.id.projectsFragment2)
                    }
                    "menu" -> {
                        navController.navigate(R.id.navigation_menu)
