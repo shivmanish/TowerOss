@@ -372,7 +372,6 @@ public class HomeRepo {
 //                   data update
                     if (!data.isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.get(0).getOperator()), 200));
-                        serviceRequestAllData.postValue(Resource.success(data.get(0).getServicerequestmain(), 200));
                     }
                 }
             }

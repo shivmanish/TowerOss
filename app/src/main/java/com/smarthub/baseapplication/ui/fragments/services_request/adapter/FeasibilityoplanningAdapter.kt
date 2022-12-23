@@ -204,8 +204,8 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val siteBasicinfo: SiteBasicinfo = fieldData!![0].Basicinfo[0]
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
             }
@@ -236,8 +236,8 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].Basicinfo.isNotEmpty()){
-                    val siteBasicinfo: SiteBasicinfo = fieldData!![0].Basicinfo[0]
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
             }
@@ -264,7 +264,7 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].GeoCondition.isNotEmpty()){
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].GeoCondition.isNotEmpty()){
 
                 }
 
@@ -292,8 +292,8 @@ class FeasibilityoplanningAdapter(var listener: FeasibilityoplanningLisListener)
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData!!.size>0 && fieldData!![0].SafetyAndAccess.isNotEmpty()){
-                    val geoCondition: SafetyAndAcces = fieldData!![0].SafetyAndAccess[0]
+                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
+                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
                 }
             }
             is ViewHold5 -> {

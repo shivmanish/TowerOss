@@ -69,7 +69,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                     var adapter = binding.listItem.adapter as SiteInfoListAdapter
                     currentOpened = adapter.currentOpened
                 }
-                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data?.get(0)!!)
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data?.item?.get(0)!!)
                 AppLogger.log("currentOpened:$currentOpened")
                 if (currentOpened>=0){
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
