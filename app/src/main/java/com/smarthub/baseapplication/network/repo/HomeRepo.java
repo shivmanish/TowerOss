@@ -8,7 +8,6 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.home.HomeResponse;
-import com.smarthub.baseapplication.model.opco_tenancy.OpcoCardList;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
@@ -342,9 +341,7 @@ public class HomeRepo {
     }
 
     public void siteInfoById(String id) {
-        siteInfoResponse.postValue(Resource.loading(
-                (siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null,
-                200));
+        siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null, 200));
         apiClient.fetchSiteInfoById(new IdData(id)).enqueue(new Callback<SiteInfoModel>() {
             @Override
             public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
@@ -359,7 +356,7 @@ public class HomeRepo {
 
             @Override
             public void onFailure(Call<SiteInfoModel> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
+                reportErrorResponse(t.getLocalizedMessage());
             }
 
             private void reportSuccessResponse(Response<SiteInfoModel> response) {
@@ -370,16 +367,14 @@ public class HomeRepo {
                     AppController.getInstance().siteInfoModel = data;
                     siteInfoResponse.postValue(Resource.success(response.body(), 200));
 //                   data update
-                    if (!data.getItem().isEmpty()) {
+                    if (data.getItem()!=null && !data.getItem().isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.getItem().get(0).getOperator()), 200));
                     }
                 }
             }
 
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    siteInfoResponse.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
                     siteInfoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteInfoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
