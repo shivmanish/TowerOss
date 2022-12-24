@@ -5,6 +5,7 @@ data class RfAnteenaData(
     val AntenaModel: String,
     val AntenaOrentiation: String,
     val AntenaSerialNumber: String,
+    val AntenaShape: String,
     val AntenaSize: String,
     val AntenaTilt: String,
     val AntenaTotalPowerRating: String,
@@ -15,12 +16,19 @@ data class RfAnteenaData(
     val GPSCableLength: String,
     val InstallationDate: String,
     val InstalledHeight: String,
+    val LinkOperationalStatus: String,
+    val OwnerCompany: String,
     val PowerCableLength: String,
     val Remarks: String,
+    val SectorNumber: String,
+    val SpaceUsed: String,
+    val Technology: String,
+    val TowerPoleId: String,
+    val UserCompany: String,
     val created_at: String,
     val id: String,
     val isActive: String,
     val modified_at: String,
-    val ConsumableMaterial: List<Any>
+    val ConsumableMaterial: List<Any>,
 
 )

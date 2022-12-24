@@ -103,10 +103,15 @@
                         <TextView
                             android:text="Antenna Serial Number"
                             style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Serial_Number"
                             android:text="S3058940"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -123,6 +128,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Make"
                             android:text="xxxx"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -141,6 +147,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Model"
                             android:text="xxxx"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -157,6 +164,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Technology"
                             android:text="3G"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -175,6 +183,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Installed_Height"
                             android:text="50"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -191,6 +200,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Space_Used"
                             android:text="2U"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -208,6 +218,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Pole_ID"
                             android:text="R1"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -224,6 +235,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Sector_Number"
                             android:text="R1"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -241,6 +253,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Shape"
                             android:text="Cubic"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -257,6 +270,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Size"
                             android:text="L -    |    W -    |    H -"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -274,6 +288,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Weight"
                             android:text="50"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -290,6 +305,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Type"
                             android:text="Directional"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -307,6 +323,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Orientation"
                             android:text="23.3 deg NE"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -323,6 +340,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Antenna_Tilt"
                             android:text="6 deg down"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -340,6 +358,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Total_Power_Rating"
                             android:text="1.2"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -356,6 +375,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Feeder_Cable_Length"
                             android:text="80"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -373,6 +393,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Power_Cable_Length"
                             android:text="80"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -389,6 +410,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/CPRI_Cable_Length"
                             android:text="80"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -406,6 +428,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/GPS_Cable_Length"
                             android:text="80"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -422,6 +445,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Owner_Company"
                             android:text="CloudExtel"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -439,6 +463,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/User_Company"
                             android:text="Nokia"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -455,8 +480,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Installation_Date"
                             android:text="10-Nov-22"
                             style="@style/RowTestItemEdit"
+                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -472,6 +499,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Operational_Status"
                             android:text="Live"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -481,26 +509,22 @@
 
                 <TextView
                     android:text="Remark"
-                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
                     android:textStyle="bold"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/remark"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp15"
                     android:text="xyx"
                     android:textSize="15sp"
-                    android:layout_margin="@dimen/dp5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <View
-                    android:id="@+id/item_line_remark"
-                    android:alpha="2"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginRight="@dimen/dp5"
-                    android:layout_marginBottom="@dimen/dp10"
-                    android:background="@color/view_color"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"/>
 
                 <include
                     layout="@layout/layout_img_attachment"/>
