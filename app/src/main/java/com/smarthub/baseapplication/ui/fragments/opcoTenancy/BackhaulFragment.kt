@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding.*
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
-import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadEditDialouge
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.Backhaul.*
 
 class BackhaulFragment(var opcodata: OpcoDataItem?) :Fragment(), BackhaulListAdapter.BackhaulListListener{
 
@@ -33,43 +33,43 @@ class BackhaulFragment(var opcodata: OpcoDataItem?) :Fragment(), BackhaulListAda
 
 
     override fun LinkItemEdit() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_link_list_item_dialouge)
+        val bottomSheetDialogFragment = backhaulLinkItemEditDialouge(R.layout.backhaul_link_list_item_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun IduEditItem() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_idu_list_item_dialouge)
+        val bottomSheetDialogFragment = IduListItemEditDialouge(R.layout.backhaul_idu_list_item_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun OduEditItem() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_odu_list_item_dialouge)
+        val bottomSheetDialogFragment = OduListItemEditDialouge(R.layout.backhaul_odu_list_item_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun AnteenaItemEdit() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_antena_list_item_dialouge)
+        val bottomSheetDialogFragment = BackhaulAnteenaItemEditDialouge(R.layout.backhaul_antena_list_item_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun InstllationItemEdit() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_installation_team_list_item_dialouge)
+        val bottomSheetDialogFragment = BackhaulInstallationTeamEditDialouge(R.layout.backhaul_installation_team_list_item_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun LmcFiberItemEdit() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_lmc_list_item_dialouge)
+        val bottomSheetDialogFragment = BackhaulLmcFiberEditDialouge(R.layout.backhaul_lmc_list_item_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun ConnectedEquipmentItemEdit() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_connected_equipment_item_list_dialouge)
+        val bottomSheetDialogFragment = BackhaulConnectedEquipmentEditDialouge(R.layout.backhaul_connected_equipment_item_list_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
