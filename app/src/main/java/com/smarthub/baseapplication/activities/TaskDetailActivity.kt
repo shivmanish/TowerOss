@@ -22,6 +22,9 @@ class TaskDetailActivity : AppCompatActivity() {
         binding = ActivityTaskDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
         if (intent.hasExtra("url")){
             val id = intent.getStringExtra("url")
             binding.titleText.text = id
