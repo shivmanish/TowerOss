@@ -57,5 +57,6 @@
     <color name="view_color">#D4D6D7</color>
     <color name="bg_gray">#F1F1F1</color>
     <color name="bg_gray_card">#E8FFE8</color>
+    <color name="bg_card">#F2F2F2</color>
 
 </resources>

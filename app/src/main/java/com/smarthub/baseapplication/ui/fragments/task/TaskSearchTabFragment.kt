@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.FragmentTaskBinding
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadEditDialouge
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
@@ -17,14 +18,14 @@ import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
 
-    private lateinit var binding: FragmentTaskBinding
+    private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         mainViewModel.isActionBarHide(false)
-        binding = FragmentTaskBinding.inflate(inflater, container, false)
+        binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,10 +33,7 @@ class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
         super.onViewCreated(view, savedInstanceState)
         binding.listItem.adapter = TaskAdapter(this@TaskSearchTabFragment)
 
-        binding.addItem.setOnClickListener {
-            var intent = Intent(requireActivity(),TaskActivity::class.java)
-            requireActivity().startActivity(intent)
-        }
+
     }
 
 

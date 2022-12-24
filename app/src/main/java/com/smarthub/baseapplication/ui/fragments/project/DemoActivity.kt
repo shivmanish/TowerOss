@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabFragment
 import com.smarthub.baseapplication.ui.fragments.task.TaskSecondFragment
 import com.smarthub.baseapplication.ui.fragments.task.TaskThirdFragment
 
@@ -13,7 +14,8 @@ class DemoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
-        setFragment(TaskThirdFragment())
+      //  setFragment(TaskThirdFragment())
+        setFragment(TaskSearchTabFragment())
     }
 
     protected fun setFragment(fragment: Fragment) {

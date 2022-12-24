@@ -142,7 +142,6 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
 
         }
     }
-
    class ViewHold6(itemView: View, listener: TaskLisListener) : ViewHold(itemView) {
         var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
 
@@ -160,7 +159,6 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
 
        }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
@@ -191,7 +189,6 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         }
         return ViewHold(view)
     }
-
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
 
@@ -361,12 +358,10 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         if (this.recyclerView!=null)
             this.recyclerView?.scrollToPosition(position)
     }
-
     var recyclerView: RecyclerView?=null
     override fun getItemCount(): Int {
         return list.size
     }
-
     interface TaskLisListener {
         fun attachmentItemClicked()
         fun detailsItemClicked()
