@@ -109,6 +109,10 @@ class HomeViewModel : ViewModel() {
         homeRepo?.siteSearchData(id)
     }
 
+    fun fetchSiteSearchDataNew(id:String) {
+        homeRepo?.siteSearchDataNew(id)
+    }
+
     fun fetchSiteSearchData(id:String,category :String) {
         homeRepo?.siteSearchData(id,category)
     }

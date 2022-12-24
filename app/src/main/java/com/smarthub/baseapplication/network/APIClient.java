@@ -87,6 +87,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SearchList> searchSiteInfoData(@Query("id") String id);
 
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
+    Call<SearchList> searchSiteInfoDataNew(@Body JsonObject data);
+
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
     Call<SearchList> searchSiteInfoData(@Body JsonObject data);

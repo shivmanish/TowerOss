@@ -14,12 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.LanguageActivity
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.home.HomeFragmentDirections
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -85,12 +83,12 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
 
-                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
+                    if (item!=null && (item?.siteID==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
 
                     }else {
                         it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
                         if (fetchedData.isNotEmpty())
-                            homeViewModel.fetchSiteSearchData(fetchedData)
+                            homeViewModel.fetchSiteSearchData("siteID",fetchedData)
                         fetchedData = ""
                     }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
@@ -109,8 +107,8 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
                     AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
-                            "${item?.Siteid},item?.id:${item?.id}")
-                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData)) {
+                            "${item?.siteID},item?.id:${item?.id}")
+                    if (item!=null && (item?.siteID==fetchedData|| item?.id==fetchedData)) {
                         AppLogger.log("return : $fetchedData")
                         return
                     }
@@ -122,9 +120,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     if (selectedCategory.isNotEmpty()){
                         homeViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
                     }else {
-                        homeViewModel.fetchSiteSearchData(fetchedData)
+                        homeViewModel.fetchSiteSearchData("siteID",fetchedData)
                     }
-                    fetchedData = ""
+//                    fetchedData = ""
                 }
                 else if(fetchedData.isEmpty()){
                     Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
@@ -174,7 +172,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onSearchItemSelected(item: SearchListItem?) {
         this.item = item
         if (item!=null){
-            binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
+            binding.searchCardView.text = if (item.siteID!=null) item.siteID.toEditable() else item.id?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }else{

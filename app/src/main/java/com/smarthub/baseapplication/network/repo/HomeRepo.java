@@ -465,6 +465,43 @@ public class HomeRepo {
         });
     }
 
+    public void siteSearchDataNew(String id) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("siteID",id);
+        apiClient.searchSiteInfoDataNew(jsonObject).enqueue(new Callback<SearchList>() {
+            @Override
+            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SearchList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
     public void siteSearchData(String id,String category) {
 
         JsonObject jsonObject = new JsonObject();
