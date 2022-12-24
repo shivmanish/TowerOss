@@ -42,7 +42,8 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <EditText
+                    android:id="@+id/editBackhaul"
                     android:text="MW"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -136,7 +137,9 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <EditText
+                    android:id="@+id/editLinkID"
+
                     android:text="ZGSHD_231Z"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -158,7 +161,8 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <EditText
+                    android:id="@+id/editLinkName"
                     android:text="Fiber Gio"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
