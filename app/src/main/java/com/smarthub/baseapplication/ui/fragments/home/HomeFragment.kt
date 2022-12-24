@@ -5,16 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.FragmentHomeBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
+import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -45,6 +49,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
             Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
+
+        binding.addNewSite.setOnClickListener { clickNewSiteData() }
 
         binding.searchBoxLayout.setOnClickListener {
             (requireActivity() as DashboardActivity).openSearchMenu()
@@ -120,4 +126,12 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+    private fun clickNewSiteData(){
+        val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel!!)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
+
+    }
+
+
 }

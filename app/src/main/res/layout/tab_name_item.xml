@@ -9,7 +9,6 @@
         android:textColor="@color/tab_text_color"
         android:text="tab 1"
         android:textStyle="bold"
-        android:textSize="@dimen/dp20"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

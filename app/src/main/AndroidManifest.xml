@@ -28,22 +28,31 @@
         android:theme="@style/Theme.MDemo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".activities.HandleDeepLinksActivity"
+        <activity
+            android:name=".activities.HandleDeepLinksActivity"
             android:exported="true">
-            <intent-filter android:autoVerify="true">
+
+
+            <intent-filter
+                android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="49.50.93.66:8005"
-                    android:pathPattern="/.*/.*/.*"
-                    android:scheme="https" />
+                    android:scheme="http"
+                    android:host="127.0.0.1"
+                    android:port="8000"
+                    android:pathPattern="/task" />
+
+                <data
+                    android:scheme="http"
+                    android:host="127.0.0.1"
+                    android:port="8000"
+                    android:pathPattern="/menu" />
+
             </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".ui.mapui.MapActivity"
@@ -205,6 +214,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
+            android:exported="true"
+            android:label="@string/setting" />
+        <activity
+            android:name="com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity"
             android:exported="true"
             android:label="@string/setting" />
         <activity

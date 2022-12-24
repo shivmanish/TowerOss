@@ -7,6 +7,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\ankit\\towerOsskey.jks')
+            storePassword 'toweross1234'
+            keyAlias 'key0'
+            keyPassword 'toweross1234'
+        }
+        release {
+            storeFile file('D:\\ankit\\towerOsskey.jks')
+            storePassword 'toweross1234'
+            keyAlias 'key0'
+            keyPassword 'toweross1234'
+        }
+    }
     compileSdk 33
 
     defaultConfig {
@@ -17,6 +31,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {

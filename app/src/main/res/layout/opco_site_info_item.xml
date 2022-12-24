@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginRight="@dimen/dp5"
@@ -11,88 +12,74 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title_layout"
-        android:background="#EBEBEB"
+        android:background="@color/collapse_card_bg"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal">
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/dp45">
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="OPCO/Site Info"
+                android:text="Opco/Site Info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
                 android:textStyle="bold"
-                android:background="#EBEBEB"
-                style="@style/RowTestItemEdit"
                 android:gravity="center_vertical"
                 android:textColor="@color/color1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp50"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_weight="3"
-            android:orientation="horizontal">
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
             <ImageView
-                android:visibility="invisible"
                 android:id="@+id/img_edit"
-                android:padding="@dimen/dp15"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:visibility="gone"
                 android:src="@drawable/edit_ico_black"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/item_title"
-                android:gravity="center_vertical"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                <ImageView
-                    android:padding="@dimen/dp15"
-                    android:id="@+id/img_dropdown"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_arrow_down_black"
-                    />
-            </LinearLayout>
-        </LinearLayout>
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
     <View
         android:id="@+id/item_line"
-        android:alpha="2"
+        android:alpha="1"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
         android:background="@color/view_color"
         android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/dp10"
-        android:layout_marginRight="@dimen/dp10"/>
+        android:layout_width="match_parent"/>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <GridLayout
                 android:visibility="visible"
                 android:columnCount="2"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/dp10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -107,6 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Opco_name"
                         android:text="Vodafone Idea Ltd."
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -124,6 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/opco_site_id"
                         android:text="GUJ_VIL_SC_1026"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -142,6 +131,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/opco_site_name"
                         android:text="VI Store - Naranpura"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -160,6 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/opco_site_status"
                         android:text="On-Air"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -179,6 +170,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/opco_site_type"
                         android:text="Small Cell"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -197,6 +189,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/network_type"
                         android:text="Mobility"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -215,7 +208,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/rfi_acceptence_date"
                         android:text="05-Oct-2018"
+                        android:maxLength="10"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -233,8 +228,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/rfr_date"
                         android:text="10-Nov-2018"
                         style="@style/RowTestItemEdit"
+                        android:maxLength="10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -251,8 +248,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/OPCO_Sign_off_Date"
                         android:text="15-Nov-2018"
                         style="@style/RowTestItemEdit"
+                        android:maxLength="10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -268,6 +267,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Committed_NWA"
                         android:text="99.95"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -286,6 +286,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Alarm_Extension"
                         android:text="Yes"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -303,6 +304,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/RF_Technology"
                         android:text="4G LTE"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -322,7 +324,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Telecom_Equipment_Type"
                         android:text="Indoor"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -339,6 +344,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/RRU_Count"
                         android:text="3"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -357,6 +363,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Sector_Count"
                         android:text="3"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -374,6 +381,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Rack_Count"
                         android:text="2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -392,6 +400,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Antenna_Count"
                         android:text="5"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -409,6 +418,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Antenna_Slot_Used"
                         android:text="4"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -416,50 +426,7 @@
                 </LinearLayout>
             </GridLayout>
 
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:id="@+id/rfEquipment_edit_save"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:gravity="right"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_marginRight="@dimen/dp5"
-                    android:text="Cancle"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/dp14"
-                    android:textColor="@color/card_bg"
-                    android:layout_width="88dp"
-                    android:layout_height="@dimen/dp32"
-                    />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    app:cardBackgroundColor="#FFD72B"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="@dimen/dp5"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:padding="5dp"
-                        android:text="Save"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/dp14"
-                        android:textColor="@color/card_bg"
-                        android:layout_width="88dp"
-                        android:layout_height="@dimen/dp32"
-                        />
-
-                </com.google.android.material.card.MaterialCardView>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
             5 -> return Agreements()
             6-> return SiteProposalTabFragment()
             7 -> return SPApprovalTabFragment()
-            else -> return OpcoSiteInfoFramgment()
+            else -> return ServiceRequestTabFragment(data)
         }
     }
 

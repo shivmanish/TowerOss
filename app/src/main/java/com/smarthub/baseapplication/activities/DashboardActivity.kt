@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
@@ -50,6 +51,21 @@ class  DashboardActivity : BaseActivity() {
                    false
                )
            })
+
+           if (intent.hasExtra("key")) {
+               var path = intent.getStringExtra("key")
+               when (path) {
+                   "task" -> {
+                       navController.navigate(R.id.projectsFragment2)
+                   }
+                   "menu" -> {
+                       navController.navigate(R.id.navigation_menu)
+                   }
+                   "projects" -> {
+                       navController.navigate(R.id.navigation_menu)
+                   }
+               }
+           }
        }
 
     override fun onBackPressed() {

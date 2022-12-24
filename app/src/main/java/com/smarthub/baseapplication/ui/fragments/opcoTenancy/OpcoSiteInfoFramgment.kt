@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
 
-class OpcoSiteInfoFramgment :Fragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
+class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :Fragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
     var binding : OpcoInfoFregmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -20,7 +21,7 @@ class OpcoSiteInfoFramgment :Fragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisList
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = OpcoSiteInfoFragAdapter(this@OpcoSiteInfoFramgment)
+        binding?.listItem?.adapter = OpcoSiteInfoFragAdapter(this@OpcoSiteInfoFramgment,opcodata!!)
     }
 
     override fun attachmentItemClicked() {

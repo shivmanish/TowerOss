@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
@@ -35,6 +36,7 @@ class HomeViewModel : ViewModel() {
     var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
+    var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -50,10 +52,15 @@ class HomeViewModel : ViewModel() {
         basicInfoUpdate = homeRepo?.basicInfoUpdate
         opcoTenancyListResponse = homeRepo?.opcoResponseData
         serviceRequestAllData = homeRepo?.serviceRequestAllData
+        generateSiteId = homeRepo?.generateSiteIdResponse
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
         homeRepo?.updateData(basicinfoModel)
+    }
+
+    fun generateSiteId(basicinfoModel: GenerateSiteIdResponse){
+        homeRepo?.generateSiteId(basicinfoModel)
     }
 
     fun updateOpcoTenancy(opcoListData: List<OpcoDataItem>){
