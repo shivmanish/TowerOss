@@ -45,27 +45,27 @@ class  DashboardActivity : BaseActivity() {
                true
            }
 
-           binding.navView.setOnItemReselectedListener(NavigationBarView.OnItemReselectedListener { item ->
+           binding.navView.setOnItemReselectedListener { item ->
                navController.popBackStack(
                    item.itemId,
                    false
                )
-           })
-
-           if (intent.hasExtra("key")) {
-               var path = intent.getStringExtra("key")
-               when (path) {
-                   "task" -> {
-                       navController.navigate(R.id.projectsFragment2)
-                   }
-                   "menu" -> {
-                       navController.navigate(R.id.navigation_menu)
-                   }
-                   "projects" -> {
-                       navController.navigate(R.id.navigation_menu)
-                   }
-               }
            }
+
+//           if (intent.hasExtra("key")) {
+//               var path = intent.getStringExtra("key")
+//               when (path) {
+//                   "task" -> {
+//                       navController.navigate(R.id.taskDetailFragment)
+//                   }
+//                   "menu" -> {
+//                       navController.navigate(R.id.navigation_menu)
+//                   }
+//                   "projects" -> {
+//                       navController.navigate(R.id.taskDetailFragment)
+//                   }
+//               }
+//           }
        }
 
     override fun onBackPressed() {

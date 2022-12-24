@@ -1,8 +1,8 @@
 package com.smarthub.baseapplication.activities
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.smarthub.baseapplication.databinding.ActivityHandleDeepLinksBinding
 import com.smarthub.baseapplication.utils.AppLogger
 
@@ -22,11 +22,23 @@ class HandleDeepLinksActivity : AppCompatActivity() {
 
         AppLogger.log("path:$path,url:${appLinkData.path}")
 
-        val intent = Intent (this@HandleDeepLinksActivity, DashboardActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        intent.putExtra("key",path)
-        startActivity(intent)
-        finish()
+        if (path == "task"){
+            try {
+                val url: String = appLinkData.path!!.substring(appLinkData.path!!.lastIndexOf('/') + 1)
+
+                AppLogger.log("url:$url")
+                val intent = Intent (this@HandleDeepLinksActivity, TaskDetailActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.putExtra("url",url)
+                startActivity(intent)
+                finish()
+            }catch (e:java.lang.Exception){
+                AppLogger.log("e : "+e.localizedMessage)
+            }
+
+        }else{
+            binding!!.linkText.text = "Data not parsed properly"
+        }
 
     }
 }
