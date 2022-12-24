@@ -13,7 +13,7 @@ import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBindin
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 
 /*activity_new_site_acquisition*/
-class siteAgreementCaredItemActivity : BaseActivity() {
+class SiteAgreementCaredItemActivity : BaseActivity() {
 
     lateinit var binding : ActivityNewSiteAcquisitionBinding
 

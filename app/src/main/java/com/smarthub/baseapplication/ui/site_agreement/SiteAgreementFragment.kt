@@ -68,7 +68,7 @@ class SiteAgreementFragment : Fragment(), SiteLeaseDataAdapterListener {
     }
 
     override fun clickedItem() {
-        requireActivity().startActivity(Intent(requireContext(), siteAgreementCaredItemActivity::class.java))
+        requireActivity().startActivity(Intent(requireContext(), SiteAgreementCaredItemActivity::class.java))
 
     }
 }
