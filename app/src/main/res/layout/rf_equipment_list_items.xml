@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginRight="@dimen/dp5"
@@ -10,69 +11,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lst_item"
+        android:id="@+id/title_layout"
         android:background="@color/collapse_card_bg"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal">
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-    <TextView
-        android:id="@+id/item_title_str"
-        android:text="SO Details"
-        android:textSize="@dimen/dp14"
-        android:paddingStart="@dimen/dp10"
-        android:paddingEnd="@dimen/dp10"
-        android:textStyle="bold"
-        android:background="@color/transparent"
-        style="@style/RowTestItemEdit"
-        android:gravity="center_vertical"
-        android:textColor="@color/color1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
-        />
-        </LinearLayout>
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_weight="3"
-        android:orientation="horizontal">
-            <ImageView
-                android:visibility="invisible"
-                android:id="@+id/edit_rfEquipment_item"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edit_ico_black"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/item_title"
+            android:layout_height="@dimen/dp45">
+            <TextView
+                android:id="@+id/item_title_str"
+                android:text="3G RRH - S3058940 - 10-Nov-22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="marquee"
                 android:gravity="center_vertical"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
             <ImageView
-                android:id="@+id/rfEquipment_list_dropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/img_edit"
+                android:visibility="gone"
+                android:src="@drawable/edit_ico_black"
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
-                />
-            </LinearLayout>
-        </LinearLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
     <View
         android:id="@+id/item_line"
-        android:alpha="2"
-        app:layout_constraintTop_toBottomOf="@+id/lst_item"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
         android:background="@color/view_color"
         android:layout_height="1dp"
-        android:layout_width="match_parent"
-        />
+        android:layout_width="match_parent"/>
 
 
 
@@ -80,6 +74,7 @@
         android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dp25"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -102,6 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Equipment_Name"
                         android:text="RRH"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -119,6 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Model"
                         android:text="xxxx"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -138,6 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Serial_Number"
                         android:text="S3058940"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -156,6 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Make"
                         android:text="xxxx"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -174,6 +173,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Technology"
                         android:text="3G"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -191,6 +191,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Band"
                         android:text="1800 GHz"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -209,6 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Owner_Company"
                         android:text="CloudExtel"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -226,6 +228,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/User_Company"
                         android:text="Nokia"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -244,6 +247,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Operating_Temp"
                         android:text="Min -    |    Max -"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -261,8 +265,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Installation_Date"
                         android:text="10-Nov-22"
                         style="@style/RowTestItemEdit"
+                        android:maxLength="10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -279,6 +285,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Operational_Status"
                         android:text="Live"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -296,6 +303,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Max_Power_Rating"
                         android:text="1.2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -314,6 +322,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Weight"
                         android:text="1.2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -331,6 +340,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Rack_Space_Used"
                         android:text="3U"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -349,6 +359,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:id="@+id/Rack_Number"
                         android:text="R1"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -364,10 +375,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/remark"
                 android:hint="Type Here"
                 android:textSize="15sp"
                 style="@style/RowTestItemEdit"
                 android:text="xwerhtjyg"
+                android:maxLines="1"
+                android:ellipsize="marquee"
                 android:layout_margin="@dimen/dp10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

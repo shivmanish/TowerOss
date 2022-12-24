@@ -6,7 +6,7 @@ data class OpcoDataItem(
     val Opcoinfo: List<Opcoinfo>,
     val PowerLoad: List<Any>,
     val RfAntena: List<Any>,
-    val RfEquipment: List<Any>,
+    val RfEquipment: List<rfEquipmentData>,
     val created_at: String,
     val id: Int,
     val isActive: Boolean,

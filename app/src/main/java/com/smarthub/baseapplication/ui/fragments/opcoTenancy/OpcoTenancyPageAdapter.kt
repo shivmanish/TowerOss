@@ -21,10 +21,10 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
             }
 
             1 -> {
-                return RfEquipmentFragment()
+                return RfEquipmentFragment(opcodata!!)
             }
             2 -> {
-                return BackhaulFragment()
+                return BackhaulFragment(opcodata!!)
             }
             3 -> {
                 return RfAntinaFragment()

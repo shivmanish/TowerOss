@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding.*
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadEditDialouge
 
-class BackhaulFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener , BackhaulListAdapter.ItemClickListener{
+class BackhaulFragment(var opcodata: OpcoDataItem?) :Fragment(), BackhaulListAdapter.BackhaulListListener{
 
     var binding : BackhaulFragmentBinding?=null
 
@@ -24,13 +24,13 @@ class BackhaulFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener , B
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = BackhaulListAdapter(this@BackhaulFragment,this@BackhaulFragment)
+        binding?.listItem?.adapter = BackhaulListAdapter(requireContext(),this@BackhaulFragment,opcodata)
     }
 
-    override fun itemClicked() {
-
-        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
+    override fun attachmentItemClicked() {
+        Toast.makeText(requireContext(),"Attachment Item clicked",Toast.LENGTH_SHORT).show()
     }
+
 
     override fun LinkItemEdit() {
         val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.backhaul_link_list_item_dialouge)
@@ -73,4 +73,22 @@ class BackhaulFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener , B
         bottomSheetDialogFragment.show(childFragmentManager,"category")
         Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
+
+    override fun EditMaterialTableItem(position: Int) {
+        Toast.makeText(requireContext(),"Material Edit Item clicked",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun ViewMaterialTableItem(position: Int) {
+        Toast.makeText(requireContext(),"Material View Item clicked",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun EditPoTableItem(position: Int) {
+        Toast.makeText(requireContext(),"PO Edit Item clicked",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun ViewPoTableItem(position: Int) {
+        Toast.makeText(requireContext(),"PO View Item clicked",Toast.LENGTH_SHORT).show()
+    }
+
+
 }
