@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,6 +52,9 @@ class ServicesRequestFrqagment : Fragment(), ServicesDataAdapterListener {
         viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
             if (it!=null){
                 customerDataAdapter.setData(it.data!!)
+                AppLogger.log("size :${it.data.size}")
+            }else {
+                Toast.makeText(requireContext(),"data not found",Toast.LENGTH_SHORT).show()
             }
         }
     }
