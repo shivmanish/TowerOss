@@ -6,36 +6,35 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadListItemBinding
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.PowerLoadData
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.RfAntinaListAdapter
 
-class PowerLoadAdapter (var listener: ImageAttachmentAdapter.ItemClickListener,var listener1:ItemClickListener) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
+class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDataItem?) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
+    var list : List<PowerLoadData> ? = opcodata?.PowerLoad
+    var currentOpened = -1
+    lateinit var data : PowerLoadData
 
-//    var type1 = "RF Antena1 - 3G"
-/*    var type2 = "Colocation Fee"
-    var type3 = "Rental/ Energy Charges"
-    var type4 = "Invoice/ Payment Status"
-    var type5 = "OPCO Contact Details"*/
 
-    init {
-        list.add("RF Antena1 - 3G")
-        list.add("Colocation Fee")
-        list.add("Rental/ Energy Charges")
-        list.add("Invoice/ Payment Status")
-        list.add("OPCO Contact Details")
-    }
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemView) {
+    class ViewHold1(itemView: View, listener: PowerLoadItemClickListener) :ViewHold(itemView) {
         var binding : PowerLoadListItemBinding = PowerLoadListItemBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(listener)
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.listItemDropdown?.setImageResource(R.drawable.ic_arrow_up)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.listItemDropdown?.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
@@ -48,52 +47,79 @@ class PowerLoadAdapter (var listener: ImageAttachmentAdapter.ItemClickListener,v
         }
     }
 
-    fun addItem() {
-        if (list[0] == "no_data") {
-            list.removeAt(0)
-            list.add(0, "3G RRH - S3058940 - 10-Nov-22")
-            notifyDataSetChanged()
-        } else {
-            list.add(0, "3G RRH - S3058940 - 10-Nov-22")
-            notifyItemChanged(0)
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
-        return ViewHold(view,listener)
+        return when (viewType) {
+            1-> {var view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
+                return ViewHold1(view,listener)}
+            2->{
+                var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
+                return ViewHold(view)
+            }
+            else -> {var view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
+                return ViewHold1(view,listener)}
+        }
+
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.itemTitleDropdown.setOnClickListener {
-            holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-            if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+        if (holder is ViewHold1) {
+            holder.binding.imgEdit.setOnClickListener {
+                listener.EditItemDialouge()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if (currentOpened == position) {
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility = View.GONE
+                holder.binding.itemCollapse.visibility = View.VISIBLE
+                holder.binding.imgEdit.visibility = View.VISIBLE
             } else {
-                holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.collapsingLayout.tag = false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility = View.VISIBLE
+                holder.binding.itemCollapse.visibility = View.GONE
+                holder.binding.imgEdit.visibility = View.GONE
             }
-
-            holder.binding.editListItem.setOnClickListener {
-                listener1.EditItemDialouge()
+            holder.binding.itemTitleStr.text = "3G RRH - S3058940 - 10-Nov-22"
+            if (list !=null && list?.isNotEmpty()!!) {
+                data = list!![position]
+                holder.binding.MeasuredPoint.text=data.MeasurementPoint
+                holder.binding.MeasuredDate.text="ApiDataNot"
+                holder.binding.PowerType.text=data.PowerType[0]
+                holder.binding.LoadCurrent.text=data.LoadCurrent
+                holder.binding.LoadVoltage.text=data.LoadVoltage
+                holder.binding.LoadWattage.text=data.LoadWattage
+                holder.binding.TOCOExcutive.text="Api Data not avbl"
+                holder.binding.OPCOExcutive.text=data.operatorExecutiveName
             }
-            holder.binding.itemLine.visibility =
-                if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-            holder.binding.itemCollapse.visibility =
-                if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-            holder.binding.editListItem.visibility =
-                if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
         }
-        holder.binding.itemTitleStr.text = list[position]
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (list?.isEmpty()!! || list?.get(position)==null)
+            2
+        else
+            1
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
-    interface ItemClickListener{
-        fun itemClicked()
+    var recyclerView: RecyclerView?=null
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
+    }
+
+    interface PowerLoadItemClickListener{
+        fun attachmentItemClicked()
         fun EditItemDialouge()
     }
 

@@ -29,7 +29,7 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
                 return RfAntinaFragment(opcodata!!)
             }
             4 -> {
-                return PowerLoadFragment()
+                return PowerLoadFragment(opcodata!!)
             }
             else -> {
                 return OpcoSiteInfoFramgment(opcodata!!)
