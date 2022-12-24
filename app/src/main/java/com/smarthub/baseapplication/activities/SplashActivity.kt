@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class SplashActivity : BaseActivity() {
+
     private var loginViewModel : LoginViewModel?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +75,7 @@ class SplashActivity : BaseActivity() {
 
         }
     }
+
     private fun showNetworkAlert() {
         val dialogBuilder = AlertDialog.Builder(this)
         val dialogView: View = layoutInflater.inflate(R.layout.network_alert, null)
@@ -108,8 +110,9 @@ class SplashActivity : BaseActivity() {
         }
         b.show()
     }
+
     private val isNetworkConnected: Boolean
-    get() {
+        get() {
             val manager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
             return if (SDK_INT >= Q)
                 manager.getNetworkCapabilities(manager.activeNetwork)?.let {
