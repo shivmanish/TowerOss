@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.customer_tab.powerload
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadListItemBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.PowerLoadData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.RfAntinaListAdapter
 
 class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDataItem?) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
 
@@ -38,7 +37,7 @@ class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDa
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
@@ -50,18 +49,21 @@ class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDa
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
-            1-> {var view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
+            1-> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
                 return ViewHold1(view,listener)}
             2->{
-                var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
                 return ViewHold(view)
             }
-            else -> {var view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
+            else -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
                 return ViewHold1(view,listener)}
         }
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {

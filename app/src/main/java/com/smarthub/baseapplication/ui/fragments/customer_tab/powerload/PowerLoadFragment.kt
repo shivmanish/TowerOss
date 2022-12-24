@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(), PowerLoadAdapter.PowerLoadItemClickListener {
 
