@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +36,7 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
@@ -47,22 +48,23 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
                 return ViewHold1(view,listener)
             }
             2 ->{
-                var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
                 return ViewHold(view)
             }
 
             else -> {
-                var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
                 return ViewHold1(view,listener)
             }
         }
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
@@ -88,32 +90,30 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
             holder.binding.itemTitleStr.text = "3G RRH - S3058940 - 10-Nov-22"
             if (list !=null && list?.isNotEmpty()!!) {
                 data = list!![position]
-                if (data != null) {
-                   holder.binding.AntennaSerialNumber.text=data.AntenaSerialNumber
-                    holder.binding.AntennaMake.text=data.AntenaMake
-                    holder.binding.AntennaModel.text=data.AntenaModel
-                    holder.binding.Technology.text=data.Technology
-                    holder.binding.InstalledHeight.text=data.InstalledHeight
-                    holder.binding.SpaceUsed.text=data.SpaceUsed
-                    holder.binding.PoleID.text=data.TowerPoleId
-                    holder.binding.SectorNumber.text=data.SectorNumber
-                    holder.binding.AntennaShape.text=data.AntenaShape
-                    holder.binding.AntennaSize.text=data.AntenaSize
-                    holder.binding.AntennaWeight.text=data.AntenaWeight
-                    holder.binding.AntennaType.text=data.AntenaType
-                    holder.binding.AntennaOrientation.text=data.AntenaOrentiation
-                    holder.binding.AntennaTilt.text=data.AntenaTilt
-                    holder.binding.TotalPowerRating.text=data.AntenaTotalPowerRating
-                    holder.binding.FeederCableLength.text=data.FeederCableLength
-                    holder.binding.PowerCableLength.text=data.PowerCableLength
-                    holder.binding.CPRICableLength.text=data.CPRICableLength
-                    holder.binding.GPSCableLength.text=data.GPSCableLength
-                    holder.binding.OwnerCompany.text=data.OwnerCompany
-                    holder.binding.UserCompany.text=data.UserCompany
-                    holder.binding.InstallationDate.text=data.InstallationDate
-                    holder.binding.OperationalStatus.text=data.LinkOperationalStatus
-                    holder.binding.remark.text=data.Remarks
-                }
+                holder.binding.AntennaSerialNumber.text=data.AntenaSerialNumber
+                holder.binding.AntennaMake.text=data.AntenaMake
+                holder.binding.AntennaModel.text=data.AntenaModel
+                holder.binding.Technology.text=data.Technology
+                holder.binding.InstalledHeight.text=data.InstalledHeight
+                holder.binding.SpaceUsed.text=data.SpaceUsed
+                holder.binding.PoleID.text=data.TowerPoleId
+                holder.binding.SectorNumber.text=data.SectorNumber
+                holder.binding.AntennaShape.text=data.AntenaShape
+                holder.binding.AntennaSize.text=data.AntenaSize
+                holder.binding.AntennaWeight.text=data.AntenaWeight
+                holder.binding.AntennaType.text=data.AntenaType
+                holder.binding.AntennaOrientation.text=data.AntenaOrentiation
+                holder.binding.AntennaTilt.text=data.AntenaTilt
+                holder.binding.TotalPowerRating.text=data.AntenaTotalPowerRating
+                holder.binding.FeederCableLength.text=data.FeederCableLength
+                holder.binding.PowerCableLength.text=data.PowerCableLength
+                holder.binding.CPRICableLength.text=data.CPRICableLength
+                holder.binding.GPSCableLength.text=data.GPSCableLength
+                holder.binding.OwnerCompany.text=data.OwnerCompany
+                holder.binding.UserCompany.text=data.UserCompany
+                holder.binding.InstallationDate.text=data.InstallationDate
+                holder.binding.OperationalStatus.text=data.LinkOperationalStatus
+                holder.binding.remark.text=data.Remarks
             }
         }
     }
