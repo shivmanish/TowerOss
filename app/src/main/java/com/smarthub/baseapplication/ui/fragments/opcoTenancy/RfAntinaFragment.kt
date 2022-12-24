@@ -8,9 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfAnteena.RfAnteenaItemsEditDialouge
 
-class RfAntinaFragment :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListener {
+class RfAntinaFragment(var opcodata: OpcoDataItem?) :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListener {
 
     var binding : RfAntinaFragmentBinding?=null
 
@@ -22,7 +23,7 @@ class RfAntinaFragment :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = RfAntinaListAdapter(this@RfAntinaFragment)
+        binding?.listItem?.adapter = RfAntinaListAdapter(this@RfAntinaFragment,opcodata!!)
     }
 
 

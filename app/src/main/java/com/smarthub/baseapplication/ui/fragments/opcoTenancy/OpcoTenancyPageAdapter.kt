@@ -26,7 +26,7 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
                 return BackhaulFragment(opcodata!!)
             }
             3 -> {
-                return RfAntinaFragment()
+                return RfAntinaFragment(opcodata!!)
             }
             4 -> {
                 return PowerLoadFragment()

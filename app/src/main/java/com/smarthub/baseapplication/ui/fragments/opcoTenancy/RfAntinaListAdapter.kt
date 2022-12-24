@@ -6,19 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
+class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: OpcoDataItem?) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
+    var list : List<RfAnteenaData> ? = opcodata?.RfAntena
     var currentOpened = -1
-
-
-
-    init {
-        list.add("RF Antena1 - 3G")
-
-    }
+    lateinit var data : RfAnteenaData
 
     class ViewHold(itemView: View,listener: RfAnteenaItemClickListener) : RecyclerView.ViewHolder(itemView) {
         var binding : RfAntinaListItemBinding = RfAntinaListItemBinding.bind(itemView)
@@ -47,6 +44,9 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener) : RecyclerVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+        return when (viewType) {
+            1 ->
+        }
         var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
         return ViewHold(view,listener)
     }
@@ -73,11 +73,18 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener) : RecyclerVi
             holder.binding.itemCollapse.visibility=View.GONE
             holder.binding.imgEdit.visibility=View.GONE
         }
-        holder.binding.itemTitleStr.text = list[position]
+        holder.binding.itemTitleStr.text = "3G RRH - S3058940 - 10-Nov-22"
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (list?.isEmpty()!! || list?.get(position)==null)
+            2
+        else
+            1
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     var recyclerView: RecyclerView?=null
