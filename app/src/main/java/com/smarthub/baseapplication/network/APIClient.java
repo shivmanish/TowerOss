@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.model.otp.UserPasswordGet;
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate;
 import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
+import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -121,6 +122,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<ServiceRequestAllData> fetchsServiceRequestData(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<TaskDataList> getTaskDataById(@Body JsonObject data);
 
 
 }

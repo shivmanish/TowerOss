@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
@@ -37,6 +38,7 @@ class HomeViewModel : ViewModel() {
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
+    private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -53,6 +55,7 @@ class HomeViewModel : ViewModel() {
         opcoTenancyListResponse = homeRepo?.opcoResponseData
         serviceRequestAllData = homeRepo?.serviceRequestAllData
         generateSiteId = homeRepo?.generateSiteIdResponse
+        taskDataList = homeRepo?.taskDataList
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
