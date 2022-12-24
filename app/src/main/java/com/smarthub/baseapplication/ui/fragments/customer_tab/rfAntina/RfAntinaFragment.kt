@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.adapter.customer.RfAntinaListAdapter
 
-class RfAntinaFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener,RfAntinaListAdapter.ItemClickListener {
+class RfAntinaFragment :Fragment(),RfAntinaListAdapter.RfAnteenaItemClickListener {
 
     var binding : RfAntinaFragmentBinding?=null
 
@@ -23,11 +23,12 @@ class RfAntinaFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener,RfA
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = RfAntinaListAdapter(this@RfAntinaFragment,this@RfAntinaFragment)
+        binding?.listItem?.adapter = RfAntinaListAdapter(this@RfAntinaFragment)
     }
 
-    override fun itemClicked() {
-        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
+
+    override fun attachmentItemClicked() {
+        Toast.makeText(requireContext(),"Attachment Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun editModeCliked(){
