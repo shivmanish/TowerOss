@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.UtilityEquipFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.SmpsTableAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.*
-import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
-import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.Utils
 
 class EquipUtilityFragment : Fragment() {
@@ -30,6 +30,30 @@ class EquipUtilityFragment : Fragment() {
             val dalouge = SMPSDialouge()
             dalouge.show(childFragmentManager, "")
         }
+        binding.smpsRectifierTable.adapter =
+            SmpsTableAdapter(requireContext(), object : TableCallback {
+                override fun editItem(obj: Any?) {
+                    val dalouge= SmpsRectifierTableEditDialouge()
+                    dalouge.show(childFragmentManager, "")
+                }
+
+                override fun viewItem(obj: Any?) {
+                    val dalouge= SmpsRectifierTableEditDialouge ()
+                    dalouge.show(childFragmentManager, "")
+                }
+            })
+        binding.smpsPlanLeadTable.adapter =
+            SmpsTableAdapter(requireContext(), object : TableCallback {
+                override fun editItem(obj: Any?) {
+                    val dalouge= SmpsPlannedTableEditDialouge()
+                    dalouge.show(childFragmentManager, "")
+                }
+
+                override fun viewItem(obj: Any?) {
+                    val dalouge= SmpsPlannedTableEditDialouge ()
+                    dalouge.show(childFragmentManager, "")
+                }
+            })
 
         binding.smpsRoot.setOnClickListener {
             if (binding.itemCollapseSmps.visibility == View.VISIBLE) {
@@ -49,6 +73,19 @@ class EquipUtilityFragment : Fragment() {
             val dalouge = BatteryBankDialouge()
             dalouge.show(childFragmentManager, "")
         }
+        binding.bBankTable.adapter =
+            SmpsTableAdapter(requireContext(), object : TableCallback {
+                override fun editItem(obj: Any?) {
+                    val dalouge= SmpsRectifierTableEditDialouge()
+                    dalouge.show(childFragmentManager, "")
+                }
+
+                override fun viewItem(obj: Any?) {
+                    val dalouge= SmpsRectifierTableEditDialouge ()
+                    dalouge.show(childFragmentManager, "")
+                }
+            })
+
         binding.bBankRoot.setOnClickListener {
             if (binding.itemCollapseBBank.visibility == View.VISIBLE) {
                 Utils.collapse(binding.itemCollapseBBank)
@@ -68,6 +105,19 @@ class EquipUtilityFragment : Fragment() {
             val dalouge = DgDialouge()
             dalouge.show(childFragmentManager, "")
         }
+        binding.dgAdditionalEditTable.adapter =
+            SmpsTableAdapter(requireContext(), object : TableCallback {
+                override fun editItem(obj: Any?) {
+                    val dalouge= SmpsRectifierTableEditDialouge()
+                    dalouge.show(childFragmentManager, "")
+                }
+
+                override fun viewItem(obj: Any?) {
+                    val dalouge= SmpsRectifierTableEditDialouge ()
+                    dalouge.show(childFragmentManager, "")
+                }
+            })
+
         binding.dgRoot.setOnClickListener {
             if (binding.itemCollapseDg.visibility == View.VISIBLE) {
                 Utils.collapse(binding.itemCollapseDg)
@@ -155,8 +205,6 @@ class EquipUtilityFragment : Fragment() {
                 binding.dcdbEdit.visibility = View.VISIBLE
             }
         }
-
-        
 
 
     }

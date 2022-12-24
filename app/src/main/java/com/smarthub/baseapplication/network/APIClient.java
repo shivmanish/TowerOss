@@ -100,7 +100,7 @@ public interface APIClient {
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_DATA)
+    @POST(EndPoints.SERVICE_REQUEST_GENERATE_ITEM)
     Call<GenerateSiteIdResponse> generateSiteId(@Body GenerateSiteIdResponse basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})

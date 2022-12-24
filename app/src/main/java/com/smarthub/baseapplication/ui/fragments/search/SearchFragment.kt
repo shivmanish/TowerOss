@@ -113,9 +113,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                         return
                     }
                     isDataFetched = false
-                    if (binding.loadingProgress.visibility !=View.VISIBLE)
+                    if (binding.loadingProgress.visibility != View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
-                    binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
+                    binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
 
                     if (selectedCategory.isNotEmpty()){
                         homeViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
@@ -137,12 +137,12 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
 
         }
-        if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
+        if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
-        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner){
-            if(it!=null){
-                if (it.status==Resource.Status.SUCCESS){
-                    if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
+        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS) {
+                    if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
                         homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
                     AppLogger.log("Site data fetched")
                     Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
@@ -151,9 +151,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
                     AppLogger.log("Request failed e :${it.message}")
                 }
-            }else {
+            } else {
                 AppLogger.log("Something went wrong")
-                Toast.makeText(requireContext(),"Something went wrong",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
         binding.viewOnMap.setOnClickListener {
@@ -175,13 +175,13 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             binding.searchCardView.text = if (item.siteID!=null) item.siteID.toEditable() else item.id?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        }else{
+        } else {
             disableButton()
         }
     }
 
 
-    fun disableButton(){
+    fun disableButton() {
         binding.viewOnIbo.alpha = 0.2f
         binding.viewOnMap.alpha = 0.2f
         binding.viewOnIbo.isEnabled = false
@@ -189,7 +189,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
     }
 
-    private fun enableButton(){
+    private fun enableButton() {
         binding.viewOnIbo.alpha = 1.0f
         binding.viewOnMap.alpha = 1.0f
         binding.viewOnIbo.isEnabled = true

@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.BatteryFragmentBinding
 import com.smarthub.baseapplication.databinding.EquipRoomFragmentBinding
 import com.smarthub.baseapplication.databinding.TowerCivilFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PoleTableAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleDialouge
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleTableEditDialouge
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.TowerDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
@@ -37,6 +40,18 @@ class TowerCivilFragment:Fragment() {
             val dalouge = PoleDialouge()
             dalouge.show(childFragmentManager,"")
         }
+        binding.poleTable.adapter = PoleTableAdapter(requireContext(),object:TableCallback{
+            override fun editItem(obj: Any?) {
+                val dalouge = PoleTableEditDialouge()
+                dalouge.show(childFragmentManager,"")
+            }
+
+            override fun viewItem(obj: Any?) {
+                val dalouge = PoleTableEditDialouge()
+                dalouge.show(childFragmentManager,"")
+            }
+
+        })
         binding.equipmentRoot.setOnClickListener {
             if(binding.itemCollapseEquipment.visibility == View.VISIBLE){
                 Utils.collapse(binding.itemCollapseEquipment)
