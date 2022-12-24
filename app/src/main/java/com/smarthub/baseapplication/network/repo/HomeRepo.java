@@ -415,6 +415,7 @@ public class HomeRepo {
 //                   data update
                     if (data.getItem()!=null && !data.getItem().isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.getItem().get(0).getOperator()), 200));
+                        serviceRequestAllData.postValue(Resource.success(data.getItem().get(0).getServicerequestmain(), 200));
                     }
                 }
             }
@@ -435,11 +436,9 @@ public class HomeRepo {
             public void onResponse(Call<SearchList> call, Response<SearchList> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
+                }else {
                     AppLogger.INSTANCE.log("error :"+response);
-                }else if (response!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else AppLogger.INSTANCE.log("getProfileData response is null");
+                }
             }
 
             @Override
