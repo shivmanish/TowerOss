@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -261,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -269,9 +270,164 @@
                         android:orientation="vertical"
                         android:paddingBottom="@dimen/dp10">
 
-                        <androidx.recyclerview.widget.RecyclerView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:maxLines="1"
+                                    android:text="Pole"
+                                    android:textColor="#3F4E69"
+                                    android:textSize="@dimen/dp15"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:id="@+id/lnAddNew"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                                        android:id="@+id/ic_menu_close"
+                                        android:layout_width="@dimen/dp20"
+                                        android:layout_height="@dimen/dp20"
+                                        android:background="@color/color1"
+                                        android:backgroundTint="@color/color1"
+
+
+                                        android:elevation="@dimen/dp12"
+                                        android:innerRadius="0dp"
+                                        android:shape="ring"
+                                        android:thicknessRatio="1.9"
+                                        app:cardCornerRadius="@dimen/dp40">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentTop="true"
+
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_gravity="center"
+                                            android:padding="@dimen/dp5"
+                                            android:src="@drawable/ic_baseline_add_24"></ImageView>
+                                    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignBaseline="@+id/ic_menu_close"
+                                        android:layout_marginStart="0dp"
+                                        android:layout_toRightOf="@+id/ic_menu_close"
+
+
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="center"
+                                        android:paddingLeft="@dimen/dp10"
+                                        android:text="Add New"
+                                        android:textColor="@color/color1"
+                                        android:textSize="@dimen/sp12" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:alpha="0.37"
+                                android:layout_marginTop="@dimen/dp5"
+                                android:background="@color/view_color" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp5"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:maxLines="1"
+                                    android:text="Pole Height"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/dp11"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="Height"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/dp11"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="Antenna Space"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/dp11"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.3"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="item code"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/dp11"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:alpha="0.37"
+                                android:layout_marginTop="@dimen/dp5"
+                                android:background="@color/view_color" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/pole_table"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/pole_table_item"></androidx.recyclerview.widget.RecyclerView>
+
+                        </LinearLayout>
+
 
                         <GridLayout
                             android:layout_width="match_parent"
