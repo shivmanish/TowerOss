@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.home.HomeFragmentDirections
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -96,7 +97,8 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 }else {
                     Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
                 }
-            }else{
+            }
+            else{
                 Toast.makeText(requireContext(),"error in fetching data",Toast.LENGTH_SHORT).show()
             }
         }
@@ -158,6 +160,12 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             startActivity(intent)
 
         }
+
+        binding.notificationLayout.setOnClickListener {
+            findNavController().navigate(SearchFragmentDirections.actionSiteBoardToNotificationsFragment2())
+            Log.d("notification Nvigate","navigated from home to navigation fragment")
+        }
+
     }
 
     override fun onSearchItemSelected(item: SearchListItem?) {
