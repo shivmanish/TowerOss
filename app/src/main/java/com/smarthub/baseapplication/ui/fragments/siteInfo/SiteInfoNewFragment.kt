@@ -115,11 +115,12 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         if (dropdowndata != null) {
             val bottomSheetDialogFragment =
                 OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, id, dropdowndata?.operationalInfo!!, operationalInfo,homeViewModel)
-                bottomSheetDialogFragment.show(childFragmentManager, "category")
+            bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-               Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
+
     override fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition,id : String) {
         if (dropdowndata != null) {
             val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet,id, dropdowndata?.geoCondition!!, geoCondition,homeViewModel)
@@ -128,6 +129,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
+
     override fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces,id : String) {
         if (dropdowndata != null) {
         val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,id,dropdowndata?.safetyAndAccess!!,safetyAndAccess,homeViewModel)
