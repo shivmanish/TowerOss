@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentTaskBinding
-import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadEditDialouge
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAssignToDialouge
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.powerload
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.PowerLoad
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +20,7 @@ class PowerLoadEditDialouge (contentLayoutId: Int): BottomSheetDialogFragment(co
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = PowerLoadListItemDialougeBinding.inflate(inflater)
         return binding.root
     }

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.powerload
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.PowerLoadData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDataItem?) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
+class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: OpcoDataItem?) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
 
     var list : List<PowerLoadData> ? = opcodata?.PowerLoad
     var currentOpened = -1
@@ -20,7 +20,7 @@ class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDa
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View, listener: PowerLoadItemClickListener) :ViewHold(itemView) {
+    class ViewHold1(itemView: View, listener: PowerLoadItemClickListener) : ViewHold(itemView) {
         var binding : PowerLoadListItemBinding = PowerLoadListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -51,14 +51,16 @@ class PowerLoadAdapter (var listener:PowerLoadItemClickListener,opcodata: OpcoDa
         return when (viewType) {
             1-> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
-                return ViewHold1(view,listener)}
+                return ViewHold1(view,listener)
+            }
             2->{
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
                 return ViewHold(view)
             }
             else -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
-                return ViewHold1(view,listener)}
+                return ViewHold1(view,listener)
+            }
         }
 
     }
