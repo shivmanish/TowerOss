@@ -138,7 +138,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.site_agreement.siteAgreementCaredItemActivity"
+            android:name=".ui.site_agreement.SiteAgreementCaredItemActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
