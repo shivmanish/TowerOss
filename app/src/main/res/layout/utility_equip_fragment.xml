@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -294,7 +294,6 @@
                                     android:textStyle="bold" />
 
                                 <LinearLayout
-                                    android:id="@+id/lnAddNew"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
@@ -302,7 +301,71 @@
                                     android:orientation="horizontal">
 
                                     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                                        android:id="@+id/ic_menu_close"
+                                        android:layout_width="@dimen/dp20"
+                                        android:layout_height="@dimen/dp20"
+                                        android:background="@color/color1"
+                                        android:backgroundTint="@color/color1"
+
+
+                                        android:elevation="@dimen/dp12"
+                                        android:innerRadius="0dp"
+                                        android:shape="ring"
+                                        android:thicknessRatio="1.9"
+                                        app:cardCornerRadius="@dimen/dp40">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentTop="true"
+
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_gravity="center"
+                                            android:padding="@dimen/dp5"
+                                            android:src="@drawable/ic_baseline_add_24"></ImageView>
+                                    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignBaseline="@+id/ic_menu_close"
+                                        android:layout_marginStart="0dp"
+                                        android:layout_toRightOf="@+id/ic_menu_close"
+
+
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="center"
+                                        android:paddingLeft="@dimen/dp10"
+                                        android:text="Add New"
+                                        android:textColor="@color/color1"
+                                        android:textSize="@dimen/sp12" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:maxLines="1"
+                                    android:text="Rectifier Module"
+                                    android:textColor="#3F4E69"
+                                    android:textSize="@dimen/dp15"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                                         android:layout_width="@dimen/dp20"
                                         android:layout_height="@dimen/dp20"
                                         android:background="@color/color1"
@@ -359,7 +422,7 @@
                                     android:maxLines="1"
                                     android:text="Slot no"
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/dp13"
+                                    android:textSize="@dimen/dp11"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -373,7 +436,7 @@
                                     android:maxLines="1"
                                     android:text="Rating"
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/dp13"
+                                    android:textSize="@dimen/dp11"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -388,7 +451,7 @@
                                     android:maxLines="1"
                                     android:text="Model no."
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/dp13"
+                                    android:textSize="@dimen/dp11"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -402,7 +465,7 @@
                                     android:maxLines="1"
                                     android:text="item code"
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/dp13"
+                                    android:textSize="@dimen/dp11"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
@@ -412,7 +475,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/equipment_table_item"></androidx.recyclerview.widget.RecyclerView>
+                                tools:listitem="@layout/smps_rectifier_table_item"></androidx.recyclerview.widget.RecyclerView>
 
                         </LinearLayout>
 
@@ -503,7 +566,7 @@
                                     android:ellipsize="marquee"
                                     android:fontFamily="@font/poppins_regular"
                                     android:maxLines="1"
-                                    android:text="Slot no"
+                                    android:text="MCB No."
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dp13"
                                     android:textStyle="bold" />
@@ -517,7 +580,7 @@
                                     android:fontFamily="@font/poppins_regular"
                                     android:gravity="center"
                                     android:maxLines="1"
-                                    android:text="Rating"
+                                    android:text="Connected Equip"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dp13"
                                     android:textStyle="bold" />
@@ -532,24 +595,11 @@
                                     android:fontFamily="@font/poppins_regular"
                                     android:gravity="center"
                                     android:maxLines="1"
-                                    android:text="Model no."
+                                    android:text="MCB rating (Amp)"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dp13"
                                     android:textStyle="bold" />
 
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1.3"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="item code"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp13"
-                                    android:textStyle="bold" />
                             </LinearLayout>
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -557,8 +607,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/equipment_table_item"></androidx.recyclerview.widget.RecyclerView>
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
                         </LinearLayout>
 
@@ -826,6 +875,143 @@
 
 
                         </GridLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:maxLines="1"
+                                android:text="Battery module"
+                                android:textColor="#3F4E69"
+                                android:textSize="@dimen/dp15"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                                    android:layout_width="@dimen/dp20"
+                                    android:layout_height="@dimen/dp20"
+                                    android:background="@color/color1"
+                                    android:backgroundTint="@color/color1"
+
+
+                                    android:elevation="@dimen/dp12"
+                                    android:innerRadius="0dp"
+                                    android:shape="ring"
+                                    android:thicknessRatio="1.9"
+                                    app:cardCornerRadius="@dimen/dp40">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_gravity="center"
+                                        android:padding="@dimen/dp5"
+                                        android:src="@drawable/ic_baseline_add_24"/>
+                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/ic_menu_close"
+                                    android:layout_marginStart="0dp"
+                                    android:layout_toRightOf="@+id/ic_menu_close"
+
+
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/dp10"
+                                    android:text="Add New"
+                                    android:textColor="@color/color1"
+                                    android:textSize="@dimen/sp12" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:maxLines="1"
+                                android:text="Slot no"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="Rating"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp10"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="Model no."
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.3"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="item code"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/b_bank_table"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/smps_rectifier_table_item"></androidx.recyclerview.widget.RecyclerView>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -1111,6 +1297,144 @@
 
 
                         </GridLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:maxLines="1"
+                                android:text="Additional Accesorries"
+                                android:textColor="#3F4E69"
+                                android:textSize="@dimen/dp15"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                                    android:layout_width="@dimen/dp20"
+                                    android:layout_height="@dimen/dp20"
+                                    android:background="@color/color1"
+                                    android:backgroundTint="@color/color1"
+
+
+                                    android:elevation="@dimen/dp12"
+                                    android:innerRadius="0dp"
+                                    android:shape="ring"
+                                    android:thicknessRatio="1.9"
+                                    app:cardCornerRadius="@dimen/dp40">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_gravity="center"
+                                        android:padding="@dimen/dp5"
+                                        android:src="@drawable/ic_baseline_add_24"/>
+                                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBaseline="@+id/ic_menu_close"
+                                    android:layout_marginStart="0dp"
+                                    android:layout_toRightOf="@+id/ic_menu_close"
+
+
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/dp10"
+                                    android:text="Add New"
+                                    android:textColor="@color/color1"
+                                    android:textSize="@dimen/sp12" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:maxLines="1"
+                                android:text="Slot no"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="Rating"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp10"
+                                android:layout_weight="1"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="item description"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.3"
+                                android:ellipsize="marquee"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="Make"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp11"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/dg_additional_edit_table"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/smps_rectifier_table_item"/>
+
 
                     </LinearLayout>
                 </LinearLayout>

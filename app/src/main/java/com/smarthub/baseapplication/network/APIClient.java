@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.model.otp.UserPasswordGet;
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate;
 import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
+import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -87,6 +88,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SearchList> searchSiteInfoData(@Query("id") String id);
 
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
+    Call<SearchList> searchSiteInfoDataNew(@Body JsonObject data);
+
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
     Call<SearchList> searchSiteInfoData(@Body JsonObject data);
@@ -96,7 +100,7 @@ public interface APIClient {
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_DATA)
+    @POST(EndPoints.SERVICE_REQUEST_GENERATE_ITEM)
     Call<GenerateSiteIdResponse> generateSiteId(@Body GenerateSiteIdResponse basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
@@ -118,6 +122,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<ServiceRequestAllData> fetchsServiceRequestData(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<TaskDataList> getTaskDataById(@Body JsonObject data);
 
 
 }

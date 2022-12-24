@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
+import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
@@ -43,6 +44,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serviceRequestAllData;
     private SingleLiveEvent<Resource<GenerateSiteIdResponse>> generateSiteIdResponse;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
+    private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -85,10 +87,14 @@ public class HomeRepo {
         opcoDataResponse = new SingleLiveEvent<>();
         serviceRequestAllData = new SingleLiveEvent<>();
         generateSiteIdResponse = new SingleLiveEvent<>();
+        taskDataList = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
         return homeResponse;
+    }
+    public SingleLiveEvent<Resource<TaskDataList>> getTaskDataList() {
+        return taskDataList;
     }
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getSiteDropDownDataResponse() {
@@ -465,6 +471,43 @@ public class HomeRepo {
         });
     }
 
+    public void siteSearchDataNew(String id) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("siteID",id);
+        apiClient.searchSiteInfoDataNew(jsonObject).enqueue(new Callback<SearchList>() {
+            @Override
+            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SearchList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
     public void siteSearchData(String id,String category) {
 
         JsonObject jsonObject = new JsonObject();
@@ -541,6 +584,48 @@ public class HomeRepo {
                     dropDownResoonse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     dropDownResoonse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getTaskById(String id) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("gettaskdata",id);
+        apiClient.getTaskDataById(jsonObject).enqueue(new Callback<TaskDataList>() {
+            @Override
+            public void onResponse(Call<TaskDataList> call, Response<TaskDataList> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TaskDataList> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<TaskDataList> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+//                    Logger.getLogger("ProfileRepo").warning(response.toString());
+                    taskDataList.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    taskDataList.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    taskDataList.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    taskDataList.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

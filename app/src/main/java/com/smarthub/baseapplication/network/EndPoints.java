@@ -12,10 +12,14 @@ public class EndPoints {
     public static final String SITE_INFO_MODEL = "/toweross/Basicinfoapi/";
     public static final String SITE_INFO_DATA = "/toweross/SiteInfoApi/";
     public static final String SITE_INFO_SEARCH_DATA = "/toweross/Basicinfosearchdata/";
+    public static final String SITE_INFO_SEARCH_DATA_NEW = "/toweross/Sitebasicgetdata/";
     public static final String SITE_INFO_SEARCH_DATA_URL = "/toweross/Sitebasicgetdata/";
     public static final String DASHBOARD_DATA_URL = "/toweross/dashboard/";
     public static final String PROJECTS_DATA_URL = "/toweross/workflow/";
+    public static final String WORKFLOW_DATA_URL = "/toweross/workflow/";
     public static final String SERVICE_REQUEST_DATA_URL = "/toweross/ServiceRequestMain/";
+    public static final String SERVICE_REQUEST_GENERATE_ITEM = "/toweross/Generatesitename/";
+
 
     public static final String BASIC_INFO_UPDATE = "/Basicinfoapi/";
 }

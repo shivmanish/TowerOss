@@ -14,12 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.LanguageActivity
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.home.HomeFragmentDirections
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -85,12 +83,12 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
 
-                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
+                    if (item!=null && (item?.siteID==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
 
                     }else {
                         it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
                         if (fetchedData.isNotEmpty())
-                            homeViewModel.fetchSiteSearchData(fetchedData)
+                            homeViewModel.fetchSiteSearchData("siteID",fetchedData)
                         fetchedData = ""
                     }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
@@ -109,22 +107,22 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
                     AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
-                            "${item?.Siteid},item?.id:${item?.id}")
-                    if (item!=null && (item?.Siteid==fetchedData|| item?.id==fetchedData)) {
+                            "${item?.siteID},item?.id:${item?.id}")
+                    if (item!=null && (item?.siteID==fetchedData|| item?.id==fetchedData)) {
                         AppLogger.log("return : $fetchedData")
                         return
                     }
                     isDataFetched = false
-                    if (binding.loadingProgress.visibility !=View.VISIBLE)
+                    if (binding.loadingProgress.visibility != View.VISIBLE)
                         binding.loadingProgress.visibility = View.VISIBLE
-                    binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, 0,0)
+                    binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
 
                     if (selectedCategory.isNotEmpty()){
                         homeViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
                     }else {
-                        homeViewModel.fetchSiteSearchData(fetchedData)
+                        homeViewModel.fetchSiteSearchData("siteID",fetchedData)
                     }
-                    fetchedData = ""
+//                    fetchedData = ""
                 }
                 else if(fetchedData.isEmpty()){
                     Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
@@ -134,25 +132,28 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         })
         binding.viewOnIbo.setOnClickListener {
 //            binding.searchCardView.text.clear()
-            homeViewModel.fetchSiteInfoData(item?.id!!)
+//            homeViewModel.fetchSiteInfoData(item?.id!!)
+
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
+
         }
-        if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
+        if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
-        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner){
-            if(it!=null){
-                if (it.status==Resource.Status.SUCCESS){
-                    if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
+        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS) {
+                    if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
                         homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
                     AppLogger.log("Site data fetched")
                     Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(item?.Siteid!!,item?.id!!))
+                    findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${it.data?.item!![0].id}"))
                 }else{
                     Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
                     AppLogger.log("Request failed e :${it.message}")
                 }
-            }else {
+            } else {
                 AppLogger.log("Something went wrong")
-                Toast.makeText(requireContext(),"Something went wrong",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
         binding.viewOnMap.setOnClickListener {
@@ -171,16 +172,16 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onSearchItemSelected(item: SearchListItem?) {
         this.item = item
         if (item!=null){
-            binding.searchCardView.text = if (item.Siteid!=null) item.Siteid.toEditable() else item.id?.toEditable()
+            binding.searchCardView.text = if (item.siteID!=null) item.siteID.toEditable() else item.id?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        }else{
+        } else {
             disableButton()
         }
     }
 
 
-    fun disableButton(){
+    fun disableButton() {
         binding.viewOnIbo.alpha = 0.2f
         binding.viewOnMap.alpha = 0.2f
         binding.viewOnIbo.isEnabled = false
@@ -188,7 +189,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
     }
 
-    private fun enableButton(){
+    private fun enableButton() {
         binding.viewOnIbo.alpha = 1.0f
         binding.viewOnMap.alpha = 1.0f
         binding.viewOnIbo.isEnabled = true
