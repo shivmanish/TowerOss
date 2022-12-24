@@ -9,22 +9,15 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerInvoiceAdapter
 
-class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener,var listner2: ItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
+class RfAntinaListAdapter(var listener:  RfAnteenaItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
-//    var type1 = "RF Antena1 - 3G"
-/*    var type2 = "Colocation Fee"
-    var type3 = "Rental/ Energy Charges"
-    var type4 = "Invoice/ Payment Status"
-    var type5 = "OPCO Contact Details"*/
+
 
     init {
         list.add("RF Antena1 - 3G")
-        list.add("Colocation Fee")
-        list.add("Rental/ Energy Charges")
-        list.add("Invoice/ Payment Status")
-        list.add("OPCO Contact Details")
+
     }
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -64,7 +57,7 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             }
 
             holder.binding.editListItem.setOnClickListener {
-                listner2.editModeCliked()
+                listener.editModeCliked()
             }
 
             holder.binding.itemLine.visibility =
@@ -81,8 +74,8 @@ class RfAntinaListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         return list.size
     }
 
-    interface ItemClickListener{
-        fun itemClicked()
+    interface RfAnteenaItemClickListener{
+        fun attachmentItemClicked()
         fun editModeCliked()
     }
 }
