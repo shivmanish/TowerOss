@@ -18,7 +18,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task\n SMRT Process Templates 1 Task2"
+            android:text="Task \n SMRT Process Templates 1 Task2"
             android:textColor="@color/white"
             android:textSize="@dimen/dp17"
             android:id="@+id/title_text"
@@ -71,40 +71,207 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <HorizontalScrollView
-        android:minHeight="@dimen/dp30"
+        android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
         android:id="@+id/horizontal_only"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="@dimen/dp5"
-            android:layout_marginBottom="39dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <com.google.android.material.card.MaterialCardView
+              android:layout_margin="@dimen/dp20"
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Load Nominals"
-                android:minWidth="@dimen/dp200"
-                android:minHeight="@dimen/dp50"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp17"
-                android:gravity="start"
-                android:id="@+id/Load"
-                android:layout_marginStart="@dimen/dp15"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+              android:layout_width="wrap_content"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:cardBackgroundColor="@color/white"
+              app:cardCornerRadius="15dp"
+              app:cardElevation="@dimen/dp5"
+              android:layout_marginBottom="39dp"
+              android:layout_height="wrap_content">
 
+              <LinearLayout
+                  android:padding="@dimen/dp12"
+                  android:orientation="horizontal"
+                  android:weightSum="1"
+                  android:gravity="center|center_vertical"
+                  android:layout_gravity="center"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
 
-        </com.google.android.material.card.MaterialCardView>
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:id="@+id/Load"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="@dimen/dp15"
 
+                      android:gravity="start"
+                      android:minWidth="@dimen/dp200"
+                      android:text="Load Nominals"
+                      android:textColor="@color/black"
+                      android:textSize="@dimen/dp17"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+                  <ImageView
+                      android:layout_width="@dimen/dp30"
+                      android:layout_height="@dimen/dp30"
+                      android:layout_marginRight="@dimen/dp10"
+                      android:padding="@dimen/dp5"
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/ic_check_green"
+                      app:tint="@color/green"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/camera"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintVertical_bias="0.421" />
+                  <ImageView
+
+                      android:layout_width="@dimen/dp30"
+                      android:layout_height="@dimen/dp30"
+                      android:layout_marginRight="@dimen/dp10"
+                      android:padding="@dimen/dp5"
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/ic_sugggestion"
+
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/camera"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintVertical_bias="0.421" />
+              </LinearLayout>
+
+          </com.google.android.material.card.MaterialCardView>
+          <com.google.android.material.card.MaterialCardView
+              android:layout_margin="@dimen/dp20"
+
+              android:layout_width="wrap_content"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:cardBackgroundColor="@color/bg_gray_card"
+              app:cardCornerRadius="15dp"
+              app:cardElevation="@dimen/dp5"
+              android:layout_marginBottom="39dp"
+              android:layout_height="wrap_content">
+
+              <LinearLayout
+                  android:padding="@dimen/dp12"
+                  android:orientation="horizontal"
+                  android:weightSum="1"
+                  android:gravity="center|center_vertical"
+                  android:layout_gravity="center"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+                  <androidx.appcompat.widget.AppCompatTextView
+
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="@dimen/dp15"
+
+                      android:gravity="start"
+                      android:minWidth="@dimen/dp200"
+                      android:text="Acquisition Su.."
+                      android:textColor="@color/black"
+                      android:textSize="@dimen/dp17"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+                  <ImageView
+                      android:layout_width="@dimen/dp30"
+                      android:layout_height="@dimen/dp30"
+                      android:layout_marginRight="@dimen/dp10"
+                      android:padding="@dimen/dp5"
+                      android:id="@+id/ic_circle"
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/questions"
+
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/camera"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintVertical_bias="0.421" />
+                  <ImageView
+
+                      android:layout_width="@dimen/dp30"
+                      android:layout_height="@dimen/dp30"
+                      android:layout_marginRight="@dimen/dp10"
+                      android:padding="@dimen/dp5"
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/ic_sugggestion"
+
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/camera"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintVertical_bias="0.421" />
+              </LinearLayout>
+
+          </com.google.android.material.card.MaterialCardView>
+          <com.google.android.material.card.MaterialCardView
+              android:layout_margin="@dimen/dp20"
+
+              android:layout_width="wrap_content"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:cardBackgroundColor="@color/bg_gray_card"
+              app:cardCornerRadius="15dp"
+              app:cardElevation="@dimen/dp5"
+              android:layout_marginBottom="39dp"
+              android:layout_height="wrap_content">
+
+              <LinearLayout
+                  android:padding="@dimen/dp12"
+                  android:orientation="horizontal"
+                  android:weightSum="1"
+                  android:gravity="center|center_vertical"
+                  android:layout_gravity="center"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+                  <androidx.appcompat.widget.AppCompatTextView
+
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="@dimen/dp15"
+
+                      android:gravity="start"
+                      android:minWidth="@dimen/dp200"
+                      android:text="OPCO Technical"
+                      android:textColor="@color/black"
+                      android:textSize="@dimen/dp17"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+                  <ImageView
+                      android:layout_width="@dimen/dp30"
+                      android:layout_height="@dimen/dp30"
+                      android:layout_marginRight="@dimen/dp10"
+                      android:padding="@dimen/dp5"
+
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/questions"
+
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/camera"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintVertical_bias="0.421" />
+                  <ImageView
+
+                      android:layout_width="@dimen/dp30"
+                      android:layout_height="@dimen/dp30"
+                      android:layout_marginRight="@dimen/dp10"
+                      android:padding="@dimen/dp5"
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/ic_sugggestion"
+
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/camera"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintVertical_bias="0.421" />
+              </LinearLayout>
+
+          </com.google.android.material.card.MaterialCardView>
+
+      </LinearLayout>
 
 
     </HorizontalScrollView>
