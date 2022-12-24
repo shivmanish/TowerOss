@@ -39,7 +39,7 @@ class SmpsTableAdapter (var context : Context, var listener : TableCallback): Re
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.smps_planned_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.smps_rectifier_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -55,7 +55,7 @@ class SmpsTableAdapter (var context : Context, var listener : TableCallback): Re
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= SmpsPlannedTableItemBinding.bind(view)
+        var binding= SmpsRectifierTableItemBinding.bind(view)
     }
 
 

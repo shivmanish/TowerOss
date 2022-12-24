@@ -50,7 +50,7 @@ class ServicesRequestFrqagment : Fragment(), ServicesDataAdapterListener {
             viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
-            if (it!=null){
+            if (it!=null && it!!.data!=null){
                 customerDataAdapter.setData(it.data!!)
                 AppLogger.log("size :${it.data.size}")
             }else {
