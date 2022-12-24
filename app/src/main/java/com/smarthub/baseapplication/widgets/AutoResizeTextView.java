@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import com.smarthub.baseapplication.listeners.DrawableClickListener;
 
 public class AutoResizeTextView extends androidx.appcompat.widget.AppCompatTextView {
-
     public AutoResizeTextView(@NonNull Context context) {
         super(context);
         init();
