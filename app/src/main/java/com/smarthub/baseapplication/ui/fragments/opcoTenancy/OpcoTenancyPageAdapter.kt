@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
-import com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina.RfAntinaFragment
 import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 
 class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : FragmentPagerAdapter(fm) {
@@ -21,16 +20,16 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
             }
 
             1 -> {
-                return RfEquipmentFragment()
+                return RfEquipmentFragment(opcodata!!)
             }
             2 -> {
-                return BackhaulFragment()
+                return BackhaulFragment(opcodata!!)
             }
             3 -> {
-                return RfAntinaFragment()
+                return RfAntinaFragment(opcodata!!)
             }
             4 -> {
-                return PowerLoadFragment()
+                return PowerLoadFragment(opcodata!!)
             }
             else -> {
                 return OpcoSiteInfoFramgment(opcodata!!)

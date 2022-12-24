@@ -152,7 +152,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:cardElevation="5dp"
+        app:cardElevation="2dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs">
@@ -162,15 +162,26 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="@dimen/fab_margin"
-            app:backgroundTint="@color/tab_selected_color"
-            android:layout_marginBottom="@dimen/dp80"
-            app:srcCompat="@drawable/addmore" />
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/add_more"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        app:cardCornerRadius="@dimen/dp100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="#3D4E6D"
+        app:cardElevation="2dp"
+        app:strokeColor="@color/tab_deselected"
+        app:strokeWidth="1dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:padding="@dimen/dp12"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_new_menu_icon"/>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

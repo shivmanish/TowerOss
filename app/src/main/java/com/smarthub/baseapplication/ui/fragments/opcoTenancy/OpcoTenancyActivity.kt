@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
@@ -54,6 +55,7 @@ class OpcoTenancyActivity : BaseActivity() {
             dalouge.show(supportFragmentManager,"")
         }
 
+        AppLogger.log("status Opcodata","Opcodata size : "+Opcodata)
         binding.viewpager.adapter = OpcoTenancyPageAdapter(supportFragmentManager, Opcodata!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))

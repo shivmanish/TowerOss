@@ -1,17 +1,21 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.TableAdapters.MaterialTableAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.TableAdapters.PoTableAdapter
 
-class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener,var listener1: ItemClickListener) :
-    RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
+class BackhaulListAdapter(var context: Context, var listener: BackhaulListListener, opcodata: OpcoDataItem?) : RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
+    var currentOpened = -1
 
     var LINK_VIEW_TYPE = 0
     var IDU_VIEW_TYPE = 1
@@ -43,13 +47,13 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         var binding: BackhaulLinkListItemBinding = BackhaulLinkListItemBinding.bind(itemView)
 
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -60,13 +64,13 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         var binding: BackhaulIduListItemBinding = BackhaulIduListItemBinding.bind(itemView)
 
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
@@ -77,39 +81,30 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         var binding: BackhaulOduListItemBinding = BackhaulOduListItemBinding.bind(itemView)
 
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
         }
     }
 
     class AntennaViewHold(itemView: View) : ViewHold(itemView) {
         var binding: BackhaulAntenaListItemBinding = BackhaulAntenaListItemBinding.bind(itemView)
 
-        //  var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*   var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-               recyclerListener.adapter = adapter
-
-               itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                   adapter.addItem()
-               }*/
         }
     }
 
@@ -118,39 +113,53 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
             BackhaulInstallationTeamListItemBinding.bind(itemView)
 
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
         }
     }
 
-    class MaterialsViewHold(itemView: View, listener: ImageAttachmentAdapter.ItemClickListener) :
+    class MaterialsViewHold(itemView: View, listener: BackhaulListListener) :
         ViewHold(itemView) {
-        var binding: BackhaulConsumableMaterialsListItemBinding =
-            BackhaulConsumableMaterialsListItemBinding.bind(itemView)
-        var adapter = ImageAttachmentAdapter(listener)
+        var binding: BackhaulConsumableMaterialsListItemBinding = BackhaulConsumableMaterialsListItemBinding.bind(itemView)
+        var MaterialTableList : RecyclerView = binding.root.findViewById(R.id.material_table_item)
+        var adapter = ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
 
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()
+            }
+
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (MaterialTableList.adapter!=null && MaterialTableList.adapter is MaterialTableAdapter){
+                val adapter = MaterialTableList.adapter as MaterialTableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -159,138 +168,117 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         var binding: BackhaulLmcListItemBinding = BackhaulLmcListItemBinding.bind(itemView)
 
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
         }
     }
 
     class PODetailsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: BackhaulPoDetailsListItemBinding =
-            BackhaulPoDetailsListItemBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
+        var binding: BackhaulPoDetailsListItemBinding = BackhaulPoDetailsListItemBinding.bind(itemView)
+        var PoTableList : RecyclerView = binding.root.findViewById(R.id.Backhaul_PO_table_item)
         init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
 
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
+        }
+
+        private fun addTableItem(item:String){
+            if (PoTableList.adapter!=null && PoTableList.adapter is PoTableAdapter){
+                val adapter = PoTableList.adapter as PoTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
 
     class CONNEVCTEDEQUIPMENTViewHold(itemView: View) : ViewHold(itemView) {
         var binding: BackhaulConnectedEquipmentItemListBinding =
             BackhaulConnectedEquipmentItemListBinding.bind(itemView)
-
-        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-            /*    var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-                recyclerListener.adapter = adapter
-
-                itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
         }
     }
 
     class ATPCHECKViewHold(itemView: View) : ViewHold(itemView) {
         var binding: AtpChecklistBinding = AtpChecklistBinding.bind(itemView)
-
-        //  var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitleDropdown.tag = false
-            if ((binding.itemTitleDropdown.tag as Boolean)) {
-                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view =
-            LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item, parent, false)
         return when (viewType) {
             LINK_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_link_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_link_list_item, parent, false)
                 LinkViewHold(view)
             }
             IDU_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_idu_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_idu_list_item, parent, false)
                 IDUViewHold(view)
             }
             ODU_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_odu_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_odu_list_item, parent, false)
                 ODUViewHold(view)
             }
             ANTEENA_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_antena_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_antena_list_item, parent, false)
                 AntennaViewHold(view)
             }
             INSTALLATION_TEAM_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_installation_team_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_installation_team_list_item, parent, false)
                 InstallationTeamViewHold(view)
             }
             MATERIALS_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_consumable_materials_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_consumable_materials_list_item, parent, false)
                 MaterialsViewHold(view, listener)
             }
             LMC_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_lmc_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_lmc_list_item, parent, false)
                 LMCViewHold(view)
             }
             ATPCHECK_LIST_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.atp_checklist, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.atp_checklist, parent, false)
                 ATPCHECKViewHold(view)
             }
             PO_DETAILS_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_po_details_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_po_details_list_item, parent, false)
                 PODetailsViewHold(view)
             }
             CONNEVCTED_EQUIPMENT_VIEW_TYPE -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_connected_equipment_item_list, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_connected_equipment_item_list, parent, false)
                 CONNEVCTEDEQUIPMENTViewHold(view)
             }
             else -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.backhaul_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_list_item, parent, false)
                 ViewHold(view)
             }
         }
@@ -313,247 +301,242 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is LinkViewHold) {
 
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editListItem.setOnClickListener {
-                    listener1.LinkItemEdit()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.editListItem.visibility=
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.LinkItemEdit()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
         }
         else if (holder is IDUViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
-                    listener1.IduEditItem()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.editRfBackhaulLinkItem.visibility=
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.IduEditItem()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is ODUViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
-                    listener1.OduEditItem()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.editRfBackhaulLinkItem.visibility=
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.OduEditItem()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is AntennaViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
-                    listener1.AnteenaItemEdit()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.editRfBackhaulLinkItem.visibility=
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.OduEditItem()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is InstallationTeamViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.lstItem.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.rfEquipmentListDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.lstItem.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editRfBackhaulLinkItem.setOnClickListener {
-                    listener1.InstllationItemEdit()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.editRfBackhaulLinkItem.visibility=
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.InstllationItemEdit()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is MaterialsViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.itemTitleDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.editListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.addMoreListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-                holder.binding.deletListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgAdd.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgAdd.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
+            holder.MaterialTableList.adapter = MaterialTableAdapter( context,listener)
 
 
         }
         else if (holder is LMCViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editListItem.setOnClickListener {
-                    listener1.LmcFiberItemEdit()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.editListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.LmcFiberItemEdit()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is PODetailsViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                } else {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                updateList(position)
             }
-            holder.binding.itemTitle.text = list[position]
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgAdd.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgAdd.visibility=View.GONE
+            }
+            holder.binding.itemTitleStr.text = list[position]
+            holder.PoTableList.adapter = PoTableAdapter( context,listener)
 
         }
         else if (holder is ATPCHECKViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.shareLink.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
         }
         else if (holder is CONNEVCTEDEQUIPMENTViewHold) {
-            holder.binding.itemTitleDropdown.setOnClickListener {
-                holder.binding.itemTitleDropdown.tag = !(holder.binding.itemTitleDropdown.tag as Boolean)
-                if ((holder.binding.itemTitleDropdown.tag as Boolean)) {
-                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                } else {
-                    holder.binding.listItemDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                }
-
-                holder.binding.editListItem.setOnClickListener {
-                    listener1.ConnectedEquipmentItemEdit()
-                }
-
-                holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.editListItem.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleDropdown.tag as Boolean) View.VISIBLE else View.GONE
+            holder.binding.imgEdit.setOnClickListener {
+                listener.ConnectedEquipmentItemEdit()
+            }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
+            if(currentOpened==position){
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility=View.GONE
+                holder.binding.itemCollapse.visibility=View.VISIBLE
+                holder.binding.imgEdit.visibility=View.VISIBLE
+            }
+            else {
+                holder.binding.collapsingLayout.tag=false
+                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                holder.binding.itemLine.visibility=View.VISIBLE
+                holder.binding.itemCollapse.visibility=View.GONE
+                holder.binding.imgEdit.visibility=View.GONE
             }
             holder.binding.itemTitleStr.text = list[position]
 
@@ -564,8 +547,16 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         return list.size
     }
 
-    interface ItemClickListener {
-        fun itemClicked()
+    var recyclerView: RecyclerView?=null
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+       notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
+    }
+
+    interface BackhaulListListener {
+        fun attachmentItemClicked()
         fun LinkItemEdit()
         fun IduEditItem()
         fun OduEditItem()
@@ -573,5 +564,9 @@ class BackhaulListAdapter(var listener: ImageAttachmentAdapter.ItemClickListener
         fun InstllationItemEdit()
         fun LmcFiberItemEdit()
         fun ConnectedEquipmentItemEdit()
+        fun EditMaterialTableItem(position:Int)
+        fun ViewMaterialTableItem(position:Int)
+        fun EditPoTableItem(position:Int)
+        fun ViewPoTableItem(position:Int)
     }
 }

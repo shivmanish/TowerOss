@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.model.search
 
 data class SearchListItem(
-    val Siteid: String?,
+    val siteID: String?,
     val id: String?
 )

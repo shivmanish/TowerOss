@@ -84,10 +84,9 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         var binding: BackhaulPoDetailsListItemBinding =
             BackhaulPoDetailsListItemBinding.bind(itemView)
 
-        //   var adapter =  ImageAttachmentAdapter(listener)
         init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
@@ -243,8 +242,8 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         }
         else if (holder is PODetailsViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
+                holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
+                if ((holder.binding.collapsingLayout.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
@@ -253,14 +252,14 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.imgAdd.visibility =
+                    if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
 
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
             }
-            holder.binding.itemTitle.text = list[position]
+            holder.binding.itemTitleStr.text = list[position]
 
         }
 

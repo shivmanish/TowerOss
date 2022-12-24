@@ -50,8 +50,8 @@ class ServicesRequestFrqagment : Fragment(), ServicesDataAdapterListener {
             viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
-            if (it!=null){
-                customerDataAdapter.setData(it.data!!)
+            if (it?.data != null){
+                customerDataAdapter.setData(it.data)
                 AppLogger.log("size :${it.data.size}")
             }else {
                 Toast.makeText(requireContext(),"data not found",Toast.LENGTH_SHORT).show()

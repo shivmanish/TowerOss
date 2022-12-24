@@ -22,16 +22,26 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/add_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
             android:layout_marginEnd="@dimen/dp20"
-            app:backgroundTint="@color/tab_selected_color"
             android:layout_marginBottom="@dimen/dp20"
-            app:srcCompat="@drawable/addmore"
+            app:cardCornerRadius="@dimen/dp100"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:cardBackgroundColor="#3D4E6D"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/tab_deselected"
+            app:strokeWidth="1dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:padding="@dimen/dp12"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_new_menu_icon"/>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

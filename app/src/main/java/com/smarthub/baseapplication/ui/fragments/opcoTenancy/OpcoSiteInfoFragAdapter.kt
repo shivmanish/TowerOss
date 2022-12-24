@@ -9,6 +9,8 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
 
 class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: OpcoDataItem?) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
 
@@ -72,8 +74,14 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
 
         }
     }
-    class ViewHold3(itemView: View) : ViewHold(itemView) {
+    class ViewHold3(itemView: View,listener: OpcoInfoLisListener) : ViewHold(itemView) {
         var binding : OpcoAttachmentBinding = OpcoAttachmentBinding.bind(itemView)
+
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
 
         init {
             binding.collapsingLayout.tag = false
@@ -85,7 +93,11 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-
+            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            recyclerListener.adapter = adapter
+            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                adapter.addItem()
+            }
         }
     }
 
@@ -102,7 +114,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
             }
             3 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.opco_attachment, parent, false)
-                return ViewHold3(view)
+                return ViewHold3(view,listener)
             }
 
         }
@@ -207,7 +219,6 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                     holder.binding.itemLine.visibility=View.VISIBLE
                     holder.binding.itemCollapse.visibility=View.GONE
                 }
-
                 holder.binding.itemTitleStr.text = list[position]
             }
         }

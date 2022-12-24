@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.RfAntinaListAdapter
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfAnteena.RfAnteenaItemsEditDialouge
 
-class RfAntinaFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener,RfAntinaListAdapter.ItemClickListener {
+class RfAntinaFragment(var opcodata: OpcoDataItem?) :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListener {
 
     var binding : RfAntinaFragmentBinding?=null
 
@@ -23,11 +23,12 @@ class RfAntinaFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener,RfA
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = RfAntinaListAdapter(this@RfAntinaFragment,this@RfAntinaFragment)
+        binding?.listItem?.adapter = RfAntinaListAdapter(this@RfAntinaFragment,opcodata!!)
     }
 
-    override fun itemClicked() {
-        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
+
+    override fun attachmentItemClicked() {
+        Toast.makeText(requireContext(),"Attachment Item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun editModeCliked(){

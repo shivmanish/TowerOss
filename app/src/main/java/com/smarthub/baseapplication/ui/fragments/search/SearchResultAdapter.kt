@@ -9,7 +9,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchResultItemBinding
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.search.SearchListItem
-import com.smarthub.baseapplication.utils.AppLogger
 
 class SearchResultAdapter(var context: Context?,var listener : SearchResultListener) : RecyclerView.Adapter<SearchResultAdapter.ViewHold>() {
 
@@ -49,7 +48,7 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
        when(holder){
            is ItemViewHold->{
                var item  = list[position] as SearchListItem
-               holder.binding.textName.text =if (item.Siteid!=null) item.Siteid else "null"
+               holder.binding.textName.text =if (item.siteID!=null) item.siteID else "null"
                holder.binding.text.text = if (item.id!=null) item.id else "null"
                holder.binding.textLayout.setOnClickListener {
                    listener.onSearchItemSelected(item)

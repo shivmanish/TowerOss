@@ -39,15 +39,19 @@
             android:id="@+id/action_searchFragment_to_siteDetailFragment"
             app:destination="@id/siteDetailFragment"
             app:popUpTo="@id/site_board" >
-            <argument
-                android:name="siteId"
-                app:argType="string"
-                android:defaultValue="1234"/>
+<!--            <argument-->
+<!--                android:name="siteId"-->
+<!--                app:argType="string"-->
+<!--                android:defaultValue="1234"/>-->
             <argument
                 android:name="id"
                 app:argType="string"
                 android:defaultValue="1234"/>
         </action>
+        <action
+            android:id="@+id/action_site_board_to_notificationsFragment2"
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/site_board" />
     </fragment>
 
     <fragment

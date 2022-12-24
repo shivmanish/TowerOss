@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 
-class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener, PowerLoadAdapter.ItemClickListener {
+class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(), PowerLoadAdapter.PowerLoadItemClickListener {
 
     var adapter : PowerLoadAdapter?=null
     var binding : PowerLoadFregmentBinding?=null
@@ -23,17 +23,14 @@ class PowerLoadFragment: Fragment(),ImageAttachmentAdapter.ItemClickListener, Po
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PowerLoadAdapter(this@PowerLoadFragment,this@PowerLoadFragment)
+        adapter = PowerLoadAdapter(this@PowerLoadFragment,opcodata)
         binding?.listItem?.adapter = adapter
 
-        binding?.addItemsLayout?.setOnClickListener {
-            adapter?.addItem()
-        }
     }
 
-    override fun itemClicked() {
 
-        Toast.makeText(requireContext(),"Commercial Item clicked", Toast.LENGTH_SHORT).show()
+    override fun attachmentItemClicked() {
+        Toast.makeText(requireContext(),"Attachment Item clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun EditItemDialouge() {
