@@ -134,7 +134,10 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         })
         binding.viewOnIbo.setOnClickListener {
 //            binding.searchCardView.text.clear()
-            homeViewModel.fetchSiteInfoData(item?.id!!)
+//            homeViewModel.fetchSiteInfoData(item?.id!!)
+
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
+
         }
         if (homeViewModel.siteInfoResponse?.hasActiveObservers()==true)
             homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
@@ -145,7 +148,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                         homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
                     AppLogger.log("Site data fetched")
                     Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(item?.Siteid!!,item?.id!!))
+                    findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${it.data?.item!![0].id}"))
                 }else{
                     Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
                     AppLogger.log("Request failed e :${it.message}")

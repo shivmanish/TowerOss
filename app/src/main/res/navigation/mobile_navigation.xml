@@ -39,10 +39,10 @@
             android:id="@+id/action_searchFragment_to_siteDetailFragment"
             app:destination="@id/siteDetailFragment"
             app:popUpTo="@id/site_board" >
-            <argument
-                android:name="siteId"
-                app:argType="string"
-                android:defaultValue="1234"/>
+<!--            <argument-->
+<!--                android:name="siteId"-->
+<!--                app:argType="string"-->
+<!--                android:defaultValue="1234"/>-->
             <argument
                 android:name="id"
                 app:argType="string"
