@@ -9,13 +9,13 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\ankit\\towerOsskey.jks')
+            storeFile file('D:\\ankit\\work\\android\\projects\\TowerOSS\\app\\towerOsskey.jks')
             storePassword 'toweross1234'
             keyAlias 'key0'
             keyPassword 'toweross1234'
         }
         release {
-            storeFile file('D:\\ankit\\towerOsskey.jks')
+            storeFile file('D:\\ankit\\work\\android\\projects\\TowerOSS\\app\\towerOsskey.jks')
             storePassword 'toweross1234'
             keyAlias 'key0'
             keyPassword 'toweross1234'
