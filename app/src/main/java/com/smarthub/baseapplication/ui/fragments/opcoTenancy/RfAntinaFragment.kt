@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.adapter.customer.RfAntinaListAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfAnteena.RfAnteenaItemsEditDialouge
 
-class RfAntinaFragment :Fragment(),RfAntinaListAdapter.RfAnteenaItemClickListener {
+class RfAntinaFragment :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListener {
 
     var binding : RfAntinaFragmentBinding?=null
 

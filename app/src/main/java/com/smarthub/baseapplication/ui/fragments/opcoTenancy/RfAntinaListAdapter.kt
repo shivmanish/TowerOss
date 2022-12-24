@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.adapter.customer
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.customer_tab.CustomerInvoiceAdapter
 
-class RfAntinaListAdapter(var listener:  RfAnteenaItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
+class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
@@ -21,7 +20,7 @@ class RfAntinaListAdapter(var listener:  RfAnteenaItemClickListener) : RecyclerV
 
     }
 
-    class ViewHold(itemView: View,listener:RfAnteenaItemClickListener) : RecyclerView.ViewHolder(itemView) {
+    class ViewHold(itemView: View,listener: RfAnteenaItemClickListener) : RecyclerView.ViewHolder(itemView) {
         var binding : RfAntinaListItemBinding = RfAntinaListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {

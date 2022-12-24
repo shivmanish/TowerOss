@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.rfAntina
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfAnteena
 
 import android.os.Bundle
 import android.view.LayoutInflater
