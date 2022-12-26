@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -23,15 +24,15 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type5 = "Requester Info"
     var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
-    private var fieldData : SiteInfoModel?=null
+    private var servicerequestData : ServiceRequest?=null
     var currentOpened = -1
 
     fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }
-    fun setValueData(data : SiteInfoModel){
-        this.fieldData = data
+    fun setValueData(data : ServiceRequest){
+        this.servicerequestData = data
         notifyDataSetChanged()
     }
     init {
@@ -249,10 +250,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-
-                }
+//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
+//
+//                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -278,10 +279,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-
-                }
+//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
+//
+//                }
                 holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
             }
             is ViewHold3 -> {
@@ -330,9 +331,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
-                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
-                }
+//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
+//                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
+//                }
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {

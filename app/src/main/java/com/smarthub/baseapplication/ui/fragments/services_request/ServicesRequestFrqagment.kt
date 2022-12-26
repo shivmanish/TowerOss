@@ -70,7 +70,12 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
     }
 
 
-
+    override fun onDestroy() {
+        if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
+            viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroy()
+    }
 
     override fun clickedItem(data : ServiceRequestAllDataItem) {
         ServicesRequestActivity.ServiceRequestdata = data

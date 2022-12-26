@@ -135,6 +135,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/dp8"
                     android:id="@+id/equipment_po_tables_data"
                     android:orientation="vertical"
                     tools:listitem="@layout/equipment_table_item"

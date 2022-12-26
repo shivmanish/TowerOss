@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
@@ -14,7 +13,7 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
+class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
     var binding : OpcoInfoFregmentBinding?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,7 +22,8 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFrag
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment)
+        binding?.listItem?.adapter = ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
+
     }
     override fun attachmentItemClicked() {
     }
@@ -52,8 +52,6 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFrag
     override fun viewRadioAnteenaClicked(position: Int) {
         Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for view", Toast.LENGTH_SHORT).show()
     }
-
-
 
     override fun EditrequestinfoClicked() {
         val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)

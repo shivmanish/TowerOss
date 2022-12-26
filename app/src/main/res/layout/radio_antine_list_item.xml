@@ -137,6 +137,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/SR_Radio_Anteena_Table_Item"
                     android:orientation="vertical"
+                    android:layout_marginTop="@dimen/dp8"
                     tools:listitem="@layout/site_request_radio_table_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
