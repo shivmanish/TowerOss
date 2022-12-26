@@ -28,7 +28,7 @@ class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.listItem.adapter = TaskAdapter(this@TaskSearchTabFragment)
+        binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
 
 
     }
@@ -61,6 +61,38 @@ class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
 
     override fun siteAccessDetailsItemClicked() {
 
+    }
+
+    override fun EditInstallationAcceptence() {
+        TODO("Not yet implemented")
+    }
+
+    override fun EditTowerItem() {
+        TODO("Not yet implemented")
+    }
+
+    override fun editPoClicked(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun viewPoClicked(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editConsumableClicked(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun viewConsumableClicked(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editOffsetClicked(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun viewOffsetClicked(position: Int) {
+        TODO("Not yet implemented")
     }
 
 }
