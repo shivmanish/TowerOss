@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabFragment
 import com.smarthub.baseapplication.ui.fragments.task.TaskSecondFragment
 import com.smarthub.baseapplication.ui.fragments.task.TaskThirdFragment
 
-class DemoActivity : AppCompatActivity() {
+open class DemoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
@@ -18,7 +18,7 @@ class DemoActivity : AppCompatActivity() {
         setFragment(TaskSearchTabFragment())
     }
 
-    protected fun setFragment(fragment: Fragment) {
+    private fun setFragment(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.placeholder, fragment)
