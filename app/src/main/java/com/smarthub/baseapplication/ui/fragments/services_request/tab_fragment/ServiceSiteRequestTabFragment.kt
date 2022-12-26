@@ -53,10 +53,13 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFrag
     }
 
     override fun editPoClicked(position: Int) {
-
+        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_edit_bottom_sheet)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun viewPoClicked(position: Int) {
+        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_view_bottom_sheet)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 

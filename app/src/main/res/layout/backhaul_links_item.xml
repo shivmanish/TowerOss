@@ -115,19 +115,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="Backhaul Technology" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinBackhaulTechnology"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/textBackhaulTechnology"
+                                    style="@style/RowTextviewItem"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air" />
 
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
+                           
                             </LinearLayout>
 
                             <LinearLayout
@@ -141,19 +136,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="Link Count" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinLinkCount"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/textLinkCount"
+                                    style="@style/RowTextviewItem"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air" />
 
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
+                           
                             </LinearLayout>
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
@@ -166,19 +156,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="FIber Pairs" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinFIberPairs"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/textFIberPairs"
+                                    style="@style/RowTextviewItem"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air" />
 
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
+                           
                             </LinearLayout>
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
@@ -191,19 +176,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="Antenna Size, Dia (m)" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinAntennaSlotUsed"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/textAntennaSlotUsed"
+                                    style="@style/RowTextviewItem"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air" />
 
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
+                           
                             </LinearLayout>
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
@@ -216,19 +196,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="Antenna Height, AGL (m)" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    android:id="@+id/spinAntennaHight"
-                                    style="@style/SpinnerTheme"
+                                <TextView
+                                    android:id="@+id/textAntennaHight"
+                                    style="@style/RowTextviewItem"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air" />
 
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="@dimen/dp8"
-                                    android:alpha="0.37"
-                                    android:background="#263238" />
+                           
                             </LinearLayout>
 
 
@@ -241,7 +216,6 @@
 
 
                         </GridLayout>
-                        <include layout="@layout/cancel_update_layout"/>
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>

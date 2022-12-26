@@ -1,6 +1,5 @@
-package com.smarthub.baseapplication.ui.fragments.services_request.adapter
+package com.smarthub.baseapplication.ui.fragments.task.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,19 +8,15 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.RadioAntinaTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
-
-
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
-    var type1 = "SR Details"
-    var type2 = "Equipments"
-    var type3 = "Radio Antennas"
-    var type4 = "Backhaul Links"
-    var type5 = "Attachments"
-    var type6 = "Requester Info"
+    var type1 = "Site Info"
+    var type2 = "OPCO Info"
+    var type3 = "Operations Team"
+    var type4 = "Equipment"
+    var type5 = "Operator & Equip"
+    var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
     private var fieldData : SiteInfoModel?=null
 
@@ -34,11 +29,12 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         notifyDataSetChanged()
     }
     init {
-        list.add("SR Details")
-        list.add("Equipments")
-        list.add("Radio Antennas")
-        list.add("Backhaul Links")
-        list.add("Requester Info")
+        list.add("Site Info")
+        list.add("OPCO Info")
+        list.add("Operations Team")
+        list.add("Equipment")
+        list.add("Operator & Equip")
+        list.add("Attachments")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -57,7 +53,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : SrDetailItemViewBinding = SrDetailItemViewBinding.bind(itemView)
+        var binding : RfItemViewBinding = RfItemViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -74,32 +70,25 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+        var binding : BachaulFeasibilityItemViewBinding = BachaulFeasibilityItemViewBinding.bind(itemView)
 
         init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
+            binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-            binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
-            }
-        }
-        private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                var adapter = poTableList.adapter as TowerPoTableAdapter
-                adapter.addItem(item)
-            }
+
+
         }
     }
-
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
+        var binding: EquipmentsInfoViewBinding =
+            EquipmentsInfoViewBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
@@ -123,7 +112,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
+        var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -138,21 +127,23 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         }
     }
 
-    class ViewHold5(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
-        var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
+    class ViewHold5(itemView: View, listener: TaskLisListener) : ViewHold(itemView) {
+        var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
-                    R.drawable.down_arrow,0)
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             }
+
+
         }
     }
-
-   class ViewHold6(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
-        var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
+   class ViewHold6(itemView: View, listener: TaskLisListener) : ViewHold(itemView) {
+        var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
 
        init {
            binding.itemTitle.tag = false
@@ -172,30 +163,30 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.sr_detail_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.rf_item_view, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.bachaul_feasibility_item_view, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.radio_antine_list_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_links_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
             }   6-> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
                 return ViewHold6(view,listener)
             }
 
-         }
+        }
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -229,39 +220,42 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
                 }
                 if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
+                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
             }
+
             is ViewHold2 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.requestinfoClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-//                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.iconLayout.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitleStr.tag = false
+                    holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-//                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.iconLayout.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemTitle.text = list[position]
 
                 if (data!=null) {
 
                 }
                 if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
+                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
-                holder.poTableList.adapter= EquipmentTableAdapter(context,listener)
             }
             is ViewHold3 -> {
                 holder.binding.collapsingLayout.setOnClickListener {
@@ -281,36 +275,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.poTableList.adapter= RadioAntinaTableAdapter(context,object :TowerInfoListAdapter.TowerInfoListListener{
-                     override fun attachmentItemClicked() {
-                     }
-
-                     override fun EditInstallationAcceptence() {
-                     }
-
-                     override fun EditTowerItem() {
-                     }
-
-                     override fun editPoClicked(position: Int) {
-                     }
-
-                     override fun viewPoClicked(position: Int) {
-                     }
-
-                     override fun editConsumableClicked(position: Int) {
-                     }
-
-                     override fun viewConsumableClicked(position: Int) {
-                     }
-
-                     override fun editOffsetClicked(position: Int) {
-                     }
-
-                     override fun viewOffsetClicked(position: Int) {
-                     }
-                 })
+             //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
             }
-
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
                     listener.siteAccessDetailsItemClicked()
@@ -393,28 +359,15 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             this.recyclerView?.scrollToPosition(position)
     }
     var recyclerView: RecyclerView?=null
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        this.recyclerView = recyclerView
-        super.onAttachedToRecyclerView(recyclerView)
-    }
     override fun getItemCount(): Int {
         return list.size
     }
-    interface ServicesRequestLisListener {
+    interface TaskLisListener {
         fun attachmentItemClicked()
         fun detailsItemClicked()
         fun requestinfoClicked()
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
-
-        fun EditInstallationAcceptence()
-        fun EditTowerItem()
-        fun editPoClicked(position:Int)
-        fun viewPoClicked(position:Int)
-        fun editConsumableClicked(position:Int)
-        fun viewConsumableClicked(position:Int)
-        fun editOffsetClicked(position:Int)
-        fun viewOffsetClicked(position:Int)
     }
 }
