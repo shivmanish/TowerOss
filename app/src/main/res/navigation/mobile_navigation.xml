@@ -108,4 +108,8 @@
         android:id="@+id/siteDetailFragment"
         android:name="com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailFragment"
         android:label="SiteDetailFragment" />
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.task.TaskDetailFragment"
+        android:label="TaskDetailFragment" />
 </navigation>

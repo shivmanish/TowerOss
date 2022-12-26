@@ -44,18 +44,19 @@
                     android:scheme="http"
                     android:host="127.0.0.1"
                     android:port="8000"
-                    android:pathPattern="/task" />
-
-                <data
-                    android:scheme="http"
-                    android:host="127.0.0.1"
-                    android:port="8000"
-                    android:pathPattern="/menu" />
+                    android:pathPattern="/....*" />
 
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.mapui.MapActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.TaskDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
