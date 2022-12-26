@@ -20,21 +20,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp42">
             <TextView
+                android:background="@color/transparent"
                 android:id="@+id/item_title_str"
-                android:text="PO"
+                android:text="Link Name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textSize="@dimen/dp14"
-                android:paddingStart="@dimen/dp10"
+                android:paddingStart="@dimen/dp20"
                 android:paddingEnd="@dimen/dp10"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:textColor="@color/color1"
-                android:background="@color/transparent"
+                android:paddingTop="@dimen/dp10"
                 style="@style/RowTestItemEdit"
                 android:layout_width="0dp"
-                app:layout_constraintWidth_percent=".7"
-                android:layout_height="match_parent"/>
+                app:layout_constraintWidth_percent=".5"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/img_add"
                 android:visibility="gone"

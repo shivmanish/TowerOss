@@ -18,8 +18,9 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
     var list : ArrayList<String> = ArrayList()
     var type1 = "Site Info"
     var type2 = "OPCO Info"
-    var type3 = "Operations Team"
-    var type4 = "Equipment"
+    var type3 = "Equipment"
+    var type4 = "Operations Team"
+
     var type5 = "Operator & Equip"
     var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
@@ -36,8 +37,9 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
     init {
         list.add("Site Info")
         list.add("OPCO Info")
-        list.add("Operations Team")
         list.add("Equipment")
+        list.add("Operations Team")
+
         list.add("Operator & Equip")
         list.add("Attachments")
     }
