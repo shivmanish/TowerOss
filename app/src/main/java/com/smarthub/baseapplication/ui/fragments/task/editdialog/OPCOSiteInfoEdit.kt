@@ -6,23 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.Ac2TabUtilitiesFragmentBinding.inflate
+import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBinding
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OpcoSiteInfoEditDialouge
 
-class OPCOSiteInfoEditDialouge (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : OPCOSiteInfoEditDialouge
+class OPCOSiteInfoEdit (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
+    lateinit var binding : OpcoInfoSiteDialougeLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       /* binding.cancel.setOnClickListener {
+        binding.canecl.setOnClickListener {
             dismiss()
-        }*/
+        }
     }
 
     override fun getTheme() = R.style.NewDialogTask
 
-/*
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = OPCOSiteInfoEditDialouge.inflate(inflater)
+        binding = OpcoInfoSiteDialougeLayoutBinding.inflate(inflater)
         return binding.root
     }
-*/
 }

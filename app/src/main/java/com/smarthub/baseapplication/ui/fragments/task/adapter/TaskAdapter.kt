@@ -53,12 +53,12 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : RfItemViewBinding = RfItemViewBinding.bind(itemView)
+        var binding : TaskSiteInfoItemViewBinding = TaskSiteInfoItemViewBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.itemTitleStr.tag = false
+            binding.itemTitleStr.tag = false
+            if ((binding.itemTitleStr.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -70,12 +70,12 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : BachaulFeasibilityItemViewBinding = BachaulFeasibilityItemViewBinding.bind(itemView)
+        var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.itemTitleStr.tag = false
+            binding.itemTitleStr.tag = false
+            if ((binding.itemTitleStr.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -86,9 +86,10 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
 
         }
     }
+/*
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding =
-            EquipmentsInfoViewBinding.bind(itemView)
+             EquipmentsInfoViewBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
@@ -111,8 +112,9 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
             }
         }
     }
+*/
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
+        var binding : OperationSiteInfoViewBinding = OperationSiteInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -163,19 +165,19 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.rf_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.task_site_info_item_view, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.bachaul_feasibility_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
                 return ViewHold2(view)
             }
-            3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
+          /*  3 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_table_item, parent, false)
                 return ViewHold3(view)
-            }
+            }*/
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.operation_site_info_view, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
@@ -201,20 +203,20 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
+                    holder.binding.itemTitleStr.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
                 if (data!=null) {
 
@@ -234,20 +236,20 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
+                    holder.binding.titleLayout.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                   holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
                 if (data!=null) {
 
@@ -257,6 +259,7 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
 
                 }
             }
+/*
             is ViewHold3 -> {
                 holder.binding.collapsingLayout.setOnClickListener {
                     holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
@@ -277,6 +280,7 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
                 holder.binding.itemTitleStr.text = list[position]
              //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
             }
+*/
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
                     listener.siteAccessDetailsItemClicked()
