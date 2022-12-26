@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
+import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.OPCOSiteInfoEdit
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
@@ -60,7 +62,9 @@ class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
     }
 
     override fun siteAccessDetailsItemClicked() {
-
+//OperationsItemsEditDialouge
+        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun EditInstallationAcceptence() {
@@ -68,7 +72,8 @@ class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
     }
 
     override fun EditTowerItem() {
-
+        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_room_dialouge_layout)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun editPoClicked(position: Int) {
@@ -76,7 +81,8 @@ class TaskSearchTabFragment : Fragment(), TaskAdapter.TaskLisListener {
     }
 
     override fun viewPoClicked(position: Int) {
-
+        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_view_bottom_sheet)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun editConsumableClicked(position: Int) {

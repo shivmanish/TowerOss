@@ -119,11 +119,11 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
     }
 
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : OperationSiteInfoViewBinding = OperationSiteInfoViewBinding.bind(itemView)
+        var binding : OpcoOperationsTeamItemBinding = OpcoOperationsTeamItemBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.itemTitleStr.tag = false
+            binding.itemTitleStr.tag = false
+            if ((binding.itemTitleStr.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -182,7 +182,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.operation_site_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_operations_team_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
@@ -303,20 +303,20 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
+                    holder.binding.itemTitleStr.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
                 if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
                     val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
                 }
