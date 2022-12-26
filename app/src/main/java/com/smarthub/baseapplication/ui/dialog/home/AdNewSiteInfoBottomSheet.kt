@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -19,7 +20,6 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
-import com.smarthub.baseapplication.widgets.CustomSpinner
 
 class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel) :
     BottomSheetDialogFragment(contentLayoutId) {
@@ -53,6 +53,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
             dialog!!.cancel()
         }
         binding.update.setOnClickListener {
+           basicinfo = BasicinfoServiceData()
             basicinfo?.let {
                 it.Buildingtype = binding.txBuildingType.text.toString()
                 it.Locationzone = binding.txtLocationZone.text.toString()
@@ -69,14 +70,27 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
             viewModel.updateBasicInfo(datamodel)
 
         }
-        binding.siteType.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener {
-            override fun itemSelected(item: DropDownItem) {
-                AppLogger.log("item :${item.name}")
-                tempGenerateSiteId = "${binding.txSiteName.text}-${binding.txSiteID.text}-" +
-                        "${binding.siteStatus.selectedValue.name}-${binding.siteCategory.selectedValue.name}"
-                viewModel.generateSiteId(GenerateSiteIdResponse(tempGenerateSiteId))
+
+        var check = 0
+        binding.siteType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                if (++check > 1) {
+                    val item = data[position]
+                    AppLogger.log("item :${item.name}")
+                    tempGenerateSiteId = "${binding.txSiteName.text}-${binding.txSiteID.text}-" +
+                            "${binding.siteStatus.selectedValue.name}-${binding.siteCategory.selectedValue.name}"
+                    viewModel.generateSiteId(GenerateSiteIdResponse(tempGenerateSiteId))
+                    AppLogger.log("item :${data[position].name}")
+                }
             }
-        })
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
         binding.cancelTxt.setOnClickListener {
             dismiss()
         }
@@ -93,7 +107,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
                 }
                 if (it.status == Resource.Status.SUCCESS) {
                     AppLogger.log("Successfully updated all fields")
-                    dismiss()
+//                    dismiss()
                     binding.txBuildingType.text = it.data?.Generatid
                 } else {
                     AppLogger.log("UnExpected Error found")
