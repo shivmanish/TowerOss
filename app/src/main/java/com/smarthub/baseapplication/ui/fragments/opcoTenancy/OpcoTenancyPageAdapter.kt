@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
-import com.smarthub.baseapplication.ui.fragments.customer_tab.powerload.PowerLoadFragment
 
 class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {

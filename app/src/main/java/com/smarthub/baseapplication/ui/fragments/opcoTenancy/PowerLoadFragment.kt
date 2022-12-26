@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.customer_tab.powerload
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.PowerLoad.PowerLoadEditDialouge
 
-class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(), PowerLoadAdapter.PowerLoadItemClickListener {
+class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(),
+    PowerLoadAdapter.PowerLoadItemClickListener {
 
     var adapter : PowerLoadAdapter?=null
     var binding : PowerLoadFregmentBinding?=null
