@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.OperationSiteInfoViewBinding
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
@@ -56,9 +57,9 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         var binding : TaskSiteInfoItemViewBinding = TaskSiteInfoItemViewBinding.bind(itemView)
 
         init {
-            binding.itemTitleStr.tag = false
-            binding.itemTitleStr.tag = false
-            if ((binding.itemTitleStr.tag as Boolean)) {
+            binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -73,9 +74,9 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
         var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
 
         init {
-            binding.itemTitleStr.tag = false
-            binding.itemTitleStr.tag = false
-            if ((binding.itemTitleStr.tag as Boolean)) {
+            binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -172,7 +173,7 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
                 view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
                 return ViewHold2(view)
             }
-          /*  3 -> {
+         /*   3 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_table_item, parent, false)
                 return ViewHold3(view)
             }*/
@@ -203,20 +204,20 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.iconLayout.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitleStr.tag = false
+                    holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.iconLayout.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemTitle.text = list[position]
 
                 if (data!=null) {
 
@@ -249,7 +250,7 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemTitle.text = list[position]
 
                 if (data!=null) {
 
@@ -259,28 +260,7 @@ class TaskAdapter(var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdap
 
                 }
             }
-/*
-            is ViewHold3 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
-                }
-                holder.binding.itemTitleStr.text = list[position]
-             //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
-            }
-*/
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
                     listener.siteAccessDetailsItemClicked()
