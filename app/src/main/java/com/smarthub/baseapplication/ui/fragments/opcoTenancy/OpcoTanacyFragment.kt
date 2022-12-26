@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewOpcoCardAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -37,6 +38,11 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         customerDataAdapter = OpcoTanancyFragAdapter(this@OpcoTanacyFragment)
         binding.customerList.adapter = customerDataAdapter
 
+
+        binding.addItems.setOnClickListener{
+            val dalouge = AddNewOpcoCardAdapter(R.layout.add_new_card_opco_tenency)
+            dalouge.show(childFragmentManager,"")
+        }
 
         binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
