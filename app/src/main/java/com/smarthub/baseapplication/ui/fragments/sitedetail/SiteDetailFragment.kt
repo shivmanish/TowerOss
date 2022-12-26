@@ -151,7 +151,7 @@ class SiteDetailFragment : BaseFragment() {
         override fun getItem(position: Int): Fragment {
             return when(position){
                 0-> SiteInfoNewFragment(id)
-                1-> ServicesRequestFrqagment.newInstance(tabNames?.get(1) ?: "Service Request")
+                1-> ServicesRequestFrqagment(id)
                 2-> OpcoTanacyFragment(id)
                 3-> SiteAgreementFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
                 4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")

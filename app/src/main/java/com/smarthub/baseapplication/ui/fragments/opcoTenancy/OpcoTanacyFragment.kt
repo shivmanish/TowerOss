@@ -20,7 +20,6 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 
 class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterListener {
-    private val ARG_PARAM1 = "param1"
     lateinit var binding: OpcoTenencyFragmentBinding
     lateinit var viewmodel: HomeViewModel
     lateinit var customerDataAdapter: OpcoTanancyFragAdapter
@@ -65,9 +64,15 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            binding.swipeLayout.isRefreshing = false
-            showLoader()
+            viewmodel.fetchSiteInfoData(id)
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewmodel.fetchSiteInfoData(id)
+        showLoader()
     }
     override fun clickedItem(data : OpcoDataItem) {
         OpcoTenancyActivity.Opcodata=data

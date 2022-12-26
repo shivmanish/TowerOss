@@ -11,6 +11,8 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTenancyActivity
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class ServicesRequestActivity : BaseActivity() {
@@ -19,7 +21,7 @@ class ServicesRequestActivity : BaseActivity() {
     lateinit var binding : NewCustomerDetailFragmentBinding
 
     companion object{
-        var data : ServiceRequestAllDataItem?=null
+        var ServiceRequestdata : ServiceRequestAllDataItem?=null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,10 @@ class ServicesRequestActivity : BaseActivity() {
     }
 
     private fun initViews(){
+        var data = AppController.getInstance().siteInfoModel.item
+        binding.siteId.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        binding.rfiDate.text= "${data?.get(0)?.OperationalInfo?.get(0)?.RFIDate}"
         binding.back.setOnClickListener {
             onBackPressed()
         }
@@ -41,7 +47,7 @@ class ServicesRequestActivity : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, data!!)
+        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, ServiceRequestdata!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener())
         binding.viewpager.beginFakeDrag()
@@ -50,7 +56,7 @@ class ServicesRequestActivity : BaseActivity() {
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
             val itemBinding = TabNameItemBinding.inflate(layoutInflater)
             itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
-            itemBinding.tabName.textSize = 10f
+            itemBinding.tabName.textSize = 12f
             binding.tabs.getTabAt(i)?.customView = itemBinding.root
         }
 

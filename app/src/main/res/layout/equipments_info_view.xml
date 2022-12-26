@@ -18,10 +18,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp42">
+            android:layout_height="@dimen/dp45">
             <TextView
-                android:id="@+id/item_title_str"
-                android:text="PO"
+                android:id="@+id/itemTitleStr"
+                android:text="Equipment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -47,7 +47,6 @@
                 android:layout_height="40dp"/>
             <ImageView
                 android:id="@+id/img_dropdown"
-                android:adjustViewBounds="true"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -66,27 +65,18 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"/>
     <LinearLayout
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:layout_margin="5dp"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:paddingBottom="@dimen/dp10"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:padding="@dimen/dp10"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp5"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout">
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -127,7 +117,6 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:ellipsize="marquee"
-                        android:layout_marginLeft="@dimen/dp10"
                         android:text="Type"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
@@ -146,7 +135,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/tower_po_tables"
+                    android:id="@+id/equipment_po_tables_data"
                     android:orientation="vertical"
                     tools:listitem="@layout/equipment_table_item"
                     android:layout_width="match_parent"
@@ -154,9 +143,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
                 </androidx.recyclerview.widget.RecyclerView>
 
-            </LinearLayout>
 
 
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

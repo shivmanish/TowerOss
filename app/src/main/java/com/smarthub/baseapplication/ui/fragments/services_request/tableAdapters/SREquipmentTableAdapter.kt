@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.services_request.adapter
+package com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,11 +9,15 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.EquipmentTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
-class EquipmentTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener): RecyclerView.Adapter<EquipmentTableAdapter.ViewHold>() {
+
+class SREquipmentTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
+
     var list  = ArrayList<String>()
+
     init {
         list.add("item1")
         list.add("item1")
@@ -32,21 +36,26 @@ class EquipmentTableAdapter (var context : Context, var listener : ServicesReque
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= TowerPoTableItemBinding.bind(view)
+        var binding= EquipmentTableItemBinding.bind(view)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_table_item,parent,false)
         return ViewHold(view)
     }
+
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
 //            show pop up menu
             performOptionsMenuClick(position,it)
         }
     }
+
     override fun getItemCount(): Int {
         return list.size
     }
+
+    // this method will handle the onclick options click
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
@@ -59,7 +68,7 @@ class EquipmentTableAdapter (var context : Context, var listener : ServicesReque
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
+                        listener.editEquipmentClicked(position)
 
                         return true
                     }
@@ -74,7 +83,7 @@ class EquipmentTableAdapter (var context : Context, var listener : ServicesReque
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position)
+                        listener.viewEquipmentClicked(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

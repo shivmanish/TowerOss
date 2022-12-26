@@ -41,7 +41,6 @@
             android:maxLines="1"
             android:ellipsize="marquee"
             android:text="Rectangular"
-            android:layout_marginLeft="@dimen/dp10"
             android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
@@ -55,16 +54,15 @@
                 android:layout_width="0dp"
                 android:gravity="center"
                 android:text="12"
-                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="@dimen/dp18"/>
+                android:layout_height="wrap_content"/>
 
             <ImageView
                 android:layout_width="@dimen/dp24"
                 android:id="@+id/menu"
                 android:padding="5dp"
-                android:layout_marginEnd="@dimen/dp3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="center"

@@ -8,11 +8,13 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.utils.AppController
 
 
 class ServicesDataAdapter(var listener: ServicesRequestFrqagment) : RecyclerView.Adapter<CustomerDataViewHolder>() {
 
     var list = ArrayList<ServiceRequestAllDataItem>()
+    var data1 = AppController.getInstance()?.siteInfoModel?.item
 
     fun setData(data: ArrayList<ServiceRequestAllDataItem>) {
         this.list = data
@@ -25,7 +27,9 @@ class ServicesDataAdapter(var listener: ServicesRequestFrqagment) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
-
+        holder.binding.SiteId.text= "Data not found from api"
+        holder.binding.textRfiDate.text= "RFI Date:DataNotFoundFromApi"
+        holder.binding.textRfsDate.text="RFS Date: DataNotFoundFromApi"
         holder.binding?.cardItem?.setOnClickListener {
             listener.clickedItem(list[position])
         }

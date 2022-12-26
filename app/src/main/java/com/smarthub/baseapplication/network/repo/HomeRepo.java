@@ -393,6 +393,7 @@ public class HomeRepo {
     }
 
     public void siteInfoById(String id) {
+        opcoDataResponse.postValue(Resource.loading((opcoDataResponse.getValue()!=null)?opcoDataResponse.getValue().data:null, 200));
         siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null, 200));
         apiClient.fetchSiteInfoById(new IdData(id)).enqueue(new Callback<SiteInfoModel>() {
             @Override
