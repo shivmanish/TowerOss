@@ -172,6 +172,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
             1 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.task_site_info_item_view, parent, false)
                 return ViewHold1(view)
+
             }
             2 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
