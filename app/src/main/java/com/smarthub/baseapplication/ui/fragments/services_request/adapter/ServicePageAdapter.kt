@@ -20,7 +20,7 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
         when(position) {
             0 -> return ServiceRequestTabFragment(data,Id!!)
             1 -> return AssignACQTeamFragment(data,Id!!)
-            2-> return Feasibility()
+            2-> return AcquisitionSurveyFragment(data,Id!!)
             3 -> return OppoTssrTabFragment()
             4 -> return FeasibilityPlanningTabFragment()
             5 -> return Agreements()

@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_layout"
+        android:background="@color/collapse_card_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45">
+            <TextView
+                android:id="@+id/item_title_str"
+                android:text="Building Details"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:id="@+id/img_edit"
+                android:visibility="gone"
+                android:src="@drawable/edit_ico_black"
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
+
+
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Building Lat-long" />
+
+                        <TextView
+                            android:id="@+id/Building_Lat_long"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="22.968035,76.085596" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Building Type" />
+
+                        <TextView
+                            android:id="@+id/BuildingType"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="commercial" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Gate &amp; Fence" />
+
+                        <TextView
+                            android:id="@+id/Gate_Fence"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="fdghgf" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Site Access Area" />
+
+                        <TextView
+                            android:id="@+id/Site_Access_Area"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mumbai" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Building Height" />
+
+                        <TextView
+                            android:id="@+id/Building_height"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="567" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No. of Floors" />
+
+                        <TextView
+                            android:id="@+id/No_of_floor"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Typical Floor Area" />
+
+                        <TextView
+                            android:id="@+id/Typical_Floor_Area"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="On-Air" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Year of Construction" />
+
+                        <TextView
+                            android:id="@+id/Year_of_Construction"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2022" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Property Ownership" />
+
+                        <TextView
+                            android:id="@+id/Property_Ownership"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="self" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Property Offer for Acquisition" />
+
+                        <TextView
+                            android:id="@+id/Property_Offer_for_Acquisition"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Coustomer" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Acquisition Offer Type" />
+
+                        <TextView
+                            android:id="@+id/Acquisition_Offer_Type"
+                            android:ellipsize="marquee"
+                            android:maxLines="1"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="dsfdth" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Overall Feasibility" />
+
+                        <TextView
+                            android:id="@+id/Overall_Feasibility"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1t54" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fiber LMC Laying" />
+
+                        <TextView
+                            android:id="@+id/Fiber_LMC_Laying"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="8,000" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tower/ Pole Installation" />
+
+                        <TextView
+                            android:id="@+id/Vendor_Excutive_Name"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="dsfhshg" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="EB supply thro’ Building Meter" />
+
+                        <TextView
+                            android:id="@+id/EBsupplyBuildingMeter"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="dsghfy" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Equipment Room" />
+
+                        <TextView
+                            android:id="@+id/Equipment_Room"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="sdfgdhsgh" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Required Area Available"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/RequiredAreaAvailable"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="gdsrgdtr" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Availability of statutory per..."
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Availability"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="dfgfhh" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Overall feasibillity"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Overall_feasibillity"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="dsghfyd" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Survey Date"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Survey_Date"
+                            android:text="27-Jun-22"
+                            style="@style/RowTestItemEdit"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+                </GridLayout>
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp20"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Building Address with Pincode" />
+                <TextView
+                    android:id="@+id/Office_Address"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="102, Ahmedabad, Gujrat - xxxx" />
+                <TextView
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp25"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Remarks" />
+                <TextView
+                    android:id="@+id/Remmarks"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="102, Ahmedabad, Gujrat - xxxx" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
