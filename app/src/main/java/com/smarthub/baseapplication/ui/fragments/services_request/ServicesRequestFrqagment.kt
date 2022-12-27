@@ -56,7 +56,8 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
                 customerDataAdapter.setData(it.data)
                 AppLogger.log("size :${it.data.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("Service Request Fragment Something went wrong")
