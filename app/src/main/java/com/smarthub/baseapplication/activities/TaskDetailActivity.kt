@@ -64,7 +64,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     fun mapUIData(item : TaskDataListItem){
         binding.titleText.text ="Task\n${item.Processname}"
 
-        binding.listItem.adapter = TaskAdapter(this)
+        binding.listItem.adapter = TaskAdapter(applicationContext,this)
     }
 
     override fun onStop() {
@@ -82,26 +82,58 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     }
 
     override fun attachmentItemClicked() {
-//        TODO("Not yet implemented")
+//       
     }
 
     override fun detailsItemClicked() {
-//        TODO("Not yet implemented")
+//       
     }
 
     override fun requestinfoClicked() {
-//        TODO("Not yet implemented")
+//       
     }
 
     override fun operationInfoDetailsItemClicked() {
-//        TODO("Not yet implemented")
+//       
     }
 
     override fun geoConditionsDetailsItemClicked() {
-//        TODO("Not yet implemented")
+//       
     }
 
     override fun siteAccessDetailsItemClicked() {
-//        TODO("Not yet implemented")
+//       
+    }
+
+    override fun EditInstallationAcceptence() {
+       
+    }
+
+    override fun EditTowerItem() {
+       
+    }
+
+    override fun editPoClicked(position: Int) {
+       
+    }
+
+    override fun viewPoClicked(position: Int) {
+       
+    }
+
+    override fun editConsumableClicked(position: Int) {
+       
+    }
+
+    override fun viewConsumableClicked(position: Int) {
+       
+    }
+
+    override fun editOffsetClicked(position: Int) {
+       
+    }
+
+    override fun viewOffsetClicked(position: Int) {
+       
     }
 }

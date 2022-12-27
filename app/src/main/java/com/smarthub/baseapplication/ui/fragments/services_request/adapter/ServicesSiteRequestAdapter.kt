@@ -79,7 +79,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-        var equipmentTableList: RecyclerView=binding.equipmentPoTablesData
+//        var equipmentTableList: RecyclerView=binding.equipmentPoTablesData
 
         init {
             binding.collapsingLayout.tag = false
@@ -95,10 +95,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
-                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
-                adapter.addItem(item)
-            }
+//            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
+//                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
+//                adapter.addItem(item)
+//            }
         }
     }
 
@@ -283,7 +283,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 ////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
 //
 //                }
-                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
+//                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {

@@ -145,7 +145,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                     holder.binding.itemCollapse.visibility=View.GONE
                     holder.binding.imgEdit.visibility=View.GONE
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemTitle.text = list[position]
 
                 if (data!=null && opcodata?.Opcoinfo?.isNotEmpty()!!) {
                     holder.binding.OpcoName.text=data?.OpcoName
