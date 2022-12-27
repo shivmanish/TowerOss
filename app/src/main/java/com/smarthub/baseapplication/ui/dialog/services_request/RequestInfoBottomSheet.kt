@@ -21,9 +21,9 @@ class RequestInfoBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(c
             dismiss()
         }
          binding.editRequesterExcutiveName.setText(requesterInfo?.RequesterExecutiveName)
-        binding.editEmailId.setText(requesterInfo?.EmailID)
-        binding.editPhoneNumber.setText(requesterInfo?.PhoneNumber)
-        binding.editRemarks.setText(requesterInfo?.Remarks)
+         binding.editEmailId.setText(requesterInfo?.EmailID)
+         binding.editPhoneNumber.setText(requesterInfo?.PhoneNumber)
+         binding.editRemarks.setText(requesterInfo?.Remarks)
 
 
     }

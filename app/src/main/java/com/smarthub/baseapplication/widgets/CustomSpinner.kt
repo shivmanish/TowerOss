@@ -18,10 +18,11 @@ class CustomSpinner : AppCompatSpinner {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    fun setOnItemSelectionListener(listener: ItemSelectedListener){
-        itemSelectedListener = listener
-    }
+//    fun setOnItemSelectionListener(listener: ItemSelectedListener){
+//        itemSelectedListener = listener
+//    }
     fun init() {
+/*
         this.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
                 onItemSelected(data[position])
@@ -30,6 +31,7 @@ class CustomSpinner : AppCompatSpinner {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+*/
     }
 
     fun onItemSelected(item : DropDownItem){
@@ -65,4 +67,8 @@ class CustomSpinner : AppCompatSpinner {
     interface ItemSelectedListener{
         fun itemSelected(item : DropDownItem)
     }
+
+//    override fun setOnItemSelectedListener(listener: OnItemSelectedListener?) {
+//        super.setOnItemSelectedListener(listener)
+//    }
 }

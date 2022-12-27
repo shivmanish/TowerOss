@@ -15,7 +15,7 @@ class ServicesDetailsBottomSheetDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = ServicesDetailsBottomSheetBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT

@@ -8,11 +8,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.ActivityHandleDeepLinksBinding
 import com.smarthub.baseapplication.databinding.ActivityTaskDetailBinding
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
+import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
-class TaskDetailActivity : AppCompatActivity() {
+class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
 
@@ -28,12 +29,14 @@ class TaskDetailActivity : AppCompatActivity() {
         if (intent.hasExtra("url")){
             val id = intent.getStringExtra("url")
             binding.titleText.text = id
+            showLoader()
             viewModel.fetchSiteDropDownData(id!!)
         }
 
         if (viewModel.taskDataList?.hasActiveObservers() == true)
             viewModel.taskDataList?.removeObservers(this)
         viewModel.taskDataList?.observe(this){
+            hideLoader()
             if (it?.data != null){
                 if (it.data.isNotEmpty()){
                     mapUIData(it.data[0])
@@ -43,10 +46,25 @@ class TaskDetailActivity : AppCompatActivity() {
                 Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
             }
         }
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
+            if (intent.hasExtra("url")){
+                val id = intent.getStringExtra("url")
+                binding.titleText.text = id
+                showLoader()
+                viewModel.fetchSiteDropDownData(id!!)
+            }else{
+                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
     }
 
     fun mapUIData(item : TaskDataListItem){
-        binding.titleText.text = item.Processname
+        binding.titleText.text ="Task\n${item.Processname}"
+
+        binding.listItem.adapter = TaskAdapter(this)
     }
 
     override fun onStop() {
@@ -61,5 +79,29 @@ class TaskDetailActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    override fun attachmentItemClicked() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun detailsItemClicked() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun requestinfoClicked() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun operationInfoDetailsItemClicked() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun geoConditionsDetailsItemClicked() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun siteAccessDetailsItemClicked() {
+//        TODO("Not yet implemented")
     }
 }

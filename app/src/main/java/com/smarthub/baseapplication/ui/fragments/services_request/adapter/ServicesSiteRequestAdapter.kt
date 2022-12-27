@@ -217,7 +217,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 return ViewHold6(view,listener)
             }
 
-        }
+         }
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {

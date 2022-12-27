@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <ImageView
+        android:id="@+id/canecl"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/drawable_cross_back"
+        android:padding="@dimen/dp5"
+        android:src="@drawable/cross_ico"
+        android:translationZ="@dimen/dp6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_bg"
+        android:orientation="vertical"
+        android:padding="@dimen/dp5"
+        android:translationZ="@dimen/dp5">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="vertical"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:orientation="vertical"
+                android:scrollbars="vertical">
+
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:layout_marginBottom="5dp"
+                    android:text="View Equipment"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha=".37"
+                    android:background="#263238" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Technology" />
+
+                        <TextView
+                            android:id="@+id/editTechnology"
+
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1st" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Equipment" />
+
+                        <TextView
+                            android:id="@+id/editEquipment"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="dsfhjrwgd" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Type" />
+
+                        <TextView
+                            android:id="@+id/editType"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cabinet Size" />
+
+                        <TextView
+                            android:id="@+id/editCabinetSize"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Equipment Waight" />
+
+                        <TextView
+                            android:id="@+id/editEquipmentWaight"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Input Power" />
+
+                        <TextView
+                            android:id="@+id/editInputPower"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Voltage (V)" />
+
+                        <TextView
+                            android:id="@+id/editVoltage"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Max Power Rating (KW)" />
+
+                        <TextView
+                            android:id="@+id/editMaxPowerRating"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Operating Power (C)" />
+
+                        <TextView
+                            android:id="@+id/editOperatingPower"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                       
+                    </LinearLayout>
+
+
+                </GridLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+</RelativeLayout>

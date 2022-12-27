@@ -7,10 +7,15 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BackhaulLinkListItemDialougeBinding
+import com.smarthub.baseapplication.model.serviceRequest.BackHaulLink
+import com.smarthub.baseapplication.network.pojo.site_info.BackhaullinkModel
+import com.smarthub.baseapplication.network.pojo.site_info.BackhaullinkmwModel
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.Utils
 
 class BachhualLinkBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : BackhaulLinkListItemDialougeBinding
+     var backhaullinkModel: BackHaulLink? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = BackhaulLinkListItemDialougeBinding.bind(view)
@@ -19,6 +24,8 @@ class BachhualLinkBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(
         binding.canecl.setOnClickListener {
             dismiss()
         }
+
+
     }
     override fun getTheme() = R.style.NewDialogTask
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
