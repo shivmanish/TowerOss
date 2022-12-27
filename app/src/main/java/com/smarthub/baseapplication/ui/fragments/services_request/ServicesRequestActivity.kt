@@ -22,7 +22,7 @@ class ServicesRequestActivity : BaseActivity() {
 
     companion object{
         var ServiceRequestdata : ServiceRequestAllDataItem?=null
-        lateinit var Id : String
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
