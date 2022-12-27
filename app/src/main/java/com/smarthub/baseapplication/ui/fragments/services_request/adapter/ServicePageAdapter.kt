@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 import com.smarthub.baseapplication.ui.site_agreement.fragment.Agreements
 import com.smarthub.baseapplication.ui.site_agreement.fragment.Feasibility
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.TeamVendorfragment
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.AssignACQTeamFragment
 
 class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDataItem, Id: String?) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
@@ -18,8 +18,8 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
 
     override fun getItem(position: Int): Fragment {
         when(position) {
-            0 -> return ServiceRequestTabFragment(data,Id!!,)
-            1 -> return TeamVendorfragment()
+            0 -> return ServiceRequestTabFragment(data,Id!!)
+            1 -> return AssignACQTeamFragment(data,Id!!)
             2-> return Feasibility()
             3 -> return OppoTssrTabFragment()
             4 -> return FeasibilityPlanningTabFragment()

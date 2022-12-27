@@ -1,14 +1,14 @@
-package com.smarthub.baseapplication.ui.fragments.services_request.adapter
-
+package com.smarthub.baseapplication.ui.site_agreement.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.ServiceRequestTeamvendorAttachmentBinding
+import com.smarthub.baseapplication.databinding.TeamVendorListItemBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class TeamVendorLeaseListAdapter(var listener: TeamVendorListItemListner) : RecyclerView.Adapter<TeamVendorLeaseListAdapter.ViewHold>() {
+class TeamVendorFragAdapter (var listener: TeamVendorListItemListner) : RecyclerView.Adapter<TeamVendorFragAdapter.ViewHold>() {
 
     var currentOpened = -1
     var list: ArrayList<String> = ArrayList()
@@ -19,7 +19,7 @@ class TeamVendorLeaseListAdapter(var listener: TeamVendorListItemListner) : Recy
         list.add("Details")
         list.add("Attachments")
 
-      }
+    }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: TeamVendorListItemBinding = TeamVendorListItemBinding.bind(itemView)
@@ -39,7 +39,7 @@ class TeamVendorLeaseListAdapter(var listener: TeamVendorListItemListner) : Recy
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: TeamVendorListItemListner) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View, listener: TeamVendorListItemListner) : ViewHold(itemView) {
         var binding: ServiceRequestTeamvendorAttachmentBinding = ServiceRequestTeamvendorAttachmentBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -90,7 +90,7 @@ class TeamVendorLeaseListAdapter(var listener: TeamVendorListItemListner) : Recy
             return 1
         else if (list[position] is String && list[position]==type2)
             return 2
-      else return 0
+        else return 0
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -119,7 +119,7 @@ class TeamVendorLeaseListAdapter(var listener: TeamVendorListItemListner) : Recy
             holder.binding.itemTitleStr.text = list[position]
         }
 
-       else if (holder is AttachmentViewHold) {
+        else if (holder is AttachmentViewHold) {
             if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
