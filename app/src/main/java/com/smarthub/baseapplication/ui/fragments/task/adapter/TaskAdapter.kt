@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.databinding.OperationSiteInfoViewBinding
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.EquipmentTableAdapter
+//import com.smarthub.baseapplication.ui.fragments.services_request.adapter.EquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskEquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
