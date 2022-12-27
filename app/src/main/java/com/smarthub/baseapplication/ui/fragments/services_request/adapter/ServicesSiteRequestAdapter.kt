@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -25,16 +24,20 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
+    private var SrDetailsData: SRDetail ?=null
+    private var EquipmentData: Equipment?=null
+    private var RadioAnteenaData: RadioAntenna?=null
+    private var BackhaulLinksData: BackHaulLink?=null
+    private var RequesterInfo: RequesterInfo ?=null
     var currentOpened = -1
-
     fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }
-    fun setValueData(data : ServiceRequest){
-        this.servicerequestData = data
-        notifyDataSetChanged()
-    }
+//    fun setValueData(data : ServiceRequest){
+//        this.servicerequestData = data
+//        notifyDataSetChanged()
+//    }
     init {
         list.add("SR Details")
         list.add("Equipments")
@@ -42,6 +45,12 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         list.add("Backhaul Links")
         list.add("Requester Info")
         list.add("Attachments")
+    servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
+    SrDetailsData=servicerequestData?.SRDetails?.get(0)
+    EquipmentData=servicerequestData?.Equipments?.get(0)
+    RadioAnteenaData=servicerequestData?.RadioAntennas?.get(0)
+    BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
+    RequesterInfo=servicerequestData?.RequesterInfo?.get(0)
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -79,7 +88,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-//        var equipmentTableList: RecyclerView=binding.equipmentPoTablesData
+        var equipmentTableList: RecyclerView=binding.SrEquipmentTables
 
         init {
             binding.collapsingLayout.tag = false
@@ -95,10 +104,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-//            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
-//                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
-//                adapter.addItem(item)
-//            }
+            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
+                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
 
@@ -283,7 +292,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 ////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
 //
 //                }
-//                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
+                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {

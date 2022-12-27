@@ -22,7 +22,7 @@ class ServicesRequestActivity : BaseActivity() {
 
     companion object{
         var ServiceRequestdata : ServiceRequestAllDataItem?=null
-
+        var Id : String?="448"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class ServicesRequestActivity : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, ServiceRequestdata!!)
+        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, ServiceRequestdata!!,Id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener())
         binding.viewpager.beginFakeDrag()

@@ -5,28 +5,28 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoSiteInfoFramgment
+import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity.Companion.Id
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 import com.smarthub.baseapplication.ui.site_agreement.fragment.Agreements
 import com.smarthub.baseapplication.ui.site_agreement.fragment.Feasibility
-import com.smarthub.baseapplication.ui.site_agreement.fragment.TeamVendor
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.TeamVendorfragment
 
-class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDataItem) : FragmentPagerAdapter(manager) {
+class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDataItem, Id: String?) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
         return 8
     }
 
     override fun getItem(position: Int): Fragment {
         when(position) {
-            0 -> return ServiceRequestTabFragment(data)
-            1 -> return TeamVendor()
+            0 -> return ServiceRequestTabFragment(data,Id!!,)
+            1 -> return TeamVendorfragment()
             2-> return Feasibility()
             3 -> return OppoTssrTabFragment()
             4 -> return FeasibilityPlanningTabFragment()
             5 -> return Agreements()
             6-> return SiteProposalTabFragment()
             7 -> return SPApprovalTabFragment()
-            else -> return ServiceRequestTabFragment(data)
+            else -> return ServiceRequestTabFragment(data, Id!!)
         }
     }
 

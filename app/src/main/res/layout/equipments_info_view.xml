@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/tower_po_tables"
+                    android:id="@+id/Sr_Equipment_tables"
                     android:orientation="vertical"
                     tools:listitem="@layout/equipment_table_item"
                     android:layout_width="match_parent"

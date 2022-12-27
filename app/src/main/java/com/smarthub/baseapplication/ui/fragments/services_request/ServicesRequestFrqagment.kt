@@ -33,7 +33,7 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment)
+        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment,id)
         customerBinding.customerList.adapter = customerDataAdapter
 
         customerBinding.addMore.setOnClickListener{
@@ -78,8 +78,9 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
         super.onDestroy()
     }
 
-    override fun clickedItem(data : ServiceRequestAllDataItem) {
+    override fun clickedItem(data : ServiceRequestAllDataItem, Id : String) {
         ServicesRequestActivity.ServiceRequestdata = data
+        ServicesRequestActivity.Id=Id
         requireActivity().startActivity(Intent(requireContext(), ServicesRequestActivity::class.java))
 
     }
