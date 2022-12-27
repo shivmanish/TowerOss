@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,14 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
-import com.smarthub.baseapplication.databinding.RadioAntineListItemBinding
 import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
-import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
-class RadioAntinaTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
+class RadioAntinaTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
     var list  = ArrayList<String>()
     init {
         list.add("item1")
@@ -38,7 +34,7 @@ class RadioAntinaTableAdapter (var context : Context, var listener : TowerInfoLi
         var binding= SiteRequestRadioTableItemBinding.bind(view)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.site_request_radio_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.site_request_radio_table_item,parent,false)
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -62,8 +58,7 @@ class RadioAntinaTableAdapter (var context : Context, var listener : TowerInfoLi
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
-
+                        listener.editRadioAnteenaClicked(position)
                         return true
                     }
                     // in the same way you can implement others
@@ -71,14 +66,13 @@ class RadioAntinaTableAdapter (var context : Context, var listener : TowerInfoLi
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                        listener.viewRadioAnteenaClicked(position)
+                        return true
                     }
 
                 }

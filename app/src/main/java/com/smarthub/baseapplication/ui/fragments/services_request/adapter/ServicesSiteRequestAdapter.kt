@@ -7,30 +7,32 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.RadioAntinaTableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
     var type3 = "Radio Antennas"
     var type4 = "Backhaul Links"
-    var type5 = "Attachments"
-    var type6 = "Requester Info"
+    var type5 = "Requester Info"
+    var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
-    private var fieldData : SiteInfoModel?=null
+    private var servicerequestData : ServiceRequest?=null
+    var currentOpened = -1
 
     fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }
-    fun setValueData(data : SiteInfoModel){
-        this.fieldData = data
+    fun setValueData(data : ServiceRequest){
+        this.servicerequestData = data
         notifyDataSetChanged()
     }
     init {
@@ -39,6 +41,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         list.add("Radio Antennas")
         list.add("Backhaul Links")
         list.add("Requester Info")
+        list.add("Attachments")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -60,22 +63,23 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         var binding : SrDetailItemViewBinding = SrDetailItemViewBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
         }
     }
+
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+        var equipmentTableList: RecyclerView=binding.equipmentPoTablesData
 
         init {
             binding.collapsingLayout.tag = false
@@ -91,8 +95,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                var adapter = poTableList.adapter as TowerPoTableAdapter
+            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
+                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -100,7 +104,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+        var RadioAnteenaTableList: RecyclerView=binding.SRRadioAnteenaTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -116,58 +120,75 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                var adapter = poTableList.adapter as TowerPoTableAdapter
+            if (RadioAnteenaTableList.adapter!=null && RadioAnteenaTableList.adapter is RadioAntinaTableAdapter){
+                var adapter = RadioAnteenaTableList.adapter as RadioAntinaTableAdapter
                 adapter.addItem(item)
             }
         }
     }
+
     class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
 
         }
     }
 
-    class ViewHold5(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
-        var binding : CommercialListItem5Binding = CommercialListItem5Binding.bind(itemView)
-        init {
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_arrow_up,0)
-            } else {
-                binding.itemTitle?.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,
-                    R.drawable.down_arrow,0)
-            }
-        }
-    }
-
-   class ViewHold6(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View) : ViewHold(itemView) {
         var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
 
-       init {
-           binding.itemTitle.tag = false
-           binding.itemTitle.tag = false
-           if ((binding.itemTitle.tag as Boolean)) {
-               binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-               binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-           } else {
-               binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-               binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-           }
+        init {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
 
 
-       }
+        }
     }
+
+    class ViewHold6(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
+        var binding : ServiceRequestSrDetailsAttachmentsBinding = ServiceRequestSrDetailsAttachmentsBinding.bind(itemView)
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
+        init {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            recyclerListener.adapter = adapter
+
+            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                adapter.addItem()
+            }
+        }
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
@@ -188,10 +209,11 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
-                return ViewHold5(view,listener)
-            }   6-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
+                return ViewHold5(view)
+            }
+            6-> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.service_request_sr_details_attachments, parent, false)
                 return ViewHold6(view,listener)
             }
 
@@ -203,35 +225,35 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    listener.EditSRdetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-
-                }
+//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
+//
+//                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -239,15 +261,15 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-//                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
                 }
                 else {
                     holder.binding.itemTitleStr.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-//                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -257,135 +279,107 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 if (data!=null) {
 
                 }
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-//                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-
-                }
-                holder.poTableList.adapter= EquipmentTableAdapter(context,listener)
+//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
+////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
+//
+//                }
+                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
             }
             is ViewHold3 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitleStr.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.poTableList.adapter= RadioAntinaTableAdapter(context,object :TowerInfoListAdapter.TowerInfoListListener{
-                     override fun attachmentItemClicked() {
-                     }
-
-                     override fun EditInstallationAcceptence() {
-                     }
-
-                     override fun EditTowerItem() {
-                     }
-
-                     override fun editPoClicked(position: Int) {
-                     }
-
-                     override fun viewPoClicked(position: Int) {
-                     }
-
-                     override fun editConsumableClicked(position: Int) {
-                     }
-
-                     override fun viewConsumableClicked(position: Int) {
-                     }
-
-                     override fun editOffsetClicked(position: Int) {
-                     }
-
-                     override fun viewOffsetClicked(position: Int) {
-                     }
-                 })
+                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener)
             }
 
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.siteAccessDetailsItemClicked()
+                    listener.EditBackhaulLinkItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
-                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
-                }
+                holder.binding.itemTitleStr.text = list[position]
+//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
+//                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
+//                }
             }
             is ViewHold5 -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
-                holder.binding.itemTitle.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitle.text = list[position]
-            }
-            is ViewHold6 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                    listener.EditSRdetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
+            }
+            is ViewHold6 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
             }
         }
     }
-    var currentOpened = -1
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
         notifyDataSetChanged()
@@ -402,19 +396,13 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
     interface ServicesRequestLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked()
-        fun requestinfoClicked()
-        fun operationInfoDetailsItemClicked()
-        fun geoConditionsDetailsItemClicked()
-        fun siteAccessDetailsItemClicked()
+        fun EditSRdetailsItemClicked()
+        fun EditBackhaulLinkItemClicked()
+        fun EditrequestinfoClicked()
+        fun editEquipmentClicked(position:Int)
+        fun viewEquipmentClicked(position:Int)
+        fun editRadioAnteenaClicked(position:Int)
+        fun viewRadioAnteenaClicked(position:Int)
 
-        fun EditInstallationAcceptence()
-        fun EditTowerItem()
-        fun editPoClicked(position:Int)
-        fun viewPoClicked(position:Int)
-        fun editConsumableClicked(position:Int)
-        fun viewConsumableClicked(position:Int)
-        fun editOffsetClicked(position:Int)
-        fun viewOffsetClicked(position:Int)
     }
 }

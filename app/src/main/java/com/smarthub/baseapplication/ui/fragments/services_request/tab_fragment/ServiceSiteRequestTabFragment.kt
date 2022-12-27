@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
@@ -13,7 +13,7 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
+class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
     var binding : OpcoInfoFregmentBinding?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,64 +22,38 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem) : BaseFrag
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment)
-    }
-    override fun attachmentItemClicked() {
+        binding?.listItem?.adapter = ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
 
     }
-    override fun detailsItemClicked() {
+    override fun attachmentItemClicked() {
+    }
+    override fun EditSRdetailsItemClicked() {
         val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-    override fun operationInfoDetailsItemClicked() {
-        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun geoConditionsDetailsItemClicked() {
-        val bottomSheetDialogFragment = RadioAntennasBottomSheetDialog(R.layout.radio_antina_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun siteAccessDetailsItemClicked() {
+    override fun EditBackhaulLinkItemClicked() {
         val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
-    override fun EditInstallationAcceptence() {
+    override fun editEquipmentClicked(position: Int) {
+        Toast.makeText(requireContext(),"SR Equipment  Item clicked for edit", Toast.LENGTH_SHORT).show()
 
     }
 
-    override fun EditTowerItem() {
-
+    override fun viewEquipmentClicked(position: Int) {
+        Toast.makeText(requireContext(),"SR Equipment  Item clicked for view", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editPoClicked(position: Int) {
-        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_edit_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+    override fun editRadioAnteenaClicked(position: Int) {
+        Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for edit", Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewPoClicked(position: Int) {
-        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_view_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-
+    override fun viewRadioAnteenaClicked(position: Int) {
+        Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for view", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editConsumableClicked(position: Int) {
-
-    }
-
-    override fun viewConsumableClicked(position: Int) {
-
-    }
-
-    override fun editOffsetClicked(position: Int) {
-
-    }
-
-    override fun viewOffsetClicked(position: Int) {
-
-    }
-
-    override fun requestinfoClicked() {
+    override fun EditrequestinfoClicked() {
         val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }

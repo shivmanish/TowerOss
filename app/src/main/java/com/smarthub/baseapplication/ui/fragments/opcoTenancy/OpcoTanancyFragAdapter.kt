@@ -17,7 +17,7 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     var data1 = AppController.getInstance().siteInfoModel.item
     var data : List<OpcoDataItem> = ArrayList()
 
-    @SuppressLint("NotifyDataSetChanged")
+
     fun setOpData(data: List<OpcoDataItem>) {
         this.data = data
         notifyDataSetChanged()
