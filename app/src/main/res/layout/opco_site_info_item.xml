@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45">
             <TextView
-                android:id="@+id/item_title_str"
-                android:text="Opco/Site Info"
+                android:id="@+id/item_title"
+                android:text="Operations Team"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -35,6 +35,7 @@
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
+
             <ImageView
                 android:id="@+id/img_edit"
                 android:visibility="gone"

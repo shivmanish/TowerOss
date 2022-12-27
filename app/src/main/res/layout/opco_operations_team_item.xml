@@ -69,7 +69,7 @@
 
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"

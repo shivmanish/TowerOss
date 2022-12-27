@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/view_color"
+
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/collapse_card_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50">
+            <TextView
+                android:id="@+id/item_title"
+                android:text="Operations Team"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/icon_layout"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/item_title"
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:id="@+id/txtIboard"
+                    android:text="iBoard"
+                    android:backgroundTint="@color/transparent"
+                    android:drawableRight="@drawable/ic_site_info_board"
+                    android:paddingStart="@dimen/dp20"
+                    android:drawablePadding="@dimen/dp15"
+                    android:paddingEnd="@dimen/dp10"
+                    android:layout_gravity="center_vertical"
+
+                    android:background="@color/transparent"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintWidth_percent=".5"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:id="@+id/img_edit"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/edit_ico_black"
+                    android:layout_width="@dimen/dp58"
+                    android:layout_height="match_parent"/>
+
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp58"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/item_line"
+            android:alpha="2"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topln"
+
+            android:background="@drawable/dotted"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="@dimen/dp5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+                android:scrollbars="vertical">
+
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/textStart"
+
+
+                                style="@style/RowTextviewItem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mangolpuri" />
+                            <TextView
+                                android:id="@+id/textSiteInfo"
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Site Name" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/textSiteID"
+
+                                style="@style/RowTextviewItem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mangolpuri" />
+                            <TextView
+                                android:maxLines="1"
+
+
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" CE-MHMUMB-SC-A0123 Sit ID" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+
+                                android:maxLines="1"
+                                style="@style/RowTextviewItem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mangolpuri Alternate Site name" />
+                            <TextView
+                                android:id="@+id/textAlternateSitename"
+                                android:maxLines="1"
+                                 style="@style/RowTextItemInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mangolpuri" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+
+                                android:maxLines="1"
+                                style="@style/RowTextviewItem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Under Construction Site Status" />
+                            <TextView
+                                android:id="@+id/textSiteStatus"
+                                android:maxLines="1"
+                                 style="@style/RowTextItemInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Site Status" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                   <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+
+                                android:maxLines="1"
+                                style="@style/RowTextviewItem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="RTP" />
+                            <TextView
+                                android:id="@+id/txtSiteCategory"
+                                android:maxLines="1"
+                                 style="@style/RowTextItemInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Site Category" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+
+                                android:maxLines="1"
+                                style="@style/RowTextviewItem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Smalll Cell " />
+                            <TextView
+                                android:id="@+id/txtSiteType"
+                                android:maxLines="1"
+                                 style="@style/RowTextItemInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Site Type" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+                </GridLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
