@@ -21,7 +21,7 @@
             android:layout_height="@dimen/dp45">
             <TextView
                 android:id="@+id/item_title"
-                android:text="Operations Team"
+                android:text="OPCO/Site Info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
