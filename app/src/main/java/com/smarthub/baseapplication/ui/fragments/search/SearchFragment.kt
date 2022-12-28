@@ -178,10 +178,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
 
-//        fun navigatefromhistory(){
-//            historyItem=
-//        }
-
     }
 
     override fun onSearchItemSelected(item: SearchListItem?) {
@@ -195,9 +191,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         }
     }
 
-//   fun returnSiteIdTonavigate(historyItem: SearchListItem?): SearchListItem? {
-//       return historyItem
-//   }
     fun disableButton() {
         binding.viewOnIbo.alpha = 0.2f
         binding.viewOnMap.alpha = 0.2f
@@ -218,7 +211,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         this.selectedCategory = item
         Log.d("status", "selectedCategory:$item")
     }
-//    var historyItemSite: SearchListItem?=null
     override fun clickedSearchHistoryItem(historyItem: SearchListItem?) {
         findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("448"))
     }
