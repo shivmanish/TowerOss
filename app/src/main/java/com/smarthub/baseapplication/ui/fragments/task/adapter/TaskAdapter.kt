@@ -95,9 +95,9 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
     }
     class ViewHold3(itemView: View) : TaskAdapter.ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+       // var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
-        init {
+       /* init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -115,7 +115,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 var adapter = poTableList.adapter as TowerPoTableAdapter
                 adapter.addItem(item)
             }
-        }
+        }*/
     }
 
     class ViewHold4(itemView: View) : ViewHold(itemView) {
@@ -293,7 +293,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 //                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
-                holder.poTableList.adapter= TaskEquipmentTableAdapter(context,listener)
+            //    holder.poTableList.adapter= TaskEquipmentTableAdapter(context,listener)
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {

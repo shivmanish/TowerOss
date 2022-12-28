@@ -24,6 +24,7 @@ import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.TabItemBinding
+import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
@@ -41,15 +42,18 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
 
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
-    private lateinit var v: TabItemBinding
-    private var tabNames: Array<String>? = null
+    private lateinit var v: TaskTabItemsBinding
+    private var tabNames: ArrayList<String> = ArrayList()
     private lateinit var siteDetailViewModel: SiteDetailViewModel
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         mainViewModel.isActionBarHide(false)
-        tabNames = siteDetailViewModel.getStrings(requireActivity())
+        tabNames.add("OPCO Info")
+        tabNames.add("Equipment")
+        tabNames.add("Operator & Equip")
 
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
@@ -60,10 +64,9 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
         setDataObserver()
     }
-
     private fun setDataObserver() {
 
-        showLoader()
+       // showLoader()
         setData()
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
             siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
@@ -132,13 +135,13 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
 
         val typedImages = siteDetailViewModel.getImageArray(requireActivity())
         for (i in 0..tabNames?.size!!.minus(1)) {
-            v = TabItemBinding.inflate(layoutInflater)
+            v = TaskTabItemsBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
             val texttabchange: TextView = v.txtTab
-            val imagetab: AppCompatImageView = v.tabImage
+            //val imagetab: AppCompatImageView = v.tabImage
             texttab.text = tabNames?.get(i)
             texttabchange.text = tabNames?.get(i)
-            imagetab.setImageResource(typedImages.getResourceId(i, 0))
+          //  imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
         val constraintLayout: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
