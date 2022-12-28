@@ -32,6 +32,11 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
     override fun getItemCount(): Int {
         return list.size
     }
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){}
+
+    open class ItemViewHold(itemView: View) : ViewHold(itemView){
+        var binding : SearchResultItemBinding = SearchResultItemBinding.bind(itemView)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return if (viewType == 0) {
@@ -63,12 +68,6 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
         fun onSearchItemSelected(item : SearchListItem?)
     }
 
-    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    }
-
-    open class ItemViewHold(itemView: View) : ViewHold(itemView){
-        var binding : SearchResultItemBinding = SearchResultItemBinding.bind(itemView)
-    }
 
 }
