@@ -10,18 +10,20 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.RadioAntenna
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
-class RadioAntinaTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
-    var list  = ArrayList<String>()
+class RadioAntinaTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener,radioAnteenaData:List<RadioAntenna>): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
+    var list  = ArrayList<RadioAntenna>()
     init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
+        list=radioAnteenaData as ArrayList<RadioAntenna>
     }
-    fun addItem(item:String){
-        list.add(item)
+    fun addItem(){
+        list.add(
+            RadioAntenna(AntennaCount = "3", AntennaHeight = "76", AntennaSize = "50",
+        AntennaTotalWeight = "54", created_at = "22-10-2022", id = "448", isActive = "true",
+        modified_at = "22-12-2022")
+        )
         notifyItemInserted(list.size.plus(1))
     }
 
@@ -39,9 +41,13 @@ class RadioAntinaTableAdapter (var context : Context, var listener : ServicesReq
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
             performOptionsMenuClick(position,it)
         }
+        holder.binding.AnteenaTechnology.text="Data not found"
+        holder.binding.AnteenaCount.text=list[position].AntennaCount
+        holder.binding.AnteenaShape.text="Data not found"
+        holder.binding.AnteenaSize.text=list[position].AntennaSize
+
     }
     override fun getItemCount(): Int {
         return list.size

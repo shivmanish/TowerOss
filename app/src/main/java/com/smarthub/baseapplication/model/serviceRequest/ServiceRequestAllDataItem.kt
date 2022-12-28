@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.model.serviceRequest
 
 data class ServiceRequestAllDataItem(
     val ASAcquitionSurvey: List<Any>,
-    val AssignACQTeam: List<Any>,
+    val AssignACQTeam: List<AssignACQTeam>,
     val FeasibilityPlanning: List<Any>,
     val OpcoTSSR: List<OpcoTSSR>,
     val SPApprovalAndSO: List<Any>,

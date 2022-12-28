@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityPlanDesignDetailsBinding
-import com.smarthub.baseapplication.model.serviceRequest.Equipment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.*
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
-import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
 
 class PowerDesignDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivityPlanDesignDetailsBinding

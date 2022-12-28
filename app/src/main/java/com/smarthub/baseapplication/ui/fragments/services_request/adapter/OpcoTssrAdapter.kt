@@ -89,7 +89,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding =
             EquipmentsInfoViewBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+//        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
             binding.collapsingLayout.tag = false
@@ -100,16 +100,16 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-            binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
-            }
+//            binding.imgAdd.setOnClickListener {
+//                addTableItem("dfsdh")
+//            }
         }
-        private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                var adapter = poTableList.adapter as TowerPoTableAdapter
-                adapter.addItem(item)
-            }
-        }
+//        private fun addTableItem(item:String){
+//            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
+//                var adapter = poTableList.adapter as TowerPoTableAdapter
+//                adapter.addItem(item)
+//            }
+//        }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)

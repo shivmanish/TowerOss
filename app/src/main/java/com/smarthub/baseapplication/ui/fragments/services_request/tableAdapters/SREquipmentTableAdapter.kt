@@ -11,27 +11,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.EquipmentTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.Equipment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
 
-class SREquipmentTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
+class SREquipmentTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener, equipmentData:List<Equipment> ): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
+    var list : ArrayList<Equipment>?
 
     init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
+        list=equipmentData as ArrayList<Equipment>
     }
 
-    fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+    fun addItem(){
+        list?.add(Equipment(CabinetSize = "4", EquipmentWeight = "8",
+            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723",
+            Voltage ="43", created_at = "22-10-2022", id = "448",
+            isActive = "true", modified_at = "22-12-2022" ))
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -46,13 +47,16 @@ class SREquipmentTableAdapter (var context : Context, var listener : ServicesReq
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
             performOptionsMenuClick(position,it)
         }
+        holder.binding.Technology.text="Data Not Found"
+        holder.binding.EquipmentInfo.text="Data Not Found"
+        holder.binding.EquipmentType.text="Data Not Found"
+        holder.binding.EquipmentSize.text="Data Not Found"
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     // this method will handle the onclick options click

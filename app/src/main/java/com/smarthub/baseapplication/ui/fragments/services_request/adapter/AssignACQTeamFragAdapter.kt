@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
+import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeamTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
@@ -13,13 +15,16 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
 
     var currentOpened = -1
     var list: ArrayList<String> = ArrayList()
+    private var  AssignAcqTeamData: AssignACQTeam?=null
+    private var AssignAcqTeamDetailsData: AssignACQTeamTeam?=null
     var type1="Details"
     var type2="Attachments"
 
     init {
         list.add("Details")
         list.add("Attachments")
-
+        AssignAcqTeamData=serviceRequestAllData?.AssignACQTeam?.get(0)
+        AssignAcqTeamDetailsData=AssignAcqTeamData?.AssignACQTeamTeam?.get(0)
       }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
@@ -118,6 +123,26 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
                 updateList(position)
             }
             holder.binding.itemTitleStr.text = list[position]
+            if(AssignAcqTeamDetailsData!=null){
+                holder.binding.AcquisitionExecutiveName.text=AssignAcqTeamDetailsData?.ExecutiveName
+                holder.binding.ExecutiveEmailID.text=AssignAcqTeamDetailsData?.ExecutiveEmailId
+                holder.binding.ExecutiveNumber.text=AssignAcqTeamDetailsData?.ExecutiveMobile
+                holder.binding.AcquisitionLeadName.text=AssignAcqTeamDetailsData?.LeadName
+                holder.binding.LeadEmailId.text=AssignAcqTeamDetailsData?.LeadEmailId
+                holder.binding.Number.text=AssignAcqTeamDetailsData?.LeadMobile
+                holder.binding.AcquisitionMode.text=AssignAcqTeamDetailsData?.AcquistionMode
+                holder.binding.AcquisitionType.text=AssignAcqTeamDetailsData?.AcquisitionType
+                holder.binding.AcquisitionBudget.text=AssignAcqTeamDetailsData?.AcquisitionBudget
+                holder.binding.AcquisitionTargetDate.text=AssignAcqTeamDetailsData?.AcquisitionTargetDate
+                holder.binding.VendorName.text=AssignAcqTeamDetailsData?.VendorName
+                holder.binding.PONumber.text=AssignAcqTeamDetailsData?.PONumber
+                holder.binding.PoAmount.text=AssignAcqTeamDetailsData?.POAmount
+                holder.binding.VendorExcutiveName.text=AssignAcqTeamDetailsData?.VendorExecutiveName
+                holder.binding.VendorExecutiveEmail.text=AssignAcqTeamDetailsData?.VendorExecutiveEmailId
+                holder.binding.VendorExecutiveNumber.text=AssignAcqTeamDetailsData?.VendorExecutiveMobile
+                holder.binding.OfficeAddress.text=AssignAcqTeamDetailsData?.OfficeAddress
+                holder.binding.Remmarks.text=AssignAcqTeamDetailsData?.Remark
+            }
         }
 
        else if (holder is AttachmentViewHold) {
