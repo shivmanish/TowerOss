@@ -24,7 +24,7 @@ import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
+class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener, SearchChipAdapter.SearchChipAdapterListner {
 
     var fetchedData = ""
     var isDataFetched = true
@@ -50,7 +50,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         disableButton()
-        val searchChipAdapter = SearchChipAdapter(requireContext())
+        val searchChipAdapter = SearchChipAdapter(requireContext(),this@SearchFragment)
         binding.chipLayout.adapter = searchChipAdapter
         searchChipAdapter.updateList(searchHistoryList)
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
@@ -178,6 +178,10 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
 
+//        fun navigatefromhistory(){
+//            historyItem=
+//        }
+
     }
 
     override fun onSearchItemSelected(item: SearchListItem?) {
@@ -191,7 +195,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         }
     }
 
-
+//   fun returnSiteIdTonavigate(historyItem: SearchListItem?): SearchListItem? {
+//       return historyItem
+//   }
     fun disableButton() {
         binding.viewOnIbo.alpha = 0.2f
         binding.viewOnMap.alpha = 0.2f
@@ -211,6 +217,10 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun selectedCategory(item: String) {
         this.selectedCategory = item
         Log.d("status", "selectedCategory:$item")
+    }
+//    var historyItemSite: SearchListItem?=null
+    override fun clickedSearchHistoryItem(historyItem: SearchListItem?) {
+        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("448"))
     }
 
 }
