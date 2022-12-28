@@ -10,9 +10,11 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.databinding.OperationSiteInfoViewBinding
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 //import com.smarthub.baseapplication.ui.fragments.services_request.adapter.EquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskEquipmentTableAdapter
+import com.smarthub.baseapplication.ui.fragments.task.TaskItemAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
 class TaskAdapter(var context : Context, var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
@@ -118,19 +120,30 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
     }
 */
 
-    class ViewHold3(itemView: View) : ViewHold(itemView) {
+    class ViewHold3(itemView: View) : ViewHold(itemView,) {
         var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+              //  listener.attachmentItemClicked()
+            }
+        })
         init {
-            binding.itemTitleStr.tag = false
-            binding.itemTitleStr.tag = false
-            if ((binding.itemTitleStr.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
+            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            recyclerListener.adapter = adapter
 
+            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                adapter.addItem()
+            }
         }
     }
 
@@ -275,7 +288,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 //                    holder.binding.iconLayout.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitleStr.tag = false
+                    holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
@@ -285,7 +298,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.itemTitle.text = list[position]
 
                 if (data!=null) {
 
