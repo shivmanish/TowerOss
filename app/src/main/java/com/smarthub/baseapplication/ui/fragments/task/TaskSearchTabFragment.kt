@@ -101,7 +101,9 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+               // constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+
                 val constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
                 val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
@@ -111,7 +113,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
             override fun onTabUnselected(tab: TabLayout.Tab) {
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected))
                 val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
                 val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.white))
