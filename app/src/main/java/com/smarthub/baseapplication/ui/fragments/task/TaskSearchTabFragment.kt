@@ -34,6 +34,7 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.OPCOSiteInfoEdit
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
+import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskEqupmentFragment
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
@@ -159,7 +160,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
             return when(position){
 
                 0-> TaskOPCOTabFragment.newInstance(tabNames?.get(0) ?: "OPCO Info")
-                1-> TaskOPCOTabFragment.newInstance(tabNames?.get(1) ?: "Equipment")
+                1-> TaskEqupmentFragment.newInstance(tabNames?.get(1) ?: "Equipment")
                 2-> TaskOPCOTabFragment.newInstance(tabNames?.get(2) ?: "Operator & Equip")
 
                 else -> TaskOPCOTabFragment.newInstance(tabNames?.get(1) ?: "OPCO Info")

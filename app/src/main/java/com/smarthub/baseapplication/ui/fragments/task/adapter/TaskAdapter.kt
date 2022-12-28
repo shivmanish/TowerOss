@@ -91,34 +91,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 
         }
     }
-/*
-    class ViewHold3(itemView: View) : TaskAdapter.ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-       // var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
-       */
-/* init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-            binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
-            }
-        }
-        private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                var adapter = poTableList.adapter as TowerPoTableAdapter
-                adapter.addItem(item)
-            }
-        }*//*
-
-    }
-*/
 
     class ViewHold3(itemView: View) : ViewHold(itemView,) {
         var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)

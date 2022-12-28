@@ -1,11 +1,9 @@
 package com.smarthub.baseapplication.ui.fragments.task.task_tab
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,16 +12,17 @@ import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBindin
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
+import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskEqupmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementViewModel
 
 
 
-class TaskOPCOTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
+class TaskEqupmentFragment : BaseFragment(), TaskEqupmentAdapter.TaskEqupmentListener {
 
     val ARG_PARAM1 = "param1"
     lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
     lateinit var viewmodel: SiteAgreementViewModel
-    lateinit var taskAdapter: TaskAdapter
+    lateinit var taskAdapter: TaskEqupmentAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSiteLeaseBinding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
@@ -34,10 +33,9 @@ class TaskOPCOTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
 
     private fun initializeFragment() {
         fragmentSiteLeaseBinding.siteLeaseListItem.layoutManager = LinearLayoutManager(requireContext())
-        taskAdapter = TaskAdapter(requireActivity(),this@TaskOPCOTabFragment)
+        taskAdapter = TaskEqupmentAdapter(requireActivity(),this@TaskEqupmentFragment)
         fragmentSiteLeaseBinding.siteLeaseListItem.adapter = taskAdapter
         var arraydata = ArrayList<String>()
-        arraydata.add("anything")
         arraydata.add("anything")
         arraydata.add("anything")
       //  taskAdapter.setData(arraydata)
