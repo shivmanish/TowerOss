@@ -40,15 +40,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:gravity="center"
+                        android:text="Do you want to save your data and close ?"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Do you Want to Submit &amp; Open OPCO Technical ?" />
+                        android:layout_height="wrap_content"/>
 
 
                 </LinearLayout>
- <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -84,12 +84,13 @@
 
                     <TextView
                         android:gravity="center"
-                        android:background="@drawable/button_rect_blue"
+                        android:background="@drawable/login_yellow_bg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next OPCO Technical"
+                        android:text="Save &amp; Close"
+                        android:padding="@dimen/dp15"
 
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/dp15"/>
 
                 </LinearLayout>
