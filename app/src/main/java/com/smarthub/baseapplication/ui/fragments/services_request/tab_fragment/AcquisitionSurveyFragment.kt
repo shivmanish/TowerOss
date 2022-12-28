@@ -7,30 +7,33 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
+import com.smarthub.baseapplication.databinding.AcquisitionSurveyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.ui.dialog.services_request.*
+import com.smarthub.baseapplication.ui.dialog.siteinfo.TeamVendorDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity.Companion.Id
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AcquisitionSurveyFragAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AssignACQTeamFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
-    var binding : OpcoInfoFregmentBinding?=null
+class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, Id: String?): BaseFragment(), AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner {
+    var binding : AcquisitionSurveyFragmentBinding?=null
     lateinit var viewmodel: HomeViewModel
-    lateinit var adapter: ServicesRequestAdapter
+    lateinit var adapter: AcquisitionSurveyFragAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
+        binding = AcquisitionSurveyFragmentBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding?.root
+
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
-        binding?.listItem?.adapter = adapter
+        adapter= AcquisitionSurveyFragAdapter(requireContext(),this@AcquisitionSurveyFragment,data!!)
+        binding?.acquisitionSurveyList?.adapter = adapter
 
         if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
             viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
@@ -56,9 +59,8 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
-            viewmodel.fetchSiteInfoData(Id!!)
+            viewmodel.fetchSiteInfoData(ServicesRequestActivity.Id!!)
         }
-
     }
 
     override fun onDestroy() {
@@ -68,37 +70,35 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         super.onDestroy()
     }
     override fun attachmentItemClicked() {
+        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
-    override fun EditSRdetailsItemClicked() {
-        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun EditBackhaulLinkItemClicked() {
-        val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+    override fun EditBuildingdetailsItemClicked() {
+        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(R.layout.teamvender_details_botom_sheet)
+        bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
-    override fun editEquipmentClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Equipment  Item clicked for edit", Toast.LENGTH_SHORT).show()
-
+    override fun editBoundryDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"Edit Boundry table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewEquipmentClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Equipment  Item clicked for view", Toast.LENGTH_SHORT).show()
+    override fun viewBoundryDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"View Boundry table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editRadioAnteenaClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for edit", Toast.LENGTH_SHORT).show()
+    override fun editPropertyOwnerDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"Edit Property Owner table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewRadioAnteenaClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for view", Toast.LENGTH_SHORT).show()
+    override fun viewPropertyOwnerDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"View Property Owner table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun EditrequestinfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+    override fun editPoDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"Edit Po table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
+    override fun viewPoDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"view Po table Item Clicked", Toast.LENGTH_SHORT).show()
+    }
 
 }

@@ -21,7 +21,7 @@
             android:layout_height="@dimen/dp45">
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="Details"
+                android:text="Building Details"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -105,16 +105,16 @@
                             android:layout_height="wrap_content"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="Acquisition Executive Name" />
+                            android:text="Building Lat-long" />
 
                         <TextView
-                            android:id="@+id/AcquisitionExecutiveName"
+                            android:id="@+id/Building_Lat_long"
                             style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Sandeep" />
+                            android:text="22.968035,76.085596" />
                     </LinearLayout>
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -125,57 +125,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Executive Email ID" />
+                            android:text="Building Type" />
 
                         <TextView
-                            android:id="@+id/ExecutiveEmailID"
+                            android:id="@+id/BuildingType"
                             style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ajay.verma@vil.com" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Executive Number" />
-
-                        <TextView
-                            android:id="@+id/Executive_Number"
-                            style="@style/RowTestItemEdit"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="9890000009" />
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Acquisition Lead Name" />
-
-                        <TextView
-                            android:id="@+id/Acquisition_Lead_Name"
-                            style="@style/RowTestItemEdit"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ajay Verma" />
+                            android:text="commercial" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -187,16 +146,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Lead Email ID" />
+                            android:text="Gate &amp; Fence" />
 
                         <TextView
-                            android:id="@+id/Lead_EmailId"
+                            android:id="@+id/Gate_Fence"
+                            style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ajay.verma@vil.com" />
+                            android:text="fdghgf" />
                     </LinearLayout>
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -207,16 +166,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Number" />
+                            android:text="Site Access Area" />
 
                         <TextView
-                            android:id="@+id/Number"
+                            android:id="@+id/Site_Access_Area"
+                            style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="9890000008" />
+                            android:text="Mumbai" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -228,10 +187,51 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Acquisition Mode" />
+                            android:text="Building Height" />
 
                         <TextView
-                            android:id="@+id/AcquisitionMode"
+                            android:id="@+id/Building_height"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="567" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No. of Floors" />
+
+                        <TextView
+                            android:id="@+id/No_of_floor"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Typical Floor Area" />
+
+                        <TextView
+                            android:id="@+id/Typical_Floor_Area"
                             style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
@@ -249,16 +249,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Acquisition Type" />
+                            android:text="Year of Construction" />
 
                         <TextView
-                            android:id="@+id/AcquisitionType"
+                            android:id="@+id/Year_of_Construction"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="On-Air" />
+                            android:text="2022" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -270,16 +270,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Acquisition Budget" />
+                            android:text="Property Ownership" />
 
                         <TextView
-                            android:id="@+id/Acquisition_Budget"
+                            android:id="@+id/Property_Ownership"
                             style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="8,000" />
+                            android:text="self" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -289,17 +289,20 @@
 
                         <TextView
                             style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Acquisition Target Date" />
+                            android:text="Property Offer for Acquisition" />
 
                         <TextView
-                            android:id="@+id/Acquisition_Target_Date"
+                            android:id="@+id/Property_Offer_for_Acquisition"
                             style="@style/RowTestItemEdit"
-                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="27-Jun-22" />
+                            android:text="Coustomer" />
 
 
                     </LinearLayout>
@@ -313,16 +316,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Vendor Name" />
+                            android:text="Acquisition Offer Type" />
 
                         <TextView
-                            android:id="@+id/textVendorName"
+                            android:id="@+id/Acquisition_Offer_Type"
                             android:ellipsize="marquee"
                             android:maxLines="1"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ankit" />
+                            android:text="dsfdth" />
 
 
                     </LinearLayout>
@@ -335,10 +338,10 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="PO Number" />
+                            android:text="Overall Feasibility" />
 
                         <TextView
-                            android:id="@+id/PONumber"
+                            android:id="@+id/Overall_Feasibility"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -356,10 +359,10 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="PO Amount" />
+                            android:text="Fiber LMC Laying" />
 
                         <TextView
-                            android:id="@+id/Po_amount"
+                            android:id="@+id/Fiber_LMC_Laying"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -376,9 +379,11 @@
 
                         <TextView
                             style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Vendor Executive Name" />
+                            android:text="Tower/ Pole Installation" />
 
                         <TextView
                             android:id="@+id/Vendor_Excutive_Name"
@@ -387,7 +392,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Vishesh Sharma" />
+                            android:text="dsfhshg" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -401,16 +406,16 @@
                             android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Vendor Executive Email ID" />
+                            android:text="EB supply thro’ Building Meter" />
 
                         <TextView
-                            android:id="@+id/Vendor_Executive_Email"
+                            android:id="@+id/EBsupplyBuildingMeter"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="vishesh.sharma@vde.c..." />
+                            android:text="dsghfy" />
                     </LinearLayout>
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -423,16 +428,105 @@
                             android:layout_height="wrap_content"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="Vendor Executive Number" />
+                            android:text="Equipment Room" />
 
                         <TextView
-                            android:id="@+id/Vendor_Executive_Number"
+                            android:id="@+id/Equipment_Room"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="989000323" />
+                            android:text="sdfgdhsgh" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Required Area Available"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/RequiredAreaAvailable"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="gdsrgdtr" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Availability of statutory per..."
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Availability"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="dfgfhh" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Overall feasibillity"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Overall_feasibillity"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="dsghfyd" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Survey Date"
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Survey_Date"
+                            android:text="27-Jun-22"
+                            style="@style/RowTestItemEdit"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
@@ -445,7 +539,7 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Office Address" />
+                    android:text="Building Address with Pincode" />
                 <TextView
                     android:id="@+id/Office_Address"
                     android:layout_marginLeft="@dimen/dp10"

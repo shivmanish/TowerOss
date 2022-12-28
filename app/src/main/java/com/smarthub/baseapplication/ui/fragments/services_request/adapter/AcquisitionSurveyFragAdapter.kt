@@ -6,72 +6,41 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.serviceRequest.*
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.databinding.AcquisitionPoTableBinding
+import com.smarthub.baseapplication.databinding.AcquisitionPropertyOwnerTableBinding
+import com.smarthub.baseapplication.databinding.AcquisitionSurveyBoundryDetailsItemBinding
+import com.smarthub.baseapplication.databinding.AcquisitionSurveyBuildingDetalisItemBinding
+import com.smarthub.baseapplication.databinding.ServiceRequestTeamvendorAttachmentBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BoundryDetailsTableAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PoDetailsTableAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PropertyOwnerTableAdapter
 
+class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
-    var list : ArrayList<String> = ArrayList()
-    var type1 = "SR Details"
-    var type2 = "Equipments"
-    var type3 = "Radio Antennas"
-    var type4 = "Backhaul Links"
-    var type5 = "Requester Info"
-    var type6 = "Attachments"
-    private var data : BasicInfoModelDropDown?=null
-    private var servicerequestData : ServiceRequest?=null
-    private var SrDetailsData: SRDetail ?=null
-    private var EquipmentData: Equipment?=null
-    private var RadioAnteenaData: RadioAntenna?=null
-    private var BackhaulLinksData: BackHaulLink?=null
-    private var RequesterInfo: RequesterInfo ?=null
     var currentOpened = -1
-    fun setData(data : BasicInfoModelDropDown){
-        this.data = data
-        notifyDataSetChanged()
-    }
-//    fun setValueData(data : ServiceRequest){
-//        this.servicerequestData = data
-//        notifyDataSetChanged()
-//    }
+    var list: ArrayList<String> = ArrayList()
+    var type1="Building Details"
+    var type2="Boundary Structures Details"
+    var type3="Property Owner's Details"
+    var type4="PO Details"
+    var type5="Attachments"
+
     init {
-        list.add("SR Details")
-        list.add("Equipments")
-        list.add("Radio Antennas")
-        list.add("Backhaul Links")
-        list.add("Requester Info")
+        list.add("Building Details")
+        list.add("Boundary Structures Details")
+        list.add("Property Owner's Details")
+        list.add("PO Details")
         list.add("Attachments")
-    servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
-    SrDetailsData=servicerequestData?.SRDetails?.get(0)
-    EquipmentData=servicerequestData?.Equipments?.get(0)
-    RadioAnteenaData=servicerequestData?.RadioAntennas?.get(0)
-    BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
-    RequesterInfo=servicerequestData?.RequesterInfo?.get(0)
+
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-    override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
-            return 1
-        else if (list[position] is String && list[position]==type2)
-            return 2
-        else if (list[position] is String && list[position]==type3)
-            return 3
-        else if (list[position] is String && list[position]==type4)
-            return 4
-        else if (list[position] is String && list[position]==type5)
-            return 5
-        else if (list[position] is String && list[position]==type6)
-            return 6
-        return 0
-    }
-    class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : SrDetailItemViewBinding = SrDetailItemViewBinding.bind(itemView)
+    class BuildingDetailsViewHold(itemView: View) : ViewHold(itemView) {
+        var binding: AcquisitionSurveyBuildingDetalisItemBinding = AcquisitionSurveyBuildingDetalisItemBinding.bind(itemView)
 
         init {
+
             binding.collapsingLayout.tag = false
 
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -85,10 +54,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
         }
     }
-
-    class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-        var equipmentTableList: RecyclerView=binding.SrEquipmentTables
+    class BoundryDetailsViewHold(itemView: View) : ViewHold(itemView){
+        var binding: AcquisitionSurveyBoundryDetailsItemBinding = AcquisitionSurveyBoundryDetailsItemBinding.bind(itemView)
+        var BoundryTableList: RecyclerView=binding.acquisitionSurveyBoundryTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -104,16 +72,15 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
-                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
+            if (BoundryTableList.adapter!=null && BoundryTableList.adapter is BoundryDetailsTableAdapter){
+                var adapter = BoundryTableList.adapter as BoundryDetailsTableAdapter
                 adapter.addItem(item)
             }
         }
     }
-
-    class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: RadioAntineListItemBinding = RadioAntineListItemBinding.bind(itemView)
-        var RadioAnteenaTableList: RecyclerView=binding.SRRadioAnteenaTableItem
+    class PropertyOwnerDetailsViewHold(itemView: View) : ViewHold(itemView){
+        var binding: AcquisitionPropertyOwnerTableBinding = AcquisitionPropertyOwnerTableBinding.bind(itemView)
+        var PropertyOwnerTableList: RecyclerView=binding.acquisitionPropertyOwnerTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -129,49 +96,39 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-            if (RadioAnteenaTableList.adapter!=null && RadioAnteenaTableList.adapter is RadioAntinaTableAdapter){
-                var adapter = RadioAnteenaTableList.adapter as RadioAntinaTableAdapter
+            if (PropertyOwnerTableList.adapter!=null && PropertyOwnerTableList.adapter is PropertyOwnerTableAdapter){
+                var adapter = PropertyOwnerTableList.adapter as PropertyOwnerTableAdapter
+                adapter.addItem(item)
+            }
+        }
+    }
+    class PoDetailsViewHold(itemView: View) : ViewHold(itemView){
+        var binding: AcquisitionPoTableBinding = AcquisitionPoTableBinding.bind(itemView)
+        var PoTableList: RecyclerView=binding.acquisitionPoTableItem
+
+        init {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (PoTableList.adapter!=null && PoTableList.adapter is PoDetailsTableAdapter){
+                var adapter = PoTableList.adapter as PoDetailsTableAdapter
                 adapter.addItem(item)
             }
         }
     }
 
-    class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
-        init {
-            binding.collapsingLayout.tag = false
-
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-        }
-    }
-
-    class ViewHold5(itemView: View) : ViewHold(itemView) {
-        var binding : RequestInfoViewBinding = RequestInfoViewBinding.bind(itemView)
-
-        init {
-            binding.collapsingLayout.tag = false
-
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-
-        }
-    }
-
-    class ViewHold6(itemView: View, listener: ServicesRequestLisListener) : ViewHold(itemView) {
-        var binding : ServiceRequestSrDetailsAttachmentsBinding = ServiceRequestSrDetailsAttachmentsBinding.bind(itemView)
+    class AttachmentViewHold(itemView: View, listener: AcquisitionSurveyListItemListner) : ViewHold(itemView) {
+        var binding: ServiceRequestTeamvendorAttachmentBinding = ServiceRequestTeamvendorAttachmentBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
                 listener.attachmentItemClicked()
@@ -197,44 +154,56 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
-        when (viewType) {
+
+        return when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.sr_detail_item_view, parent, false)
-                return ViewHold1(view)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.acquisition_survey_building_detalis_item, parent, false)
+                BuildingDetailsViewHold(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
-                return ViewHold2(view)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.acquisition_survey_boundry_details_item, parent, false)
+                BoundryDetailsViewHold(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.radio_antine_list_item, parent, false)
-                return ViewHold3(view)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.acquisition_property_owner_table, parent, false)
+                PropertyOwnerDetailsViewHold(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_links_item, parent, false)
-                return ViewHold4(view)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.acquisition_po_table, parent, false)
+                PoDetailsViewHold(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.request_info_view, parent, false)
-                return ViewHold5(view)
-            }
-            6-> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.service_request_sr_details_attachments, parent, false)
-                return ViewHold6(view,listener)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.service_request_teamvendor_attachment, parent, false)
+                AttachmentViewHold(view,listener)
             }
 
-         }
-        return ViewHold(view)
+            else -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.acquisition_survey_building_detalis_item, parent, false)
+                ViewHold(view)
+            }
+        }
     }
+
+    override fun getItemViewType(position: Int): Int {
+        if (list[position] is String && list[position]==type1)
+            return 1
+        else if (list[position] is String && list[position]==type2)
+            return 2
+        else if (list[position] is String && list[position]==type3)
+            return 3
+        else if (list[position] is String && list[position]==type4)
+            return 4
+        else if (list[position] is String && list[position]==type5)
+            return 5
+        else return 0
+    }
+
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        when (holder) {
-
-            is ViewHold1 -> {
+        when(holder){
+            is BuildingDetailsViewHold->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.EditSRdetailsItemClicked()
+                    listener.EditBuildingdetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -255,16 +224,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-
-                if (data!=null) {
-
-                }
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-//
-//                }
             }
-            is ViewHold2 -> {
+            is BoundryDetailsViewHold->{
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -284,17 +245,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-
-                if (data!=null) {
-
-                }
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-//
-//                }
-                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
+                holder.BoundryTableList.adapter=BoundryDetailsTableAdapter(context,listener)
             }
-            is ViewHold3 -> {
+            is PropertyOwnerDetailsViewHold->{
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -314,61 +267,31 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener)
+                holder.PropertyOwnerTableList.adapter=PropertyOwnerTableAdapter(context,listener)
             }
-
-            is ViewHold4 -> {
-                holder.binding.imgEdit.setOnClickListener() {
-                    listener.EditBackhaulLinkItemClicked()
-                }
+            is PoDetailsViewHold->{
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.itemTitleStr.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
-//                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
-//                }
+                holder.PoTableList.adapter=PoDetailsTableAdapter(context,listener)
             }
-            is ViewHold5 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.EditSRdetailsItemClicked()
-                }
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitleStr.text = list[position]
-            }
-            is ViewHold6 -> {
+            is AttachmentViewHold->{
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -388,30 +311,29 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.itemTitleStr.text = list[position]
             }
         }
+
     }
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
+    var recyclerView: RecyclerView?=null
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
         notifyDataSetChanged()
         if (this.recyclerView!=null)
             this.recyclerView?.scrollToPosition(position)
     }
-    var recyclerView: RecyclerView?=null
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        this.recyclerView = recyclerView
-        super.onAttachedToRecyclerView(recyclerView)
-    }
-    override fun getItemCount(): Int {
-        return list.size
-    }
-    interface ServicesRequestLisListener {
-        fun attachmentItemClicked()
-        fun EditSRdetailsItemClicked()
-        fun EditBackhaulLinkItemClicked()
-        fun EditrequestinfoClicked()
-        fun editEquipmentClicked(position:Int)
-        fun viewEquipmentClicked(position:Int)
-        fun editRadioAnteenaClicked(position:Int)
-        fun viewRadioAnteenaClicked(position:Int)
 
+
+    interface AcquisitionSurveyListItemListner {
+        fun attachmentItemClicked()
+        fun EditBuildingdetailsItemClicked()
+        fun editBoundryDetailsClicked(position:Int)
+        fun viewBoundryDetailsClicked(position:Int)
+        fun editPropertyOwnerDetailsClicked(position:Int)
+        fun viewPropertyOwnerDetailsClicked(position:Int)
+        fun editPoDetailsClicked(position:Int)
+        fun viewPoDetailsClicked(position:Int)
     }
 }

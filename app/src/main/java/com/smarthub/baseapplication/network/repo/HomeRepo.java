@@ -422,7 +422,9 @@ public class HomeRepo {
 //                   data update
                     if (data.getItem()!=null && !data.getItem().isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.getItem().get(0).getOperator()), 200));
-                        serviceRequestAllData.postValue(Resource.success(data.getItem().get(0).getServicerequestmain(), 200));
+                        serviceRequestAllData.postValue(Resource.success(data.getItem().get(0).getServiceRequestMain(), 200));
+                        AppLogger.INSTANCE.log("Service request Fragment data error :"+ data.getItem().get(0).getServiceRequestMain());
+
                     }
                 }
             }

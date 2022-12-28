@@ -4,6 +4,7 @@ package com.smarthub.baseapplication.ui.site_agreement
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.AssignACQTeamFragment
 import com.smarthub.baseapplication.ui.site_agreement.fragment.*
 
 class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
@@ -17,7 +18,7 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return Nominals()
             }
             1 -> {
-                return TeamVendor()
+                return TeamVendorFragment()
             }
             2 -> {
                 return Feasibility()
