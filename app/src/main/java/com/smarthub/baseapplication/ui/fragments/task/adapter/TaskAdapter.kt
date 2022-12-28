@@ -16,13 +16,10 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskEq
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
 class TaskAdapter(var context : Context, var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
-    var type1 = "Site Info"
-    var type2 = "OPCO Info"
-    var type3 = "Equipment"
-    var type4 = "Operations Team"
+    var type1 = "OPCO/Site Info"
+    var type2 = "Operations Team"
+    var type3 = "Attachments"
 
-    var type5 = "Operator & Equip"
-    var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
     private var fieldData : SiteInfoModel?=null
 
@@ -35,13 +32,12 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
         notifyDataSetChanged()
     }
     init {
-        list.add("Site Info")
-        list.add("OPCO Info")
-        list.add("Equipment")
+        list.add("OPCO/Site Info")
         list.add("Operations Team")
-
-        list.add("Operator & Equip")
         list.add("Attachments")
+ /*       list.add("OPCO Info")
+        list.add("Equipment")*/
+
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -51,32 +47,15 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
             return 2
         else if (list[position] is String && list[position]==type3)
             return 3
-        else if (list[position] is String && list[position]==type4)
+      /*  else if (list[position] is String && list[position]==type4)
             return 4
         else if (list[position] is String && list[position]==type5)
             return 5
         else if (list[position] is String && list[position]==type6)
-            return 6
+            return 6*/
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : TaskSiteInfoItemViewBinding = TaskSiteInfoItemViewBinding.bind(itemView)
-
-        init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-
-        }
-    }
-    class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
 
         init {
@@ -93,11 +72,30 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 
         }
     }
+    class ViewHold2(itemView: View) : ViewHold(itemView) {
+        var binding : OpcoOperationsTeamItemBinding = OpcoOperationsTeamItemBinding.bind(itemView)
+
+        init {
+            binding.itemTitleStr.tag = false
+            binding.itemTitleStr.tag = false
+            if ((binding.itemTitleStr.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+
+        }
+    }
+/*
     class ViewHold3(itemView: View) : TaskAdapter.ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
        // var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
-       /* init {
+       */
+/* init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -115,10 +113,12 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 var adapter = poTableList.adapter as TowerPoTableAdapter
                 adapter.addItem(item)
             }
-        }*/
-    }
+        }*//*
 
-    class ViewHold4(itemView: View) : ViewHold(itemView) {
+    }
+*/
+
+    class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding : OpcoOperationsTeamItemBinding = OpcoOperationsTeamItemBinding.bind(itemView)
         init {
             binding.itemTitleStr.tag = false
@@ -134,7 +134,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
         }
     }
 
-    class ViewHold5(itemView: View, listener: TaskLisListener) : ViewHold(itemView) {
+   /* class ViewHold5(itemView: View, listener: TaskLisListener) : ViewHold(itemView) {
         var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
@@ -166,33 +166,34 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 
        }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+ */   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.task_site_info_item_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
                 return ViewHold1(view)
-
+//task_site_info_item_view
             }
             2 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
-                return ViewHold3(view)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
+                return ViewHold3(view)//equipments_info_view
             }
-            4 -> {
+     /*       4 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.opco_operations_team_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold5(view,listener)
-            }   6-> {
+            }
+            6-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
                 return ViewHold6(view,listener)
-            }
+            }*/
 
         }
         return ViewHold(view)
@@ -209,7 +210,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.titleLayout.visibility = View.VISIBLE
                 }
                 else {
                     holder.binding.itemTitle.tag = false
@@ -217,7 +218,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.titleLayout.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -255,7 +256,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
                 if (data!=null) {
 
@@ -295,7 +296,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 }
             //    holder.poTableList.adapter= TaskEquipmentTableAdapter(context,listener)
             }
-            is ViewHold4 -> {
+          /*  is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
                     listener.siteAccessDetailsItemClicked()
                 }
@@ -366,7 +367,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-            }
+            }*/
         }
     }
     var currentOpened = -1

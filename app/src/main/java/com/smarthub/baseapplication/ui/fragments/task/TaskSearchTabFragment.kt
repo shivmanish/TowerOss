@@ -103,7 +103,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                // constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-
                 val constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
                 val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
