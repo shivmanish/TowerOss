@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -56,18 +57,19 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
-
+       // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
         setDataObserver()
     }
 
     private fun setDataObserver() {
 
         showLoader()
+        setData()
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
             siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
         siteDetailViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
             hideLoader()
+
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                    // saveDataToLocal(it.data)
@@ -104,7 +106,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-//                viewPager.currentItem = tab.position
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
@@ -150,7 +151,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
 
     internal inner class ViewPagerAdapter(manager: FragmentManager, behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
-        override fun getItem(position: Int): BaseFragment {
+        override fun getItem(position: Int): Fragment {
             return when(position){
 
                 0-> TaskOPCOTabFragment.newInstance(tabNames?.get(0) ?: "OPCO Info")
