@@ -119,7 +119,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 */
 
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : OpcoOperationsTeamItemBinding = OpcoOperationsTeamItemBinding.bind(itemView)
+        var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
         init {
             binding.itemTitleStr.tag = false
             binding.itemTitleStr.tag = false
@@ -179,7 +179,7 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
                 return ViewHold3(view)//equipments_info_view
             }
      /*       4 -> {
