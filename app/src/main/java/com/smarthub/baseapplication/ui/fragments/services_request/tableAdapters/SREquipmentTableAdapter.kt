@@ -25,9 +25,9 @@ class SREquipmentTableAdapter (var context : Context, var listener : ServicesReq
 
     fun addItem(){
         list?.add(Equipment(CabinetSize = "4", EquipmentWeight = "8",
-            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723",
-            Voltage ="43", created_at = "22-10-2022", id = "448",
-            isActive = "true", modified_at = "22-12-2022" ))
+            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723", Technology = "empty",
+            Voltage ="43", created_at = "22-10-2022", id = 448,
+            isActive = true, modified_at = "22-12-2022" ))
         notifyItemInserted(list?.size!!.plus(1))
     }
 

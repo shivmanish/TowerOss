@@ -257,7 +257,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.SRStatus.text=SrDetailsData?.SRStatus
                     holder.binding.RequesterCompany.text="Api Data Not found"
                     holder.binding.RFTechnology.text="Api Data Not found"
-                    holder.binding.HubSite.text=SrDetailsData?.HubSite
+                    holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
                     holder.binding.OPCOSIteID.text=SrDetailsData?.OpcoSiteName
                     holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
                     holder.binding.Priority.text=SrDetailsData?.Priority

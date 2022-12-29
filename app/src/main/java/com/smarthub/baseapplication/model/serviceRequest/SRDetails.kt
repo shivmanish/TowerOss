@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
-data class SRDetail(
+data class SRDetails(
     val Area: String,
     val Circle: String,
     val CityOrTown: String,
