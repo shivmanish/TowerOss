@@ -34,7 +34,9 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
         notifyDataSetChanged()
     }
     init {
+
         list.add("OPCO/Site Info")
+
         list.add("Operations Team")
         list.add("Attachments")
  /*       list.add("OPCO Info")
@@ -43,11 +45,11 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if (list[position] is String && list[position].equals(type1,true))
             return 1
-        else if (list[position] is String && list[position]==type2)
+        else if (list[position] is String && list[position].equals(type2,true))
             return 2
-        else if (list[position] is String && list[position]==type3)
+        else if (list[position] is String && list[position].equals(type3,true))
             return 3
       /*  else if (list[position] is String && list[position]==type4)
             return 4
