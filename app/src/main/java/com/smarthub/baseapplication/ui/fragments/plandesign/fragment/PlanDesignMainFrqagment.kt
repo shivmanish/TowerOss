@@ -14,13 +14,14 @@ import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PlanDesignMainFrqagment : Fragment(), PlanDesignAdapterListener {
+class PlanDesignMainFrqagment : BaseFragment(), PlanDesignAdapterListener {
 
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"

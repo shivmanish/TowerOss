@@ -15,18 +15,21 @@ import androidx.navigation.fragment.findNavController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchFragmentBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener {
+class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener, SearchChipAdapter.SearchChipAdapterListner {
 
     var fetchedData = ""
     var isDataFetched = true
     var item: SearchListItem?=null
+    var searchHistoryList=SearchList()
     var selectedCategory: String="name"
     private lateinit var binding: SearchFragmentBinding
     lateinit var homeViewModel : HomeViewModel
@@ -35,7 +38,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SearchFragmentBinding.inflate(layoutInflater)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-
+        searchHistoryList=AppPreferences.getInstance().searchList
         return binding.root
     }
 
@@ -47,8 +50,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         disableButton()
-        val searchChipAdapter = SearchChipAdapter(requireContext())
+        val searchChipAdapter = SearchChipAdapter(requireContext(),this@SearchFragment)
         binding.chipLayout.adapter = searchChipAdapter
+        searchChipAdapter.updateList(searchHistoryList)
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
                 .setChildGravity(Gravity.TOP) //whether RecyclerView can scroll. TRUE by default
                 .setScrollingEnabled(true) //set maximum views count in a particular row
@@ -130,9 +134,16 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 }
             }
         })
+
         binding.viewOnIbo.setOnClickListener {
-//            binding.searchCardView.text.clear()
-//            homeViewModel.fetchSiteInfoData(item?.id!!)
+            if(searchHistoryList.contains(SearchListItem(item?.siteID,item?.id))){
+              searchHistoryList.remove(SearchListItem(item?.siteID,item?.id))}
+            searchHistoryList.add(0,SearchListItem(item?.siteID,item?.id))
+            if(searchHistoryList.size>=10)
+                searchHistoryList.subList(10,searchHistoryList.size).clear()
+            AppPreferences.getInstance().saveSearchList(searchHistoryList)
+            searchChipAdapter.updateList(searchHistoryList)
+//            var searchHistory1=Gson().fromJson(searchhistoryJson,SearchList::class.java)
 
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
 
@@ -180,7 +191,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         }
     }
 
-
     fun disableButton() {
         binding.viewOnIbo.alpha = 0.2f
         binding.viewOnMap.alpha = 0.2f
@@ -200,6 +210,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun selectedCategory(item: String) {
         this.selectedCategory = item
         Log.d("status", "selectedCategory:$item")
+    }
+    override fun clickedSearchHistoryItem(historyItem: SearchListItem?) {
+        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("448"))
     }
 
 }

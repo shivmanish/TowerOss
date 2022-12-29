@@ -1,8 +1,10 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
+import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
+
 data class ServiceRequestAllDataItem(
-    val ASAcquitionSurvey: List<Any>,
-    val AssignACQTeam: List<Any>,
+    val ASAcquitionSurvey: List<ASAquisitionSurvey>,
+    val AssignACQTeam: List<AssignACQTeam>,
     val FeasibilityPlanning: List<Any>,
     val OpcoTSSR: List<OpcoTSSR>,
     val SPApprovalAndSO: List<Any>,

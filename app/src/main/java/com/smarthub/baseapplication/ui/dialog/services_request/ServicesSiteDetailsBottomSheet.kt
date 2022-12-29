@@ -4,18 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.ServiceSiteBottomSheetDialogBinding
-import com.smarthub.baseapplication.databinding.SiteDetailBootomSheetDialogBinding
-import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
-import com.smarthub.baseapplication.model.serviceRequest.SRDetail
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
-import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.model.serviceRequest.SRDetails
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class ServicesSiteDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel, var template: String) : BottomSheetDialogFragment(contentLayoutId) {
@@ -29,7 +21,7 @@ class ServicesSiteDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeVi
             dismiss()
         }
 
-        var srDetail: SRDetail? = null
+        var srDetail: SRDetails? = null
   
 
         if (viewModel.getTaskDataResponse?.hasActiveObservers() == true)

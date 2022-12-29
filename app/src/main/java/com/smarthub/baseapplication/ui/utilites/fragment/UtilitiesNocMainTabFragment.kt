@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.utilites.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapter
@@ -18,7 +19,7 @@ import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapterLi
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocActivity
 import com.smarthub.baseapplication.ui.utilites.UtilitiesNocViewModel
 
-class UtilitiesNocMainTabFragment : Fragment(), UtilitesNocDataAdapterListener {
+class UtilitiesNocMainTabFragment : BaseFragment(), UtilitesNocDataAdapterListener {
     private val ARG_PARAM1 = "param1"
     lateinit var nocBinding: FragmentUtilitesNocBinding
     lateinit var viewmodel: UtilitiesNocViewModel

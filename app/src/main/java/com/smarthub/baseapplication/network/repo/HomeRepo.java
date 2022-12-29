@@ -15,6 +15,8 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
+import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -24,6 +26,8 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeRes
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +50,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<GenerateSiteIdResponse>> generateSiteIdResponse;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
+    private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -58,6 +63,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
         return siteSearchResponse;
+    }
+
+    public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
+        return serviceRequestModel;
     }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
@@ -89,6 +98,7 @@ public class HomeRepo {
         serviceRequestAllData = new SingleLiveEvent<>();
         generateSiteIdResponse = new SingleLiveEvent<>();
         taskDataList = new SingleLiveEvent<>();
+        serviceRequestModel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -431,6 +441,9 @@ public class HomeRepo {
     }
 
     public void siteInfoById(String id) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername","SMRT");
         opcoDataResponse.postValue(Resource.loading((opcoDataResponse.getValue()!=null)?opcoDataResponse.getValue().data:null, 200));
         siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null, 200));
         apiClient.fetchSiteInfoById(new IdData(id)).enqueue(new Callback<SiteInfoModel>() {
@@ -460,7 +473,9 @@ public class HomeRepo {
 //                   data update
                     if (data.getItem()!=null && !data.getItem().isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.getItem().get(0).getOperator()), 200));
-                        serviceRequestAllData.postValue(Resource.success(data.getItem().get(0).getServicerequestmain(), 200));
+                        serviceRequestAllData.postValue(Resource.success(data.getItem().get(0).getServiceRequestMain(), 200));
+                        AppLogger.INSTANCE.log("Service request Fragment data error :"+ data.getItem().get(0).getServiceRequestMain());
+
                     }
                 }
             }
@@ -472,6 +487,120 @@ public class HomeRepo {
                     siteInfoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
+    }
+
+    public void serviceRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("ServiceRequestMain");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
+            @Override
+            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void opcoRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Operator");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+//        apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
+//            @Override
+//            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody()!=null){
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+//                reportErrorResponse(t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+//                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(String iThrowableLocalMessage) {
+//                if (iThrowableLocalMessage != null)
+//                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+    }
+
+    public void powerAndFuelRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("PowerAndFuel");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+//        apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
+//            @Override
+//            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody()!=null){
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+//                reportErrorResponse(t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+//                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(String iThrowableLocalMessage) {
+//                if (iThrowableLocalMessage != null)
+//                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
     }
 
     public void siteSearchData(String id) {

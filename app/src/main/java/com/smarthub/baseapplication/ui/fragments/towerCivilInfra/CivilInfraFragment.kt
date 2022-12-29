@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 
-class CivilInfraFragment : Fragment(),CivilInfraAdapter.CivilInfraAdapterListner {
+class CivilInfraFragment : BaseFragment(),CivilInfraAdapter.CivilInfraAdapterListner {
 
     lateinit var binding : CivilInfraFragmentBinding
 

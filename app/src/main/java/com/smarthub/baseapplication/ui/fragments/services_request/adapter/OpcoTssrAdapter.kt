@@ -17,17 +17,8 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
     var type4 = "Power & MCB"
     var type5 = "Attachments"
     var type6 = "TSSR Executive Info"
-    private var data : BasicInfoModelDropDown?=null
-    private var fieldData : SiteInfoModel?=null
 
-    fun setData(data : BasicInfoModelDropDown){
-        this.data = data
-        notifyDataSetChanged()
-    }
-    fun setValueData(data : SiteInfoModel){
-        this.fieldData = data
-        notifyDataSetChanged()
-    }
+
     init {
         list.add("RF Feasibility")
         list.add("Backhaul Feasibility")
@@ -37,28 +28,14 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
         list.add("TSSR Executive Info")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-    override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
-            return 1
-        else if (list[position] is String && list[position]==type2)
-            return 2
-        else if (list[position] is String && list[position]==type3)
-            return 3
-        else if (list[position] is String && list[position]==type4)
-            return 4
-        else if (list[position] is String && list[position]==type5)
-            return 5
-        else if (list[position] is String && list[position]==type6)
-            return 6
-        return 0
-    }
+
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : RfItemViewBinding = RfItemViewBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -89,7 +66,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding =
             EquipmentsInfoViewBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+//        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
             binding.collapsingLayout.tag = false
@@ -100,16 +77,16 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-            binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
-            }
+//            binding.imgAdd.setOnClickListener {
+//                addTableItem("dfsdh")
+//            }
         }
-        private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                var adapter = poTableList.adapter as TowerPoTableAdapter
-                adapter.addItem(item)
-            }
-        }
+//        private fun addTableItem(item:String){
+//            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
+//                var adapter = poTableList.adapter as TowerPoTableAdapter
+//                adapter.addItem(item)
+//            }
+//        }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
@@ -161,6 +138,22 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
        }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        if (list[position] is String && list[position]==type1)
+            return 1
+        else if (list[position] is String && list[position]==type2)
+            return 2
+        else if (list[position] is String && list[position]==type3)
+            return 3
+        else if (list[position] is String && list[position]==type4)
+            return 4
+        else if (list[position] is String && list[position]==type5)
+            return 5
+        else if (list[position] is String && list[position]==type6)
+            return 6
+        return 0
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
@@ -204,28 +197,22 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
+                    holder.binding.collapsingLayout.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
-                if (data!=null) {
 
-                }
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
-
-                }
             }
 
             is ViewHold2 -> {
@@ -252,13 +239,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if (data!=null) {
 
-                }
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-                    val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
-
-                }
             }
             is ViewHold3 -> {
                 holder.binding.collapsingLayout.setOnClickListener {
@@ -303,9 +284,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
-                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
-                }
+
             }
             is ViewHold5 -> {
                 if (currentOpened == position) {
@@ -354,17 +333,19 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
             }
         }
     }
+
+
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
+    var recyclerView: RecyclerView?=null
     var currentOpened = -1
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
         notifyDataSetChanged()
         if (this.recyclerView!=null)
             this.recyclerView?.scrollToPosition(position)
-    }
-
-    var recyclerView: RecyclerView?=null
-    override fun getItemCount(): Int {
-        return list.size
     }
 
     interface OpcoTssrLisListener {

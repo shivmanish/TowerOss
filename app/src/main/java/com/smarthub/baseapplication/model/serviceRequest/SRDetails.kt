@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
-data class SRDetail(
+data class SRDetails(
     val Area: String,
     val Circle: String,
     val CityOrTown: String,
@@ -11,11 +11,11 @@ data class SRDetail(
     val Pincode: String,
     val Priority: String,
     val RequestDate: String,
-    val RequesterCompany: List<RequesterCompany>,
+    val RequesterCompany: String,
     val SRStatus: String,
     val SRType: String,
     val SearchRadius: String,
-    val Technology: List<Technology>,
+    val Technology: String,
     val created_at: String,
     val id: Int,
     val isActive: Boolean,

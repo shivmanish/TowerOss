@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.utils.AppController;
 
 import java.lang.reflect.Type;
@@ -47,6 +48,24 @@ public static String DROPDOWNDATA = "dropdowndata";
         prefsEditor.apply();
     }
 
+    public SearchList getSearchList() {
+        SearchList list = new SearchList();
+        String listJson=getString("SearchHistory");
+        try{
+            list=new Gson().fromJson(listJson, SearchList.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(list==null)
+            list=new SearchList();
+        return list;
+    }
+    public void saveSearchList(SearchList iValue) {
+        String searchhistoryJson= new Gson().toJson(iValue);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString("SearchHistory",searchhistoryJson);
+        prefsEditor.apply();
+    }
     public void saveString(String iKey, String iValue) {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(iKey, iValue);

@@ -20,7 +20,8 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAdapterListener {
-    lateinit var viewmodel: HomeViewModel
+    var viewmodel: HomeViewModel?=null
+    var isDataLoaded = false
     lateinit var customerDataAdapter: ServicesDataAdapter
     lateinit var customerBinding: FragmentServiceRequestBinding
 
@@ -33,7 +34,7 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment)
+        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment,id)
         customerBinding.customerList.adapter = customerDataAdapter
 
         customerBinding.addMore.setOnClickListener{
@@ -41,10 +42,10 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             dalouge.show(childFragmentManager,"")
 
         }
-        if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
-            viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
+        if (viewmodel?.serviceRequestModelResponse?.hasActiveObservers() == true){
+            viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
+        viewmodel?.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
             customerBinding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
                 showLoader()
@@ -53,10 +54,12 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                customerDataAdapter.setData(it.data)
-                AppLogger.log("size :${it.data.size}")
+                customerDataAdapter.setData(it.data.item!![0].ServiceRequestMain)
+                AppLogger.log("size :${it.data.item?.size}")
+                isDataLoaded = true
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("Service Request Fragment Something went wrong")
@@ -65,21 +68,30 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
         }
 
         customerBinding.swipeLayout.setOnRefreshListener {
-            viewmodel.fetchSiteInfoData(id)
+            viewmodel?.serviceRequestAll(id)
         }
+    }
+
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+        if (viewmodel!=null && !isDataLoaded){
+            showLoader()
+            viewmodel?.serviceRequestAll(id)
+        }
+        AppLogger.log("onViewPageSelected service request")
     }
 
 
     override fun onDestroy() {
-        if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
-            viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
+        if (viewmodel?.serviceRequestModelResponse?.hasActiveObservers() == true){
+            viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         super.onDestroy()
     }
 
-    override fun clickedItem(data : ServiceRequestAllDataItem) {
+    override fun clickedItem(data : ServiceRequestAllDataItem, Id : String) {
         ServicesRequestActivity.ServiceRequestdata = data
+        ServicesRequestActivity.Id=Id
         requireActivity().startActivity(Intent(requireContext(), ServicesRequestActivity::class.java))
-
     }
 }

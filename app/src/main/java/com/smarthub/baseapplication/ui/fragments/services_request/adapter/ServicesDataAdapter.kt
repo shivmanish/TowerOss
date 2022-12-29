@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity.Companion.Id
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.utils.AppController
 
 
-class ServicesDataAdapter(var listener: ServicesRequestFrqagment) : RecyclerView.Adapter<CustomerDataViewHolder>() {
+class ServicesDataAdapter(var listener: ServicesRequestFrqagment, Id: String?) : RecyclerView.Adapter<CustomerDataViewHolder>() {
 
     var list = ArrayList<ServiceRequestAllDataItem>()
     var data1 = AppController.getInstance()?.siteInfoModel?.item
@@ -27,11 +28,11 @@ class ServicesDataAdapter(var listener: ServicesRequestFrqagment) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
-        holder.binding.SiteId.text= "Data not found from api"
+        holder.binding.SiteId.text= "${data1?.get(0)?.Basicinfo?.get(0)?.siteID}"
         holder.binding.textRfiDate.text= "RFI Date:DataNotFoundFromApi"
         holder.binding.textRfsDate.text="RFS Date: DataNotFoundFromApi"
         holder.binding?.cardItem?.setOnClickListener {
-            listener.clickedItem(list[position])
+            listener.clickedItem(list[position],Id!!)
         }
     }
 
@@ -45,5 +46,5 @@ class CustomerDataViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemv
 }
 
 interface ServicesDataAdapterListener{
-    fun clickedItem(data : ServiceRequestAllDataItem)
+    fun clickedItem(data : ServiceRequestAllDataItem, Id :String)
 }

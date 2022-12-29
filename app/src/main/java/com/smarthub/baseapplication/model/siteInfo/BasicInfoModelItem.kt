@@ -11,7 +11,7 @@ data class BasicInfoModelItem(
     val Operator: List<OpcoDataItem>,
     val SafetyAndAccess: List<SafetyAndAcces>,
     val created_at: String,
-    val Servicerequestmain: ServiceRequestAllData,
+    val ServiceRequestMain: ServiceRequestAllData,
     val id: Int,
     val National: String,
     val Region: String,

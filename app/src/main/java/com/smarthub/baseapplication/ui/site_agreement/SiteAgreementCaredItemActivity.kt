@@ -11,12 +11,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 
-/*activity_new_site_acquisition*/
 class SiteAgreementCaredItemActivity : BaseActivity() {
-
     lateinit var binding : ActivityNewSiteAcquisitionBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewSiteAcquisitionBinding.inflate(layoutInflater)
@@ -31,35 +29,18 @@ class SiteAgreementCaredItemActivity : BaseActivity() {
         binding.viewpager.adapter = SiteLeaseAcquisitionAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
-//        binding.viewpager.beginFakeDrag()
+        binding.viewpager.beginFakeDrag()
         for (i in 0..binding.tabs.tabCount.minus(1)){
             if (i==0)
                 binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
             var itemBinding = TabNameItemBinding.inflate(layoutInflater)
             itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
-            itemBinding.tabName.textSize = 10f
+            itemBinding.tabName.textSize = 12f
             binding.tabs.getTabAt(i)?.customView = itemBinding.root
         }
         binding.addMore.setOnClickListener(){
-            val dialog = BottomSheetDialog(this,R.style.NewDialog)
-            // on below line we are inflating a layout file which we have created.
-            val view = layoutInflater.inflate(R.layout.site_release_bottom_sheet_dialog_layout, null)
-            val close = view.findViewById<ImageView>(R.id.ic_menu_close)
-
-            dialog.window?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
-            close.setOnClickListener {
-                // on below line we are calling a dismiss
-                // method to close our dialog.
-                dialog.dismiss()
-            }
-            dialog.setCancelable(false)
-            // on below line we are setting
-            // content view to our view.
-            dialog.setContentView(view)
-            // on below line we are calling
-            // a show method to display a dialog.
-//            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
-            dialog.show()
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(supportFragmentManager,"")
         }
     }
 

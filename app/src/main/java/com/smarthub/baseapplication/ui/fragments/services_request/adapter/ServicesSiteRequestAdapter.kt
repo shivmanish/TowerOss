@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -25,16 +24,18 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type6 = "Attachments"
     private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
+    private var SrDetailsData: SRDetails ?=null
+    private var BackhaulLinksData: BackHaulLink?=null
+    private var RequesterInfoData: RequesterInfo ?=null
     var currentOpened = -1
-
     fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }
-    fun setValueData(data : ServiceRequest){
-        this.servicerequestData = data
-        notifyDataSetChanged()
-    }
+//    fun setValueData(data : ServiceRequest){
+//        this.servicerequestData = data
+//        notifyDataSetChanged()
+//    }
     init {
         list.add("SR Details")
         list.add("Equipments")
@@ -42,6 +43,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         list.add("Backhaul Links")
         list.add("Requester Info")
         list.add("Attachments")
+    servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
+    SrDetailsData=servicerequestData?.SRDetails?.get(0)
+    BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
+    RequesterInfoData=servicerequestData?.RequesterInfo?.get(0)
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -79,7 +84,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-//        var equipmentTableList: RecyclerView=binding.equipmentPoTablesData
+        var equipmentTableList: RecyclerView=binding.SrEquipmentTables
 
         init {
             binding.collapsingLayout.tag = false
@@ -95,10 +100,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
         }
         private fun addTableItem(item:String){
-//            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
-//                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
-//                adapter.addItem(item)
-//            }
+            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
+                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
+                adapter.addItem()
+            }
         }
     }
 
@@ -122,7 +127,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         private fun addTableItem(item:String){
             if (RadioAnteenaTableList.adapter!=null && RadioAnteenaTableList.adapter is RadioAntinaTableAdapter){
                 var adapter = RadioAnteenaTableList.adapter as RadioAntinaTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
             }
         }
     }
@@ -188,7 +193,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
@@ -247,8 +251,23 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                if (data!=null) {
-
+                if (SrDetailsData!=null) {
+                    holder.binding.SRType.text=SrDetailsData?.SRType
+                    holder.binding.RequestDate.text=SrDetailsData?.RequestDate
+                    holder.binding.SRStatus.text=SrDetailsData?.SRStatus
+                    holder.binding.RequesterCompany.text="Api Data Not found"
+                    holder.binding.RFTechnology.text="Api Data Not found"
+                    holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
+                    holder.binding.OPCOSIteID.text=SrDetailsData?.OpcoSiteName
+                    holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
+                    holder.binding.Priority.text=SrDetailsData?.Priority
+                    holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
+                    holder.binding.nominalsLatLong.text="${SrDetailsData?.locLatitude},${SrDetailsData?.locLongitude}"
+                    holder.binding.SearchRadius.text=SrDetailsData?.SearchRadius
+                    holder.binding.Circle.text=SrDetailsData?.Circle
+                    holder.binding.CityTown.text=SrDetailsData?.CityOrTown
+                    holder.binding.Area.text=SrDetailsData?.Area
+                    holder.binding.PinCode.text=SrDetailsData?.Pincode
                 }
 //                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
 ////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
@@ -276,14 +295,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                if (data!=null) {
-
-                }
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-//
-//                }
-//                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener)
+                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener,servicerequestData?.Equipments!!)
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -305,7 +317,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener)
+                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener,servicerequestData?.RadioAntennas!!)
             }
 
             is ViewHold4 -> {
@@ -358,6 +370,11 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                if(RequesterInfoData!=null){
+                    holder.binding.RequesterExcutiveName.text=RequesterInfoData?.RequesterExecutiveName
+                    holder.binding.EmailId.text=RequesterInfoData?.EmailID
+                    holder.binding.PhoneNumber.text=RequesterInfoData?.PhoneNumber
+                }
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {
