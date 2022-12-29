@@ -71,7 +71,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontal_only"
-
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:scrollbars="horizontal"
