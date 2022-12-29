@@ -39,7 +39,7 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if (list[position] is String && list[position].equals(type1,true))
             return 1
 
         return 0

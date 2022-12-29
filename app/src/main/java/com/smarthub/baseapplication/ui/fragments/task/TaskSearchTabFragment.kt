@@ -18,16 +18,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
+import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.OPCOSiteInfoEdit
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
@@ -37,12 +40,13 @@ import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragme
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
+class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener {
 
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
     private lateinit var v: TaskTabItemsBinding
     private var tabNames: ArrayList<String> = ArrayList()
+    private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
 
 
@@ -61,6 +65,14 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
+
+        var recyclerListener = view.findViewById<RecyclerView>(R.id.rv_horizontal_only)
+        var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
+        recyclerListener.adapter = adapter
+        view.findViewById<View>(R.id.attach_card).setOnClickListener {
+            adapter.addItem()
+        }
+
         setDataObserver()
     }
     private fun setDataObserver() {
@@ -238,6 +250,10 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
 
     override fun viewOffsetClicked(position: Int) {
 
+    }
+
+    override fun itemClicked() {
+        TODO("Not yet implemented")
     }
 
 }
