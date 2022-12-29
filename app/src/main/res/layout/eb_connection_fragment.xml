@@ -466,7 +466,7 @@
                                 android:text="Installation Vendor" />
 
                             <TextView
-                                android:id="@+id/spinInstallationVendor"
+                                android:id="@+id/installationVendor"
                                 android:textColor="@color/black"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
@@ -485,13 +485,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="Installation Date" />
 
-                            <EditText
-                                android:id="@+id/editInstallationDate"
+                            <TextView
+                                android:id="@+id/installationDate"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableRight="@drawable/icon_date"
-
                                 android:text="24" />
 
                         </LinearLayout>
@@ -508,8 +507,8 @@
                                 android:maxLines="1"
                                 android:text="Installation Executive Name" />
 
-                            <EditText
-                                android:id="@+id/editExcutiveName"
+                            <TextView
+                                android:id="@+id/excutiveName"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -528,10 +527,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:text="Installation Executive Num..." />
+                                android:text="Vendor Phone No." />
 
-                            <EditText
-                                android:id="@+id/editExcutiveNum"
+                            <TextView
+                                android:id="@+id/excutiveNum"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -616,7 +615,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/mark"
+                                    android:id="@+id/mark_open"
                                     android:layout_width="@dimen/dp30"
                                     android:layout_height="@dimen/dp30"
                                     android:layout_centerVertical="true"
@@ -636,6 +635,7 @@
                                     android:layout_toRightOf="@+id/mark"
                                     android:gravity="center_vertical"
                                     android:text=" Closed"
+                                    android:id="@+id/mark_closed"
                                     android:textColor="@color/black" />
                             </LinearLayout>
 
@@ -706,8 +706,8 @@
                             android:maxLines="1"
                             android:text="Acceptance Status" />
 
-                        <EditText
-                            android:id="@+id/editAcceptanceStatus"
+                        <TextView
+                            android:id="@+id/acceptanceStatus"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -727,8 +727,8 @@
                             android:maxLines="1"
                             android:text="Conditional Acceptance Da.." />
 
-                        <EditText
-                            android:id="@+id/editCondtionalAcceptance"
+                        <TextView
+                            android:id="@+id/condtionalAcceptance"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -749,8 +749,8 @@
                             android:maxLines="1"
                             android:text="Final Acceptance Date" />
 
-                        <EditText
-                            android:id="@+id/editFinalDateAcceptance"
+                        <TextView
+                            android:id="@+id/finalDateAcceptanceData"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -771,13 +771,33 @@
                             android:text="Operational Status" />
 
                         <TextView
-                            android:id="@+id/spinOperationalStatus"
+                            android:id="@+id/operationalStatus"
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20"
                             android:text="On-Air" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Next PM Date" />
+
+                        <TextView
+                            android:id="@+id/next_pm_date"
+                            android:textColor="@color/black"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="On-Air" />
+
+                    </LinearLayout>
+
                 </GridLayout>
 
                 <LinearLayout
@@ -877,7 +897,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
                             android:maxLines="2"
@@ -889,7 +909,7 @@
                         <TextView
                             android:layout_weight="0.5"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -902,7 +922,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -915,7 +935,7 @@
                         <TextView
                             android:layout_weight="1.5"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -998,7 +1018,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
                             android:maxLines="2"
@@ -1010,7 +1030,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1023,7 +1043,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1036,7 +1056,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1120,7 +1140,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
                             android:maxLines="2"
@@ -1132,7 +1152,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1145,7 +1165,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1158,7 +1178,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1242,7 +1262,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
                             android:maxLines="2"
@@ -1254,7 +1274,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1267,7 +1287,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"
@@ -1280,7 +1300,7 @@
                         <TextView
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp13"
+                            android:textSize="@dimen/dp11"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="0dp"

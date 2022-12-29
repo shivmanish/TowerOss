@@ -12,7 +12,7 @@
         <TextView
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:textSize="@dimen/dp14"
+            android:textSize="@dimen/dp11"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
             android:maxLines="1"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_weight="1"
-            android:textSize="@dimen/dp14"
+            android:textSize="@dimen/dp11"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
@@ -38,7 +38,7 @@
         <TextView
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:textSize="@dimen/dp14"
+            android:textSize="@dimen/dp11"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:layout_marginRight="@dimen/dp23"
-                android:textSize="@dimen/dp14"
+                android:textSize="@dimen/dp11"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"
                 android:maxLines="2"

@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
@@ -200,6 +201,43 @@ public class HomeRepo {
         BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.updateSiteInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BasicInfoDialougeResponse> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void createSite(CreateSiteModel basicinfoModel) {
+//        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+//        basicInfoUpdate.postValue(Resource.loading(d, 200));
+        apiClient.createSite(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
             @Override
             public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
                 if (response.isSuccessful()) {

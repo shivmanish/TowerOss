@@ -1,0 +1,317 @@
+
+{
+  "PowerAndFuel": [
+    {
+      "id": "87",
+      "isActive": "True",
+      "modified_at": "2022-12-27 17:52:49.187211",
+      "created_at": "2022-12-27 17:52:49.187255",
+      "PowerAndFuelEBConnection": [
+        {
+          "id": "81",
+          "isActive": "True",
+          "modified_at": "2022-12-27 17:52:49.228053",
+          "created_at": "2022-12-27 17:52:49.228097",
+          "PowerAndFuelEBConnectionEBDetails": [
+            {
+              "id": "70",
+              "isActive": "True",
+              "modified_at": "2022-12-27 17:52:49.426593",
+              "created_at": "2022-12-27 17:52:49.426641",
+              "ElectricitySupplier": "ElectricitySupp",
+              "EBSanctionedLoad": "EBSanctionedLoad",
+              "ConnectedLoad": "ConnectedLoad",
+              "ConsumerNumber": "ConsumerNumber",
+              "MeterSerialNumber": "MeterSerialNumber",
+              "SupplyVoltage": "SupplyVoltage",
+              "CabinetSize": "CabinetSize",
+              "LocationMark": "LocationMark",
+              "AverageAvailibility": "AverageAvailibility",
+              "OwnerCompany": "home.Company.None",
+              "UserCompany": "toweross.TowerossUserCompany.None",
+              "PowerConnectionType": "1",
+              "ConnectionType": "1"
+            }
+          ],
+          "TowerAndCivilInfraTowerInstallationAndAcceptance": [
+            {
+              "id": "223",
+              "isActive": "True",
+              "modified_at": "2022-12-27 17:52:49.780019",
+              "created_at": "2022-12-27 17:52:49.780043",
+              "InstallationVendor": "InstallationDate",
+              "InstallationDate": "2011-10-01 15:26:00",
+              "VendorExecutive": "VendorExecutive",
+              "VendorPhoneNumber": "1234567890",
+              "ConditionalAcceptanceDate": "2011-10-01 15:26:00",
+              "FinalAcceptanceDate": "2011-10-01 15:26:00",
+              "NextPMDate": "2011-10-01 15:26:00",
+              "AcceptanceStatus": "1",
+              "OperationalStatus": "1"
+            }
+          ],
+          "PowerAndFuelEBConnectionTariffsDetails": [
+            {
+              "id": "48",
+              "isActive": "True",
+              "modified_at": "2022-12-27 17:52:50.133494",
+              "created_at": "2022-12-27 17:52:50.133545",
+              "TariffRate": "TariffRate",
+              "TarrifEffectiveDate": "2011-10-01 15:26:00",
+              "AddedBy": "AddedBy",
+              "AddDateTime": "2011-10-01 15:26:00"
+            }
+          ],
+          "PowerAndFuelEBConnectionDNAndPayments": [
+            {
+              "id": "45",
+              "isActive": "False",
+              "modified_at": "2022-12-27 17:52:50.345906",
+              "created_at": "2022-12-27 17:52:50.345931",
+              "DNReceiptDate": "2022-12-17 12:35:00",
+              "DNPaymentDueDate": "2022-12-17 12:35:00",
+              "DNPaymentDate": "2022-12-17 12:35:00",
+              "DNAmount": "VendorCode",
+              "SecurityDeposit": "PONumber"
+            }
+          ],
+          "AuthorityPODetails": [
+            {
+              "id": "249",
+              "isActive": "False",
+              "modified_at": "2022-12-27 17:52:50.553979",
+              "created_at": "2022-12-27 17:52:50.554008",
+              "ItemDescription": "ItemDescription",
+              "VendorName": "VendorName",
+              "VendorCode": "VendorCode",
+              "PONumber": "PONumber",
+              "PODate": "2022-12-17 12:35:00",
+              "POlineNo": "POlineNo",
+              "POQty": "POQty",
+              "PORate": "PORate",
+              "POAmount": "POAmount",
+              "POCopy": "False"
+            }
+          ],
+          "PowerAndFuelEBConnectionConsumable": []
+        }
+      ],
+      "PowerAndFuelEBBills": [
+        {
+          "id": "35",
+          "isActive": "True",
+          "modified_at": "2022-12-27 17:52:50.712806",
+          "created_at": "2022-12-27 17:52:50.712832",
+          "BillNumber": "None",
+          "BillMonth": "2022-12-27 17:52:50.711804",
+          "ConsumerNumber": "None",
+          "BillAmount": "0",
+          "BillDueDate": "2022-12-27 17:52:50.711863",
+          "Status": "None"
+        }
+      ],
+      "PowerAndFuelEBPayment": [
+        {
+          "id": "31",
+          "isActive": "True",
+          "modified_at": "2022-12-27 17:52:50.838140",
+          "created_at": "2022-12-27 17:52:50.838168",
+          "BillNumber": "None",
+          "BillDueDate": "2022-12-27 17:52:50.837286",
+          "PayeeName": "None",
+          "BillAmount": "0",
+          "PaymentDate": "2022-12-27 17:52:50.837341",
+          "PaymentAmount": "0",
+          "RefNo": "None",
+          "Approvedby": "None"
+        }
+      ]
+    },
+    {
+      "id": "91",
+      "isActive": "True",
+      "modified_at": "2022-12-27 20:19:48.035320",
+      "created_at": "2022-12-27 20:19:48.035369",
+      "PowerAndFuelEBConnection": [
+        {
+          "id": "85",
+          "isActive": "True",
+          "modified_at": "2022-12-27 20:19:48.074251",
+          "created_at": "2022-12-27 20:19:48.074294",
+          "PowerAndFuelEBConnectionEBDetails": [
+            {
+              "id": "74",
+              "isActive": "True",
+              "modified_at": "2022-12-27 20:19:48.156128",
+              "created_at": "2022-12-27 20:19:48.156173",
+              "ElectricitySupplier": "ElectricitySupp",
+              "EBSanctionedLoad": "EBSanctionedLoad",
+              "ConnectedLoad": "ConnectedLoad",
+              "ConsumerNumber": "ConsumerNumber",
+              "MeterSerialNumber": "MeterSerialNumber",
+              "SupplyVoltage": "SupplyVoltage",
+              "CabinetSize": "CabinetSize",
+              "LocationMark": "LocationMark",
+              "AverageAvailibility": "AverageAvailibility",
+              "OwnerCompany": "home.Company.None",
+              "UserCompany": "toweross.TowerossUserCompany.None",
+              "PowerConnectionType": "1",
+              "ConnectionType": "1"
+            }
+          ],
+          "TowerAndCivilInfraTowerInstallationAndAcceptance": [
+            {
+              "id": "287",
+              "isActive": "True",
+              "modified_at": "2022-12-27 20:19:48.476292",
+              "created_at": "2022-12-27 20:19:48.476317",
+              "InstallationVendor": "InstallationDate",
+              "InstallationDate": "2011-10-01 15:26:00",
+              "VendorExecutive": "VendorExecutive",
+              "VendorPhoneNumber": "1234567890",
+              "ConditionalAcceptanceDate": "2011-10-01 15:26:00",
+              "FinalAcceptanceDate": "2011-10-01 15:26:00",
+              "NextPMDate": "2011-10-01 15:26:00",
+              "AcceptanceStatus": "1",
+              "OperationalStatus": "1"
+            }
+          ],
+          "PowerAndFuelEBConnectionTariffsDetails": [
+            {
+              "id": "52",
+              "isActive": "True",
+              "modified_at": "2022-12-27 20:19:48.743198",
+              "created_at": "2022-12-27 20:19:48.743222",
+              "TariffRate": "TariffRate",
+              "TarrifEffectiveDate": "2011-10-01 15:26:00",
+              "AddedBy": "AddedBy",
+              "AddDateTime": "2011-10-01 15:26:00"
+            }
+          ],
+          "PowerAndFuelEBConnectionDNAndPayments": [
+            {
+              "id": "48",
+              "isActive": "False",
+              "modified_at": "2022-12-27 20:19:48.889233",
+              "created_at": "2022-12-27 20:19:48.889260",
+              "DNReceiptDate": "2022-12-17 12:35:00",
+              "DNPaymentDueDate": "2022-12-17 12:35:00",
+              "DNPaymentDate": "2022-12-17 12:35:00",
+              "DNAmount": "VendorCode",
+              "SecurityDeposit": "PONumber"
+            }
+          ],
+          "AuthorityPODetails": [
+            {
+              "id": "313",
+              "isActive": "False",
+              "modified_at": "2022-12-27 20:19:49.059682",
+              "created_at": "2022-12-27 20:19:49.059709",
+              "ItemDescription": "ItemDescription",
+              "VendorName": "VendorName",
+              "VendorCode": "VendorCode",
+              "PONumber": "PONumber",
+              "PODate": "2022-12-17 12:35:00",
+              "POlineNo": "POlineNo",
+              "POQty": "POQty",
+              "PORate": "PORate",
+              "POAmount": "POAmount",
+              "POCopy": "False"
+            }
+          ],
+          "PowerAndFuelEBConnectionConsumable": []
+        },
+        {
+          "id": "86",
+          "isActive": "True",
+          "modified_at": "2022-12-27 20:21:33.562213",
+          "created_at": "2022-12-27 20:21:33.562261",
+          "PowerAndFuelEBConnectionEBDetails": [
+            {
+              "id": "75",
+              "isActive": "True",
+              "modified_at": "2022-12-27 20:21:33.647859",
+              "created_at": "2022-12-27 20:21:33.647904",
+              "ElectricitySupplier": "ElectricitySupp",
+              "EBSanctionedLoad": "EBSanctionedLoad",
+              "ConnectedLoad": "ConnectedLoad",
+              "ConsumerNumber": "ConsumerNumber",
+              "MeterSerialNumber": "MeterSerialNumber",
+              "SupplyVoltage": "SupplyVoltage",
+              "CabinetSize": "CabinetSize",
+              "LocationMark": "LocationMark",
+              "AverageAvailibility": "AverageAvailibility",
+              "OwnerCompany": "home.Company.None",
+              "UserCompany": "toweross.TowerossUserCompany.None",
+              "PowerConnectionType": "1",
+              "ConnectionType": "1"
+            }
+          ],
+          "TowerAndCivilInfraTowerInstallationAndAcceptance": [
+            {
+              "id": "288",
+              "isActive": "True",
+              "modified_at": "2022-12-27 20:21:34.095012",
+              "created_at": "2022-12-27 20:21:34.095035",
+              "InstallationVendor": "InstallationDate",
+              "InstallationDate": "2011-10-01 15:26:00",
+              "VendorExecutive": "VendorExecutive",
+              "VendorPhoneNumber": "1234567890",
+              "ConditionalAcceptanceDate": "2011-10-01 15:26:00",
+              "FinalAcceptanceDate": "2011-10-01 15:26:00",
+              "NextPMDate": "2011-10-01 15:26:00",
+              "AcceptanceStatus": "1",
+              "OperationalStatus": "1"
+            }
+          ],
+          "PowerAndFuelEBConnectionTariffsDetails": [
+            {
+              "id": "53",
+              "isActive": "True",
+              "modified_at": "2022-12-27 20:21:34.402758",
+              "created_at": "2022-12-27 20:21:34.402782",
+              "TariffRate": "TariffRate",
+              "TarrifEffectiveDate": "2011-10-01 15:26:00",
+              "AddedBy": "AddedBy",
+              "AddDateTime": "2011-10-01 15:26:00"
+            }
+          ],
+          "PowerAndFuelEBConnectionDNAndPayments": [
+            {
+              "id": "49",
+              "isActive": "False",
+              "modified_at": "2022-12-27 20:21:34.634014",
+              "created_at": "2022-12-27 20:21:34.634038",
+              "DNReceiptDate": "2022-12-17 12:35:00",
+              "DNPaymentDueDate": "2022-12-17 12:35:00",
+              "DNPaymentDate": "2022-12-17 12:35:00",
+              "DNAmount": "VendorCode",
+              "SecurityDeposit": "PONumber"
+            }
+          ],
+          "AuthorityPODetails": [
+            {
+              "id": "314",
+              "isActive": "False",
+              "modified_at": "2022-12-27 20:21:34.905373",
+              "created_at": "2022-12-27 20:21:34.905399",
+              "ItemDescription": "ItemDescription",
+              "VendorName": "VendorName",
+              "VendorCode": "VendorCode",
+              "PONumber": "PONumber",
+              "PODate": "2022-12-17 12:35:00",
+              "POlineNo": "POlineNo",
+              "POQty": "POQty",
+              "PORate": "PORate",
+              "POAmount": "POAmount",
+              "POCopy": "False"
+            }
+          ],
+          "PowerAndFuelEBConnectionConsumable": []
+        }
+      ],
+      "PowerAndFuelEBBills": [],
+      "PowerAndFuelEBPayment": []
+    }
+  ]
+}

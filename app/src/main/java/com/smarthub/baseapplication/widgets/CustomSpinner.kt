@@ -22,16 +22,6 @@ class CustomSpinner : AppCompatSpinner {
 //        itemSelectedListener = listener
 //    }
     fun init() {
-/*
-        this.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                onItemSelected(data[position])
-                AppLogger.log("item :${data[position].name}")
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-*/
     }
 
     fun onItemSelected(item : DropDownItem){

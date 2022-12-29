@@ -62,6 +62,9 @@ android {
             java {
                 srcDirs += 'build/generated/source/navigation-args'
             }
+            assets {
+                srcDirs 'src\\main\\assets'
+            }
         }
     }
     namespace 'com.smarthub.baseapplication'

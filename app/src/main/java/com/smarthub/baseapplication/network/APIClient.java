@@ -28,6 +28,7 @@ import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 
 import java.util.List;
@@ -106,6 +107,11 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<BasicInfoDialougeResponse> updateSiteInfo(@Body BasicinfoModel basicinfoModel);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<BasicInfoDialougeResponse> createSite(@Body CreateSiteModel basicinfoModel);
+
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DASHBOARD_DATA_URL)

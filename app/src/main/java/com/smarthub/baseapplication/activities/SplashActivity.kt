@@ -18,7 +18,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.ui.fragments.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -44,7 +43,7 @@ class SplashActivity : BaseActivity() {
                     showNetworkAlert()
                 }
             }else{
-                val intent = Intent (this@SplashActivity, DemoActivity::class.java)
+                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
