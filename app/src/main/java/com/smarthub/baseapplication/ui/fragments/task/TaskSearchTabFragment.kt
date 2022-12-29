@@ -66,7 +66,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
 
-        var recyclerListener = view.findViewById<RecyclerView>(R.id.horizontal_only)
+        var recyclerListener = view.findViewById<RecyclerView>(R.id.horizontal_only_list)
         var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
         recyclerListener.adapter = adapter
         adapter.addItem()
