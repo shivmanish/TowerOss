@@ -4,7 +4,7 @@ data class ServiceRequestAllDataItem(
     val ASAcquitionSurvey: List<Any>,
     val AssignACQTeam: List<AssignACQTeam>,
     val FeasibilityPlanning: List<Any>,
-//    val OpcoTSSR: OpcoTSSR,
+    val OpcoTSSR: List<OpcoTSSR>,
     val SPApprovalAndSO: List<Any>,
     val ServiceRequest: List<ServiceRequest>,
     val SiteProposal: List<Any>,
