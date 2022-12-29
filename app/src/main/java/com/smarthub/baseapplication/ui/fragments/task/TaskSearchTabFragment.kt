@@ -56,7 +56,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         tabNames.add("OPCO Info")
         tabNames.add("Equipment")
         tabNames.add("Operator & Equip")
-
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -65,7 +64,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
 
-        var recyclerListener = view.findViewById<RecyclerView>(R.id.rv_horizontal_only)
+        var recyclerListener = view.findViewById<RecyclerView>(R.id.horizontal_only)
         var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
         recyclerListener.adapter = adapter
         adapter.addItem()

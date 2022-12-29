@@ -15,7 +15,7 @@ class HorizontalTabAdapter(var listener: ItemClickListener) : RecyclerView.Adapt
     init {
         list.add("item1")
         list.add("item1")
-        list.add("item1")
+
     }
     fun addItem(){
         list.add("item1")
