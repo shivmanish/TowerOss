@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BoundryDetailsTableAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SecotrsCellsDetailsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
-class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
+class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "RF Feasibility"
     var type2 = "Backhaul Feasibility"
@@ -31,7 +34,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : RfItemViewBinding = RfItemViewBinding.bind(itemView)
-
+        var SectorTableList: RecyclerView=binding.sectorCellsTableItem
         init {
             binding.collapsingLayout.tag = false
 
@@ -42,17 +45,24 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
+            binding.addItems.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (SectorTableList.adapter!=null && SectorTableList.adapter is SecotrsCellsDetailsTableAdapter){
+                var adapter = SectorTableList.adapter as SecotrsCellsDetailsTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : BachaulFeasibilityItemViewBinding = BachaulFeasibilityItemViewBinding.bind(itemView)
 
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -211,8 +221,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-
-
+                holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener)
             }
 
             is ViewHold2 -> {
@@ -224,20 +233,20 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
+                    holder.binding.collapsingLayout.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
 
 
             }
@@ -355,5 +364,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
+        fun editSectorCellsDetailsClicked(position:Int)
+        fun viewSectorCellsDetailsClicked(position:Int)
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
@@ -20,7 +21,7 @@ class OppoTssrTabFragment : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=OpcoTssrAdapter(this@OppoTssrTabFragment)
+        adapter=OpcoTssrAdapter(requireContext(),this@OppoTssrTabFragment)
         binding?.listItem?.adapter = adapter
     }
     override fun attachmentItemClicked() {
@@ -42,6 +43,15 @@ class OppoTssrTabFragment : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener 
         val bottomSheetDialogFragment = TssrExecutiveBottomSheet(R.layout.tssr_executive_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
+
+    override fun editSectorCellsDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"Edit sector celss item clicked",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewSectorCellsDetailsClicked(position: Int) {
+        Toast.makeText(requireContext(),"view sector celss item clicked",Toast.LENGTH_SHORT).show()
+    }
+
     override fun requestinfoClicked() {
         val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")

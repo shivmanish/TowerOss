@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginRight="@dimen/dp5"
     android:layout_marginLeft="@dimen/dp5"
     android:elevation="@dimen/dp30"
@@ -103,8 +103,10 @@
                             android:text="Technology" />
 
                         <TextView
-                            android:id="@+id/txtEquipmentName"
-                            style="@style/RowTextviewItem"
+                            android:id="@+id/Technology_rf_Feasibility"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20"
                             android:text="On-Air" />
@@ -123,8 +125,10 @@
                             android:text="Sector Count" />
 
                         <TextView
-                            android:id="@+id/txtSectorCount"
-                            style="@style/RowTextviewItem"
+                            android:id="@+id/SectorCount"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20"
                             android:text="On-Air" />
@@ -143,8 +147,10 @@
                             android:text="RRU Count" />
 
                         <TextView
-                            android:id="@+id/txtRRUCount"
-                            style="@style/RowTextviewItem"
+                            android:id="@+id/RRUCount_Rf_feasibility"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20"
                             android:text="On-Air" />
@@ -163,9 +169,11 @@
                             android:text="Off-Set Pole Read" />
 
                         <TextView
-                            android:id="@+id/txtOfSetPoleRead"
-                            style="@style/RowTextviewItem"
+                            android:id="@+id/OfSetPoleRead"
+                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_height="@dimen/dp20"
                             android:text="On-Air" />
 
@@ -176,7 +184,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp20"
-                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp5"
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_height="wrap_content">
                     <TextView
@@ -195,12 +203,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
-                            android:id="@+id/add_items_layout"
+                            android:id="@+id/add_items"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
                                 android:padding="5dp"
+                                android:layout_marginBottom="1dp"
                                 android:src="@drawable/add"
                                 android:layout_gravity="center"
                                 android:layout_width="@dimen/dp20"
@@ -210,7 +219,6 @@
                                 android:padding="5dp"
                                 android:text="Add"
                                 android:textSize="@dimen/dp15"
-                                android:layout_marginRight="@dimen/dp10"
                                 android:textStyle="bold"
                                 android:gravity="center"
                                 android:fontFamily="@font/poppins"
@@ -223,14 +231,78 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <include
-                    android:id="@+id/includedLayout"
-                    layout="@layout/tower_offset_pole_info">
-                </include>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="0.6"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"
+                        android:text="No."
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="0.8"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text="Technology"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text="TRX Count"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="1.3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp13"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="0dp"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text="Antenna HeighT(M)"
+                        android:gravity="center"
+                        style="@style/RowTextItemInfo"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sector_cells_Table_Item"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp5"
+                    tools:listitem="@layout/opco_tssr_rf_feasibility_table_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
                     android:text="RF Feasibility Remarks"
-                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_marginTop="@dimen/dp25"
                     android:layout_marginRight="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
                     style="@style/RowTextItemInfo"
