@@ -6,16 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomSheet
-import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseListAdapter
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.site_agreement.adapter.NominalsFragmentAdapter
 
-class Nominals :Fragment(), SiteLeaseListAdapter.SiteLeaseListListener {
-
+class Nominals :BaseFragment(), NominalsFragmentAdapter.SiteLeaseListListener {
+    lateinit var adapter : NominalsFragmentAdapter
     var binding : NominalsFragmentBinding?=null
 
 
@@ -25,31 +23,18 @@ class Nominals :Fragment(), SiteLeaseListAdapter.SiteLeaseListListener {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.nominalslist?.adapter = SiteLeaseListAdapter(this@Nominals)
+        adapter=NominalsFragmentAdapter(this@Nominals)
+        binding?.nominalslist?.adapter = adapter
     }
 
-    fun initViews(view: View){
-
-
-    }
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
-    override fun detailsItemClicked() {
+    override fun EditdetailsItemClicked() {
         var bottomSheetDialogFragment = NominalsDetailsBottomSheet(R.layout.nominals_details_bottom_sheet)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
-    fun fetchDropDown() {
-        var jsonData: String =
-            AppPreferences.getInstance().getString(AppPreferences.DROPDOWNDATA)
-        val gson = Gson()
-        val siteInfoDropDownData: SiteInfoDropDownData = gson.fromJson(jsonData,
-            SiteInfoDropDownData::class.java)
-        if(siteInfoDropDownData != null) {
-//            binding!!.spinRequestCompany.setSpinnerData(siteInfoDropDownData!!.opcoinfo.)
-        }
-    }
 
 }

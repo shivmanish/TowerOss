@@ -9,15 +9,19 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.BasicInfoModelItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.utils.AppController
 
 class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     Adapter<CustomerDataViewHolder>() {
-    var data1 = AppController.getInstance().siteInfoModel.item
+    var data1 : ArrayList<BasicInfoModelItem>?=null
+
     var data : List<OpcoDataItem> = ArrayList()
 
-
+init {
+    data1 = AppController.getInstance().siteInfoModel?.item
+}
     fun setOpData(data: List<OpcoDataItem>) {
         this.data = data
         notifyDataSetChanged()
@@ -31,7 +35,8 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CustomerDataViewHolder, position: Int) {
-        holder.binding.SiteId.text= "${data1?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        if(data1!=null)
+            holder.binding.SiteId.text= "${data1?.get(0)?.Basicinfo?.get(0)?.siteID}"
         holder.binding.textRfiDate.text= "RFI Date: ${data[position].Opcoinfo[0].rfiAcceptanceDate}"
         holder.binding.textRfsDate.text="RFS Date: ${data[position].Opcoinfo[0].rfiAcceptanceDate}"
         holder.binding.cardItem.setOnClickListener {
