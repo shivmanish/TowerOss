@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -31,6 +32,7 @@ class HomeViewModel : ViewModel() {
     var myTeamTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
+    var serviceRequestModelResponse : SingleLiveEvent<Resource<ServiceRequestModel?>>?=null
     var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
     var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
@@ -56,6 +58,7 @@ class HomeViewModel : ViewModel() {
         serviceRequestAllData = homeRepo?.serviceRequestAllData
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
+        serviceRequestModelResponse = homeRepo?.serviceRequestModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -106,6 +109,10 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSiteInfoData(id : String){
         homeRepo?.siteInfoById(id)
+    }
+
+    fun serviceRequestAll(id : String,filter : String){
+        homeRepo?.serviceRequestAll(id,filter)
     }
 
     fun fetchSiteSearchData(id:String) {

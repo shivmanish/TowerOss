@@ -63,7 +63,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("SiteInfoNewFragment Site Data fetched successfully")
-//                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
+
                 var currentOpened = -1
                 if (binding.listItem.adapter is SiteInfoListAdapter){
                     var adapter = binding.listItem.adapter as SiteInfoListAdapter
@@ -75,6 +75,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
                 }
             }else if (it!=null) {
+                AppLogger.log("SiteInfoNewFragment error :${it.message}")
                 Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
             }else{
                 AppLogger.log("SiteInfoNewFragment Something went wrong")

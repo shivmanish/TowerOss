@@ -53,7 +53,7 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                customerDataAdapter.setData(it.data)
+//                customerDataAdapter.setData(it.data)
                 AppLogger.log("size :${it.data.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
