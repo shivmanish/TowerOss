@@ -5,8 +5,9 @@ data class RadioAntenna(
     val AntennaHeight: String,
     val AntennaSize: String,
     val AntennaTotalWeight: String,
+    val Technology: String,
     val created_at: String,
-    val id: String,
-    val isActive: String,
+    val id: Int,
+    val isActive: Boolean,
     val modified_at: String
 )
