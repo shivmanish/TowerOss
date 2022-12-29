@@ -41,7 +41,6 @@ import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener {
-
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
     private lateinit var v: TaskTabItemsBinding
