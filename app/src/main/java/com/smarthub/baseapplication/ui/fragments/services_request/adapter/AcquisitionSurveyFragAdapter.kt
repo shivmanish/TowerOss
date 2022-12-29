@@ -11,6 +11,8 @@ import com.smarthub.baseapplication.databinding.AcquisitionPropertyOwnerTableBin
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyBoundryDetailsItemBinding
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyBuildingDetalisItemBinding
 import com.smarthub.baseapplication.databinding.ServiceRequestTeamvendorAttachmentBinding
+import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
+import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurveyBuildingDetail
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BoundryDetailsTableAdapter
@@ -20,6 +22,8 @@ import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.
 class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
 
     var currentOpened = -1
+    private var AcquisitionSurveyData:ASAquisitionSurvey?=null
+    private var BuildingDetailData: ASAquisitionSurveyBuildingDetail?=null
     var list: ArrayList<String> = ArrayList()
     var type1="Building Details"
     var type2="Boundary Structures Details"
@@ -33,7 +37,8 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
         list.add("Property Owner's Details")
         list.add("PO Details")
         list.add("Attachments")
-
+        AcquisitionSurveyData=serviceRequestAllData?.ASAcquitionSurvey?.get(0)
+        BuildingDetailData=AcquisitionSurveyData?.ASAquisitionSurveyBuildingDetail?.get(0)
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class BuildingDetailsViewHold(itemView: View) : ViewHold(itemView) {
@@ -224,6 +229,30 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                if(BuildingDetailData!=null){
+                    holder.binding.BuildingLatLong.text="Data not found"
+                    holder.binding.BuildingType.text="Data not found"
+                    holder.binding.GateFence.text="Data not found"
+                    holder.binding.SiteAccessArea.text="Data not found"
+                    holder.binding.BuildingHeight.text="Data not found"
+                    holder.binding.NoOfFloor.text="Data not found"
+                    holder.binding.TypicalFloorArea.text="Data not found"
+                    holder.binding.YearOfConstruction.text="Data not found"
+                    holder.binding.PropertyOwnership.text="Data not found"
+                    holder.binding.PropertyOfferForAcquisition.text="Data not found"
+                    holder.binding.AcquisitionOfferType.text="Data not found"
+                    holder.binding.OverallFeasibility.text=BuildingDetailData?.ASOverallFeasiblity
+                    holder.binding.FiberLMCLaying.text=BuildingDetailData?.ASFibreLmcLaying
+                    holder.binding.TowerPoleInstallation.text=BuildingDetailData?.ASTowerPoleInstallation
+                    holder.binding.EBsupplyBuildingMeter.text=BuildingDetailData?.ASEBSupplyThroughBuildingMeter
+                    holder.binding.EquipmentRoom.text=BuildingDetailData?.ASEquipmentRoom
+                    holder.binding.RequiredAreaAvailable.text=BuildingDetailData?.ASRequiredAreaAvailable
+                    holder.binding.OverallFeasibillity.text=BuildingDetailData?.ASOverallFeasiblity
+                    holder.binding.Availability.text=BuildingDetailData?.ASAvailablityofStatuaryPermission
+                    holder.binding.SurveyDate.text=BuildingDetailData?.ASSurveyDate
+                    holder.binding.OfficeAddress.text="Data Not found"
+                    holder.binding.Remmarks.text="Data Not found"
+                }
             }
             is BoundryDetailsViewHold->{
                 if (currentOpened == position) {
@@ -245,7 +274,7 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.BoundryTableList.adapter=BoundryDetailsTableAdapter(context,listener)
+                holder.BoundryTableList.adapter=BoundryDetailsTableAdapter(context,listener,AcquisitionSurveyData?.ASBoundryStructureDetail!!)
             }
             is PropertyOwnerDetailsViewHold->{
                 if (currentOpened == position) {
@@ -267,7 +296,7 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.PropertyOwnerTableList.adapter=PropertyOwnerTableAdapter(context,listener)
+                holder.PropertyOwnerTableList.adapter=PropertyOwnerTableAdapter(context,listener,AcquisitionSurveyData?.ASPropertyOwnerDetail!!)
             }
             is PoDetailsViewHold->{
                 if (currentOpened == position) {

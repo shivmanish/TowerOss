@@ -59,7 +59,8 @@ class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, Id: Stri
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
-            viewmodel.fetchSiteInfoData(ServicesRequestActivity.Id!!)
+            binding?.swipeLayout!!.isRefreshing = false
+//            viewmodel.fetchSiteInfoData(ServicesRequestActivity.Id!!)
         }
     }
 

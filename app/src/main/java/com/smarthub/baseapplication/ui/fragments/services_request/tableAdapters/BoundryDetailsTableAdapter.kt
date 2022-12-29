@@ -9,23 +9,25 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyBoundryTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASBoundryStructureDetail
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AcquisitionSurveyFragAdapter
 
-class BoundryDetailsTableAdapter (var context : Context, var listener : AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner): RecyclerView.Adapter<BoundryDetailsTableAdapter.ViewHold>() {
-    var list  = ArrayList<String>()
+class BoundryDetailsTableAdapter (var context : Context, var listener : AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner,boundryData:List<ASBoundryStructureDetail>): RecyclerView.Adapter<BoundryDetailsTableAdapter.ViewHold>() {
+    var list : ArrayList<ASBoundryStructureDetail>?
     init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
+        list=boundryData as ArrayList<ASBoundryStructureDetail>
     }
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            ASBoundryStructureDetail(Action = "goto", BuidingName = "sdafg", BuildingHeight = "78",
+        BuildingType = "Comercial", Direction = "East", NoofFloor = "6", Remark = "fewref",
+            created_at = "22-10-2022", id = "448", isActive = "true", modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -38,12 +40,15 @@ class BoundryDetailsTableAdapter (var context : Context, var listener : Acquisit
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
             performOptionsMenuClick(position,it)
         }
+        holder.binding.BoundryDirection.text=list?.get(position)?.Direction
+        holder.binding.BldgName.text=list?.get(position)?.BuidingName
+        holder.binding.BldgType.text=list?.get(position)?.BuildingType
+        holder.binding.BldgHeight.text=list?.get(position)?.BuildingHeight
     }
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want
