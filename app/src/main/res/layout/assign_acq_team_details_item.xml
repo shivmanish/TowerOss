@@ -316,7 +316,6 @@
                             android:text="Vendor Name" />
 
                         <TextView
-                            android:id="@+id/VendorName"
                             android:ellipsize="marquee"
                             android:maxLines="1"
                             style="@style/RowTestItemEdit"

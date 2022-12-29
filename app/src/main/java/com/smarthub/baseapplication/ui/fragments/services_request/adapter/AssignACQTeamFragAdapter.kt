@@ -134,7 +134,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
                 holder.binding.AcquisitionType.text=AssignAcqTeamDetailsData?.AcquisitionType
                 holder.binding.AcquisitionBudget.text=AssignAcqTeamDetailsData?.AcquisitionBudget
                 holder.binding.AcquisitionTargetDate.text=AssignAcqTeamDetailsData?.AcquisitionTargetDate
-                holder.binding.VendorName.text=AssignAcqTeamDetailsData?.VendorName
+//                holder.binding.VendorNameAssignACQ.text="AssignAcqTeamDetailsData?.VendorName!!"
                 holder.binding.PONumber.text=AssignAcqTeamDetailsData?.PONumber
                 holder.binding.PoAmount.text=AssignAcqTeamDetailsData?.POAmount
                 holder.binding.VendorExcutiveName.text=AssignAcqTeamDetailsData?.VendorExecutiveName

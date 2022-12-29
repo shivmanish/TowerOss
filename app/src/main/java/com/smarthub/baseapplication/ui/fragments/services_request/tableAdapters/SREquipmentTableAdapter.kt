@@ -49,8 +49,8 @@ class SREquipmentTableAdapter (var context : Context, var listener : ServicesReq
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-        holder.binding.Technology.text="Data Not Found"
-        holder.binding.EquipmentInfo.text="Data Not Found"
+        holder.binding.Technology.text= list?.get(position)?.Technology
+        holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
         holder.binding.EquipmentType.text="Data Not Found"
         holder.binding.EquipmentSize.text="Data Not Found"
     }
