@@ -253,6 +253,9 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
     }
 
     override fun taskSiteInfoItemClicked() {
+        val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+
     }
 
 }
