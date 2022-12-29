@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 class OppoTssrTabFragment : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener {
+    lateinit var adapter:OpcoTssrAdapter
     var binding : OpsrTabFragmaentLayoutBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = OpsrTabFragmaentLayoutBinding.inflate(inflater, container, false)
@@ -19,7 +20,8 @@ class OppoTssrTabFragment : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = OpcoTssrAdapter(this@OppoTssrTabFragment)
+        adapter=OpcoTssrAdapter(this@OppoTssrTabFragment)
+        binding?.listItem?.adapter = adapter
     }
     override fun attachmentItemClicked() {
 
