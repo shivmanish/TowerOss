@@ -61,7 +61,7 @@ class TaskEqupmentFragment : BaseFragment(), TaskEqupmentAdapter.TaskEqupmentLis
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
-            TaskOPCOTabFragment().apply {
+            TaskEqupmentFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                 }

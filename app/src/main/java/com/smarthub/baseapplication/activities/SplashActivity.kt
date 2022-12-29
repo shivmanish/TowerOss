@@ -44,7 +44,7 @@ class SplashActivity : BaseActivity() {
                     showNetworkAlert()
                 }
             }else{
-                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+                val intent = Intent (this@SplashActivity, DemoActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }

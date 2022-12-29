@@ -1,11 +1,9 @@
 package com.smarthub.baseapplication.ui.fragments.task.task_tab
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +13,6 @@ import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementViewModel
-
 
 
 class TaskOPCOEditTab : BaseFragment(), TaskAdapter.TaskLisListener {
@@ -63,7 +60,7 @@ class TaskOPCOEditTab : BaseFragment(), TaskAdapter.TaskLisListener {
     companion object {
         @JvmStatic
         fun newInstance(param1: String) =
-            TaskOPCOTabFragment().apply {
+            TaskOPCOEditTab().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                 }

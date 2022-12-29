@@ -12,18 +12,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
-import com.smarthub.baseapplication.databinding.TabItemBinding
 import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
@@ -101,7 +98,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
         binding.viewpager.currentItem = 0
         binding.tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                val view: View? = tab.customView
+                val view: View = tab.customView ?: return
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                // constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
@@ -112,7 +109,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                val view: View? = tab.customView
+                val view: View = tab.customView ?: return
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected))
                 val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
@@ -160,21 +157,21 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
         override fun getItem(position: Int): Fragment {
             return when(position){
 
-                0-> TaskOPCOTabFragment.newInstance(tabNames?.get(0) ?: "OPCO Info")
-                1-> TaskEqupmentFragment.newInstance(tabNames?.get(1) ?: "Equipment")
-                2-> TaskOPCOEditTab.newInstance(tabNames?.get(2) ?: "Operator & Equip")
+                0-> TaskOPCOTabFragment.newInstance(tabNames[0])
+                1-> TaskEqupmentFragment.newInstance(tabNames[1])
+                2-> TaskOPCOEditTab.newInstance(tabNames[2])
 
-                else -> TaskOPCOTabFragment.newInstance(tabNames?.get(1) ?: "OPCO Info")
+                else -> TaskOPCOTabFragment.newInstance(tabNames[1])
             }
         }
 
 
         override fun getCount(): Int {
-            return tabNames?.size!!
+            return tabNames.size
         }
 
-        override fun getPageTitle(position: Int): CharSequence? {
-            return tabNames?.get(position)
+        override fun getPageTitle(position: Int): CharSequence {
+            return tabNames[position]
         }
 
     }
@@ -204,7 +201,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener {
     }
 
     override fun siteAccessDetailsItemClicked() {
-//OperationsItemsEditDialouge
+
         val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
