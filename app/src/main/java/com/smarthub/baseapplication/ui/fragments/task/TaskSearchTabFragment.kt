@@ -32,6 +32,7 @@ import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opco
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
+import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.OPCOSiteInfoEdit
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskEqupmentFragment
@@ -40,7 +41,8 @@ import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragme
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener {
+class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener,
+    TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
     private lateinit var v: TaskTabItemsBinding
@@ -68,7 +70,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
         recyclerListener.adapter = adapter
         adapter.addItem()
-
         setDataObserver()
     }
     private fun setDataObserver() {
@@ -249,7 +250,9 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
     }
 
     override fun itemClicked() {
-        TODO("Not yet implemented")
+    }
+
+    override fun taskSiteInfoItemClicked() {
     }
 
 }
