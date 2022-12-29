@@ -24,10 +24,11 @@ import com.smarthub.baseapplication.model.profile.UserProfileUpdate;
 import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
-import com.smarthub.baseapplication.model.profile.UserProfileGet;
+
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
@@ -88,8 +89,12 @@ public interface APIClient {
     Call<SiteInfoModel> fetchSiteInfoById(@Body IdData data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_DATA)
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<ServiceRequestModel> fetchSiteInfoRequest(@Body SiteInfoParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<OpcoInfoNewModel> fetchOpcoInfoRequest(@Body SiteInfoParam data);
 
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SearchList> searchSiteInfoData(@Query("id") String id);

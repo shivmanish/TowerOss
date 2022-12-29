@@ -42,6 +42,7 @@ import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragm
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 
@@ -87,7 +88,8 @@ class SiteDetailFragment : BaseFragment() {
     fun setData(){
         val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         binding.viewpager.adapter = adapter
-        binding.tabs.setupWithViewPager( binding.viewpager)
+        binding.viewpager.offscreenPageLimit = 5
+        binding.tabs.setupWithViewPager(binding.viewpager)
         setCustomTab()
         binding.viewpager.currentItem = 0
         binding.tabs.setOnTabSelectedListener(object : OnTabSelectedListener {
@@ -95,24 +97,27 @@ class SiteDetailFragment : BaseFragment() {
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
-                val constraintLay: ConstraintLayout = view!!.findViewById(R.id.parent_tab_child)
+                val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
                 val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 Log.e("TAG", " $view  ${tab.position}")
+                AppLogger.log("onTabSelected:"+tab.position)
+                adapter.getItemByPosition(tab.position).onViewPageSelected()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-//                viewPager.currentItem = tab.position
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
                 constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                 val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
                 val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.white))
-
             }
 
-            override fun onTabReselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                AppLogger.log("onTabSelected:"+tab.position)
+                adapter.getItemByPosition(tab.position).onViewPageSelected()
+            }
         })
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
@@ -148,8 +153,10 @@ class SiteDetailFragment : BaseFragment() {
 
     internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
+        var list : ArrayList<BaseFragment> = ArrayList()
+
         override fun getItem(position: Int): Fragment {
-            return when(position){
+            var f : BaseFragment =  when(position){
                 0-> SiteInfoNewFragment(id)
                 1-> ServicesRequestFrqagment(id)
                 2-> OpcoTanacyFragment(id)
@@ -161,8 +168,14 @@ class SiteDetailFragment : BaseFragment() {
                 8-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
                 else -> SiteInfoNewFragment(id)
             }
+            if (list.size>position) list[position] = f
+            else list.add(f)
+            return list[position]
         }
 
+        fun getItemByPosition(position: Int): BaseFragment{
+            return list[position]
+        }
 
         override fun getCount(): Int {
             return tabNames?.size!!

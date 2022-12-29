@@ -451,10 +451,10 @@ public class HomeRepo {
         });
     }
 
-    public void serviceRequestAll(String id,String filter) {
+    public void serviceRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
-        list.add(filter);
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),"SMRT");
+        list.add("ServiceRequestMain");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
         apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
@@ -487,6 +487,44 @@ public class HomeRepo {
                     serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
+    }
+
+    public void opcoRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Operator");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+//        apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
+//            @Override
+//            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody()!=null){
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+//                reportErrorResponse(t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+//                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(String iThrowableLocalMessage) {
+//                if (iThrowableLocalMessage != null)
+//                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
     }
 
     public void siteSearchData(String id) {

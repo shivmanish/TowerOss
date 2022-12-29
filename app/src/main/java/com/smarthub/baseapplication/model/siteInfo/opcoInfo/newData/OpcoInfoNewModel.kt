@@ -1,9 +1,9 @@
-package com.smarthub.baseapplication.model.siteInfo.service_request
+package com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData
 
 import com.google.gson.annotations.SerializedName
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataNew
 
-class ServiceRequestModel{
+class OpcoInfoNewModel{
     @SerializedName("finaldata")
     var item : List<ServiceRequestAllDataNew>?=null
 

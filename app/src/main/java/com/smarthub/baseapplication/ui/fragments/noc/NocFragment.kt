@@ -13,9 +13,10 @@ import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServiceFragmentViewModel
 
-class NocFragment : Fragment(), NocDataAdapterListener {
+class NocFragment : BaseFragment(), NocDataAdapterListener {
 
     lateinit var customerBinding: NocAndCompFragmentBinding
     lateinit var viewmodel: ServiceFragmentViewModel

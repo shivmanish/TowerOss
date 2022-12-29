@@ -111,8 +111,12 @@ class HomeViewModel : ViewModel() {
         homeRepo?.siteInfoById(id)
     }
 
-    fun serviceRequestAll(id : String,filter : String){
-        homeRepo?.serviceRequestAll(id,filter)
+    fun serviceRequestAll(id : String){
+        homeRepo?.serviceRequestAll(id)
+    }
+
+    fun opcoTenancyRequestAll(id : String){
+        homeRepo?.opcoRequestAll(id)
     }
 
     fun fetchSiteSearchData(id:String) {

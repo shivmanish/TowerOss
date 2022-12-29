@@ -66,6 +66,10 @@ open class BaseFragment : Fragment(){
         }
     }
 
+    open fun onViewPageSelected(){
+
+    }
+
     override fun onStop() {
         super.onStop()
         hideLoader()

@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.PowerConnectionFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataDataDataAdapterListener
 
-class PowerConnection : Fragment(),PowerConnDataDataDataAdapterListener {
+class PowerConnection : BaseFragment(),PowerConnDataDataDataAdapterListener {
 
     lateinit var binding : PowerConnectionFragmentBinding
 
