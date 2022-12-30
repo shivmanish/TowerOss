@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoTenencyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -22,7 +21,8 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterListener {
     lateinit var binding: OpcoTenencyFragmentBinding
-    lateinit var viewmodel: HomeViewModel
+    var viewmodel: HomeViewModel?=null
+    var isDataLoaded = false
     lateinit var customerDataAdapter: OpcoTanancyFragAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -49,9 +49,9 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
             dalouge.show(childFragmentManager,"")
         }
 
-        if (viewmodel.opcoTenancyListResponse?.hasActiveObservers() == true)
-            viewmodel.opcoTenancyListResponse?.removeObservers(viewLifecycleOwner)
-        viewmodel.opcoTenancyListResponse?.observe(viewLifecycleOwner) {
+        if (viewmodel?.opcoTenencyModelResponse?.hasActiveObservers() == true)
+            viewmodel?.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
+        viewmodel?.opcoTenencyModelResponse?.observe(viewLifecycleOwner) {
             binding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
                 showLoader()
@@ -60,7 +60,7 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("OpcoTenencyFragment card Data fetched successfully")
-                customerDataAdapter.setOpData(it.data!!.list)
+                customerDataAdapter.setOpData(it.data?.item!![0].Operator)
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"OpcoTenencyFragment error :${it.message}", Toast.LENGTH_SHORT).show()
             }else{
@@ -70,14 +70,30 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            viewmodel.fetchSiteInfoData(id)
+            viewmodel?.opcoTenancyRequestAll(id)
         }
 
     }
 
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+        super.onViewPageSelected()
+        if (viewmodel!=null && !isDataLoaded){
+            showLoader()
+            viewmodel?.opcoTenancyRequestAll(id)
+        }
+        AppLogger.log("onViewPageSelected Opco Tenanacy get data")
+    }
+
+    override fun onDestroy() {
+        if (viewmodel?.opcoTenencyModelResponse?.hasActiveObservers() == true)
+            viewmodel?.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
+        super.onDestroy()
+    }
+
     override fun onResume() {
         super.onResume()
-        viewmodel.fetchSiteInfoData(id)
+        viewmodel?.opcoTenancyRequestAll(id)
         showLoader()
     }
     override fun clickedItem(data : OpcoDataItem) {
