@@ -527,6 +527,44 @@ public class HomeRepo {
 //        });
     }
 
+    public void powerAndFuelRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("PowerAndFuel");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+//        apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
+//            @Override
+//            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody()!=null){
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+//                reportErrorResponse(t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+//                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(String iThrowableLocalMessage) {
+//                if (iThrowableLocalMessage != null)
+//                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+    }
+
     public void siteSearchData(String id) {
 
         apiClient.searchSiteInfoData(id).enqueue(new Callback<SearchList>() {

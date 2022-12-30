@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerCo
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataDataDataAdapterListener
 
 class PowerConnection : BaseFragment(),PowerConnDataDataDataAdapterListener {
-
+    var isDataLoaded = false
     lateinit var binding : PowerConnectionFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -23,6 +23,11 @@ class PowerConnection : BaseFragment(),PowerConnDataDataDataAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+    }
+
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+//         integrate api here
     }
 
     fun initViews(){
