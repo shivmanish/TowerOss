@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +12,12 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.utils.AppController
 
 class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) : Adapter<OpcoDataViewHolder>() {
-    var data1 : ArrayList<BasicInfoModelItem>?=null
+//    var data1 : ArrayList<BasicInfoModelItem>?=null
     var data = ArrayList<Any>()
 
-    init {
-        data1 = AppController.getInstance().siteInfoModel?.item
-    }
+//    init {
+//        data1 = AppController.getInstance().siteInfoModel?.item
+//    }
 
     fun addLoading(){
         this.data.clear()
@@ -46,11 +45,10 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) : Adapte
         }
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: OpcoDataViewHolder, position: Int) {
-        if(data1!=null && holder is OpcoDataItemViewHolder) {
+        if(holder is OpcoDataItemViewHolder) {
             var item = data[position] as OpcoDataItem
-            holder.binding.SiteId.text = "${data1?.get(0)?.Basicinfo?.get(0)?.siteID}"
+            holder.binding.SiteId.text = "${item.Opcoinfo[0].OpcoSiteID}"
             holder.binding.textRfiDate.text =
                 "RFI Date: ${item.Opcoinfo[0].rfiAcceptanceDate}"
             holder.binding.textRfsDate.text =
