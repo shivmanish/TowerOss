@@ -23,7 +23,7 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
     lateinit var binding: OpcoTenencyFragmentBinding
     var viewmodel: HomeViewModel?=null
     var isDataLoaded = false
-    lateinit var customerDataAdapter: OpcoTanancyFragAdapter
+    lateinit var opcoTanancyFragAdapter: OpcoTanancyFragAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = OpcoTenencyFragmentBinding.inflate(inflater, container, false)
@@ -35,8 +35,8 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         super.onViewCreated(view, savedInstanceState)
 
         binding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = OpcoTanancyFragAdapter(this@OpcoTanacyFragment)
-        binding.customerList.adapter = customerDataAdapter
+        opcoTanancyFragAdapter = OpcoTanancyFragAdapter(this@OpcoTanacyFragment)
+        binding.customerList.adapter = opcoTanancyFragAdapter
 
 
         binding.addItems.setOnClickListener{
@@ -52,15 +52,14 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         if (viewmodel?.opcoTenencyModelResponse?.hasActiveObservers() == true)
             viewmodel?.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
         viewmodel?.opcoTenencyModelResponse?.observe(viewLifecycleOwner) {
-            binding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
-                showLoader()
+                opcoTanancyFragAdapter.addLoading()
                 return@observe
             }
             if (it!=null && it.status == Resource.Status.SUCCESS){
-                hideLoader()
                 AppLogger.log("OpcoTenencyFragment card Data fetched successfully")
-                customerDataAdapter.setOpData(it.data?.item!![0].Operator)
+                isDataLoaded = true
+                opcoTanancyFragAdapter.setOpData(it.data?.item!![0].Operator)
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"OpcoTenencyFragment error :${it.message}", Toast.LENGTH_SHORT).show()
             }else{
@@ -70,6 +69,8 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         }
 
         binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing = false
+            opcoTanancyFragAdapter.addLoading()
             viewmodel?.opcoTenancyRequestAll(id)
         }
 
@@ -77,9 +78,8 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
 
     override fun onViewPageSelected() {
         super.onViewPageSelected()
-        super.onViewPageSelected()
         if (viewmodel!=null && !isDataLoaded){
-            showLoader()
+            opcoTanancyFragAdapter.addLoading()
             viewmodel?.opcoTenancyRequestAll(id)
         }
         AppLogger.log("onViewPageSelected Opco Tenanacy get data")
@@ -91,11 +91,6 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         super.onDestroy()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewmodel?.opcoTenancyRequestAll(id)
-        showLoader()
-    }
     override fun clickedItem(data : OpcoDataItem) {
         OpcoTenancyActivity.Opcodata=data
         requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
