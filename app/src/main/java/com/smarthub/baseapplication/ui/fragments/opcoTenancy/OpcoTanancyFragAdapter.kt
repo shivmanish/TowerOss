@@ -17,12 +17,12 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) :
     Adapter<CustomerDataViewHolder>() {
     var data1 : ArrayList<BasicInfoModelItem>?=null
 
-    var data : List<OpcoDataItem> = ArrayList()
+    var data = ArrayList<OpcoDataItem>()
 
 init {
     data1 = AppController.getInstance().siteInfoModel?.item
 }
-    fun setOpData(data: List<OpcoDataItem>) {
+    fun setOpData(data: ArrayList<OpcoDataItem>) {
         this.data = data
         notifyDataSetChanged()
     }

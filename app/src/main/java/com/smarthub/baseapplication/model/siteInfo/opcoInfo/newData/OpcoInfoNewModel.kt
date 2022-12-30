@@ -5,7 +5,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataNe
 
 class OpcoInfoNewModel{
     @SerializedName("finaldata")
-    var item : List<ServiceRequestAllDataNew>?=null
+    var item : List<OpcoInfoAllDataNew>?=null
 
     @SerializedName("error")
     var error : Any?=null
