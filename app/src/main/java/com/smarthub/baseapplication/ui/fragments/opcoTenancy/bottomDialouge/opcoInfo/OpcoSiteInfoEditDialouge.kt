@@ -8,8 +8,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBinding
 import com.smarthub.baseapplication.databinding.RfEquipmentListItemDialougeBinding
+import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
 
-class OpcoSiteInfoEditDialouge (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
+class OpcoSiteInfoEditDialouge (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : OpcoInfoSiteDialougeLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
