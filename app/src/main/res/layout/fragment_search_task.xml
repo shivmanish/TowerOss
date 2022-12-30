@@ -90,7 +90,7 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="@dimen/dp5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_only">
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_only_list">
 
         <RelativeLayout
             android:id="@+id/rl"
