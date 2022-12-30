@@ -37,14 +37,14 @@ class SplashActivity : BaseActivity() {
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 if (isNetworkConnected){
-                    var intent = Intent(this@SplashActivity,DemoActivity::class.java)
+                    var intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }else {
                     showNetworkAlert()
                 }
             }else{
-                val intent = Intent (this@SplashActivity, DemoActivity::class.java)
+                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }

@@ -21,7 +21,7 @@
             android:layout_height="@dimen/dp42">
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="RF Feasibility"
+                android:text="Backhaul Feasibility"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -164,13 +164,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:padding="5dp"
+                                android:padding="3dp"
                                 android:layout_marginBottom="1dp"
-                                android:src="@drawable/add"
+                                android:src="@drawable/add_ico"
                                 android:layout_gravity="center"
                                 android:layout_width="@dimen/dp20"
-                                android:layout_height="20dp"
-                                android:background="@drawable/circleblue_1" />
+                                android:layout_height="20dp" />
                             <TextView
                                 android:padding="5dp"
                                 android:text="Add"
@@ -249,8 +248,8 @@
                     android:id="@+id/Microwave_Table_Item"
                     android:orientation="vertical"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp5"
-                    tools:listitem="@layout/opco_tssr_rf_feasibility_table_item"
+                    android:layout_marginTop="@dimen/dp7"
+                    tools:listitem="@layout/opcotssr_microwave_table_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
@@ -284,13 +283,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:padding="5dp"
+                                android:padding="3dp"
                                 android:layout_marginBottom="1dp"
-                                android:src="@drawable/add"
+                                android:src="@drawable/add_ico"
                                 android:layout_gravity="center"
                                 android:layout_width="@dimen/dp20"
-                                android:layout_height="20dp"
-                                android:background="@drawable/circleblue_1" />
+                                android:layout_height="20dp" />
                             <TextView
                                 android:padding="5dp"
                                 android:text="Add"
@@ -326,7 +324,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp13"
                         android:textStyle="bold"
@@ -369,8 +367,8 @@
                     android:id="@+id/Fiber_Table_Item"
                     android:orientation="vertical"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp5"
-                    tools:listitem="@layout/opco_tssr_rf_feasibility_table_item"
+                    android:layout_marginTop="@dimen/dp7"
+                    tools:listitem="@layout/opcotssr_fiber_table_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
