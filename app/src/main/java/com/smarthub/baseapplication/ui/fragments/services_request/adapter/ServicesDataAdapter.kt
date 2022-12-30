@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.utils.AppController
 
 
-class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?) : Adapter<ServiceEmptyDataAdapterViewHold>() {
+class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?) : RecyclerView.Adapter<ServiceEmptyDataAdapterViewHold>() {
 
     var list = ArrayList<Any>()
 //    var data1 = AppController.getInstance()?.siteInfoModel?.item
@@ -63,7 +63,7 @@ class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?
 }
 open class ServiceEmptyDataAdapterViewHold(var itemview: View) : RecyclerView.ViewHolder(itemview) {}
 
-class ServiceDataAdapterViewHold(var itemview: View) : ServiceEmptyDataAdapterViewHold(itemview) {
+class ServiceDataAdapterViewHold(itemview: View) : ServiceEmptyDataAdapterViewHold(itemview) {
     var binding = CustomerListItemBinding.bind(itemView)
 }
 
