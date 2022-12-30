@@ -49,8 +49,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
     private var tabNames: ArrayList<String> = ArrayList()
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
@@ -61,7 +59,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
-
+    var list : ArrayList<Any> = ArrayList()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
@@ -98,7 +96,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         }
         siteDetailViewModel.fetchDropDown()
     }
-
     fun setData(){
         val adapter = ViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         binding.viewpager.adapter = adapter
@@ -138,7 +135,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
             startActivity(intent)
         }
     }
-
     @SuppressLint("SuspiciousIndentation")
     fun setCustomTab() {
 
@@ -160,7 +156,6 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
 
         constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
-
     internal inner class ViewPagerAdapter(manager: FragmentManager, behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
         override fun getItem(position: Int): Fragment {
@@ -184,78 +179,61 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         }
 
     }
-
     override fun attachmentItemClicked() {
 
     }
-
     override fun detailsItemClicked() {
         val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
 
     }
-
     override fun requestinfoClicked() {
         val bottomSheetDialogFragment = OPCOSiteInfoEdit(R.layout.opco_info_site_dialouge_layout)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-
     override fun operationInfoDetailsItemClicked() {
 
     }
-
     override fun geoConditionsDetailsItemClicked() {
 
     }
-
     override fun siteAccessDetailsItemClicked() {
 
         val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-
     override fun EditInstallationAcceptence() {
 
     }
-
     override fun EditTowerItem() {
         val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_room_dialouge_layout)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-
     override fun editPoClicked(position: Int) {
 
     }
-
     override fun viewPoClicked(position: Int) {
         val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_view_bottom_sheet)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-
     override fun editConsumableClicked(position: Int) {
 
     }
-
     override fun viewConsumableClicked(position: Int) {
 
     }
-
     override fun editOffsetClicked(position: Int) {
 
     }
-
     override fun viewOffsetClicked(position: Int) {
 
     }
-
     override fun itemClicked() {
     }
-
     override fun taskSiteInfoItemClicked() {
         val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
-
 }

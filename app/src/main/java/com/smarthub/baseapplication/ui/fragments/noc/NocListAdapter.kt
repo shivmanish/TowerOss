@@ -10,8 +10,6 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAdapter
-import com.smarthub.baseapplication.ui.fragments.task.TaskItemAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
 
 class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
 
