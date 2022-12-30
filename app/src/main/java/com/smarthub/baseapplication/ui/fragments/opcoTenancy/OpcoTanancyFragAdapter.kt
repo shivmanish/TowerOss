@@ -64,9 +64,7 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) : Adapte
     }
 }
 
-open class OpcoDataViewHolder(var itemview: View) : ViewHolder(itemview) {
-
-}
+open class OpcoDataViewHolder(var itemview: View) : ViewHolder(itemview) {}
 
 class OpcoDataItemViewHolder(itemview: View) : OpcoDataViewHolder(itemview) {
     var binding = CustomerListItemBinding.bind(itemView)
