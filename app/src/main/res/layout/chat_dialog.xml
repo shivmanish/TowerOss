@@ -136,16 +136,54 @@
                             android:maxLines="6"
                             tools:ignore="Autofill" />
 
-                        <ImageView
+                        <LinearLayout
                             android:id="@+id/button_gchat_send"
+                            android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="48dp"
                             android:layout_alignParentEnd="true"
-                            android:src="@drawable/ic_enter_message"
 
                             android:background="?attr/selectableItemBackground"
+                            >
 
-                            android:textColor="@color/grey" />
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingRight="@dimen/dp15"
+                                android:layout_alignParentEnd="true"
+                                android:src="@drawable/ic_enter_message"
+
+                                android:background="?attr/selectableItemBackground"
+
+                                android:textColor="@color/grey" />
+                            <ImageView
+
+                                android:paddingRight="@dimen/dp15"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_alignParentEnd="true"
+                                android:src="@drawable/ic_enter_message"
+
+                                android:background="?attr/selectableItemBackground"
+
+                                android:textColor="@color/grey" />
+                            <ImageView
+
+                                android:paddingRight="@dimen/dp15"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_alignParentEnd="true"
+                                android:src="@drawable/ic_enter_message"
+
+                                android:background="?attr/selectableItemBackground"
+
+                                android:textColor="@color/grey" />
+
+                        </LinearLayout>
+
 
                     </RelativeLayout>
 
