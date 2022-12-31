@@ -152,7 +152,7 @@
                                 android:layout_height="48dp"
                                 android:paddingRight="@dimen/dp15"
                                 android:layout_alignParentEnd="true"
-                                android:src="@drawable/ic_enter_message"
+                                android:src="@drawable/ic_attachment"
 
                                 android:background="?attr/selectableItemBackground"
 
@@ -164,7 +164,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:layout_alignParentEnd="true"
-                                android:src="@drawable/ic_enter_message"
+                                android:src="@drawable/ic_menu_call"
 
                                 android:background="?attr/selectableItemBackground"
 
