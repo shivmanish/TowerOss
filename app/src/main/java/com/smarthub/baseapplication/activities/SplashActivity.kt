@@ -18,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.ui.fragments.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -36,7 +37,7 @@ class SplashActivity : BaseActivity() {
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 if (isNetworkConnected){
-                    var intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                    var intent = Intent(this@SplashActivity,DemoActivity::class.java)
                     startActivity(intent)
                     finish()
                 }else {

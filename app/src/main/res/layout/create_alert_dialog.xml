@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/canecl"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+
+        android:layout_marginTop="@dimen/dp20">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="vertical">
+
+            <LinearLayout
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:weightSum="3"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    style="@style/ColumnItemInfo"
+
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtFireIncident"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:fontFamily="serif-monospace"
+
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Fire Incident" />
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/textAlert"
+                        android:fontFamily="serif-monospace"
+                        android:textColor="@color/black"
+
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Alert000211" />
+                    <TextView
+                        android:id="@+id/textDateTime"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:fontFamily="serif-monospace"
+
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="22-Dec-22 ; 12:05 PM" />
+
+
+                </LinearLayout>
+              <RelativeLayout
+                  android:background="@color/bg_alert"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <LinearLayout
+                      android:weightSum="2"
+                      android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      style="@style/ColumnItemInfo"
+
+                      android:layout_height="wrap_content">
+
+                         <TextView
+
+                          android:id="@+id/txtWhat"
+                          android:layout_weight=".8"
+                          android:textColor="@color/black"
+                          android:fontFamily="serif-monospace"
+                          android:drawableLeft="@drawable/ic_alet_what"
+                          style="@style/RowTextItemInfo"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:text="What?*" />
+                          <LinearLayout
+                              android:layout_weight="1.2"
+                              android:layout_width="0dp"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                              <RelativeLayout
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+                                  <TextView
+
+                                      android:id="@+id/txtIssueType"
+                                       android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Issue Type :" />
+                                  <TextView
+
+                                      android:id="@+id/txtIncident"
+                                      android:layout_weight=".6"
+                                      android:layout_toRightOf="@+id/txtIssueType"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Fire Incident" />
+                                  <TextView
+                                      android:layout_below="@+id/txtIssueType"
+
+                                      android:id="@+id/txtSeverity"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Severity:" />
+                                  <TextView
+
+
+                                      android:layout_weight=".6"
+                                      android:id="@+id/txtCritical"
+                                      android:layout_toRightOf="@+id/txtSeverity"
+                                      android:layout_below="@+id/txtIncident"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Critical" />
+                              </RelativeLayout>
+                          </LinearLayout>
+                  </LinearLayout>
+              </RelativeLayout> <RelativeLayout
+                  android:background="@color/bg_alert"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <LinearLayout
+                      android:weightSum="2"
+                      android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      style="@style/ColumnItemInfo"
+
+                      android:layout_height="wrap_content">
+
+                         <TextView
+
+                          android:id="@+id/txtWhen"
+                          android:layout_weight=".8"
+                          android:textColor="@color/black"
+                          android:fontFamily="serif-monospace"
+                          android:drawableLeft="@drawable/ic_alet_what"
+                          style="@style/RowTextItemInfo"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:text="When?*" />
+                          <LinearLayout
+                              android:layout_weight="1.2"
+                              android:layout_width="0dp"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                              <RelativeLayout
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+                                  <TextView
+
+                                      android:id="@+id/txtWhenIssueType"
+                                       android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Issue Type :" />
+                                  <TextView
+
+                                      android:id="@+id/txtWhentitleIssueType"
+                                      android:layout_weight=".6"
+                                      android:layout_toRightOf="@+id/txtWhenIssueType"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Fire Incident" />
+                                  <TextView
+                                      android:layout_below="@+id/txtWhenIssueType"
+
+                                      android:id="@+id/txtWhenSeverity"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Severity:" />
+                                  <TextView
+                                      android:layout_weight=".6"
+                                      android:id="@+id/txtWhenServity"
+                                      android:layout_toRightOf="@+id/txtWhenSeverity"
+                                      android:layout_below="@+id/txtWhenIssueType"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Critical" />
+                              </RelativeLayout>
+                          </LinearLayout>
+                  </LinearLayout>
+              </RelativeLayout>
+           </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</RelativeLayout>
