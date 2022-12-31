@@ -43,7 +43,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
             PowerMcb=opcoTssrdata?.PowerAndMCB?.get(0)?.PowerRequirements?.get(0)
             tSSRExecutiveInfo=opcoTssrdata?.TSSRExecutiveInfo?.get(0)
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"tssr frag error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -281,7 +281,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                    holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener,RfFeasibility?.SectorsOrCellDetails!!)
 
                }catch (e:java.lang.Exception){
-                   AppLogger.log("error : ${e.localizedMessage}")
+                   AppLogger.log("opcotssr rf feasibility error : ${e.localizedMessage}")
                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
 
                }
@@ -309,12 +309,16 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if(BackhaulFeasibility!=null){
+                try{
                     holder.binding.BackhaulNodeType.text=BackhaulFeasibility?.BackHaulNodeType
                     holder.binding.OffsetPoleRequired.text=BackhaulFeasibility?.OffSetPoleRequired
+                    holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener,BackhaulFeasibility?.MicrowaveOrUBR!!)
+                    holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener,BackhaulFeasibility?.Fiber!!)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("opcotssr Backhaul feasibility error : ${e.localizedMessage}")
+                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
-                holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener,BackhaulFeasibility?.MicrowaveOrUBR!!)
-                holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener,BackhaulFeasibility?.Fiber!!)
+
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -336,7 +340,12 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.tssrEquipmentTableList.adapter=tssrEquipmentTableAdapter(context,listener,opcoTssrdata?.Equipments?.get(0)?.OpcoTSSREquipmentTable!!)
+                try{
+                    holder.tssrEquipmentTableList.adapter=tssrEquipmentTableAdapter(context,listener,opcoTssrdata?.Equipments?.get(0)?.OpcoTSSREquipmentTable!!)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("opcotssr Equipment error : ${e.localizedMessage}")
+                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
@@ -361,13 +370,17 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if(PowerMcb!=null){
+                try{
                     holder.binding.InputVoltage.text=PowerMcb?.InputVoltage
                     holder.binding.MaxTotalPower.text=PowerMcb?.MaxTotalPower
                     holder.binding.inputType.text=PowerMcb?.InputType
                     holder.binding.batterBackupRequired.text=PowerMcb?.BatteryBackupRequired
+                    holder.tssrPowerMcbTableList.adapter=tssrPowerMcbTableAdapter(context,listener,opcoTssrdata?.PowerAndMCB?.get(0)?.MCBRequirements!!)
                 }
-                holder.tssrPowerMcbTableList.adapter=tssrPowerMcbTableAdapter(context,listener,opcoTssrdata?.PowerAndMCB?.get(0)?.MCBRequirements!!)
+                catch (e:java.lang.Exception){
+                    AppLogger.log("opcotssr Power mcb error : ${e.localizedMessage}")
+                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener() {
@@ -392,12 +405,15 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if(tSSRExecutiveInfo!=null){
+                try{
                     holder.binding.ExecutiveName.text=tSSRExecutiveInfo?.ExecutiveName
                     holder.binding.EmailId.text=tSSRExecutiveInfo?.EmailID
                     holder.binding.phoneNumber.text=tSSRExecutiveInfo?.PhoneNumber
                     holder.binding.surveyDate.text=tSSRExecutiveInfo?.SurveyDate
                     holder.binding.remarks.text="Data Not Found"
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("opcotssr tssrExecutive info error : ${e.localizedMessage}")
+                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold6 -> {
