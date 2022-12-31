@@ -21,7 +21,7 @@
             android:layout_height="@dimen/dp42">
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="RF Feasibility"
+                android:text="Power &amp; MCB"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -100,10 +100,55 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Technology" />
+                            android:text="Input Voltage" />
 
                         <TextView
-                            android:id="@+id/Technology_rf_Feasibility"
+                            android:id="@+id/Input_voltage"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="54" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Max Total Power" />
+
+                        <TextView
+                            android:id="@+id/MaxTotalPower"
+                            style="@style/RowTestItemEdit"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="xxxx" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:maxLines="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Input Type" />
+
+                        <TextView
+                            android:id="@+id/input_type"
                             style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
@@ -122,60 +167,16 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Sector Count" />
+                            android:text="Battery Backup Required" />
 
                         <TextView
-                            android:id="@+id/SectorCount"
+                            android:id="@+id/batter_backup_required"
                             style="@style/RowTestItemEdit"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20"
-                            android:text="On-Air" />
-
-
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="RRU Count" />
-
-                        <TextView
-                            android:id="@+id/RRUCount_Rf_feasibility"
-                            style="@style/RowTestItemEdit"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
-                            android:text="On-Air" />
-
-
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Off-Set Pole Read" />
-
-                        <TextView
-                            android:id="@+id/OfSetPoleRead"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_height="@dimen/dp20"
-                            android:text="On-Air" />
+                            android:text="4Hrs" />
 
                     </LinearLayout>
 
@@ -183,18 +184,33 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_marginTop="@dimen/dp15"
                     android:layout_marginRight="@dimen/dp5"
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_height="wrap_content">
                     <TextView
                         style="@style/RowTestItemEdit"
-                        android:text="Sectors/Cell Details"
+                        android:text="MCB Requirements"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:drawablePadding="@dimen/dp10"
+                        android:text="4"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:textSize="@dimen/dp12"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/white"
+                        android:layout_width="@dimen/dp20"
+                        android:background="@drawable/button_background_5"
+                        android:layout_height="19dp"
+                        android:layout_marginBottom="2dp"
                         />
 
                     <LinearLayout
@@ -237,28 +253,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_weight="0.6"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp13"
-                        android:fontFamily="@font/poppins_regular"
-                        android:layout_width="0dp"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:textStyle="bold"
-                        android:text="No."
-                        style="@style/RowTextItemInfo"
-                        android:layout_height="wrap_content"/>
-                    <TextView
                         android:layout_weight="0.8"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp13"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_regular"
                         android:layout_width="0dp"
-                        android:gravity="center"
                         android:maxLines="1"
                         android:ellipsize="marquee"
-                        android:text="Technology"
+                        android:text="MCB Rating"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
                     <TextView
@@ -271,7 +274,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:ellipsize="marquee"
-                        android:text="TRX Count"
+                        android:text="Quantity"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
                     <TextView
@@ -283,44 +286,28 @@
                         android:layout_width="0dp"
                         android:maxLines="1"
                         android:ellipsize="marquee"
-                        android:text="Antenna HeighT(M)"
+                        android:text="Equipment"
                         android:gravity="center"
                         style="@style/RowTextItemInfo"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sector_cells_Table_Item"
+                    android:id="@+id/opcotssr_powermcb_Table_Item"
                     android:orientation="vertical"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp5"
-                    tools:listitem="@layout/opco_tssr_rf_feasibility_table_item"
+                    android:layout_marginTop="@dimen/dp8"
+                    tools:listitem="@layout/opcotssr_powermcb_table_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
                 </androidx.recyclerview.widget.RecyclerView>
 
-                <TextView
-                    android:text="RF Feasibility Remarks"
-                    android:layout_marginTop="@dimen/dp25"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:hint="Left Corner of Roof "
-                    android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
-                    android:text="xwerhtjyg"
-                    android:layout_marginTop="@dimen/dp1"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 

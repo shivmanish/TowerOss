@@ -74,7 +74,7 @@ class NominalsFragmentAdapter(var listener: SiteLeaseListListener) :
                 DetailsViewHold(view)
             }
             2 -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.sitea_greement_nominals_attachments, parent, false)
                 AttachmentViewHold(view,listener)
             }
 

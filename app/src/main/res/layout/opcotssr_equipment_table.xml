@@ -18,10 +18,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp45">
+            android:layout_height="@dimen/dp42">
             <TextView
-                android:id="@+id/itemTitleStr"
-                android:text="Boundry Details"
+                android:id="@+id/item_title_str"
+                android:text="Equipments"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -35,6 +35,8 @@
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
+
+
             <ImageView
                 android:id="@+id/img_add"
                 android:visibility="gone"
@@ -47,6 +49,7 @@
                 android:layout_height="40dp"/>
             <ImageView
                 android:id="@+id/img_dropdown"
+                android:adjustViewBounds="true"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -91,7 +94,7 @@
                 android:maxLines="1"
                 android:ellipsize="marquee"
                 android:textStyle="bold"
-                android:text="Direction"
+                android:text="Technology"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -104,7 +107,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Bldg Name"
+                android:text="Equipment"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -117,7 +120,8 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Bldg Type"
+                android:layout_marginLeft="@dimen/dp10"
+                android:text="Type"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -129,16 +133,15 @@
                 android:layout_width="0dp"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Bldg Height(M)"
+                android:text="Size(cm)"
                 android:gravity="center"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/acquisition_survey_boundry_Table_Item"
+            android:id="@+id/opcotssr_Equipment_tables"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/dp8"
-            tools:listitem="@layout/acquisition_survey_boundry_table_item"
+            tools:listitem="@layout/opcotssr_equipment_table_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">

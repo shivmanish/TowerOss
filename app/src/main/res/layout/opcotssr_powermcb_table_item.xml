@@ -10,28 +10,15 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/Boundry_Direction"
-            android:layout_weight="1"
-            android:textSize="@dimen/dp14"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="0dp"
-            android:maxLines="1"
-            android:ellipsize="marquee"
-            android:textStyle="bold"
-            android:text="East Corner"
-            style="@style/RowTextItemInfo"
-            android:layout_height="wrap_content"/>
-        <TextView
             android:id="@+id/Bldg_Name"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
-            android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="sdgsdfhg"
+            android:text="16A"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -43,7 +30,7 @@
             android:layout_width="0dp"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="Commercial"
+            android:text="5"
             android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
@@ -58,7 +45,7 @@
                 android:layout_width="0dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="120"
+                android:text="dfsgh"
                 android:layout_marginRight="@dimen/dp5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

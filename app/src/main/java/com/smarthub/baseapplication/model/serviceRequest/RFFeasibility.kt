@@ -1,12 +1,12 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
 data class RFFeasibility(
-    val OffSetPoleReqd: List<OffSetPoleReqd>,
+    val OffSetPoleReqd: String,
     val RFFeasibiltyRemarks: String,
-    val RRUCount: List<RRUCount>,
-    val SectorCount: List<SectorCount>,
+    val RRUCount: String,
+    val SectorCount: String,
     val SectorsOrCellDetails: List<SectorsOrCellDetail>,
-    val Technology: List<Technology>,
+    val Technology: String,
     val created_at: String,
     val id: Int,
     val isActive: Boolean,

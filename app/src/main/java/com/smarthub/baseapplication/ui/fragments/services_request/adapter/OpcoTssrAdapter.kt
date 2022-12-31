@@ -1,22 +1,23 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.*
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
-class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.*
+
+class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "RF Feasibility"
     var type2 = "Backhaul Feasibility"
     var type3 = "Equipments"
     var type4 = "Power & MCB"
-    var type5 = "Attachments"
-    var type6 = "TSSR Executive Info"
+    var type5 = "TSSR Executive Info"
+    var type6 = "Attachments"
 
 
     init {
@@ -24,14 +25,14 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
         list.add("Backhaul Feasibility")
         list.add("Equipments")
         list.add("Power & MCB")
-        list.add("Attachments")
         list.add("TSSR Executive Info")
+        list.add("Attachments")
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : RfItemViewBinding = RfItemViewBinding.bind(itemView)
-
+        var SectorTableList: RecyclerView=binding.sectorCellsTableItem
         init {
             binding.collapsingLayout.tag = false
 
@@ -39,34 +40,57 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
+            binding.addItems.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (SectorTableList.adapter!=null && SectorTableList.adapter is SecotrsCellsDetailsTableAdapter){
+                var adapter = SectorTableList.adapter as SecotrsCellsDetailsTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : BachaulFeasibilityItemViewBinding = BachaulFeasibilityItemViewBinding.bind(itemView)
-
+        var MicrowaveTableList: RecyclerView=binding.MicrowaveTableItem
+        var FiberTableList: RecyclerView=binding.FiberTableItem
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
+            binding.addMicroWaveItems.setOnClickListener{
+                addMicrowaveTableItem("dfghfgh")
+            }
+            binding.addFiberItems.setOnClickListener{
+                addFiberTableItem("dfghfgh")
+            }
+        }
+        private fun addMicrowaveTableItem(item:String){
+            if (MicrowaveTableList.adapter!=null && MicrowaveTableList.adapter is BackhaulMicrowaveTableAdapter){
+                var adapter = MicrowaveTableList.adapter as BackhaulMicrowaveTableAdapter
+                adapter.addItem(item)
+            }
+        }
+        private fun addFiberTableItem(item:String){
+            if (FiberTableList.adapter!=null && FiberTableList.adapter is BackhaulFiberTableAdapter){
+                var adapter = FiberTableList.adapter as BackhaulFiberTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding =
-            EquipmentsInfoViewBinding.bind(itemView)
-//        var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
+        var binding: OpcotssrEquipmentTableBinding = OpcotssrEquipmentTableBinding.bind(itemView)
+        var tssrEquipmentTableList: RecyclerView=binding.opcotssrEquipmentTables
 
         init {
             binding.collapsingLayout.tag = false
@@ -77,66 +101,83 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-//            binding.imgAdd.setOnClickListener {
-//                addTableItem("dfsdh")
-//            }
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
         }
-//        private fun addTableItem(item:String){
-//            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-//                var adapter = poTableList.adapter as TowerPoTableAdapter
-//                adapter.addItem(item)
-//            }
-//        }
+        private fun addTableItem(item:String){
+            if (tssrEquipmentTableList.adapter!=null && tssrEquipmentTableList.adapter is tssrEquipmentTableAdapter){
+                var adapter = tssrEquipmentTableList.adapter as tssrEquipmentTableAdapter
+                adapter.addItem(item)
+            }
+        }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : PowerMsbInfoViewBinding = PowerMsbInfoViewBinding.bind(itemView)
+        var binding : OpcotssrPowermcbBinding = OpcotssrPowermcbBinding.bind(itemView)
+        var tssrPowerMcbTableList: RecyclerView=binding.opcotssrPowermcbTableItem
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-
-        }
-    }
-
-    class ViewHold5(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
-        var binding : AttachmentListItemBinding = AttachmentListItemBinding.bind(itemView)
-        init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+            binding.addItems.setOnClickListener {
+                addTableItem("dfsdh")
             }
-
-
+        }
+        private fun addTableItem(item:String){
+            if (tssrPowerMcbTableList.adapter!=null && tssrPowerMcbTableList.adapter is tssrPowerMcbTableAdapter){
+                var adapter = tssrPowerMcbTableList.adapter as tssrPowerMcbTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
-
-   class ViewHold6(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View) : ViewHold(itemView) {
         var binding : TssrInfoViewBinding = TssrInfoViewBinding.bind(itemView)
+        init {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
 
-       init {
-           binding.itemTitle.tag = false
-           binding.itemTitle.tag = false
-           if ((binding.itemTitle.tag as Boolean)) {
-               binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-               binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-           } else {
-               binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-               binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-           }
-
-
-       }
+        }
     }
+    class ViewHold6(itemView: View, listener: OpcoTssrLisListener) : ViewHold(itemView) {
+        var binding : OpcotssrAttachmentsBinding = OpcotssrAttachmentsBinding.bind(itemView)
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+                listener.attachmentItemClicked()
+            }
+        })
+        init {
+            binding.collapsingLayout.tag = false
+
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            recyclerListener.adapter = adapter
+
+            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+                adapter.addItem()
+            }
+        }
+    }
+
+
 
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position]==type1)
@@ -166,21 +207,22 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opcotssr_equipment_table, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.power_msb_info_view, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opcotssr_powermcb, parent, false)
                 return ViewHold4(view)
             }
-            5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.attachment_list_item, parent, false)
-                return ViewHold5(view,listener)
-            }   6-> {
+            5-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.tssr_info_view, parent, false)
-                return ViewHold6(view,listener)
+                return ViewHold5(view)
             }
 
+            6 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.opcotssr_attachments, parent, false)
+                return ViewHold6(view,listener)
+            }
         }
         return ViewHold(view)
     }
@@ -201,7 +243,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
@@ -211,8 +253,7 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-
-
+                holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener)
             }
 
             is ViewHold2 -> {
@@ -224,42 +265,44 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
-
-
+                holder.binding.itemTitleStr.text = list[position]
+                holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener)
+                holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener)
             }
             is ViewHold3 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.itemTitleStr.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-             //   holder.poTableList.adapter=OpcoTssrAdapter(context,listener)
+                holder.tssrEquipmentTableList.adapter=tssrEquipmentTableAdapter(context,listener)
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
@@ -270,67 +313,66 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
-
+                holder.binding.itemTitleStr.text = list[position]
+                holder.tssrPowerMcbTableList.adapter=tssrPowerMcbTableAdapter(context,listener)
             }
             is ViewHold5 -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
-                holder.binding.itemTitle.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitle.text = list[position]
-            }
-            is ViewHold6 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                holder.binding.imgEdit.setOnClickListener() {
+                    listener.siteAccessDetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
                 }
                 else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
             }
+            is ViewHold6 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+            }
+
         }
     }
 
@@ -355,5 +397,15 @@ class OpcoTssrAdapter(var listener: OpcoTssrLisListener) : RecyclerView.Adapter<
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
+        fun editSectorCellsDetailsClicked(position:Int)
+        fun viewSectorCellsDetailsClicked(position:Int)
+        fun editBackhaulMicrowaveClicked(position:Int)
+        fun viewBackhaulMicrowaveClicked(position:Int)
+        fun editBackhaulFiberClicked(position:Int)
+        fun viewBackhaulFiberClicked(position:Int)
+        fun editEquipmentClicked(position:Int)
+        fun viewEquipmentClicked(position:Int)
+        fun editPowerMcbClicked(position:Int)
+        fun viewPowerMcbClicked(position:Int)
     }
 }

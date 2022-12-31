@@ -77,6 +77,10 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
     class ViewHold3(itemView: View,listener: OpcoInfoLisListener) : ViewHold(itemView) {
         var binding : OpcoAttachmentBinding = OpcoAttachmentBinding.bind(itemView)
 
+        init {
+            var attachment_title = itemView.findViewById<View>(R.id.attachment_title)
+            attachment_title.visibility = View.GONE
+        }
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
                 listener.attachmentItemClicked()
@@ -84,14 +88,14 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         })
 
         init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
+//            binding.collapsingLayout.tag = false
+//            if ((binding.collapsingLayout.tag as Boolean)) {
+//                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+//                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+//            } else {
+//                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+//                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+//            }
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
@@ -125,7 +129,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.operationsItemClicked()
+                    listener.opcoSiteInfoItemClicked()
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -206,19 +210,20 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                if(currentOpened==position){
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+//                if(currentOpened==position){
+//                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility=View.GONE
+                    holder.binding.imgDropdown.visibility=View.GONE
                     holder.binding.itemCollapse.visibility=View.VISIBLE
-                }
-                else {
-                    holder.binding.collapsingLayout.tag=false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility=View.VISIBLE
-                    holder.binding.itemCollapse.visibility=View.GONE
-                }
+//                }
+//                else {
+//                    holder.binding.collapsingLayout.tag=false
+//                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+//                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+//                    holder.binding.itemLine.visibility=View.VISIBLE
+//                    holder.binding.itemCollapse.visibility=View.GONE
+//                }
                 holder.binding.itemTitleStr.text = list[position]
             }
         }

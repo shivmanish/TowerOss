@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
@@ -43,6 +44,7 @@ class HomeViewModel : ViewModel() {
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
     var powerandfuel:SingleLiveEvent<Resource<ServiceRequestModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
+    var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -61,6 +63,7 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
+        opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
         powerandfuel = homeRepo?.powerandFuelivedata
     }
 
@@ -142,9 +145,5 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSiteDropDownData() {
         homeRepo?.siteInfoDropDown()
-    }
-
-    fun fetchPowerAndFuel(id:String) {
-        homeRepo?.powerAndFuelRequestAll(id)
     }
 }

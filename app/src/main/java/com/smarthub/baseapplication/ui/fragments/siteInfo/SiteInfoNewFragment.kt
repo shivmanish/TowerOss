@@ -75,6 +75,8 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
                 }
             }else if (it!=null) {
+                AppLogger.log("SiteInfoNewFragment error :${it.message}")
+
                 Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
             }else{
                 AppLogger.log("SiteInfoNewFragment Something went wrong")
