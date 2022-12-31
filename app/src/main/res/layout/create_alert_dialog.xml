@@ -290,9 +290,19 @@
                                       android:layout_height="@dimen/dp200"
                                       android:layout_gravity="center"
 
+
                                       app:cardBackgroundColor="@color/white"
                                       app:cardCornerRadius="@dimen/dp15">
 
+                                      <ImageView
+                                          android:id="@+id/image_gchat_profile_other"
+                                          android:layout_width="214dp"
+                                          android:layout_height="match_parent"
+                                          android:layout_marginStart="16dp"
+                                          android:contentDescription="User Icon"
+                                          android:src="@android:drawable/ic_dialog_map"
+                                          app:layout_constraintStart_toStartOf="parent"
+                                          app:layout_constraintTop_toBottomOf="@+id/text_gchat_date_other" />
 
 
                                   </androidx.cardview.widget.CardView>
