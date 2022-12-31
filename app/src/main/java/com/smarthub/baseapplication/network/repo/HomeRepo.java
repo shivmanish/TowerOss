@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompMod
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
+import com.smarthub.baseapplication.model.siteInfo.TowerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
@@ -55,6 +56,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
     private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
+    private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -77,6 +79,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<NocAndCompModel>> getNOCandCompModel() {
         return noCandCompModel;
+    }
+    public SingleLiveEvent<Resource<TowerCivilInfraModel>> getTowerAndCivilInfraModel() {
+        return towerAndCivilInfraModel;
     }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
@@ -111,6 +116,7 @@ public class HomeRepo {
         serviceRequestModel = new SingleLiveEvent<>();
         opcoTenencyModel=new SingleLiveEvent<>();
         noCandCompModel=new SingleLiveEvent<>();
+        towerAndCivilInfraModel=new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -603,6 +609,44 @@ public class HomeRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
                     noCandCompModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void TowerCivilInfraRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("TowerAndCivilInfra");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchTowerCivilInfraRequest(siteInfoParam).enqueue(new Callback<TowerCivilInfraModel>() {
+            @Override
+            public void onResponse(Call<TowerCivilInfraModel> call, Response<TowerCivilInfraModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TowerCivilInfraModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<TowerCivilInfraModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    towerAndCivilInfraModel.postValue(Resource.success(response.body(), 200));
                 }
             }
 

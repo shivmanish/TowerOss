@@ -6,21 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class TowerInfoFragment: Fragment(), TowerInfoListAdapter.TowerInfoListListener {
-    var binding : TowerFragmentBinding?=null
+    var viewmodel: HomeViewModel?=null
+    lateinit var binding : TowerFragmentBinding
+    lateinit var adapter:TowerInfoListAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = TowerInfoListAdapter(requireContext(),this@TowerInfoFragment)
+        adapter=TowerInfoListAdapter(requireContext(),this@TowerInfoFragment)
+        binding.listItem.adapter = adapter
+
+        binding.swipeLayout?.setOnRefreshListener {
+            binding.swipeLayout?.isRefreshing=false
+        }
     }
 
     override fun attachmentItemClicked() {
