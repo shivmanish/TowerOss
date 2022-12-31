@@ -53,6 +53,8 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : AlertWhatLayoutBinding = AlertWhatLayoutBinding.bind(itemView)
+
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
