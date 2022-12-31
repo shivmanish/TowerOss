@@ -296,11 +296,11 @@
 
                                       <ImageView
                                           android:id="@+id/image_gchat_profile_other"
-                                          android:layout_width="214dp"
+                                          android:layout_width="match_parent"
                                           android:layout_height="match_parent"
+                                          android:src="@android:drawable/ic_dialog_map"
                                           android:layout_marginStart="16dp"
                                           android:contentDescription="User Icon"
-                                          android:src="@android:drawable/ic_dialog_map"
                                           app:layout_constraintStart_toStartOf="parent"
                                           app:layout_constraintTop_toBottomOf="@+id/text_gchat_date_other" />
 
