@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
@@ -16,7 +15,6 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDat
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.ServiceFragmentViewModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -51,26 +49,42 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+                AppLogger.log("NocAndComp Fragment card Data fetched successfully")
 //                nocDataAdapter.setData(it.data.item!![0].ServiceRequestMain)
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
-                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+                Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("NocAndComp Fragment error :${it.message}, data : ${it.data}")
             }
             else {
-                AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+                AppLogger.log("NocAndComp Fragment Something went wrong")
+                Toast.makeText(requireContext(),"NocAndComp Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         NocCompBinding.swipeLayout.setOnRefreshListener {
             NocCompBinding.swipeLayout.isRefreshing=false
             nocDataAdapter.addLoading()
-            viewmodel?.serviceRequestAll(id)
+            viewmodel?.NocAndCompRequestAll(id)
         }
 
+    }
+
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+        if (viewmodel!=null && !isDataLoaded){
+            nocDataAdapter.addLoading()
+            viewmodel?.NocAndCompRequestAll(id)
+        }
+        AppLogger.log("onViewPageSelected service request")
+    }
+
+    override fun onDestroy() {
+        if (viewmodel?.NocAndCompModelResponse?.hasActiveObservers() == true)
+            viewmodel?.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
+
+        super.onDestroy()
     }
 
     override fun clickedItem() {
