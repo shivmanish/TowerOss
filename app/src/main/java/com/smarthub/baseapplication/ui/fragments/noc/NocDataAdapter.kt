@@ -8,39 +8,57 @@ import com.google.android.gms.tasks.NativeOnCompleteListener
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.NocListItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 
 
-class NocDataAdapter(var listener: NocDataAdapterListener, var array: ArrayList<String>) : RecyclerView.Adapter<NocDataViewHolder>() {
+class NocDataAdapter(var listener: NocDataAdapterListener, Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
+    var list = ArrayList<Any>()
 
-    fun setData(data: ArrayList<String>) {
-        this.array.addAll(data)
+    fun setData(data: ArrayList<NocAndCompModel>) {
+        this.list.addAll(data)
         notifyDataSetChanged()
     }
-
-    fun updateData(s : String) {
-        this.array.add(s)
-        notifyItemChanged(array.size.minus(1))
+    fun addLoading(){
+        this.list.clear()
+        this.list.add("loading")
+        notifyDataSetChanged()
+    }
+    init {
+        list.add("dfshg")
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NocDataViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.noc_list_item, parent, false)
-        return NocDataViewHolder(view)
+    override fun getItemViewType(position: Int): Int {
+        return if (list[position] is NocDataViewHolder) 0 else 1
     }
-
-    override fun onBindViewHolder(holder: NocDataViewHolder, position: Int) {
-
-        holder.binding?.cardItem?.setOnClickListener {
-            listener.clickedItem()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): nocEmptyDataViewHolder {
+        return if (viewType == 0){
+            var view = LayoutInflater.from(parent.context).inflate(R.layout.noc_list_item, parent, false)
+            return NocDataViewHolder(view)
+        }else{
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar, parent, false)
+            nocEmptyDataViewHolder(view)
         }
     }
 
+    override fun onBindViewHolder(holder: nocEmptyDataViewHolder, position: Int) {
+        if (holder is NocDataViewHolder){
+            var item = list[position] as NocAndCompModel
+            holder.binding?.cardItem?.setOnClickListener {
+                listener.clickedItem()
+            }
+        }
+
+    }
+
     override fun getItemCount(): Int {
-        return array.size
+        return list.size
     }
 }
+open class nocEmptyDataViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemview) {}
 
-class NocDataViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemview) {
+class NocDataViewHolder( itemview: View) : nocEmptyDataViewHolder(itemview) {
     var binding = NocListItemBinding.bind(itemView)
 }
 

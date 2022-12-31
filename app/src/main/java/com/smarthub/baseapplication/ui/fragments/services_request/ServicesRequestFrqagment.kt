@@ -22,7 +22,7 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAdapterListener {
     var viewmodel: HomeViewModel?=null
     var isDataLoaded = false
-    lateinit var customerDataAdapter: ServicesDataAdapter
+    lateinit var serviceFragAdapterAdapter: ServicesDataAdapter
     lateinit var customerBinding: FragmentServiceRequestBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -34,8 +34,8 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment,id)
-        customerBinding.customerList.adapter = customerDataAdapter
+        serviceFragAdapterAdapter = ServicesDataAdapter(this@ServicesRequestFrqagment,id)
+        customerBinding.customerList.adapter = serviceFragAdapterAdapter
 
         customerBinding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
@@ -46,15 +46,12 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel?.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
-            customerBinding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
-                showLoader()
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                hideLoader()
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                customerDataAdapter.setData(it.data.item!![0].ServiceRequestMain)
+                serviceFragAdapterAdapter.setData(it.data.item!![0].ServiceRequestMain)
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true
             }else if (it!=null) {
@@ -68,6 +65,8 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
         }
 
         customerBinding.swipeLayout.setOnRefreshListener {
+            customerBinding.swipeLayout.isRefreshing=false
+            serviceFragAdapterAdapter.addLoading()
             viewmodel?.serviceRequestAll(id)
         }
     }
@@ -75,7 +74,7 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
     override fun onViewPageSelected() {
         super.onViewPageSelected()
         if (viewmodel!=null && !isDataLoaded){
-            showLoader()
+            serviceFragAdapterAdapter.addLoading()
             viewmodel?.serviceRequestAll(id)
         }
         AppLogger.log("onViewPageSelected service request")

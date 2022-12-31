@@ -21,7 +21,7 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
             0 -> ServiceRequestTabFragment(data,Id!!)
             1 -> AssignACQTeamFragment(data,Id!!)
             2-> AcquisitionSurveyFragment(data,Id!!)
-            3 -> OppoTssrTabFragment()
+            3 -> OppoTssrTabFragment(data,Id!!)
             4 -> FeasibilityPlanningTabFragment()
             5 -> Agreements()
             6-> SiteProposalTabFragment()

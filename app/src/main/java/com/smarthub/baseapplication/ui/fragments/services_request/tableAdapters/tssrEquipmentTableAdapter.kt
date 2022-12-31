@@ -8,26 +8,26 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.OpcotssrEquipmentTableBinding
 import com.smarthub.baseapplication.databinding.OpcotssrEquipmentTableItemBinding
-import com.smarthub.baseapplication.databinding.OpcotssrFiberTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSREquipmentTable
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class tssrEquipmentTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener): RecyclerView.Adapter<tssrEquipmentTableAdapter.ViewHold>() {
-    var list = ArrayList<String>()
+class tssrEquipmentTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,equipmentdata:List<OpcoTSSREquipmentTable>): RecyclerView.Adapter<tssrEquipmentTableAdapter.ViewHold>() {
+    var list : ArrayList<OpcoTSSREquipmentTable>?
     init {
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
+        list=equipmentdata as ArrayList<OpcoTSSREquipmentTable>
     }
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            OpcoTSSREquipmentTable(Equipment = "efgf", InputPower = "tgds", MaxPower = "trgf", OperatingTemp = "54",
+            Size = "65", Technology = "4g", Type = "trhd", Voltage = "87", Weight = "73", created_at = "12-10-2022",
+            id = "543", isActive = "true", modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -42,10 +42,13 @@ class tssrEquipmentTableAdapter (var context : Context, var listener : OpcoTssrA
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-
+        holder.binding.Technology.text=list?.get(position)?.Technology
+        holder.binding.EquipmentInfo.text=list?.get(position)?.Equipment
+        holder.binding.EquipmentType.text=list?.get(position)?.Type
+        holder.binding.EquipmentSize.text=list?.get(position)?.Size
     }
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want

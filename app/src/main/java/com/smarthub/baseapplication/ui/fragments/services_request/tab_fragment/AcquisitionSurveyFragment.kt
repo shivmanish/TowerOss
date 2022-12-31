@@ -35,19 +35,17 @@ class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, Id: Stri
         adapter= AcquisitionSurveyFragAdapter(requireContext(),this@AcquisitionSurveyFragment,data!!)
         binding?.acquisitionSurveyList?.adapter = adapter
 
-        if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
-            viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
+        if (viewmodel?.serviceRequestModelResponse?.hasActiveObservers() == true){
+            viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
+        viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
             binding?.swipeLayout!!.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
-                showLoader()
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                hideLoader()
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                AppLogger.log("size :${it.data.size}")
+                AppLogger.log("size :${it.data.item?.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
@@ -59,8 +57,7 @@ class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, Id: Stri
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
-            binding?.swipeLayout!!.isRefreshing = false
-//            viewmodel.fetchSiteInfoData(ServicesRequestActivity.Id!!)
+            viewmodel.serviceRequestAll(ServicesRequestActivity.Id!!)
         }
     }
 

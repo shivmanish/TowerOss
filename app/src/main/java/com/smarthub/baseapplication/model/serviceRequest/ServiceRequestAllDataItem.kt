@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
 import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSR
 
 data class ServiceRequestAllDataItem(
     val ASAcquitionSurvey: List<ASAquisitionSurvey>,

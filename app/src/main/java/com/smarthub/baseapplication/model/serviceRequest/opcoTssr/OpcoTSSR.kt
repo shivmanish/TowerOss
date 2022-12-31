@@ -1,10 +1,10 @@
-package com.smarthub.baseapplication.model.serviceRequest
+package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class OpcoTSSR(
     val Attachments: List<Any>,
-    val BackHaulFeasibility: List<Any>,
-    val Equipments: List<Any>,
-    val PowerAndMCB: List<Any>,
+    val BackHaulFeasibility: List<BackhaulFeasibility>,
+    val Equipments: List<Equipment>,
+    val PowerAndMCB: List<PowerAndMcb>,
     val RFFeasibility: List<RFFeasibility>,
     val TSSRExecutiveInfo: List<TSSRExecutiveInfo>,
     val created_at: String,

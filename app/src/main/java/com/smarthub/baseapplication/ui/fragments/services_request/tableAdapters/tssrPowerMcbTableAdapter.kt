@@ -9,23 +9,24 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcotssrPowermcbTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.MCBRequirement
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class tssrPowerMcbTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener): RecyclerView.Adapter<tssrPowerMcbTableAdapter.ViewHold>() {
-    var list = ArrayList<String>()
+class tssrPowerMcbTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,McbData:List<MCBRequirement>): RecyclerView.Adapter<tssrPowerMcbTableAdapter.ViewHold>() {
+    var list : ArrayList<MCBRequirement>?
     init {
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
+        list=McbData as ArrayList<MCBRequirement>
     }
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            MCBRequirement(Equipment = "fds", MCBRating = "54", Quantity = "53", created_at = "12-10-2022",
+                id = "543", isActive = "true", modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -40,10 +41,12 @@ class tssrPowerMcbTableAdapter (var context : Context, var listener : OpcoTssrAd
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-
+        holder.binding.McbRating.text=list?.get(position)?.MCBRating
+        holder.binding.Quantity.text=list?.get(position)?.Quantity
+        holder.binding.Equipment.text=list?.get(position)?.Equipment
     }
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want

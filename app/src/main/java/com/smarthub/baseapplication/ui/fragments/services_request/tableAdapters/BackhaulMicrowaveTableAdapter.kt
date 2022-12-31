@@ -9,23 +9,26 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcotssrMicrowaveTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.MicrowaveOrUBR
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class BackhaulMicrowaveTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener): RecyclerView.Adapter<BackhaulMicrowaveTableAdapter.ViewHold>() {
-    var list = ArrayList<String>()
+class BackhaulMicrowaveTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,microwaveData:List<MicrowaveOrUBR>): RecyclerView.Adapter<BackhaulMicrowaveTableAdapter.ViewHold>() {
+    var list : ArrayList<MicrowaveOrUBR>?
     init {
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
+        list= microwaveData as ArrayList<MicrowaveOrUBR>
     }
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            MicrowaveOrUBR(AntennaHeight = "56", AzimuthOrOrientation = "erw", Feasibilty = "erdfs",
+            LosDistance = "54", Obstraction = "fdr", OpcoFarEndSite = "ewr", SerialNo = "42", Shape = "54",
+            Size = "58", Weight = "879", created_at = "22-10-2022", id = "4", isActive = "ture",
+            modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -40,10 +43,13 @@ class BackhaulMicrowaveTableAdapter (var context : Context, var listener : OpcoT
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-
+        holder.binding.SerialNo.text=list?.get(position)?.SerialNo
+        holder.binding.Technology.text="Data Not Found"
+        holder.binding.TxrCount.text="Data not found"
+        holder.binding.AnteenaHeight.text=list?.get(position)?.AntennaHeight
     }
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want

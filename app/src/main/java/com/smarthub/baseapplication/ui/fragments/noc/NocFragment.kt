@@ -5,44 +5,70 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServiceFragmentViewModel
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class NocFragment : BaseFragment(), NocDataAdapterListener {
-
-    lateinit var customerBinding: NocAndCompFragmentBinding
-    lateinit var viewmodel: ServiceFragmentViewModel
-    lateinit var nocDataViewHolder: NocDataAdapter
+class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
+    lateinit var NocCompBinding: NocAndCompFragmentBinding
+    lateinit var viewmodel: HomeViewModel
+    var isDataLoaded = false
+    lateinit var nocDataAdapter: NocDataAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        customerBinding = NocAndCompFragmentBinding.inflate(inflater, container, false)
-        viewmodel = ViewModelProvider(requireActivity())[ServiceFragmentViewModel::class.java]
-        initializeFragment()
-        return customerBinding.root
+        NocCompBinding = NocAndCompFragmentBinding.inflate(inflater, container, false)
+        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        return NocCompBinding.root
     }
 
-    private fun initializeFragment() {
-        customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        nocDataViewHolder = NocDataAdapter(this@NocFragment, ArrayList())
-        customerBinding.customerList.adapter = nocDataViewHolder
-
-        customerBinding.addMore.setOnClickListener(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        NocCompBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
+        nocDataAdapter = NocDataAdapter(this@NocFragment,id)
+        NocCompBinding.customerList.adapter = nocDataAdapter
+        NocCompBinding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
         }
 
-        nocDataViewHolder.updateData("anything")
-        customerBinding.addmoreItems.setOnClickListener{
-            nocDataViewHolder.updateData("anything")
+        if (viewmodel?.NocAndCompModelResponse?.hasActiveObservers() == true){
+            viewmodel?.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel?.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+//                nocDataAdapter.setData(it.data.item!![0].ServiceRequestMain)
+                AppLogger.log("size :${it.data.item?.size}")
+                isDataLoaded = true
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        NocCompBinding.swipeLayout.setOnRefreshListener {
+            NocCompBinding.swipeLayout.isRefreshing=false
+            nocDataAdapter.addLoading()
+            viewmodel?.serviceRequestAll(id)
         }
 
     }
