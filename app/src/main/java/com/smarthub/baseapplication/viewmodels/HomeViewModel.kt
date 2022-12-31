@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
 import com.smarthub.baseapplication.utils.AppLogger
 
@@ -82,6 +83,12 @@ class HomeViewModel : ViewModel() {
     fun updateBasicInfo(basicinfoModel: BasicinfoModel){
         homeRepo?.updateSiteInfo(basicinfoModel)
     }
+
+    fun createSite(basicinfoModel: CreateSiteModel){
+        homeRepo?.createSite(basicinfoModel)
+    }
+
+
 
     fun updateMyTeamTask(data : List<MyTeamTask>?){
         AppLogger.log("updateMyTeamTask : data ${data?.size}")

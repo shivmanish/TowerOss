@@ -5,6 +5,6 @@ data class BasicinfoModel(
     var GeoCondition: GeoConditionUpdateModel? = null,
     var OperationalInfo: OperationalInfoUploadModel? = null ,
     var SafetyAndAccess: SafetyAndAccessUpdateModel? = null,
-    var id: String = "392",
+    var id: String? = null ,
     var ownername: String = "SMRT"
 )

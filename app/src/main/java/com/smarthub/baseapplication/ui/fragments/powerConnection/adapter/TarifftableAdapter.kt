@@ -10,31 +10,25 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.EarthingConsumableTableItemBinding
+import com.smarthub.baseapplication.databinding.TariffTableItemBinding
+import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuelEBConnectionTariffsDetail
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
 
-class TarifftableAdapter (var context : Context, var listener : TrafilListiner): RecyclerView.Adapter<TarifftableAdapter.ViewHold>() {
+class TarifftableAdapter (var context : Context,var table_list :ArrayList<PowerAndFuelEBConnectionTariffsDetail>, var listener : TrafilListiner): RecyclerView.Adapter<TarifftableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
 
-    init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-    }
-
-    fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+    fun addValue(list :List<PowerAndFuelEBConnectionTariffsDetail>){
+        table_list.addAll(list)
+        notifyDataSetChanged()
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        table_list.removeAt(position)
         notifyItemRemoved(position)
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= EarthingConsumableTableItemBinding.bind(view)
+        var binding= TariffTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
@@ -47,10 +41,11 @@ class TarifftableAdapter (var context : Context, var listener : TrafilListiner):
 //            show pop up menu
             performOptionsMenuClick(position,it)
         }
+        holder.binding.columnOne.text = table_list.get(position).id
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return table_list.size
     }
 
     // this method will handle the onclick options click

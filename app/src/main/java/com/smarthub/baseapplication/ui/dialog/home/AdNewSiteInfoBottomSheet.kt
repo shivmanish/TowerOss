@@ -7,44 +7,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AdNewSiteInfoBottomSheetBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
+import com.smarthub.baseapplication.ui.fragments.search.SearchFragmentDirections
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel) :
     BottomSheetDialogFragment(contentLayoutId) {
-
+    lateinit var addSiteHelper: AddSiteHelper
     lateinit var binding: AdNewSiteInfoBottomSheetBinding
     var tempGenerateSiteId = ""
-    var basicinfo: BasicinfoServiceData? = null
+    var basicinfo: BasicinfoData? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var data: ArrayList<DropDownItem> = ArrayList()
-        data.add(DropDownItem("Name1", "1"))
-        data.add(DropDownItem("Name2", "2"))
-        data.add(DropDownItem("Name3", "3"))
-        data.add(DropDownItem("Name4", "4"))
-        binding.siteType.setSpinnerData(data)
-
-//        basicinfoModel = BasicinfoModel()
-//        basicinfo = BasicinfoServiceData()
         binding = AdNewSiteInfoBottomSheetBinding.bind(view)
+        addSiteHelper = AddSiteHelper()
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight() * 0.75).toInt()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        setSpinnserData()
+        setObserverForInput()
         if (viewModel.basicinfoModel?.hasActiveObservers() == true) {
             viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
         }
@@ -52,45 +51,45 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
             dialog!!.dismiss()
             dialog!!.cancel()
         }
+
         binding.update.setOnClickListener {
-           basicinfo = BasicinfoServiceData()
+            basicinfo = BasicinfoData()
             basicinfo?.let {
-                it.Buildingtype = binding.txBuildingType.text.toString()
-                it.Locationzone = binding.txtLocationZone.text.toString()
-                it.MaintenancePoint = ""
-                it.Projectname = binding.txtProjectName.text.toString()
-                it.aliasName = ""
-                it.siteID = binding.txSiteID.text.toString()
-                it.siteInChargeName = binding.txtSiteInChargeName.text.toString()
-                it.siteInChargeNumber = binding.txtSiteInChargeNumber.text.toString()
-                it.siteName = binding.txSiteName.text.toString()
+                it.siteName = binding.siteName.text.toString()
+                it.MaintenancePoint = addSiteHelper.mentatinance_point!!.name
+                it.aliasName = binding.aliasName.text.toString()
+                it.siteID = binding.siteId.text.toString()
+                it.siteName = binding.siteName.text.toString()
+                it.National = addSiteHelper.national!!.name
+                it.Region = addSiteHelper.region!!.name
+                it.State = addSiteHelper.state!!.name
             }
-            val datamodel = BasicinfoModel()
+            val datamodel = CreateSiteModel()
             datamodel.Basicinfo = basicinfo
-            viewModel.updateBasicInfo(datamodel)
+            viewModel.createSite(datamodel)
+            showUploadProgress()
 
         }
+        if(viewModel.basicInfoUpdate!!.hasActiveObservers()){
+            viewModel.basicInfoUpdate!!.removeObservers(this)
+        }
+        viewModel.basicInfoUpdate!!.observe(this, Observer {
+           hideUplodProgress()
+            if(it.status == Resource.Status.SUCCESS){
+                dialog!!.dismiss()
+//                findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${it?.data}"))
 
-        var check = 0
-        binding.siteType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                if (++check > 1) {
-                    val item = data[position]
-                    AppLogger.log("item :${item.name}")
-                    tempGenerateSiteId = "${binding.txSiteName.text}-${binding.txSiteID.text}-" +
-                            "${binding.siteStatus.selectedValue.name}-${binding.siteCategory.selectedValue.name}"
-                    viewModel.generateSiteId(GenerateSiteIdResponse(tempGenerateSiteId))
-                    AppLogger.log("item :${data[position].name}")
-                }
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
+        })
+//        binding.siteType.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener {
+        //            override fun itemSelected(item: DropDownItem) {
+//                AppLogger.log("item :${item.name}")
+//                tempGenerateSiteId = "${binding.txSiteName.text}-${binding.txSiteID.text}-" +
+//                        "${binding.siteStatus.selectedValue.name}-${binding.siteCategory.selectedValue.name}"
+//                viewModel.generateSiteId(GenerateSiteIdResponse(tempGenerateSiteId))
+//            }
+//        })
+        var check = 0
         binding.cancelTxt.setOnClickListener {
             dismiss()
         }
@@ -107,8 +106,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
                 }
                 if (it.status == Resource.Status.SUCCESS) {
                     AppLogger.log("Successfully updated all fields")
-//                    dismiss()
-                    binding.txBuildingType.text = it.data?.Generatid
+                    binding.siteId.text = it.data?.Generatid
                 } else {
                     AppLogger.log("UnExpected Error found")
                 }
@@ -129,6 +127,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
         }
     }
 
+
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
 //        if (viewModel.basicinfoModel?.hasActiveObservers() == true)
@@ -136,11 +135,21 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
     }
 
     fun showProgressLayout() {
+        if (binding.progress.visibility != View.VISIBLE)
+            binding.progress.visibility = View.VISIBLE
+    }
+
+    fun hideProgressLayout() {
+        if (binding.progress.visibility == View.VISIBLE)
+            binding.progress.visibility = View.GONE
+    }
+
+    fun showUploadProgress() {
         if (binding.progressLayout.visibility != View.VISIBLE)
             binding.progressLayout.visibility = View.VISIBLE
     }
 
-    fun hideProgressLayout() {
+    fun hideUplodProgress() {
         if (binding.progressLayout.visibility == View.VISIBLE)
             binding.progressLayout.visibility = View.GONE
     }
@@ -163,4 +172,152 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
         return dialog
     }
 
+    fun setSpinnserData() {
+        binding.siteCode.setSpinnerData(DataProvider.getSiteCode())
+        binding.cityCode.setSpinnerData(DataProvider.getCityCode())
+        binding.siteType.setSpinnerData(DataProvider.getSiteType())
+        binding.siteClass.setSpinnerData(DataProvider.getSiteClass())
+        binding.national.setSpinnerData(DataProvider.getNational())
+        binding.region.setSpinnerData(DataProvider.getRegion())
+        binding.state.setSpinnerData(DataProvider.getState())
+        binding.mentenancePoint.setSpinnerData(DataProvider.getMentainancePoint())
+
+        binding.siteCode.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.siteCode = DataProvider.getSiteCode().get(position)
+            }
+
+        }
+        binding.cityCode.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.cityCode = DataProvider.getCityCode().get(position)
+            }
+
+        }
+        binding.siteType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.siteTypeCode = DataProvider.getSiteCode().get(position)
+            }
+
+        }
+        binding.siteClass.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.siteClass = DataProvider.getSiteClass().get(position)
+                fetchSiteId()
+            }
+
+        }
+        binding.national.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.national = DataProvider.getNational().get(position)
+            }
+
+        }
+        binding.region.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.region = DataProvider.getRegion().get(position)
+            }
+
+        }
+        binding.state.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.state = DataProvider.getState().get(position)
+            }
+
+        }
+        binding.mentenancePoint.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                addSiteHelper.mentatinance_point = DataProvider.getMentainancePoint().get(position)
+            }
+
+        }
+
+    }
+
+    private fun setObserverForInput() {
+
+    }
+
+
+    fun fetchSiteId() {
+        try {
+            tempGenerateSiteId = "${binding.companyCode.text}-${addSiteHelper.siteCode!!.name}-" +
+                    "${addSiteHelper.cityCode!!.name}-${addSiteHelper.siteTypeCode!!.name}-${addSiteHelper.siteClass!!.name}"
+            viewModel.generateSiteId(GenerateSiteIdResponse(tempGenerateSiteId))
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
 }

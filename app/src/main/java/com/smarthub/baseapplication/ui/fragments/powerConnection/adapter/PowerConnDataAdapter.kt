@@ -7,19 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocListItemBinding
 import com.smarthub.baseapplication.databinding.PowerConnectionListItemBinding
+import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
 
 
-class PowerConnDataAdapter(var listener: PowerConnDataDataDataAdapterListener, var array: ArrayList<String>) : RecyclerView.Adapter<PowerConnDataDataViewHolder>() {
+class PowerConnDataAdapter(var listener: PowerConnDataDataDataAdapterListener, var array: ArrayList<PowerAndFuel>) : RecyclerView.Adapter<PowerConnDataDataViewHolder>() {
 
-    fun setData(data: ArrayList<String>) {
+    fun setData(data: ArrayList<PowerAndFuel>) {
         this.array.addAll(data)
         notifyDataSetChanged()
     }
 
-    fun updateData(s : String) {
-        this.array.add(s)
-        notifyItemChanged(array.size.minus(1))
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PowerConnDataDataViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.power_connection_list_item, parent, false)
@@ -29,7 +26,7 @@ class PowerConnDataAdapter(var listener: PowerConnDataDataDataAdapterListener, v
     override fun onBindViewHolder(holder: PowerConnDataDataViewHolder, position: Int) {
 
         holder.binding?.cardItem?.setOnClickListener {
-            listener.clickedItem()
+            listener.clickedItem(array.get(position))
         }
     }
 
@@ -43,5 +40,5 @@ class PowerConnDataDataViewHolder(var itemview: View) : RecyclerView.ViewHolder(
 }
 
 interface PowerConnDataDataDataAdapterListener{
-    fun clickedItem()
+    fun clickedItem(data:PowerAndFuel)
 }

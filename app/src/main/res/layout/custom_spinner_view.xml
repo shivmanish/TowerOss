@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/text_view"
         android:text="Sample"
-        android:textSize="@dimen/sp14"
+        android:textSize="@dimen/sp12"
         android:maxLines="1"
         android:fontFamily="@font/poppins"
         android:paddingTop="@dimen/dp5"

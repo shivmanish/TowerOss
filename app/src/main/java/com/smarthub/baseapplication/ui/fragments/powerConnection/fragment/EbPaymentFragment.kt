@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.databinding.EbBillsFragmentBinding
 import com.smarthub.baseapplication.databinding.EbConnectionFragmentBinding
 import com.smarthub.baseapplication.databinding.EbPaymentsFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.powerConnection.dialouge.EbPaymentDialouge
+import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
 import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.Utils
@@ -17,7 +18,7 @@ import com.smarthub.baseapplication.utils.Utils
 class EbPaymentFragment:Fragment() {
 
     lateinit var binding:EbPaymentsFragmentBinding
-
+    var data: PowerAndFuel?= null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +49,10 @@ class EbPaymentFragment:Fragment() {
         }
 
 
+    }
+
+    fun setDatavalue(data: PowerAndFuel) {
+this.data = data
     }
 
 }
