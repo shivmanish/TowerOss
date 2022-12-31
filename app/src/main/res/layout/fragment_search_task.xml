@@ -70,9 +70,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/horizontal_only"
+        android:id="@+id/horizontal_only_list"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/dp90"
         android:scrollbars="horizontal"
         tools:listitem="@layout/card_layout"
         app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
@@ -90,7 +90,7 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="@dimen/dp5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_only">
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_only_list">
 
         <RelativeLayout
             android:id="@+id/rl"
@@ -356,7 +356,6 @@
         app:layout_constraintTop_toBottomOf="@+id/card"
         app:tabTextAppearance="@style/TabTextView"
         />
-
     <com.smarthub.baseapplication.widgets.NonDragableViewPager
         android:id="@+id/viewpager"
         android:layout_marginTop="@dimen/dp2"
