@@ -12,12 +12,9 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.utils.AppController
 
 class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) : Adapter<OpcoDataViewHolder>() {
-//    var data1 : ArrayList<BasicInfoModelItem>?=null
     var data = ArrayList<Any>()
 
-//    init {
-//        data1 = AppController.getInstance().siteInfoModel?.item
-//    }
+
 
     fun addLoading(){
         this.data.clear()
