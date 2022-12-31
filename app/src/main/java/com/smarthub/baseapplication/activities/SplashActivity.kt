@@ -37,7 +37,7 @@ class SplashActivity : BaseActivity() {
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 if (isNetworkConnected){
-                    var intent = Intent(this@SplashActivity,DemoActivity::class.java)
+                    var intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }else {
