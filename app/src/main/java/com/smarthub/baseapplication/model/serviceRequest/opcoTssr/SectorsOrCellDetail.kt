@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.serviceRequest
+package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class SectorsOrCellDetail(
     val AntennaHeight: String,

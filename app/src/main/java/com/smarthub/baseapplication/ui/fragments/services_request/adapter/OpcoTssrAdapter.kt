@@ -4,14 +4,23 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.*
+import com.smarthub.baseapplication.utils.AppLogger
 
-class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
+class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
+    private var opcoTssrdata: OpcoTSSR?=null
+    private var RfFeasibility: RFFeasibility?=null
+    private var BackhaulFeasibility: BackhaulFeasibility?=null
+    private var PowerMcb: PowerRequirement?=null
+    private var tSSRExecutiveInfo: TSSRExecutiveInfo?=null
     var type1 = "RF Feasibility"
     var type2 = "Backhaul Feasibility"
     var type3 = "Equipments"
@@ -27,6 +36,15 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) 
         list.add("Power & MCB")
         list.add("TSSR Executive Info")
         list.add("Attachments")
+        try {
+            opcoTssrdata=serviceRequestAllData?.OpcoTSSR?.get(0)
+            RfFeasibility=opcoTssrdata?.RFFeasibility?.get(0)
+            BackhaulFeasibility=opcoTssrdata?.BackHaulFeasibility?.get(0)
+            PowerMcb=opcoTssrdata?.PowerAndMCB?.get(0)?.PowerRequirements?.get(0)
+            tSSRExecutiveInfo=opcoTssrdata?.TSSRExecutiveInfo?.get(0)
+        }catch (e:java.lang.Exception){
+            Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+        }
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -253,9 +271,21 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) 
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener)
-            }
+               try {
+                   holder.binding.TechnologyRfFeasibility.text=RfFeasibility?.Technology
+                   holder.binding.SectorCount.text=RfFeasibility?.SectorCount
+                   holder.binding.RRUCountRfFeasibility.text=RfFeasibility?.RRUCount
+                   holder.binding.OfSetPoleRead.text=RfFeasibility?.OffSetPoleReqd
+                   holder.binding.RemarkRfFeasibility.text=RfFeasibility?.RFFeasibiltyRemarks
 
+                   holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener,RfFeasibility?.SectorsOrCellDetails!!)
+
+               }catch (e:java.lang.Exception){
+                   AppLogger.log("error : ${e.localizedMessage}")
+                   Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+
+               }
+            }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
                     listener.requestinfoClicked()
@@ -279,8 +309,12 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) 
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener)
-                holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener)
+                if(BackhaulFeasibility!=null){
+                    holder.binding.BackhaulNodeType.text=BackhaulFeasibility?.BackHaulNodeType
+                    holder.binding.OffsetPoleRequired.text=BackhaulFeasibility?.OffSetPoleRequired
+                }
+                holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener,BackhaulFeasibility?.MicrowaveOrUBR!!)
+                holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener,BackhaulFeasibility?.Fiber!!)
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -302,7 +336,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) 
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.tssrEquipmentTableList.adapter=tssrEquipmentTableAdapter(context,listener)
+                holder.tssrEquipmentTableList.adapter=tssrEquipmentTableAdapter(context,listener,opcoTssrdata?.Equipments?.get(0)?.OpcoTSSREquipmentTable!!)
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
@@ -327,7 +361,13 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) 
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.tssrPowerMcbTableList.adapter=tssrPowerMcbTableAdapter(context,listener)
+                if(PowerMcb!=null){
+                    holder.binding.InputVoltage.text=PowerMcb?.InputVoltage
+                    holder.binding.MaxTotalPower.text=PowerMcb?.MaxTotalPower
+                    holder.binding.inputType.text=PowerMcb?.InputType
+                    holder.binding.batterBackupRequired.text=PowerMcb?.BatteryBackupRequired
+                }
+                holder.tssrPowerMcbTableList.adapter=tssrPowerMcbTableAdapter(context,listener,opcoTssrdata?.PowerAndMCB?.get(0)?.MCBRequirements!!)
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener() {
@@ -352,6 +392,13 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener) 
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                if(tSSRExecutiveInfo!=null){
+                    holder.binding.ExecutiveName.text=tSSRExecutiveInfo?.ExecutiveName
+                    holder.binding.EmailId.text=tSSRExecutiveInfo?.EmailID
+                    holder.binding.phoneNumber.text=tSSRExecutiveInfo?.PhoneNumber
+                    holder.binding.surveyDate.text=tSSRExecutiveInfo?.SurveyDate
+                    holder.binding.remarks.text="Data Not Found"
+                }
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {

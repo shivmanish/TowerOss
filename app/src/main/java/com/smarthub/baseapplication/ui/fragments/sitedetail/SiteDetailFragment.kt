@@ -32,12 +32,12 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
-import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
-import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
+import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
+import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
+import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
+import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
@@ -75,26 +75,18 @@ class SiteDetailFragment : BaseFragment() {
         setDataObserver()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel.isActionBarHide(true)
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         tabNames = siteDetailViewModel.getStrings(requireActivity())
 
-        root.findViewById<View>(R.id.btn_back)
-            .setOnClickListener { requireActivity().onBackPressed() }
+        root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
         return root
     }
 
-    fun setData() {
-        val adapter = ViewPagerAdapter(
-            childFragmentManager,
-            FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-        )
+    fun setData(){
+        val adapter = ViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         binding.viewpager.adapter = adapter
         binding.viewpager.offscreenPageLimit = 5
         binding.tabs.setupWithViewPager(binding.viewpager)
@@ -104,30 +96,26 @@ class SiteDetailFragment : BaseFragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                constraintLayout.backgroundTintList =
-                    ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
                 val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
-                val texttabchange =
-                    constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 Log.e("TAG", " $view  ${tab.position}")
-                AppLogger.log("onTabSelected:" + tab.position)
+                AppLogger.log("onTabSelected:"+tab.position)
                 adapter.getItemByPosition(tab.position).onViewPageSelected()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
                 val view: View? = tab.customView
                 val constraintLayout: ConstraintLayout = view!!.findViewById(R.id.parent_id)
-                constraintLayout.backgroundTintList =
-                    ColorStateList.valueOf(resources.getColor(R.color.white))
+                constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                 val constraintLay: ConstraintLayout = view.findViewById(R.id.parent_tab_child)
-                val texttabchange =
-                    constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+                val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
                 texttabchange.setTextColor(resources.getColor(R.color.white))
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-                AppLogger.log("onTabSelected:" + tab.position)
+                AppLogger.log("onTabSelected:"+tab.position)
                 adapter.getItemByPosition(tab.position).onViewPageSelected()
             }
         })
@@ -155,43 +143,37 @@ class SiteDetailFragment : BaseFragment() {
             imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
-        val constraintLayout: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
-        val constraintLay: ConstraintLayout =
-            binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
-        val texttabchange =
-            constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
+        val constraintLayout: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_id)
+        val constraintLay: ConstraintLayout = binding.tabs.getTabAt(0)?.customView!!.findViewById(R.id.parent_tab_child)
+        val texttabchange = constraintLay.getChildAt(0).findViewById<AppCompatTextView>(R.id.txt_tab)
         texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
 
-        constraintLayout.backgroundTintList =
-            ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
+        constraintLayout.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.tab_selected_color))
     }
 
-    internal inner class ViewPagerAdapter(manager: FragmentManager, behaviour: Int) :
-        FragmentPagerAdapter(manager, behaviour) {
+    internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
-        var list: ArrayList<BaseFragment> = ArrayList()
+        var list : ArrayList<BaseFragment> = ArrayList()
 
         override fun getItem(position: Int): Fragment {
-            println("position is "+position)
-            var f: BaseFragment = when (position) {
-                0 -> SiteInfoNewFragment(id)
-                1 -> ServicesRequestFrqagment(id)
-                2 -> OpcoTanacyFragment(id)
-                3 -> SiteAgreementFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
-                4 -> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
-                5 -> NocFragment()
-                6 -> CivilInfraFragment()
-                7 -> PowerConnection()
-                8 -> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
+            var f : BaseFragment =  when(position){
+                0-> SiteInfoNewFragment(id)
+                1-> ServicesRequestFrqagment(id)
+                2-> OpcoTanacyFragment(id)
+                3-> SiteAgreementFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
+                4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
+                5-> NocFragment(id)
+                6-> CivilInfraFragment()
+                7-> PowerConnection()
+                8-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
                 else -> SiteInfoNewFragment(id)
             }
-            if (list.size > position) list[position] = f
+            if (list.size>position) list[position] = f
             else list.add(f)
             return list[position]
         }
 
-        fun getItemByPosition(position: Int): BaseFragment {
+        fun getItemByPosition(position: Int): BaseFragment{
             return list[position]
         }
 

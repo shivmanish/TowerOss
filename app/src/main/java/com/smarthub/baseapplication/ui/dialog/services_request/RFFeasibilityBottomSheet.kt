@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PowerMsbBottomSheetDialogBinding
 import com.smarthub.baseapplication.databinding.RfFeasibilityBottomSheetDialogBinding
-import com.smarthub.baseapplication.model.serviceRequest.RFFeasibility
-import com.smarthub.baseapplication.model.serviceRequest.RequesterInfo
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
 
 class RFFeasibilityBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : RfFeasibilityBottomSheetDialogBinding

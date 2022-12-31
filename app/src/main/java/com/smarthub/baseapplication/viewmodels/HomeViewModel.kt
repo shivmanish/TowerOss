@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
@@ -45,6 +46,7 @@ class HomeViewModel : ViewModel() {
     var powerandfuel:SingleLiveEvent<Resource<ServiceRequestModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
+    var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -63,8 +65,11 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
+<<<<<<<<< Temporary merge branch 1
         opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
+=========
         powerandfuel = homeRepo?.powerandFuelivedata
+>>>>>>>>> Temporary merge branch 2
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -131,6 +136,10 @@ class HomeViewModel : ViewModel() {
         homeRepo?.opcoRequestAll(id)
     }
 
+    fun NocAndCompRequestAll(id : String){
+        homeRepo?.NocAndCompRequestAll(id)
+    }
+
     fun fetchSiteSearchData(id:String) {
         homeRepo?.siteSearchData(id)
     }
@@ -145,5 +154,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSiteDropDownData() {
         homeRepo?.siteInfoDropDown()
+    }
+
+    fun fetchPowerAndFuel(id:String) {
+        homeRepo?.powerAndFuelRequestAll(id)
     }
 }

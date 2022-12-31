@@ -1,24 +1,25 @@
 package com.smarthub.baseapplication.ui.fragments.task.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.databinding.OperationSiteInfoViewBinding
-import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-//import com.smarthub.baseapplication.ui.fragments.services_request.adapter.EquipmentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskEquipmentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.task.TaskItemAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
-class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListener) : RecyclerView.Adapter<TaskEqupmentAdapter.ViewHold>() {
+
+class TaskSiteInfoAdapter(var context : Context, var listener: TaskSiteInfoListener) : RecyclerView.Adapter<TaskSiteInfoAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
-    var type1 = "Equipment"
+    var type1 = "Site Info"
 
 
     private var data : BasicInfoModelDropDown?=null
@@ -33,7 +34,8 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
         notifyDataSetChanged()
     }
     init {
-        list.add("Equipment")
+
+        list.add("Site Info")
 
 
     }
@@ -45,7 +47,7 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
         return 0
     }
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
+        var binding : TaskSiteInfoItemViewBinding = TaskSiteInfoItemViewBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -63,16 +65,18 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
     }
 
 
-   
-   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.opco_site_info_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.task_site_info_item_view, parent, false)
                 return ViewHold1(view)
 
             }
-         }
+
+
+        }
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -80,7 +84,7 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    listener.taskSiteInfoItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -111,7 +115,7 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
                 }
             }
 
-    
+
         }
     }
     var currentOpened = -1
@@ -125,21 +129,9 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
     override fun getItemCount(): Int {
         return list.size
     }
-    interface TaskEqupmentListener {
-        fun attachmentItemClicked()
-        fun detailsItemClicked()
-        fun requestinfoClicked()
-        fun operationInfoDetailsItemClicked()
-        fun geoConditionsDetailsItemClicked()
-        fun siteAccessDetailsItemClicked()
+    interface TaskSiteInfoListener {
 
-        fun EditInstallationAcceptence()
-        fun EditTowerItem()
-        fun editPoClicked(position:Int)
-        fun viewPoClicked(position:Int)
-        fun editConsumableClicked(position:Int)
-        fun viewConsumableClicked(position:Int)
-        fun editOffsetClicked(position:Int)
-        fun viewOffsetClicked(position:Int)
+        fun taskSiteInfoItemClicked()
+
     }
 }

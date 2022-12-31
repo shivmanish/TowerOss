@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters
 
 import android.content.Context
+import android.graphics.Path.Op
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -9,23 +10,25 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcotssrFiberTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.Fiber
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class BackhaulFiberTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener): RecyclerView.Adapter<BackhaulFiberTableAdapter.ViewHold>() {
-    var list = ArrayList<String>()
+class BackhaulFiberTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,fiberdata:List<Fiber>): RecyclerView.Adapter<BackhaulFiberTableAdapter.ViewHold>() {
+    var list : ArrayList<Fiber>?
     init {
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
-        list.add("dsgsafjdg")
+        list=fiberdata as ArrayList<Fiber>
     }
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            Fiber(CableLength = "56", CableType = "dsf", Feasibility = "erf", FiberCore = "trhd",
+            LayingType = "trgtr", LmLength = "45", OpcoFarEndSite = "fgd", SerialNo = "56",
+                created_at = "22-10-2022", id = "54", isActive = "true", modified_at = "22-12-2022" )
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -40,10 +43,13 @@ class BackhaulFiberTableAdapter (var context : Context, var listener : OpcoTssrA
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-
+        holder.binding.SerialNo.text=list?.get(0)?.SerialNo
+        holder.binding.OpcoForEndSite.text=list?.get(0)?.OpcoFarEndSite
+        holder.binding.LmLenth.text=list?.get(0)?.LmLength
+        holder.binding.CableLenth.text=list?.get(0)?.CableLength
     }
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want

@@ -32,19 +32,17 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         adapter=ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
         binding?.listItem?.adapter = adapter
 
-        if (viewmodel.serviceRequestAllData?.hasActiveObservers() == true){
-            viewmodel.serviceRequestAllData?.removeObservers(viewLifecycleOwner)
+        if (viewmodel?.serviceRequestModelResponse?.hasActiveObservers() == true){
+            viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel.serviceRequestAllData?.observe(viewLifecycleOwner) {
+        viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
             binding?.swipeLayout!!.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
-                showLoader()
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                hideLoader()
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                AppLogger.log("size :${it.data.size}")
+                AppLogger.log("size :${it.data.item?.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
@@ -56,7 +54,7 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
-            viewmodel.fetchSiteInfoData(Id!!)
+            viewmodel.serviceRequestAll(Id!!)
         }
 
     }

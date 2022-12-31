@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
@@ -52,8 +53,9 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
-    private SingleLiveEvent<Resource<ServiceRequestModel>> powerandfuel;
     private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
+    private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
+    private SingleLiveEvent<Resource<ServiceRequestModel>> powerandfuel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -73,6 +75,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<OpcoInfoNewModel>> getOpcoTenencyModel() {
         return opcoTenencyModel;
+    }
+    public SingleLiveEvent<Resource<NocAndCompModel>> getNOCandCompModel() {
+        return noCandCompModel;
     }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
@@ -107,6 +112,8 @@ public class HomeRepo {
         serviceRequestModel = new SingleLiveEvent<>();
         powerandfuel = new SingleLiveEvent<>();
         opcoTenencyModel=new SingleLiveEvent<>();
+        noCandCompModel=new SingleLiveEvent<>();
+        powerandfuel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -225,6 +232,43 @@ public class HomeRepo {
         BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.updateSiteInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BasicInfoDialougeResponse> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void createSite(CreateSiteModel basicinfoModel) {
+//        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+//        basicInfoUpdate.postValue(Resource.loading(d, 200));
+        apiClient.createSite(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
             @Override
             public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
                 if (response.isSuccessful()) {
@@ -530,6 +574,44 @@ public class HomeRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
                     opcoTenencyModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void NocAndCompRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("NOCCompliance");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchNocAndCompRequest(siteInfoParam).enqueue(new Callback<NocAndCompModel>() {
+            @Override
+            public void onResponse(Call<NocAndCompModel> call, Response<NocAndCompModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NocAndCompModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<NocAndCompModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    noCandCompModel.postValue(Resource.success(response.body(), 200));
                 }
             }
 
