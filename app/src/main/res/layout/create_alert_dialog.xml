@@ -519,7 +519,7 @@
                      android:layout_height="wrap_content"
                      android:gravity="center_vertical"
                      android:text="  Working" />
- <TextView
+                <TextView
                      android:padding="@dimen/dp10"
                      android:layout_marginTop="@dimen/dp15"
                      android:drawableLeft="@drawable/selected_check"
@@ -532,8 +532,78 @@
                      android:layout_height="wrap_content"
                      android:gravity="center_vertical"
                      android:text="  On Going" />
+                 <TextView
+                     android:text="Tentative time"
+                     android:layout_marginTop="@dimen/dp15"
+                     android:layout_marginRight="@dimen/dp10"
+                     android:layout_marginLeft="@dimen/dp10"
+                     android:textStyle="bold"
+                     style="@style/RowTextItemInfo"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"/>
+                 <EditText
+                     android:id="@+id/editRemark"
+                     android:layout_marginRight="@dimen/dp10"
+                     android:layout_marginLeft="@dimen/dp10"
+                     android:layout_marginBottom="@dimen/dp15"
+                     android:text="20 days"
+                     android:textSize="15sp"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"/>
+                 <TextView
+                     android:text="Enter full detail realted to location"
+                     android:layout_marginTop="@dimen/dp15"
+                     android:layout_marginRight="@dimen/dp10"
+                     android:layout_marginLeft="@dimen/dp10"
+                     android:textStyle="bold"
+                     style="@style/RowTextItemInfo"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"/>
+                 <EditText
+                     android:background="@drawable/bg_alert"
+                     android:id="@+id/editDetails"
+                     android:maxLines="5"
+                     android:layout_marginRight="@dimen/dp10"
+                     android:layout_marginLeft="@dimen/dp10"
+                     android:layout_marginBottom="@dimen/dp15"
+                     android:text="20 days"
+                     android:textSize="15sp"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"/>
+                 <TextView
+                     app:layout_constraintStart_toStartOf="parent"
+                     android:layout_width="@dimen/dp120"
 
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/color1"
+                     android:text="Close Alert"
+                     android:textSize="14sp"
+                     android:layout_margin="@dimen/dp10"
+                     android:gravity="center"
+                     android:paddingTop="@dimen/dp5"
+                     android:paddingBottom="@dimen/dp5"
+
+                     app:layout_constraintEnd_toEndOf="parent"
+                     android:background="@drawable/login_yellow_bg"
+                     app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+                 <TextView
+                     android:drawableRight="@android:drawable/sym_action_chat"
+                     app:layout_constraintStart_toStartOf="parent"
+                     android:layout_width="@dimen/dp120"
+
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/color1"
+
+                     android:textSize="14sp"
+                     android:layout_margin="@dimen/dp10"
+                     android:gravity="center"
+                     android:paddingTop="@dimen/dp5"
+                     android:paddingBottom="@dimen/dp5"
+
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/items_list"/>
              </LinearLayout>
+
 
 
         </androidx.cardview.widget.CardView>
