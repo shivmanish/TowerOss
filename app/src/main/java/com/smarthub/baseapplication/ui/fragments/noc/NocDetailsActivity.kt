@@ -39,6 +39,12 @@ class NocDetailsActivity : BaseActivity(), NocListAdapter.NOCListListener {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initViews()
+        try {
+            binding.IssueDate.text= NocAndCompAlldata?.ApplicationInitial?.get(0)?.IssueDate
+        }catch (e:java.lang.Exception){
+            AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+            Toast.makeText(this,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
         if (viewmodel?.NocAndCompModelResponse?.hasActiveObservers() == true){
             viewmodel?.NocAndCompModelResponse?.removeObservers(this)
         }
@@ -79,13 +85,13 @@ class NocDetailsActivity : BaseActivity(), NocListAdapter.NOCListListener {
     }
 
     override fun EditAuthorityDetails() {
-        var bm = AuthorityDetailsDialougeAdapter(R.layout.noc_authority_details_dialouge_layout)
+        val bm = AuthorityDetailsDialougeAdapter(R.layout.noc_authority_details_dialouge_layout)
         bm.show(supportFragmentManager, "category")
         Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
     override fun EditAppDetailsItem() {
-        var bm = AppDetailsDialougeAdapter(R.layout.noc_application_details_dialouge_layout)
+        val bm = AppDetailsDialougeAdapter(R.layout.noc_application_details_dialouge_layout)
         bm.show(supportFragmentManager,"categoery")
         Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }

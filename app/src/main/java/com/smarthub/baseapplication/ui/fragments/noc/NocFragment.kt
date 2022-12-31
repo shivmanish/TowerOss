@@ -34,7 +34,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NocCompBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        nocDataAdapter = NocDataAdapter(this@NocFragment,id)
+        nocDataAdapter = NocDataAdapter(requireContext(),this@NocFragment,id)
         NocCompBinding.customerList.adapter = nocDataAdapter
         NocCompBinding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
@@ -57,7 +57,6 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
-
                 }
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true

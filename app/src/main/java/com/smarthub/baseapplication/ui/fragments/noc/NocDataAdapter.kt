@@ -1,8 +1,10 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.NativeOnCompleteListener
 import com.smarthub.baseapplication.R
@@ -12,9 +14,10 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.utils.AppLogger
 
 
-class NocDataAdapter(var listener: NocDataAdapterListener, Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
+class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener, Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
     var list = ArrayList<Any>()
     var id=Id
 
@@ -47,9 +50,15 @@ class NocDataAdapter(var listener: NocDataAdapterListener, Id: String?) : Recycl
 
     override fun onBindViewHolder(holder: nocEmptyDataViewHolder, position: Int) {
         if (holder is NocDataViewHolder){
-            var item = list[position] as NocAndCompAllDataItem
-            holder.binding?.cardItem?.setOnClickListener {
-                listener.clickedItem(item, id!!)
+            try {
+                var item = list[position] as NocAndCompAllDataItem
+                holder.binding?.cardItem?.setOnClickListener {
+                    listener.clickedItem(item, id!!)
+                }
+                holder.binding.textIssueDate.text=item.ApplicationInitial.get(0).IssueDate
+            }catch (e:java.lang.Exception){
+                AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
         }
 

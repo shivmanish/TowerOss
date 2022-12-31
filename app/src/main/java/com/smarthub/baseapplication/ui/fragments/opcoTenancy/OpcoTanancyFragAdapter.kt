@@ -1,17 +1,21 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.model.siteInfo.BasicInfoModelItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.utils.AppLogger
 
-class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) : Adapter<OpcoDataViewHolder>() {
+class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapterListener) : Adapter<OpcoDataViewHolder>() {
     var data = ArrayList<Any>()
 
 
@@ -44,14 +48,21 @@ class OpcoTanancyFragAdapter(var listener: CustomerDataAdapterListener) : Adapte
 
     override fun onBindViewHolder(holder: OpcoDataViewHolder, position: Int) {
         if(holder is OpcoDataItemViewHolder) {
-            var item = data[position] as OpcoDataItem
-            holder.binding.SiteId.text = "${item.Opcoinfo[0].OpcoSiteID}"
-            holder.binding.textRfiDate.text =
-                "RFI Date: ${item.Opcoinfo[0].rfiAcceptanceDate}"
-            holder.binding.textRfsDate.text =
-                "RFS Date: ${item.Opcoinfo[0].rfiAcceptanceDate}"
-            holder.binding.cardItem.setOnClickListener {
-                listener.clickedItem(item)
+            try {
+                var item = data[position] as OpcoDataItem
+                holder.binding.SiteId.text = "${item.Opcoinfo[0].OpcoSiteID}"
+                holder.binding.titel.text = "${item.Opcoinfo[0].OpcoName}"
+                holder.binding.textRfiDate.text =
+                    "RFI Date: ${item.Opcoinfo[0].rfiAcceptanceDate}"
+                holder.binding.textRfsDate.text =
+                    "RFR Date: ${item.Opcoinfo[0].rfrDate}"
+                holder.binding.cardItem.setOnClickListener {
+                    listener.clickedItem(item)
+                }
+            }catch (e:java.lang.Exception){
+                AppLogger.log("opcotenency card error : ${e.localizedMessage}")
+                Toast.makeText(context,"opcotenency card error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+
             }
         }
     }
