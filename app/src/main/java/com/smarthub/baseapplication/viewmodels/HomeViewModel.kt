@@ -41,6 +41,7 @@ class HomeViewModel : ViewModel() {
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
+    var powerandfuel:SingleLiveEvent<Resource<ServiceRequestModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
 
     init {
@@ -60,6 +61,7 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
+        powerandfuel = homeRepo?.powerandFuelivedata
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -140,5 +142,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSiteDropDownData() {
         homeRepo?.siteInfoDropDown()
+    }
+
+    fun fetchPowerAndFuel(id:String) {
+        homeRepo?.powerAndFuelRequestAll(id)
     }
 }

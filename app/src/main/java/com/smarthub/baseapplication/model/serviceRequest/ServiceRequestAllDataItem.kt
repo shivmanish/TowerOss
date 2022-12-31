@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
 import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
+import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
 
 data class ServiceRequestAllDataItem(
     val ASAcquitionSurvey: List<ASAquisitionSurvey>,
@@ -9,6 +10,7 @@ data class ServiceRequestAllDataItem(
     val OpcoTSSR: List<OpcoTSSR>,
     val SPApprovalAndSO: List<Any>,
     val ServiceRequest: List<ServiceRequest>,
+    val PowerAndFuel: List<PowerAndFuel>,
     val SiteProposal: List<Any>,
     val SoftAcquisition: List<Any>,
     val created_at: String,
