@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.PowerConnectionFragmentBinding
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataDataDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
 import com.smarthub.baseapplication.ui.fragments.powerConnection.viewmodel.PowerConnectionRootViewModel
 
-class PowerConnection : Fragment(), PowerConnDataDataDataAdapterListener {
+class PowerConnection : BaseFragment(), PowerConnDataDataDataAdapterListener {
 
     lateinit var binding: PowerConnectionFragmentBinding
     lateinit var viewmodel: PowerConnectionRootViewModel
