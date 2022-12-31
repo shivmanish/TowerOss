@@ -7,7 +7,7 @@ import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFu
 data class ServiceRequestAllDataItem(
     val ASAcquitionSurvey: List<ASAquisitionSurvey>,
     val AssignACQTeam: List<AssignACQTeam>,
-    val FeasibilityPlanning: List<Any>,
+    val FeasibilityPlanning: List<FeasibilityPlanning>,
     val OpcoTSSR: List<OpcoTSSR>,
     val SPApprovalAndSO: List<Any>,
     val ServiceRequest: List<ServiceRequest>,

@@ -72,7 +72,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -134,7 +134,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -154,7 +154,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -174,7 +174,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -194,7 +194,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -213,7 +213,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -233,7 +233,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -253,7 +253,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -273,7 +273,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -293,7 +293,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -313,7 +313,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -333,7 +333,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -362,11 +362,11 @@
                             android:layout_height="wrap_content"
                             android:text="Total MCB Count" />
                         <TextView
-                            android:id="@+id/editLayingType"
+                            android:id="@+id/editMCBCount"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -384,7 +384,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>
@@ -404,7 +404,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                 
                     </LinearLayout>

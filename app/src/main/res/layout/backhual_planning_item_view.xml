@@ -72,7 +72,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -158,7 +158,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -177,7 +177,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -197,7 +197,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -212,11 +212,11 @@
                             android:layout_height="wrap_content"
                             android:text="Tower/Pole Height" />
                         <TextView
-                            android:id="@+id/editTOCOUID"
+                            android:id="@+id/power_pole_height"
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -235,10 +235,69 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total Waight" />
+                        <TextView
+                            android:id="@+id/total_waight"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                             />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Offset Pole Count" />
+                        <TextView
+                            android:id="@+id/offset_pole_count"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                             />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Antenna Space" />
+                        <TextView
+                            android:id="@+id/anteena_space"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                             />
+
+
+                    </LinearLayout>
+
+
                     <LinearLayout
                         style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
@@ -254,7 +313,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
                         
                     </LinearLayout>
 
@@ -286,7 +345,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -305,7 +364,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -324,7 +383,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -343,10 +402,30 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fiber Laying" />
+                        <TextView
+                            android:id="@+id/editFiberLaying"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                             />
+
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -363,7 +442,7 @@
                             style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="xxxx" />
+                             />
 
                         
                     </LinearLayout>
@@ -371,7 +450,6 @@
 
                 </GridLayout>
 
-                <include layout="@layout/cancel_save_layout"/>
             </LinearLayout>
 
         </ScrollView>

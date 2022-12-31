@@ -65,11 +65,8 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
-<<<<<<<<< Temporary merge branch 1
         opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
-=========
         powerandfuel = homeRepo?.powerandFuelivedata
->>>>>>>>> Temporary merge branch 2
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){

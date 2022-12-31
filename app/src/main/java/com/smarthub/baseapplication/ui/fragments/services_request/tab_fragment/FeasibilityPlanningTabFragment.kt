@@ -7,22 +7,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.FeasibilityoplanningAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class FeasibilityPlanningTabFragment : BaseFragment(),
+class FeasibilityPlanningTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : BaseFragment(),
     FeasibilityoplanningAdapter.FeasibilityoplanningLisListener {
     var siteViewModel : SiteInfoViewModel?=null
     var binding : OpcoInfoFregmentBinding?=null
+    lateinit var adapter: OpcoTssrAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = FeasibilityoplanningAdapter(this@FeasibilityPlanningTabFragment)
+        binding?.listItem?.adapter = FeasibilityoplanningAdapter(requireContext(),this@FeasibilityPlanningTabFragment,data!!)
     }
     override fun attachmentItemClicked() {
 
@@ -48,6 +52,7 @@ class FeasibilityPlanningTabFragment : BaseFragment(),
         val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
+
 
 
 }
