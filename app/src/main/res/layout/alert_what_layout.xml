@@ -20,6 +20,7 @@
             <TextView
                 android:id="@+id/item_title"
                 android:text="Link Name"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:paddingStart="@dimen/dp20"
