@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -33,7 +34,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NocCompBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        nocDataAdapter = NocDataAdapter(this@NocFragment,id)
+        nocDataAdapter = NocDataAdapter(requireContext(),this@NocFragment,id)
         NocCompBinding.customerList.adapter = nocDataAdapter
         NocCompBinding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
@@ -44,13 +45,19 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         if (viewmodel?.NocAndCompModelResponse?.hasActiveObservers() == true){
             viewmodel?.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel?.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
+        viewmodel?.NocAndCompModelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                NocCompBinding.swipeLayout.isRefreshing=false
                 AppLogger.log("NocAndComp Fragment card Data fetched successfully")
-//                nocDataAdapter.setData(it.data.item!![0].ServiceRequestMain)
+                try {
+                    nocDataAdapter.setData(it.data.item!![0].NOCCompliance)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+                    Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true
             }else if (it!=null) {
@@ -64,8 +71,6 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         }
 
         NocCompBinding.swipeLayout.setOnRefreshListener {
-            NocCompBinding.swipeLayout.isRefreshing=false
-            nocDataAdapter.addLoading()
             viewmodel?.NocAndCompRequestAll(id)
         }
 
@@ -77,7 +82,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
             nocDataAdapter.addLoading()
             viewmodel?.NocAndCompRequestAll(id)
         }
-        AppLogger.log("onViewPageSelected service request")
+        AppLogger.log("onViewPageSelected NocAndComp")
     }
 
     override fun onDestroy() {
@@ -87,7 +92,9 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         super.onDestroy()
     }
 
-    override fun clickedItem() {
+    override fun clickedItem(data:NocAndCompAllDataItem,id:String) {
+        NocDetailsActivity.NocAndCompAlldata=data
+        NocDetailsActivity.Id=id
         requireActivity().startActivity(Intent(requireContext(), NocDetailsActivity::class.java))
 
     }

@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
@@ -47,6 +48,7 @@ class HomeViewModel : ViewModel() {
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
+    var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -66,6 +68,8 @@ class HomeViewModel : ViewModel() {
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
         opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
+        NocAndCompModelResponse=homeRepo?.noCandCompModel
+        TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
         powerandfuel = homeRepo?.powerandFuelivedata
     }
 
@@ -135,6 +139,9 @@ class HomeViewModel : ViewModel() {
 
     fun NocAndCompRequestAll(id : String){
         homeRepo?.NocAndCompRequestAll(id)
+    }
+    fun TowerAndCivilRequestAll(id : String){
+        homeRepo?.TowerCivilInfraRequestAll(id)
     }
 
     fun fetchSiteSearchData(id:String) {

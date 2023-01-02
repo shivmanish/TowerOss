@@ -35,7 +35,7 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         super.onViewCreated(view, savedInstanceState)
 
         binding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        opcoTanancyFragAdapter = OpcoTanancyFragAdapter(this@OpcoTanacyFragment)
+        opcoTanancyFragAdapter = OpcoTanancyFragAdapter(requireContext(),this@OpcoTanacyFragment)
         binding.customerList.adapter = opcoTanancyFragAdapter
 
 

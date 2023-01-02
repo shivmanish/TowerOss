@@ -121,8 +121,10 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/Issue_date"
                         android:text="10-Oct-2018"
                         android:textSize="14sp"
+                        android:maxLength="10"
                         android:paddingStart="5dp"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
@@ -134,15 +136,22 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-    </androidx.recyclerview.widget.RecyclerView>
+   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+       android:id="@+id/swipe_layout"
+       android:layout_width="wrap_content"
+       android:layout_marginTop="@dimen/dp7"
+       android:layout_height="0dp"
+       android:orientation="vertical"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/appbar_card"
+       app:layout_constraintEnd_toEndOf="parent">
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/list"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+       </androidx.recyclerview.widget.RecyclerView>
+   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

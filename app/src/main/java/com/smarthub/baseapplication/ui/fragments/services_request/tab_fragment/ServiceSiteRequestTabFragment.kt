@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
+import com.smarthub.baseapplication.databinding.ServiceRequestInfoBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.services_request.*
@@ -18,12 +19,12 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
-    var binding : OpcoInfoFregmentBinding?=null
+    var binding : ServiceRequestInfoBinding?=null
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: ServicesRequestAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
+        binding = ServiceRequestInfoBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding?.root
     }

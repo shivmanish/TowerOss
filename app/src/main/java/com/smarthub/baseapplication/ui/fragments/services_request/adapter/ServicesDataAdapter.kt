@@ -46,7 +46,6 @@ class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?
     }
 
     override fun onBindViewHolder(holder: ServiceEmptyDataAdapterViewHold, position: Int) {
-//        holder.binding.SiteId.text= "${data1?.get(0)?.Basicinfo?.get(0)?.siteID}"
         if (holder is ServiceDataAdapterViewHold) {
             var item = list[position] as ServiceRequestAllDataItem
             holder.binding.textRfiDate.text = "RFI Date:DataNotFoundFromApi"

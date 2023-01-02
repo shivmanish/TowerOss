@@ -4,17 +4,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.ApplicationInitial
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAdapter
+import com.smarthub.baseapplication.ui.fragments.task.TaskItemAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
-class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
+class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAndCompAllData: NocAndCompAllDataItem?) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
+    private var applicationDetailsData: ApplicationInitial?=null
     var type1 = "Application Details"
     var type2 = "Authority Details"
     var type3 = "PO Details"
@@ -30,6 +37,11 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : Re
         list.add("Fee & Payment Details")
         list.add("Documents Submitted to Authority")
         list.add("NOC / Compliance Copy")
+        try {
+            applicationDetailsData=NocAndCompAllData?.ApplicationInitial?.get(0)
+        }catch (e:java.lang.Exception){
+            Toast.makeText(context,"NocDataAdapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
 
     }
 
@@ -251,6 +263,34 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity) : Re
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.binding.CatagoryInitial.text="Data NotFound"
+                    holder.binding.ApplicationType.text="Data NotFound"
+                    holder.binding.ApplicationNameInitial.text=applicationDetailsData?.ApplicationName
+                    holder.binding.ApplicationNumber.text=applicationDetailsData?.ApplicationNumber
+                    holder.binding.ApplicationStatus.text="Data Not found"
+                    holder.binding.ApplicationDate.text=applicationDetailsData?.ApplicationDate
+                    holder.binding.IssueDate.text=applicationDetailsData?.IssueDate
+                    holder.binding.DocumentNumber.text=applicationDetailsData?.DocumentNo
+                    holder.binding.ExpiryDate.text=applicationDetailsData?.ExpiryDate
+                    holder.binding.VendorName.text=applicationDetailsData?.VendorName
+                    holder.binding.VendorExecutive.text=applicationDetailsData?.VendorExecutive
+                    holder.binding.VendorPhoneNo.text=applicationDetailsData?.VendorPhoneNo
+                    holder.binding.ApplicationTypeRenewal.text="Data Not Found"
+                    holder.binding.ApplicationNameRenewal.text=applicationDetailsData?.ApplicationName2
+                    holder.binding.ApplicationNumberRenewal.text=applicationDetailsData?.ApplicationNumber2
+                    holder.binding.DocumentNoRenewal.text=applicationDetailsData?.DocumentNo2
+                    holder.binding.VendorNameRenewal.text=applicationDetailsData?.VendorName2
+                    holder.binding.VendorExecutiveRenewal.text=applicationDetailsData?.VendorExecutive2
+                    holder.binding.VendorPhoneNoRenewal.text=applicationDetailsData?.VendorPhoneNo2
+                    holder.binding.applicationStatusRenewal.text="Data Not Found"
+                    holder.binding.renewalDate.text=applicationDetailsData?.RenewalDate2
+                    holder.binding.ExpiryDate.text=applicationDetailsData?.ExpiryDate2
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("NocDataAdapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"NocDataAdapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+
+                }
 
             }
             is ViewHold2 -> {

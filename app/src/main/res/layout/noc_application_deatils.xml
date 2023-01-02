@@ -67,7 +67,7 @@
         android:layout_width="match_parent"/>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
@@ -114,6 +114,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Catagory_initial"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="NOC / Compliance"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -131,6 +134,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_type"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Initial"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -149,6 +155,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_Name_initial"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text=".........."
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -167,6 +176,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_number"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="3453"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -186,6 +198,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_status"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Live"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -204,6 +219,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_Date"
+                            android:maxLength="10"
                             android:text="12-Dec-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -223,6 +240,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Issue_Date"
+                            android:maxLength="10"
                             android:text="13-Dec-2022"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -241,6 +260,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Document_number"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="34632"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -259,6 +281,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Expiry_Date"
+                            android:maxLength="10"
                             android:text="22-june-23"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -277,6 +301,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_Name"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Dhiraj"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -295,6 +322,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_Executive"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Sandeep Negi"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -312,6 +342,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_phone_no"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="9636000032"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -351,6 +384,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_type_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Initial"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -368,6 +404,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_name_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text=".........."
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -387,6 +426,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Application_number_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="3453"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -405,6 +447,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Document_no_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="34632"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -423,6 +468,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_name_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Dhiraj"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -440,6 +488,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_executive_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Sandeep Negi"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -458,6 +509,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_phoneNo_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="9636000032"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -475,6 +529,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/application_status_renewal"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Live"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -494,6 +551,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/renewal_Date"
+                            android:maxLength="10"
                             android:text="13-Dec-2022"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -512,6 +571,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Expiry_date_renewal"
+                            android:maxLength="10"
                             android:text="22-june-23"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"

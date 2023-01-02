@@ -1,22 +1,28 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.NativeOnCompleteListener
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.NocListItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.utils.AppLogger
 
 
-class NocDataAdapter(var listener: NocDataAdapterListener, Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
+class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener, Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
     var list = ArrayList<Any>()
+    var id=Id
 
-    fun setData(data: ArrayList<NocAndCompModel>) {
+    fun setData(data: ArrayList<NocAndCompAllDataItem>) {
+        this.list.clear()
         this.list.addAll(data)
         notifyDataSetChanged()
     }
@@ -30,7 +36,7 @@ class NocDataAdapter(var listener: NocDataAdapterListener, Id: String?) : Recycl
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (list[position] is NocDataViewHolder) 0 else 1
+        return if (list[position] is NocAndCompAllDataItem) 0 else 1
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): nocEmptyDataViewHolder {
         return if (viewType == 0){
@@ -44,9 +50,15 @@ class NocDataAdapter(var listener: NocDataAdapterListener, Id: String?) : Recycl
 
     override fun onBindViewHolder(holder: nocEmptyDataViewHolder, position: Int) {
         if (holder is NocDataViewHolder){
-            var item = list[position] as NocAndCompModel
-            holder.binding?.cardItem?.setOnClickListener {
-                listener.clickedItem()
+            try {
+                var item = list[position] as NocAndCompAllDataItem
+                holder.binding?.cardItem?.setOnClickListener {
+                    listener.clickedItem(item, id!!)
+                }
+                holder.binding.textIssueDate.text=item.ApplicationInitial.get(0).IssueDate
+            }catch (e:java.lang.Exception){
+                AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -63,5 +75,5 @@ class NocDataViewHolder( itemview: View) : nocEmptyDataViewHolder(itemview) {
 }
 
 interface NocDataAdapterListener{
-    fun clickedItem()
+    fun clickedItem(data:NocAndCompAllDataItem,id:String)
 }

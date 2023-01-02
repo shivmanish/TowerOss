@@ -4,16 +4,38 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInfo
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInstallationAndAcceptance
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
+import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapter.TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListener,towerData: TowerAndCivilInfraTowerModel?) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+    private var datalist: TowerAndCivilInfraTowerModel?=null
+    private var towerInfoData:TowerModelTowerInfo?=null
+    private var insAccepData:TowerModelTowerInstallationAndAcceptance?=null
+    fun setData(data: TowerAndCivilInfraTowerModel?) {
+        this.datalist=data!!
+        notifyDataSetChanged()
+    }
+    init {
+        try {
+            datalist=towerData
+            towerInfoData=datalist?.TowerTowerAndCivilInfraTower?.get(0)
+            insAccepData=datalist?.TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)
+        }catch (e:java.lang.Exception){
+            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
+    }
+
 
     var list : ArrayList<String> = ArrayList()
-
+    var currentOpened = -1
     var type1 = "Tower"
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
@@ -34,7 +56,6 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
         var offsetTableList: RecyclerView=binding.root.findViewById(R.id.tower_offset_table)
 
         init {
-            binding.collapsingLayout.tag = false
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -69,8 +90,7 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: TowerPoItemBinding =
-            TowerPoItemBinding.bind(itemView)
+        var binding: TowerPoItemBinding = TowerPoItemBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.tower_po_tables)
 
         init {
@@ -94,10 +114,8 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding: TowerConsumableItemBinding =
-            TowerConsumableItemBinding.bind(itemView)
-
-        var TowerConsumableTableList : RecyclerView = binding.root.findViewById(R.id.tower_consumable_table)
+        var binding: TowerConsumableItemBinding = TowerConsumableItemBinding.bind(itemView)
+        var towerConsumableTableList : RecyclerView = binding.root.findViewById(R.id.tower_consumable_table)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -113,15 +131,14 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
             }
         }
         private fun addTableItem(item:String){
-            if (TowerConsumableTableList.adapter!=null && TowerConsumableTableList.adapter is TowerConsumableTableAdapter){
-                var adapter = TowerConsumableTableList.adapter as TowerConsumableTableAdapter
+            if (towerConsumableTableList.adapter!=null && towerConsumableTableList.adapter is TowerConsumableTableAdapter){
+                var adapter = towerConsumableTableList.adapter as TowerConsumableTableAdapter
                 adapter.addItem(item)
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerInfoListAdapter.TowerInfoListListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View,listener: TowerInfoListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
-
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
                 listener.attachmentItemClicked()
@@ -137,8 +154,6 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
@@ -194,110 +209,164 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
-            is TowerInfoListAdapter.ViewHold1 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            is ViewHold1 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listener.EditTowerItem()
                     }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.offsetTableList.adapter=TowerOffsetTableAdapter(context,listener)
+                try {
+                    holder.binding.TowerId.text=towerInfoData?.TowerPoleID
+                    holder.binding.TowerType.text="Data Not found"
+                    holder.binding.InstalledType.text="data not found"
+                    holder.binding.HeightTower.text=towerInfoData?.Height
+                    holder.binding.Comouflage.text=towerInfoData?.Camouflage
+                    holder.binding.AnteenaSlots.text=towerInfoData?.AntennaSlots
+                    holder.binding.LightningArrester.text=towerInfoData?.LightningArrester
+                    holder.binding.FoundationType.text="Data Not Found"
+                    holder.binding.FoundationSize.text=
+                        "${towerInfoData?.FoundationSizeL}X${towerInfoData?.FoundationSizeB}X${towerInfoData?.FoundationSizeH}"
+                    holder.binding.TowerLegCount.text=towerInfoData?.TowerLegCount
+                    holder.binding.OwnerCompany.text="Data not found"
+                    holder.binding.UserCompany.text="Data not found"
+                    holder.binding.LocationMark.text=towerInfoData?.LocationMark
+                    holder.offsetTableList.adapter=TowerOffsetTableAdapter(context,listener,)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
 
             }
-            is TowerInfoListAdapter.ViewHold2 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            is ViewHold2 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listener.EditInstallationAcceptence()
                     }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
+                    holder.binding.InstallationDate.text=insAccepData?.InstallationDate
+                    holder.binding.InstallationExcutiveName.text="Data Not Found"
+                    holder.binding.VendorPhonNo.text=insAccepData?.VendorPhoneNumber
+                    holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
+                    holder.binding.AcceptanceStatus.text=insAccepData?.AcceptanceStatus
+                    holder.binding.ConditionalAcceptenceDate.text=insAccepData?.ConditionalAcceptanceDate
+                    holder.binding.FinalAcceptenceDate.text=insAccepData?.FinalAcceptanceDate
+                    holder.binding.OperationalStatus.text=insAccepData?.OperationalStatus
+                    holder.binding.NextPmDate.text=insAccepData?.NextPMDate
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
-            is TowerInfoListAdapter.ViewHold3 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
+            is ViewHold3 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
 
                 }
-                holder.binding.itemTitleStr.text = list[position]
-                holder.poTableList.adapter=TowerPoTableAdapter(context,listener)
-            }
-            is TowerInfoListAdapter.ViewHold4 -> {
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.TowerConsumableTableList.adapter=TowerConsumableTableAdapter(context,listener)
+                try {
+                    holder.poTableList.adapter=TowerPoTableAdapter(context,listener,datalist?.towerModelAuthorityPODetails)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
-            is TowerInfoListAdapter.ViewHold5 -> {
+            is ViewHold4 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
+
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.towerConsumableTableList.adapter=TowerConsumableTableAdapter(context,listener,datalist?.TowerAndCivilInfraConsumable)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+            }
+            is ViewHold5 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
@@ -307,6 +376,15 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListAdapt
     override fun getItemCount(): Int {
         return list.size
     }
+    var recyclerView: RecyclerView?=null
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
+    }
+
+
 
     interface TowerInfoListListener {
        fun attachmentItemClicked()
