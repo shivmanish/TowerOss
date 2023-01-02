@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTwrInfraDetailsBinding
@@ -43,7 +44,10 @@ class TwrInfraDetails : BaseActivity() {
         }
         binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager,TowerModelData,Id)
         binding.tabs.setupWithViewPager(binding.viewpager)
-
+        if(binding.tabs.tabCount<=5)
+            binding.tabs.tabMode = TabLayout.MODE_FIXED
+        else
+            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
 
