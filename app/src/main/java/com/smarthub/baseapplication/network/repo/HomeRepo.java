@@ -57,6 +57,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
+    private SingleLiveEvent<Resource<ServiceRequestModel>> powerandfuel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -117,6 +118,7 @@ public class HomeRepo {
         opcoTenencyModel=new SingleLiveEvent<>();
         noCandCompModel=new SingleLiveEvent<>();
         towerAndCivilInfraModel=new SingleLiveEvent<>();
+        powerandfuel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -137,6 +139,12 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<ProjectModelData>> getProjectResponse() {
         return projectResponse;
     }
+
+    public SingleLiveEvent<Resource<ServiceRequestModel>> getPowerandFuelivedata() {
+        return powerandfuel;
+    }
+
+
 
     public SingleLiveEvent<Resource<TaskModelData>> getTaskResponse() {
         return taskResponse;
@@ -663,38 +671,38 @@ public class HomeRepo {
         ArrayList<String> list = new ArrayList<>();
         list.add("PowerAndFuel");
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
-//        apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
-//            @Override
-//            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
-//                if (response.isSuccessful()){
-//                    reportSuccessResponse(response);
-//                } else if (response.errorBody()!=null){
-//                    AppLogger.INSTANCE.log("error :"+response);
-//                }else {
-//                    AppLogger.INSTANCE.log("error :"+response);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
-//                reportErrorResponse(t.getLocalizedMessage());
-//            }
-//
-//            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
-//
-//                if (response.body() != null) {
-//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
-//                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
-//                }
-//            }
-//
-//            private void reportErrorResponse(String iThrowableLocalMessage) {
-//                if (iThrowableLocalMessage != null)
-//                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-//                else
-//                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-//            }
-//        });
+        apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
+            @Override
+            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
     }
 
     public void siteSearchData(String id) {
