@@ -70,43 +70,100 @@
             android:layout_height="1dp"
             android:layout_width="match_parent" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:visibility="gone"
-        android:id="@+id/item_collapse"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <androidx.constraintlayout.widget.Guideline
             android:padding="@dimen/dp10"
-            android:drawableLeft="@drawable/selected_check"
-            android:fontFamily="serif-monospace"
-            style="@style/RowTextItemInfo"
-
-            android:layout_width="match_parent"
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="  On-Going:" />
-        <TextView
-            android:padding="@dimen/dp10"
-            android:drawableLeft="@drawable/selected_check"
-            android:fontFamily="serif-monospace"
-            style="@style/RowTextItemInfo"
-
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+        <LinearLayout
+            android:layout_toRightOf="@+id/guideline7"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:id="@+id/item_collapse"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="  Complete" />
-       <TextView
-            android:padding="@dimen/dp10"
-            android:drawableLeft="@drawable/selected_check"
-            android:fontFamily="serif-monospace"
-            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:weightSum="1"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="  Planned" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txtOngoing"
+                        android:padding="@dimen/dp10"
+                        android:drawableLeft="@drawable/selected_check"
+                        android:fontFamily="serif-monospace"
+                        style="@style/RowTextItemInfo"
 
-    </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="  On-Going:" />
+                    <TextView
+                        android:minWidth="100dp"
+                        android:id="@+id/txtCompleted"
+                        android:layout_below="@+id/txtOngoing"
+                        android:padding="@dimen/dp10"
+                        android:drawableLeft="@drawable/ic_circleblue"
+                        android:fontFamily="serif-monospace"
+                        style="@style/RowTextItemInfo"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="  Complete" />
+                    <LinearLayout
+                        android:layout_toRightOf="@+id/txtCompleted"
+                        android:layout_width="wrap_content"
+                        android:background="#DDE7FA"
+
+                        style="@style/ColumnItemInfo"
+                        android:padding="@dimen/dp10"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Date &amp; Time"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:background="#DDE7FA"
+                            android:text="12-Nov-22"
+                            style="@style/RowTestItemEdit"
+                            android:drawableEnd="@drawable/calender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_below="@+id/txtCompleted"
+                        android:padding="@dimen/dp10"
+                        android:drawableLeft="@drawable/selected_check"
+                        android:fontFamily="serif-monospace"
+                        style="@style/RowTextItemInfo"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="  Planned" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>
