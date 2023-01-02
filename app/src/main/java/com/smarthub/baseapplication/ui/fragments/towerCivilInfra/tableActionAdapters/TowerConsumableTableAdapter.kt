@@ -11,27 +11,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoleConsumableTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelConsumable
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
+class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener,var consumdata:List<TowerModelConsumable>?): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
+    var list : ArrayList<TowerModelConsumable>?
 
     init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
+        list=consumdata as ArrayList<TowerModelConsumable>
     }
 
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            TowerModelConsumable(Date = "22-12-2022", Description = "dsfg", ItemCode = "53", Qty = "654d2",
+                created_at = "22-10-2022", id ="56", isActive = "true", modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -46,13 +48,21 @@ class TowerConsumableTableAdapter (var context : Context, var listener : TowerIn
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
             performOptionsMenuClick(position,it)
+        }
+        try {
+            holder.binding.ItemName.text="Data Not Found"
+            holder.binding.ItemCode.text=list?.get(position)?.ItemCode
+            holder.binding.Description.text=list?.get(position)?.Description
+            holder.binding.Qty.text=list?.get(position)?.Qty
+        }catch (e:java.lang.Exception){
+            AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
+            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     // this method will handle the onclick options click

@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/Item_name"
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
@@ -21,6 +22,7 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/Item_code"
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
@@ -33,6 +35,7 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/Description"
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
@@ -51,6 +54,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/Qty"
                 android:textSize="@dimen/dp14"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"

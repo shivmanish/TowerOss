@@ -279,6 +279,21 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
+                    holder.binding.InstallationDate.text=insAccepData?.InstallationDate
+                    holder.binding.InstallationExcutiveName.text="Data Not Found"
+                    holder.binding.VendorPhonNo.text=insAccepData?.VendorPhoneNumber
+                    holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
+                    holder.binding.AcceptanceStatus.text=insAccepData?.AcceptanceStatus
+                    holder.binding.ConditionalAcceptenceDate.text=insAccepData?.ConditionalAcceptanceDate
+                    holder.binding.FinalAcceptenceDate.text=insAccepData?.FinalAcceptanceDate
+                    holder.binding.OperationalStatus.text=insAccepData?.OperationalStatus
+                    holder.binding.NextPmDate.text=insAccepData?.NextPMDate
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -301,7 +316,12 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.poTableList.adapter=TowerPoTableAdapter(context,listener)
+                try {
+                    holder.poTableList.adapter=TowerPoTableAdapter(context,listener,datalist?.towerModelAuthorityPODetails)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold4 -> {
                 if (currentOpened == position) {
@@ -324,7 +344,12 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.towerConsumableTableList.adapter=TowerConsumableTableAdapter(context,listener)
+                try {
+                    holder.towerConsumableTableList.adapter=TowerConsumableTableAdapter(context,listener,datalist?.TowerAndCivilInfraConsumable)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold5 -> {
                 if (currentOpened == position) {
