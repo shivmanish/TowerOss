@@ -82,7 +82,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
             nocDataAdapter.addLoading()
             viewmodel?.NocAndCompRequestAll(id)
         }
-        AppLogger.log("onViewPageSelected service request")
+        AppLogger.log("onViewPageSelected NocAndComp")
     }
 
     override fun onDestroy() {

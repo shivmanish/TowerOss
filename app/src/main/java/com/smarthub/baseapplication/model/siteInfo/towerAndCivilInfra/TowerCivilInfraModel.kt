@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.siteInfo.TowerAndCivilInfra
+package com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra
 
 import com.google.gson.annotations.SerializedName
 class TowerCivilInfraModel {

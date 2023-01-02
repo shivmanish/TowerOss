@@ -68,12 +68,11 @@
             <ImageView
                 android:layout_width="@dimen/dp24"
                 android:id="@+id/menu"
-                android:padding="5dp"
-                android:layout_marginEnd="@dimen/dp3"
+                android:paddingLeft="10dp"
+                android:paddingBottom="@dimen/dp7"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/dp5"
                 android:src="@drawable/menu"
                 android:rotation="90"
                 android:layout_height="wrap_content"/>

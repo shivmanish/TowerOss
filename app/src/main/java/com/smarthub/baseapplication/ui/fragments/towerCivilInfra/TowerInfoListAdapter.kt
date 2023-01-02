@@ -4,13 +4,35 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInfo
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInstallationAndAcceptance
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
+import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListener) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListener,towerData: TowerAndCivilInfraTowerModel?) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+    private var datalist: TowerAndCivilInfraTowerModel?=null
+    private var towerInfoData:TowerModelTowerInfo?=null
+    private var insAccepData:TowerModelTowerInstallationAndAcceptance?=null
+    fun setData(data: TowerAndCivilInfraTowerModel?) {
+        this.datalist=data!!
+        notifyDataSetChanged()
+    }
+    init {
+        try {
+            datalist=towerData
+            towerInfoData=datalist?.TowerTowerAndCivilInfraTower?.get(0)
+            insAccepData=datalist?.TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)
+        }catch (e:java.lang.Exception){
+            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
+    }
+
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
@@ -211,7 +233,26 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.offsetTableList.adapter=TowerOffsetTableAdapter(context,listener)
+                try {
+                    holder.binding.TowerId.text=towerInfoData?.TowerPoleID
+                    holder.binding.TowerType.text="Data Not found"
+                    holder.binding.InstalledType.text="data not found"
+                    holder.binding.HeightTower.text=towerInfoData?.Height
+                    holder.binding.Comouflage.text=towerInfoData?.Camouflage
+                    holder.binding.AnteenaSlots.text=towerInfoData?.AntennaSlots
+                    holder.binding.LightningArrester.text=towerInfoData?.LightningArrester
+                    holder.binding.FoundationType.text="Data Not Found"
+                    holder.binding.FoundationSize.text=
+                        "${towerInfoData?.FoundationSizeL}X${towerInfoData?.FoundationSizeB}X${towerInfoData?.FoundationSizeH}"
+                    holder.binding.TowerLegCount.text=towerInfoData?.TowerLegCount
+                    holder.binding.OwnerCompany.text="Data not found"
+                    holder.binding.UserCompany.text="Data not found"
+                    holder.binding.LocationMark.text=towerInfoData?.LocationMark
+                    holder.offsetTableList.adapter=TowerOffsetTableAdapter(context,listener,)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
 
             }
             is ViewHold2 -> {

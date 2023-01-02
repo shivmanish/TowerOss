@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompMod
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
-import com.smarthub.baseapplication.model.siteInfo.TowerAndCivilInfra.TowerCivilInfraModel;
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;

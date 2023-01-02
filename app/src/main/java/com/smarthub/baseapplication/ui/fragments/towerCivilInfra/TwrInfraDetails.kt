@@ -1,25 +1,22 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
-
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
-import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTwrInfraDetailsBinding
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
-import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class TwrInfraDetails : BaseActivity() {
     var viewmodel: HomeViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : ActivityTwrInfraDetailsBinding
+    companion object{
+        var TowerModelData : ArrayList<TowerAndCivilInfraTowerModel>?=null
+        var Id : String?="448"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +29,8 @@ class TwrInfraDetails : BaseActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initViews()
+
+
     }
 
     private fun initViews(){
@@ -42,9 +41,8 @@ class TwrInfraDetails : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager)
+        binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager,TowerModelData,Id)
         binding.tabs.setupWithViewPager(binding.viewpager)
-
 
     }
 

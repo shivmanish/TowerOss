@@ -163,7 +163,7 @@ class SiteDetailFragment : BaseFragment() {
                 3-> SiteAgreementFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
                 4-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
                 5-> NocFragment(id)
-                6-> CivilInfraFragment()
+                6-> CivilInfraFragment(id)
                 7-> PowerConnection()
                 8-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
                 else -> SiteInfoNewFragment(id)
