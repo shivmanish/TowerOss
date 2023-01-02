@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/canecl"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+
+        android:layout_marginTop="@dimen/dp20">
+        <LinearLayout
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:weightSum="3"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                style="@style/ColumnItemInfo"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtFireIncident"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:fontFamily="serif-monospace"
+
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Fire Incident" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/textAlert"
+                    android:fontFamily="serif-monospace"
+                    android:textColor="@color/black"
+
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Alert000211" />
+                <TextView
+                    android:id="@+id/textDateTime"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:fontFamily="serif-monospace"
+
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="22-Dec-22 ; 12:05 PM" />
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#e0e0e0" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_gchat"
+                    android:layout_width="match_parent"
+                    tools:listitem="@layout/chat_reciever"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator" />
+
+                <TextView
+                    android:id="@+id/text_gchat_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/view"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e0e0e0"
+                    app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_gchat_chatbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+
+                    <EditText
+                        android:layout_marginStart="16dp"
+                        android:id="@+id/edit_gchat_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/button_gchat_send"
+                        android:background="@android:color/transparent"
+                        android:hint="Write your msg here...."
+                        android:inputType="text"
+                        android:maxLines="6"
+                        tools:ignore="Autofill" />
+
+                    <LinearLayout
+                        android:id="@+id/button_gchat_send"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_alignParentEnd="true"
+
+                        android:background="?attr/selectableItemBackground"
+                        >
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:paddingRight="@dimen/dp15"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_attachment"
+
+                            android:background="?attr/selectableItemBackground"
+
+                            android:textColor="@color/grey" />
+                        <ImageView
+
+                            android:paddingRight="@dimen/dp15"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_menu_call"
+
+                            android:background="?attr/selectableItemBackground"
+
+                            android:textColor="@color/grey" />
+                        <ImageView
+
+                            android:paddingRight="@dimen/dp15"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_enter_message"
+
+                            android:background="?attr/selectableItemBackground"
+
+                            android:textColor="@color/grey" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

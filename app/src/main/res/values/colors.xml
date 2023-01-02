@@ -59,5 +59,7 @@
     <color name="bg_gray">#F1F1F1</color>
     <color name="bg_gray_card">#E8FFE8</color>
     <color name="bg_card">#F2F2F2</color>
+    <color name="bg_alert">#F0F0F0</color>
+    <color name="bg_sms">#3D4E6D</color>
 
 </resources>

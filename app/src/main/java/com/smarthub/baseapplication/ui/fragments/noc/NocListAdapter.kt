@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.fragments.noc
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

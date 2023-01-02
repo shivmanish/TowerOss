@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/canecl"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationZ="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+
+        android:layout_marginTop="@dimen/dp20">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_height="match_parent"
+            android:requiresFadingEdge="vertical">
+
+            <LinearLayout
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:weightSum="3"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    style="@style/ColumnItemInfo"
+
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtFireIncident"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:fontFamily="serif-monospace"
+
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Fire Incident" />
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/textAlert"
+                        android:fontFamily="serif-monospace"
+                        android:textColor="@color/black"
+
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Alert000211" />
+                    <TextView
+                        android:id="@+id/textDateTime"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:fontFamily="serif-monospace"
+
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="22-Dec-22 ; 12:05 PM" />
+
+
+                </LinearLayout>
+              <RelativeLayout
+                  android:background="@color/bg_alert"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <LinearLayout
+                      android:weightSum="2"
+                      android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      style="@style/ColumnItemInfo"
+
+                      android:layout_height="wrap_content">
+
+                         <TextView
+
+                          android:id="@+id/txtWhat"
+                          android:layout_weight=".8"
+                          android:textColor="@color/black"
+                          android:fontFamily="serif-monospace"
+                          android:drawableLeft="@drawable/ic_alet_what"
+                          style="@style/RowTextItemInfo"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:text="What?*" />
+                          <LinearLayout
+                              android:layout_weight="1.2"
+                              android:layout_width="0dp"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                              <RelativeLayout
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+                                  <TextView
+
+                                      android:id="@+id/txtIssueType"
+                                       android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Issue Type :" />
+                                  <TextView
+
+                                      android:id="@+id/txtIncident"
+                                      android:layout_weight=".6"
+                                      android:layout_toRightOf="@+id/txtIssueType"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Fire Incident" />
+                                  <TextView
+                                      android:layout_below="@+id/txtIssueType"
+
+                                      android:id="@+id/txtSeverity"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Severity:" />
+                                  <TextView
+
+
+                                      android:layout_weight=".6"
+                                      android:id="@+id/txtCritical"
+                                      android:layout_toRightOf="@+id/txtSeverity"
+                                      android:layout_below="@+id/txtIncident"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Critical" />
+                              </RelativeLayout>
+                          </LinearLayout>
+                  </LinearLayout>
+              </RelativeLayout>
+                <RelativeLayout
+                  android:background="@color/bg_alert"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <LinearLayout
+                      android:weightSum="2"
+                      android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      style="@style/ColumnItemInfo"
+
+                      android:layout_height="wrap_content">
+
+                         <TextView
+
+                          android:id="@+id/txtWhen"
+                          android:layout_weight=".8"
+                          android:textColor="@color/black"
+                          android:fontFamily="serif-monospace"
+                          android:drawableLeft="@drawable/ic_alet_what"
+                          style="@style/RowTextItemInfo"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:text="When?*" />
+                          <LinearLayout
+                              android:layout_weight="1.2"
+                              android:layout_width="0dp"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                              <RelativeLayout
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+                                  <TextView
+
+                                      android:id="@+id/txtWhenIssueType"
+                                       android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Issue Type :" />
+                                  <TextView
+
+                                      android:id="@+id/txtWhentitleIssueType"
+                                      android:layout_weight=".6"
+                                      android:layout_toRightOf="@+id/txtWhenIssueType"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Fire Incident" />
+                                  <TextView
+                                      android:layout_below="@+id/txtWhenIssueType"
+
+                                      android:id="@+id/txtWhenSeverity"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Severity:" />
+                                  <TextView
+                                      android:layout_weight=".6"
+                                      android:id="@+id/txtWhenServity"
+                                      android:layout_toRightOf="@+id/txtWhenSeverity"
+                                      android:layout_below="@+id/txtWhenIssueType"
+                                      android:textColor="@color/black"
+                                      android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:text="Critical" />
+                              </RelativeLayout>
+                          </LinearLayout>
+                  </LinearLayout>
+              </RelativeLayout>
+                <RelativeLayout
+                  android:background="@color/bg_alert"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <LinearLayout
+                      android:weightSum="2"
+                      android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      style="@style/ColumnItemInfo"
+
+                      android:layout_height="wrap_content">
+
+                         <TextView
+
+                          android:id="@+id/txtWhere"
+                          android:layout_weight=".8"
+                          android:textColor="@color/black"
+                          android:fontFamily="serif-monospace"
+                          android:drawableLeft="@drawable/ic_alert_where"
+                          style="@style/RowTextItemInfo"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:text="Where?*" />
+                          <LinearLayout
+                              android:layout_weight="1.2"
+                              android:layout_width="0dp"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                              <RelativeLayout
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+                                  <TextView
+
+                                      android:id="@+id/txtwhere"
+                                       android:fontFamily="serif-monospace"
+                                      style="@style/RowTextItemInfo"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="start"
+                                      android:maxLines="2"
+                                      android:text="Akshya Nagar, 1, B, Ram nagar, Bangalore" />
+                                  <androidx.cardview.widget.CardView
+                                      android:layout_below="@+id/txtwhere"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="@dimen/dp200"
+                                      android:layout_gravity="center"
+                                      app:cardBackgroundColor="@color/white"
+                                      app:cardCornerRadius="@dimen/dp15">
+
+                                      <ImageView
+                                          android:id="@+id/image_gchat_profile_other"
+                                          android:layout_width="match_parent"
+                                          android:layout_height="match_parent"
+                                          android:src="@android:drawable/ic_dialog_map"
+                                          android:layout_marginStart="16dp"
+                                          android:contentDescription="User Icon"
+                                          app:layout_constraintStart_toStartOf="parent"
+                                          app:layout_constraintTop_toBottomOf="@+id/text_gchat_date_other" />
+
+
+                                  </androidx.cardview.widget.CardView>
+
+                              </RelativeLayout>
+                          </LinearLayout>
+                  </LinearLayout>
+              </RelativeLayout>
+                <RelativeLayout
+                    android:background="@color/bg_alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:weightSum="2"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        style="@style/ColumnItemInfo"
+
+                        android:layout_height="wrap_content">
+
+                        <TextView
+
+                            android:id="@+id/txtWhoWhat"
+                            android:layout_weight=".8"
+                            android:textColor="@color/black"
+                            android:fontFamily="serif-monospace"
+                            android:drawableLeft="@drawable/ic_alert_who"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Who?*" />
+                        <LinearLayout
+                            android:layout_weight="1.2"
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+
+                                    android:id="@+id/txtWhoIssueType"
+                                    android:fontFamily="serif-monospace"
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Issue Type :" />
+                                <TextView
+
+                                    android:id="@+id/txtWhoIncident"
+                                    android:layout_weight=".6"
+                                    android:layout_toRightOf="@+id/txtWhoIssueType"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="serif-monospace"
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Fire Incident" />
+                   
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:background="@color/bg_alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:weightSum="2"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        style="@style/ColumnItemInfo"
+
+                        android:layout_height="wrap_content">
+
+                        <TextView
+
+                            android:id="@+id/txtHowWhat"
+                            android:layout_weight=".8"
+                            android:textColor="@color/black"
+                            android:fontFamily="serif-monospace"
+                            android:drawableLeft="@drawable/ic_alert_how"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="How?*" />
+                        <LinearLayout
+                            android:layout_weight="1.2"
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:orientation="horizontal"
+                                tools:itemCount="3"
+                                android:id="@+id/rv_alert_image_list"
+                                android:paddingTop="@dimen/dp10"
+                                tools:listitem="@layout/alert_img_attachment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/rectangle_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:textColor="@color/black"
+                    />
+                <RelativeLayout
+                    android:background="@color/bg_alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:weightSum="2"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        style="@style/ColumnItemInfo"
+
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+
+                                    android:id="@+id/txtSendor"
+                                    android:fontFamily="serif-monospace"
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Sendor :" />
+                                <TextView
+
+                                    android:id="@+id/txtSendorname"
+                                    android:layout_weight=".6"
+                                    android:layout_toRightOf="@+id/txtSendor"
+                                    android:textColor="@color/black"
+                                    android:fontFamily="serif-monospace"
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Ashish" />
+
+                            </RelativeLayout>
+                        </LinearLayout> <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <RelativeLayout
+                                android:gravity="end"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+
+                                    android:id="@+id/txtDate"
+                                    android:fontFamily="serif-monospace"
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="22-Dec-22; 05:00 PM:" />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_below="@+id/txtwhere"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp200"
+                    android:layout_gravity="center"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/dp15">
+                    <LinearLayout
+                        android:padding="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                             <TextView
+                                 android:padding="@dimen/dp10"
+                                 android:drawableLeft="@drawable/selected_check"
+                                 android:background="@drawable/botton_bg_corner"
+                                 android:fontFamily="serif-monospace"
+                                 style="@style/RowTextItemInfo"
+
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:gravity="center_vertical"
+                                 android:text="  Action Taken:" />
+                             <TextView
+                                 android:padding="@dimen/dp10"
+                                 android:layout_marginTop="@dimen/dp15"
+                                 android:drawableLeft="@drawable/selected_check"
+                                 android:background="@drawable/botton_bg_corner"
+                                 android:fontFamily="serif-monospace"
+                                 style="@style/RowTextItemInfo"
+                                     android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:gravity="center_vertical"
+                                 android:text="  Working" />
+                            <TextView
+                                 android:padding="@dimen/dp10"
+                                 android:layout_marginTop="@dimen/dp15"
+                                 android:drawableLeft="@drawable/selected_check"
+                                 android:background="@drawable/botton_bg_corner"
+                                 android:fontFamily="serif-monospace"
+                                 style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:gravity="center_vertical"
+                                 android:text="  On Going" />
+                        <TextView
+                            android:text="Tentative time"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:textStyle="bold"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/editRemark"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_marginBottom="@dimen/dp15"
+                            android:text="20 days"
+                            android:textSize="15sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Enter full detail realted to location"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:textStyle="bold"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:background="@drawable/bg_alert"
+                            android:id="@+id/editDetails"
+                            android:maxLines="5"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_marginBottom="@dimen/dp15"
+                            android:text="20 days"
+                            android:textSize="15sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="@dimen/dp120"
+
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Close Alert"
+                            android:textSize="14sp"
+                            android:layout_margin="@dimen/dp10"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dp5"
+                            android:paddingBottom="@dimen/dp5"
+                            android:background="@drawable/login_yellow_bg"
+                            />
+                        <TextView
+                            android:drawableRight="@android:drawable/sym_action_chat"
+                            android:layout_width="@dimen/dp120"
+
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color1"
+
+                            android:textSize="14sp"
+                            android:layout_margin="@dimen/dp10"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dp5"
+                            android:paddingBottom="@dimen/dp5" />
+                      </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+           </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</RelativeLayout>

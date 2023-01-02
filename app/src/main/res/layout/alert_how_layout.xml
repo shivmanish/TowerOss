@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -72,17 +73,297 @@
     </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="Empty layout"
+            android:text="Please tell us more about the activity"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp10"
+            android:textStyle="bold"
+            style="@style/RowTextItemInfo"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp100"/>
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:background="@drawable/bg_alert"
+            android:id="@+id/editDescriptions"
+            android:maxLines="5"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp15"
+            android:text="20 days"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp15"
+            tools:itemCount="3"
+            android:id="@+id/rv_alert_image_list"
+            android:paddingTop="@dimen/dp10"
+            tools:listitem="@layout/alert_img_attachment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <View
+            android:id="@+id/item_line2"
+            android:alpha="2"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+        <TextView
+
+            android:text="Send this Alert via:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingStart="@dimen/dp20"
+            android:paddingEnd="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:background="@color/transparent"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            app:layout_constraintWidth_percent=".5"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:weightSum="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtNotifications"
+                android:layout_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="Notification"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/bg_notificaions"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+            <TextView
+                android:id="@+id/txtsms"
+                android:layout_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:backgroundTint="@color/bg_sms"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="SMS"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/bg_notificaions"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="Email"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/bg_notificaions"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight=".5"
+                android:text="Send this Alert to All"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".5"
+                android:layout_height="wrap_content"/>
+            <Switch
+                android:layout_weight=".5"
+                android:textStyle = "bold"
+                android:text = ""
+                android:id = "@+id/mySwitchTextStyle"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="match_parent"
+            android:maxWidth="@dimen/dp200"
+
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:maxWidth="@dimen/dp200"
+
+                android:text="Recipient Department"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/spinSelectCategory"
+                android:maxWidth="@dimen/dp200"
+                android:layout_weight=".5"
+
+                android:text=""
+
+                style="@style/SpinnerTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="match_parent"
+            android:maxWidth="@dimen/dp200"
+
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:maxWidth="@dimen/dp200"
+
+                android:text="Recipients - 4"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/spinRecipients"
+                android:maxWidth="@dimen/dp200"
+                android:layout_weight=".5"
+
+                android:text=""
+
+                style="@style/SpinnerTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:gravity="end"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="Cancel"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="@dimen/dp120"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="Send Alert"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/login_yellow_bg"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight=".5"
+                android:text="Support Required"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".5"
+                android:layout_height="wrap_content"/>
+            <Switch
+                android:layout_weight=".5"
+                android:textStyle = "bold"
+                android:text = ""
+                android:id = "@+id/my"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="match_parent"
+            android:maxWidth="@dimen/dp200"
+
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:maxWidth="@dimen/dp200"
+
+                android:text="Department"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/spinDepartment"
+                android:maxWidth="@dimen/dp200"
+                android:layout_weight=".5"
+
+                android:text=""
+
+                style="@style/SpinnerTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -24,6 +24,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.ui.adapter.AddMoreCustomerListAdapter
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
@@ -68,6 +69,8 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
         recyclerListener.adapter = adapter
         adapter.addItem()
+
+
         setDataObserver()
     }
     private fun setDataObserver() {
