@@ -73,7 +73,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -89,7 +89,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
-            android:background="@drawable/bg_alert"
             android:id="@+id/editDescriptions"
             android:maxLines="5"
             android:layout_marginRight="@dimen/dp10"
@@ -273,45 +272,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <LinearLayout android:gravity="end"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
 
-                android:layout_height="wrap_content"
-                android:textColor="@color/color1"
-                android:text="Cancel"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
-
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="@dimen/dp120"
-
-                android:layout_height="wrap_content"
-                android:textColor="@color/color1"
-                android:text="Send Alert"
-                android:textSize="14sp"
-                android:layout_margin="@dimen/dp10"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/login_yellow_bg"
-                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
-        </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -321,7 +282,7 @@
                 android:text="Support Required"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp20"
+                android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
                 android:paddingTop="@dimen/dp10"
                 android:background="@color/transparent"
@@ -364,6 +325,45 @@
                 style="@style/SpinnerTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:gravity="end"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="Cancel"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="@dimen/dp120"
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/color1"
+                android:text="Send Alert"
+                android:textSize="14sp"
+                android:layout_margin="@dimen/dp10"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/login_yellow_bg"
+                app:layout_constraintTop_toBottomOf="@+id/items_list"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

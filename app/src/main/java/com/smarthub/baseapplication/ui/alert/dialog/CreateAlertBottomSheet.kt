@@ -16,7 +16,8 @@ import com.smarthub.baseapplication.ui.alert.adapter.AlertimageAdapter
 import java.util.Objects
 
 
-class CreateAlertBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
+class CreateAlertBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) ,
+    AlertimageAdapter.ItemClickListener {
     lateinit var binding : CreateAlertDialogBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,13 +28,18 @@ class CreateAlertBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(c
     override fun getTheme() = R.style.NewDialogTask
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = CreateAlertDialogBinding.inflate(inflater)
-           /*    var recyclerListener = view?.findViewById<RecyclerView>(R.id.rv_alert_image_list)
-               var adapter = AlertimageAdapter(this@AlertStatusFragment)
+               var recyclerListener = view?.findViewById<RecyclerView>(R.id.rv_alert_image_list)
 
+               var adapter = AlertimageAdapter(this@CreateAlertBottomSheet)
+             adapter.addItem()
               recyclerListener?.adapter = adapter
                view?.findViewById<View>(R.id.attach_card)?.setOnClickListener {
                    adapter.addItem()
-               }*/
+               }
         return binding.root
+    }
+
+    override fun itemClicked() {
+
     }
 }
