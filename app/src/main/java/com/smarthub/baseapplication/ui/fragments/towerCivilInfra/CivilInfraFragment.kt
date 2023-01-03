@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -102,7 +103,9 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun clickedEquipmentRoomItem() {
+    override fun clickedEquipmentRoomItem(id:String,data:List<TowerAndCivilInfraEquipmentModel>?) {
+        TowerEquipmentFragemnt.EquipmentModelData=data as ArrayList<TowerAndCivilInfraEquipmentModel>
+        TowerEquipmentFragemnt.Id=id
         requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }
 

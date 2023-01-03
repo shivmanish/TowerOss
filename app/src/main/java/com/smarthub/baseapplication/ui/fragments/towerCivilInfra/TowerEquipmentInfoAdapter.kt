@@ -4,17 +4,34 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingConsumabletableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingPoTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentConsumableTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentPoTableAdapter
 
-class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
-
+class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmentInfoAdapter.TowerPoleListListener,equipData: TowerAndCivilInfraEquipmentModel?): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
+    private var datalist: TowerAndCivilInfraEquipmentModel?=null
+    private var equipInfoData: EquipmentModelEquipmentInfo?=null
+    private var insAccepData: EquipmentModelInstallationAndAcceptance?=null
+    fun setData(data: TowerAndCivilInfraEquipmentModel?) {
+        this.datalist=data!!
+        notifyDataSetChanged()
+    }
+    init {
+        try {
+            datalist=equipData
+            equipInfoData=datalist?.TowerAndCivilInfraEquipment?.get(0)
+            insAccepData=datalist?.TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)
+        }catch (e:java.lang.Exception){
+            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
+    }
     var list : ArrayList<String> = ArrayList()
 
     var type1 = "Equipment Room"

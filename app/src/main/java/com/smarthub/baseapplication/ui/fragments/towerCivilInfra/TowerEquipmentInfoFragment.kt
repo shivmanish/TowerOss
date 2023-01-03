@@ -6,27 +6,66 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoleInfoFragmentBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEquipmentInfoFragment: Fragment(), TowerEquipmentInfoAdapter.TowerPoleListListener {
-    var binding : TowerPoleInfoFragmentBinding?=null
+class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentModel?, var id:String?, var index:Int): Fragment(), TowerEquipmentInfoAdapter.TowerPoleListListener {
+    var viewmodel: HomeViewModel?=null
+    lateinit var binding : TowerPoleInfoFragmentBinding
+    lateinit var adapter:TowerEquipmentInfoAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerPoleInfoFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = TowerEquipmentInfoAdapter(requireContext(),this@TowerEquipmentInfoFragment)
+        adapter=TowerEquipmentInfoAdapter(requireContext(),this@TowerEquipmentInfoFragment,equipmentData)
+        binding?.listItem?.adapter = adapter
+
+        if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
+            viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                binding.swipeLayout.isRefreshing=false
+                AppLogger.log("TowerCivil Fragment card Data fetched successfully")
+                try {
+                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEquipmentModel.get(index))
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
+                    Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+                AppLogger.log("size :${it.data.item?.size}")
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("TowerCivil Fragment Something went wrong")
+                Toast.makeText(requireContext(),"TowerCivil Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.swipeLayout.setOnRefreshListener {
+            viewmodel?.TowerAndCivilRequestAll(id!!)
+        }
     }
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
-    //
     override fun EditInstallationAcceptence() {
         val bottomSheetDialogFragment = EquipmentInstallationEditAdapter(R.layout.equiupment_installation_edit_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
