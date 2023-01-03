@@ -72,17 +72,41 @@
     </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <TextView
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="Empty layout"
+            android:padding="@dimen/dp10"
+            android:drawableLeft="@drawable/selected_check"
+            android:fontFamily="serif-monospace"
+            style="@style/RowTextItemInfo"
+
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp100"/>
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="  On-Going:" />
+        <TextView
+            android:padding="@dimen/dp10"
+            android:drawableLeft="@drawable/selected_check"
+            android:fontFamily="serif-monospace"
+            style="@style/RowTextItemInfo"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="  Complete" />
+       <TextView
+            android:padding="@dimen/dp10"
+            android:drawableLeft="@drawable/selected_check"
+            android:fontFamily="serif-monospace"
+            style="@style/RowTextItemInfo"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="  Planned" />
+
     </LinearLayout>
 </LinearLayout>

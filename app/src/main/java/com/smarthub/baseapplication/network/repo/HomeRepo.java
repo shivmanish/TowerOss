@@ -115,6 +115,7 @@ public class HomeRepo {
         generateSiteIdResponse = new SingleLiveEvent<>();
         taskDataList = new SingleLiveEvent<>();
         serviceRequestModel = new SingleLiveEvent<>();
+        powerandfuel = new SingleLiveEvent<>();
         opcoTenencyModel=new SingleLiveEvent<>();
         noCandCompModel=new SingleLiveEvent<>();
         towerAndCivilInfraModel=new SingleLiveEvent<>();

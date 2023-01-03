@@ -22,7 +22,7 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
             1 -> AssignACQTeamFragment(data,Id!!)
             2-> AcquisitionSurveyFragment(data,Id!!)
             3 -> OppoTssrTabFragment(data,Id!!)
-            4 -> FeasibilityPlanningTabFragment()
+            4 -> FeasibilityPlanningTabFragment(data,Id!!)
             5 -> Agreements()
             6-> SiteProposalTabFragment()
             7 -> SPApprovalTabFragment()

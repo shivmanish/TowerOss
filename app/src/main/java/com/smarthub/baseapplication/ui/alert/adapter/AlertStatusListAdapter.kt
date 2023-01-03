@@ -10,9 +10,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
+import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.utils.Utils
 
-class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
+class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListener) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var currentOpened = -1
@@ -52,6 +53,8 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : AlertWhatLayoutBinding = AlertWhatLayoutBinding.bind(itemView)
+
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -177,6 +180,9 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.detailsItemClicked()
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -323,4 +329,9 @@ class AlertStatusListAdapter(var context: Context) : RecyclerView.Adapter<AlertS
     override fun getItemCount(): Int {
         return list.size
     }
+}
+
+interface AlertStatusListener {
+    fun detailsItemClicked()
+
 }
