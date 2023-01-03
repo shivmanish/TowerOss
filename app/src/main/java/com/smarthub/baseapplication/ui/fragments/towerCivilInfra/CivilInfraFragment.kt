@@ -93,7 +93,7 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         AppLogger.log("onViewPageSelected TowerAndCivil")
     }
 
-    override fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>?) {
+    override fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>) {
         TwrInfraDetails.Id=id
         TwrInfraDetails.TowerModelData=data as ArrayList<TowerAndCivilInfraTowerModel>
         requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
@@ -103,8 +103,8 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun clickedEquipmentRoomItem(id:String,data:List<TowerAndCivilInfraEquipmentModel>?) {
-        TowerEquipmentFragemnt.EquipmentModelData=data as ArrayList<TowerAndCivilInfraEquipmentModel>
+    override fun clickedEquipmentRoomItem(id:String,data:List<TowerAndCivilInfraEquipmentModel>) {
+        TowerEquipmentFragemnt.EquipmentModelData = ArrayList(data)
         TowerEquipmentFragemnt.Id=id
         requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }

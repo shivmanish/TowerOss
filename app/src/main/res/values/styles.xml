@@ -86,6 +86,7 @@
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">match_parent</item>
 
     </style>
     <style name="TabHomeTextView" parent="Widget.AppCompat.TextView">

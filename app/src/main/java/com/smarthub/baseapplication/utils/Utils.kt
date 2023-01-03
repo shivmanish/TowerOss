@@ -30,6 +30,10 @@ object Utils {
         return Resources.getSystem().displayMetrics.heightPixels
     }
 
+    fun getScreenWidth(): Int {
+        return Resources.getSystem().displayMetrics.widthPixels
+    }
+
     fun getJsonDataFromAsset(context: Context, fileName: String): String? {
         val jsonString: String
         try {

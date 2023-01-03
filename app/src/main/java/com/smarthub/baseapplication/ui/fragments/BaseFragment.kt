@@ -22,6 +22,11 @@ open class BaseFragment : Fragment(){
         progressDialog?.setCancelable(true)
     }
 
+    override fun onResume() {
+        super.onResume()
+        onViewPageSelected()
+    }
+
     protected open fun setDatePickerView(view : TextView) {
         view.setOnClickListener {
             openDatePicker(view)
