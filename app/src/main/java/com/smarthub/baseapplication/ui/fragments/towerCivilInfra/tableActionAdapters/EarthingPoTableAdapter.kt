@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,26 +10,30 @@ import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.databinding.EarthingPoTableItemBinding
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EarthingModelAuthorityPODetails
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
-class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener): Adapter<EarthingPoTableAdapter.ViewHold>() {
+class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener,poData:List<EarthingModelAuthorityPODetails>?): Adapter<EarthingPoTableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
+    var list :ArrayList<EarthingModelAuthorityPODetails>?
 
     init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
+        list= poData as ArrayList<EarthingModelAuthorityPODetails>
     }
 
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            EarthingModelAuthorityPODetails(ItemDescription = "dhg", POAmount = "54", POCopy = "58",
+                PODate = "22-12-2022", PONumber = "89", POQty = "56", PORate = "6", POlineNo = "43",
+                VendorCode = "87", VendorName = "fdsh", created_at = "22-10-2022", id ="56", isActive = "true",
+                modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -45,13 +48,20 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
             performOptionsMenuClick(position,it)
+        }
+        try {
+            holder.binding.VendorName.text=list?.get(position)?.VendorName
+            holder.binding.PoNumber.text=list?.get(position)?.PONumber
+            holder.binding.VendorCode.text=list?.get(position)?.VendorCode
+        }catch (e:java.lang.Exception){
+            AppLogger.log("EarthPoTableAdapter error : ${e.localizedMessage}")
+            Toast.makeText(context,"EarthPoTableAdapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     // this method will handle the onclick options click

@@ -10,26 +10,29 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoleConsumableTableItemBinding
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EquipmentModelConsumable
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelConsumable
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
-class EquipmentConsumableTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.TowerPoleListListener): RecyclerView.Adapter<EquipmentConsumableTableAdapter.ViewHold>() {
+class EquipmentConsumableTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.TowerPoleListListener,consumdata:List<EquipmentModelConsumable>?): RecyclerView.Adapter<EquipmentConsumableTableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
+    var list : ArrayList<EquipmentModelConsumable>?
 
     init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
+        list=consumdata as ArrayList<EquipmentModelConsumable>
     }
 
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        list?.add(
+            EquipmentModelConsumable(Date = "22-12-2022", Description = "dsfg", ItemCode = "53", Qty = "654d2",
+                created_at = "22-10-2022", id ="56", isActive = "true", modified_at = "22-12-2022")
+        )
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -44,16 +47,23 @@ class EquipmentConsumableTableAdapter (var context : Context, var listener : Tow
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
             performOptionsMenuClick(position,it)
+        }
+        try {
+            holder.binding.ItemName.text="Data Not Found"
+            holder.binding.ItemCode.text=list?.get(position)?.ItemCode
+            holder.binding.Description.text=list?.get(position)?.Description
+            holder.binding.Qty.text=list?.get(position)?.Qty
+        }catch (e:java.lang.Exception){
+            AppLogger.log("Equip Consum Adapter error : ${e.localizedMessage}")
+            Toast.makeText(context,"Equip Consum Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
-    // this method will handle the onclick options click
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu

@@ -1,23 +1,15 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
-import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout.MODE_FIXED
 import com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTowerPoleFragemntBinding
-import com.smarthub.baseapplication.databinding.CustomTabTextBinding
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
-import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.utils.Utils
 
 class TowerEquipmentFragemnt : BaseActivity() {
-
-    var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : ActivityTowerPoleFragemntBinding
     companion object{
         var EquipmentModelData : ArrayList<TowerAndCivilInfraEquipmentModel>?=null
@@ -47,7 +39,6 @@ class TowerEquipmentFragemnt : BaseActivity() {
             EquipmentModelData, Id)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
-            binding.tabs.isTabIndicatorFullWidth = true
             binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
             binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
         }
@@ -60,9 +51,7 @@ class TowerEquipmentFragemnt : BaseActivity() {
 
     }
 
-    fun getScreenWidth(): Int {
-        return Resources.getSystem().displayMetrics.widthPixels
-    }
+
 
 
 }

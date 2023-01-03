@@ -14,8 +14,9 @@ import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdap
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingPoTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentConsumableTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentPoTableAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmentInfoAdapter.TowerPoleListListener,equipData: TowerAndCivilInfraEquipmentModel?): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
+class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleListListener,equipData: TowerAndCivilInfraEquipmentModel?): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
     private var datalist: TowerAndCivilInfraEquipmentModel?=null
     private var equipInfoData: EquipmentModelEquipmentInfo?=null
     private var insAccepData: EquipmentModelInstallationAndAcceptance?=null
@@ -33,7 +34,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmen
         }
     }
     var list : ArrayList<String> = ArrayList()
-
+    var currentOpened = -1
     var type1 = "Equipment Room"
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
@@ -59,8 +60,6 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmen
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
@@ -78,8 +77,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmen
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: PolePoItemBinding =
-            PolePoItemBinding.bind(itemView)
+        var binding: PolePoItemBinding = PolePoItemBinding.bind(itemView)
         var poTableList: RecyclerView=binding.root.findViewById(R.id.po_tables)
         init {
             binding.collapsingLayout.tag = false
@@ -203,108 +201,157 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmen
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listner.EditEquipmentRoomItem()
                     }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+
+                try {
+                    holder.binding.ShelterRoom.text="Data Not Found"
+                    holder.binding.ShelterSize.text=
+                        "${equipInfoData?.shelterL}X${equipInfoData?.shelterB}X${equipInfoData?.shelterH}"
+                    holder.binding.FoundationSize.text=
+                        "${equipInfoData?.foundationL}X${equipInfoData?.foundationB}X${equipInfoData?.foundationH}"
+                    holder.binding.Foundation.text="DAta Not Found"
+                    holder.binding.LocationMark.text=equipInfoData?.locationmark
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
 
             }
             is ViewHold2 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
 
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
                     holder.binding.imgEdit.setOnClickListener {
                         listner.EditInstallationAcceptence()
                     }
-
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgEdit.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
-
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
+                    holder.binding.InstallationDate.text=insAccepData?.InstallationDate
+                    holder.binding.InstallationExcutiveName.text="Data Not Found"
+                    holder.binding.VendorPhonNo.text=insAccepData?.VendorPhoneNumber
+                    holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
+                    holder.binding.AcceptanceStatus.text=insAccepData?.AcceptanceStatus
+                    holder.binding.ConditionalAcceptenceDate.text=insAccepData?.ConditionalAcceptanceDate
+                    holder.binding.FinalAcceptenceDate.text=insAccepData?.FinalAcceptanceDate
+                    holder.binding.OperationalStatus.text=insAccepData?.OperationalStatus
+                    holder.binding.NextPmDate.text=insAccepData?.NextPMDate
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold3 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
 
                 }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.poTableList.adapter=EquipmentPoTableAdapter(context,listner)
+                try {
+                    holder.poTableList.adapter=EquipmentPoTableAdapter(context,listner,datalist?.AuthorityPODetails)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+
             }
             is ViewHold4 -> {
-                holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-                    holder.binding.itemCollapse.visibility = if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-                    holder.binding.imgAdd.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.INVISIBLE
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
 
                 }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.EquipmentConsumableTableList.adapter=EquipmentConsumableTableAdapter(context,listner)
+                try {
+                    holder.EquipmentConsumableTableList.adapter=EquipmentConsumableTableAdapter(context,listner,datalist?.TowerAndCivilInfraConsumable)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
             }
             is ViewHold5 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
-                    holder.binding.collapsingLayout.tag = !(holder.binding.collapsingLayout.tag as Boolean)
-                    if ((holder.binding.collapsingLayout.tag as Boolean)) {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                        holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    } else {
-                        holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                        holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    }
-                    holder.binding.itemLine.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.GONE else View.VISIBLE
-
-                    holder.binding.itemCollapse.visibility =
-                        if (holder.binding.collapsingLayout.tag as Boolean) View.VISIBLE else View.GONE
-
+                    updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
@@ -314,6 +361,14 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerEquipmen
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    var recyclerView: RecyclerView?=null
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
     }
 
     interface TowerPoleListListener {

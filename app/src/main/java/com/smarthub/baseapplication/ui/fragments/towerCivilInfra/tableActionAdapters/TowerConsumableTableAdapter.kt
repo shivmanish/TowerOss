@@ -9,14 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PoleConsumableTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelConsumable
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener,var consumdata:List<TowerModelConsumable>?): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
+class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener,consumdata:List<TowerModelConsumable>?): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
 
     var list : ArrayList<TowerModelConsumable>?
 
@@ -42,7 +40,7 @@ class TowerConsumableTableAdapter (var context : Context, var listener : TowerIn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_consumable_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_consumable_table_item,parent,false)
         return ViewHold(view)
     }
 

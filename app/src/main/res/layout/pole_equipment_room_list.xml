@@ -67,7 +67,7 @@
         android:layout_width="match_parent"/>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
@@ -103,6 +103,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Shelter_room"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Shelter"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -120,6 +123,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Shelter_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -138,6 +144,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Foundation_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -156,8 +165,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="Raft Foundation"
-                            style="@style/RowTestItemEdit"
+                            android:id="@+id/Foundation"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -174,6 +184,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/Location_Mark"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
                     android:hint="Left Corner of Roof "
                     android:textSize="15sp"
                     style="@style/RowTestItemEdit"

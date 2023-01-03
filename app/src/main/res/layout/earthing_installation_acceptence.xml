@@ -102,6 +102,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Installation_Vendor"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Yes"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -119,6 +122,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Installation_date"
+                            android:maxLength="10"
                             android:text="27-Dec-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -139,6 +144,9 @@
                             android:ellipsize="marquee"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Installation_Excutive_Name"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Umesh"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -157,6 +165,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Vendor_phon_no"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="9172125253"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -176,6 +187,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Acceptance_Status"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Completed"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -196,6 +210,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Conditional_acceptence_Date"
+                            android:maxLength="10"
                             android:text="27-Dec-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -214,6 +230,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Final_acceptence_Date"
+                            android:maxLength="10"
                             android:text="27-Dec-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -232,6 +250,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Operational_status"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Live"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -250,6 +271,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Next_pm_date"
+                            android:maxLength="10"
                             android:text="27-Dec-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -276,8 +299,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/closed_punch_point"
                         android:padding="5dp"
-                        android:text="3"
+                        android:text="300"
                         android:textColor="@color/white"
                         android:layout_marginRight="@dimen/dp5"
                         android:gravity="center"
@@ -305,6 +329,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/open_punch_point"
                             android:padding="5dp"
                             android:text="3"
                             android:textColor="@color/color1"
@@ -328,48 +353,6 @@
                             />
 
                     </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/rfEquipment_edit_save"
-                    android:visibility="gone"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:gravity="right"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_marginRight="@dimen/dp5"
-                        android:text="Cancle"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/dp14"
-                        android:textColor="@color/card_bg"
-                        android:layout_width="88dp"
-                        android:layout_height="@dimen/dp32"
-                        />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        app:cardBackgroundColor="#FFD72B"
-                        app:cardCornerRadius="6dp"
-                        app:cardElevation="@dimen/dp5"
-                        android:layout_marginRight="20dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:padding="5dp"
-                            android:text="Save"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textSize="@dimen/dp14"
-                            android:textColor="@color/card_bg"
-                            android:layout_width="88dp"
-                            android:layout_height="@dimen/dp32"
-                            />
-
-                    </com.google.android.material.card.MaterialCardView>
-
 
                 </LinearLayout>
 
