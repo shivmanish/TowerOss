@@ -37,40 +37,44 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.civil_infra_list_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.civil_infra_list_item,parent,false)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (list[position] is String && list[position]==type1) {
+        if (list[position]==type1) {
             try {
                 holder.binding.textInstallationDateDate.text=
                     datalist?.TowerAndCivilInfraTowerModel?.get(0)?.
                     TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    listner.clickedTowerItem(id,datalist?.TowerAndCivilInfraTowerModel)
+                    if (datalist?.TowerAndCivilInfraTowerModel!=null)
+                        listner.clickedTowerItem(id,datalist?.TowerAndCivilInfraTowerModel!!)
+                    else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
-            holder.binding.titalStr.setText("${list[position]}")
+            holder.binding.titalStr.text = list[position]
         }
-        else if (list[position] is String && list[position]==type2) {
+        else if (list[position]==type2) {
             try {
                 holder.binding.textInstallationDateDate.text=
                     datalist?.TowerAndCivilInfraEquipmentModel?.get(0)?.
                     TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    listner.clickedEquipmentRoomItem(id,datalist?.TowerAndCivilInfraEquipmentModel)
+                    if (datalist?.TowerAndCivilInfraEquipmentModel!=null)
+                        listner.clickedEquipmentRoomItem(id,datalist?.TowerAndCivilInfraEquipmentModel!!)
+                    else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
-            holder.binding.titalStr.setText("${list[position]}")
+            holder.binding.titalStr.text = list[position]
         }
-        else if (list[position] is String && list[position]==type3) {
+        else if (list[position]==type3) {
             try {
                 holder.binding.textInstallationDateDate.text=
                     datalist?.TowerAndCivilInfraEarthingModel?.get(0)?.
@@ -82,7 +86,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
-            holder.binding.titalStr.setText("${list[position]}")
+            holder.binding.titalStr.text = list[position]
         }
         else{
             try {
@@ -90,13 +94,15 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                     datalist?.TowerAndCivilInfraTowerModel?.get(0)?.
                     TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    listner.clickedTowerItem(id,datalist?.TowerAndCivilInfraTowerModel)
+                    if (datalist?.TowerAndCivilInfraTowerModel!=null)
+                        listner.clickedTowerItem(id,datalist?.TowerAndCivilInfraTowerModel!!)
+                    else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
-            holder.binding.titalStr.setText("${list[position]}")
+            holder.binding.titalStr.text = list[position]
         }
 
     }
@@ -106,9 +112,9 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     }
 
     interface CivilInfraAdapterListner{
-        fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>?)
+        fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>)
         fun clickedPoleItem()
-        fun clickedEquipmentRoomItem(id:String,data: List<TowerAndCivilInfraEquipmentModel>?)
+        fun clickedEquipmentRoomItem(id:String,data: List<TowerAndCivilInfraEquipmentModel>)
         fun clickedEarthingItem()
     }
 }

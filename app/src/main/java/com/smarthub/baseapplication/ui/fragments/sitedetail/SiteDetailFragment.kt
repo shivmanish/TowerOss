@@ -102,7 +102,7 @@ class SiteDetailFragment : BaseFragment() {
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 Log.e("TAG", " $view  ${tab.position}")
                 AppLogger.log("onTabSelected:"+tab.position)
-                adapter.getItemByPosition(tab.position).onViewPageSelected()
+//                adapter.getItemByPosition(tab.position).onViewPageSelected()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -153,9 +153,14 @@ class SiteDetailFragment : BaseFragment() {
 
     internal inner class ViewPagerAdapter(manager: FragmentManager,behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
-        var list : ArrayList<BaseFragment> = ArrayList()
+        var list : ArrayList<BaseFragment> = ArrayList(tabNames?.size!!)
+        init {
+            for(i in 0 until tabNames?.size?.minus(1)!!){
+                list.add(getCustomItemForLocal(i))
+            }
+        }
 
-        override fun getItem(position: Int): Fragment {
+        private fun getCustomItemForLocal(position: Int) : BaseFragment{
             var f : BaseFragment =  when(position){
                 0-> SiteInfoNewFragment(id)
                 1-> ServicesRequestFrqagment(id)
@@ -168,6 +173,11 @@ class SiteDetailFragment : BaseFragment() {
                 8-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
                 else -> SiteInfoNewFragment(id)
             }
+            return f
+        }
+
+        override fun getItem(position: Int): Fragment {
+            var f = getCustomItemForLocal(position)
             if (list.size>position) list[position] = f
             else list.add(f)
             return list[position]
