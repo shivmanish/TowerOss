@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentI
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener,var poData:List<TowerModelAuthorityPODetail>?): RecyclerView.Adapter<TowerPoTableAdapter.ViewHold>() {
+class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener, poData:List<TowerModelAuthorityPODetail>?): RecyclerView.Adapter<TowerPoTableAdapter.ViewHold>() {
 
     var list :ArrayList<TowerModelAuthorityPODetail>?
 

@@ -6,21 +6,68 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingInfoFragmentBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEarthingInfoFragment: Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
-    var binding : TowerEarthingInfoFragmentBinding?=null
+class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingModel?, var id:String?, var index:Int): Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
+    lateinit var binding : TowerEarthingInfoFragmentBinding
+    var viewmodel: HomeViewModel?=null
+    lateinit var adapter:EarthingInfoFragmentAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerEarthingInfoFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment)
+        adapter=EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData)
+        binding?.listItem?.adapter = adapter
+
+        if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
+            viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                binding.swipeLayout.isRefreshing=false
+                AppLogger.log("TwrCivil Fragment card Data fetched successfully")
+                try {
+                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEarthingModel.get(index))
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("TwrCivil earth Fragment error : ${e.localizedMessage}")
+                    Toast.makeText(context,"TwrCivil earth  error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+                AppLogger.log("size :${it.data.item?.size}")
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"TwrCivil earth  error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("TwrCivil earth  error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("TwrCivil earth  Fragment Something went wrong")
+                Toast.makeText(requireContext(),"TwrCivil earth fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.swipeLayout.setOnRefreshListener {
+            viewmodel?.TowerAndCivilRequestAll(id!!)
+        }
+    }
+
+    override fun onDestroy() {
+        if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
+            viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroy()
     }
 
     override fun attachmentItemClicked() {

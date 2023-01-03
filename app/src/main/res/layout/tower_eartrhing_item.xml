@@ -67,7 +67,7 @@
         android:layout_width="match_parent"/>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
@@ -102,6 +102,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Shelter_room"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Shelter"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -119,6 +122,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Shelter_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -137,6 +143,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Foundation_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -155,6 +164,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Foundation"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Raft Foundation"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -174,6 +186,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Id"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="122"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -191,6 +206,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Pit_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="32x52x41"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -209,6 +227,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/InstallationDate"
+                            android:maxLength="10"
                             android:text="10-Nov-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -227,6 +247,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/operational_date"
+                            android:maxLength="10"
                             android:text="10-Nov-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -246,6 +268,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Operational_Status"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Complete"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -263,6 +288,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Used_for"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="Shelter"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -276,13 +304,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Earthing Road Material"
+                            android:text="Earthing Rod Material"
                             style="@style/RowTextItemInfo"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Earthind_rod_material"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="GI"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -301,6 +332,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Earthing_pit_depth"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:text="---"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -309,49 +343,6 @@
                     </LinearLayout>
 
                 </GridLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/rfEquipment_edit_save"
-                    android:visibility="gone"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:gravity="right"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_marginRight="@dimen/dp5"
-                        android:text="Cancle"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/dp14"
-                        android:textColor="@color/card_bg"
-                        android:layout_width="88dp"
-                        android:layout_height="@dimen/dp32"
-                        />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        app:cardBackgroundColor="#FFD72B"
-                        app:cardCornerRadius="6dp"
-                        app:cardElevation="@dimen/dp5"
-                        android:layout_marginRight="20dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:padding="5dp"
-                            android:text="Save"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textSize="@dimen/dp14"
-                            android:textColor="@color/card_bg"
-                            android:layout_width="88dp"
-                            android:layout_height="@dimen/dp32"
-                            />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-
-                </LinearLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

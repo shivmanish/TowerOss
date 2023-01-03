@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -109,7 +110,9 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }
 
-    override fun clickedEarthingItem() {
+    override fun clickedEarthingItem(id:String,data:List<TowerAndCivilInfraEarthingModel>) {
+        TowerEarthingFragment.Id=id
+        TowerEarthingFragment.EarthingModelData=data as ArrayList<TowerAndCivilInfraEarthingModel>
         requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
     }
 }

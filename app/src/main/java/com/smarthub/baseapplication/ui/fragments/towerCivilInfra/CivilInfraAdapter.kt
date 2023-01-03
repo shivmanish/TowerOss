@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.databinding.CivilInfraListItemBinding
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraAllDataItem
@@ -80,7 +81,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                     datalist?.TowerAndCivilInfraEarthingModel?.get(0)?.
                     TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    listner.clickedEarthingItem()
+                    listner.clickedEarthingItem(id,datalist?.TowerAndCivilInfraEarthingModel!!)
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
@@ -115,7 +116,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>)
         fun clickedPoleItem()
         fun clickedEquipmentRoomItem(id:String,data: List<TowerAndCivilInfraEquipmentModel>)
-        fun clickedEarthingItem()
+        fun clickedEarthingItem(id:String,data: List<TowerAndCivilInfraEarthingModel>)
     }
 }
 

@@ -1,4 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+import android.graphics.Color
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
@@ -44,6 +45,10 @@ class TwrInfraDetails : BaseActivity() {
         }
         binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager,TowerModelData,Id)
         binding.tabs.setupWithViewPager(binding.viewpager)
+        if(binding.tabs.tabCount==1) {
+            binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
+            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+        }
         if(binding.tabs.tabCount<=5)
             binding.tabs.tabMode = TabLayout.MODE_FIXED
         else
