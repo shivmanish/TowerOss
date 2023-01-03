@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp50">
+            android:layout_height="@dimen/dp42">
             <TextView
                 android:id="@+id/itemTitleStr"
                 android:text="Consumables"
