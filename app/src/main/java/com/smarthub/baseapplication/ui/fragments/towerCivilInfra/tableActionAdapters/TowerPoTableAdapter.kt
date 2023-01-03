@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelAuthorityPODetail
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 

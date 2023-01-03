@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_marginTop="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp10"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="wrap_content">
@@ -20,7 +20,7 @@
             android:maxLines="1"
             android:ellipsize="marquee"
             android:textStyle="bold"
-            android:text="Vendor Name"
+            android:text="Item Name"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -33,7 +33,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="Vendor Code"
+            android:text="Item Code"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -47,11 +47,11 @@
             android:maxLines="1"
             android:ellipsize="marquee"
             android:layout_marginLeft="@dimen/dp10"
-            android:text="PO Number"
+            android:text=" Description"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_weight="1.3"
+            android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="@dimen/dp13"
             android:textStyle="bold"
@@ -59,18 +59,20 @@
             android:layout_width="0dp"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="Atatchments"
+            android:text="Qty"
             android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pole_po_tables"
-        android:orientation="vertical"
-        tools:listitem="@layout/pole_po_table_item"
+        android:id="@+id/equipment_consumable_table"
+        tools:listitem="@layout/equipment_consumable_table_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
     </androidx.recyclerview.widget.RecyclerView>
+
+
 
 </LinearLayout>

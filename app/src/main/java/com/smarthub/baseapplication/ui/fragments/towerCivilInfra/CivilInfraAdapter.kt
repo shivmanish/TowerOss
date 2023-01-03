@@ -9,10 +9,7 @@ import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.databinding.CivilInfraListItemBinding
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.utils.AppLogger
 
 class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterListner, var id:String): Adapter<CivilInfraAdapter.ViewHold>() {
@@ -21,10 +18,12 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     var datalist:TowerCivilInfraAllDataItem?=null
 
     var type1 = "Tower"
-    var type2 = "Equipment Room"
-    var type3= "Earthing"
+    var type2 = "Pole"
+    var type3 = "Equipment Room"
+    var type4= "Earthing"
     init {
         list.add("Tower")
+        list.add("Pole")
         list.add("Equipment Room")
         list.add("Earthing")
     }
@@ -65,6 +64,22 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                     datalist?.TowerAndCivilInfraEquipmentModel?.get(0)?.
                     TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
+                    if (datalist?.TowerAndCivilInfraPoleModel!=null)
+                        listner.clickedPoleItem(id,datalist?.TowerAndCivilInfraPoleModel!!)
+                    else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
+                }
+            }catch (e:java.lang.Exception){
+                AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            }
+            holder.binding.titalStr.text = list[position]
+        }
+        else if (list[position]==type3) {
+            try {
+                holder.binding.textInstallationDateDate.text=
+                    datalist?.TowerAndCivilInfraEquipmentModel?.get(0)?.
+                    TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
+                holder.itemView.setOnClickListener {
                     if (datalist?.TowerAndCivilInfraEquipmentModel!=null)
                         listner.clickedEquipmentRoomItem(id,datalist?.TowerAndCivilInfraEquipmentModel!!)
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
@@ -75,7 +90,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
             }
             holder.binding.titalStr.text = list[position]
         }
-        else if (list[position]==type3) {
+        else if (list[position]==type4) {
             try {
                 holder.binding.textInstallationDateDate.text=
                     datalist?.TowerAndCivilInfraEarthingModel?.get(0)?.
@@ -114,7 +129,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
 
     interface CivilInfraAdapterListner{
         fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>)
-        fun clickedPoleItem()
+        fun clickedPoleItem(id:String,data: List<TowerAndCivilInfraPoleModel>)
         fun clickedEquipmentRoomItem(id:String,data: List<TowerAndCivilInfraEquipmentModel>)
         fun clickedEarthingItem(id:String,data: List<TowerAndCivilInfraEarthingModel>)
     }

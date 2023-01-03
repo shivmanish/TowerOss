@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PoleConsumableTableItemBinding
+import com.smarthub.baseapplication.databinding.EquipmentConsumableTableItemBinding
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EquipmentModelConsumable
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelConsumable
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
@@ -37,11 +36,11 @@ class EquipmentConsumableTableAdapter (var context : Context, var listener : Tow
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= PoleConsumableTableItemBinding.bind(view)
+        var binding= EquipmentConsumableTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.pole_consumable_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_consumable_table_item,parent,false)
         return ViewHold(view)
     }
 

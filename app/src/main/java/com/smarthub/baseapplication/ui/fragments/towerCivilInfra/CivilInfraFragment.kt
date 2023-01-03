@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -100,8 +101,10 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
     }
 
-    override fun clickedPoleItem() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+    override fun clickedPoleItem(id:String,data: List<TowerAndCivilInfraPoleModel>) {
+        TwrInfraDetails.Id=id
+        TwrInfraDetails.TowerModelData=data as ArrayList<TowerAndCivilInfraTowerModel>
+        requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
     }
 
     override fun clickedEquipmentRoomItem(id:String,data:List<TowerAndCivilInfraEquipmentModel>) {

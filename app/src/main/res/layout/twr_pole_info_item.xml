@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_layout"
+        android:background="@color/collapse_card_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp42">
+            <TextView
+                android:id="@+id/item_title_str"
+                android:text="Pole"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:id="@+id/img_edit"
+                android:visibility="gone"
+                android:src="@drawable/edit_ico_black"
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                android:layout_marginBottom="@dimen/dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Tower/ Pole ID"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Tower_id"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="1"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Tower/ Pole Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Tower_type"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Lattice Tower"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installed Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Installed_type"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Ground-Based"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Height"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Height_tower"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="11"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Comouflage"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Comouflage"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Yes"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Anteena Slots"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Anteena_slots"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Thane"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Lightning Arrester"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Lightning_arrester"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Yes"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Foundation Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Foundation_type"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Raft Foundation"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Roundation Size"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Foundation_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="32x52x41"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Tower Leg Count"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/TowerLegCount"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="3"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Owner Compnay"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/OwnerCompany"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Cloudextel"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="User Company"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/UserCompany"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text="Airtel"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                </GridLayout>
+                <TextView
+                    android:text="Location Mark"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/Location_mark"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:hint="Left Corner of Roof "
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text="xwerhtjyg"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/RowTestItemEdit"
+                        android:text="Offset Pole"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <LinearLayout
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/add_items_layout"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:padding="5dp"
+                                android:src="@drawable/add"
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/dp20"
+                                android:layout_height="20dp"
+                                android:background="@drawable/circleblue_1" />
+                            <TextView
+                                android:padding="5dp"
+                                android:text="Add"
+                                android:textSize="@dimen/dp15"
+                                android:layout_marginRight="@dimen/dp10"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins"
+                                android:textColor="@color/color1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/includedLayout"
+                    layout="@layout/pole_offset_table">
+                </include>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

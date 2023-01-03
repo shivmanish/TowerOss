@@ -10,11 +10,6 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.MicrowaveTableItemBinding
-import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
-import com.smarthub.baseapplication.databinding.RadioAntineListItemBinding
-import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
-import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
 class MicrowaveTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<MicrowaveTableAdapter.ViewHold>() {

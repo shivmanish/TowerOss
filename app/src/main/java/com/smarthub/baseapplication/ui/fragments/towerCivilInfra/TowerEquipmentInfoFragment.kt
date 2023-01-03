@@ -8,21 +8,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.TowerPoleInfoFragmentBinding
+import com.smarthub.baseapplication.databinding.TowerEquipmentInfoFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentModel?, var id:String?, var index:Int): Fragment(), TowerEquipmentInfoAdapter.TowerPoleListListener {
     var viewmodel: HomeViewModel?=null
-    lateinit var binding : TowerPoleInfoFragmentBinding
+    lateinit var binding : TowerEquipmentInfoFragmentBinding
     lateinit var adapter:TowerEquipmentInfoAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
-        binding = TowerPoleInfoFragmentBinding.inflate(inflater, container, false)
+        binding = TowerEquipmentInfoFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

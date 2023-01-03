@@ -10,44 +10,48 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentConsumableTableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentPoTableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
 
-class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleListListener,equipData: TowerAndCivilInfraEquipmentModel?): RecyclerView.Adapter<TowerEquipmentInfoAdapter.ViewHold>() {
-    private var datalist: TowerAndCivilInfraEquipmentModel?=null
-    private var equipInfoData: EquipmentModelEquipmentInfo?=null
-    private var insAccepData: EquipmentModelInstallationAndAcceptance?=null
-    fun setData(data: TowerAndCivilInfraEquipmentModel?) {
+class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListener, towerData: TowerAndCivilInfraPoleModel?) : RecyclerView.Adapter<PoleInfoFragAdapter.ViewHold>() {
+    private var datalist: TowerAndCivilInfraPoleModel?=null
+    private var towerInfoData: PoleModelTowerInfo?=null
+    private var insAccepData: PoleModelInstallationAndAcceptance?=null
+    fun setData(data: TowerAndCivilInfraPoleModel?) {
         this.datalist=data!!
         notifyDataSetChanged()
     }
     init {
         try {
-            datalist=equipData
-            equipInfoData=datalist?.TowerAndCivilInfraEquipment?.get(0)
+            datalist=towerData
+            towerInfoData=datalist?.TowerTowerAndCivilInfraTower?.get(0)
             insAccepData=datalist?.TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
+
+
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-    var type1 = "Equipment Room"
+    var type1 = "Pole"
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
     var type4 = "Consumables"
     var type5 = "Attachment"
     init {
-        list.add("Equipment Room")
+        list.add("Pole")
         list.add("Installation & Acceptence")
         list.add("PO")
         list.add("Consumables")
         list.add("Attachment")
     }
+
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
+
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : EquipmentRoomInfoListBinding = EquipmentRoomInfoListBinding.bind(itemView)
+        var binding : TwrPoleInfoItemBinding = TwrPoleInfoItemBinding.bind(itemView)
+        var offsetTableList: RecyclerView =binding.root.findViewById(R.id.pole_ofset_table)
 
         init {
             binding.collapsingLayout.tag = false
@@ -58,10 +62,19 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+            binding.addItemsLayout.setOnClickListener {
+                addTableItem("dfsdh")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (offsetTableList.adapter!=null && offsetTableList.adapter is TowerOffsetTableAdapter){
+                var adapter = offsetTableList.adapter as TowerOffsetTableAdapter
+                adapter.addItem(item)
+            }
         }
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : EquipmentInstallationAcceptenceBinding = EquipmentInstallationAcceptenceBinding.bind(itemView)
+        var binding : TwrPoleInstallationAcdeptencBinding = TwrPoleInstallationAcdeptencBinding.bind(itemView)
 
         init {
             binding.collapsingLayout.tag = false
@@ -75,8 +88,9 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
         }
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentPoItemBinding = EquipmentPoItemBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.root.findViewById(R.id.po_tables)
+        var binding: PolePoItemBinding = PolePoItemBinding.bind(itemView)
+        var poTableList: RecyclerView =binding.root.findViewById(R.id.pole_po_tables)
+
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -91,17 +105,15 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
             }
         }
         private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is EquipmentPoTableAdapter){
-                var adapter = poTableList.adapter as EquipmentPoTableAdapter
+            if (poTableList.adapter!=null && poTableList.adapter is PolePoTableAdapter){
+                var adapter = poTableList.adapter as PolePoTableAdapter
                 adapter.addItem(item)
             }
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding: EquipmentConsumableItemBinding =
-            EquipmentConsumableItemBinding.bind(itemView)
-
-        var EquipmentConsumableTableList : RecyclerView = binding.root.findViewById(R.id.equipment_consumable_table)
+        var binding: TowerConsumableItemBinding = TowerConsumableItemBinding.bind(itemView)
+        var towerConsumableTableList : RecyclerView = binding.root.findViewById(R.id.pole_consumable_table)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -111,20 +123,20 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
             binding.imgAdd.setOnClickListener {
                 addTableItem("gsfbgksf")
             }
         }
         private fun addTableItem(item:String){
-            if (EquipmentConsumableTableList.adapter!=null && EquipmentConsumableTableList.adapter is EquipmentConsumableTableAdapter){
-                var adapter = EquipmentConsumableTableList.adapter as EquipmentConsumableTableAdapter
+            if (towerConsumableTableList.adapter!=null && towerConsumableTableList.adapter is PoleconsumableTableAdapter){
+                var adapter = towerConsumableTableList.adapter as PoleconsumableTableAdapter
                 adapter.addItem(item)
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerPoleListListener) :ViewHold(itemView) {
-        var binding: EquipmentAttachmentBinding = EquipmentAttachmentBinding.bind(itemView)
-
+    class ViewHold5(itemView: View, listener: PoleInfoListListener) : ViewHold(itemView) {
+        var binding: TwrPoleAttachmentsBinding = TwrPoleAttachmentsBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
                 listener.attachmentItemClicked()
@@ -140,8 +152,6 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
@@ -167,30 +177,29 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
         return 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHold {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_room_info_list, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.twr_pole_info_item, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_installation_acceptence, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.twr_pole_installation_acdeptenc, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_po_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_po_item, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_consumable_item, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.pole_consumable_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_attachment, parent, false)
-                return ViewHold5(view,listner)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_attachment_info, parent, false)
+                return ViewHold5(view,listener)
             }
-
 
         }
         return ViewHold(view)
@@ -207,7 +216,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditEquipmentRoomItem()
+                        listener.EditTowerItem()
                     }
                 }
                 else {
@@ -222,18 +231,25 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-
                 try {
-                    holder.binding.ShelterRoom.text="Data Not Found"
-                    holder.binding.ShelterSize.text=
-                        "${equipInfoData?.shelterL}X${equipInfoData?.shelterB}X${equipInfoData?.shelterH}"
+                    holder.binding.TowerId.text=towerInfoData?.TowerPoleID
+                    holder.binding.TowerType.text="Data Not found"
+                    holder.binding.InstalledType.text="data not found"
+                    holder.binding.HeightTower.text=towerInfoData?.Height
+                    holder.binding.Comouflage.text=towerInfoData?.Camouflage
+                    holder.binding.AnteenaSlots.text=towerInfoData?.AntennaSlots
+                    holder.binding.LightningArrester.text=towerInfoData?.LightningArrester
+                    holder.binding.FoundationType.text="Data Not Found"
                     holder.binding.FoundationSize.text=
-                        "${equipInfoData?.foundationL}X${equipInfoData?.foundationB}X${equipInfoData?.foundationH}"
-                    holder.binding.Foundation.text="DAta Not Found"
-                    holder.binding.LocationMark.text=equipInfoData?.locationmark
+                        "${towerInfoData?.FoundationSizeL}X${towerInfoData?.FoundationSizeB}X${towerInfoData?.FoundationSizeH}"
+                    holder.binding.TowerLegCount.text=towerInfoData?.TowerLegCount
+                    holder.binding.OwnerCompany.text="Data not found"
+                    holder.binding.UserCompany.text="Data not found"
+                    holder.binding.LocationMark.text=towerInfoData?.LocationMark
+                    holder.offsetTableList.adapter= poleOffsetTableAdapter(context,listener)
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -246,7 +262,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditInstallationAcceptence()
+                        listener.EditInstallationAcceptence()
                     }
                 }
                 else {
@@ -273,8 +289,8 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                     holder.binding.OperationalStatus.text=insAccepData?.OperationalStatus
                     holder.binding.NextPmDate.text=insAccepData?.NextPMDate
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold3 -> {
@@ -299,12 +315,11 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.poTableList.adapter=EquipmentPoTableAdapter(context,listner,datalist?.AuthorityPODetails)
+                    holder.poTableList.adapter= PolePoTableAdapter(context,listener,datalist?.towerModelAuthorityPODetails)
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
-
             }
             is ViewHold4 -> {
                 if (currentOpened == position) {
@@ -328,10 +343,11 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.EquipmentConsumableTableList.adapter=EquipmentConsumableTableAdapter(context,listner,datalist?.TowerAndCivilInfraConsumable)
+                    holder.towerConsumableTableList.adapter=
+                        PoleconsumableTableAdapter(context,listener,datalist?.TowerAndCivilInfraConsumable)
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold5 -> {
@@ -353,14 +369,12 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
-
         }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
-
     var recyclerView: RecyclerView?=null
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
@@ -369,13 +383,18 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface TowerPoleListListener {
+
+
+    interface PoleInfoListListener {
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
-        fun EditEquipmentRoomItem()
+        fun EditTowerItem()
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)
         fun editConsumableClicked(position:Int)
         fun viewConsumableClicked(position:Int)
+        fun editOffsetClicked(position:Int)
+        fun viewOffsetClicked(position:Int)
     }
+
 }

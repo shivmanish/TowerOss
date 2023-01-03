@@ -246,6 +246,10 @@
             android:name="com.smarthub.baseapplication.imagePicker.ui.detail.ui.DetailImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/DetailViewTheme" />
+        <activity
+            android:name="com.smarthub.baseapplication.ui.fragments.towerCivilInfra.PoleFragment"
+            android:exported="true"
+            android:label="@string/setting" />
 
         <meta-data
             android:name="preloaded_fonts"
