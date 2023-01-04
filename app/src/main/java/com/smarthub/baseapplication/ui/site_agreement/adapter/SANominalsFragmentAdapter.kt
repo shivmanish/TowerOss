@@ -90,7 +90,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
         }
     }
     class AttachmentViewHold(itemView: View,listener: SANominalsListListener) : ViewHold(itemView) {
-        var binding: SiteaGreementNominalsAttachmentsBinding = SiteaGreementNominalsAttachmentsBinding.bind(itemView)
+        var binding: SaAttachmentsBinding = SaAttachmentsBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
                 listener.attachmentItemClicked()
@@ -131,7 +131,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                 POViewHold(view)
             }
              4-> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.sitea_greement_nominals_attachments, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.sa_attachments, parent, false)
                 AttachmentViewHold(view,listener)
             }
 
