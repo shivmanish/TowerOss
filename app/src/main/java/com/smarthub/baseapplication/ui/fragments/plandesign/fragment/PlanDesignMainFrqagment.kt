@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
+import com.smarthub.baseapplication.databinding.PlanDesignFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
@@ -21,67 +24,82 @@ import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAd
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PlanDesignMainFrqagment : BaseFragment(), PlanDesignAdapterListener {
+class PlanDesignMainFrqagment(var id:String) : BaseFragment(), PlanDesignAdapterListener {
 
-    private val ARG_PARAM1 = "param1"
-    private val ARG_PARAM2 = "param2"
     lateinit var viewmodel: HomeViewModel
-    lateinit var customerDataAdapter: PlanDesignAdapter
-    lateinit var customerBinding: FragmentServiceRequestBinding
+    lateinit var adapter: PlanDesignAdapter
+    lateinit var binding: PlanDesignFragmentBinding
+    var isDataLoaded = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        customerBinding = FragmentServiceRequestBinding.inflate(inflater, container, false)
+        binding = PlanDesignFragmentBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        initializeFragment()
-        return customerBinding.root
+        return binding.root
     }
 
-    private fun initializeFragment() {
-        customerBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
-        customerDataAdapter = PlanDesignAdapter(this@PlanDesignMainFrqagment, ArrayList())
-        customerBinding.customerList.adapter = customerDataAdapter
-        customerDataAdapter.updateData("anything")
-        customerDataAdapter.updateData("anything")
-        customerBinding.addMore.setOnClickListener{
-            customerDataAdapter.updateData("anything")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.customerList.layoutManager = LinearLayoutManager(requireContext())
+        adapter = PlanDesignAdapter(this@PlanDesignMainFrqagment, id)
+        binding.customerList.adapter = adapter
+
+        if (viewmodel?.PlanDesignModelResponse?.hasActiveObservers() == true){
+            viewmodel?.PlanDesignModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel?.PlanDesignModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                adapter.setData(it.data.item!![0].PlanningAndDesign)
+                AppLogger.log("size :${it.data.item?.size}")
+                isDataLoaded = true
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        customerBinding.addMore.setOnClickListener(){
+        binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing=false
+            adapter.addLoading()
+            viewmodel?.planAndDesignRequestAll(id)
+        }
+        
+        binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
         }
-        if (viewmodel.getServiceRequest?.hasActiveObservers() == true)
-            viewmodel.getServiceRequest?.removeObservers(viewLifecycleOwner)
-        viewmodel.getServiceRequest?.observe(viewLifecycleOwner){
-            if (it.status == Resource.Status.SUCCESS){
-                if (it.data!=null){
-                    mapUIData(it.data)
-                }
-                AppLogger.log("Site request data fetched successfully")
-            }else{
-                AppLogger.log("Something went wrong")
-            }
+    }
+
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+        if (viewmodel!=null && !isDataLoaded){
+            adapter.addLoading()
+            viewmodel?.planAndDesignRequestAll(id)
         }
-        viewmodel.fetchServiceRequestData("97")
+        AppLogger.log("onViewPageSelected PlanAndDesign")
     }
 
-    private fun mapUIData(data : ServiceRequestAllData){
-        AppLogger.log("data fetched")
-
+    override fun onDestroy() {
+        if (viewmodel?.PlanDesignModelResponse?.hasActiveObservers() == true){
+            viewmodel?.PlanDesignModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        super.onDestroy()
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String) =
-            PlanDesignMainFrqagment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
-    }
+    
 
-    override fun clickedItem() {
+    override fun clickedItem(data : PlanAndDesignDataItem?, Id :String,index:Int) {
+        PowerDesignDetailsActivity.Id=Id
+        PowerDesignDetailsActivity.planDesigndata=data
+        PowerDesignDetailsActivity.index=index
         requireActivity().startActivity(Intent(requireContext(), PowerDesignDetailsActivity::class.java))
 
     }

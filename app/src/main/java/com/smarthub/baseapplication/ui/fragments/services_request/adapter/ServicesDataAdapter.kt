@@ -15,10 +15,10 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.utils.AppController
 
 
-class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?) : RecyclerView.Adapter<ServiceEmptyDataAdapterViewHold>() {
+class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String) : RecyclerView.Adapter<ServiceEmptyDataAdapterViewHold>() {
 
     var list = ArrayList<Any>()
-//    var data1 = AppController.getInstance()?.siteInfoModel?.item
+    var id=Id
 
     fun setData(data: ArrayList<ServiceRequestAllDataItem>) {
         this.list.clear()
@@ -36,7 +36,7 @@ class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceEmptyDataAdapterViewHold {
         return if (viewType == 0){
-            var view = LayoutInflater.from(parent.context).inflate(R.layout.customer_list_item, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.customer_list_item, parent, false)
             return ServiceDataAdapterViewHold(view)
         }else{
             val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar, parent, false)
@@ -51,7 +51,7 @@ class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?
             holder.binding.textRfiDate.text = "RFI Date:DataNotFoundFromApi"
             holder.binding.textRfsDate.text = "RFS Date: DataNotFoundFromApi"
             holder.binding?.cardItem?.setOnClickListener {
-                listener.clickedItem(item, Id!!)
+                listener.clickedItem(item, id)
             }
         }
     }

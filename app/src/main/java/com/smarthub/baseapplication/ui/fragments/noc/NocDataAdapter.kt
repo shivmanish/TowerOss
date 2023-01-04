@@ -6,14 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.NativeOnCompleteListener
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.NocListItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.utils.AppLogger
 
 
