@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.utils.AppController
 
 
-class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?) : RecyclerView.Adapter<ServiceEmptyDataAdapterViewHold>() {
+class  ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String?) : RecyclerView.Adapter<ServiceEmptyDataAdapterViewHold>() {
 
     var list = ArrayList<Any>()
 //    var data1 = AppController.getInstance()?.siteInfoModel?.item

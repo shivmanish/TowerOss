@@ -10,6 +10,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.alert.adapter.AlertimageAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.utils.Utils
 
@@ -22,7 +24,7 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
     var type3 = "Where?"
     var type4 = "Who?"
     var type5 = "How?"
-    var type6 = "others"
+   // var type6 = "others"
 
     init {
         list.add("What?*")
@@ -30,7 +32,7 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
         list.add("Where?")
         list.add("Who?")
         list.add("How?")
-        list.add("others")
+      //  list.add("others")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -46,8 +48,8 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
             return 4
         else if (list[position] is String && list[position]==type5)
             return 5
-        else if (list[position] is String && list[position]==type6)
-            return 6
+     /*   else if (list[position] is String && list[position]==type6)
+            return 6*/
         return 0
     }
 
@@ -117,6 +119,8 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
 
     class ViewHold5(itemView: View) : ViewHold(itemView) {
         var binding : AlertHowLayoutBinding = AlertHowLayoutBinding.bind(itemView)
+
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -127,6 +131,8 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
+
         }
     }
     class ViewHold6(itemView: View) : ViewHold(itemView) {
@@ -288,6 +294,22 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
+
+                var adapter =  AlertimageAdapter(object : AlertimageAdapter.ItemClickListener{
+                    override fun itemClicked() {
+                        //  listener.attachmentItemClicked()
+                    }
+                })
+
+                var recyclerListener = holder.binding.rvAlertImageList
+                recyclerListener.adapter = adapter
+
+
+                adapter.addItem()
+
+            /*    holder.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    adapter.addItem()
+                }*/
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {
