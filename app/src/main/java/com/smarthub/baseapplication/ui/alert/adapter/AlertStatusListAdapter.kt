@@ -1,21 +1,15 @@
-package com.smarthub.baseapplication.ui.alert
+package com.smarthub.baseapplication.ui.alert.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.*
-import com.smarthub.baseapplication.network.pojo.site_info.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.alert.adapter.AlertimageAdapter
-import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
-import com.smarthub.baseapplication.utils.Utils
 
-class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListener) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
+class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListener) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var currentOpened = -1
@@ -295,21 +289,16 @@ class AlertStatusListAdapter(var context: Context,var listener:AlertStatusListen
                 }
                 holder.binding.itemTitle.text = list[position] as String
 
-                var adapter =  AlertimageAdapter(object : AlertimageAdapter.ItemClickListener{
+                val adapter =  AlertImageAdapter(object : ImageAttachmentAdapter.ItemClickListener{
                     override fun itemClicked() {
                         //  listener.attachmentItemClicked()
                     }
                 })
-
-                var recyclerListener = holder.binding.rvAlertImageList
-                recyclerListener.adapter = adapter
+                holder.binding.rvAlertImageList.adapter = adapter
 
 
                 adapter.addItem()
 
-            /*    holder.findViewById<View>(R.id.attach_card).setOnClickListener {
-                    adapter.addItem()
-                }*/
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {

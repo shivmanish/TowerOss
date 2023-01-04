@@ -79,7 +79,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun updateOperationInfo(basicinfoModel: UpdateOperationInfo){
-        homeRepo?.updateOperationInfo(basicinfoModel)
+//        homeRepo?.updateOperationInfo(basicinfoModel)
     }
 
     fun generateSiteId(basicinfoModel: GenerateSiteIdResponse){
