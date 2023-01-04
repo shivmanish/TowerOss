@@ -130,7 +130,7 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
         }
         private fun addTableItem(item:String){
             if (towerConsumableTableList.adapter!=null && towerConsumableTableList.adapter is PoleconsumableTableAdapter){
-                var adapter = towerConsumableTableList.adapter as PoleconsumableTableAdapter
+                val adapter = towerConsumableTableList.adapter as PoleconsumableTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -153,7 +153,7 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
