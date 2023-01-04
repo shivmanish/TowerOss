@@ -41,9 +41,7 @@
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     style="@style/ColumnItemInfo"
-
                     android:layout_height="wrap_content">
-
                     <TextView
                         android:id="@+id/txtFireIncident"
                         android:layout_weight="1"
@@ -79,8 +77,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:text="22-Dec-22 ; 12:05 PM" />
-
-
                 </LinearLayout>
               <RelativeLayout
                   android:background="@color/bg_alert"
