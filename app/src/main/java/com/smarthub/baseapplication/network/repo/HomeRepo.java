@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompMod
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
+import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -194,6 +195,47 @@ public class HomeRepo {
             }
         });
     }
+
+//    public void updateOperationInfo(UpdateOperationInfo basicinfoModel) {
+//        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+//        basicInfoUpdate.postValue(Resource.loading(d, 200));
+//        apiClient.updateOperationalInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+//            @Override
+//            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+//                if (response.isSuccessful()) {
+//                    reportSuccessResponse(response);
+//                } else if (response.errorBody() != null) {
+//                    AppLogger.INSTANCE.log("error :" + response);
+//                } else {
+//                    AppLogger.INSTANCE.log("error :" + response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BasicInfoDialougeResponse> call, Throwable t) {
+//                reportErrorResponse(null, t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+//
+//                if (response.body() != null) {
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+//                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+//
+//                }
+//            }
+//
+//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+//                if (response != null) {
+//                    basicInfoUpdate.postValue(Resource.error(response.getMessage(), null, 400));
+//                } else if (iThrowableLocalMessage != null)
+//                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+//    }
+
     public void generateSiteId(GenerateSiteIdResponse basicinfoModel) {
         GenerateSiteIdResponse d = (generateSiteIdResponse.getValue()!=null) ? generateSiteIdResponse.getValue().data : null;
         generateSiteIdResponse.postValue(Resource.loading(d, 200));
@@ -271,9 +313,8 @@ public class HomeRepo {
             }
         });
     }
+
     public void createSite(CreateSiteModel basicinfoModel) {
-//        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
-//        basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.createSite(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
             @Override
             public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {

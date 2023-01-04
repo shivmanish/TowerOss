@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
+import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
@@ -75,6 +76,10 @@ class HomeViewModel : ViewModel() {
 
     fun updateData(basicinfoModel: BasicinfoModel){
         homeRepo?.updateData(basicinfoModel)
+    }
+
+    fun updateOperationInfo(basicinfoModel: UpdateOperationInfo){
+        homeRepo?.updateOperationInfo(basicinfoModel)
     }
 
     fun generateSiteId(basicinfoModel: GenerateSiteIdResponse){
