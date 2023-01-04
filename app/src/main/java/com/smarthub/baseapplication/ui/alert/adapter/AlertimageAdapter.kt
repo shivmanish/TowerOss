@@ -22,6 +22,8 @@ class AlertimageAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<
     }
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding : AlertImgAttachmentBinding = AlertImgAttachmentBinding.bind(itemView)
+
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.alert_img_attachment,parent,false)
@@ -30,6 +32,9 @@ class AlertimageAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.root.setOnClickListener {
             listener.itemClicked()
+        }
+        holder.binding.attachCard.setOnClickListener {
+            addItem()
         }
     }
     override fun getItemCount(): Int {
