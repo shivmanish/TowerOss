@@ -22,7 +22,7 @@ class PowerDesignDetailPageAdapter (manager: FragmentManager, var data : PlanAnd
     override fun getItem(position: Int): Fragment {
         return when(position) {
             0 -> EquipRoomFragment(data?.PlanningAndDesignEquipRoomEquipmentRoom)
-            1 -> TowerCivilFragment()
+            1 -> TowerCivilFragment(data?.PlanningAndDesignTowerAndCivil)
             2-> PowerFragment()
             3 -> EquipUtilityFragment()
             4 -> NocCompFragment()
