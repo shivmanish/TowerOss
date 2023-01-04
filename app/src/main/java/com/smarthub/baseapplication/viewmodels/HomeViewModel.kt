@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
@@ -47,6 +48,7 @@ class HomeViewModel : ViewModel() {
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
     var powerandfuel:SingleLiveEvent<Resource<ServiceRequestModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
+    private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
@@ -72,6 +74,7 @@ class HomeViewModel : ViewModel() {
         NocAndCompModelResponse=homeRepo?.noCandCompModel
         TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
         powerandfuel = homeRepo?.powerandFuelivedata
+        siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -79,7 +82,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun updateOperationInfo(basicinfoModel: UpdateOperationInfo){
-//        homeRepo?.updateOperationInfo(basicinfoModel)
+        homeRepo?.updateOperationInfo(basicinfoModel)
     }
 
     fun generateSiteId(basicinfoModel: GenerateSiteIdResponse){
@@ -92,6 +95,10 @@ class HomeViewModel : ViewModel() {
 
     fun updateBasicInfo(basicinfoModel: BasicinfoModel){
         homeRepo?.updateSiteInfo(basicinfoModel)
+    }
+
+    fun updateSiteInfoDataInfo(basicinfoModel: Any){
+        homeRepo?.updateSiteInfoData(basicinfoModel)
     }
 
     fun createSite(basicinfoModel: CreateSiteModel){
