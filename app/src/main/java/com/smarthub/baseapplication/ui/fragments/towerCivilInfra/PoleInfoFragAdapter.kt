@@ -112,7 +112,7 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
         }
     }
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding: TowerConsumableItemBinding = TowerConsumableItemBinding.bind(itemView)
+        var binding: PoleConsumableItemBinding = PoleConsumableItemBinding.bind(itemView)
         var towerConsumableTableList : RecyclerView = binding.root.findViewById(R.id.pole_consumable_table)
         init {
             binding.collapsingLayout.tag = false
@@ -197,7 +197,7 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_attachment_info, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.twr_pole_attachments, parent, false)
                 return ViewHold5(view,listener)
             }
 

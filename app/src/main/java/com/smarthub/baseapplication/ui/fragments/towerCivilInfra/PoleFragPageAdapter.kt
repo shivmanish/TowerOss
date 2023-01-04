@@ -5,14 +5,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
 
-class PoleFragPageAdapter (fm: FragmentManager, var list:ArrayList<TowerAndCivilInfraPoleModel>?, var id:String?) : FragmentPagerAdapter(fm) {
+class PoleFragPageAdapter (fm: FragmentManager, var list:ArrayList<TowerAndCivilInfraPoleModel>, var id:String?) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
-        return list?.size!!
+        return list.size
     }
 
     override fun getItem(position: Int): Fragment {
-        return PoleInfoFragment(list!![position],id,position)
+        return PoleInfoFragment(list[position],id,0)
     }
 
 
