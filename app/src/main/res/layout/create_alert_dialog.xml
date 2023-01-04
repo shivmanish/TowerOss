@@ -585,6 +585,7 @@
                             android:background="@drawable/login_yellow_bg"
                             />
                         <TextView
+                            android:id="@+id/textChat"
                             android:drawableRight="@android:drawable/sym_action_chat"
                             android:layout_width="@dimen/dp120"
 

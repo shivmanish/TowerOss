@@ -24,7 +24,22 @@ class CreateAlertBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(c
         binding.canecl.setOnClickListener {
             dismiss()
         }
+            var recyclerListener = view?.findViewById<RecyclerView>(R.id.rv_alert_image_list)
+            var adapter = AlertimageAdapter(this@CreateAlertBottomSheet)
+
+           recyclerListener?.adapter = adapter
+            view?.findViewById<View>(R.id.attach_card)?.setOnClickListener {
+                adapter.addItem()
+            }
+           binding.textChat.setOnClickListener {
+               val bottomSheetDialogFragment = ChetBottomSheet(R.layout.chat_dialog)
+               bottomSheetDialogFragment.show(childFragmentManager,"category")
+        }
+
+
     }
+
+
     override fun getTheme() = R.style.NewDialogTask
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = CreateAlertDialogBinding.inflate(inflater)
