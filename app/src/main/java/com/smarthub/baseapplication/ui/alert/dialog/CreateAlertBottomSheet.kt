@@ -24,11 +24,11 @@ class CreateAlertBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(c
         binding.canecl.setOnClickListener {
             dismiss()
         }
-            var recyclerListener = view?.findViewById<RecyclerView>(R.id.rv_alert_image_list)
+            var recyclerListener = view.findViewById<RecyclerView>(R.id.rv_alert_image_list)
             var adapter = AlertimageAdapter(this@CreateAlertBottomSheet)
 
            recyclerListener?.adapter = adapter
-            view?.findViewById<View>(R.id.attach_card)?.setOnClickListener {
+            view.findViewById<View>(R.id.attach_card)?.setOnClickListener {
                 adapter.addItem()
             }
            binding.textChat.setOnClickListener {
