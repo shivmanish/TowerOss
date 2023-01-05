@@ -45,152 +45,7 @@
                         android:columnCount="2"
                         android:orientation="horizontal"
                         app:layout_constraintTop_toTopOf="parent">
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
 
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="OPCO SIte ID" />
-                            <EditText
-                                android:id="@+id/editSiteId"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="OPCO Site Name" />
-                            <EditText
-                                android:id="@+id/editOPCOSiteName"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="OPCO Site Type" />
-                            <EditText
-                                android:id="@+id/editOPCOSiteType"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Site Category" />
-                            <EditText
-                                android:id="@+id/editSiteCategory"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="TOCO Site Name" />
-                            <EditText
-                                android:id="@+id/editTOCOUID"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="SP Approval Date" />
-                            <EditText
-                                android:id="@+id/editSPApprovalDate"
-                                style="@style/RowTestItemEdit"
-                                android:drawableRight="@drawable/icon_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
                         <LinearLayout
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
@@ -201,13 +56,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="SR Type" />
-
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinEquipmentName"
-                                style="@style/SpinnerTheme"
+                            <EditText
+                                android:id="@+id/sr_type"
+                                style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                android:text="On-Air" />
+                                android:layout_height="wrap_content"
+                                android:hint="xxxx" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -216,7 +70,6 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
-
                         <LinearLayout
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
@@ -227,40 +80,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Request Date" />
-
                             <EditText
-                                android:id="@+id/editSerialNumber"
-                                style="@style/RowTestItemEdit"
-                                android:drawableRight="@drawable/icon_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:hint="S3058940" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="SR Status" />
-
-                            <EditText
-                                android:id="@+id/editStatus"
+                                android:id="@+id/request_date"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
                                 android:hint="xxxx" />
 
                             <View
@@ -280,14 +104,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Requester Company" />
-
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinRequesterCompany"
-                                style="@style/SpinnerTheme"
+                                android:text="sr_status" />
+                            <EditText
+                                android:id="@+id/edit_sr_status"
+                                style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                android:text="On-Air" />
+                                android:layout_height="wrap_content"
+                                android:hint="xxxx" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -305,14 +128,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="RF Technology" />
-
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spin_rf_technology"
-                                style="@style/SpinnerTheme"
+                                android:text="Requester Company" />
+                            <EditText
+                                android:id="@+id/editRequesterCompany"
+                                style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                android:text="On-Air" />
+                                android:layout_height="wrap_content"
+                                android:hint="xxxx" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -322,6 +144,30 @@
                                 android:background="#263238" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Technology" />
+                            <EditText
+                                android:id="@+id/editTechnology"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="xxxx" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
                         <LinearLayout
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
@@ -335,9 +181,62 @@
                             <EditText
                                 android:id="@+id/editHubSite"
                                 style="@style/RowTestItemEdit"
+                                android:drawableRight="@drawable/icon_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="xxxx" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="OPCO SIte Name" />
+
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinOPCOSIteName"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="OPCO Site ID" />
+
+                            <EditText
+                                android:id="@+id/editOPCOSiteID"
+                                style="@style/RowTestItemEdit"
+                                android:drawableRight="@drawable/icon_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="S3058940" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -357,12 +256,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="OPCO SIte Type" />
-                            <EditText
-                                android:id="@+id/editSiteType"
-                                style="@style/RowTestItemEdit"
+
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinOPCOSIteType"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -381,11 +281,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Priority" />
+
                             <EditText
                                 android:id="@+id/editPriority"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+
                                 android:hint="xxxx" />
 
                             <View
@@ -396,17 +298,109 @@
                                 android:background="#263238" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
 
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Expected Date" />
 
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinExpectedDate"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
 
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+<!--                        -->
 
+<!--                        <LinearLayout-->
+<!--                            style="@style/ColumnItemInfo"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content">-->
 
+<!--                            <TextView-->
+<!--                                style="@style/RowTextItemInfo"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Hub Site" />-->
+<!--                            <EditText-->
+<!--                                android:id="@+id/editHubSite"-->
+<!--                                style="@style/RowTestItemEdit"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:hint="xxxx" />-->
 
+<!--                            <View-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="1dp"-->
+<!--                                android:layout_marginTop="@dimen/dp8"-->
+<!--                                android:alpha="0.37"-->
+<!--                                android:background="#263238" />-->
+<!--                        </LinearLayout>-->
 
+<!--                        <LinearLayout-->
+<!--                            style="@style/ColumnItemInfo"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content">-->
 
+<!--                            <TextView-->
+<!--                                style="@style/RowTextItemInfo"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="OPCO SIte Type" />-->
+<!--                            <EditText-->
+<!--                                android:id="@+id/editSiteType"-->
+<!--                                style="@style/RowTestItemEdit"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:hint="xxxx" />-->
+
+<!--                            <View-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="1dp"-->
+<!--                                android:layout_marginTop="@dimen/dp8"-->
+<!--                                android:alpha="0.37"-->
+<!--                                android:background="#263238" />-->
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout-->
+<!--                            style="@style/ColumnItemInfo"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                            <TextView-->
+<!--                                style="@style/RowTextItemInfo"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Priority" />-->
+<!--                            <EditText-->
+<!--                                android:id="@+id/editPriority"-->
+<!--                                style="@style/RowTestItemEdit"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:hint="xxxx" />-->
+
+<!--                            <View-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="1dp"-->
+<!--                                android:layout_marginTop="@dimen/dp8"-->
+<!--                                android:alpha="0.37"-->
+<!--                                android:background="#263238" />-->
+<!--                        </LinearLayout>-->
 
                     </GridLayout>
-                    <include layout="@layout/cancel_update_layout"/>
+<!--                    <include layout="@layout/cancel_update_layout"/>-->
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

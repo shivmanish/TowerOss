@@ -38,8 +38,8 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
             srDetailsData.let{
                 it.SRType = System.currentTimeMillis().toString()
             }
-            var list  = ArrayList<SRDetails>()
-            var serviceRequestList = ServiceRequestAllData()
+            val list  = ArrayList<SRDetails>()
+            val serviceRequestList = ServiceRequestAllData()
             serviceRequestList.add(serviceRequestAllData)
             list.add(srDetailsData)
             serviceRequestAllData.ServiceRequest[0].SRDetails = list
