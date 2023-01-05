@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.site_agreement.adapter.SANominalsFragmentAdapter
+import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAAgreementsBottomSheet
 
 

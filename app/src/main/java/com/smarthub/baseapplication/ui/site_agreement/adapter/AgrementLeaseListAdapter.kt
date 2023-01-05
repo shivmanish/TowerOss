@@ -16,7 +16,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     var ATTACHMENT_VIEW_TYPE =2
     init {
         list.add("Agreement")
-        list.add("Property Owner & Payment..")
+        list.add("Property Owner & SAPaymentFrag..")
         list.add("Attachments")
 
       }
@@ -115,7 +115,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Agreement") AGREMENT_VIEW_TYPE
 
-        else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
+        else if (list[position] == "Property Owner & SAPaymentFrag..") PROPERTY_VIEW_TYPE
 
         else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0

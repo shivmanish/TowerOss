@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_agreement.adapter
+package com.smarthub.baseapplication.ui.site_agreement.tableadapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.BackhaulListAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.SAPoDetailsAdapter
 
 class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
     RecyclerView.Adapter<SANominalsFragmentAdapter.ViewHold>() {
@@ -47,11 +45,12 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
 
         }
     }
-    class POViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: EquipmentsInfoViewBinding = EquipmentsInfoViewBinding.bind(itemView)
-        var equipmentTableList: RecyclerView=binding.SrEquipmentTables
+    class POViewHold(itemView: View) : ViewHold(itemView) {
+        var binding: SaPoInfoViewBinding = SaPoInfoViewBinding.bind(itemView)
+        var poTableList: RecyclerView=binding.SrEquipmentTables
 
         init {
+            addTableItem("dfsdh")
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -65,8 +64,8 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
             }
         }
         private fun addTableItem(item:String){
-            if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
-                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
+            if (poTableList.adapter!=null && poTableList.adapter is SAPoDetailsAdapter){
+                var adapter = poTableList.adapter as SAPoDetailsAdapter
                 adapter.addItem()
             }
         }
@@ -127,7 +126,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                 PropertyViewHold(view)
             }
             3 -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.equipments_info_view, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.sa_po_info_view, parent, false)
                 POViewHold(view)
             }
              4-> {
@@ -204,7 +203,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                 }
                 holder.binding.itemTitle.text=list[position]
             }
-            is POViewHold->{
+            is POViewHold ->{
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -223,7 +222,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                 }
                 holder.binding.itemTitleStr.text=list[position]
             }
-            is AttachmentViewHold->{
+            is AttachmentViewHold ->{
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)

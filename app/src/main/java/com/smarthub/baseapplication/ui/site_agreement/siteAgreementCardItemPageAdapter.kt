@@ -4,13 +4,12 @@ package com.smarthub.baseapplication.ui.site_agreement
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.AssignACQTeamFragment
-import com.smarthub.baseapplication.ui.site_agreement.fragment.*
+import com.smarthub.baseapplication.ui.site_agreement.siteagreements_tab.SAPaymentFrag
 import com.smarthub.baseapplication.ui.site_agreement.siteagreements_tab.SANomonalsFrag
 
 class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
-        return 1
+        return 2
     }
 
     override fun getItem(position: Int): Fragment {
@@ -19,7 +18,7 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
                 return SANomonalsFrag()
             }
             1 -> {
-                return Payment()
+                return SAPaymentFrag()
             }
 
             else -> {

@@ -24,7 +24,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
     var type1 = "Application Details"
     var type2 = "Authority Details"
     var type3 = "PO Details"
-    var type4 = "Fee & Payment Details"
+    var type4 = "Fee & SAPaymentFrag Details"
     var type5 = "Documents Submitted to Authority"
     var type6 = "NOC / Compliance Copy"
 
@@ -33,7 +33,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
         list.add("Application Details")
         list.add("Authority Details")
         list.add("PO Details")
-        list.add("Fee & Payment Details")
+        list.add("Fee & SAPaymentFrag Details")
         list.add("Documents Submitted to Authority")
         list.add("NOC / Compliance Copy")
         try {
