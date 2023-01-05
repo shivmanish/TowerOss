@@ -151,9 +151,8 @@ class AgrementLeaseListAdapter(var context:Context,
             }
             holder.binding.itemTitle.text = list[position]
 
-           if(servicerequirement!=null && servicerequirement.SoftAcquisition!=null && servicerequirement.SoftAcquisition.size>0 && servicerequirement.SoftAcquisition.get(0).AgreementTerms!=null)
-           {
-               servicerequirement.SoftAcquisition.get(0).AgreementTerms.get(0).let{
+           if(servicerequirement.SoftAcquisition!=null && servicerequirement.SoftAcquisition!!.isNotEmpty()) {
+               servicerequirement.SoftAcquisition?.get(0)?.AgreementTerms!![0].let{
                    holder.binding.agrementType.text = it.AgreementPeriod
                    holder.binding.registrationNumber.text = ""
                    holder.binding.registrationDate.text = ""
