@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.databinding.PoleTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
-class PoleTableAdapter (var context : Context, var listener : TableCallback): RecyclerView.Adapter<PoleTableAdapter.ViewHold>() {
+class PoleTableAdapter (var context : Context, var listener : plandesignTowerCivilAdapter.TowrCivilListner): RecyclerView.Adapter<PoleTableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 
@@ -68,7 +68,7 @@ class PoleTableAdapter (var context : Context, var listener : TableCallback): Re
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editItem(position)
+                        listener.editPoleTableItem(position)
 
                         return true
                     }
@@ -83,7 +83,7 @@ class PoleTableAdapter (var context : Context, var listener : TableCallback): Re
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewItem(position)
+                        listener.viewPoleTableItem(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

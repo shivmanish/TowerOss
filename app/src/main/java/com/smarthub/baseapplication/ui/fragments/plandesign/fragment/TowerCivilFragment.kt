@@ -38,4 +38,16 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
         dalouge.show(childFragmentManager,"")
     }
 
+    override fun editPole() {
+        Toast.makeText(requireContext(),"edit pole info clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editPoleTableItem(position: Int) {
+        Toast.makeText(requireContext(),"edit pole table item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewPoleTableItem(position: Int) {
+        Toast.makeText(requireContext(),"view pole table item clicked", Toast.LENGTH_SHORT).show()
+    }
+
 }
