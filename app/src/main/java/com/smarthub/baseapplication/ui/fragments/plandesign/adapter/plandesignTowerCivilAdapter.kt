@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesi
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.Pole
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.Tower
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.PoleTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
 class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilListner,allData:List<PlanningAndDesignTowerAndCivil>?):RecyclerView.Adapter<plandesignTowerCivilAdapter.ViewHold>() {
@@ -196,7 +197,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.poleTableList.adapter=PoleTableAdapter(context,listener)
+                holder.poleTableList.adapter= PoleTableAdapter(context,listener)
                 try {
                     holder.binding.towerOffsetPoleCount.text = poleData?.OffsetPoleCount
                     holder.binding.towerOffsetPoleLength.text = poleData?.OffsetPoleLength
