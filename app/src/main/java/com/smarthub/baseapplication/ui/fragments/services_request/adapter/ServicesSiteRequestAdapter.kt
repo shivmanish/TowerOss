@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
@@ -14,7 +15,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -28,14 +29,12 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     private var BackhaulLinksData: BackHaulLink?=null
     private var RequesterInfoData: RequesterInfo ?=null
     var currentOpened = -1
+
     fun setData(data : BasicInfoModelDropDown){
         this.data = data
         notifyDataSetChanged()
     }
-//    fun setValueData(data : ServiceRequest){
-//        this.servicerequestData = data
-//        notifyDataSetChanged()
-//    }
+
     init {
         list.add("SR Details")
         list.add("Equipments")
@@ -228,9 +227,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         when (holder) {
 
             is ViewHold1 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.EditSRdetailsItemClicked()
-                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -252,6 +248,11 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.itemTitleStr.text = list[position]
 
                 if (SrDetailsData!=null) {
+                    holder.binding.imgEdit.setOnClickListener {
+                        if (SrDetailsData!=null)
+                        listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
+                        else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
+                    }
                     holder.binding.SRType.text=SrDetailsData?.SRType
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
                     holder.binding.SRStatus.text=SrDetailsData?.SRStatus
@@ -322,7 +323,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.EditBackhaulLinkItemClicked()
+                    listener.editBackhaulLinkItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -349,7 +350,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.EditSRdetailsItemClicked()
+                    listener.editRequestInfoClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -413,9 +414,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
     interface ServicesRequestLisListener {
         fun attachmentItemClicked()
-        fun EditSRdetailsItemClicked()
-        fun EditBackhaulLinkItemClicked()
-        fun EditrequestinfoClicked()
+        fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem)
+        fun editBackhaulLinkItemClicked()
+        fun editRequestInfoClicked()
         fun editEquipmentClicked(position:Int)
         fun viewEquipmentClicked(position:Int)
         fun editRadioAnteenaClicked(position:Int)

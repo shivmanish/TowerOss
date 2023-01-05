@@ -6,17 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
+import com.smarthub.baseapplication.databinding.SoftAcquisitionTabFragmentBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SoftAcquisitionAdapter
 
-
-
-
 class SoftAcquisitionTabFragment : BaseFragment(), SoftAcquisitionAdapter.SoftAcquisitionLisListener {
-    var binding : OpcoInfoFregmentBinding?=null
+    var binding : SoftAcquisitionTabFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
+        binding = SoftAcquisitionTabFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

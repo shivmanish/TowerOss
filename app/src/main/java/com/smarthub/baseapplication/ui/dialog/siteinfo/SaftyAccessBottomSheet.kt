@@ -21,7 +21,6 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: SafetyAndAccessModel, var safetyAndAccess: SafetyAndAcces, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     var basicinfoModel: BasicinfoModel? = null
-//    var geoConditionUpdateModel: SafetyAndAccessUpdateModel? = null
     lateinit var binding : SaftyAccessDetailsBottomSheetBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,7 +28,6 @@ class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: 
         binding = SaftyAccessDetailsBottomSheetBinding.bind(view)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         basicinfoModel = BasicinfoModel()
-//        geoConditionUpdateModel = SafetyAndAccessUpdateModel()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
@@ -98,12 +96,12 @@ class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: 
             viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
     }
 
-    fun showProgressLayout(){
+    private fun showProgressLayout(){
         if (binding.progressLayout.visibility != View.VISIBLE)
             binding.progressLayout.visibility = View.VISIBLE
     }
 
-    fun hideProgressLayout(){
+    private fun hideProgressLayout(){
         if (binding.progressLayout.visibility == View.VISIBLE)
             binding.progressLayout.visibility = View.GONE
     }

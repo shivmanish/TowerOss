@@ -27,13 +27,11 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
 
     lateinit var binding: BasicInfoDetailsBottomSheetBinding
     var basicinfoModel: BasicinfoModel? = null
-    var basicinfo: BasicinfoServiceData? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         basicinfoModel = BasicinfoModel()
-        basicinfo = BasicinfoServiceData()
         binding = BasicInfoDetailsBottomSheetBinding.bind(view)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         binding.icMenuClose.setOnClickListener {
@@ -62,7 +60,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
         binding.address.setText(basicinfodata.siteaddress)
 
         binding.update.setOnClickListener {
-            basicinfo?.let{
+            basicinfodata.let{
 
                 it.Buildingtype = binding.txBuildingType.text.toString()
                 it.Locationzone= binding.txtLocationZone.text.toString()
@@ -70,14 +68,14 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
                 it.Projectname= binding.txtProjectName.text.toString()
                 it.aliasName= ""
                 it.National = binding.siteNational.selectedValue.id
-                it.id = basicinfodata.id.toString()
+                it.id = basicinfodata.id
                 it.siteID= binding.txSiteID.text.toString()
                 it.siteInChargeName= binding.txtSiteInChargeName.text.toString()
                 it.siteInChargeNumber= binding.txtSiteInChargeNumber.text.toString()
                 it.siteName= binding.txSiteName.text.toString()
                 it.siteaddress= binding.address.text.toString()
             }
-            basicinfoModel?.Basicinfo = basicinfo!!
+            basicinfoModel?.Basicinfo = basicinfodata
             basicinfoModel?.id = id
             viewModel.updateBasicInfo(basicinfoModel!!)
         }

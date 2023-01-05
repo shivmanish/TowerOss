@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.databinding.ServiceRequestInfoBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.SRDetails
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -33,8 +34,8 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         adapter=ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
         binding?.listItem?.adapter = adapter
 
-        if (viewmodel?.serviceRequestModelResponse?.hasActiveObservers() == true){
-            viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true){
+            viewmodel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
             binding?.swipeLayout!!.isRefreshing = false
@@ -68,11 +69,12 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
     }
     override fun attachmentItemClicked() {
     }
-    override fun EditSRdetailsItemClicked() {
-        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog)
+    override fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem) {
+        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog,viewmodel,
+            viewmodel.siteInfoResponse?.value?.data?.item!![0].id.toString(),srDetailsData,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-    override fun EditBackhaulLinkItemClicked() {
+    override fun editBackhaulLinkItemClicked() {
         val bottomSheetDialogFragment = BachhualLinkBottomSheet(R.layout.backhaul_link_list_item)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
@@ -94,7 +96,7 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for view", Toast.LENGTH_SHORT).show()
     }
 
-    override fun EditrequestinfoClicked() {
+    override fun editRequestInfoClicked() {
         val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }

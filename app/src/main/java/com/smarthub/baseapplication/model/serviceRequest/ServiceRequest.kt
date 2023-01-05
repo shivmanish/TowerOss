@@ -8,7 +8,7 @@ data class ServiceRequest(
     val Equipments: List<Equipment>,
     val RadioAntennas: List<RadioAntenna>,
     val RequesterInfo: List<RequesterInfo>,
-    val SRDetails: List<SRDetails>,
+    var SRDetails: List<SRDetails>,
 
     val created_at: String,
     val id: Int,
