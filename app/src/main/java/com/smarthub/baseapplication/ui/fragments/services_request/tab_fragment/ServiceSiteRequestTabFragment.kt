@@ -19,7 +19,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.Servic
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
+class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: String) : BaseFragment(), ServicesRequestAdapter.ServicesRequestLisListener {
     var binding : ServiceRequestInfoBinding?=null
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: ServicesRequestAdapter
@@ -38,13 +38,20 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
             viewmodel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
-            binding?.swipeLayout!!.isRefreshing = false
+
             if (it!=null && it.status == Resource.Status.LOADING){
+                binding?.swipeLayout!!.isRefreshing = true
                 return@observe
             }
+            binding?.swipeLayout!!.isRefreshing = false
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                AppLogger.log("Service request Fragment card Data fetched successfully")
-                AppLogger.log("size :${it.data.item?.size}")
+                if (it.data.item?.isNotEmpty() == true) {
+                    adapter.updateData(it.data.item!![0].ServiceRequestMain[0])
+                    Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
+                    AppLogger.log("Service request Fragment card Data fetched successfully")
+                    AppLogger.log("size :${it.data.item?.size}")
+                }else Toast.makeText(requireContext(), "Empty Data found", Toast.LENGTH_SHORT).show()
+
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
@@ -56,7 +63,7 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
-            viewmodel.serviceRequestAll(Id!!)
+            viewmodel.serviceRequestAll(Id)
         }
 
     }
@@ -71,7 +78,7 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, Id: Strin
     }
     override fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem) {
         val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog,viewmodel,
-            viewmodel.siteInfoResponse?.value?.data?.item!![0].id.toString(),srDetailsData,serviceRequestAllData)
+            Id,srDetailsData,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun editBackhaulLinkItemClicked() {

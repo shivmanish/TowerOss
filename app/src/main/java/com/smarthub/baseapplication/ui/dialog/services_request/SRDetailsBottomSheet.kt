@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.dialog.services_request
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBindi
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
@@ -34,19 +36,37 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        setDatePickerView(binding.requestDate)
+        setDatePickerView(binding.expectedDate)
+        srDetailsData.let{
+            binding.expectedDate.text = it.ExpectedDate
+            binding.requestDate.text = it.RequestDate
+        }
+
         binding.update.setOnClickListener {
             srDetailsData.let{
-                it.SRType = System.currentTimeMillis().toString()
+                it.ExpectedDate = binding.expectedDate.text.toString()
+                it.RequestDate = binding.requestDate.text.toString()
             }
-            val list  = ArrayList<SRDetails>()
+
+            val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
+            mServiceRequestAllDataItem.id = serviceRequestAllData.id
+            mServiceRequestAllDataItem.ServiceRequest = ArrayList()
+
+            val serviceRequest = ServiceRequest()
+            serviceRequest.SRDetails = ArrayList()
+            serviceRequest.SRDetails?.add(srDetailsData)
+            serviceRequest.id = serviceRequestAllData.ServiceRequest!![0].id
+            mServiceRequestAllDataItem.ServiceRequest?.add(serviceRequest)
+
             val serviceRequestList = ServiceRequestAllData()
-            serviceRequestList.add(serviceRequestAllData)
-            list.add(srDetailsData)
-            serviceRequestAllData.ServiceRequest[0].SRDetails = list
+            serviceRequestList.add(mServiceRequestAllDataItem)
+
             basicinfoModel?.ServiceRequestMain = serviceRequestList
             basicinfoModel?.id = id
             viewModel.updateBasicInfo(basicinfoModel!!)
         }
+
         if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
             viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
         viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
@@ -59,7 +79,7 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
                 if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
-                    viewModel.fetchSiteInfoData(id)
+                    viewModel.serviceRequestAll(id)
                 }else{
                     AppLogger.log("UnExpected Error found")
                 }

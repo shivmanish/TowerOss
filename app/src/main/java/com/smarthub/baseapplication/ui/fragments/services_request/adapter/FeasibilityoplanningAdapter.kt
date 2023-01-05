@@ -196,27 +196,27 @@ class FeasibilityoplanningAdapter(
                     val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning.get(
+                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(
                         0
                     ) != null
                 ) {
-                    serviceRequestAllData!!.FeasibilityPlanning.get(0).SiteDetails.get(0).let {
-                        holder.binding.editSiteId.text = it.OpcoSiteID
-                        holder.binding.editOPCOSiteName.text = it.OpcoSiteName
+                    serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.SiteDetails?.get(0).let {
+                        holder.binding.editSiteId.text = it?.OpcoSiteID
+                        holder.binding.editOPCOSiteName.text = it?.OpcoSiteName
                         holder.binding.editOPCOSiteType.text = ""
                         holder.binding.editSiteCategory.text = ""
-                        holder.binding.editTOCOUID.text = it.TocoUID
+                        holder.binding.editTOCOUID.text = it?.TocoUID
                         holder.binding.tocoSiteType.text = ""
                         holder.binding.tocoSiteTypeSecond.text = ""
                         holder.binding.tocoSiteStatus.text = ""
-                        holder.binding.projectName.text = it.ProjectName
+                        holder.binding.projectName.text = it?.ProjectName
                         holder.binding.buildType.text = ""
                         holder.binding.porpertyOwonership.text = ""
                         holder.binding.acquistionType.text = ""
-                        holder.binding.nominalsLatLong.text = it.Nominallatitude
-                        holder.binding.siteLatLong.text = it.Sitelatitude
-                        holder.binding.existingTentant.text = it.ExistingTenants
-                        holder.binding.address.text = it.Address
+                        holder.binding.nominalsLatLong.text = it?.Nominallatitude
+                        holder.binding.siteLatLong.text = it?.Sitelatitude
+                        holder.binding.existingTentant.text = it?.ExistingTenants
+                        holder.binding.address.text = it?.Address
                     }
                 }
             }
@@ -250,22 +250,20 @@ class FeasibilityoplanningAdapter(
                     val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning.get(
-                        0
-                    ) != null && serviceRequestAllData!!.FeasibilityPlanning.get(0).RadioAntenna != null && serviceRequestAllData!!.FeasibilityPlanning.get(0).RadioAntenna.size>0
+                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.RadioAntenna!!.isNotEmpty()
                 ) {
-                    serviceRequestAllData!!.FeasibilityPlanning.get(0).RadioAntenna.get(0).let {
-                        holder.binding.editTechnology.text = it.RFTechnology
-                        holder.binding.editRRUCount.text = it.RRUCount
-                        holder.binding.editSectocCount.text = it.SectorCount
-                        holder.binding.editMaxAntenna.text = it.MaxAntennaHeight
-                        holder.binding.editAntennaType.text = it.AntennaType
-                        holder.binding.editTower.text = it.TowerOrPoleHeight
-                        holder.binding.editAdditional.text = it.AdditionalPoleHeight
-                        holder.binding.editTotalWaight.text = it.TotalWeight
-                        holder.binding.editOffsetPoleCount.text = it.OffsetPoleCount
-                        holder.binding.editAntennaSpace.text = it.AntennaSpace
-                        holder.binding.editTimeline.text = it.Timeline
+                    serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.RadioAntenna?.get(0).let {
+                        holder.binding.editTechnology.text = it?.RFTechnology
+                        holder.binding.editRRUCount.text = it?.RRUCount
+                        holder.binding.editSectocCount.text = it?.SectorCount
+                        holder.binding.editMaxAntenna.text = it?.MaxAntennaHeight
+                        holder.binding.editAntennaType.text = it?.AntennaType
+                        holder.binding.editTower.text = it?.TowerOrPoleHeight
+                        holder.binding.editAdditional.text = it?.AdditionalPoleHeight
+                        holder.binding.editTotalWaight.text = it?.TotalWeight
+                        holder.binding.editOffsetPoleCount.text = it?.OffsetPoleCount
+                        holder.binding.editAntennaSpace.text = it?.AntennaSpace
+                        holder.binding.editTimeline.text = it?.Timeline
                     }
                 }
             }
@@ -295,11 +293,9 @@ class FeasibilityoplanningAdapter(
 
                 }
 
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning.get(
-                        0
-                    ) != null && serviceRequestAllData!!.FeasibilityPlanning.get(0).BackHaul != null && serviceRequestAllData!!.FeasibilityPlanning.get(0).BackHaul.size>0
+                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.BackHaul?.isNotEmpty() == true
                 ) {
-                    serviceRequestAllData!!.FeasibilityPlanning.get(0).BackHaul.get(0).Microwave.get(0).let {
+                    serviceRequestAllData!!.FeasibilityPlanning!![0].BackHaul[0].Microwave[0].let {
                         holder.binding.editAntennaCount.text = it.AntennaCount
                         holder.binding.editMaxheight.text = it.MaxHeight
                         holder.binding.editTotalWaight.text = it.TotalWeight
@@ -314,7 +310,7 @@ class FeasibilityoplanningAdapter(
 
                     }
 
-                    serviceRequestAllData!!.FeasibilityPlanning.get(0).BackHaul.get(0).Fiber.get(0).let {
+                    serviceRequestAllData!!.FeasibilityPlanning!!.get(0).BackHaul.get(0).Fiber.get(0).let {
                         holder.binding.editLMLength.text = it.LMLength
                         holder.binding.editCableLength.text = it.CableLength
                         holder.binding.editLayingType.text = ""
@@ -350,13 +346,13 @@ class FeasibilityoplanningAdapter(
                 }
                 holder.binding.itemTitle.text = list[position]
                 if (fieldData != null && fieldData?.item!!.size > 0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()) {
-                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
+//                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
                 }
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning.get(
+                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(
                         0
-                    ) != null && serviceRequestAllData!!.FeasibilityPlanning.get(0).PowerAndMCB != null && serviceRequestAllData!!.FeasibilityPlanning.get(0).PowerAndMCB.size>0
+                    )?.PowerAndMCB!!.isNotEmpty()
                 ) {
-                    serviceRequestAllData!!.FeasibilityPlanning.get(0).PowerAndMCB.get(0).Power.get(0).let {
+                    serviceRequestAllData!!.FeasibilityPlanning!![0].PowerAndMCB[0].Power.get(0).let {
                         holder.binding.editPowerType.text = it.PowerType
                         holder.binding.editVoltage.text = it.Voltage
                         holder.binding.editMaxTotalPower.text = it.MaxTotalPower
@@ -372,7 +368,7 @@ class FeasibilityoplanningAdapter(
 
                     }
 
-                    serviceRequestAllData!!.FeasibilityPlanning.get(0).PowerAndMCB.get(0).MCB.get(0).let {
+                    serviceRequestAllData!!.FeasibilityPlanning!![0].PowerAndMCB[0].MCB[0].let {
                         holder.binding.editMCBRequirement.text = it.MCBRequirement
                         holder.binding.editMCBCount.text = it.TotalMCBCount
                         holder.binding.editRemark.text = it.Remark

@@ -23,15 +23,20 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type4 = "Backhaul Links"
     var type5 = "Requester Info"
     var type6 = "Attachments"
-    private var data : BasicInfoModelDropDown?=null
+//    private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
     private var SrDetailsData: SRDetails ?=null
     private var BackhaulLinksData: BackHaulLink?=null
     private var RequesterInfoData: RequesterInfo ?=null
     var currentOpened = -1
 
-    fun setData(data : BasicInfoModelDropDown){
-        this.data = data
+//    fun setData(data : BasicInfoModelDropDown){
+//        this.data = data
+//        notifyDataSetChanged()
+//    }
+
+    fun updateData(serviceRequestAllData: ServiceRequestAllDataItem?){
+        this.serviceRequestAllData = serviceRequestAllData
         notifyDataSetChanged()
     }
 

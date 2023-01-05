@@ -608,6 +608,8 @@ public class HomeRepo {
         ArrayList<String> list = new ArrayList<>();
         list.add("ServiceRequestMain");
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
+        serviceRequestModel.postValue(Resource.loading(srModel, 200));
         apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
