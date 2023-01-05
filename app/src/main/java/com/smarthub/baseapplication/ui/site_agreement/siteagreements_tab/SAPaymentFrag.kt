@@ -40,11 +40,10 @@ class SAPaymentFrag :BaseFragment(), PaymentTableAdapter.PaymentInfoListListener
     }
 
     override fun editClicked(position: Int) {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
 
     }
 
     override fun viewClicked(position: Int) {
-        TODO("Not yet implemented")
+
     }
 }

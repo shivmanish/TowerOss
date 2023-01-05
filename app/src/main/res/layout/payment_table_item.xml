@@ -94,7 +94,7 @@
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:textStyle="bold"
-                    android:text="Item Name"
+                    android:text="Payee Name"
                     style="@style/RowTextItemInfo"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -107,7 +107,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:ellipsize="marquee"
-                    android:text="Item Code"
+                    android:text="Acc No."
                     style="@style/RowTextItemInfo"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -121,7 +121,7 @@
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:text=" Description"
+                    android:text=" Bank"
                     style="@style/RowTextItemInfo"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -133,7 +133,7 @@
                     android:layout_width="0dp"
                     android:maxLines="1"
                     android:ellipsize="marquee"
-                    android:text="Qty"
+                    android:text="Branch"
                     android:gravity="center"
                     style="@style/RowTextItemInfo"
                     android:layout_height="wrap_content"/>
