@@ -1,14 +1,20 @@
 package com.smarthub.baseapplication.ui.site_agreement.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
+class AgrementLeaseListAdapter(var context:Context,
+    var listener: AgreementListItemlistner,
+    var servicerequirement: ServiceRequestAllDataItem
+) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var AGREMENT_VIEW_TYPE = 0
@@ -144,6 +150,43 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
             holder.binding.itemTitle.text = list[position]
+
+           if(servicerequirement!=null && servicerequirement.SoftAcquisition!=null && servicerequirement.SoftAcquisition.size>0 && servicerequirement.SoftAcquisition.get(0).AgreementTerms!=null)
+           {
+               servicerequirement.SoftAcquisition.get(0).AgreementTerms.get(0).let{
+                   holder.binding.agrementType.text = it.AgreementPeriod
+                   holder.binding.registrationNumber.text = ""
+                   holder.binding.registrationDate.text = ""
+                   holder.binding.bookingCostCentre.text= ""
+                   holder.binding.agreemenPeriod.text = it.AgreementPeriod
+                   holder.binding.lockPeriod.text = it.LockInPeriod
+                   holder.binding.agreemenEffectiveDate.text = ""
+                   holder.binding.agreementExpiryDate.text = ""
+                   holder.binding.rentStartDate.text = ""
+                   holder.binding.initialAnnualRentAmount.text = ""
+
+                   holder.binding.rentPaymentFrequency.text = ""
+                   holder.binding.periodicRentPaybleAmount.text = it.PeriodicRentPayableAmount
+                   holder.binding.rentEscalation.text = ""
+                   holder.binding.rentEscalationPeriod.text = it.RentEscalationPeriod
+                   holder.binding.lastEscalationDate.text = ""
+                   holder.binding.lastRevisedRentAmount.text = ""
+                   holder.binding.eBInclusiveRental.text = ""
+                   holder.binding.eBBillLimit.text = ""
+                   holder.binding.eBBillingBasis.text = it.EBBillingBasis
+                   holder.binding.eBperunitRate.text = it.EBPerUnitRate
+                   holder.binding.propertyOwnership.text = it.PropertyOwnership
+                   holder.binding.propertyAcquired.text = ""
+
+                   holder.binding.onetimeAmount.text = it.OnetimeAmount
+                   holder.binding.securityDepositeAmount.text = it.SecurityDepositAmount
+                   holder.binding.rooftopAcquiredArea.text = ""
+                   holder.binding.groundAcquiredArea.text = ""
+
+
+
+               }
+           }
         }
        else if (holder is PropertyAgreementViewHold) {
        holder.binding.collapsingLayout.setOnClickListener {
@@ -165,6 +208,8 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
        holder.binding.itemTitle.text = list[position]
+           holder.binding.propertyDetailsTable.layoutManager = LinearLayoutManager(context)
+//           holder.binding.propertyDetailsTable.adapter = PropertyAgreementTableAdapter()
         }
 
 

@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
+import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
@@ -32,6 +33,8 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeRes
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -63,6 +66,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<ServiceRequestModel>> powerandfuel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
+    private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -71,6 +75,10 @@ public class HomeRepo {
             }
         }
         return sInstance;
+    }
+
+    public SingleLiveEvent<Resource<LogSearchData>> getloglivedata() {
+        return loglivedata;
     }
 
     public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
@@ -130,6 +138,7 @@ public class HomeRepo {
         powerandfuel = new SingleLiveEvent<>();
         planAndDesignModel=new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
+        loglivedata = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -830,6 +839,43 @@ public class HomeRepo {
                     serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void chamgeLogAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("ChangeLog");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchLogData(siteInfoParam).enqueue(new Callback<LogSearchData>() {
+            @Override
+            public void onResponse(Call<LogSearchData> call, Response<LogSearchData> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogSearchData> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<LogSearchData> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    loglivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    loglivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    loglivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

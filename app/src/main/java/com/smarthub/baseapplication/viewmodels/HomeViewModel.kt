@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
@@ -40,6 +41,8 @@ class HomeViewModel : ViewModel() {
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
     var serviceRequestModelResponse : SingleLiveEvent<Resource<ServiceRequestModel?>>?=null
+    var loglivedata : SingleLiveEvent<Resource<LogSearchData?>>?=null
+
     var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
     var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
@@ -72,6 +75,7 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
+        loglivedata = homeRepo?.getloglivedata()
         opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
         NocAndCompModelResponse=homeRepo?.noCandCompModel
         TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
@@ -180,5 +184,8 @@ class HomeViewModel : ViewModel() {
 
     fun fetchPowerAndFuel(id:String) {
         homeRepo?.powerAndFuelRequestAll(id)
+    }
+    fun fetchChangeLog(id:String) {
+        homeRepo?.chamgeLogAll(id)
     }
 }

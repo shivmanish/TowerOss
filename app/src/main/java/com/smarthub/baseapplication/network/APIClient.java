@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
+import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
@@ -94,6 +95,11 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<ServiceRequestModel> fetchSiteInfoRequest(@Body SiteInfoParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<LogSearchData> fetchLogData(@Body SiteInfoParam data);
+
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

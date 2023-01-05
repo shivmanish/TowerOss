@@ -6,47 +6,46 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:weightSum="4"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-
+            android:layout_width="0dp"
             android:text="Seq."
-            style="@style/RowTextItemInfo"
+            style="@style/RowTextItemInfosmall"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp14"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:text="Payee Name"
-            style="@style/RowTextItemInfo"
+            style="@style/RowTextItemInfosmall"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp14"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-
+            android:layout_width="0dp"
             android:text="Share%"
-            style="@style/RowTextItemInfo"
+            style="@style/RowTextItemInfosmall"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp14"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:text="Pan No."
-            style="@style/RowTextItemInfo"
+            style="@style/RowTextItemInfosmall"
             android:layout_height="wrap_content"/>
     </LinearLayout>
      <androidx.recyclerview.widget.RecyclerView

@@ -7,6 +7,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
 import com.smarthub.baseapplication.ui.alert.AlertActivity
+import com.smarthub.baseapplication.ui.fragments.Logs.LogActivity
 import com.smarthub.baseapplication.ui.logs.LogsActivity
 
 
@@ -23,13 +24,19 @@ class CommonBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(
         }
 
         binding.cardLogs.setOnClickListener {
-            val intent = Intent(requireContext(),LogsActivity::class.java)
+            val intent = Intent(requireContext(), LogActivity::class.java)
             startActivity(intent)
             dismiss()
         }
 
         binding.sendAlert.setOnClickListener {
             val intent = Intent(requireContext(),AlertActivity::class.java)
+            startActivity(intent)
+            dismiss()
+        }
+
+        binding.cardLogs.setOnClickListener {
+            val intent = Intent(requireContext(),LogActivity::class.java)
             startActivity(intent)
             dismiss()
         }

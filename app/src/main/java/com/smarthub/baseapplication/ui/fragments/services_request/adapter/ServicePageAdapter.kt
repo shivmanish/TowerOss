@@ -8,7 +8,6 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity.Companion.Id
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.*
 import com.smarthub.baseapplication.ui.site_agreement.fragment.Agreements
-import com.smarthub.baseapplication.ui.site_agreement.fragment.Feasibility
 import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.AssignACQTeamFragment
 
 class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDataItem, Id: String?) : FragmentPagerAdapter(manager) {
@@ -23,7 +22,7 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
             2-> AcquisitionSurveyFragment(data,Id!!)
             3 -> OppoTssrTabFragment(data,Id!!)
             4 -> FeasibilityPlanningTabFragment(data,Id!!)
-            5 -> Agreements()
+            5 -> Agreements(data,Id!!)
             6-> SiteProposalTabFragment()
             7 -> SPApprovalTabFragment()
             else -> ServiceRequestTabFragment(data, Id!!)
