@@ -91,11 +91,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:background="@drawable/circle"
+                    android:padding="@dimen/dp5"
+                    android:backgroundTint="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.52"
-                    app:srcCompat="@drawable/btn_notification_check" />
+                    app:srcCompat="@drawable/ic_alet_what" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,12 +111,12 @@
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         app:layout_constraintTop_toBottomOf="@id/button"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        app:layout_constraintRight_toRightOf="@+id/guideline"
 
         android:layout_margin="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/item_collapse"
         app:layout_constraintVertical_bias="0.52"
         android:orientation="vertical"
@@ -125,8 +128,6 @@
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/button"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent">
             <LinearLayout
                 style="@style/ColumnItemInfo"
@@ -181,6 +182,6 @@
                     android:background="#263238" />
             </LinearLayout>
         </GridLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

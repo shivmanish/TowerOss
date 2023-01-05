@@ -566,32 +566,37 @@
                             android:textSize="15sp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_width="@dimen/dp120"
+                   <LinearLayout
+                       android:orientation="horizontal"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:layout_width="@dimen/dp120"
 
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:text="Close Alert"
-                            android:textSize="14sp"
-                            android:layout_margin="@dimen/dp10"
-                            android:gravity="center"
-                            android:paddingTop="@dimen/dp5"
-                            android:paddingBottom="@dimen/dp5"
-                            android:background="@drawable/login_yellow_bg"
-                            />
-                        <TextView
-                            android:id="@+id/textChat"
-                            android:drawableRight="@android:drawable/sym_action_chat"
-                            android:layout_width="@dimen/dp120"
+                           android:layout_height="wrap_content"
+                           android:textColor="@color/white"
+                           android:text="Close Alert"
+                           android:textSize="14sp"
+                           android:layout_margin="@dimen/dp10"
+                           android:gravity="center"
+                           android:paddingTop="@dimen/dp5"
+                           android:paddingBottom="@dimen/dp5"
+                           android:background="@drawable/login_yellow_bg"
+                           />
+                       <TextView
+                           android:id="@+id/textChat"
+                           android:drawableRight="@android:drawable/sym_action_chat"
+                           android:layout_width="@dimen/dp120"
 
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color1"
+                           android:layout_height="wrap_content"
+                           android:textColor="@color/color1"
 
-                            android:textSize="14sp"
-                            android:layout_margin="@dimen/dp10"
-                            android:gravity="center"
-                            android:paddingTop="@dimen/dp5"
-                            android:paddingBottom="@dimen/dp5" />
+                           android:textSize="14sp"
+                           android:layout_margin="@dimen/dp10"
+                           android:gravity="center"
+                           android:paddingTop="@dimen/dp5"
+                           android:paddingBottom="@dimen/dp5" />
+                   </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
