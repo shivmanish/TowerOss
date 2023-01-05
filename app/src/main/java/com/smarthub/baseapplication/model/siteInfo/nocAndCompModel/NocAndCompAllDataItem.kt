@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.siteInfo.NocAndCompModel
+package com.smarthub.baseapplication.model.siteInfo.nocAndCompModel
 
 data class NocAndCompAllDataItem(
     val ApplicationInitial: List<ApplicationInitial>,

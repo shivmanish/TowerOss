@@ -10,13 +10,14 @@ import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
@@ -52,6 +53,7 @@ class HomeViewModel : ViewModel() {
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
+    var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -75,6 +77,7 @@ class HomeViewModel : ViewModel() {
         TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
         powerandfuel = homeRepo?.powerandFuelivedata
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
+        PlanDesignModelResponse=homeRepo?.planAndDesignModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -147,6 +150,9 @@ class HomeViewModel : ViewModel() {
 
     fun opcoTenancyRequestAll(id : String){
         homeRepo?.opcoRequestAll(id)
+    }
+    fun planAndDesignRequestAll(id : String){
+        homeRepo?.planDesignRequestAll(id)
     }
 
     fun NocAndCompRequestAll(id : String){

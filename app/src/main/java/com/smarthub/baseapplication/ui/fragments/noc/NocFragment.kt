@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog

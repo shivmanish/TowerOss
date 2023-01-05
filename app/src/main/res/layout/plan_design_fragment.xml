@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F0F0F0"
+    android:orientation="vertical"
+    android:id="@+id/swipe_layout"
+    android:padding="@dimen/dp10"
     tools:context=".ui.fragments.opcoTenancy.OpcoTanacyFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:orientation="vertical"
-        tools:itemCount="3"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/list_item"
-        tools:listitem="@layout/rf_equipment_list_items"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <include
+                android:id="@+id/add_items_layout"
+
+                layout="@layout/add_new_layout">
+
+            </include>
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:itemCount="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/plan_design_list_item"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/customer_list"/>
+
+        </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/add_more"
@@ -38,6 +58,6 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_new_menu_icon"/>
         </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

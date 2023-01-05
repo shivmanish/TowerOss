@@ -165,13 +165,13 @@ class SiteDetailFragment : BaseFragment() {
                 0-> SiteInfoNewFragment(id)
                 1-> ServicesRequestFrqagment(id)
                 2-> OpcoTanacyFragment(id)
-                3-> PlanDesignMainFrqagment()
+                3-> PlanDesignMainFrqagment(id)
                 4-> SiteAgreementFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
                 5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
                 6-> NocFragment(id)
                 7-> CivilInfraFragment(id)
                 8-> PowerConnection()
-                9-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
+                9-> PlanDesignMainFrqagment(id)
                 else -> SiteInfoNewFragment(id)
             }
             return f

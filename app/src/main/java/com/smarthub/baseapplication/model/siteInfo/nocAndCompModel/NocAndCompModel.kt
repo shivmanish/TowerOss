@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.siteInfo.NocAndCompModel
+package com.smarthub.baseapplication.model.siteInfo.nocAndCompModel
 
 import com.google.gson.annotations.SerializedName
 

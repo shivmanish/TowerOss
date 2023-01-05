@@ -13,12 +13,13 @@ import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel;
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -61,6 +62,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<ServiceRequestModel>> powerandfuel;
+    private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -86,6 +88,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<TowerCivilInfraModel>> getTowerAndCivilInfraModel() {
         return towerAndCivilInfraModel;
+    }
+    public SingleLiveEvent<Resource<PlanAndDesignModel>> getPlanAndDesignModel() {
+        return planAndDesignModel;
     }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
@@ -123,6 +128,7 @@ public class HomeRepo {
         noCandCompModel=new SingleLiveEvent<>();
         towerAndCivilInfraModel=new SingleLiveEvent<>();
         powerandfuel = new SingleLiveEvent<>();
+        planAndDesignModel=new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
     }
 
@@ -667,9 +673,47 @@ public class HomeRepo {
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    opcoTenencyModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    opcoTenencyModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void planDesignRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("PlanningAndDesign");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchPlanDesignRequest(siteInfoParam).enqueue(new Callback<PlanAndDesignModel>() {
+            @Override
+            public void onResponse(Call<PlanAndDesignModel> call, Response<PlanAndDesignModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlanAndDesignModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<PlanAndDesignModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    planAndDesignModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    planAndDesignModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    planAndDesignModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
@@ -705,9 +749,9 @@ public class HomeRepo {
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    noCandCompModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    noCandCompModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
@@ -743,9 +787,9 @@ public class HomeRepo {
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    towerAndCivilInfraModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    towerAndCivilInfraModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

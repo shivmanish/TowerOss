@@ -64,10 +64,7 @@ class PowerConnection : BaseFragment(), PowerConnDataDataDataAdapterListener {
     }
 
     override fun clickedItem(data: PowerAndFuel) {
-        val intent = Intent(
-            requireContext(),
-            PowerConnectionDetailsActivity::class.java
-        )
+        val intent = Intent(requireContext(), PowerConnectionDetailsActivity::class.java)
         intent.putExtra("data", data)
         requireActivity().startActivity(intent)
     }
