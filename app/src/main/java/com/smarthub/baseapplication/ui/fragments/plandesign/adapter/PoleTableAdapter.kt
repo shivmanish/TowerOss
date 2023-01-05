@@ -9,10 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.NocPoTableDataBinding
 import com.smarthub.baseapplication.databinding.PoleTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
 class PoleTableAdapter (var context : Context, var listener : plandesignTowerCivilAdapter.TowrCivilListner): RecyclerView.Adapter<PoleTableAdapter.ViewHold>() {
 
