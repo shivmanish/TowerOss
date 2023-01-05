@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.plandesign.adapter
+package com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,12 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.NocPoTableDataBinding
-import com.smarthub.baseapplication.databinding.PoleTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.databinding.SmpsRectifierTableItemBinding
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
 
-class PoleTableAdapter (var context : Context, var listener : TableCallback): RecyclerView.Adapter<PoleTableAdapter.ViewHold>() {
+class SmpsTableAdapter (var context : Context, var listener : TableCallback): RecyclerView.Adapter<SmpsTableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 
@@ -35,12 +33,9 @@ class PoleTableAdapter (var context : Context, var listener : TableCallback): Re
         notifyItemRemoved(position)
     }
 
-    class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= PoleTableItemBinding.bind(view)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.pole_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.smps_rectifier_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -54,6 +49,11 @@ class PoleTableAdapter (var context : Context, var listener : TableCallback): Re
     override fun getItemCount(): Int {
         return list.size
     }
+
+    class ViewHold(view: View) : RecyclerView.ViewHolder(view){
+        var binding= SmpsRectifierTableItemBinding.bind(view)
+    }
+
 
     // this method will handle the onclick options click
     private fun performOptionsMenuClick(position: Int,view : View) {

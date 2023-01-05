@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.UtilityEquipFragmentBinding
-import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.SmpsTableAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.SmpsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.*
 import com.smarthub.baseapplication.utils.Utils

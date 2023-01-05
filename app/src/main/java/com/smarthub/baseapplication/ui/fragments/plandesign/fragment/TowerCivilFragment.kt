@@ -27,6 +27,7 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
         binding.listItem.layoutManager = LinearLayoutManager(requireContext())
         adapter= plandesignTowerCivilAdapter(requireContext(),this@TowerCivilFragment,twrCivilData)
         binding.listItem.adapter=adapter
+
     }
 
     override fun attachmentItemClicked() {
@@ -36,6 +37,18 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
     override fun editTower() {
         val dalouge = TowerDialouge()
         dalouge.show(childFragmentManager,"")
+    }
+
+    override fun editPole() {
+        Toast.makeText(requireContext(),"edit pole info clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editPoleTableItem(position: Int) {
+        Toast.makeText(requireContext(),"edit pole table item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewPoleTableItem(position: Int) {
+        Toast.makeText(requireContext(),"view pole table item clicked", Toast.LENGTH_SHORT).show()
     }
 
 }
