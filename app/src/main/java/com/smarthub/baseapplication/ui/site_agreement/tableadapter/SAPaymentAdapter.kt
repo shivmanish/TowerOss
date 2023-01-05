@@ -33,7 +33,7 @@ class SAPaymentAdapter(
     class PaymentViewHold(itemView: View) : ViewHold(itemView) {
         var binding: PaymentTableItemBinding = PaymentTableItemBinding.bind(itemView)
 
-            var paymentList : RecyclerView = binding.root.findViewById(R.id.paymentlist)
+            var paymentList : RecyclerView = binding.root.findViewById(R.id.paylist)
                init {
                    binding.collapsingLayout.tag = false
                    if ((binding.collapsingLayout.tag as Boolean)) {
@@ -126,8 +126,4 @@ class SAPaymentAdapter(
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface SANominalsListListener {
-        fun attachmentItemClicked()
-        fun AgreementEditViewClick()
-    }
 }
