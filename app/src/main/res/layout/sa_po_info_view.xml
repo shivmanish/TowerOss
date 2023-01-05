@@ -80,72 +80,82 @@
         xmlns:tools="http://schemas.android.com/tools"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_layout">
-        <LinearLayout
-            android:orientation="horizontal"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp13"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="0dp"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:textStyle="bold"
-                android:text="Item"
-                style="@style/RowTextItemInfo"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp13"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="0dp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:text="PO No."
-                style="@style/RowTextItemInfo"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp13"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="0dp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:layout_marginLeft="@dimen/dp10"
-                android:text="Vendor"
-                style="@style/RowTextItemInfo"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_weight="1.3"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp13"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="0dp"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:text="Date"
-                android:gravity="center"
-                style="@style/RowTextItemInfo"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Sr_Equipment_tables"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_marginTop="@dimen/dp5"
             android:orientation="vertical"
-            tools:listitem="@layout/equipment_table_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp13"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textStyle="bold"
+                    android:text="Item"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp13"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:text="PO No."
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp13"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:text="Vendor"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp13"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_width="0dp"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:text="Date"
+                    android:gravity="center"
+                    style="@style/RowTextItemInfo"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/paylist"
+                tools:listitem="@layout/tower_consumable_table_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

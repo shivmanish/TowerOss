@@ -11,9 +11,11 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomShee
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAAgreementsBottomSheet
+import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PoTableAdapter
+import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SAPaymentAdapter
 
 
-class SANomonalsFrag : BaseFragment(), SANominalsFragmentAdapter.SANominalsListListener {
+class SANomonalsFrag : BaseFragment(), PoTableAdapter.PoInfoListListener {
     lateinit var adapter : SANominalsFragmentAdapter
     var binding : NominalsFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,13 +24,22 @@ class SANomonalsFrag : BaseFragment(), SANominalsFragmentAdapter.SANominalsListL
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= SANominalsFragmentAdapter(this@SANomonalsFrag)
+        adapter= SANominalsFragmentAdapter(requireContext(),this@SANomonalsFrag)
+
         binding?.nominalslist?.adapter = adapter
     }
 
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editClicked(position: Int) {
+
+    }
+
+    override fun viewClicked(position: Int) {
+
     }
 
     override fun AgreementEditViewClick() {

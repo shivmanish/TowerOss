@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.site_agreement.tableadapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.site_agreement.adapter.SAPoDetailsAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
-class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
+class SANominalsFragmentAdapter(var context: Context,var listener: PoTableAdapter.PoInfoListListener) :
     RecyclerView.Adapter<SANominalsFragmentAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
@@ -45,12 +46,12 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
 
         }
     }
+
     class POViewHold(itemView: View) : ViewHold(itemView) {
         var binding: SaPoInfoViewBinding = SaPoInfoViewBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.SrEquipmentTables
 
+        var paymentList : RecyclerView = binding.root.findViewById(R.id.paylist)
         init {
-            addTableItem("dfsdh")
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -59,14 +60,15 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem("gsfbgksf")
             }
         }
-        private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is SAPoDetailsAdapter){
-                var adapter = poTableList.adapter as SAPoDetailsAdapter
-                adapter.addItem()
+        private fun addTableItem(item: String) {
+            if (paymentList.adapter!=null && paymentList.adapter is PoTableAdapter){
+                var adapter = paymentList.adapter as PoTableAdapter
+                adapter.addItem(item)
             }
         }
     }
@@ -88,7 +90,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
 
         }
     }
-    class AttachmentViewHold(itemView: View,listener: SANominalsListListener) : ViewHold(itemView) {
+    class AttachmentViewHold(itemView: View,listener: PoTableAdapter.PoInfoListListener) : ViewHold(itemView) {
         var binding: SaAttachmentsBinding = SaAttachmentsBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -203,12 +205,15 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                 }
                 holder.binding.itemTitle.text=list[position]
             }
-            is POViewHold ->{
+
+            is POViewHold -> {
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
+
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -216,11 +221,18 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitleStr.text=list[position]
+                holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.paymentList.adapter=
+                        PoTableAdapter(context,listener,list)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                }
             }
             is AttachmentViewHold ->{
                 if (currentOpened == position) {
@@ -254,7 +266,7 @@ class SANominalsFragmentAdapter(var listener: SANominalsListListener) :
         if (this.recyclerView!=null)
             this.recyclerView?.scrollToPosition(position)
     }
-    interface SANominalsListListener {
+    interface PoInfoListListener {
         fun attachmentItemClicked()
         fun AgreementEditViewClick()
     }
