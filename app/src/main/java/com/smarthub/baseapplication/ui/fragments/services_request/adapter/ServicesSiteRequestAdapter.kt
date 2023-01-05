@@ -259,7 +259,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.RequesterCompany.text="Api Data Not found"
                     holder.binding.RFTechnology.text="Api Data Not found"
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
-                    holder.binding.OPCOSIteID.text=SrDetailsData?.OpcoSiteName
+                    holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
+                    holder.binding.OPCOSIteID.text="Data Not Found"
                     holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
                     holder.binding.Priority.text=SrDetailsData?.Priority
                     holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
@@ -270,10 +271,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.Area.text=SrDetailsData?.Area
                     holder.binding.PinCode.text=SrDetailsData?.Pincode
                 }
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-//
-//                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
