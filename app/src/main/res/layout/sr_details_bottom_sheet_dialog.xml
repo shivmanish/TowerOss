@@ -133,6 +133,7 @@
                             <EditText
                                 android:id="@+id/editRequesterCompany"
                                 style="@style/RowTestItemEdit"
+                                android:maxLength="10"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="xxxx" />
@@ -311,6 +312,7 @@
                             <TextView
                                 android:id="@+id/expectedDate"
                                 style="@style/RowTestItemEdit"
+                                android:maxLength="10"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Expected Date"
@@ -333,12 +335,29 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Nominals Lat-Long" />
-                            <EditText
-                                android:id="@+id/editNominalsLat_Long"
-                                style="@style/RowTestItemEdit"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:orientation="horizontal">
+                                <EditText
+                                    android:id="@+id/editNominalsLat"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Lat" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_height="wrap_content"
+                                    android:text="  ,  "/>
+                                <EditText
+                                    android:id="@+id/editNominalsLong"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="long" />
+                            </LinearLayout>
+
 
                             <View
                                 android:layout_width="match_parent"

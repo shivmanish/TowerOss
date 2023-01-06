@@ -1,23 +1,17 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
@@ -43,13 +37,13 @@ class OpcoTenancyActivity : BaseActivity() {
     }
 
     private fun initViews(){
-        var data = AppController.getInstance().siteInfoModel.item
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.siteId.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
-        binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+        binding.siteId.text=Opcodata?.Opcoinfo?.get(0)?.OpcoSiteID
+        binding.subTitle.text=Opcodata?.Opcoinfo?.get(0)?.OpcoSiteID
         binding.rfiDate.text= Opcodata?.Opcoinfo?.get(0)?.rfiAcceptanceDate
+        binding.titel.text= Opcodata?.Opcoinfo?.get(0)?.OpcoName
         binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")

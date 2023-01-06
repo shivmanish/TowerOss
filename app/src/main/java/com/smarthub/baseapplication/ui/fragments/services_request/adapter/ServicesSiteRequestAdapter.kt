@@ -261,8 +261,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.SRType.text=SrDetailsData?.SRType
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
                     holder.binding.SRStatus.text=SrDetailsData?.SRStatus
-                    holder.binding.RequesterCompany.text="Api Data Not found"
-                    holder.binding.RFTechnology.text="Api Data Not found"
+                    holder.binding.RequesterCompany.text=SrDetailsData?.RequesterCompany
+                    holder.binding.RFTechnology.text=SrDetailsData?.Technology
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
                     holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
                     holder.binding.OPCOSIteID.text="Data Not Found"
@@ -346,9 +346,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
-//                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
-//                }
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
