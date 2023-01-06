@@ -4,6 +4,7 @@ import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAqu
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSR
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcquisition
 import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 
 data class ServiceRequestAllDataItem(
     var ASAcquitionSurvey: List<ASAquisitionSurvey>?=null,

@@ -27,6 +27,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
+import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -94,7 +95,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<ServiceRequestModel> fetchSiteInfoRequest(@Body SiteInfoParam data);
+    Call<ServiceRequestModel> fetchServiceRequest(@Body SiteInfoParam data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
@@ -116,6 +117,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<TowerCivilInfraModel> fetchTowerCivilInfraRequest(@Body SiteInfoParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<PowerAndFuelModel> fetchPowerFuelRequest(@Body SiteInfoParam data);
 
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SearchList> searchSiteInfoData(@Query("id") String id);

@@ -1,28 +1,21 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.dialouge
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BatteryEquipmentDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.EbBillsDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.EbBillsFragmentBinding
-import com.smarthub.baseapplication.databinding.EbPaymentsDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.NocApplicationDetailsDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.RfEquipmentDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.SiteInfoBasicDetailsDialougeLayoutBinding
+import com.smarthub.baseapplication.databinding.EbDetailsDialougeLayoutBinding
 
 
-class EbBillsDialouge : DialogFragment() {
-lateinit var binding: EbBillsDialougeLayoutBinding
+class EbDetailsDialouge : DialogFragment() {
+lateinit var binding: EbDetailsDialougeLayoutBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
          super.onCreateView(inflater, container, savedInstanceState)
-        binding = EbBillsDialougeLayoutBinding.inflate(inflater)
+        binding = EbDetailsDialougeLayoutBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)

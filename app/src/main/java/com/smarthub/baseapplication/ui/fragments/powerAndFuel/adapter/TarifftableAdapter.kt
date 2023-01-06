@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.adapter
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingConsumableTableItemBinding
 import com.smarthub.baseapplication.databinding.TariffTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuelEBConnectionTariffsDetail
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuelEBConnectionTariffsDetail
 
 class TarifftableAdapter (var context : Context,var table_list :ArrayList<PowerAndFuelEBConnectionTariffsDetail>, var listener : TrafilListiner): RecyclerView.Adapter<TarifftableAdapter.ViewHold>() {
 

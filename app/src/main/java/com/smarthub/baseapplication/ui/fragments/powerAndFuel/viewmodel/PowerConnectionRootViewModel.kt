@@ -1,10 +1,10 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.viewmodel
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.DataResponse
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.DataResponse
 import com.smarthub.baseapplication.utils.Utils
 
 class PowerConnectionRootViewModel : ViewModel() {

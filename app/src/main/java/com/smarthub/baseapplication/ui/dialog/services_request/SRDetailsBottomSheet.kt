@@ -2,15 +2,12 @@ package com.smarthub.baseapplication.ui.dialog.services_request
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails
@@ -41,12 +38,36 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
         srDetailsData.let{
             binding.expectedDate.text = it.ExpectedDate
             binding.requestDate.text = it.RequestDate
+            binding.editRequesterCompany.setText(it.RequesterCompany)
+            binding.editTechnology.setText(it.Technology)
+//            binding.editHubSite.text=it.HubSite as Editable
+            binding.editOPCOSiteID.setText("Data Not found")
+            binding.editPriority.setText(it.Priority)
+            binding.editNominalsLat.setText(it.locLatitude)
+            binding.editNominalsLong.setText(it.locLongitude)
+            binding.editSearchRadius.setText(it.SearchRadius)
+            binding.editCircle.setText(it.Circle)
+            binding.editCityTown.setText(it.CityOrTown)
+            binding.editArea.setText(it.Area)
+            binding.editPinCode.setText(it.Pincode)
         }
 
         binding.update.setOnClickListener {
             srDetailsData.let{
                 it.ExpectedDate = binding.expectedDate.text.toString()
                 it.RequestDate = binding.requestDate.text.toString()
+                it.SRStatus=binding.editSrStatus.text.toString()
+                it.RequesterCompany=binding.editRequesterCompany.text.toString()
+                it.Technology=binding.editTechnology.text.toString()
+                it.Priority=binding.editPriority.text.toString()
+                it.ExpectedDate=binding.expectedDate.text.toString()
+                it.locLatitude=binding.editNominalsLat.text.toString()
+                it.locLongitude=binding.editNominalsLong.text.toString()
+                it.SearchRadius=binding.editSearchRadius.text.toString()
+                it.Circle=binding.editCircle.text.toString()
+                it.CityOrTown=binding.editCityTown.text.toString()
+                it.Area=binding.editArea.text.toString()
+                it.Pincode=binding.editPinCode.text.toString()
             }
 
             val mServiceRequestAllDataItem = ServiceRequestAllDataItem()

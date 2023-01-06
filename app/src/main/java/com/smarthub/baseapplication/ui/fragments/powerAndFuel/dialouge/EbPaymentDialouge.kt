@@ -1,15 +1,10 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.dialouge
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BatteryEquipmentDialougeLayoutBinding
 import com.smarthub.baseapplication.databinding.EbPaymentsDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.NocApplicationDetailsDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.RfEquipmentDialougeLayoutBinding
-import com.smarthub.baseapplication.databinding.SiteInfoBasicDetailsDialougeLayoutBinding
 
 
 class EbPaymentDialouge : DialogFragment() {

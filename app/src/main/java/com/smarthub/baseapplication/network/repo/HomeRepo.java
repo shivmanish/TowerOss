@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
+import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -64,7 +65,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
-    private SingleLiveEvent<Resource<ServiceRequestModel>> powerandfuel;
+    private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
 
@@ -135,11 +136,10 @@ public class HomeRepo {
         generateSiteIdResponse = new SingleLiveEvent<>();
         taskDataList = new SingleLiveEvent<>();
         serviceRequestModel = new SingleLiveEvent<>();
-        powerandfuel = new SingleLiveEvent<>();
         opcoTenencyModel=new SingleLiveEvent<>();
         noCandCompModel=new SingleLiveEvent<>();
         towerAndCivilInfraModel=new SingleLiveEvent<>();
-        powerandfuel = new SingleLiveEvent<>();
+        powerFuelModel = new SingleLiveEvent<>();
         planAndDesignModel=new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
@@ -167,8 +167,8 @@ public class HomeRepo {
         return projectResponse;
     }
 
-    public SingleLiveEvent<Resource<ServiceRequestModel>> getPowerandFuelivedata() {
-        return powerandfuel;
+    public SingleLiveEvent<Resource<PowerAndFuelModel>> getPowerFuelModel() {
+        return powerFuelModel;
     }
 
 
@@ -473,7 +473,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<ProjectModelData> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
                     projectResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -623,7 +623,7 @@ public class HomeRepo {
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
         ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
         serviceRequestModel.postValue(Resource.loading(srModel, 200));
-        apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
+        apiClient.fetchServiceRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
                 if (response.isSuccessful()){
@@ -813,9 +813,9 @@ public class HomeRepo {
         ArrayList<String> list = new ArrayList<>();
         list.add("PowerAndFuel");
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
-        apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
+        apiClient.fetchPowerFuelRequest(siteInfoParam).enqueue(new Callback<PowerAndFuelModel>() {
             @Override
-            public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
+            public void onResponse(Call<PowerAndFuelModel> call, Response<PowerAndFuelModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -826,23 +826,23 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<ServiceRequestModel> call, Throwable t) {
+            public void onFailure(Call<PowerAndFuelModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<ServiceRequestModel> response) {
+            private void reportSuccessResponse(Response<PowerAndFuelModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
-                    serviceRequestModel.postValue(Resource.success(response.body(), 200));
+                    powerFuelModel.postValue(Resource.success(response.body(), 200));
                 }
             }
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    serviceRequestModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    powerFuelModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    serviceRequestModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    powerFuelModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
