@@ -40,8 +40,8 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         }
     }
     class PropertyAgreementViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: PropertyDetailsListItemBinding =
-            PropertyDetailsListItemBinding.bind(itemView)
+        var binding: SaPropertyInfoViewBinding =
+            SaPropertyInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -96,7 +96,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             }
                 PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.property_details_list_item, parent, false)
+                    .inflate(R.layout.sa_property_info_view, parent, false)
                 PropertyAgreementViewHold(view)
             }
              ATTACHMENT_VIEW_TYPE -> {
