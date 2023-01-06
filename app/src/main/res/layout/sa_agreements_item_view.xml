@@ -120,6 +120,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:maxLines="1"
                             android:text="Registration Number"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
@@ -157,6 +158,8 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:maxLines="1"
+
                             android:text="Booking Cost Centre"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"

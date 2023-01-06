@@ -22,7 +22,7 @@ class AgrementLeaseListAdapter(var context:Context,
     var ATTACHMENT_VIEW_TYPE =2
     init {
         list.add("Agreement")
-        list.add("Property Owner & Payment..")
+        list.add("Property Owner & SAPaymentFrag..")
         list.add("Attachments")
 
       }
@@ -46,8 +46,8 @@ class AgrementLeaseListAdapter(var context:Context,
         }
     }
     class PropertyAgreementViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: PropertyDetailsListItemBinding =
-            PropertyDetailsListItemBinding.bind(itemView)
+        var binding: SaPropertyInfoViewBinding =
+            SaPropertyInfoViewBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -102,7 +102,7 @@ class AgrementLeaseListAdapter(var context:Context,
             }
                 PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.property_details_list_item, parent, false)
+                    .inflate(R.layout.sa_property_info_view, parent, false)
                 PropertyAgreementViewHold(view)
             }
              ATTACHMENT_VIEW_TYPE -> {
@@ -121,7 +121,7 @@ class AgrementLeaseListAdapter(var context:Context,
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Agreement") AGREMENT_VIEW_TYPE
 
-        else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
+        else if (list[position] == "Property Owner & SAPaymentFrag..") PROPERTY_VIEW_TYPE
 
         else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0

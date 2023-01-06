@@ -16,14 +16,14 @@ class CommercialListAdapter(var listener: ImageAttachmentAdapter.ItemClickListen
     var type1 = "SO Details"
     var type2 = "Colocation Fee"
     var type3 = "Rental/ Energy Charges"
-    var type4 = "Invoice/ Payment Status"
+    var type4 = "Invoice/ SAPaymentFrag Status"
     var type5 = "OPCO Contact Details"
 
     init {
         list.add("SO Details")
         list.add("Colocation Fee")
         list.add("Rental/ Energy Charges")
-        list.add("Invoice/ Payment Status")
+        list.add("Invoice/ SAPaymentFrag Status")
         list.add("OPCO Contact Details")
     }
 

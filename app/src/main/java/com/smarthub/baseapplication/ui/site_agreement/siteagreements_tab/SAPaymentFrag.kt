@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_agreement.fragment
+package com.smarthub.baseapplication.ui.site_agreement.siteagreements_tab
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PaymentFragmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PaymentTableAdapter
+import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
+import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SAPaymentAdapter
 
-class Payment :Fragment(), ImageAttachmentAdapter.ItemClickListener {
+class SAPaymentFrag :BaseFragment(), PaymentTableAdapter.PaymentInfoListListener{
+    lateinit var adapter : SAPaymentAdapter
 
     var binding : PaymentFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -21,23 +26,24 @@ class Payment :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var recyclerListener = view.findViewById<RecyclerView>(R.id.list_item)
-        var adapter =  ImageAttachmentAdapter(this@Payment)
-        recyclerListener.adapter = adapter
-        view.findViewById<View>(R.id.attach_card).setOnClickListener {
-            adapter.addItem()
-        }
+        adapter= SAPaymentAdapter(requireContext(),this@SAPaymentFrag)
+        binding?.listItem?.adapter = adapter
         initViews(view)
     }
 
     fun initViews(view: View){
-//        var b = view.findViewById<View>(R.id.attach_card)
-//        b.setOnClickListener {
-//
-//        }
+
     }
 
-    override fun itemClicked() {
+    fun itemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editClicked(position: Int) {
+
+    }
+
+    override fun viewClicked(position: Int) {
+
     }
 }

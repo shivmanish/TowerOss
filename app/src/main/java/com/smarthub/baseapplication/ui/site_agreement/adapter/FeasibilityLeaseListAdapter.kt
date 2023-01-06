@@ -60,8 +60,8 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         }
     }
     class PropertyDetailsViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: PropertyDetailsListItemBinding =
-            PropertyDetailsListItemBinding.bind(itemView)
+        var binding: SaPropertyInfoViewBinding =
+            SaPropertyInfoViewBinding.bind(itemView)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
@@ -141,7 +141,7 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
             }
             PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.property_details_list_item, parent, false)
+                    .inflate(R.layout.sa_property_info_view, parent, false)
                 PropertyDetailsViewHold(view)
             }
             PO_DETAILS_VIEW_TYPE -> {
