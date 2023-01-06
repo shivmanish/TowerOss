@@ -207,7 +207,7 @@ class AgrementLeaseListAdapter(var context:Context,
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
        holder.binding.itemTitle.text = list[position]
-           holder.binding.propertyDetailsTable.layoutManager = LinearLayoutManager(context)
+           holder.binding.rvSaPropertylist.layoutManager = LinearLayoutManager(context)
 //           holder.binding.propertyDetailsTable.adapter = PropertyAgreementTableAdapter()
         }
 
