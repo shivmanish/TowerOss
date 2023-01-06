@@ -29,24 +29,30 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".LogActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.HandleDeepLinksActivity"
             android:exported="true">
-            <intent-filter
-                android:autoVerify="true">
+            <intent-filter android:autoVerify="true">
 
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+                <!-- <action android:name="android.intent.action.MAIN" /> -->
+                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
 
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
                     android:host="127.0.0.1"
+                    android:pathPattern="/....*"
                     android:port="8000"
-                    android:pathPattern="/....*" />
-
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
@@ -102,6 +108,16 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".ui.fragments.Logs.LogActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+
         <activity
             android:name=".ui.fragments.services_request.ServicesRequestActivity"
             android:exported="false"
@@ -177,6 +193,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -214,7 +231,7 @@
             android:label="@string/setting"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
+            android:name="com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnectionDetailsActivity"
             android:exported="true"
             android:label="@string/setting" />
         <activity

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.Logs.LogActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="#3D4E6D"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp10">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:tint="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center_vertical"
+            android:text="Logs"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp13" />
+
+        <ImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="5dp"
+            android:src="@drawable/search_white"
+            android:tint="@color/white" />
+
+        <ImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:padding="5dp"
+            android:rotation="90"
+            android:src="@drawable/menu"
+            android:tint="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp15"
+            android:layout_weight="1.2"
+            android:drawableLeft="@drawable/restore"
+            android:drawableRight="@drawable/down_arrow"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Activity"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/dp12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp15"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/clock_mini"
+            android:drawableRight="@drawable/down_arrow"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Time"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/dp12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp15"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/calender_mini"
+            android:drawableRight="@drawable/down_arrow"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Date"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/dp12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp15"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/user_mini"
+            android:drawableRight="@drawable/down_arrow"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="User"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/dp12" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F0F0F0"
+            android:orientation="vertical"
+            android:padding="@dimen/dp10">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/log_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dp10"
+                android:fadingEdge="vertical"
+                android:requiresFadingEdge="vertical"
+                tools:listitem="@layout/log_recycler_item_view" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+</LinearLayout>

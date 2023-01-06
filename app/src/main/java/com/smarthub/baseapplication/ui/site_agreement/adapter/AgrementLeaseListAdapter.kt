@@ -1,14 +1,20 @@
 package com.smarthub.baseapplication.ui.site_agreement.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
+class AgrementLeaseListAdapter(var context:Context,
+    var listener: AgreementListItemlistner,
+    var servicerequirement: ServiceRequestAllDataItem
+) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var AGREMENT_VIEW_TYPE = 0
@@ -16,7 +22,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     var ATTACHMENT_VIEW_TYPE =2
     init {
         list.add("Agreement")
-        list.add("Property Owner & SAPaymentFrag..")
+        list.add("Property Owner & Payment..")
         list.add("Attachments")
 
       }
@@ -40,12 +46,12 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         }
     }
     class PropertyAgreementViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: SaPropertyInfoViewBinding =
-            SaPropertyInfoViewBinding.bind(itemView)
+        var binding: PropertyDetailsListItemBinding =
+            PropertyDetailsListItemBinding.bind(itemView)
         init {
-            binding.itemTitleStr.tag = false
-            binding.itemTitleStr.tag = false
-            if ((binding.itemTitleStr.tag as Boolean)) {
+            binding.itemTitle.tag = false
+            binding.itemTitle.tag = false
+            if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -96,7 +102,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
             }
                 PROPERTY_VIEW_TYPE -> {
                 view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.sa_property_info_view, parent, false)
+                    .inflate(R.layout.property_details_list_item, parent, false)
                 PropertyAgreementViewHold(view)
             }
              ATTACHMENT_VIEW_TYPE -> {
@@ -115,7 +121,7 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
     override fun getItemViewType(position: Int): Int {
         return if (list[position] == "Agreement") AGREMENT_VIEW_TYPE
 
-        else if (list[position] == "Property Owner & SAPaymentFrag..") PROPERTY_VIEW_TYPE
+        else if (list[position] == "Property Owner & Payment..") PROPERTY_VIEW_TYPE
 
         else if (list[position] == "Attachments") ATTACHMENT_VIEW_TYPE
       else 0
@@ -144,11 +150,47 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
             holder.binding.itemTitle.text = list[position]
+
+           if(servicerequirement.SoftAcquisition!=null && servicerequirement.SoftAcquisition!!.isNotEmpty()) {
+               servicerequirement.SoftAcquisition?.get(0)?.AgreementTerms!![0].let{
+                   holder.binding.agrementType.text = it.AgreementPeriod
+                   holder.binding.registrationNumber.text = ""
+                   holder.binding.registrationDate.text = ""
+                   holder.binding.bookingCostCentre.text= ""
+                   holder.binding.agreemenPeriod.text = it.AgreementPeriod
+                   holder.binding.lockPeriod.text = it.LockInPeriod
+                   holder.binding.agreemenEffectiveDate.text = ""
+                   holder.binding.agreementExpiryDate.text = ""
+                   holder.binding.rentStartDate.text = ""
+                   holder.binding.initialAnnualRentAmount.text = ""
+
+                   holder.binding.rentPaymentFrequency.text = ""
+                   holder.binding.periodicRentPaybleAmount.text = it.PeriodicRentPayableAmount
+                   holder.binding.rentEscalation.text = ""
+                   holder.binding.rentEscalationPeriod.text = it.RentEscalationPeriod
+                   holder.binding.lastEscalationDate.text = ""
+                   holder.binding.lastRevisedRentAmount.text = ""
+                   holder.binding.eBInclusiveRental.text = ""
+                   holder.binding.eBBillLimit.text = ""
+                   holder.binding.eBBillingBasis.text = it.EBBillingBasis
+                   holder.binding.eBperunitRate.text = it.EBPerUnitRate
+                   holder.binding.propertyOwnership.text = it.PropertyOwnership
+                   holder.binding.propertyAcquired.text = ""
+
+                   holder.binding.onetimeAmount.text = it.OnetimeAmount
+                   holder.binding.securityDepositeAmount.text = it.SecurityDepositAmount
+                   holder.binding.rooftopAcquiredArea.text = ""
+                   holder.binding.groundAcquiredArea.text = ""
+
+
+
+               }
+           }
         }
        else if (holder is PropertyAgreementViewHold) {
        holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitleStr.tag = !(holder.binding.itemTitleStr.tag as Boolean)
-                if ((holder.binding.itemTitleStr.tag as Boolean)) {
+                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
+                if ((holder.binding.itemTitle.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
@@ -157,14 +199,16 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitleStr.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleStr.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.iconLayout.visibility =
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitleStr.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
-       holder.binding.itemTitleStr.text = list[position]
+       holder.binding.itemTitle.text = list[position]
+           holder.binding.propertyDetailsTable.layoutManager = LinearLayoutManager(context)
+//           holder.binding.propertyDetailsTable.adapter = PropertyAgreementTableAdapter()
         }
 
 

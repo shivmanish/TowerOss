@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
@@ -14,7 +15,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
 
-class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
+class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "SR Details"
     var type2 = "Equipments"
@@ -22,20 +23,23 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type4 = "Backhaul Links"
     var type5 = "Requester Info"
     var type6 = "Attachments"
-    private var data : BasicInfoModelDropDown?=null
+//    private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
     private var SrDetailsData: SRDetails ?=null
     private var BackhaulLinksData: BackHaulLink?=null
     private var RequesterInfoData: RequesterInfo ?=null
     var currentOpened = -1
-    fun setData(data : BasicInfoModelDropDown){
-        this.data = data
-        notifyDataSetChanged()
-    }
-//    fun setValueData(data : ServiceRequest){
-//        this.servicerequestData = data
+
+//    fun setData(data : BasicInfoModelDropDown){
+//        this.data = data
 //        notifyDataSetChanged()
 //    }
+
+    fun updateData(serviceRequestAllData: ServiceRequestAllDataItem?){
+        this.serviceRequestAllData = serviceRequestAllData
+        notifyDataSetChanged()
+    }
+
     init {
         list.add("SR Details")
         list.add("Equipments")
@@ -228,9 +232,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         when (holder) {
 
             is ViewHold1 -> {
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.EditSRdetailsItemClicked()
-                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -252,13 +253,19 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.itemTitleStr.text = list[position]
 
                 if (SrDetailsData!=null) {
+                    holder.binding.imgEdit.setOnClickListener {
+                        if (SrDetailsData!=null)
+                        listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
+                        else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
+                    }
                     holder.binding.SRType.text=SrDetailsData?.SRType
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
                     holder.binding.SRStatus.text=SrDetailsData?.SRStatus
-                    holder.binding.RequesterCompany.text="Api Data Not found"
-                    holder.binding.RFTechnology.text="Api Data Not found"
+                    holder.binding.RequesterCompany.text=SrDetailsData?.RequesterCompany
+                    holder.binding.RFTechnology.text=SrDetailsData?.Technology
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
-                    holder.binding.OPCOSIteID.text=SrDetailsData?.OpcoSiteName
+                    holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
+                    holder.binding.OPCOSIteID.text="Data Not Found"
                     holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
                     holder.binding.Priority.text=SrDetailsData?.Priority
                     holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
@@ -269,10 +276,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.Area.text=SrDetailsData?.Area
                     holder.binding.PinCode.text=SrDetailsData?.Pincode
                 }
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].Basicinfo.isNotEmpty()){
-////                    val basicinfo: Basicinfo = fieldData?.item!![0].Basicinfo[0]
-//
-//                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -322,7 +325,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.EditBackhaulLinkItemClicked()
+                    listener.editBackhaulLinkItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -343,13 +346,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-//                if(fieldData!=null && fieldData?.item!!.size>0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()){
-//                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
-//                }
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.EditSRdetailsItemClicked()
+                    listener.editRequestInfoClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -413,9 +413,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
     interface ServicesRequestLisListener {
         fun attachmentItemClicked()
-        fun EditSRdetailsItemClicked()
-        fun EditBackhaulLinkItemClicked()
-        fun EditrequestinfoClicked()
+        fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem)
+        fun editBackhaulLinkItemClicked()
+        fun editRequestInfoClicked()
         fun editEquipmentClicked(position:Int)
         fun viewEquipmentClicked(position:Int)
         fun editRadioAnteenaClicked(position:Int)

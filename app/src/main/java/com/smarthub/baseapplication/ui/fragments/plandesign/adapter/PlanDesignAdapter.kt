@@ -1,48 +1,65 @@
 package com.smarthub.baseapplication.ui.fragments.plandesign.adapter
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.PlanDesignListItemBinding
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 
 
-class PlanDesignAdapter(var listener: PlanDesignAdapterListener, var array: ArrayList<String>) : RecyclerView.Adapter<PlanDesignViewHolder>() {
+class PlanDesignAdapter(var listener: PlanDesignAdapterListener, Id: String) : RecyclerView.Adapter<PlanDesignEmptyViewHolder>() {
 
-    fun setData(data: ArrayList<String>) {
-        this.array.addAll(data)
+    var list = ArrayList<Any>()
+    var id=Id
+    fun setData(data: ArrayList<PlanAndDesignDataItem>) {
+        this.list.clear()
+        this.list.addAll(data)
         notifyDataSetChanged()
     }
 
-    fun updateData(s : String) {
-        this.array.add(s)
-        notifyItemChanged(array.size.minus(1))
+    fun addLoading(){
+        this.list.clear()
+        this.list.add("loading")
+        notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanDesignViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.plan_design_list_item, parent, false)
-        return PlanDesignViewHolder(view)
+    override fun getItemViewType(position: Int): Int {
+        return if (list[position] is PlanAndDesignDataItem) 0 else 1
     }
 
-    override fun onBindViewHolder(holder: PlanDesignViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanDesignEmptyViewHolder {
+        return if (viewType == 0) {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.plan_design_list_item, parent, false)
+            return PlanDesignViewHolder(view)
+        }else{
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar, parent, false)
+            PlanDesignEmptyViewHolder(view)
+        }
+    }
 
-        holder.binding?.cardItem?.setOnClickListener {
-            listener.clickedItem()
+    override fun onBindViewHolder(holder: PlanDesignEmptyViewHolder, position: Int) {
+
+        if (holder is PlanDesignViewHolder) {
+            var item = list[position] as PlanAndDesignDataItem
+            holder.binding.rfiDate.text = "DataNotFoundFromApi"
+            holder.binding.rfsDate.text = "DataNotFoundFromApi"
+            holder.binding?.cardItem?.setOnClickListener {
+                listener.clickedItem(item, id,position)
+            }
         }
     }
 
     override fun getItemCount(): Int {
-        return array.size
+        return list.size
     }
 }
+ open class PlanDesignEmptyViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemview) {}
 
-class PlanDesignViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemview) {
+class PlanDesignViewHolder(itemview: View) :PlanDesignEmptyViewHolder(itemview) {
     var binding = PlanDesignListItemBinding.bind(itemView)
 }
 
 interface PlanDesignAdapterListener{
-    fun clickedItem()
+    fun clickedItem(data : PlanAndDesignDataItem?, Id :String,index:Int)
 }

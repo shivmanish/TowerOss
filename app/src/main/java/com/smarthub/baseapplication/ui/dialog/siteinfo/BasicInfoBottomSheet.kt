@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.basicInfo.Basicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
@@ -22,18 +24,16 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDown,
+class BasicInfoBottomSheet(contentLayoutId: Int,
                            val basicinfodata: SiteBasicinfo,var id : String, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: BasicInfoDetailsBottomSheetBinding
     var basicinfoModel: BasicinfoModel? = null
-    var basicinfo: BasicinfoServiceData? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         basicinfoModel = BasicinfoModel()
-        basicinfo = BasicinfoServiceData()
         binding = BasicInfoDetailsBottomSheetBinding.bind(view)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         binding.icMenuClose.setOnClickListener {
@@ -48,10 +48,11 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
         }
         binding.txSiteName.setText(basicinfodata.siteName)
         binding.txSiteID.setText(basicinfodata.siteID)
-        binding.siteStatus.setSpinnerData(data.sitestatus.data, basicinfodata.Sitestatus)
-        binding.siteCategory.setSpinnerData(data.sitecategory.data, basicinfodata.Sitecategory)
-        binding.siteType.setSpinnerData(data.sitetype.data, basicinfodata.Sitetype)
-        binding.siteOwnership.setSpinnerData(data.siteownership.data, basicinfodata.Siteownership)
+        AppPreferences.getInstance().setDropDown(binding.siteStatus,"Sitestatus",basicinfodata.Sitestatus)
+        AppPreferences.getInstance().setDropDown(binding.siteCategory,"Sitecategory",basicinfodata.Sitecategory)
+        AppPreferences.getInstance().setDropDown(binding.siteType,"Sitetype",basicinfodata.Sitetype)
+        AppPreferences.getInstance().setDropDown(binding.siteOwnership,"Siteownership",basicinfodata.Siteownership)
+
         binding.txBuildingType.setText(basicinfodata.Buildingtype)
         binding.txtLocationZone.setText(basicinfodata.Locationzone)
         binding.txtMaintenanceZone.setText(basicinfodata.MaintenancePoint)
@@ -62,22 +63,23 @@ class BasicInfoBottomSheet(contentLayoutId: Int, val data: BasicInfoModelDropDow
         binding.address.setText(basicinfodata.siteaddress)
 
         binding.update.setOnClickListener {
-            basicinfo?.let{
-
+            basicinfodata.let{
+//                Toast.makeText(requireContext(),"Sitestatus:${binding.siteStatus.selectedValue.id}",Toast.LENGTH_SHORT).show()
+                it.Sitestatus = binding.siteStatus.selectedValue.id
                 it.Buildingtype = binding.txBuildingType.text.toString()
                 it.Locationzone= binding.txtLocationZone.text.toString()
                 it.MaintenancePoint= ""
                 it.Projectname= binding.txtProjectName.text.toString()
                 it.aliasName= ""
                 it.National = binding.siteNational.selectedValue.id
-                it.id = basicinfodata.id.toString()
+                it.id = basicinfodata.id
                 it.siteID= binding.txSiteID.text.toString()
                 it.siteInChargeName= binding.txtSiteInChargeName.text.toString()
                 it.siteInChargeNumber= binding.txtSiteInChargeNumber.text.toString()
                 it.siteName= binding.txSiteName.text.toString()
                 it.siteaddress= binding.address.text.toString()
             }
-            basicinfoModel?.Basicinfo = basicinfo!!
+            basicinfoModel?.Basicinfo = basicinfodata
             basicinfoModel?.id = id
             viewModel.updateBasicInfo(basicinfoModel!!)
         }

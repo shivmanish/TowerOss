@@ -136,17 +136,20 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         })
 
         binding.viewOnIbo.setOnClickListener {
-            if(searchHistoryList.contains(SearchListItem(item?.siteID,item?.id))){
-              searchHistoryList.remove(SearchListItem(item?.siteID,item?.id))}
-            searchHistoryList.add(0,SearchListItem(item?.siteID,item?.id))
-            if(searchHistoryList.size>=10)
-                searchHistoryList.subList(10,searchHistoryList.size).clear()
-            AppPreferences.getInstance().saveSearchList(searchHistoryList)
-            searchChipAdapter.updateList(searchHistoryList)
-//            var searchHistory1=Gson().fromJson(searchhistoryJson,SearchList::class.java)
+           if (AppPreferences.getInstance().isSavedDropDown){
+               if(searchHistoryList.contains(SearchListItem(item?.siteID,item?.id))){
+                   searchHistoryList.remove(SearchListItem(item?.siteID,item?.id))
+               }
+               searchHistoryList.add(0,SearchListItem(item?.siteID,item?.id))
+               if(searchHistoryList.size>=10) searchHistoryList.subList(10,searchHistoryList.size).clear()
+               AppPreferences.getInstance().saveSearchList(searchHistoryList)
+               searchChipAdapter.updateList(searchHistoryList)
+               findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
 
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
-
+           }else {
+               Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
+               homeViewModel.fetchDropDown()
+           }
         }
         if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)

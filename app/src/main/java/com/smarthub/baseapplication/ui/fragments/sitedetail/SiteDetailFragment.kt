@@ -34,7 +34,7 @@ import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
-import com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnection
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
@@ -165,13 +165,13 @@ class SiteDetailFragment : BaseFragment() {
                 0-> SiteInfoNewFragment(id)
                 1-> ServicesRequestFrqagment(id)
                 2-> OpcoTanacyFragment(id)
-                3-> PlanDesignMainFrqagment()
+                3-> PlanDesignMainFrqagment(id)
                 4-> SiteAgreementFragment.newInstance(tabNames?.get(3) ?: "Site Agreement")
                 5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
                 6-> NocFragment(id)
                 7-> CivilInfraFragment(id)
-                8-> PowerConnection()
-                9-> PlanDesignMainFrqagment.newInstance(tabNames?.get(8) ?: "QA Inspection")
+                8-> PowerConnection(id)
+                9-> PlanDesignMainFrqagment(id)
                 else -> SiteInfoNewFragment(id)
             }
             return f

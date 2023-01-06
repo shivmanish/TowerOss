@@ -29,31 +29,6 @@ public class SiteInfoDropDownData {
     @Expose
     private OpcoinfoModel opcoinfo;
 
-
-  /*  @SerializedName("AcquistionMode")
-    @Expose
-    private AcuationsLeaseModel acuationsLeaseModel;
-    @Expose
-    private UtilitesNocModel utilitesNocModel;
-    @SerializedName("Utilities")
-    @Expose
-    private UtilitesNocModel utilities;
-    @SerializedName("Opcoinfo")
-    @Expose
-    private OpcoinfoModel opcoinfo;
-    @SerializedName("RfEquipment")
-    @Expose
-    private RfEquipmentModel rfEquipment;
-    @SerializedName("Backhaullink")
-    @Expose
-    private BackhaullinkModel backhaullink;
-    @SerializedName("RfAntena")
-    @Expose
-    private RfAntenaModel rfAntena;
-    @SerializedName("comercial")
-    @Expose
-    private ComercialModel comercial;
-*/
     public BasicInfoModelDropDown getBasicInfoModel() {
         return basicInfoModelDropDown;
     }

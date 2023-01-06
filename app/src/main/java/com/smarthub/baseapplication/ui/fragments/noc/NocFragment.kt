@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -25,7 +25,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
     var isDataLoaded = false
     lateinit var nocDataAdapter: NocDataAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         NocCompBinding = NocAndCompFragmentBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return NocCompBinding.root
@@ -42,10 +42,10 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
 
         }
 
-        if (viewmodel?.NocAndCompModelResponse?.hasActiveObservers() == true){
-            viewmodel?.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.NocAndCompModelResponse?.hasActiveObservers() == true){
+            viewmodel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel?.NocAndCompModelResponse?.observe(viewLifecycleOwner) {
+        viewmodel.NocAndCompModelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
@@ -71,7 +71,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         }
 
         NocCompBinding.swipeLayout.setOnRefreshListener {
-            viewmodel?.NocAndCompRequestAll(id)
+            viewmodel.NocAndCompRequestAll(id)
         }
 
     }
@@ -80,14 +80,14 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         super.onViewPageSelected()
         if (viewmodel!=null && !isDataLoaded){
             nocDataAdapter.addLoading()
-            viewmodel?.NocAndCompRequestAll(id)
+            viewmodel.NocAndCompRequestAll(id)
         }
         AppLogger.log("onViewPageSelected NocAndComp")
     }
 
     override fun onDestroy() {
-        if (viewmodel?.NocAndCompModelResponse?.hasActiveObservers() == true)
-            viewmodel?.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.NocAndCompModelResponse?.hasActiveObservers() == true)
+            viewmodel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
 
         super.onDestroy()
     }

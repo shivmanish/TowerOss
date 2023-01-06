@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
 import com.smarthub.baseapplication.utils.AppLogger
@@ -47,15 +48,15 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if (list[position]==type1)
             return 1
-        else if (list[position] is String && list[position]==type2)
+        else if (list[position]==type2)
             return 2
-        else if (list[position] is String && list[position]==type3)
+        else if (list[position]==type3)
             return 3
-        else if (list[position] is String && list[position]==type4)
+        else if (list[position]==type4)
             return 4
-        else if (list[position] is String && list[position]==type5)
+        else if (list[position]==type5)
             return 5
         return 0
     }
@@ -193,7 +194,10 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     val siteBasicinfo:SiteBasicinfo = basicinfodata.Basicinfo[0]
                     holder.binding.txSiteName.text = siteBasicinfo.siteName
                     holder.binding.txSiteID.text = siteBasicinfo.siteID
-                    holder.binding.siteStatus.text = siteBasicinfo.Sitestatus
+
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,"Sitestatus",siteBasicinfo.Sitestatus)
+//                    holder.binding.siteStatus.text = siteBasicinfo.Sitestatus
+
                     holder.binding.siteCategory.text = siteBasicinfo.Sitecategory
                     holder.binding.siteType.text = siteBasicinfo.Sitetype
                     holder.binding.txBuildingType.text = siteBasicinfo.Buildingtype

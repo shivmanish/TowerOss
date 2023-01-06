@@ -7,13 +7,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.ApplicationInitial
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAdapter
-import com.smarthub.baseapplication.ui.fragments.task.TaskItemAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
 class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAndCompAllData: NocAndCompAllDataItem?) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {

@@ -30,7 +30,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/color1"
                 android:background="@color/transparent"
-                style="@style/RowTestItemEdit"
+                
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".5"
                 android:layout_height="match_parent"/>
@@ -108,10 +108,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editTermLease"
-                        android:hint="Term Lease"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/agrementType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -127,11 +126,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textRegistrationNumber"
+                        android:id="@+id/registrationNumber"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        android:layout_height="@dimen/dp20" />
 
                 </LinearLayout>
 
@@ -146,11 +144,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textRegistrationDate"
                         style="@style/RowTextviewItem"
+                        android:id="@+id/registrationDate"
+                        
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        android:layout_height="@dimen/dp20" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -164,11 +162,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textBookingCostCentre"
+                        android:id="@+id/bookingCostCentre"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        android:layout_height="@dimen/dp20" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -181,10 +178,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editAgreemenPeriod"
-                        android:hint="5 Years"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/agreemenPeriod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -199,10 +195,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editLockPeriod"
-                        android:hint="2 Years"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/lockPeriod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -217,10 +212,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editAgreemenDate"
-                        android:hint="27-Jun-22"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/agreemenEffectiveDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -235,10 +229,10 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editAgreementExpiryDate"
-                        android:hint="27-Jun-22"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/agreementExpiryDate"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -253,10 +247,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editRentStartDate"
-                        android:hint="27-Jun-22"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/rentStartDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -271,10 +264,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editInitialAnnualRentAmount"
-                        android:hint="27-Jun-22"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/initialAnnualRentAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -290,11 +282,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textRentPaymentFrequency"
+                        android:id="@+id/rentPaymentFrequency"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        android:layout_height="@dimen/dp20" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -303,15 +294,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Periodic Rent Payable Amo..."
+                        android:text="Periodic Rent Payable Amount"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editPeriodicRent"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/periodicRentPaybleAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -326,10 +315,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editRentEscalation"
-                        android:hint="10"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/rentEscalation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -344,10 +332,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editRentEscalationPeriod"
-                        android:hint="2 year"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/rentEscalationPeriod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -362,10 +349,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editLastEscalationDate"
-                        android:hint="27-Jun-22"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/lastEscalationDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -380,10 +366,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editLastRevisedRentAmount"
-                        android:hint="3,00,000"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/lastRevisedRentAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -399,11 +384,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textEBInclusiveRental"
+                        android:id="@+id/eBInclusiveRental"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        />
 
                 </LinearLayout>
                 <LinearLayout
@@ -417,11 +402,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textEBBillLimit"
+                        android:id="@+id/eBBillLimit"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        />
 
                 </LinearLayout>
                 <LinearLayout
@@ -435,11 +420,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textEBBillingBasis"
+                        android:id="@+id/eBBillingBasis"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        android:layout_height="@dimen/dp20" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -452,11 +436,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editEBperunitRate"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/eBperunitRate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -472,11 +454,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textPropertyOwnership"
+                        android:id="@+id/propertyOwnership"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        />
 
                 </LinearLayout>
                 <LinearLayout
@@ -490,11 +472,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/textPropertyAcquired"
+                        android:id="@+id/propertyAcquired"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp20"
-                        android:text="On-Air" />
+                        />
 
                 </LinearLayout>
                 <LinearLayout
@@ -507,11 +489,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editOnetimeAmount"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/onetimeAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -526,11 +506,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editAmount"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/securityDepositeAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -545,11 +523,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editArea"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/rooftopAcquiredArea"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -563,11 +539,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editUsableArea"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
+                      <TextView
+                        style="@style/RowTextviewItem"
+                        android:id="@+id/groundAcquiredArea"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

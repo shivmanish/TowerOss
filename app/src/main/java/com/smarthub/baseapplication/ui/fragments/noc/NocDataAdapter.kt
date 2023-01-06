@@ -6,20 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.NativeOnCompleteListener
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.NocListItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompAllDataItem
-import com.smarthub.baseapplication.model.siteInfo.NocAndCompModel.NocAndCompModel
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.utils.AppLogger
 
 
-class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener, Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
+class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener,  var Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
     var list = ArrayList<Any>()
-    var id=Id
 
     fun setData(data: ArrayList<NocAndCompAllDataItem>) {
         this.list.clear()
@@ -40,7 +34,7 @@ class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener, I
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): nocEmptyDataViewHolder {
         return if (viewType == 0){
-            var view = LayoutInflater.from(parent.context).inflate(R.layout.noc_list_item, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_list_item, parent, false)
             return NocDataViewHolder(view)
         }else{
             val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar, parent, false)
@@ -53,7 +47,7 @@ class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener, I
             try {
                 var item = list[position] as NocAndCompAllDataItem
                 holder.binding?.cardItem?.setOnClickListener {
-                    listener.clickedItem(item, id!!)
+                    listener.clickedItem(item, Id!!)
                 }
                 holder.binding.textIssueDate.text=item.ApplicationInitial.get(0).IssueDate
             }catch (e:java.lang.Exception){

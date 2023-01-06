@@ -1,20 +1,20 @@
 package com.smarthub.baseapplication.model.siteInfo
 
 data class SafetyAndAcces(
-    val CautionSignage: String?,
-    val DangerSignage: String?,
-    val GateAndFence: String?,
-    val NearByFireStation: String,
-    val NearByFireStationNumber: String,
-    val NearByPoliceStation: String,
-    val NearByPoliceStationNumber: String,
-    val Physicalsecurity: String?,
-    val SiteAccessArea: String?,
-    val Siteaccess: String?,
-    val Siteaccessmethodology: String,
-    val Videomonitoring: String?,
-    val createddate: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modifieddate: String
+    var CautionSignage: String?,
+    var DangerSignage: String?,
+    var GateAndFence: String?,
+    var NearByFireStation: String,
+    var NearByFireStationNumber: String,
+    var NearByPoliceStation: String,
+    var NearByPoliceStationNumber: String,
+    var Physicalsecurity: String?,
+    var SiteAccessArea: String?,
+    var Siteaccess: String?,
+    var Siteaccessmethodology: String,
+    var Videomonitoring: String?,
+    var createddate: String,
+    var id: Int,
+    var isActive: Boolean,
+    var modifieddate: String
 )

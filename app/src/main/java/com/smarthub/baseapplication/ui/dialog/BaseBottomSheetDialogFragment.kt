@@ -48,6 +48,6 @@ open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id
     }
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
-        textView.text = StringBuilder().append(year).append("-").append(month).append("-").append(day)
+        textView.text = StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
     }
 }

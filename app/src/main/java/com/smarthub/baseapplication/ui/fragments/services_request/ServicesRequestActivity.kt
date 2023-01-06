@@ -16,7 +16,6 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class ServicesRequestActivity : BaseActivity() {
-    private var profileViewModel : SiteInfoViewModel?=null
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : NewCustomerDetailFragmentBinding
 
@@ -32,9 +31,6 @@ class ServicesRequestActivity : BaseActivity() {
         initViews()
     }
 
-    private fun mapUiData(siteInfoDropDownData: SiteInfoDropDownData){
-        this.siteInfoDropDownData = siteInfoDropDownData
-    }
 
     private fun initViews(){
         var data = AppController.getInstance().siteInfoModel.item
@@ -61,8 +57,6 @@ class ServicesRequestActivity : BaseActivity() {
             binding.tabs.getTabAt(i)?.customView = itemBinding.root
         }
 
-        profileViewModel= ViewModelProvider(this)[SiteInfoViewModel::class.java]
-
     }
 
     private fun onTabSelectedListener(): TabLayout.OnTabSelectedListener {
@@ -70,7 +64,6 @@ class ServicesRequestActivity : BaseActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 tab.view.setBackgroundResource(R.color.white)
             }
-
             override fun onTabUnselected(tab: TabLayout.Tab) {
                 tab.view.setBackgroundResource(R.color.tab_deselected)
             }

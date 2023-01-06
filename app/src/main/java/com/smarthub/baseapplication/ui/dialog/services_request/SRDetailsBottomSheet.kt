@@ -7,23 +7,117 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.SRDetails
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SRDetailsBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,var id : String,var srDetailsData: SRDetails,var serviceRequestAllData: ServiceRequestAllDataItem) : BaseBottomSheetDialogFragment(contentLayoutId) {
 
+    var basicinfoModel: BasicinfoModel? = null
     lateinit var binding : SrDetailsBottomSheetDialogBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = SrDetailsBottomSheetDialogBinding.bind(view)
+        basicinfoModel = BasicinfoModel()
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.95).toInt()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        setDatePickerView(binding.requestDate)
+        setDatePickerView(binding.expectedDate)
+        srDetailsData.let{
+            binding.expectedDate.text = it.ExpectedDate
+            binding.requestDate.text = it.RequestDate
+            binding.editRequesterCompany.setText(it.RequesterCompany)
+            binding.editTechnology.setText(it.Technology)
+//            binding.editHubSite.text=it.HubSite as Editable
+            binding.editOPCOSiteID.setText("Data Not found")
+            binding.editPriority.setText(it.Priority)
+            binding.editNominalsLat.setText(it.locLatitude)
+            binding.editNominalsLong.setText(it.locLongitude)
+            binding.editSearchRadius.setText(it.SearchRadius)
+            binding.editCircle.setText(it.Circle)
+            binding.editCityTown.setText(it.CityOrTown)
+            binding.editArea.setText(it.Area)
+            binding.editPinCode.setText(it.Pincode)
+        }
+
+        binding.update.setOnClickListener {
+            srDetailsData.let{
+                it.ExpectedDate = binding.expectedDate.text.toString()
+                it.RequestDate = binding.requestDate.text.toString()
+                it.SRStatus=binding.editSrStatus.text.toString()
+                it.RequesterCompany=binding.editRequesterCompany.text.toString()
+                it.Technology=binding.editTechnology.text.toString()
+                it.Priority=binding.editPriority.text.toString()
+                it.ExpectedDate=binding.expectedDate.text.toString()
+                it.locLatitude=binding.editNominalsLat.text.toString()
+                it.locLongitude=binding.editNominalsLong.text.toString()
+                it.SearchRadius=binding.editSearchRadius.text.toString()
+                it.Circle=binding.editCircle.text.toString()
+                it.CityOrTown=binding.editCityTown.text.toString()
+                it.Area=binding.editArea.text.toString()
+                it.Pincode=binding.editPinCode.text.toString()
+            }
+
+            val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
+            mServiceRequestAllDataItem.id = serviceRequestAllData.id
+            mServiceRequestAllDataItem.ServiceRequest = ArrayList()
+
+            val serviceRequest = ServiceRequest()
+            serviceRequest.SRDetails = ArrayList()
+            serviceRequest.SRDetails?.add(srDetailsData)
+            serviceRequest.id = serviceRequestAllData.ServiceRequest!![0].id
+            mServiceRequestAllDataItem.ServiceRequest?.add(serviceRequest)
+
+            val serviceRequestList = ServiceRequestAllData()
+            serviceRequestList.add(mServiceRequestAllDataItem)
+
+            basicinfoModel?.ServiceRequestMain = serviceRequestList
+            basicinfoModel?.id = id
+            viewModel.updateBasicInfo(basicinfoModel!!)
+        }
+
+        if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
+            viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
+        viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
+            if (it!=null){
+                if (it.status == Resource.Status.LOADING){
+                    showProgressLayout()
+                }else{
+                    hideProgressLayout()
+                }
+                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
+                    AppLogger.log("Successfully updated all fields")
+                    dismiss()
+                    viewModel.serviceRequestAll(id)
+                }else{
+                    AppLogger.log("UnExpected Error found")
+                }
+            }else{
+                AppLogger.log("Something went wrong")
+            }
+        }
+    }
+
+    private fun showProgressLayout(){
+        if (binding.progressLayout.visibility != View.VISIBLE)
+            binding.progressLayout.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressLayout(){
+        if (binding.progressLayout.visibility == View.VISIBLE)
+            binding.progressLayout.visibility = View.GONE
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
