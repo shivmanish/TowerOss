@@ -60,8 +60,8 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
         }
     }
     class PropertyDetailsViewHold(itemView: View) :ViewHold(itemView) {
-        var binding: PropertyDetailsListItemBinding =
-            PropertyDetailsListItemBinding.bind(itemView)
+        var binding: SaPropertyInfoViewBinding =
+            SaPropertyInfoViewBinding.bind(itemView)
 
         //   var adapter =  ImageAttachmentAdapter(listener)
         init {
