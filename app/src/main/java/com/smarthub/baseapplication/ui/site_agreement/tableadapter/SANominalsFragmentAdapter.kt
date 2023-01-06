@@ -100,6 +100,7 @@ class SANominalsFragmentAdapter(
 
             binding.imgAdd.setOnClickListener {
                 addTableItem("gsfbgksf")
+
             }
         }
 
@@ -107,6 +108,7 @@ class SANominalsFragmentAdapter(
             if (ownerList.adapter != null && ownerList.adapter is PropertyOwenerTableAdapter) {
                 var adapter = ownerList.adapter as PropertyOwenerTableAdapter
                 adapter.addItem(item)
+
             }
         }
     }
