@@ -2,11 +2,9 @@ package com.smarthub.baseapplication.ui.dialog.services_request
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
@@ -61,7 +59,6 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
                 it.SRStatus=binding.editSrStatus.text.toString()
                 it.RequesterCompany=binding.editRequesterCompany.text.toString()
                 it.Technology=binding.editTechnology.text.toString()
-//                it.HubSite=binding.editHubSite.text as Boolean
                 it.Priority=binding.editPriority.text.toString()
                 it.ExpectedDate=binding.expectedDate.text.toString()
                 it.locLatitude=binding.editNominalsLat.text.toString()

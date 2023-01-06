@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.powerConnection.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,35 +8,63 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocListItemBinding
 import com.smarthub.baseapplication.databinding.PowerConnectionListItemBinding
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataViewHolder
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.nocEmptyDataViewHolder
 
 
-class PowerConnDataAdapter(var listener: PowerConnDataDataDataAdapterListener, var array: ArrayList<PowerAndFuel>) : RecyclerView.Adapter<PowerConnDataDataViewHolder>() {
+class PowerConnDataAdapter(var context: Context, var listener: PowerConnDataDataDataAdapterListener, var id:String) : RecyclerView.Adapter<PowerConnectionEmptyViewHolder>() {
+
+    var list = ArrayList<Any>()
 
     fun setData(data: ArrayList<PowerAndFuel>) {
-        this.array.addAll(data)
+        this.list.clear()
+        this.list.addAll(data)
         notifyDataSetChanged()
     }
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PowerConnDataDataViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.power_connection_list_item, parent, false)
-        return PowerConnDataDataViewHolder(view)
+    fun addLoading(){
+        this.list.clear()
+        this.list.add("loading")
+        notifyDataSetChanged()
+    }
+    init {
+        list.add("dfshg")
     }
 
-    override fun onBindViewHolder(holder: PowerConnDataDataViewHolder, position: Int) {
-
-        holder.binding?.cardItem?.setOnClickListener {
-            listener.clickedItem(array.get(position))
+    override fun getItemViewType(position: Int): Int {
+        return if (list[position] is PowerAndFuel) 0 else 1
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PowerConnectionEmptyViewHolder {
+        return if (viewType == 0){
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.power_connection_list_item, parent, false)
+            return PowerConnectionEmptyViewHolder(view)
+        }else{
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar, parent, false)
+            PowerConnectionEmptyViewHolder(view)
         }
+
+    }
+
+    override fun onBindViewHolder(holder: PowerConnectionEmptyViewHolder, position: Int) {
+        when(holder){
+            is PowerConnectionDataViewHolder->{
+                val item = list[position] as PowerAndFuel
+                holder.binding?.cardItem?.setOnClickListener {
+                    listener.clickedItem(item)
+                }
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
-        return array.size
+        return list.size
     }
 }
+open class PowerConnectionEmptyViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemview)
 
-class PowerConnDataDataViewHolder(var itemview: View) : RecyclerView.ViewHolder(itemview) {
+class PowerConnectionDataViewHolder( itemview: View) : PowerConnectionEmptyViewHolder(itemview) {
     var binding = PowerConnectionListItemBinding.bind(itemView)
 }
 

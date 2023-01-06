@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/power_connection_list_item"/>
+        tools:listitem="@layout/civil_infra_list_item"/>
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/add_more"
             android:layout_width="@dimen/dp50"

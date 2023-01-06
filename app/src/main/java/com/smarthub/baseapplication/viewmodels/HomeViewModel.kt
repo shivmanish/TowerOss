@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
+import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
@@ -47,13 +48,13 @@ class HomeViewModel : ViewModel() {
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
-    var powerandfuel:SingleLiveEvent<Resource<ServiceRequestModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
+    var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -75,9 +76,9 @@ class HomeViewModel : ViewModel() {
         opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
         NocAndCompModelResponse=homeRepo?.noCandCompModel
         TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
-        powerandfuel = homeRepo?.powerandFuelivedata
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
+        powerAndFuelResponse=homeRepo?.powerFuelModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){

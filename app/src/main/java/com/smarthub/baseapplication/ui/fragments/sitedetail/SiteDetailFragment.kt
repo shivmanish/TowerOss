@@ -170,7 +170,7 @@ class SiteDetailFragment : BaseFragment() {
                 5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
                 6-> NocFragment(id)
                 7-> CivilInfraFragment(id)
-                8-> PowerConnection()
+                8-> PowerConnection(id)
                 9-> PlanDesignMainFrqagment(id)
                 else -> SiteInfoNewFragment(id)
             }
