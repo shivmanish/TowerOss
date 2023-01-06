@@ -460,7 +460,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<ProjectModelData> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
                     projectResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -610,7 +610,7 @@ public class HomeRepo {
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
         ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
         serviceRequestModel.postValue(Resource.loading(srModel, 200));
-        apiClient.fetchSiteInfoRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
+        apiClient.fetchServiceRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
                 if (response.isSuccessful()){
