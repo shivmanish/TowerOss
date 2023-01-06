@@ -11,6 +11,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PaymentFragmentBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAAgreementsBottomSheet
+import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPaymentEditBottomSheet
+import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPaymentViewBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PaymentTableAdapter
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SAPaymentAdapter
@@ -40,10 +43,12 @@ class SAPaymentFrag :BaseFragment(), PaymentTableAdapter.PaymentInfoListListener
     }
 
     override fun editClicked(position: Int) {
-
+        var payment = SAPaymentEditBottomSheet(R.layout.sa_payment_edit_dialog)
+        payment?.show(childFragmentManager,"category")
     }
 
     override fun viewClicked(position: Int) {
-
+        var viewPayment = SAPaymentViewBottomSheet(R.layout.sa_payment_view_dialog)
+        viewPayment?.show(childFragmentManager,"category")
     }
 }
