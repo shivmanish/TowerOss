@@ -4,15 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoStatusData;
 import com.smarthub.baseapplication.utils.AppController;
+import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.widgets.CustomSpinner;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AppPreferences {
 public static String DROPDOWNDATA = "dropdowndata";
@@ -34,6 +41,117 @@ public static String DROPDOWNDATA = "dropdowndata";
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putBoolean(iKey, iValue);
         prefsEditor.apply();
+    }
+
+    public void saveDropDownData(SiteInfoDropDownData data) {
+        Gson gson = new Gson();
+        String stringDatajson = gson.toJson(data);
+        AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson);
+    }
+
+    public boolean isSavedDropDown(){
+        String jsonString = getString(DROPDOWNDATA);
+        return (jsonString!=null && !jsonString.isEmpty());
+    }
+
+    public SiteInfoDropDownData getDropDown(){
+        String jsonString = getString(DROPDOWNDATA);
+        Gson gson = new Gson();
+        return gson.fromJson(jsonString,SiteInfoDropDownData.class);
+    }
+
+    public void setDropDown(CustomSpinner customSpinner,String name,String id){
+        String jsonString = getString(DROPDOWNDATA);
+        customSpinner.setSpinnerData(getDropDownList(name,jsonString),id);
+    }
+
+    public void setDropDown(TextView customSpinner, String name, String id){
+        String jsonString = getString(DROPDOWNDATA);
+        List<DropDownItem> list = getDropDownList(name,jsonString);
+        for (DropDownItem i : list) {
+            if (i.getId().equalsIgnoreCase(id)) {
+                customSpinner.setText(i.getName());
+                return;
+            }
+        }
+    }
+
+    private List<DropDownItem> getDropDownList(String name,String jsonString){
+        Gson gson = new Gson();
+        List<DropDownItem> listData = new ArrayList();
+        try {
+            SiteInfoDropDownData siteInfoDropDownData = gson.fromJson(jsonString,SiteInfoDropDownData.class);
+            switch (name){
+                case "Sitestatus":
+                    listData = siteInfoDropDownData.getBasicInfoModel().getSitestatus().getData();
+                    break;
+
+                case "Sitecategory":
+                    listData = siteInfoDropDownData.getBasicInfoModel().getSitecategory().getData();
+                    break;
+
+                case "Sitetype":
+                    listData = siteInfoDropDownData.getBasicInfoModel().getSitetype().getData();
+                    break;
+
+                case "Siteownership":
+                    listData = siteInfoDropDownData.getBasicInfoModel().getSiteownership().getData();
+                    break;
+
+                case "Sitebillingstatus":
+                    listData = siteInfoDropDownData.getOperationalInfo().getSitebillingstatus().getData();
+                    break;
+
+                case "Costcentre":
+                    listData = siteInfoDropDownData.getOperationalInfo().getCostcentre().getData();
+                    break;
+
+                case "Sharingfeasibility":
+                    listData = siteInfoDropDownData.getOperationalInfo().getSharingfeasibility().getData();
+                    break;
+
+                case "Towncategory":
+                    listData = siteInfoDropDownData.getOperationalInfo().getTowncategor().getData();
+                    break;
+
+                case "Hubsite":
+                    listData = siteInfoDropDownData.getOperationalInfo().getHubsite().getData();
+                    break;
+
+                case "Ldca":
+                    listData = siteInfoDropDownData.getOperationalInfo().getLdca().getData();
+                    break;
+
+                case "Scda":
+                    listData = siteInfoDropDownData.getOperationalInfo().getScda().getData();
+                    break;
+
+                case "Potentialthreat":
+                    listData = siteInfoDropDownData.getGeoCondition().getPotentialthreat().getData();
+                    break;
+
+                case "Windzone":
+                    listData = siteInfoDropDownData.getGeoCondition().getWindzone().getData();
+                    break;
+
+                case "Seismiczone":
+                    listData = siteInfoDropDownData.getGeoCondition().getSeismiczone().getData();
+                    break;
+
+                case "Floodzone":
+                    listData = siteInfoDropDownData.getGeoCondition().getFloodzone().getData();
+                    break;
+
+                case "Terraintype":
+                    listData = siteInfoDropDownData.getGeoCondition().getTerraintype().getData();
+                    break;
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            AppLogger.INSTANCE.log("e dropdown : "+e.getLocalizedMessage());
+        }
+        return listData;
     }
 
     public void saveInteger(String iKey, int iValue) {

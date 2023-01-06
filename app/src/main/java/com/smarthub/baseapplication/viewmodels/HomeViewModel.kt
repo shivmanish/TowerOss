@@ -57,6 +57,8 @@ class HomeViewModel : ViewModel() {
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
+    var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
+
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -82,6 +84,7 @@ class HomeViewModel : ViewModel() {
         powerandfuel = homeRepo?.powerandFuelivedata
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
+        dropDownResponse = homeRepo?.dropDownResoonse
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -187,5 +190,9 @@ class HomeViewModel : ViewModel() {
     }
     fun fetchChangeLog(id:String) {
         homeRepo?.chamgeLogAll(id)
+    }
+
+    fun fetchDropDown() {
+        homeRepo?.siteInfoDropDown()
     }
 }

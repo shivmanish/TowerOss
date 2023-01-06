@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -39,18 +40,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-
-        if (homeViewModel.siteDropData?.hasActiveObservers() == true){
-            homeViewModel.siteDropData?.removeObservers(viewLifecycleOwner)
-        }
-        homeViewModel.siteDropData?.observe(viewLifecycleOwner) {
-            if (it!=null){
-                dropdowndata = it.data
-                if (binding.listItem.adapter is SiteInfoListAdapter){
-                    (binding.listItem.adapter as SiteInfoListAdapter).setData(it.data!!)
-                }
-            }else homeViewModel.fetchSiteDropDownData()
-        }
+        dropdowndata = AppPreferences.getInstance().dropDown
 
         if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
@@ -105,12 +95,8 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     }
 
     override fun detailsItemClicked(siteBasicinfo: SiteBasicinfo, id : String) {
-        if (dropdowndata != null) {
-            val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, dropdowndata?.basicInfoModel!!, siteBasicinfo,id,homeViewModel)
-            bottomSheetDialogFragment.show(childFragmentManager, "category")
-        } else {
-            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
-        }
+        val bottomSheetDialogFragment = BasicInfoBottomSheet(R.layout.basic_info_details_bottom_sheet, siteBasicinfo,id,homeViewModel)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 
     override fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo, id : String) {

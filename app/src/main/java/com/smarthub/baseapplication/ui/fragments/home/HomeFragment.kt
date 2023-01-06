@@ -15,22 +15,24 @@ import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.FragmentHomeBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
+import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
-    var homeViewModel : HomeViewModel ?=null
+    lateinit var homeViewModel : HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-
+        setDataDropDownObserver()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.searchBoxLayout.setOnClickListener {
@@ -131,6 +133,28 @@ class HomeFragment : Fragment() {
         val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel!!)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
 
+    }
+
+    private fun setDataDropDownObserver() {
+
+        if (homeViewModel.dropDownResponse?.hasActiveObservers() == true)
+            homeViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+//            hideLoader()
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS && it.data != null) {
+                    AppPreferences.getInstance().saveDropDownData(it.data)
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
+        homeViewModel.fetchDropDown()
     }
 
 

@@ -85,6 +85,10 @@ public class HomeRepo {
         return siteSearchResponse;
     }
 
+    public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
+        return dropDownResoonse;
+    }
+
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
         return serviceRequestModel;
     }

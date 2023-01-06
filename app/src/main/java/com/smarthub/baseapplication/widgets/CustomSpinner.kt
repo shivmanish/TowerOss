@@ -22,7 +22,17 @@ class CustomSpinner : AppCompatSpinner {
 //        itemSelectedListener = listener
 //    }
     fun init() {
+
     }
+
+//    fun selectItemByIndex(id: String){
+//        for (i in 0 until count) {
+//            if (data[i].id == id) {
+//                onItemSelected(data[i])
+//                return
+//            }
+//        }
+//    }
 
     fun onItemSelected(item : DropDownItem){
         selectedValue = item
@@ -57,8 +67,4 @@ class CustomSpinner : AppCompatSpinner {
     interface ItemSelectedListener{
         fun itemSelected(item : DropDownItem)
     }
-
-//    override fun setOnItemSelectedListener(listener: OnItemSelectedListener?) {
-//        super.setOnItemSelectedListener(listener)
-//    }
 }
