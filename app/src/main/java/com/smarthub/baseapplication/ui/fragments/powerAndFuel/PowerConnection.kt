@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,9 @@ import com.smarthub.baseapplication.databinding.PowerConnectionFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataAdapter
-import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnectionListListener
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnDataAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnectionListListener
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 

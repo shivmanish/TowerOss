@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.pojo
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo
 
 data class PowerAndFuelEBConnection(
     val AuthorityPODetails: List<AuthorityPODetail>,

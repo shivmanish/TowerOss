@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.fragment
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.EbConnectionFragmentBinding
-import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.TarifftableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerConnection.dialouge.EbDetailsDialouge
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuelEBConnectionTariffsDetail
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TarifftableAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.EbDetailsDialouge
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuelEBConnectionTariffsDetail
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.Utils
 

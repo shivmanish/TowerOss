@@ -1,13 +1,13 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityPowerConnectionDetailsBinding
-import com.smarthub.baseapplication.ui.fragments.powerConnection.fragment.EbBillsFragment
-import com.smarthub.baseapplication.ui.fragments.powerConnection.fragment.EbConnectionFragment
-import com.smarthub.baseapplication.ui.fragments.powerConnection.fragment.EbPaymentFragment
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbBillsFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbConnectionFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbPaymentFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 
 class PowerConnectionDetailsActivity : AppCompatActivity() {

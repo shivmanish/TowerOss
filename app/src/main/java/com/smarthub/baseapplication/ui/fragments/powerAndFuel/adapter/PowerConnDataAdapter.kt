@@ -1,17 +1,14 @@
-package com.smarthub.baseapplication.ui.fragments.powerConnection.adapter
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.NocListItemBinding
 import com.smarthub.baseapplication.databinding.PowerConnectionListItemBinding
-import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
-import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataViewHolder
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.nocEmptyDataViewHolder
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 
 
 class PowerConnDataAdapter(var context: Context, var listener: PowerConnectionListListener, var id:String) : RecyclerView.Adapter<PowerConnectionEmptyViewHolder>() {
@@ -38,7 +35,7 @@ class PowerConnDataAdapter(var context: Context, var listener: PowerConnectionLi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PowerConnectionEmptyViewHolder {
         return if (viewType == 0){
             val view = LayoutInflater.from(parent.context).inflate(R.layout.power_connection_list_item, parent, false)
-            return PowerConnectionEmptyViewHolder(view)
+            return PowerConnectionDataViewHolder(view)
         }else{
             val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar, parent, false)
             PowerConnectionEmptyViewHolder(view)
@@ -50,7 +47,7 @@ class PowerConnDataAdapter(var context: Context, var listener: PowerConnectionLi
         when(holder){
             is PowerConnectionDataViewHolder->{
                 val item = list[position] as PowerAndFuel
-                holder.binding?.cardItem?.setOnClickListener {
+                holder.itemview.setOnClickListener {
                     listener.clickedItem(item)
                 }
             }

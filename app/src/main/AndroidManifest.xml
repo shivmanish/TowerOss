@@ -214,7 +214,7 @@
             android:label="@string/setting"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smarthub.baseapplication.ui.fragments.powerConnection.PowerConnectionDetailsActivity"
+            android:name="com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnectionDetailsActivity"
             android:exported="true"
             android:label="@string/setting" />
         <activity
