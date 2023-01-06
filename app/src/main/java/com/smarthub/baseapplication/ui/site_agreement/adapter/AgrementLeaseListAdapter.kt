@@ -43,9 +43,9 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         var binding: SaPropertyInfoViewBinding =
             SaPropertyInfoViewBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+            binding.itemTitleStr.tag = false
+            binding.itemTitleStr.tag = false
+            if ((binding.itemTitleStr.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
@@ -147,8 +147,8 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
         }
        else if (holder is PropertyAgreementViewHold) {
        holder.binding.collapsingLayout.setOnClickListener {
-                holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
-                if ((holder.binding.itemTitle.tag as Boolean)) {
+                holder.binding.itemTitleStr.tag = !(holder.binding.itemTitleStr.tag as Boolean)
+                if ((holder.binding.itemTitleStr.tag as Boolean)) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 } else {
@@ -157,14 +157,14 @@ class AgrementLeaseListAdapter(var listener: AgreementListItemlistner) :
                 }
 
                 holder.binding.itemLine.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
-                holder.binding.iconLayout.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleStr.tag as Boolean) View.GONE else View.VISIBLE
+                holder.binding.itemCollapse.visibility =
+                    if (holder.binding.itemTitleStr.tag as Boolean) View.VISIBLE else View.GONE
 
                 holder.binding.itemCollapse.visibility =
-                    if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
+                    if (holder.binding.itemTitleStr.tag as Boolean) View.VISIBLE else View.GONE
             }
-       holder.binding.itemTitle.text = list[position]
+       holder.binding.itemTitleStr.text = list[position]
         }
 
 

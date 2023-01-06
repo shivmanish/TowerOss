@@ -86,7 +86,7 @@ class SANominalsFragmentAdapter(
     class PropertyViewHold(itemView: View) : ViewHold(itemView) {
         var binding: SaPropertyInfoViewBinding = SaPropertyInfoViewBinding.bind(itemView)
 
-        var propertList: RecyclerView = binding.root.findViewById(R.id.rv_sa_propertylist)
+        var ownerList: RecyclerView = binding.root.findViewById(R.id.ownerList)
 
         init {
             binding.collapsingLayout.tag = false
@@ -104,8 +104,8 @@ class SANominalsFragmentAdapter(
         }
 
         private fun addTableItem(item: String) {
-            if (propertList.adapter != null && propertList.adapter is PropertyOwenerTableAdapter) {
-                var adapter = propertList.adapter as PropertyOwenerTableAdapter
+            if (ownerList.adapter != null && ownerList.adapter is PropertyOwenerTableAdapter) {
+                var adapter = ownerList.adapter as PropertyOwenerTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -256,9 +256,9 @@ class SANominalsFragmentAdapter(
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.propertList.adapter =
+                    holder.ownerList.adapter =
                         PropertyOwenerTableAdapter(context, listener2!!, list)
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
