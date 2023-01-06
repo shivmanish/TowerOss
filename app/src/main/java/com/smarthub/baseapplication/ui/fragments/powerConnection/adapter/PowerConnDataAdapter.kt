@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDat
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.nocEmptyDataViewHolder
 
 
-class PowerConnDataAdapter(var context: Context, var listener: PowerConnDataDataDataAdapterListener, var id:String) : RecyclerView.Adapter<PowerConnectionEmptyViewHolder>() {
+class PowerConnDataAdapter(var context: Context, var listener: PowerConnectionListListener, var id:String) : RecyclerView.Adapter<PowerConnectionEmptyViewHolder>() {
 
     var list = ArrayList<Any>()
 
@@ -68,6 +68,6 @@ class PowerConnectionDataViewHolder( itemview: View) : PowerConnectionEmptyViewH
     var binding = PowerConnectionListItemBinding.bind(itemView)
 }
 
-interface PowerConnDataDataDataAdapterListener{
+interface PowerConnectionListListener{
     fun clickedItem(data:PowerAndFuel)
 }

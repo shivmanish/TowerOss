@@ -14,12 +14,12 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataAdapter
-import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnDataDataDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.powerConnection.adapter.PowerConnectionListListener
 import com.smarthub.baseapplication.ui.fragments.powerConnection.pojo.PowerAndFuel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PowerConnection (var id:String): BaseFragment(), PowerConnDataDataDataAdapterListener {
+class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListener {
 
     lateinit var binding: PowerConnectionFragmentBinding
     var viewmodel: HomeViewModel?=null

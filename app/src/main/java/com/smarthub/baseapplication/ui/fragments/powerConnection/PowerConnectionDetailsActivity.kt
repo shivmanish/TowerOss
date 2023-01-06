@@ -16,7 +16,6 @@ class PowerConnectionDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPowerConnectionDetailsBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
         data = intent.getSerializableExtra("data") as PowerAndFuel
         initview()
