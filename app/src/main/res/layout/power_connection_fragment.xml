@@ -8,9 +8,22 @@
     android:background="#F0F0F0"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <LinearLayout
+        android:id="@+id/addmore_items"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <include
+            layout="@layout/add_new_layout">
+
+        </include>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp10"
         android:paddingLeft="@dimen/dp5"
         android:paddingRight="@dimen/dp5"
         android:paddingBottom="@dimen/dp10"
@@ -18,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="5"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addmore_items"
         app:layout_constraintStart_toStartOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/power_connection_list_item"/>
