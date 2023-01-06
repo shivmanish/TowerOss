@@ -208,8 +208,6 @@ class SANominalsFragmentAdapter(
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
-
-
             is POViewHold -> {
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
