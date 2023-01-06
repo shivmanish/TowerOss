@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteAgreemetAdapter
 
 class SiteAgreementCaredItemActivity : BaseActivity() {
     lateinit var binding : ActivityNewSiteAcquisitionBinding
@@ -26,7 +27,7 @@ class SiteAgreementCaredItemActivity : BaseActivity() {
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.viewpager.adapter = SiteLeaseAcquisitionAdapter(supportFragmentManager)
+        binding.viewpager.adapter = SiteAgreemetAdapter(supportFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()
