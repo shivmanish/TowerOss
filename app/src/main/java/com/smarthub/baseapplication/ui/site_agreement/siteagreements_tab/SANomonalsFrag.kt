@@ -5,21 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
-import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomSheet
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementsData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAAgreementsBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPOEditBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPOViewBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PoTableAdapter
-import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SAPaymentAdapter
 
 
-class SANomonalsFrag(siteacquisitionAgreements: List<SiteacquisitionAgreement>?) : BaseFragment(), PoTableAdapter.PoInfoListListener {
+class SANomonalsFrag(private val siteacquisitionAgreements: List<SiteAgreementsData>?) : BaseFragment(), PoTableAdapter.PoInfoListListener {
     lateinit var adapter : SANominalsFragmentAdapter
     var binding : NominalsFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,7 +25,7 @@ class SANomonalsFrag(siteacquisitionAgreements: List<SiteacquisitionAgreement>?)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= SANominalsFragmentAdapter(requireContext(),this@SANomonalsFrag)
+        adapter= SANominalsFragmentAdapter(requireContext(),this@SANomonalsFrag,siteacquisitionAgreements)
 
         binding?.nominalslist?.adapter = adapter
     }
@@ -49,7 +46,7 @@ class SANomonalsFrag(siteacquisitionAgreements: List<SiteacquisitionAgreement>?)
     }
 
     override fun AgreementEditViewClick() {
-        var saAgreementsBottomSheet = SAAgreementsBottomSheet(R.layout.sa_agreement_dialog)
+        var saAgreementsBottomSheet = SAAgreementsBottomSheet(R.layout.sa_agreement_dialog,siteacquisitionAgreements)
         saAgreementsBottomSheet?.show(childFragmentManager,"category")
     }
 

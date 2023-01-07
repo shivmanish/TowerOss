@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.SaAttachmentsBinding
 import com.smarthub.baseapplication.databinding.SaPoInfoViewBinding
 import com.smarthub.baseapplication.databinding.SaPropertyInfoViewBinding
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignEquipRoomEquipmentRoom
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementsData
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
@@ -20,7 +21,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 class SANominalsFragmentAdapter(
     var context: Context,
     var listener: PoTableAdapter.PoInfoListListener? = null,
-
+    allData:List<SiteAgreementsData>?,
     var listener2: PropertyOwenerTableAdapter.PropertyOwenerInfoListListener? = null,
 ) :
     RecyclerView.Adapter<SANominalsFragmentAdapter.ViewHold>() {
