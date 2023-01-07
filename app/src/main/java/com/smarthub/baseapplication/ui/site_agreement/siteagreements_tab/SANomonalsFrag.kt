@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementsData
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAAgreementsBottomSheet
@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPOViewBottomShee
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PoTableAdapter
 
 
-class SANomonalsFrag(private val siteacquisitionAgreements: List<SiteAgreementsData>?) : BaseFragment(), PoTableAdapter.PoInfoListListener {
+class SANomonalsFrag(private val siteacquisitionAgreements: List<SiteacquisitionAgreement>?) : BaseFragment(), PoTableAdapter.PoInfoListListener {
     lateinit var adapter : SANominalsFragmentAdapter
     var binding : NominalsFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,7 +46,7 @@ class SANomonalsFrag(private val siteacquisitionAgreements: List<SiteAgreementsD
     }
 
     override fun AgreementEditViewClick() {
-        var saAgreementsBottomSheet = SAAgreementsBottomSheet(R.layout.sa_agreement_dialog,siteacquisitionAgreements)
+        var saAgreementsBottomSheet = SAAgreementsBottomSheet(R.layout.sa_agreement_dialog)
         saAgreementsBottomSheet?.show(childFragmentManager,"category")
     }
 

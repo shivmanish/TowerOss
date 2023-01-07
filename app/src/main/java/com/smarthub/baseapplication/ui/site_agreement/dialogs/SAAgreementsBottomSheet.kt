@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.utils.Utils
 
 class SAAgreementsBottomSheet(
     contentLayoutId: Int,
-    siteacquisitionAgreements: List<SiteAgreementsData>?
+
 ): BottomSheetDialogFragment(contentLayoutId)  {
     lateinit var binding : SaAgreementDialogBinding
 
