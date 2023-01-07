@@ -248,7 +248,6 @@ class SANominalsFragmentAdapter(
                holder.binding.txtRentEscalationPeriod.setText(siteAgreementsData?.RentEscalationPeriod)
                holder.binding.textRentPaymentFrequency.setText(siteAgreementsData?.RentPaymentFrequency)
                holder.binding.txtRentStartDate.setText(siteAgreementsData?.RentStartDate)
-               holder.binding.txtRentStartDate.setText(siteAgreementsData?.RentStartDate)
                holder.binding.txtSecurityAmount.setText(siteAgreementsData?.SecurityDepositAmount)
                holder.binding.txtRooftopArea.setText(siteAgreementsData?.RooftopUsableArea)
                 holder.binding.collapsingLayout.setOnClickListener {
