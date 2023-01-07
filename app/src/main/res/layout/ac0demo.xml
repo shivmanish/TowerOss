@@ -1,538 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <ScrollView
+    tools:context=".ui.utilites.SMPSDetailsActivity">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            app:cardElevation="2dp"
+            android:id="@+id/card"
+            app:cardCornerRadius="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardBackgroundColor="@color/card_bg">
             <LinearLayout
-                android:id="@+id/collapsing_layout_equipment"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
+                android:layout_height="wrap_content">
                 <LinearLayout
-                    android:id="@+id/equipment_root"
+                    android:id="@id/top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/expand_colaps_background"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/item_title_eqipment"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:clickable="false"
-                        android:padding="@dimen/dp15"
-                        android:text="Tower" />
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/dp15"
+                    android:paddingEnd="@dimen/dp15"
+                    android:paddingBottom="5dp">
 
                     <ImageView
-                        android:id="@+id/equipment_edit"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/edit_fav_btn"
-                        android:visibility="gone" />
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:padding="@dimen/dp7"
+                        android:id="@+id/back"
+                        app:tint="@color/white"
+                        android:src="@drawable/ic_back"
+                        android:adjustViewBounds="true"
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"/>
 
-                    <ImageView
-                        android:id="@+id/equipment_arrow"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/ic_arrow_down_black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/item_collapse_equipment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="vertical"
-                    android:visibility="gone">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingBottom="@dimen/dp10">
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp8"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
 
-                        <GridLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:columnCount="2"
-                            android:orientation="horizontal"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tower Height (m)" />
-
-                                <TextView
-                                    android:id="@+id/tower_height"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Total Antenna Weight (kg)" />
-
-                                <TextView
-                                    android:id="@+id/total_anteen_weight"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Antenna Space (U)" />
-
-                                <TextView
-                                    android:id="@+id/antenna_space"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Max Antenna Height, AGL (m)" />
-
-                                <TextView
-                                    android:id="@+id/max_anteena_height"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Count" />
-
-                                <TextView
-                                    android:id="@+id/offset_pole_count"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Length (cm)" />
-
-                                <TextView
-                                    android:id="@+id/offset_pole_lenght"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                        </GridLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/item_line"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-
-            <LinearLayout
-                android:id="@+id/collapsing_layout_Pole"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/pole_root"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/expand_colaps_background"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/item_title_pole"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:clickable="false"
-                        android:padding="@dimen/dp15"
-                        android:text="Pole" />
-
-                    <ImageView
-                        android:id="@+id/pole_edit"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/edit_fav_btn"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/pole_arrow"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/ic_arrow_down_black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/item_collapse_pole"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingBottom="@dimen/dp10">
-
+                            android:fontFamily="@font/poppins"
+                            android:text="SMPS"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp16" />
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:fontFamily="@font/poppins"
+                                android:textStyle="italic"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:maxLines="1"
-                                    android:text="Pole"
-                                    android:textColor="#3F4E69"
-                                    android:textSize="@dimen/dp15"
-                                    android:textStyle="bold" />
-
-                                <LinearLayout
-                                    android:id="@+id/lnAddNew"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/dp5"
-                                    android:gravity="end"
-                                    android:orientation="horizontal">
-                                    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                                        android:id="@+id/ic_menu_close"
-                                        android:layout_width="@dimen/dp20"
-                                        android:layout_height="@dimen/dp20"
-                                        android:background="@color/color1"
-                                        android:backgroundTint="@color/color1"
-                                        android:elevation="@dimen/dp12"
-                                        android:innerRadius="0dp"
-                                        android:shape="ring"
-                                        android:thicknessRatio="1.9"
-                                        app:cardCornerRadius="@dimen/dp40">
-
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentTop="true"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_gravity="center"
-                                            android:padding="@dimen/dp1"
-                                            android:src="@drawable/ic_baseline_add_24"></ImageView>
-                                    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignBaseline="@+id/ic_menu_close"
-                                        android:layout_marginStart="0dp"
-                                        android:layout_toRightOf="@+id/ic_menu_close"
-                                        android:fontFamily="@font/poppins_regular"
-                                        android:gravity="center"
-                                        android:paddingLeft="@dimen/dp10"
-                                        android:text="Add Row"
-                                        android:textColor="@color/color1"
-                                        android:textSize="@dimen/sp12" />
-                                </LinearLayout>
-                            </LinearLayout>
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:alpha="0.37"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:background="@color/view_color" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:text="Count :"
+                                android:textSize="@dimen/dp13"
+                                android:textColor="@color/white"
+                                android:textAppearance="@style/RowTextItemInfo"
+                                android:gravity="center"
+                                />
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:maxLines="1"
-                                    android:text="Pole Height"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="Height"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="Antenna Space"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1.3"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="item code"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:alpha="0.37"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:background="@color/view_color" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/pole_table"
-                                android:layout_width="match_parent"
+                                android:text="2"
+                                android:textStyle="italic"
+                                android:textSize="@dimen/dp13"
+                                android:textColor="@color/white"
+                                android:gravity="center"
+                                android:id="@+id/mark4" />
+                            <TextView
+                                android:layout_marginStart="@dimen/dp5"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/pole_table_item"/>
+                                android:text=" | "
+                                android:textSize="@dimen/dp13"
+                                android:fontFamily="@font/poppins_light"
+                                android:textColor="@color/white"
+                                android:textAppearance="@style/RowTextItemInfo"
+                                android:lineSpacingExtra="1sp"
+                                android:gravity="center_vertical"
+                                />
+
+                            <TextView
+                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:text="Capacity : "
+                                android:textStyle="italic"
+                                android:textSize="@dimen/dp13"
+                                android:fontFamily="@font/poppins"
+                                android:textColor="@color/white"
+                                android:lineSpacingExtra="2sp"
+                                android:gravity="center_vertical"
+                                />
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5 kw"
+                                android:lineSpacingExtra="2sp"
+                                android:textStyle="italic"
+                                android:textSize="@dimen/dp13"
+                                android:textColor="@color/white"
+                                android:gravity="center" />
 
                         </LinearLayout>
 
 
-                        <GridLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:columnCount="2"
-                            android:orientation="horizontal"
-                            app:layout_constraintTop_toTopOf="parent">
+                    </LinearLayout>
 
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/menu"
+                        android:layout_width="@dimen/dp24"
+                        android:layout_height="@dimen/dp24"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        android:paddingLeft="@dimen/dp5"
+                        android:rotation="90"
+                        app:tint="@color/white"
+                        android:src="@drawable/menu" />
 
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Count" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_gray"/>
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/dp15"
+                        android:gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
 
-                                <TextView
-                                    android:id="@+id/tower_offset_pole_count"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
+                        <TextView
+                            android:textSize="@dimen/dp12"
+                            android:text="Installation Date:"
+                            android:textColor="#CCCCCC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Length" />
-
-                                <TextView
-                                    android:id="@+id/tower_offset_pole_length"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                        </GridLayout>
+                        <TextView
+                            android:text="05-Oct-2018"
+                            android:textSize="@dimen/dp12"
+                            android:paddingStart="5dp"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textSize="@dimen/dp12"
+                            android:text="Last PM Date:"
+                            android:textColor="#CCCCCC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="10-Nov-2018"
+                            android:textSize="@dimen/dp12"
+                            android:paddingStart="5dp"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
-
-            <View
+        </com.google.android.material.card.MaterialCardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/card"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp15">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-
+                android:layout_height="@dimen/dp38"
+                android:background="@color/tab_deselected"
+                app:tabPaddingEnd="@dimen/dp5"
+                app:tabMaxWidth="0dp"
+                app:tabIndicatorColor="@color/yellow"
+                app:tabGravity="fill"
+                app:tabBackground="@drawable/tab_color_selector"
+                app:tabMode="fixed"
+                app:tabPaddingStart="@dimen/dp5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabTextAppearance="@style/TabTextView"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:id="@+id/instanlation_root"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/expand_colaps_background"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/item_title_instalation"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:clickable="false"
-                        android:padding="@dimen/dp15"
-                        android:text="Attachments" />
-
-                    <ImageView
-                        android:id="@+id/edit_instanlation"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/edit_fav_btn"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/instalation_arrow"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/ic_arrow_down_black" />
-
-                </LinearLayout>
-
-
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tabs" />
             </LinearLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

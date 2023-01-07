@@ -26,6 +26,7 @@ import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementM
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -69,6 +70,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
+    private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
 
     public static HomeRepo getInstance(APIClient apiClient) {
@@ -104,6 +106,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<NocAndCompModel>> getNOCandCompModel() {
         return noCandCompModel;
+    }
+    public SingleLiveEvent<Resource<UtilitiesEquipModel>> getUtilityEquipModel() {
+        return utilityEquipModel;
     }
     public SingleLiveEvent<Resource<TowerCivilInfraModel>> getTowerAndCivilInfraModel() {
         return towerAndCivilInfraModel;
@@ -147,6 +152,7 @@ public class HomeRepo {
         towerAndCivilInfraModel=new SingleLiveEvent<>();
         powerFuelModel = new SingleLiveEvent<>();
         planAndDesignModel=new SingleLiveEvent<>();
+        utilityEquipModel=new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
         siteAgreementModel = new SingleLiveEvent<>();
@@ -774,6 +780,44 @@ public class HomeRepo {
                     siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void utilitiEquipRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("utilities");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchUtilitiesEquipRequest(siteInfoParam).enqueue(new Callback<UtilitiesEquipModel>() {
+            @Override
+            public void onResponse(Call<UtilitiesEquipModel> call, Response<UtilitiesEquipModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UtilitiesEquipModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<UtilitiesEquipModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    utilityEquipModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    utilityEquipModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    utilityEquipModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
