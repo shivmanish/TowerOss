@@ -1,6 +1,7 @@
 package com.example.example
 
 import com.google.gson.annotations.SerializedName
+import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.Siteacquisition
 
 
 data class Finaldata(

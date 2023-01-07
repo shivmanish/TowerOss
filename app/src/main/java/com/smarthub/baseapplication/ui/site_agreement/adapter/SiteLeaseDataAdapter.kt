@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.sitedetail.adapter
+package com.smarthub.baseapplication.ui.site_agreement.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteLeaseListItemBinding
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 
 class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var id:String) : Adapter<SiteLeaseDataViewHolder>() {
 
 
     var list = ArrayList<Any>()
 
-    fun setData(data: ArrayList<PowerAndFuel>) {
+    fun setData(data: List<Siteacquisition>) {
         this.list.clear()
         this.list.addAll(data)
         notifyDataSetChanged()
@@ -35,9 +35,9 @@ class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var id:St
     }
 
     override fun onBindViewHolder(holder: SiteLeaseDataViewHolder, position: Int) {
-       if(list[position] is PowerAndFuel)
+       if(list[position] is Siteacquisition)
        {
-           val item = list[position] as PowerAndFuel
+           val item = list[position] as Siteacquisition
            holder.binding?.parentRelative?.setOnClickListener {
                listener.clickedItem(item)
        }
@@ -55,5 +55,5 @@ class SiteLeaseDataViewHolder(var itemview: View) : ViewHolder(itemview) {
 }
 
 interface SiteLeaseDataAdapterListener{
-    fun clickedItem(item: PowerAndFuel);
+    fun clickedItem(item: Siteacquisition);
 }

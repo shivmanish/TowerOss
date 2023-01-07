@@ -22,6 +22,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -66,6 +67,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
+    private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
 
@@ -88,6 +90,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
         return dropDownResoonse;
+    }
+
+    public SingleLiveEvent<Resource<SiteAgreementModel>> getSiteAgreementModel() {
+        return siteAgreementModel;
     }
 
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
@@ -143,6 +149,7 @@ public class HomeRepo {
         planAndDesignModel=new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
+        siteAgreementModel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -729,6 +736,44 @@ public class HomeRepo {
                     planAndDesignModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     planAndDesignModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void siteAgreementRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Siteacquisition");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchSiteAgreementModelRequest(siteInfoParam).enqueue(new Callback<SiteAgreementModel>() {
+            @Override
+            public void onResponse(Call<SiteAgreementModel> call, Response<SiteAgreementModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SiteAgreementModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteAgreementModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    siteAgreementModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

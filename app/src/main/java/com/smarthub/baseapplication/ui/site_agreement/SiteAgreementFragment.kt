@@ -6,29 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnectionDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
-import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapter
-import com.smarthub.baseapplication.ui.fragments.sitedetail.adapter.SiteLeaseDataAdapterListener
+import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseDataAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseDataAdapterListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 
 class SiteAgreementFragment(var id : String) : BaseFragment(), SiteLeaseDataAdapterListener {
-    val ARG_PARAM1 = "param1"
-    lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
+
+    var isDataLoaded = false
     lateinit var viewmodel: HomeViewModel
     lateinit var siteLeaseDataAdapter: SiteLeaseDataAdapter
-    var isDataLoaded = false
+    lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSiteLeaseBinding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
@@ -49,10 +48,10 @@ class SiteAgreementFragment(var id : String) : BaseFragment(), SiteLeaseDataAdap
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-        if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){
-            viewmodel?.powerAndFuelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.siteAgreementModel?.hasActiveObservers() == true){
+            viewmodel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel?.powerAndFuelResponse?.observe(viewLifecycleOwner) {
+        viewmodel.siteAgreementModel?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
                 AppLogger.log("SiteAgreemnets Fragment data loading in progress ")
                 return@observe
@@ -60,12 +59,12 @@ class SiteAgreementFragment(var id : String) : BaseFragment(), SiteLeaseDataAdap
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("SiteAgreemnets Fragment card Data fetched successfully")
                 try {
-                    siteLeaseDataAdapter.setData(it.data.item!![0].PowerAndFuel)
+                    siteLeaseDataAdapter.setData(it.data.item!![0].Siteacquisition)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("SiteAgreemnets Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"SiteAgreemnets Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
-                AppLogger.log("SiteAgreemnets size :${it.data.item!![0].PowerAndFuel.size}")
+                AppLogger.log("SiteAgreemnets size :${it.data.item!![0].Siteacquisition.size}")
                 isDataLoaded = true
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
@@ -82,32 +81,21 @@ class SiteAgreementFragment(var id : String) : BaseFragment(), SiteLeaseDataAdap
         super.onViewPageSelected()
         if (viewmodel!=null || !isDataLoaded){
             siteLeaseDataAdapter.addLoading()
-            viewmodel?.fetchPowerAndFuel(id)
+            viewmodel.fetchPowerAndFuel(id)
         }
         AppLogger.log("onViewPageSelected PowerAndFuel")
     }
 
     override fun onDestroy() {
-        if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){
-            viewmodel?.powerAndFuelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.powerAndFuelResponse?.hasActiveObservers() == true){
+            viewmodel.powerAndFuelResponse?.removeObservers(viewLifecycleOwner)
         }
         super.onDestroy()
     }
 
-
-   /* companion object {
-        @JvmStatic
-        fun newInstance(param1: String) =
-            SiteAgreementFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
-    }*/
-
-     override fun clickedItem(data: PowerAndFuel) {
+     override fun clickedItem(data: Siteacquisition) {
+         SiteAgreementCaredItemActivity.siteacquisition = data
         val intent = Intent(requireContext(), SiteAgreementCaredItemActivity::class.java)
-        intent.putExtra("data", data)
-        requireActivity().startActivity(intent)
+         requireActivity().startActivity(intent)
     }
 }

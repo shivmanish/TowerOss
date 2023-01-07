@@ -1,5 +1,7 @@
-package com.example.example
+package com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons
 
+import com.example.example.SiteacquisitionAgreements
+import com.example.example.SiteacquisitionPayment
 import com.google.gson.annotations.SerializedName
 
 
