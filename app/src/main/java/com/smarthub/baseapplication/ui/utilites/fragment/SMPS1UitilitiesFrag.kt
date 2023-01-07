@@ -26,14 +26,9 @@ import com.smarthub.baseapplication.ui.utilites.editdialouge.PoDetailsBottomShee
 import com.smarthub.baseapplication.utils.Utils
 
 class SMPS1UitilitiesFrag: Fragment() {
-
     lateinit var binding: Smps1TabUtilitiesFragmentBinding
     var openedDropdown: Int = -1
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = Smps1TabUtilitiesFragmentBinding.inflate(inflater,container,false)
         setView()
         return binding.root

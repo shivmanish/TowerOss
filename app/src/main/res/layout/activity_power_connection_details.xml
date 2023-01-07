@@ -89,9 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp35">
                 <LinearLayout
-                    android:gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
                     <TextView
@@ -111,9 +110,10 @@
 
                 </LinearLayout>
                 <LinearLayout
-                    android:gravity="center_horizontal"
+                    android:gravity="end"
                     android:layout_weight="1"
                     android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/dp15"
                     android:layout_height="match_parent">
                     <TextView
                         android:textSize="@dimen/dp12"
