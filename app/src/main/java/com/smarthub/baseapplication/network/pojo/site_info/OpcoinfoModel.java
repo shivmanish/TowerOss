@@ -57,6 +57,14 @@ public class OpcoinfoModel implements Serializable {
     @Expose
     private SiteInfoStatusData maintenanceVendor;
 
+    @SerializedName("Backhaultechnology")
+    @Expose
+    private SiteInfoStatusData backhaultechnology;
+
+    @SerializedName("OpcoName")
+    @Expose
+    private SiteInfoStatusData opcoName;
+
     public SiteInfoStatusData getOpcositestatus() {
         return opcositestatus;
     }
@@ -176,14 +184,6 @@ public class OpcoinfoModel implements Serializable {
     public void setOpcoName(SiteInfoStatusData opcoName) {
         this.opcoName = opcoName;
     }
-
-    @SerializedName("Backhaultechnology")
-    @Expose
-    private SiteInfoStatusData backhaultechnology;
-
-    @SerializedName("OpcoName")
-    @Expose
-    private SiteInfoStatusData opcoName;
 
 
 }

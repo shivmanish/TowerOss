@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:BasicInfoModelItem) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
@@ -195,7 +196,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.txSiteName.text = siteBasicinfo.siteName
                     holder.binding.txSiteID.text = siteBasicinfo.siteID
 
-                    AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,"Sitestatus",siteBasicinfo.Sitestatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo.Sitestatus)
 //                    holder.binding.siteStatus.text = siteBasicinfo.Sitestatus
 
                     holder.binding.siteCategory.text = siteBasicinfo.Sitecategory

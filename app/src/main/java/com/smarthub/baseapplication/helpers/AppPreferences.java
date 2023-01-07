@@ -7,16 +7,14 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
-import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoStatusData;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.utils.DropDowns;
 import com.smarthub.baseapplication.widgets.CustomSpinner;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -79,6 +77,7 @@ public static String DROPDOWNDATA = "dropdowndata";
     private List<DropDownItem> getDropDownList(String name,String jsonString){
         Gson gson = new Gson();
         List<DropDownItem> listData = new ArrayList();
+
         try {
             SiteInfoDropDownData siteInfoDropDownData = gson.fromJson(jsonString,SiteInfoDropDownData.class);
             switch (name){
