@@ -24,7 +24,7 @@ class PowerDesignDetailPageAdapter (manager: FragmentManager, var data : PlanAnd
             0 -> EquipRoomFragment(data?.PlanningAndDesignEquipRoomEquipmentRoom)
             1 -> TowerCivilFragment(data?.PlanningAndDesignTowerAndCivil)
             2-> PowerFragment(data?.PlanningAndDesignPowerRequirements)
-            3 -> EquipUtilityFragment()
+            3 -> EquipUtilityFragment(data?.UtilityEquip)
             4 -> NocCompFragment(data?.NOCAndComp)
             else -> EquipRoomFragment(data?.PlanningAndDesignEquipRoomEquipmentRoom)
         }

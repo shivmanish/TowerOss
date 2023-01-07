@@ -4,208 +4,75 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.UtilityEquipFragmentBinding
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.UtilityEquip
 import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.SmpsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.UtilityEquipAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.equipmentRoomAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.*
 import com.smarthub.baseapplication.utils.Utils
 
-class EquipUtilityFragment : Fragment() {
+class EquipUtilityFragment(var data:List<UtilityEquip>?) : Fragment(),UtilityEquipAdapter.ItemClicListiner{
 
     lateinit var binding: UtilityEquipFragmentBinding
-
+    lateinit var adapter: UtilityEquipAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = UtilityEquipFragmentBinding.inflate(inflater, container, false)
-        setView()
         return binding.root
     }
 
-    fun setView() {
-        binding.smpsEdit.setOnClickListener {
-            val dalouge = SMPSDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.smpsRectifierTable.adapter =
-            SmpsTableAdapter(requireContext(), object : TableCallback {
-                override fun editItem(obj: Any?) {
-                    val dalouge= SmpsRectifierTableEditDialouge()
-                    dalouge.show(childFragmentManager, "")
-                }
-
-                override fun viewItem(obj: Any?) {
-                    val dalouge= SmpsRectifierTableEditDialouge ()
-                    dalouge.show(childFragmentManager, "")
-                }
-            })
-        binding.smpsPlanLeadTable.adapter =
-            SmpsTableAdapter(requireContext(), object : TableCallback {
-                override fun editItem(obj: Any?) {
-                    val dalouge= SmpsPlannedTableEditDialouge()
-                    dalouge.show(childFragmentManager, "")
-                }
-
-                override fun viewItem(obj: Any?) {
-                    val dalouge= SmpsPlannedTableEditDialouge ()
-                    dalouge.show(childFragmentManager, "")
-                }
-            })
-
-        binding.smpsRoot.setOnClickListener {
-            if (binding.itemCollapseSmps.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseSmps)
-                binding.smpsArrow.rotation = 0f
-                binding.smpsEdit.visibility = View.GONE
-                binding.smpsRoot.isSelected = false
-            } else {
-                Utils.expand(binding.itemCollapseSmps)
-                binding.smpsRoot.isSelected = true
-                binding.smpsArrow.rotation = 180f
-                binding.smpsEdit.visibility = View.VISIBLE
-            }
-        }
-
-        binding.bBankEdit.setOnClickListener {
-            val dalouge = BatteryBankDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.bBankTable.adapter =
-            SmpsTableAdapter(requireContext(), object : TableCallback {
-                override fun editItem(obj: Any?) {
-                    val dalouge= SmpsRectifierTableEditDialouge()
-                    dalouge.show(childFragmentManager, "")
-                }
-
-                override fun viewItem(obj: Any?) {
-                    val dalouge= SmpsRectifierTableEditDialouge ()
-                    dalouge.show(childFragmentManager, "")
-                }
-            })
-
-        binding.bBankRoot.setOnClickListener {
-            if (binding.itemCollapseBBank.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseBBank)
-                binding.bBankRoot.isSelected = false
-                binding.bBankArrow.rotation = 0f
-                binding.bBankEdit.visibility = View.GONE
-            } else {
-                Utils.expand(binding.itemCollapseBBank)
-                binding.bBankRoot.isSelected = true
-                binding.bBankArrow.rotation = 180f
-                binding.bBankEdit.visibility = View.VISIBLE
-            }
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.listItem.layoutManager = LinearLayoutManager(requireContext())
+        adapter= UtilityEquipAdapter(requireContext(),this@EquipUtilityFragment,data)
+        binding.listItem.adapter=adapter
+    }
 
 
-        binding.dgEdit.setOnClickListener {
-            val dalouge = DgDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.dgAdditionalEditTable.adapter =
-            SmpsTableAdapter(requireContext(), object : TableCallback {
-                override fun editItem(obj: Any?) {
-                    val dalouge= SmpsRectifierTableEditDialouge()
-                    dalouge.show(childFragmentManager, "")
-                }
+    override fun smpsclicked() {
+        val dalouge = SMPSDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
-                override fun viewItem(obj: Any?) {
-                    val dalouge= SmpsRectifierTableEditDialouge ()
-                    dalouge.show(childFragmentManager, "")
-                }
-            })
+    override fun batterybankclicked() {
+        val dalouge = BatteryBankDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
-        binding.dgRoot.setOnClickListener {
-            if (binding.itemCollapseDg.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseDg)
-                binding.dgRoot.isSelected = false
-                binding.dgArrow.rotation = 0f
-                binding.dgEdit.visibility = View.GONE
-            } else {
-                Utils.expand(binding.itemCollapseDg)
-                binding.dgRoot.isSelected = true
-                binding.dgArrow.rotation = 180f
-                binding.dgEdit.visibility = View.VISIBLE
-            }
-        }
+    override fun dgClicked() {
+        val dalouge = AcUtilityDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
-        binding.acEdit.setOnClickListener {
-            val dalouge = AcUtilityDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.acRoot.setOnClickListener {
-            if (binding.itemCollapseAc.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseAc)
-                binding.acRoot.isSelected = false
-                binding.acArrow.rotation = 0f
-                binding.acEdit.visibility = View.GONE
-            } else {
-                Utils.expand(binding.itemCollapseAc)
-                binding.acRoot.isSelected = true
-                binding.acArrow.rotation = 180f
-                binding.acEdit.visibility = View.VISIBLE
-            }
-        }
+    override fun acClicked() {
+        val dalouge = AcUtilityDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
-        binding.fireEdit.setOnClickListener {
-            val dalouge = FireDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.fireRoot.setOnClickListener {
-            if (binding.itemCollapseFire.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseFire)
-                binding.fireRoot.isSelected = false
-                binding.fireArrow.rotation = 0f
-                binding.fireEdit.visibility = View.GONE
-            } else {
-                Utils.expand(binding.itemCollapseFire)
-                binding.fireRoot.isSelected = true
-                binding.fireArrow.rotation = 180f
-                binding.fireEdit.visibility = View.VISIBLE
-            }
-        }
+    override fun fireExtinguisherClicked() {
+        val dalouge = FireDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
-        binding.surgeProctetorEdit.setOnClickListener {
-            val dalouge = SurgeProtectroDeviceDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.surgeProctetorRoot.setOnClickListener {
-            if (binding.itemCollapseSurgeProctetor.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseSurgeProctetor)
-                binding.surgeProctetorRoot.isSelected = false
-                binding.surgeProctetorArrow.rotation = 0f
-                binding.surgeProctetorEdit.visibility = View.GONE
-            } else {
-                Utils.expand(binding.itemCollapseSurgeProctetor)
-                binding.surgeProctetorRoot.isSelected = true
-                binding.surgeProctetorArrow.rotation = 180f
-                binding.surgeProctetorEdit.visibility = View.VISIBLE
-            }
-        }
+    override fun surgeProtectedClicked() {
+        val dalouge = SurgeProtectroDeviceDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
+    override fun dcdbClicked() {
+        val dalouge = DcdbDialouge()
+        dalouge.show(childFragmentManager, "")
+    }
 
-
-        binding.dcdbEdit.setOnClickListener {
-            val dalouge = DcdbDialouge()
-            dalouge.show(childFragmentManager, "")
-        }
-        binding.dcdbRoot.setOnClickListener {
-            if (binding.itemCollapseDcdb.visibility == View.VISIBLE) {
-                Utils.collapse(binding.itemCollapseDcdb)
-                binding.dcdbRoot.isSelected = false
-                binding.dcdbArrow.rotation = 0f
-                binding.dcdbEdit.visibility = View.GONE
-            } else {
-                Utils.expand(binding.itemCollapseDcdb)
-                binding.dcdbRoot.isSelected = true
-                binding.dcdbArrow.rotation = 180f
-                binding.dcdbEdit.visibility = View.VISIBLE
-            }
-        }
-
+    override fun attachmentClicked() {
 
     }
 

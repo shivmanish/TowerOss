@@ -26,7 +26,6 @@ class EquipRoomFragment(var equipRoomData:List<PlanningAndDesignEquipRoomEquipme
         binding.listItem.layoutManager = LinearLayoutManager(requireContext())
         adapter=equipmentRoomAdapter(requireContext(),this@EquipRoomFragment,equipRoomData)
         binding.listItem.adapter=adapter
-
     }
 
 
