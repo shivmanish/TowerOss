@@ -1,3 +1,4 @@
+/*
 package com.smarthub.baseapplication.ui.site_agreement
 
 
@@ -15,14 +16,14 @@ class SiteLeaseAcquisitionAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> {
-                return SANomonalsFrag()
+                return SANomonalsFrag(data?.SiteacquisitionAgreements)
             }
             1 -> {
-                return SAPaymentFrag()
+                return SAPaymentFrag(data?.SiteacquisitionPayment)
             }
 
             else -> {
-                return SANomonalsFrag()
+                return SANomonalsFrag(data?.SiteacquisitionAgreements)
             }
         }
     }
@@ -40,4 +41,4 @@ class SiteLeaseAcquisitionAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm
         return super.getPageTitle(position)
     }
 
-}
+}*/

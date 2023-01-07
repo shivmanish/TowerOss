@@ -17,7 +17,7 @@ lateinit var binding: AcMentenanceDialougeLayoutBinding
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
          super.onCreateView(inflater, container, savedInstanceState)
         binding = AcMentenanceDialougeLayoutBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT

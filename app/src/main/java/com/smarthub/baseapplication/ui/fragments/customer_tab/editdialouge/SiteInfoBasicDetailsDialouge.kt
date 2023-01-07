@@ -13,7 +13,7 @@ lateinit var binding: SiteInfoBasicDetailsDialougeLayoutBinding
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
          super.onCreateView(inflater, container, savedInstanceState)
         binding = SiteInfoBasicDetailsDialougeLayoutBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT

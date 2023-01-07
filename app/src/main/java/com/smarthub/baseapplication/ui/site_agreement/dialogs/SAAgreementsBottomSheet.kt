@@ -9,15 +9,18 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.CreateAlertDialogBinding
 import com.smarthub.baseapplication.databinding.SaAgreementDialogBinding
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.alert.adapter.AlertImageAdapter
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementsData
 import com.smarthub.baseapplication.utils.Utils
 
 
-class SAAgreementsBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId)  {
+class SAAgreementsBottomSheet(
+    contentLayoutId: Int,
+
+): BottomSheetDialogFragment(contentLayoutId)  {
     lateinit var binding : SaAgreementDialogBinding
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +33,8 @@ class SAAgreementsBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = SaAgreementDialogBinding.inflate(inflater)
+
+
 
         return binding.root
     }
