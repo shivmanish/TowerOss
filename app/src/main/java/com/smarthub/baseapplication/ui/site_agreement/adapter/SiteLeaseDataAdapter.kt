@@ -6,14 +6,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.databinding.SiteLeaseListItemBinding
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 
-class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var array: ArrayList<String>) : Adapter<SiteLeaseDataViewHolder>() {
+class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var id:String) : Adapter<SiteLeaseDataViewHolder>() {
 
-    fun setData(data: ArrayList<String>) {
-        this.array.addAll(data)
+
+    var list = ArrayList<Any>()
+
+    fun setData(data: ArrayList<PowerAndFuel>) {
+        this.list.clear()
+        this.list.addAll(data)
         notifyDataSetChanged()
+    }
+    fun addLoading(){
+        this.list.clear()
+        this.list.add("loading")
+        notifyDataSetChanged()
+    }
+    init {
+        this.list.add("loading")
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SiteLeaseDataViewHolder {
@@ -22,14 +35,18 @@ class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var array
     }
 
     override fun onBindViewHolder(holder: SiteLeaseDataViewHolder, position: Int) {
+       if(list[position] is PowerAndFuel)
+       {
+           val item = list[position] as PowerAndFuel
+           holder.binding?.parentRelative?.setOnClickListener {
+               listener.clickedItem(item)
+       }
 
-        holder.binding?.parentRelative?.setOnClickListener {
-            listener.clickedItem()
         }
     }
 
     override fun getItemCount(): Int {
-        return array.size
+        return list.size
     }
 }
 
@@ -38,5 +55,5 @@ class SiteLeaseDataViewHolder(var itemview: View) : ViewHolder(itemview) {
 }
 
 interface SiteLeaseDataAdapterListener{
-    fun clickedItem();
+    fun clickedItem(item: PowerAndFuel);
 }
