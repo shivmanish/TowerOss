@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.ui.dialog.siteinfo.NominalsDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAAgreementsBottomSheet
+import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPOEditBottomSheet
+import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPOViewBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PoTableAdapter
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SAPaymentAdapter
 
@@ -35,11 +38,13 @@ class SANomonalsFrag : BaseFragment(), PoTableAdapter.PoInfoListListener {
     }
 
     override fun editClicked(position: Int) {
-
+        var editPo = SAPOEditBottomSheet(R.layout.sa_po_edit_dialog)
+        editPo?.show(childFragmentManager,"category")
     }
 
     override fun viewClicked(position: Int) {
-
+        var viewPo = SAPOViewBottomSheet(R.layout.sa_po_view_dialog)
+        viewPo?.show(childFragmentManager,"category")
     }
 
     override fun AgreementEditViewClick() {

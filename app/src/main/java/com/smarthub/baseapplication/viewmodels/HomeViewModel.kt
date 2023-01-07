@@ -60,6 +60,7 @@ class HomeViewModel : ViewModel() {
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
 
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
+    var siteAcquisition:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())

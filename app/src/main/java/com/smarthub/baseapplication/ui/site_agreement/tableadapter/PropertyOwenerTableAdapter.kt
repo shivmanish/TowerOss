@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PropertyOwnerTableItemRowBinding
-import com.smarthub.baseapplication.ui.site_agreement.model.PropertyViewDetailsModel
+import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PropertyViewDetailsModel
 import com.smarthub.baseapplication.utils.AppLogger
 
 class PropertyOwenerTableAdapter(

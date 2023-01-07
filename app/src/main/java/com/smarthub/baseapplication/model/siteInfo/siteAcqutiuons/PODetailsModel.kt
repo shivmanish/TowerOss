@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.site_agreement.model
+package com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons
 
 
 data class PODetailsModel(
