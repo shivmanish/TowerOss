@@ -297,8 +297,4 @@ class SANominalsFragmentAdapter(
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface PoInfoListListener {
-        fun attachmentItemClicked()
-        fun AgreementEditViewClick()
-    }
 }
