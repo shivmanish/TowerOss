@@ -256,4 +256,6 @@
     <string name="m">M</string>
     <string name="drop_down">Drop Down</string>
     <string name="choose_attachments">Please close this task and send attachments..</string>
+
+    <string name="APT_checklist"><b><u>APT Checklist</u></b></string>
 </resources>

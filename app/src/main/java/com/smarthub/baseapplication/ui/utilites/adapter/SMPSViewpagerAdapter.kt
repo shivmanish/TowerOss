@@ -8,39 +8,17 @@ import com.smarthub.baseapplication.ui.utilites.fragment.*
 class SMPSViewpagerAdapter(fm: FragmentManager,var list:ArrayList<UtilitieSmp>?,var id:String) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
-        return 2
+        return list?.size!!
     }
 
     override fun getItem(position: Int): Fragment {
-        val smpsfragone = SMPS1UitilitiesFrag()
+        val smpsfragone = SMPS1UitilitiesFrag(list?.get(position),id)
         return smpsfragone
-//        when (position) {
-//            0 -> {
-//                val smpsfragone = SMPS1UitilitiesFrag()
-//                return smpsfragone
-//            }
-//            1 -> {
-//                val smpsfragtwo = SMPS2UitilitiesFrag()
-//                return smpsfragtwo
-//            }
-//            else -> {
-//                val smpsfragone = SMPS1UitilitiesFrag()
-//                return smpsfragone
-//            }
-//        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         return "SMPS #${position+1}"
-//        when (position) {
-//            0 -> {
-//                return "SMPS #1"
-//            }
-//            1 -> {
-//                return "SMPS #2"
-//            }
-//        }
-//        return super.getPageTitle(position)
+
     }
 
 }

@@ -58,7 +58,6 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
             holder.binding.titel.text=list[position]
             holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(position)
-                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
         else if (list[position]==type2){

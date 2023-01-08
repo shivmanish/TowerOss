@@ -20,8 +20,6 @@ import com.smarthub.baseapplication.ui.utilites.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapterListener
-import com.smarthub.baseapplication.ui.utilites.UtilitiesNocActivity
-import com.smarthub.baseapplication.ui.utilites.UtilitiesNocViewModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -114,8 +112,9 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
             requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
 
         }else{
-            requireActivity().startActivity(Intent(requireContext(), UtilitiesNocActivity::class.java))
-
+            SMPSDetailsActivity.id=id
+            SMPSDetailsActivity.utilitySmpsData=utilitydatalist?.get(0)?.UtilitieSmps as ArrayList<UtilitieSmp>
+            requireActivity().startActivity(Intent(requireContext(), SMPSDetailsActivity::class.java))
         }
     }
 
