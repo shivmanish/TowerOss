@@ -161,7 +161,7 @@ class SiteDetailFragment : BaseFragment() {
         }
 
         private fun getCustomItemForLocal(position: Int) : BaseFragment{
-            var f : BaseFragment =  when(position){
+            val f : BaseFragment =  when(position){
                 0-> SiteInfoNewFragment(id)
                 1-> ServicesRequestFrqagment(id)
                 2-> OpcoTanacyFragment(id)
