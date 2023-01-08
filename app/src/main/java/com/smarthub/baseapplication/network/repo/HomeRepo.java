@@ -787,6 +787,7 @@ public class HomeRepo {
     public void utilitiEquipRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("utilities");
+        AppLogger.INSTANCE.log("id :"+id);
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
         apiClient.fetchUtilitiesEquipRequest(siteInfoParam).enqueue(new Callback<UtilitiesEquipModel>() {
             @Override
