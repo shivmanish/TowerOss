@@ -62,6 +62,8 @@
         android:textCursorDrawable="@drawable/cursure_color"
         android:drawablePadding="@dimen/dp10"
         android:paddingEnd="@dimen/dp15"
+        android:hint="Enter Site ID"
+        android:textColorHint="#BDBDBD"
         android:layout_marginStart="@dimen/dp10"
         android:layout_marginEnd="@dimen/dp10"
         android:drawableTint="@color/white"

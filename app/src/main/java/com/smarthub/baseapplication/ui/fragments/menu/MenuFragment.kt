@@ -9,16 +9,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.FAQActivity
 import com.smarthub.baseapplication.activities.SettingActivity
 import com.smarthub.baseapplication.databinding.FragmentMenuBinding
+import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.fragments.profile.ProfileActivity
 import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
+    lateinit var homeViewModel : HomeViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,6 +32,7 @@ class MenuFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         ViewModelProvider(this)[MenuViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         mainViewModel.isActionBarHide(false)
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -63,9 +68,6 @@ class MenuFragment : Fragment() {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
-//        binding.cardLocation.setOnClickListener {
-//            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
-//        }
         binding.cardTeam.setOnClickListener {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
@@ -74,8 +76,14 @@ class MenuFragment : Fragment() {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
-        binding.cardOther2.setOnClickListener {
-            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+        binding.AddNewSiteCard.setOnClickListener {
+            val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel,
+                object : AdNewSiteInfoBottomSheet.AdNewSiteSheetListener{
+                    override fun siteCreated(id: String) {
+                findNavController().navigate(MenuFragmentDirections.actionNavigationMenuToSiteDetailFragment(id))
+                    }
+                })
+            bottomSheetDialogFragment.show(childFragmentManager, "category")
         }
     }
 

@@ -91,23 +91,25 @@
         app:navGraph="@navigation/task_navigation" />
 
     <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardBackgroundColor="#FFD72B"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="@dimen/dp5"
-            android:layout_marginBottom="39dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:padding="5dp"
-                android:src="@drawable/ic_baseline_add_24_gray"
-                android:layout_gravity="center"
-                android:id="@+id/add_items_1"
-                android:layout_width="50dp"
-                android:layout_height="@dimen/dp50"
-                />
+        android:id="@+id/add_more"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        app:cardCornerRadius="@dimen/dp100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="#3D4E6D"
+        app:cardElevation="2dp"
+        app:strokeColor="@color/tab_deselected"
+        app:strokeWidth="1dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:padding="@dimen/dp12"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_new_menu_icon"/>
+    </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,7 +37,7 @@
                         android:background="@color/transparent"
                         android:clickable="false"
                         android:padding="@dimen/dp15"
-                        android:text="Tower" />
+                        android:text="Equipment" />
 
                     <ImageView
                         android:id="@+id/equipment_edit"
@@ -66,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -90,10 +89,379 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Tower Height (m)" />
+                                    android:text="Equipment Name" />
 
                                 <TextView
-                                    android:id="@+id/tower_height"
+                                    android:id="@+id/spinEquipmentName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="On-Air"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Serial Number" />
+
+                                <TextView
+                                    android:id="@+id/editSerialNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="S3058940"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Make" />
+
+                                <TextView
+                                    android:id="@+id/editMake"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="xxxx"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Model" />
+
+                                <TextView
+                                    android:id="@+id/editModel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="xxxx"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rating/Capacity" />
+
+                                <TextView
+                                    android:id="@+id/spinRationCapacity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="On-Air"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Manufacturing Month/Year" />
+
+                                <TextView
+                                    android:id="@+id/editManufacturingMonthYear"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nov/2018"
+
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Warranty Period" />
+
+                                <TextView
+                                    android:id="@+id/editWarrantyPeriod"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="xxxx"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Warranty Expiry Date" />
+
+                                <TextView
+                                    android:id="@+id/editWarrantyExpiryDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableRight="@drawable/icon_date"
+                                    android:text="10-Nov-22"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cabinet Size" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/editCabinSize"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="L - "
+                                            android:textColor="@color/black" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/editCabinSizeW"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text=" | W - "
+                                            android:textColor="@color/black" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/editCabinSizeH"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text=" | H - "
+                                            android:textColor="@color/black" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Overall Weight" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/editOverallWeight"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".3"
+                                        android:text="50"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".7"
+                                        android:gravity="end"
+                                        android:text="Kg"
+                                        android:textColor="@color/black" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Operating Temp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/editOperatingTemp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Min - "
+                                            android:textColor="@color/black" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/editOperatingMax"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text=" Max-  "
+                                            android:textColor="@color/black" />
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Max Power Rating" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/editMaxPowerRating"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".3"
+                                        android:text="50"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".7"
+                                        android:gravity="end"
+                                        android:text="KW"
+                                        android:textColor="@color/black" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Installed Location Type" />
+
+                                <TextView
+                                    android:id="@+id/spinInstalledLocationType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="On-Air"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Location Mark" />
+
+                                <TextView
+                                    android:id="@+id/spinMountingStyle"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air"
@@ -110,10 +478,29 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Total Antenna Weight (kg)" />
+                                    android:text="Rack ID" />
 
                                 <TextView
-                                    android:id="@+id/total_anteen_weight"
+                                    android:id="@+id/spinInstallationPoint"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp20"
+                                    android:text="On-Air"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                style="@style/ColumnItemInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/RowTextItemInfo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Owner Company" />
+
+                                <TextView
+                                    android:id="@+id/spinOwnerCompany"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air"
@@ -130,68 +517,10 @@
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Antenna Space (U)" />
+                                    android:text="User Company" />
 
                                 <TextView
-                                    android:id="@+id/antenna_space"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Max Antenna Height, AGL (m)" />
-
-                                <TextView
-                                    android:id="@+id/max_anteena_height"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Count" />
-
-                                <TextView
-                                    android:id="@+id/offset_pole_count"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Length (cm)" />
-
-                                <TextView
-                                    android:id="@+id/offset_pole_lenght"
+                                    android:id="@+id/spinUserCompany"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air"
@@ -201,6 +530,152 @@
                         </GridLayout>
 
                     </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/item_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+
+            <LinearLayout
+                android:id="@+id/rectifier_module_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_rectifier_module_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Rectifier Module" />
+                <ImageView
+                    android:id="@+id/rectifier_module_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/rectifier_module_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/rectifier_module_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/rectifier_module_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/rectifier_module_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/rectifier_module_details"
+                        android:id="@+id/rectifier_module_recycler"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/item_line_3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/connected_loads_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_connected_loads_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Connected Loads" />
+                <ImageView
+                    android:id="@+id/connected_loads_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/connected_loads_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/connected_loads_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/connected_loads_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/connected_loads_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/connected_loads_details"
+                        android:id="@+id/connected_loads_recycler"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -210,278 +685,6 @@
                 android:layout_height="1dp"
                 android:alpha="0.37"
                 android:background="#263238" />
-
-            <LinearLayout
-                android:id="@+id/collapsing_layout_Pole"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/pole_root"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/expand_colaps_background"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/item_title_pole"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:clickable="false"
-                        android:padding="@dimen/dp15"
-                        android:text="Pole" />
-
-                    <ImageView
-                        android:id="@+id/pole_edit"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/edit_fav_btn"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/pole_arrow"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/ic_arrow_down_black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/item_collapse_pole"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingBottom="@dimen/dp10">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:maxLines="1"
-                                    android:text="Pole"
-                                    android:textColor="#3F4E69"
-                                    android:textSize="@dimen/dp15"
-                                    android:textStyle="bold" />
-
-                                <LinearLayout
-                                    android:id="@+id/lnAddNew"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/dp5"
-                                    android:gravity="end"
-                                    android:orientation="horizontal">
-                                    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                                        android:id="@+id/ic_menu_close"
-                                        android:layout_width="@dimen/dp20"
-                                        android:layout_height="@dimen/dp20"
-                                        android:background="@color/color1"
-                                        android:backgroundTint="@color/color1"
-                                        android:elevation="@dimen/dp12"
-                                        android:innerRadius="0dp"
-                                        android:shape="ring"
-                                        android:thicknessRatio="1.9"
-                                        app:cardCornerRadius="@dimen/dp40">
-
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentTop="true"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_gravity="center"
-                                            android:padding="@dimen/dp1"
-                                            android:src="@drawable/ic_baseline_add_24"></ImageView>
-                                    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignBaseline="@+id/ic_menu_close"
-                                        android:layout_marginStart="0dp"
-                                        android:layout_toRightOf="@+id/ic_menu_close"
-                                        android:fontFamily="@font/poppins_regular"
-                                        android:gravity="center"
-                                        android:paddingLeft="@dimen/dp10"
-                                        android:text="Add Row"
-                                        android:textColor="@color/color1"
-                                        android:textSize="@dimen/sp12" />
-                                </LinearLayout>
-                            </LinearLayout>
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:alpha="0.37"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:background="@color/view_color" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:maxLines="1"
-                                    android:text="Pole Height"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="Height"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="Antenna Space"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1.3"
-                                    android:ellipsize="marquee"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="item code"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dp11"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:alpha="0.37"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:background="@color/view_color" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/pole_table"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/pole_table_item"/>
-
-                        </LinearLayout>
-
-
-                        <GridLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:columnCount="2"
-                            android:orientation="horizontal"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Count" />
-
-                                <TextView
-                                    android:id="@+id/tower_offset_pole_count"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Offset Pole Length" />
-
-                                <TextView
-                                    android:id="@+id/tower_offset_pole_length"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                        </GridLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -505,7 +708,7 @@
                         android:background="@color/transparent"
                         android:clickable="false"
                         android:padding="@dimen/dp15"
-                        android:text="Attachments" />
+                        android:text="Installation/ Acceptance" />
 
                     <ImageView
                         android:id="@+id/edit_instanlation"
@@ -530,6 +733,588 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/item_collapse_acceptance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp10">
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Installation Vendor" />
+
+                            <TextView
+                                android:id="@+id/spinInstallationVendor"
+                                android:textColor="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Installation Date" />
+
+                            <EditText
+                                android:id="@+id/editInstallationDate"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableRight="@drawable/icon_date"
+
+                                android:text="24" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Installation Executive Name" />
+
+                            <EditText
+                                android:id="@+id/editExcutiveName"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="xxxx" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Installation Executive Num..." />
+
+                            <EditText
+                                android:id="@+id/editExcutiveNum"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableRight="@drawable/ic_call"
+                                android:text="9890000009" />
+
+                        </LinearLayout>
+
+
+                    </GridLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_gravity="center_vertical"
+                    android:background="#f9f9f9"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp12">
+
+                    <TextView
+                        android:id="@+id/atp_checkli"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight=".3"
+                        android:gravity="start"
+                        android:text="ATP Checklist"
+                        android:textColor="#3D4E6D" />
+
+                    <TextView
+                        android:id="@+id/addmore"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp40"
+                        android:layout_gravity="center|right"
+                        android:layout_weight=".7"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:text="Continue"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/sp12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp12">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight=".3"
+                        android:gravity="start"
+                        android:text="Acceptance Punch Points"
+                        android:textColor="#3D4E6D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/mark"
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/roundedtextblack"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_marginLeft="@dimen/dp5"
+                                    android:textSize="@dimen/dp12"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_toRightOf="@+id/mark"
+                                    android:gravity="center_vertical"
+                                    android:text=" Closed"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/mark2"
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/roundedtextview_yellow"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_marginLeft="@dimen/dp5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center|start"
+                                    android:layout_toRightOf="@+id/mark2"
+                                    android:gravity="center_vertical"
+                                    android:textSize="@dimen/dp12"
+                                    android:text=" OPEN"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="right"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    android:paddingLeft="@dimen/dp10"
+                                    android:paddingRight="@dimen/dp10"
+                                    android:src="@drawable/add_ico_white"
+                                    android:background="@drawable/circleblue_1"
+                                    />
+                                <TextView
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp30"
+                                    android:paddingLeft="@dimen/dp10"
+                                    android:paddingRight="@dimen/dp10"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="Add"
+                                    android:id="@+id/add"
+                                    android:gravity="center"
+                                    android:textColor="@color/normalTextColor"
+                                    android:textSize="@dimen/sp12"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="I/p Voltage Reading" />
+
+                        <EditText
+                            android:id="@+id/editIpVoltageReading"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="220V" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="O/p Voltage Reading" />
+
+                        <EditText
+                            android:id="@+id/editOpVoltageReading"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="540V" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Acceptance Status" />
+
+                        <EditText
+                            android:id="@+id/editAcceptanceStatus"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Completed" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Conditional Acceptance Da.." />
+
+                        <EditText
+                            android:id="@+id/editCondtionalAcceptance"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:text="10-Nov-22" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Final Acceptance Date" />
+
+                        <EditText
+                            android:id="@+id/editFinalDateAcceptance"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:text="10-Nov-22" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Operational Status" />
+
+                        <TextView
+                            android:id="@+id/spinOperationalStatus"
+                            android:textColor="@color/black"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="On-Air" />
+
+                    </LinearLayout>
+                </GridLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/rectangle_9"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp12"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight=".3"
+                        android:gravity="start"
+                        android:text="@string/po_details"
+                        android:textColor="#3D4E6D" />
+
+                    <TextView
+                        android:id="@+id/txtAddCommersial"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp40"
+
+                        android:layout_gravity="center|right"
+                        android:layout_weight=".7"
+                        android:background="@drawable/yellow_text_button"
+                        android:drawableLeft="@drawable/add_ico"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:text="ADD"
+                        android:textColor="@color/normalTextColor"
+                        android:textSize="@dimen/sp12"
+                        app:drawableLeftCompat="@drawable/add_ico" />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/item_line_4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/consumable_materials_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_consumable_materials_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="Consumable Materials" />
+                <ImageView
+                    android:id="@+id/consumable_materials_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/consumable_materials_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/consumable_materials_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/consumable_materials_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/consumable_materials_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/consumable_material_details"
+                        android:id="@+id/consumable_materials_recycler"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/item_line_5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.37"
+                android:background="#263238" />
+            <LinearLayout
+                android:id="@+id/po_details_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/expand_colaps_background"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_title_po_details_root"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:padding="@dimen/dp15"
+                    android:text="PO Details" />
+                <ImageView
+                    android:id="@+id/po_details_edit"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/edit_fav_btn"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_details_delete"
+                    android:layout_width="@dimen/dp51"
+                    android:layout_height="@dimen/dp51"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/delete_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_details_add"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/add_utilities"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/po_details_arrow"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:padding="@dimen/dp18"
+                    android:src="@drawable/ic_arrow_down_black" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:id="@+id/po_details_collapse"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingBottom="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/po_details_details"
+                        android:id="@+id/po_details_recycler"/>
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

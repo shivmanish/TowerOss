@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.model.CommonResponse;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
@@ -12,6 +13,7 @@ import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
@@ -28,9 +30,11 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
@@ -86,6 +90,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_DROP_DOWN)
     Call<SiteInfoDropDownData> siteInfoDropDown();
 
+    @POST(EndPoints.SITE_INFO_DROP_DOWN_NEW)
+    Call<DropDownNew> siteInfoDropDownNew();
+
     @GET(EndPoints.SITE_INFO_MODEL)
     Call<SiteInfoModel> fetchSiteInfoData();
 
@@ -109,6 +116,14 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<PlanAndDesignModel> fetchPlanDesignRequest(@Body SiteInfoParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<UtilitiesEquipModel> fetchUtilitiesEquipRequest(@Body SiteInfoParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<SiteAgreementModel> fetchSiteAgreementModelRequest(@Body SiteInfoParam data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
@@ -154,7 +169,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
-    Call<BasicInfoDialougeResponse> createSite(@Body CreateSiteModel basicinfoModel);
+    Call<SiteInfoModelNew> createSite(@Body CreateSiteModel basicinfoModel);
 
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})

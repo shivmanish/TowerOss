@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/title1"
+        android:id="@+id/over_due"
         android:textSize="18sp"
         android:textColor="#E03B58"
         android:text="250"
@@ -29,7 +29,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/title1"
+        app:layout_constraintTop_toBottomOf="@+id/over_due"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/status_title1"
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toEndOf="@+id/total_rfi"/>
 
     <TextView
-        android:id="@+id/title2"
+        android:id="@+id/now_due"
         android:textSize="18sp"
         android:textColor="#F4C22B"
         android:text="75"
@@ -73,8 +73,8 @@
         android:fontFamily="@font/poppins_semibold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/title2"
-        app:layout_constraintStart_toStartOf="@+id/title2"/>
+        app:layout_constraintTop_toBottomOf="@+id/now_due"
+        app:layout_constraintStart_toStartOf="@+id/now_due"/>
     <TextView
         android:id="@+id/status_title2"
         android:textSize="10sp"
@@ -91,7 +91,7 @@
         app:layout_constraintStart_toEndOf="@+id/total_on_air"/>
 
     <TextView
-        android:id="@+id/title3"
+        android:id="@+id/next_due"
         android:textSize="18sp"
         android:textColor="#748892"
         android:text="75"
@@ -110,15 +110,15 @@
         android:id="@+id/total_in_progress"
         android:textSize="12sp"
         android:textColor="@color/black"
-        android:text="Now"
+        android:text="Next"
         android:maxLines="1"
         android:padding="0dp"
         android:paddingStart="@dimen/dp10"
         android:fontFamily="@font/poppins_semibold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/title3"
-        app:layout_constraintStart_toStartOf="@+id/title3"/>
+        app:layout_constraintTop_toBottomOf="@+id/next_due"
+        app:layout_constraintStart_toStartOf="@+id/next_due"/>
     <TextView
         android:id="@+id/status_title3"
         android:textSize="10sp"

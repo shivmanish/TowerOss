@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PaymentTableItemRowBinding
 
-import com.smarthub.baseapplication.ui.site_agreement.model.PaymentModel
+import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PaymentModel
 import com.smarthub.baseapplication.utils.AppLogger
 
 class PaymentTableAdapter(

@@ -1,36 +1,35 @@
+/*
 package com.smarthub.baseapplication.ui.site_agreement
 
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.site_agreement.siteagreements_tab.SAPaymentFrag
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
-import com.smarthub.baseapplication.ui.site_agreement.fragment.*
 import com.smarthub.baseapplication.ui.site_agreement.siteagreements_tab.SANomonalsFrag
+import com.smarthub.baseapplication.ui.site_agreement.siteagreements_tab.SAPaymentFrag
 
-class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
+class SiteLeaseAcquisitionAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 2
     }
 
     override fun getItem(position: Int): Fragment {
-        when(position) {
+        when (position) {
             0 -> {
-                return SANomonalsFrag()
+                return SANomonalsFrag(data?.SiteacquisitionAgreements)
             }
             1 -> {
-                return SAPaymentFrag()
+                return SAPaymentFrag(data?.SiteacquisitionPayment)
             }
 
             else -> {
-                return SANomonalsFrag()
+                return SANomonalsFrag(data?.SiteacquisitionAgreements)
             }
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(position) {
+        when (position) {
             0 -> {
                 return "Nominals"
             }
@@ -42,4 +41,4 @@ class SiteLeaseAcquisitionAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm)
         return super.getPageTitle(position)
     }
 
-}
+}*/

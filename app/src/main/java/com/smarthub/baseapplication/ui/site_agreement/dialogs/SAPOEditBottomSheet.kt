@@ -5,20 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SaPoEditDialogBinding
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.Utils
 
 
-class SAPOEditBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId)  {
+class SAPOEditBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId),  ImageAttachmentAdapter.ItemClickListener  {
     lateinit var binding : SaPoEditDialogBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
       //  binding.constraint.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+        var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
+        var adapter = ImageAttachmentAdapter(this@SAPOEditBottomSheet)
+        attacmentsItem.adapter=adapter
+        view.findViewById<View>(R.id.attach_card).setOnClickListener{
+            adapter.addItem()
+        }
+
         binding.canecl.setOnClickListener {
             dismiss()
         }
@@ -41,4 +50,7 @@ class SAPOEditBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(cont
 
 
     override fun getTheme() = R.style.NewDialogTask
+    override fun itemClicked() {
+
+    }
 }

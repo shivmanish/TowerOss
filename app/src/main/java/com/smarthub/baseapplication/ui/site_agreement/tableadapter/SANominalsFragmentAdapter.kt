@@ -10,13 +10,18 @@ import com.smarthub.baseapplication.databinding.SaAgreementsItemViewBinding
 import com.smarthub.baseapplication.databinding.SaAttachmentsBinding
 import com.smarthub.baseapplication.databinding.SaPoInfoViewBinding
 import com.smarthub.baseapplication.databinding.SaPropertyInfoViewBinding
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PODetail
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PropertyOwnerPaymentDetail
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
 class SANominalsFragmentAdapter(
     var context: Context,
     var listener: PoTableAdapter.PoInfoListListener? = null,
-    var listener2: PropertyOwenerTableAdapter.PropertyOwenerInfoListListener? = null
+    allData: List<SiteacquisitionAgreement>?,
+    var listener2: PropertyOwenerTableAdapter.PropertyOwenerInfoListListener? = null,
 ) :
     RecyclerView.Adapter<SANominalsFragmentAdapter.ViewHold>() {
 
@@ -26,14 +31,25 @@ class SANominalsFragmentAdapter(
     var type3 = "PO Details"
     var type4 = "Attachments"
     var currentOpened = -1
+    private var siteAgreementsData : SiteacquisitionAgreement?=null
+    private var poDetail : PODetail?=null
+    private var properData : PropertyOwnerPaymentDetail?=null
+
+
+
+
 
     init {
         list.add("Agreements")
         list.add("Property Owner & Payments Details")
         list.add("PO Details")
         list.add("Attachments")
+        siteAgreementsData=allData?.get(0);
+        poDetail=siteAgreementsData?.PODetails?.get(0);
+        properData=siteAgreementsData?.PropertyOwnerPaymentDetails?.get(0);
 
     }
+
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class AgreemetViewHold(itemView: View) : ViewHold(itemView) {
@@ -86,7 +102,7 @@ class SANominalsFragmentAdapter(
     class PropertyViewHold(itemView: View) : ViewHold(itemView) {
         var binding: SaPropertyInfoViewBinding = SaPropertyInfoViewBinding.bind(itemView)
 
-        var propertList: RecyclerView = binding.root.findViewById(R.id.rv_sa_propertylist)
+        var ownerList: RecyclerView = binding.root.findViewById(R.id.ownerList)
 
         init {
             binding.collapsingLayout.tag = false
@@ -100,13 +116,15 @@ class SANominalsFragmentAdapter(
 
             binding.imgAdd.setOnClickListener {
                 addTableItem("gsfbgksf")
+
             }
         }
 
         private fun addTableItem(item: String) {
-            if (propertList.adapter != null && propertList.adapter is PropertyOwenerTableAdapter) {
-                var adapter = propertList.adapter as PropertyOwenerTableAdapter
+            if (ownerList.adapter != null && ownerList.adapter is PropertyOwenerTableAdapter) {
+                var adapter = ownerList.adapter as PropertyOwenerTableAdapter
                 adapter.addItem(item)
+
             }
         }
     }
@@ -195,7 +213,8 @@ class SANominalsFragmentAdapter(
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
-                } else {
+                }
+                else {
                     holder.binding.collapsingLayout.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -203,13 +222,40 @@ class SANominalsFragmentAdapter(
                     holder.binding.itemCollapse.visibility = View.GONE
                     holder.binding.imgEdit.visibility = View.GONE
                 }
+               holder.binding.txtTermLease.setText(siteAgreementsData?.AgreementType)
+               holder.binding.textRegistrationNumber.setText(siteAgreementsData?.RegistrationNumber)
+               holder.binding.textRegistrationDate.setText(siteAgreementsData?.RegistrationDate)
+               holder.binding.textBookingCostCentre.setText(siteAgreementsData?.BookingCostCentre)
+               holder.binding.textEBBillLimit.setText(siteAgreementsData?.EBBillLimit)
+               holder.binding.textEBBillingBasis.setText(siteAgreementsData?.EBBillingBasis)
+               holder.binding.textEBInclusiveRental.setText(siteAgreementsData?.EBInclusiveinRental)
+               holder.binding.txtEBperunitRate.setText(siteAgreementsData?.EBPerUnitRate)
+               holder.binding.txtUsableArea.setText(siteAgreementsData?.GroundUsableArea)
+               holder.binding.txtInitialAnnualRentAmount.setText(siteAgreementsData?.InitialAnnualRentAmount)
+               holder.binding.txtLastRevisedRentAmount.setText(siteAgreementsData?.LastRevisedRentAmount)
+               holder.binding.txtLastEscalationDate.setText(siteAgreementsData?.LastescalationDate)
+               holder.binding.txtLockPeriod.setText(siteAgreementsData?.LockInPeriod)
+               holder.binding.txtOnetimeAmount.setText(siteAgreementsData?.OnetimeAmount)
+/*
+               holder.binding.textRentPaymentFrequency.setText(siteAgreementsData?.PeriodicRentPayableAmount)
+*/
+               holder.binding.textPropertyOwnership.setText(siteAgreementsData?.RentStartDate)
+               holder.binding.textPropertyAcquired.setText(siteAgreementsData?.PropertyAcquired)
+               holder.binding.textPropertyOwnership.setText(siteAgreementsData?.PropertyOwnership)
+               holder.binding.textRegistrationDate.setText(siteAgreementsData?.RegistrationDate)
+               holder.binding.textRegistrationNumber.setText(siteAgreementsData?.RegistrationNumber)
+               holder.binding.txtRentEscalation.setText(siteAgreementsData?.RentEscalation)
+               holder.binding.txtRentEscalationPeriod.setText(siteAgreementsData?.RentEscalationPeriod)
+               holder.binding.textRentPaymentFrequency.setText(siteAgreementsData?.RentPaymentFrequency)
+               holder.binding.txtRentStartDate.setText(siteAgreementsData?.RentStartDate)
+               holder.binding.txtRentStartDate.setText(siteAgreementsData?.RentStartDate)
+               holder.binding.txtSecurityAmount.setText(siteAgreementsData?.SecurityDepositAmount)
+               holder.binding.txtRooftopArea.setText(siteAgreementsData?.RooftopUsableArea)
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
             }
-
-
             is POViewHold -> {
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -256,9 +302,9 @@ class SANominalsFragmentAdapter(
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitle.text = list[position]
+                holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.propertList.adapter =
+                    holder.ownerList.adapter =
                         PropertyOwenerTableAdapter(context, listener2!!, list)
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
@@ -297,8 +343,4 @@ class SANominalsFragmentAdapter(
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface PoInfoListListener {
-        fun attachmentItemClicked()
-        fun AgreementEditViewClick()
-    }
 }

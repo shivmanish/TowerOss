@@ -200,6 +200,15 @@
                             android:background="#263238" />
                     </LinearLayout>
 
+                </GridLayout>
+                <GridLayout
+                    android:visibility="gone"
+                    android:id="@+id/generate_is_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="horizontal">
+
                     <LinearLayout
                         style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
@@ -424,7 +433,6 @@
                         android:layout_width="@dimen/dp150"
                         android:layout_height="@dimen/dp35"
                         android:layout_gravity="center"
-                        android:background="@drawable/button_backround_grey"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
                         android:paddingLeft="@dimen/dp15"
@@ -481,7 +489,7 @@
                 android:textSize="@dimen/sp17"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progress" />
+                app:layout_constraintTop_toBottomOf="@+id/progresstwo" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -51,7 +51,7 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
                 binding.swipeLayout.isRefreshing=false
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.item!![0].TowerAndCivilInfra?.get(0))
+                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()

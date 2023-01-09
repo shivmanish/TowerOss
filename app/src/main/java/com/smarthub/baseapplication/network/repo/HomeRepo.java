@@ -7,6 +7,7 @@ import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
@@ -14,6 +15,7 @@ import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
@@ -22,9 +24,11 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -53,6 +57,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<TaskModelData>> taskResponse;
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serRequestData;
     private SingleLiveEvent<Resource<BasicInfoDialougeResponse>> basicInfoUpdate;
+    private SingleLiveEvent<Resource<SiteInfoModelNew>> siteInfoModelNew;
     private SingleLiveEvent<Resource<SiteInfoModelUpdate>> siteInfoUpdate;
     private SingleLiveEvent<Resource<SiteInfoModel>> siteInfoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
@@ -60,13 +65,16 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serviceRequestAllData;
     private SingleLiveEvent<Resource<GenerateSiteIdResponse>> generateSiteIdResponse;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
+    private SingleLiveEvent<Resource<DropDownNew>> dropDownResponseNew;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
     private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
+    private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
+    private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
 
     public static HomeRepo getInstance(APIClient apiClient) {
@@ -81,6 +89,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<LogSearchData>> getloglivedata() {
         return loglivedata;
     }
+    public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
+        return siteInfoModelNew;
+    }
 
     public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
         return siteSearchResponse;
@@ -88,6 +99,14 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
         return dropDownResoonse;
+    }
+
+    public SingleLiveEvent<Resource<DropDownNew>> getDropDownResponseNew() {
+        return dropDownResponseNew;
+    }
+
+    public SingleLiveEvent<Resource<SiteAgreementModel>> getSiteAgreementModel() {
+        return siteAgreementModel;
     }
 
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
@@ -98,6 +117,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<NocAndCompModel>> getNOCandCompModel() {
         return noCandCompModel;
+    }
+    public SingleLiveEvent<Resource<UtilitiesEquipModel>> getUtilityEquipModel() {
+        return utilityEquipModel;
     }
     public SingleLiveEvent<Resource<TowerCivilInfraModel>> getTowerAndCivilInfraModel() {
         return towerAndCivilInfraModel;
@@ -141,8 +163,12 @@ public class HomeRepo {
         towerAndCivilInfraModel=new SingleLiveEvent<>();
         powerFuelModel = new SingleLiveEvent<>();
         planAndDesignModel=new SingleLiveEvent<>();
+        utilityEquipModel=new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
+        siteAgreementModel = new SingleLiveEvent<>();
+        dropDownResponseNew = new SingleLiveEvent<>();
+        siteInfoModelNew = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -375,9 +401,9 @@ public class HomeRepo {
     }
 
     public void createSite(CreateSiteModel basicinfoModel) {
-        apiClient.createSite(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+        apiClient.createSite(basicinfoModel).enqueue(new Callback<SiteInfoModelNew>() {
             @Override
-            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+            public void onResponse(@NonNull Call<SiteInfoModelNew> call, Response<SiteInfoModelNew> response) {
                 if (response.isSuccessful()) {
                     reportSuccessResponse(response);
                 } else if (response.errorBody() != null) {
@@ -388,24 +414,24 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(@NonNull Call<BasicInfoDialougeResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<SiteInfoModelNew> call, @NonNull Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+            private void reportSuccessResponse(Response<SiteInfoModelNew> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
-                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+                    siteInfoModelNew.postValue(Resource.success(response.body(), 200));
 
                 }
             }
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    siteInfoModelNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    siteInfoModelNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
@@ -733,6 +759,83 @@ public class HomeRepo {
         });
     }
 
+    public void siteAgreementRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Siteacquisition");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchSiteAgreementModelRequest(siteInfoParam).enqueue(new Callback<SiteAgreementModel>() {
+            @Override
+            public void onResponse(Call<SiteAgreementModel> call, Response<SiteAgreementModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SiteAgreementModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteAgreementModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    siteAgreementModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void utilitiEquipRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("utilities");
+        AppLogger.INSTANCE.log("id :"+id);
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        apiClient.fetchUtilitiesEquipRequest(siteInfoParam).enqueue(new Callback<UtilitiesEquipModel>() {
+            @Override
+            public void onResponse(Call<UtilitiesEquipModel> call, Response<UtilitiesEquipModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UtilitiesEquipModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<UtilitiesEquipModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    utilityEquipModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    utilityEquipModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    utilityEquipModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
     public void NocAndCompRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("NOCCompliance");
@@ -1033,6 +1136,44 @@ public class HomeRepo {
                     dropDownResoonse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     dropDownResoonse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void siteInfoDropDownNew() {
+
+        apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
+            @Override
+            public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DropDownNew> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<DropDownNew> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    dropDownResponseNew.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    dropDownResponseNew.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    dropDownResponseNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    dropDownResponseNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

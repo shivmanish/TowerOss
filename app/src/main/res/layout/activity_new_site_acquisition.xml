@@ -190,6 +190,7 @@
 
             </LinearLayout>
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"

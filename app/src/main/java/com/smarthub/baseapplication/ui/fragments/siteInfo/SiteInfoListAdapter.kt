@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:BasicInfoModelItem) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
@@ -195,12 +196,12 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.txSiteName.text = siteBasicinfo.siteName
                     holder.binding.txSiteID.text = siteBasicinfo.siteID
 
-                    AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,"Sitestatus",siteBasicinfo.Sitestatus)
-//                    holder.binding.siteStatus.text = siteBasicinfo.Sitestatus
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo.Sitestatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo.Sitecategory)
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Sitetype)
+                    AppPreferences.getInstance().setDropDown(holder.binding.txBuildingType,DropDowns.Buildingtype.name,siteBasicinfo.Buildingtype)
 
-                    holder.binding.siteCategory.text = siteBasicinfo.Sitecategory
-                    holder.binding.siteType.text = siteBasicinfo.Sitetype
-                    holder.binding.txBuildingType.text = siteBasicinfo.Buildingtype
+
                     holder.binding.txtLocationZone.text = siteBasicinfo.Locationzone
                     holder.binding.txtMaintenanceZone.text = siteBasicinfo.MaintenancePoint
                     holder.binding.txtProjectName.text = siteBasicinfo.Projectname

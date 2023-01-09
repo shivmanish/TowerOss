@@ -4,28 +4,29 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp25"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/progress_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
-        android:layout_marginBottom="@dimen/dp45">
+        android:layout_marginLeft="@dimen/dp35"
+        android:layout_marginRight="@dimen/dp35"
+        android:layout_marginBottom="@dimen/dp25">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/p1"
-            android:layout_width="@dimen/dp60"
-            android:layout_height="@dimen/dp60"
-            app:cardBackgroundColor="#3D4E6D"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardBackgroundColor="@color/card_bg"
             app:cardCornerRadius="@dimen/dp60"
             app:layout_constraintEnd_toEndOf="@+id/p_status1"
             app:layout_constraintStart_toStartOf="@+id/p_status1"
             app:layout_constraintTop_toTopOf="parent" >
             <ImageView
-                android:layout_marginEnd="@dimen/dp10"
-                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp12"
                 android:src="@drawable/task_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -37,7 +38,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:padding="@dimen/dp5"
-            android:text="Basic info"
+            android:text="Task info"
             android:textColor="#4F4D4D"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -47,7 +48,7 @@
             android:id="@+id/l1"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp10"
-            android:background="#3D4E6D"
+            android:background="@color/card_bg"
             app:layout_constraintBottom_toBottomOf="@+id/p1"
             app:layout_constraintEnd_toStartOf="@+id/p2"
             app:layout_constraintStart_toEndOf="@+id/p1"
@@ -55,21 +56,21 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/p2"
-            android:layout_width="@dimen/dp60"
-            android:layout_height="@dimen/dp60"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
             app:cardCornerRadius="@dimen/dp60"
             app:cardBackgroundColor="#3D4E6D"
-            app:strokeColor="#3D4E6D"
+            app:strokeColor="@color/card_bg"
             app:strokeWidth="1dp"
             app:layout_constraintEnd_toEndOf="@id/p_status2"
             app:layout_constraintStart_toStartOf="@+id/p_status2"
             app:layout_constraintTop_toTopOf="parent" >
             <ImageView
-                android:layout_margin="@dimen/dp15"
+                android:layout_margin="@dimen/dp12"
                 android:src="@drawable/menu_task"
+                app:tint="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:tint="@color/white" />
+                android:layout_height="match_parent"/>
         </com.google.android.material.card.MaterialCardView>
         <TextView
             android:id="@+id/p_status2"
@@ -78,7 +79,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:padding="@dimen/dp5"
-            android:text="Job role info"
+            android:text="Activities"
             android:textColor="#4F4D4D"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -89,7 +90,7 @@
             android:id="@+id/l2"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp10"
-            android:background="#f1f1f1"
+            android:background="@color/circle_color"
             app:layout_constraintBottom_toBottomOf="@+id/p2"
             app:layout_constraintEnd_toStartOf="@+id/p3"
             app:layout_constraintStart_toEndOf="@+id/p2"
@@ -97,8 +98,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/p3"
-            android:layout_width="@dimen/dp60"
-            android:layout_height="@dimen/dp60"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
             app:cardBackgroundColor="#ffffff"
             app:strokeColor="#3D4E6D"
             app:strokeWidth="1dp"
@@ -107,7 +108,7 @@
             app:layout_constraintStart_toStartOf="@+id/p_status3"
             app:layout_constraintTop_toTopOf="parent" >
             <ImageView
-                android:layout_margin="@dimen/dp15"
+                android:layout_margin="@dimen/dp12"
                 android:src="@drawable/notification_bell"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -119,7 +120,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:padding="@dimen/dp5"
-            android:text="Manager Info"
+            android:text="Notification"
             android:textColor="#4F4D4D"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -127,10 +128,12 @@
             app:layout_constraintTop_toBottomOf="@+id/p1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="#f1f1f1"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f1f1f1"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -155,8 +158,51 @@
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/rfEquipment_edit_save"
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+        <LinearLayout
+            android:id="@+id/rfEquipment_edit_save"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:padding="5dp"
+                android:text="Cancel"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/dp14"
+                android:id="@+id/cancel"
+                android:textColor="@color/card_bg"
+                android:layout_width="88dp"
+                android:layout_height="@dimen/dp32"
+                />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                app:cardBackgroundColor="#FFD72B"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="@dimen/dp5"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/next"
+                    android:padding="5dp"
+                    android:text="Next"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="@dimen/dp14"
+                    android:textColor="@color/card_bg"
+                    android:layout_width="88dp"
+                    android:layout_height="@dimen/dp32"
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

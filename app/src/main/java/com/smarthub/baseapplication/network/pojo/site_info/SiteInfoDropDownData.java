@@ -24,7 +24,6 @@ public class SiteInfoDropDownData {
     @Expose
     private AcuationsLeaseModel acquistionMode;
 
-
     @SerializedName("Opcoinfo")
     @Expose
     private OpcoinfoModel opcoinfo;

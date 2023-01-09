@@ -1,60 +1,98 @@
 package com.smarthub.baseapplication.ui.site_agreement
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.tabs.TabLayout
+import android.widget.Toast
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
-import com.smarthub.baseapplication.databinding.TabNameItemBinding
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteAgreemetAdapter
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class SiteAgreementCaredItemActivity : BaseActivity() {
-    lateinit var binding : ActivityNewSiteAcquisitionBinding
+
+
+    companion object {
+        var siteacquisition: Siteacquisition? = null
+        var Id: String = "430"
+        var index: Int? = 0
+    }
+
+    lateinit var binding: ActivityNewSiteAcquisitionBinding
+    lateinit var viewmodel: HomeViewModel
+    lateinit var adapter: SiteAgreemetAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewSiteAcquisitionBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
         initViews()
-    }
-
-    private fun initViews(){
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.viewpager.adapter = SiteLeaseAcquisitionAdapter(supportFragmentManager)
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
-        binding.viewpager.beginFakeDrag()
-        for (i in 0..binding.tabs.tabCount.minus(1)){
-            if (i==0)
-                binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-            var itemBinding = TabNameItemBinding.inflate(layoutInflater)
-            itemBinding.tabName.text = binding.viewpager.adapter?.getPageTitle(i)
-            itemBinding.tabName.textSize = 12f
-            binding.tabs.getTabAt(i)?.customView = itemBinding.root
-        }
-        binding.addMore.setOnClickListener(){
+        binding.addMore.setOnClickListener {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
-            dalouge.show(supportFragmentManager,"")
+            dalouge.show(supportFragmentManager, "")
+
+            if (viewmodel.siteAgreementModel?.hasActiveObservers() == true) {
+                viewmodel.siteAgreementModel?.removeObservers(this)
+            }
+            viewmodel.siteAgreementModel?.observe(this) {
+                if (it != null && it.status == Resource.Status.LOADING) {
+                    return@observe
+                }
+                if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                    AppLogger.log("planDesign Fragment card Data fetched successfully")
+                    adapter.updateData(
+                        it.data.item!![0].Siteacquisition.get(
+                            SiteAgreementCaredItemActivity.index!!
+                        )
+                    )
+                    AppLogger.log("size :${it.data.item?.size}")
+                } else if (it != null) {
+                    Toast.makeText(
+                        this,
+                        "planDesign Fragment error :${it.message}, data : ${it.data}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+                } else {
+                    AppLogger.log("planDesign Fragment Something went wrong")
+                    Toast.makeText(
+                        this,
+                        "planDesign Fragment Something went wrong",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+/*
+            binding.swipeLayout.setOnRefreshListener {
+                binding.swipeLayout.isRefreshing=false
+                viewmodel?.planAndDesignRequestAll(PowerDesignDetailsActivity.Id)
+            }*/
+
         }
     }
 
-    private fun onTabSelectedListener(pager: ViewPager): TabLayout.OnTabSelectedListener? {
-        return object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                tab.view.setBackgroundResource(R.color.white)
-            }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                tab.view.setBackgroundResource(R.color.tab_deselected)
-            }
-            override fun onTabReselected(tab: TabLayout.Tab) {}
+    private fun initViews() {
+        adapter = SiteAgreemetAdapter(
+            supportFragmentManager,
+            SiteAgreementCaredItemActivity.siteacquisition,
+            SiteAgreementCaredItemActivity.Id
+        )
+        binding.viewpager.adapter = adapter
+        binding.tabs.setupWithViewPager(binding.viewpager)
+
+    }
+
+    override fun onDestroy() {
+        if (viewmodel.siteAgreementModel?.hasActiveObservers() == true) {
+            viewmodel.siteAgreementModel?.removeObservers(this)
         }
+        super.onDestroy()
     }
 
 }
