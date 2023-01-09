@@ -80,7 +80,12 @@ class MenuFragment : Fragment() {
         }
 
         binding.AddNewSiteCard.setOnClickListener {
-            val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel!!)
+            val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel,
+                object : AdNewSiteInfoBottomSheet.AdNewSiteSheetListener{
+                    override fun siteCreated(id: String) {
+//                findNavController().navigate(MenuFragmentDirections.(id))
+                    }
+                })
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         }
     }

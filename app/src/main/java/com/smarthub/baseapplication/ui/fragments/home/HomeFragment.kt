@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.search.SearchFragmentDirections
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -134,7 +135,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun clickNewSiteData(){
-        val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel!!)
+        val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel,
+        object : AdNewSiteInfoBottomSheet.AdNewSiteSheetListener{
+            override fun siteCreated(id: String) {
+//                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment(id))
+            }
+        })
         bottomSheetDialogFragment.show(childFragmentManager, "category")
 
     }

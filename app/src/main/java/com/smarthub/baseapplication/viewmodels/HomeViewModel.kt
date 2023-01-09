@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompMod
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
@@ -63,6 +64,7 @@ class HomeViewModel : ViewModel() {
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAgreementModel>>? = null
+    var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null
 
     init {
@@ -93,6 +95,7 @@ class HomeViewModel : ViewModel() {
         dropDownResponseNew = homeRepo?.dropDownResponseNew
         utilityEquipResponse=homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
+        siteInfoModelNew = homeRepo?.siteInfoModelNew
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){

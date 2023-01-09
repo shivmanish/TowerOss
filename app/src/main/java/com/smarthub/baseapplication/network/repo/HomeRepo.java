@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
@@ -56,6 +57,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<TaskModelData>> taskResponse;
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serRequestData;
     private SingleLiveEvent<Resource<BasicInfoDialougeResponse>> basicInfoUpdate;
+    private SingleLiveEvent<Resource<SiteInfoModelNew>> siteInfoModelNew;
     private SingleLiveEvent<Resource<SiteInfoModelUpdate>> siteInfoUpdate;
     private SingleLiveEvent<Resource<SiteInfoModel>> siteInfoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
@@ -86,6 +88,9 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<LogSearchData>> getloglivedata() {
         return loglivedata;
+    }
+    public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
+        return siteInfoModelNew;
     }
 
     public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
@@ -163,6 +168,7 @@ public class HomeRepo {
         loglivedata = new SingleLiveEvent<>();
         siteAgreementModel = new SingleLiveEvent<>();
         dropDownResponseNew = new SingleLiveEvent<>();
+        siteInfoModelNew = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -395,9 +401,9 @@ public class HomeRepo {
     }
 
     public void createSite(CreateSiteModel basicinfoModel) {
-        apiClient.createSite(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
+        apiClient.createSite(basicinfoModel).enqueue(new Callback<SiteInfoModelNew>() {
             @Override
-            public void onResponse(@NonNull Call<BasicInfoDialougeResponse> call, Response<BasicInfoDialougeResponse> response) {
+            public void onResponse(@NonNull Call<SiteInfoModelNew> call, Response<SiteInfoModelNew> response) {
                 if (response.isSuccessful()) {
                     reportSuccessResponse(response);
                 } else if (response.errorBody() != null) {
@@ -408,24 +414,24 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(@NonNull Call<BasicInfoDialougeResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<SiteInfoModelNew> call, @NonNull Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<BasicInfoDialougeResponse> response) {
+            private void reportSuccessResponse(Response<SiteInfoModelNew> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
-                    basicInfoUpdate.postValue(Resource.success(response.body(), 200));
+                    siteInfoModelNew.postValue(Resource.success(response.body(), 200));
 
                 }
             }
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    siteInfoModelNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    siteInfoModelNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
