@@ -21,10 +21,10 @@ class TaskSecondFragment:Fragment(){
     private fun setview() {
         binding.viewpager.adapter = TaskViewpagerAdapter(childFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
-        binding.btnNext.setOnClickListener {
+        binding.next.setOnClickListener {
             nextClicked()
         }
-        binding.canecelText.setOnClickListener {
+        binding.cancel.setOnClickListener {
             findNavController().popBackStack()
         }
 
