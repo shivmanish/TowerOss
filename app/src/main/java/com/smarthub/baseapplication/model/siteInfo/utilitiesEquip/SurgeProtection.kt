@@ -1,0 +1,31 @@
+package com.smarthub.baseapplication.model.siteInfo.utilitiesEquip
+
+data class SurgeProtection(
+    val AcceptanceStatus: String,
+    val ConditionalAcceptanceDate: String,
+    val EquipmentName: String,
+    val FinalAcceptanceDate: String,
+    val InstallationDate: String,
+    val InstallationExecutiveName: String,
+    val InstallationExecutiveNumber: String,
+    val InstallationVendor: String,
+    val MaintenanceVendor: String,
+    val Make: String,
+    val ManufacturingMonthYear: String,
+    val Model: String,
+    val NextPMDate: String,
+    val OperationStatus: String,
+    val OwnerCompany: String,
+    val PMInterval: String,
+    val PoDetails: List<Any>,
+    val SPDType: String,
+    val SerialNumber: String,
+    val ServiceDetails: List<SurgeServiceDetail>,
+    val UsageType: String,
+    val WarrantyExpiryDate: String,
+    val WarrantyPeriod: String,
+    val created_at: String,
+    val id: String,
+    val isActive: String,
+    val modified_at: String
+)

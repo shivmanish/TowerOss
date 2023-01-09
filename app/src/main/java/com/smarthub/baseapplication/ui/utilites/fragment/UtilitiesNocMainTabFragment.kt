@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.AcUtility
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtililitiesEquipAllDadaItem
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -97,12 +99,18 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
             requireActivity().startActivity(Intent(requireContext(), SMPSDetailsActivity::class.java))
         }
         else if(position==1) { //Battery bank
+            BatteryBankDetailsActivity.id=id
+            BatteryBankDetailsActivity.utilityBatteryBankData=utilitydatalist?.get(0)?.BatteryBank as ArrayList<BatteryBank>
+            BatteryBankDetailsActivity.position=position
             requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
         }
         else if(position==2) { // DG
             requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
         }
         else if(position==3) { //AC
+            BatteryBankDetailsActivity.id=id
+            BatteryBankDetailsActivity.utilityAcData=utilitydatalist?.get(0)?.AC as ArrayList<AcUtility>
+            BatteryBankDetailsActivity.position=position
             requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
         }
         else if(position==4) { //Fire

@@ -28,7 +28,7 @@ import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptan
 import com.smarthub.baseapplication.ui.utilites.editdialouge.PoDetailsBottomSheetDialog
 import com.smarthub.baseapplication.utils.Utils
 
-class SMPS1UitilitiesFrag(smpsAllData: UtilitieSmp?, id:String): Fragment(),SmpsUtilityFragAdapter.SmpsInfoListListener {
+class SMPS1UitilitiesFrag(var smpsAllData: UtilitieSmp?, id:String): Fragment(),SmpsUtilityFragAdapter.SmpsInfoListListener {
     lateinit var binding: Smps1TabUtilitiesFragmentBinding
     lateinit var adapter: SmpsUtilityFragAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,7 +38,8 @@ class SMPS1UitilitiesFrag(smpsAllData: UtilitieSmp?, id:String): Fragment(),Smps
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= SmpsUtilityFragAdapter(requireContext(),this@SMPS1UitilitiesFrag)
+        binding.listItem.layoutManager = LinearLayoutManager(requireContext())
+        adapter= SmpsUtilityFragAdapter(requireContext(),this@SMPS1UitilitiesFrag,smpsAllData)
         binding.listItem.adapter=adapter
     }
 

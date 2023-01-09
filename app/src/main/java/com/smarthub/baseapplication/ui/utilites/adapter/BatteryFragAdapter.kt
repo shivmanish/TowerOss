@@ -11,21 +11,22 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInfo
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInstallationAndAcceptance
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
 import com.smarthub.baseapplication.ui.utilites.tableAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
 
-class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListListener,smpsData:UtilitieSmp?) : RecyclerView.Adapter<SmpsUtilityFragAdapter.ViewHold>() {
-    private var datalist: UtilitieSmp?=null
-    fun setData(data: UtilitieSmp?) {
+class BatteryFragAdapter(var context: Context, var listener: BatterryBankListListener, BatteryData:BatteryBank?) : RecyclerView.Adapter<BatteryFragAdapter.ViewHold>() {
+    private var datalist: BatteryBank?=null
+    fun setData(data: BatteryBank?) {
         this.datalist=data!!
         notifyDataSetChanged()
     }
     init {
         try {
-            datalist=smpsData
+            datalist=BatteryData
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
@@ -35,22 +36,18 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
     var type1 = "Equipments"
-    var type2 = "Rectifier Module"
-    var type3 = "Connected Loads"
-    var type4 = "Installation & Acceptance"
-    var type5 = "Consumable Materials"
-    var type6= "PO Details"
-    var type7="Maintenance"
-    var type8="Service Details"
-    var type9="Attachments"
+    var type2 = "Battery Module"
+    var type3 = "Installation & Acceptance"
+    var type4 = "Consumable Materials"
+    var type5= "PO Details"
+    var type6="Service Details"
+    var type7="Attachments"
     init {
         list.add("Equipments")
-        list.add("Rectifier Module")
-        list.add("Connected Loads")
+        list.add("Battery Module")
         list.add("Installation & Acceptance")
         list.add("Consumable Materials")
         list.add("PO Details")
-        list.add("Maintenance")
         list.add("Service Details")
         list.add("Attachments")
     }
@@ -71,9 +68,9 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             }
         }
     }
-    class RectifierViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : UtilitySmpsRectifireBinding = UtilitySmpsRectifireBinding.bind(itemView)
-        val RectifireTableList:RecyclerView=binding.smpsRectifireTable
+    class BatteryViewHold(itemView: View) : ViewHold(itemView) {
+        var binding : UtilityBatteryModuleBinding = UtilityBatteryModuleBinding.bind(itemView)
+        val BatteryModuleTableList:RecyclerView=binding.batteryModeleTable
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -89,32 +86,8 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             }
         }
         private fun addTableItem(item:String){
-            if (RectifireTableList.adapter!=null && RectifireTableList.adapter is smpsRectifireTableAdapter){
-                var adapter = RectifireTableList.adapter as smpsRectifireTableAdapter
-                adapter.addItem(item)
-            }
-        }
-    }
-    class ConnectedLoadsViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : UtilitySmpsConnectedLoadsBinding = UtilitySmpsConnectedLoadsBinding.bind(itemView)
-        val ConnLoadTableList:RecyclerView=binding.smpsConnLoadsTable
-        init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-            binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
-            }
-        }
-        private fun addTableItem(item:String){
-            if (ConnLoadTableList.adapter!=null && ConnLoadTableList.adapter is smpsConnLoadsTableAdapter){
-                var adapter = ConnLoadTableList.adapter as smpsConnLoadsTableAdapter
+            if (BatteryModuleTableList.adapter!=null && BatteryModuleTableList.adapter is BatteryModuleTableAdapter){
+                var adapter = BatteryModuleTableList.adapter as BatteryModuleTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -151,8 +124,8 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             }
         }
         private fun addTableItem(item:String){
-            if (ConsumTableList.adapter!=null && ConsumTableList.adapter is smpsConsumeTableAdapter){
-                var adapter = ConsumTableList.adapter as smpsConsumeTableAdapter
+            if (ConsumTableList.adapter!=null && ConsumTableList.adapter is BatteryConsumeTableAdapter){
+                var adapter = ConsumTableList.adapter as BatteryConsumeTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -175,26 +148,11 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             }
         }
         private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is smpsPoTableAdapter){
-                var adapter = poTableList.adapter as smpsPoTableAdapter
+            if (poTableList.adapter!=null && poTableList.adapter is BatteryPoTableAdapter){
+                var adapter = poTableList.adapter as BatteryPoTableAdapter
                 adapter.addItem(item)
             }
         }
-    }
-    class MaintenanceViewHold(itemView: View) : ViewHold(itemView) {
-        var binding: UtilitySmpsMaintenenceBinding = UtilitySmpsMaintenenceBinding.bind(itemView)
-        init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-        }
-
     }
     class ServiceDetailsViewHold(itemView: View) : ViewHold(itemView) {
         var binding: UtilitySmpsServiceDetailsBinding = UtilitySmpsServiceDetailsBinding.bind(itemView)
@@ -214,13 +172,13 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             }
         }
         private fun addTableItem(item:String){
-            if (serviceTableList.adapter!=null && serviceTableList.adapter is smpsServiceTableAdapter){
-                var adapter = serviceTableList.adapter as smpsServiceTableAdapter
+            if (serviceTableList.adapter!=null && serviceTableList.adapter is BatteryServiceTableAdapter){
+                var adapter = serviceTableList.adapter as BatteryServiceTableAdapter
                 adapter.addItem(item)
             }
         }
     }
-    class Attachments(itemView: View,listener: SmpsInfoListListener) : ViewHold(itemView) {
+    class Attachments(itemView: View,listener: BatterryBankListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -263,10 +221,6 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             return 6
         else if (list[position] is String && list[position]==type7)
             return 7
-        else if (list[position] is String && list[position]==type8)
-            return 8
-        else if (list[position] is String && list[position]==type9)
-            return 9
         return 0
     }
 
@@ -278,34 +232,28 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 return EquipViewHold(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_rectifire, parent, false)
-                return RectifierViewHold(view)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_battery_module, parent, false)
+                return BatteryViewHold(view)
             }
-            3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_connected_loads, parent, false)
-                return ConnectedLoadsViewHold(view)
-            }
-            4-> {
+
+            3-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_installation_accep, parent, false)
                 return InstAccepViewHold(view)
             }
-            5 -> {
+            4 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_connsum_material, parent, false)
                 return ConsumMaterilViewHold(view)
             }
-            6 -> {
+            5 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_po_details, parent, false)
                 return PoDetailsViewHold(view)
             }
+
             7 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_maintenence, parent, false)
-                return MaintenanceViewHold(view)
-            }
-            8 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_service_details, parent, false)
                 return ServiceDetailsViewHold(view)
             }
-            9 -> {
+            7 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.tower_attachment_info, parent, false)
                 return Attachments(view,listener)
             }
@@ -348,7 +296,7 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
 
             }
-            is RectifierViewHold -> {
+            is BatteryViewHold -> {
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -370,35 +318,7 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.RectifireTableList.adapter=smpsRectifireTableAdapter(context,listener)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
-                }
-            }
-            is ConnectedLoadsViewHold -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgAdd.visibility = View.VISIBLE
-
-                }
-                else {
-                    holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgAdd.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitleStr.text = list[position]
-                try {
-                    holder.ConnLoadTableList.adapter=smpsConnLoadsTableAdapter(context,listener)
+                    holder.BatteryModuleTableList.adapter=BatteryModuleTableAdapter(context,listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                     Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -458,7 +378,7 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                   holder.ConsumTableList.adapter=smpsConsumeTableAdapter(context,listener)
+                 holder.ConsumTableList.adapter=BatteryConsumeTableAdapter(context,listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                     Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -486,43 +406,11 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.poTableList.adapter=smpsPoTableAdapter(context,listener)
+                    holder.poTableList.adapter=BatteryPoTableAdapter(context,listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                     Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
-            }
-            is MaintenanceViewHold -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
-
-                    holder.binding.imgEdit.setOnClickListener {
-                        listener.EditMaintenance()
-                    }
-                }
-                else {
-                    holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitleStr.text = list[position]
-                try {
-
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
-                }
-
             }
             is ServiceDetailsViewHold -> {
                 if (currentOpened == position) {
@@ -546,7 +434,7 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.serviceTableList.adapter=smpsServiceTableAdapter(context,listener)
+                    holder.serviceTableList.adapter=BatteryServiceTableAdapter(context,listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                     Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -587,17 +475,14 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
 
 
 
-    interface SmpsInfoListListener {
+    interface BatterryBankListListener {
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditEquipmentItem()
-        fun EditMaintenance()
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)
-        fun editRectifireTableItem(position: Int)
-        fun viewRectifireTableItem(position: Int)
-        fun editConnLoadsTableItem(position: Int)
-        fun viewConnLoadsTableItem(position: Int)
+        fun editBatteryTableItem(position: Int)
+        fun viewBatteryTableItem(position: Int)
         fun editConsumMaterialTableItem(position: Int)
         fun viewConsumMaterialTableItem(position: Int)
         fun editServiceTableItem(position: Int)

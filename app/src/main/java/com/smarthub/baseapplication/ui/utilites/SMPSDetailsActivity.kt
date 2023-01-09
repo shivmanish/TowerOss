@@ -27,9 +27,6 @@ class SMPSDetailsActivity : AppCompatActivity() {
         super.onPostCreate(savedInstanceState)
         initview()
 
-    }
-
-    fun initview(){
         binding.back.setOnClickListener {
             onBackPressed()
         }
@@ -37,6 +34,9 @@ class SMPSDetailsActivity : AppCompatActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
+    }
+
+    fun initview(){
         binding.viewpager.adapter = SMPSViewpagerAdapter(supportFragmentManager, utilitySmpsData, id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {

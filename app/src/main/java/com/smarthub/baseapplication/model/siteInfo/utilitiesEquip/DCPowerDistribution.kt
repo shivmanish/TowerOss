@@ -1,0 +1,31 @@
+package com.smarthub.baseapplication.model.siteInfo.utilitiesEquip
+
+data class DCPowerDistribution(
+    val AcceptanceStatus: String,
+    val ConditionalAcceptanceDate: String,
+    val ConnectedEquipments: String,
+    val ConsumableMaterials: List<DcConsumableMaterial>,
+    val EquipmentName: String,
+    val FinalAcceptanceDate: String,
+    val InstallationDate: String,
+    val InstallationExecutiveName: String,
+    val InstallationExecutiveNumber: String,
+    val InstallationVendor: String,
+    val InstalledLocationMark: String,
+    val Itemcode: String,
+    val LoadVoltage: String,
+    val Make: String,
+    val Model: String,
+    val OperationStatus: String,
+    val OwnerCompany: String,
+    val PoDetails: List<Any>,
+    val UnitSizeB: String,
+    val UnitSizeH: String,
+    val UnitSizeL: String,
+    val UnitWeight: String,
+    val UserCompany: String,
+    val created_at: String,
+    val id: String,
+    val isActive: String,
+    val modified_at: String
+)

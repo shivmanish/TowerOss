@@ -5,12 +5,18 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityAcDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivityBatteryBankDetailsBinding
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 import com.smarthub.baseapplication.ui.utilites.fragment.AcFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
 
 class AcDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivityAcDetailsBinding
+    companion object{
+        var utilityAcData:ArrayList<BatteryBank>?=null
+        var id:String?="448"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAcDetailsBinding.inflate(layoutInflater)
@@ -25,7 +31,7 @@ class AcDetailsActivity : AppCompatActivity() {
         val titels = ArrayList<String>()
         titels.add("AC #1")
         titels.add("AC #1")
-        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,fragmentlist,titels)
+        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager, utilityAcData,id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
     }
 
