@@ -392,7 +392,7 @@
                                     app:cardCornerRadius="@dimen/dp10"
                                     android:layout_weight="0.33"
                                     app:strokeWidth="1dp"
-                                    android:visibility="visible"
+                                    android:visibility="invisible"
                                     android:id="@+id/add_new_site"
                                     app:strokeColor="@color/white"
                                     android:background="@color/transparent"
