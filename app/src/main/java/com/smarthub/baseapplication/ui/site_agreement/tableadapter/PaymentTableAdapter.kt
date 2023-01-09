@@ -75,10 +75,10 @@ class PaymentTableAdapter(
             performOptionsMenuClick(position, it)
         }
         try {
-            holder.binding.ItemName.text = "Data Not Found"
-            holder.binding.ItemCode.text = list.get(position)?.PayeeName
-            holder.binding.Description.text = list.get(position)?.PaymentAmount
-            holder.binding.Qty.text = list.get(position)?.LineItemNumber
+            holder.binding.ItemName.text = list.get(position).InvoiceNumber
+            holder.binding.ItemCode.text = list.get(position).PayeeName
+            holder.binding.Description.text = list.get(position).PaymentAmount
+            holder.binding.Qty.text = list.get(position).LineItemNumber
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
             Toast.makeText(
