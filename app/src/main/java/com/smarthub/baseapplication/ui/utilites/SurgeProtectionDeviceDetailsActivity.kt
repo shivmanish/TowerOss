@@ -9,6 +9,8 @@ import com.smarthub.baseapplication.databinding.ActivityDetailActivityBinding
 import com.smarthub.baseapplication.databinding.ActivityDgDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivityFireExtinguisherDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivitySpdDetailsBinding
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 import com.smarthub.baseapplication.ui.utilites.fragment.AcFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
@@ -16,6 +18,10 @@ import com.smarthub.baseapplication.ui.utilites.fragment.FireExtinguisherFragmen
 
 class SurgeProtectionDeviceDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivitySpdDetailsBinding
+    companion object{
+        var utilitySPDData:ArrayList<BatteryBank>?=null
+        var id:String?="448"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySpdDetailsBinding.inflate(layoutInflater)
@@ -30,7 +36,7 @@ class SurgeProtectionDeviceDetailsActivity : AppCompatActivity() {
         val titels = ArrayList<String>()
         titels.add("SPD #1")
         titels.add("SPD #2")
-        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,fragmentlist,titels)
+        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,utilitySPDData,id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
     }
 
