@@ -10,24 +10,13 @@ import com.smarthub.baseapplication.databinding.CaptureSiteFragmentDataBinding
 import com.smarthub.baseapplication.databinding.PhotoDocumentFragmentBinding
 import com.smarthub.baseapplication.ui.fragments.task.adapter.CaptureSiteAdapter
 
-class PhotoDocumentFragment(var listener: PhotoDocumentListener): Fragment() {
+class PhotoDocumentFragment: Fragment() {
     lateinit var binding:PhotoDocumentFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = PhotoDocumentFragmentBinding.inflate(inflater)
         setdata()
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.btnNext.setOnClickListener {
-            binding.editRemark.clearFocus()
-            listener.nextClicked()
-        }
-        binding.canecelText.setOnClickListener {
-            binding.editRemark.clearFocus()
-        }
     }
 
     private fun setdata() {
