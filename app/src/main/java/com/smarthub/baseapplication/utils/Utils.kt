@@ -229,11 +229,11 @@ object Utils {
     fun compareDate(date : String) : Int{
         AppLogger.log("compareDate:$date")
         try {
-            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
             val firstDate: Date =  Calendar.getInstance().time
             val secondDate: Date = sdf.parse(date)
-            val cmp = secondDate.compareTo(firstDate)
+            val cmp = firstDate.compareTo(secondDate)
             AppLogger.log("cmp :$cmp")
             return cmp
         }catch (e:java.lang.Exception){
