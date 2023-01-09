@@ -12,7 +12,6 @@ import com.smarthub.baseapplication.databinding.SaPoInfoViewBinding
 import com.smarthub.baseapplication.databinding.SaPropertyInfoViewBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PODetail
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PropertyOwnerPaymentDetail
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
@@ -81,7 +80,8 @@ class SANominalsFragmentAdapter(
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
+            }
+            else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
@@ -94,7 +94,7 @@ class SANominalsFragmentAdapter(
         private fun addTableItem(item: String) {
             if (paymentList.adapter != null && paymentList.adapter is PoTableAdapter) {
                 var adapter = paymentList.adapter as PoTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
             }
         }
     }
@@ -123,7 +123,7 @@ class SANominalsFragmentAdapter(
         private fun addTableItem(item: String) {
             if (ownerList.adapter != null && ownerList.adapter is PropertyOwenerTableAdapter) {
                 var adapter = ownerList.adapter as PropertyOwenerTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
 
             }
         }
@@ -188,7 +188,6 @@ class SANominalsFragmentAdapter(
             }
         }
     }
-
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position] == type1)
             return 1
@@ -276,8 +275,9 @@ class SANominalsFragmentAdapter(
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
+
                     holder.paymentList.adapter =
-                        PoTableAdapter(context, listener!!, list)
+                        PoTableAdapter(context, listener!!, poDetail)
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -304,7 +304,7 @@ class SANominalsFragmentAdapter(
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     holder.ownerList.adapter =
-                        PropertyOwenerTableAdapter(context, listener2!!, list)
+                        PropertyOwenerTableAdapter(context, listener2!!, properData)
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
