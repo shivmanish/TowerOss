@@ -42,6 +42,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+
         setSpinnserData()
         setObserverForInput()
         if (viewModel.basicinfoModel?.hasActiveObservers() == true) {
