@@ -1,19 +1,31 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.utils.AppLogger
-import kotlin.collections.ArrayList
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
+    var c: Calendar = Calendar.getInstance()
+    var sdf: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+    var getCurrentDateTime = sdf.format(c.time)
+    var overDue:Int ?=0
+    var nowDue:Int ?=0
+    var nextDue:Int ?=0
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -30,7 +42,6 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
         var binding : HomeTaskHeaderBinding = HomeTaskHeaderBinding.bind(itemView)
 
         fun bindData(){
-
         }
     }
 
@@ -76,10 +87,43 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ListItemViewHold && list[position] is MyTeamTask){
-            holder.bindData(list[position] as MyTeamTask)
+            var item=list[position] as MyTeamTask
+            holder.bindData(item)
+            try {
+                AppLogger.log("date format1:${item.enddate.split(".")[0]}")
+                val endDate = Calendar.getInstance()
+                try {
+                    endDate.time = sdf.parse(item.enddate)
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+                if (getCurrentDateTime.compareTo(endDate.toString()) > 0)
+                {
+                    holder.binding.IndicatorLine.setBackgroundResource(R.color.colorRed)
+                    overDue=overDue!!+1
+                    notifyDataSetChanged()
+                }
+                else if(getCurrentDateTime.compareTo(endDate.toString()) == 0){
+                    nowDue=nowDue!!+1
+                    holder.binding.IndicatorLine.setBackgroundResource(R.color.yellow)
+                    notifyDataSetChanged()
+                }
+                else{
+                    holder.binding.IndicatorLine.setBackgroundResource(R.color.blue)
+                    nextDue=nextDue!!+1
+                    notifyDataSetChanged()
+                }
+            }catch (e:Exception){
+                AppLogger.log("date format error:${e.localizedMessage}")
+            }
+            AppLogger.log("date format:${item.enddate}")
+
         }
         if (holder is HeaderViewHold){
             holder.bindData()
+            holder.binding.overDue.text=overDue.toString()
+            holder.binding.nowDue.text=nowDue.toString()
+            holder.binding.nextDue.text=nextDue.toString()
         }
     }
 

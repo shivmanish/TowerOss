@@ -15,11 +15,21 @@
         android:id="@+id/title_layout"
         android:paddingTop="10dp"
         android:paddingBottom="5dp"
-        android:paddingStart="@dimen/dp10"
         android:paddingEnd="@dimen/dp5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <View
+            android:id="@+id/Indicator_line"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/yellow"
+            android:outlineSpotShadowColor="@color/white"
+            android:alpha="2"
+            />
         <TextView
             android:id="@+id/task_name"
             android:text="Add Site Nominals"
@@ -27,6 +37,7 @@
             style="@style/AutoResizeTextView"
             android:fontFamily="@font/poppins_semibold"
             android:paddingEnd="@dimen/dp5"
+            android:paddingStart="@dimen/dp10"
             android:textColor="#3F3F3F"
             android:alpha="0.8"
             android:gravity="center_vertical"
@@ -36,7 +47,7 @@
             android:ellipsize="marquee"
             app:layout_constraintEnd_toStartOf="@+id/task_close"
             app:layout_constraintBottom_toBottomOf="@+id/task_close"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/Indicator_line"/>
         <TextView
             android:id="@+id/item_title_text_h"
             android:text="Acquistion"
@@ -48,9 +59,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:paddingStart="@dimen/dp10"
             android:ellipsize="marquee"
             app:layout_constraintEnd_toStartOf="@+id/icon_layout"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Indicator_line"
             app:layout_constraintTop_toBottomOf="@+id/task_name"
             android:layout_marginTop="@dimen/dp5"/>
         <com.google.android.material.card.MaterialCardView
