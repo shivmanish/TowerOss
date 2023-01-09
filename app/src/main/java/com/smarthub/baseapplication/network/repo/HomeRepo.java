@@ -7,6 +7,7 @@ import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
@@ -62,6 +63,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serviceRequestAllData;
     private SingleLiveEvent<Resource<GenerateSiteIdResponse>> generateSiteIdResponse;
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
+    private SingleLiveEvent<Resource<DropDownNew>> dropDownResponseNew;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
     private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
@@ -92,6 +94,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
         return dropDownResoonse;
+    }
+
+    public SingleLiveEvent<Resource<DropDownNew>> getDropDownResponseNew() {
+        return dropDownResponseNew;
     }
 
     public SingleLiveEvent<Resource<SiteAgreementModel>> getSiteAgreementModel() {
@@ -156,6 +162,7 @@ public class HomeRepo {
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
         siteAgreementModel = new SingleLiveEvent<>();
+        dropDownResponseNew = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -1123,6 +1130,44 @@ public class HomeRepo {
                     dropDownResoonse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     dropDownResoonse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void siteInfoDropDownNew() {
+
+        apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
+            @Override
+            public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DropDownNew> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<DropDownNew> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    dropDownResponseNew.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    dropDownResponseNew.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    dropDownResponseNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    dropDownResponseNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

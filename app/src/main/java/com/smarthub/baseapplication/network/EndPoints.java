@@ -9,6 +9,7 @@ public class EndPoints {
     public static final String PROFILE = "Touweuserroles/";
     public static final String REGISTRATION = "/toweross/Userregistration/";
     public static final String SITE_INFO_DROP_DOWN = "/toweross/SiteInfoDropDownView/";
+    public static final String SITE_INFO_DROP_DOWN_NEW = "/toweross/DropDown/";
     public static final String SITE_INFO_MODEL = "/toweross/Basicinfoapi/";
     public static final String SITE_INFO_DATA = "/toweross/SiteInfoApi/";
     public static final String SITE_INFO_SEARCH_DATA = "/toweross/Basicinfosearchdata/";

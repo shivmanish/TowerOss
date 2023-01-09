@@ -137,9 +137,9 @@ class HomeFragment : Fragment() {
 
     private fun setDataDropDownObserver() {
 
-        if (homeViewModel.dropDownResponse?.hasActiveObservers() == true)
-            homeViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
-        homeViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+        if (homeViewModel.dropDownResponseNew?.hasActiveObservers() == true)
+            homeViewModel.dropDownResponseNew?.removeObservers(viewLifecycleOwner)
+        homeViewModel.dropDownResponseNew?.observe(viewLifecycleOwner) {
 //            hideLoader()
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
@@ -154,7 +154,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
-        homeViewModel.fetchDropDown()
+        homeViewModel.fetchDropDownNew()
     }
 
 

@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.model.CommonResponse;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
@@ -87,6 +88,9 @@ public interface APIClient {
 //    Site Info Drop Down api integration
     @GET(EndPoints.SITE_INFO_DROP_DOWN)
     Call<SiteInfoDropDownData> siteInfoDropDown();
+
+    @POST(EndPoints.SITE_INFO_DROP_DOWN_NEW)
+    Call<DropDownNew> siteInfoDropDownNew();
 
     @GET(EndPoints.SITE_INFO_MODEL)
     Call<SiteInfoModel> fetchSiteInfoData();
