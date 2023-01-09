@@ -18,6 +18,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 object Utils {
@@ -224,41 +226,23 @@ object Utils {
         return registerData
     }
 
+    fun compareDate(date : String) : Int{
+        AppLogger.log("compareDate:$date")
+        try {
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+
+            val firstDate: Date =  Calendar.getInstance().time
+            val secondDate: Date = sdf.parse(date)
+            val cmp = secondDate.compareTo(firstDate)
+            AppLogger.log("cmp :$cmp")
+            return cmp
+        }catch (e:java.lang.Exception){
+            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return 0
+    }
+
     fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)
-    fun isValid(value: String): Boolean {
-        return !value.trim().equals("") && !value.equals("Na", ignoreCase = true)
-
-    }
-     fun isValidEmail(email: String): Boolean {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
-        val jsonString: String
-        try {
-            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            return null
-        }
-        return jsonString
-    }
-
-    fun getSelectedSpinner(selsteddata: String, list: List<DropDownItem>): DropDownItem {
-        var returndata: DropDownItem? = null
-        println("data123 "+selsteddata)
-        println("data123 "+list.size)
-
-        for(i in list){
-            if(i.name.equals(selsteddata,true)){
-                println("data123 "+i.name)
-                returndata = i
-                break
-            }
-        }
-        return returndata!!
-    }
-
     }
 }
