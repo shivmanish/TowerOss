@@ -29,16 +29,16 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/p1"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="@dimen/dp60"
+                    android:layout_width="@dimen/dp48"
+                    android:layout_height="@dimen/dp48"
                     app:cardBackgroundColor="@color/card_bg"
                     app:cardCornerRadius="@dimen/dp60"
                     app:layout_constraintEnd_toEndOf="@+id/p_status1"
                     app:layout_constraintStart_toStartOf="@+id/p_status1"
                     app:layout_constraintTop_toTopOf="parent" >
                     <ImageView
-                        android:layout_marginEnd="@dimen/dp10"
-                        android:layout_marginStart="@dimen/dp15"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:layout_marginStart="@dimen/dp12"
                         android:src="@drawable/task_info"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
@@ -68,8 +68,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/p2"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="@dimen/dp60"
+                    android:layout_width="@dimen/dp48"
+                    android:layout_height="@dimen/dp48"
                     app:cardCornerRadius="@dimen/dp60"
                     app:cardBackgroundColor="#ffffff"
                     app:strokeColor="@color/card_bg"
@@ -78,7 +78,7 @@
                     app:layout_constraintStart_toStartOf="@+id/p_status2"
                     app:layout_constraintTop_toTopOf="parent" >
                     <ImageView
-                        android:layout_margin="@dimen/dp15"
+                        android:layout_margin="@dimen/dp12"
                         android:src="@drawable/menu_task"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
@@ -109,8 +109,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/p3"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="@dimen/dp60"
+                    android:layout_width="@dimen/dp48"
+                    android:layout_height="@dimen/dp48"
                     app:cardBackgroundColor="#ffffff"
                     app:strokeColor="#3D4E6D"
                     app:strokeWidth="1dp"
@@ -119,7 +119,7 @@
                     app:layout_constraintStart_toStartOf="@+id/p_status3"
                     app:layout_constraintTop_toTopOf="parent" >
                     <ImageView
-                        android:layout_margin="@dimen/dp15"
+                        android:layout_margin="@dimen/dp12"
                         android:src="@drawable/notification_bell"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>

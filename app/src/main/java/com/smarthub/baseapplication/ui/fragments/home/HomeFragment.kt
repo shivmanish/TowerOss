@@ -138,7 +138,7 @@ class HomeFragment : Fragment() {
         val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel,
         object : AdNewSiteInfoBottomSheet.AdNewSiteSheetListener{
             override fun siteCreated(id: String) {
-//                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment(id))
+                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSiteDetailFragment(id))
             }
         })
         bottomSheetDialogFragment.show(childFragmentManager, "category")
