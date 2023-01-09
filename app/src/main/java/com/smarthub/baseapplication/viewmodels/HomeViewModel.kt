@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.viewmodels
 import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.project.ProjectModelData
@@ -22,6 +23,7 @@ import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignMo
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
@@ -44,7 +46,6 @@ class HomeViewModel : ViewModel() {
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
     var serviceRequestModelResponse : SingleLiveEvent<Resource<ServiceRequestModel?>>?=null
     var loglivedata : SingleLiveEvent<Resource<LogSearchData?>>?=null
-
     var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
     var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
@@ -59,9 +60,10 @@ class HomeViewModel : ViewModel() {
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
-
+    var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAgreementModel>>? = null
+    var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -88,6 +90,8 @@ class HomeViewModel : ViewModel() {
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
         powerAndFuelResponse=homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
+        dropDownResponseNew = homeRepo?.dropDownResponseNew
+        utilityEquipResponse=homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
     }
 
@@ -170,6 +174,10 @@ class HomeViewModel : ViewModel() {
         homeRepo?.siteAgreementRequestAll(id)
     }
 
+    fun utilityRequestAll(id : String){
+        homeRepo?.utilitiEquipRequestAll(id)
+    }
+
     fun NocAndCompRequestAll(id : String){
         homeRepo?.NocAndCompRequestAll(id)
     }
@@ -202,5 +210,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchDropDown() {
         homeRepo?.siteInfoDropDown()
+    }
+
+    fun fetchDropDownNew() {
+        homeRepo?.siteInfoDropDownNew()
     }
 }

@@ -14,9 +14,9 @@ class UtilitiesNocAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            0 -> SMPS1UitilitiesFrag()
+            0 -> SMPS2UitilitiesFrag()
             1 -> SMPS2UitilitiesFrag()
-            else -> SMPS1UitilitiesFrag()
+            else -> SMPS2UitilitiesFrag()
         }
     }
 

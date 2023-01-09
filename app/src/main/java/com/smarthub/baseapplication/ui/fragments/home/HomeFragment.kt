@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -39,7 +40,10 @@ class HomeFragment : Fragment() {
 //            set menu selection for site iBoard
 
         }
-
+        binding.addMore.setOnClickListener{
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
+        }
         return root
     }
 
@@ -58,9 +62,9 @@ class HomeFragment : Fragment() {
             (requireActivity() as DashboardActivity).openSearchMenu()
         }
 
-        if (homeViewModel?.homeData()?.hasActiveObservers() == true)
-            homeViewModel?.homeData()?.removeObservers(viewLifecycleOwner)
-        homeViewModel?.homeData()?.observe(viewLifecycleOwner){
+        if (homeViewModel.homeData()?.hasActiveObservers() == true)
+            homeViewModel.homeData()?.removeObservers(viewLifecycleOwner)
+        homeViewModel.homeData()?.observe(viewLifecycleOwner){
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 if (it.data!=null){
                     AppLogger.log("fetched data:"+ Gson().toJson(it))
@@ -73,8 +77,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel?.fetchHomeData()
-        homeViewModel?.fetchSiteDropDownData()
+        homeViewModel.fetchHomeData()
+        homeViewModel.fetchSiteDropDownData()
     }
 
     private fun mapUIData(data: HomeResponse){
@@ -137,9 +141,9 @@ class HomeFragment : Fragment() {
 
     private fun setDataDropDownObserver() {
 
-        if (homeViewModel.dropDownResponse?.hasActiveObservers() == true)
-            homeViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
-        homeViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+        if (homeViewModel.dropDownResponseNew?.hasActiveObservers() == true)
+            homeViewModel.dropDownResponseNew?.removeObservers(viewLifecycleOwner)
+        homeViewModel.dropDownResponseNew?.observe(viewLifecycleOwner) {
 //            hideLoader()
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
@@ -154,7 +158,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
-        homeViewModel.fetchDropDown()
+        homeViewModel.fetchDropDownNew()
     }
 
 

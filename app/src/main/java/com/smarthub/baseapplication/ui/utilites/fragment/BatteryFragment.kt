@@ -4,63 +4,81 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.BatteryFragmentBinding
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
+import com.smarthub.baseapplication.ui.utilites.adapter.BatteryFragAdapter
 import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.Utils
 
-class BatteryFragment:Fragment() {
+class BatteryFragment(var BatteryAllData: BatteryBank?, id:String):Fragment(),BatteryFragAdapter.BatterryBankListListener {
 
     lateinit var binding:BatteryFragmentBinding
+    lateinit var adapter: BatteryFragAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = BatteryFragmentBinding.inflate(inflater,container,false)
-        setView()
         return binding.root
     }
 
-    fun setView(){
-        binding.equipmentEdit.setOnClickListener{
-            val dalouge = BatteryEquipmentDialouge()
-            dalouge.show(childFragmentManager,"")
-        }
-        binding.editInstanlation.setOnClickListener{
-            val dalouge = InstalationAcceptanceDialouge()
-            dalouge.show(childFragmentManager,"")
-        }
-        binding.equipmentRoot.setOnClickListener {
-            if(binding.itemCollapseEquipment.visibility == View.VISIBLE){
-                Utils.collapse(binding.itemCollapseEquipment)
-                binding.equipmentArrow.rotation = 0f
-                binding.equipmentEdit.visibility = View.GONE
-                binding.equipmentRoot.isSelected = false
-            }else{
-                Utils.expand(binding.itemCollapseEquipment)
-                binding.equipmentRoot.isSelected = true
-                binding.equipmentArrow.rotation = 180f
-                binding.equipmentEdit.visibility = View.VISIBLE
-            }
-        }
-
-        binding.instanlationRoot.setOnClickListener {
-            if(binding.itemCollapseAcceptance.visibility == View.VISIBLE){
-                Utils.collapse(binding.itemCollapseAcceptance)
-                binding.instanlationRoot.isSelected = false
-                binding.instalationArrow.rotation = 0f
-                binding.editInstanlation.visibility = View.GONE
-            }else{
-                Utils.expand(binding.itemCollapseAcceptance)
-                binding.instanlationRoot.isSelected = true
-                binding.instalationArrow.rotation = 180f
-                binding.editInstanlation.visibility = View.VISIBLE
-            }
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.listItem.layoutManager = LinearLayoutManager(requireContext())
+        adapter= BatteryFragAdapter(requireContext(),this@BatteryFragment,BatteryAllData)
+        binding.listItem.adapter=adapter
     }
 
+
+    override fun attachmentItemClicked() {
+        Toast.makeText(requireContext(),"attechments item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun EditInstallationAcceptence() {
+        val dalouge = InstalationAcceptanceDialouge()
+        dalouge.show(childFragmentManager,"")
+        Toast.makeText(requireContext(),"Edit Installation item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun EditEquipmentItem() {
+        Toast.makeText(requireContext(),"Edit Equipment item clicked", Toast.LENGTH_SHORT).show()
+        val dalouge = BatteryEquipmentDialouge()
+        dalouge.show(childFragmentManager,"")
+    }
+
+    override fun editPoClicked(position: Int) {
+        Toast.makeText(requireContext(),"Edit po table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewPoClicked(position: Int) {
+        Toast.makeText(requireContext(),"view po table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editBatteryTableItem(position: Int) {
+        Toast.makeText(requireContext(),"Edit rectifier table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewBatteryTableItem(position: Int) {
+        Toast.makeText(requireContext(),"View rectifier table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editConsumMaterialTableItem(position: Int) {
+        Toast.makeText(requireContext(),"Edit Consumable Materials table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewConsumMaterialTableItem(position: Int) {
+        Toast.makeText(requireContext(),"View Consumable Materials table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editServiceTableItem(position: Int) {
+        Toast.makeText(requireContext(),"Edit Service table  item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewServiceTableItem(position: Int) {
+        Toast.makeText(requireContext(),"View Service table  item clicked", Toast.LENGTH_SHORT).show()
+    }
 }
+

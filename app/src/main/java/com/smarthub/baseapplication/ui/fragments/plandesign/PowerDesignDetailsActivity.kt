@@ -76,6 +76,7 @@ class PowerDesignDetailsActivity : AppCompatActivity() {
     }
 
 fun initview(){
+
     adapter=PowerDesignDetailPageAdapter(supportFragmentManager, planDesigndata, Id)
     binding.viewpager.adapter = adapter
     binding.tabs.setupWithViewPager(binding.viewpager)

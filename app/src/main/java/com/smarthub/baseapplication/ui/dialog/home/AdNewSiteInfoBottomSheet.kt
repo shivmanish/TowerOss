@@ -42,6 +42,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+
         setSpinnserData()
         setObserverForInput()
         if (viewModel.basicinfoModel?.hasActiveObservers() == true) {
@@ -100,6 +101,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
         viewModel.generateSiteId?.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.status == Resource.Status.LOADING) {
+                    binding.generateIsLayout.visibility = View.INVISIBLE
                     showProgressLayout()
                 } else {
                     hideProgressLayout()
@@ -107,10 +109,12 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
                 if (it.status == Resource.Status.SUCCESS) {
                     AppLogger.log("Successfully updated all fields")
                     binding.siteId.text = it.data?.Generatid
+                    binding.generateIsLayout.visibility = View.VISIBLE
                 } else {
                     AppLogger.log("UnExpected Error found")
                 }
             } else {
+                binding.generateIsLayout.visibility = View.INVISIBLE
                 AppLogger.log("Something went wrong")
             }
         }

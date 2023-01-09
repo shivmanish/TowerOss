@@ -229,11 +229,13 @@
                                    android:layout_alignParentTop="true"
                                    android:layout_alignParentRight="true"
                                    android:layout_marginStart="10dp"
-                                   android:layout_marginTop="10dp"
-                                   android:layout_marginEnd="10dp"
+                                   android:layout_marginTop="25dp"
+                                   android:scaleX="2.5"
+                                   android:scaleY="2.5"
+                                   android:layout_marginEnd="25dp"
                                    android:layout_marginBottom="10dp"
                                    android:adjustViewBounds="true"
-                                   android:src="@drawable/ic_qat" />
+                                   android:src="@drawable/qa_inspection" />
                            </RelativeLayout>
                            <RelativeLayout
                                android:layout_weight="1"
@@ -594,7 +596,7 @@
                        android:layout_marginEnd="10dp"
                        android:layout_height="wrap_content"
                        app:cardCornerRadius="@dimen/dp10"
-                       android:id="@+id/card_other2"
+                       android:id="@+id/Add_new_site_card"
                        app:cardBackgroundColor="@color/white"
                        app:strokeColor="@color/white"
                        app:cardElevation="5dp">
@@ -615,11 +617,13 @@
                                    android:layout_alignParentTop="true"
                                    android:layout_alignParentRight="true"
                                    android:layout_marginStart="10dp"
-                                   android:layout_marginTop="10dp"
-                                   android:layout_marginEnd="10dp"
+                                   android:layout_marginTop="30dp"
+                                   android:scaleX="2.8"
+                                   android:scaleY="2.5"
+                                   android:layout_marginEnd="30dp"
                                    android:layout_marginBottom="10dp"
                                    android:adjustViewBounds="true"
-                                   android:src="@drawable/ic_language_hi" />
+                                   android:src="@drawable/service_request" />
                            </RelativeLayout>
                            <RelativeLayout
                                android:layout_weight="1"
@@ -634,7 +638,7 @@
                                    app:tint="#E6EFF4" />
                                <TextView
                                    android:textColor="#616161"
-                                   android:text="language"
+                                   android:text="Add New Site"
                                    android:layout_margin="15dp"
                                    android:layout_alignParentBottom="true"
                                    android:fontFamily="@font/poppins"

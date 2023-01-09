@@ -161,13 +161,13 @@ class SiteDetailFragment : BaseFragment() {
         }
 
         private fun getCustomItemForLocal(position: Int) : BaseFragment{
-            var f : BaseFragment =  when(position){
+            val f : BaseFragment =  when(position){
                 0-> SiteInfoNewFragment(id)
                 1-> ServicesRequestFrqagment(id)
                 2-> OpcoTanacyFragment(id)
                 3-> PlanDesignMainFrqagment(id)
                 4-> SiteAgreementFragment(id)
-                5-> UtilitiesNocMainTabFragment.newInstance(tabNames?.get(4) ?: "Utilitie Equip")
+                5-> UtilitiesNocMainTabFragment(id)
                 6-> NocFragment(id)
                 7-> CivilInfraFragment(id)
                 8-> PowerConnection(id)
@@ -178,7 +178,7 @@ class SiteDetailFragment : BaseFragment() {
         }
 
         override fun getItem(position: Int): Fragment {
-            var f = getCustomItemForLocal(position)
+            val f = getCustomItemForLocal(position)
             if (list.size>position) list[position] = f
             else list.add(f)
             return list[position]

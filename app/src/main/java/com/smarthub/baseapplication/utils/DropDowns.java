@@ -5,5 +5,6 @@ public enum DropDowns {
     Sitecategory,
     Sitetype,
     Siteownership,
+    Buildingtype,
     Sitebillingstatus
 }
