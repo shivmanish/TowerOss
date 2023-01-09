@@ -31,7 +31,11 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
         binding.listItem.adapter = TaskItemAdapter(this@TaskFragment)
 
         binding.addItem.setOnClickListener {
-            var intent = Intent(requireActivity(),TaskActivity::class.java)
+            val intent = Intent(requireActivity(),TaskActivity::class.java)
+            requireActivity().startActivity(intent)
+        }
+        binding.addMore.setOnClickListener {
+            val intent = Intent(requireActivity(),TaskActivity::class.java)
             requireActivity().startActivity(intent)
         }
     }

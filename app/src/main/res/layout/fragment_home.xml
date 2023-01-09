@@ -148,7 +148,7 @@
                                             android:id="@+id/total_rfi"
                                             android:textSize="18sp"
                                             android:textColor="#629BE5"
-                                            android:text="100"
+                                            android:text="0"
                                             android:maxLines="1"
                                             android:padding="0dp"
                                             android:paddingStart="@dimen/dp10"
@@ -200,7 +200,7 @@
                                             android:id="@+id/total_on_air"
                                             android:textSize="18sp"
                                             android:textColor="#50B6BA"
-                                            android:text="55"
+                                            android:text="0"
                                             android:maxLines="1"
                                             android:padding="0dp"
                                             android:paddingStart="@dimen/dp10"
@@ -251,7 +251,7 @@
                                             android:id="@+id/total_in_progress"
                                             android:textSize="18sp"
                                             android:textColor="#748892"
-                                            android:text="100"
+                                            android:text="0"
                                             android:maxLines="1"
                                             android:padding="0dp"
                                             android:paddingStart="@dimen/dp10"
@@ -311,7 +311,7 @@
                                             android:id="@+id/sub_title4"
                                             android:textSize="18sp"
                                             android:textColor="#E03B58"
-                                            android:text="100"
+                                            android:text="0"
                                             android:maxLines="1"
                                             android:padding="0dp"
                                             android:paddingStart="@dimen/dp10"
@@ -363,7 +363,7 @@
                                             android:id="@+id/sub_title5"
                                             android:textSize="18sp"
                                             android:textColor="#E6BE56"
-                                            android:text="155"
+                                            android:text="0"
                                             android:maxLines="1"
                                             android:padding="0dp"
                                             android:paddingStart="@dimen/dp10"
@@ -392,6 +392,7 @@
                                     app:cardCornerRadius="@dimen/dp10"
                                     android:layout_weight="0.33"
                                     app:strokeWidth="1dp"
+                                    android:visibility="visible"
                                     android:id="@+id/add_new_site"
                                     app:strokeColor="@color/white"
                                     android:background="@color/transparent"
@@ -449,8 +450,9 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp65"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp15"
+                        android:paddingBottom="@dimen/dp10"
                         android:background="@drawable/dialog_bg"
                         app:layout_constraintTop_toBottomOf="@+id/items">
 
@@ -460,7 +462,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:tabSelectedTextColor="@color/white"
                             app:tabTextColor="#7F8694"
-                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp20"
                             app:tabTextAppearance="@style/TabHomeTextView"
                             app:tabIndicator="@color/transparent"
                             app:tabBackground="@drawable/home_tab_selector"
@@ -484,11 +486,32 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <com.smarthub.baseapplication.widgets.NonDragableViewPager
-                android:layout_marginTop="@dimen/dp15"
                 android:id="@+id/home_pager"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/add_more"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        app:cardCornerRadius="@dimen/dp100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="#3D4E6D"
+        app:cardElevation="2dp"
+        app:strokeColor="@color/tab_deselected"
+        app:strokeWidth="1dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:padding="@dimen/dp12"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_new_menu_icon"/>
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
