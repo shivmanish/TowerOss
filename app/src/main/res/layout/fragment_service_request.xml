@@ -8,7 +8,7 @@
     android:background="#F0F0F0"
     android:orientation="vertical"
     android:id="@+id/swipe_layout"
-    android:padding="@dimen/dp10"
+    android:padding="@dimen/dp8"
     tools:context=".ui.fragments.opcoTenancy.OpcoTanacyFragment">
 
   <androidx.constraintlayout.widget.ConstraintLayout
