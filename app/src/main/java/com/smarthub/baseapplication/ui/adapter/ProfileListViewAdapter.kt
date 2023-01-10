@@ -9,20 +9,65 @@ import android.view.animation.Transformation
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProfileListItemBinding
+import com.smarthub.baseapplication.databinding.ProfileOfficeComunicationAddressBinding
+import com.smarthub.baseapplication.databinding.ProfileOfficialDetailsHeaderBinding
+import com.smarthub.baseapplication.databinding.ProfileRoleGeographiBinding
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class ProfileListViewAdapter : RecyclerView.Adapter<ProfileListViewAdapter.ViewHold>() {
+class ProfileListViewAdapter : RecyclerView.Adapter<ProfileListViewAdapter.ViewHolder>() {
 
     var list : ArrayList<String> = ArrayList()
+    var type1="Header"
+    var type2="Role Geograpghy"
+    var type3="Address Office/Communication"
+    var type4="User & Role Management"
+    var type5="History"
 
     init {
+        list.add("Header")
         list.add("Role Geograpghy")
         list.add("Address Office/Communication")
         list.add("User & Role Management")
         list.add("History")
     }
 
-    class ViewHold(var view : View) : RecyclerView.ViewHolder(view) {
-       var proSingleItemViewBinding = ProfileListItemBinding.bind(view)
+    open class ViewHolder(var itemView: View):RecyclerView.ViewHolder(itemView)
+
+    class HearderViewHolder(itemView: View):ViewHolder(itemView){
+        val binding :ProfileOfficialDetailsHeaderBinding=ProfileOfficialDetailsHeaderBinding.bind(itemView)
+    }
+    class RoleGeoViewHolder(itemView: View):ViewHolder(itemView){
+        val binding :ProfileRoleGeographiBinding=ProfileRoleGeographiBinding.bind(itemView)
+        init {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+
+            }
+
+        }
+    }
+
+    class AddressGeoViewHolder(itemView: View):ViewHolder(itemView){
+        val binding :ProfileOfficeComunicationAddressBinding=ProfileOfficeComunicationAddressBinding.bind(itemView)
+        init {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+
+            }
+
+        }
+    }
+
+    class RoleGeoallViewHolder(itemView: View ) : ViewHolder(itemView) {
+       var proSingleItemViewBinding = ProfileListItemBinding.bind(itemView)
         var tag = false
         init {
             proSingleItemViewBinding.geograpghy?.setOnClickListener {
@@ -115,19 +160,106 @@ class ProfileListViewAdapter : RecyclerView.Adapter<ProfileListViewAdapter.ViewH
              v.startAnimation(a)
          }
     }
+    override fun getItemViewType(position: Int): Int {
+        if (list[position] is String && list[position]==type1)
+            return 1
+        else if (list[position] is String && list[position]==type2)
+            return 2
+        else if (list[position] is String && list[position]==type3)
+            return 3
+        else if (list[position] is String && list[position]==type4)
+            return 4
+        else if (list[position] is String && list[position]==type5)
+            return 5
+        return 0
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
+        when (viewType) {
+             1->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.profile_official_details_header,parent,false)
+                return HearderViewHolder(view)
+            }
+            2->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.profile_role_geographi,parent,false)
+                return RoleGeoViewHolder(view)
+            }
+            3->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.profile_office_comunication_address,parent,false)
+                return AddressGeoViewHolder(view)
+            }
+            4->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.profile_list_item,parent,false)
+                return RoleGeoallViewHolder(view)
+            }
+            5->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.profile_list_item,parent,false)
+                return RoleGeoallViewHolder(view)
+            }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
+        }
+        return ViewHolder(view)
 
-        var view  : View = LayoutInflater.from(parent.context).inflate(R.layout.profile_list_item,parent,false)
-        return ViewHold(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        Log.d("status","title : ${list[position]}")
-        holder.proSingleItemViewBinding.geograpghy.text = list[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when(holder){
+            is RoleGeoallViewHolder ->{
+                Log.d("status","title : ${list[position]}")
+                holder.proSingleItemViewBinding.geograpghy.text = list[position]
+            }
+            is RoleGeoViewHolder ->{
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+            }
+            is AddressGeoViewHolder ->{
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_faq)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    var recyclerView: RecyclerView?=null
+    var currentOpened = -1
+    fun updateList(position: Int){
+        currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+        if (this.recyclerView!=null)
+            this.recyclerView?.scrollToPosition(position)
     }
 }

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp46">
+            <TextView
+                android:id="@+id/item_title_str"
+                android:text="Address Office/Communication"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="#4F4D4D"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_faq"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp18"
+                android:paddingEnd="@dimen/dp18"
+                android:paddingTop="@dimen/dp15"
+                android:paddingBottom="@dimen/dp15"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:layout_height="1dp"
+        android:background="#EFEDED"
+        android:visibility="visible"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                android:layout_marginTop="@dimen/dp15"
+                android:paddingBottom="@dimen/dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/RowTestItemEdit"
+                    android:text="Office Address"
+                    android:textSize="15sp"
+                    android:textColor="#323131"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp8"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <include
+                    android:id="@+id/office_House_no_building_company"
+                    layout="@layout/pro_single_item_view"
+                    />
+                <include
+                    android:id="@+id/office_District_State"
+                    layout="@layout/pro_double_item_view"/>
+                <include
+                    android:id="@+id/office_pincode"
+                    layout="@layout/pro_double_half_view"/>
+
+                <TextView
+                    style="@style/RowTestItemEdit"
+                    android:textColor="#323131"
+                    android:text="Communication Address"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp8"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <include
+                    android:id="@+id/Communication_House_no_building_company"
+                    layout="@layout/pro_single_item_view"
+                    />
+                <include
+                    android:id="@+id/Communication_District_State"
+                    layout="@layout/pro_double_item_view"/>
+                <include
+                    android:id="@+id/Communication_pincode"
+                    layout="@layout/pro_double_half_view"/>
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

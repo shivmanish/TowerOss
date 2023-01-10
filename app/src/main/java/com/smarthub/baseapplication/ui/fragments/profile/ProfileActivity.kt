@@ -15,7 +15,6 @@ import com.smarthub.baseapplication.databinding.ProfileCustomMenuBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.ProfileDetails
-import com.smarthub.baseapplication.ui.adapter.ProfileListViewAdapter
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
 
@@ -65,6 +64,12 @@ class ProfileActivity : BaseActivity() {
         profileViewModel?.getProfileData()
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        binding.viewpager.adapter=profilePageAdapter(supportFragmentManager)
+        binding.tabs.setupWithViewPager(binding.viewpager)
+    }
+
     private fun uiDataMapping(profileDetails: ProfileDetails){
         binding.textName.text = String.format("%s %s",profileDetails.first_name,profileDetails.last_name)
         binding.textCall.text = profileDetails.phone
@@ -72,7 +77,7 @@ class ProfileActivity : BaseActivity() {
         binding.textYellow.text = profileDetails.id
         binding.textActive.text = profileDetails.active
         binding.textRole.text = profileDetails.roles
-        binding.textSDepartment.text = profileDetails.department
+
 
     }
 
@@ -82,14 +87,14 @@ class ProfileActivity : BaseActivity() {
             onBackPressed()
         }
 
-        binding.profileItemsList.setHasFixedSize(true)
+//        binding.profileItemsList.setHasFixedSize(true)
 
         val list : ArrayList<Any> = ArrayList()
         list.add("single_item")
         list.add("default")
         list.add("double_item")
         list.add("double_half_item")
-        binding.profileItemsList.adapter = ProfileListViewAdapter()
+//        binding.profileItemsList.adapter = ProfileListViewAdapter()
 
         binding.imgMenu.setOnClickListener {
             createPopWindow(it)
