@@ -39,10 +39,10 @@ class NotificationListTitleAdapter(val context: Context, var list : ArrayList<An
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         var item =  list[position]
         if (item is NotificationListModel) {
-            holder.binding.textList.text = item.title
-            holder.binding.list.adapter = NotificationListSubtitleAdapter(context, item.list)
+//            holder.binding.textList.text = item.title
+//            holder.binding.list.adapter = NotificationListSubtitleAdapter(context, item.list)
         }else if (item is NotificationNewItem) {
-            holder.binding.textList.text = "${item.UserFirstName} ${item.UserLastName}"
+//            holder.binding.textList.text = "${item.UserFirstName} ${item.UserLastName}"
 //            holder.binding.list.adapter = NotificationListSubtitleAdapter(context, item.list)
         }
     }

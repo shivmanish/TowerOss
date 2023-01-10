@@ -26,7 +26,7 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        binding.list.adapter = NotificationListTitleAdapter(requireContext(),ArrayList())
+        binding.list.adapter = NotificationListSubtitleAdapter(requireContext(),ArrayList())
 
         binding.backImage.setOnClickListener {
             requireActivity().onBackPressed()
