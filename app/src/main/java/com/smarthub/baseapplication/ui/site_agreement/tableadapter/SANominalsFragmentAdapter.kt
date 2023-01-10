@@ -10,11 +10,9 @@ import com.smarthub.baseapplication.databinding.SaAgreementsItemViewBinding
 import com.smarthub.baseapplication.databinding.SaAttachmentsBinding
 import com.smarthub.baseapplication.databinding.SaPoInfoViewBinding
 import com.smarthub.baseapplication.databinding.SaPropertyInfoViewBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.DropDowns
 
 class SANominalsFragmentAdapter(
     var context: Context,
@@ -216,52 +214,54 @@ class SANominalsFragmentAdapter(
                 }
 
 
-            /*    AppPreferences.getInstance().setDropDown(
-                    holder.binding.textRegistrationNumber,
-                    DropDowns.RagistrationsNo.name, siteAgreementsData?.RegistrationNumber
-                )
-                AppPreferences.getInstance().setDropDown(
-                    holder.binding.textBookingCostCentre,
-                    DropDowns.BookingCostCentre.name, siteAgreementsData?.BookingCostCentre
-                )
-                AppPreferences.getInstance().setDropDown(
-                    holder.binding.textRentPaymentFrequency,
-                    DropDowns.RentPaymentFrequency.name, siteAgreementsData?.RentPaymentFrequency
-                )
-                AppPreferences.getInstance().setDropDown(
-                    holder.binding.textEBInclusiveRental,
-                    DropDowns.EBInclusiveinRental.name, siteAgreementsData?.EBInclusiveinRental
-                )
-                   AppPreferences.getInstance().setDropDown(
-                    holder.binding.textEBBillLimit,
-                    DropDowns.EBBillLimit.name, siteAgreementsData?.EBBillLimit
-                )
-                AppPreferences.getInstance().setDropDown(
-                    holder.binding.textEBBillLimit,
-                    DropDowns.EBBillLimit.name, siteAgreementsData?.EBBillLimit
-                )
-                   AppPreferences.getInstance().setDropDown(
-                    holder.binding.textPropertyOwnership,
-                    DropDowns.PropertyOwnership.name, siteAgreementsData?.PropertyOwnership
-                )
-                AppPreferences.getInstance().setDropDown(
-                    holder.binding.textPropertyAcquired,
-                    DropDowns.PropertyAcquired.name, siteAgreementsData?.PropertyAcquired
-                )
-*/
+                /*    AppPreferences.getInstance().setDropDown(
+                        holder.binding.textRegistrationNumber,
+                        DropDowns.RagistrationsNo.name, siteAgreementsData?.RegistrationNumber
+                    )
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.textBookingCostCentre,
+                        DropDowns.BookingCostCentre.name, siteAgreementsData?.BookingCostCentre
+                    )
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.textRentPaymentFrequency,
+                        DropDowns.RentPaymentFrequency.name, siteAgreementsData?.RentPaymentFrequency
+                    )
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.textEBInclusiveRental,
+                        DropDowns.EBInclusiveinRental.name, siteAgreementsData?.EBInclusiveinRental
+                    )
+                       AppPreferences.getInstance().setDropDown(
+                        holder.binding.textEBBillLimit,
+                        DropDowns.EBBillLimit.name, siteAgreementsData?.EBBillLimit
+                    )
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.textEBBillLimit,
+                        DropDowns.EBBillLimit.name, siteAgreementsData?.EBBillLimit
+                    )
+                       AppPreferences.getInstance().setDropDown(
+                        holder.binding.textPropertyOwnership,
+                        DropDowns.PropertyOwnership.name, siteAgreementsData?.PropertyOwnership
+                    )
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.textPropertyAcquired,
+                        DropDowns.PropertyAcquired.name, siteAgreementsData?.PropertyAcquired
+                    )
+    */
                 holder.binding.txtTermLease.text = siteAgreementsData?.AgreementType
 /*
                holder.binding.textRegistrationNumber.setText(siteAgreementsData?.RegistrationNumber)
 */
                 holder.binding.textRegistrationDate.text = siteAgreementsData?.RegistrationDate
-              /*  holder.binding.textBookingCostCentre.text = siteAgreementsData?.BookingCostCentre
-                holder.binding.textEBBillLimit.text = siteAgreementsData?.EBBillLimit
-                holder.binding.textEBBillingBasis.text = siteAgreementsData?.EBBillingBasis
-                holder.binding.textEBInclusiveRental.text = siteAgreementsData?.EBInclusiveinRental
-             */   holder.binding.txtEBperunitRate.text = siteAgreementsData?.EBPerUnitRate
+                /*  holder.binding.textBookingCostCentre.text = siteAgreementsData?.BookingCostCentre
+                  holder.binding.textEBBillLimit.text = siteAgreementsData?.EBBillLimit
+                  holder.binding.textEBBillingBasis.text = siteAgreementsData?.EBBillingBasis
+                  holder.binding.textEBInclusiveRental.text = siteAgreementsData?.EBInclusiveinRental
+               */   holder.binding.txtEBperunitRate.text = siteAgreementsData?.EBPerUnitRate
                 holder.binding.txtUsableArea.text = siteAgreementsData?.GroundUsableArea
-                holder.binding.txtInitialAnnualRentAmount.text = siteAgreementsData?.InitialAnnualRentAmount
-                holder.binding.txtLastRevisedRentAmount.text = siteAgreementsData?.LastRevisedRentAmount
+                holder.binding.txtInitialAnnualRentAmount.text =
+                    siteAgreementsData?.InitialAnnualRentAmount
+                holder.binding.txtLastRevisedRentAmount.text =
+                    siteAgreementsData?.LastRevisedRentAmount
                 holder.binding.txtLastEscalationDate.text = siteAgreementsData?.LastescalationDate
                 holder.binding.txtLockPeriod.text = siteAgreementsData?.LockInPeriod
                 holder.binding.txtOnetimeAmount.text = siteAgreementsData?.OnetimeAmount
@@ -274,8 +274,10 @@ class SANominalsFragmentAdapter(
                 holder.binding.textRegistrationDate.text = siteAgreementsData?.RegistrationDate
                 holder.binding.textRegistrationNumber.text = siteAgreementsData?.RegistrationNumber
                 holder.binding.txtRentEscalation.text = siteAgreementsData?.RentEscalation
-                holder.binding.txtRentEscalationPeriod.text = siteAgreementsData?.RentEscalationPeriod
-                holder.binding.textRentPaymentFrequency.text = siteAgreementsData?.RentPaymentFrequency
+                holder.binding.txtRentEscalationPeriod.text =
+                    siteAgreementsData?.RentEscalationPeriod
+                holder.binding.textRentPaymentFrequency.text =
+                    siteAgreementsData?.RentPaymentFrequency
                 holder.binding.txtRentStartDate.text = siteAgreementsData?.RentStartDate
                 holder.binding.txtSecurityAmount.text = siteAgreementsData?.SecurityDepositAmount
                 holder.binding.txtRooftopArea.text = siteAgreementsData?.RooftopUsableArea
