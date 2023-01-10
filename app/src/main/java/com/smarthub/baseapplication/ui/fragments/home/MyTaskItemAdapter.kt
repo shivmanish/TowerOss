@@ -8,12 +8,18 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.AppLogger
-import kotlin.collections.ArrayList
+import com.smarthub.baseapplication.utils.Utils
+import java.text.ParseException
+import java.util.*
 
-class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
+class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
+    var overDue:Int ?=0
+    var nowDue:Int ?=0
+    var nextDue:Int ?=0
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -30,7 +36,6 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
         var binding : HomeTaskHeaderBinding = HomeTaskHeaderBinding.bind(itemView)
 
         fun bindData(){
-
         }
     }
 
@@ -43,6 +48,26 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     fun updateList(list : List<Any>){
         this.list = ArrayList(list)
+        overDue=0
+        nowDue=0
+        nextDue=0
+        for (item in list){
+            if (item is MyTeamTask){
+                val date = item.enddate.substring(0,19)
+                val cmp = Utils.compareDate(date)
+                when {
+                    cmp > 0 -> {
+                        overDue=overDue!!+1
+                    }
+                    cmp == 0 -> {
+                        nowDue=nowDue!!+1
+                    }
+                    else -> {
+                        nextDue=nextDue!!+1
+                    }
+                }
+            }
+        }
         notifyDataSetChanged()
     }
 
@@ -76,10 +101,30 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ListItemViewHold && list[position] is MyTeamTask){
-            holder.bindData(list[position] as MyTeamTask)
+            val item=list[position] as MyTeamTask
+            holder.bindData(item)
+            val date = item.enddate.substring(0,19)
+            val cmp = Utils.compareDate(date)
+            when {
+                cmp > 0 -> {
+                    holder.binding.IndicatorLine.setBackgroundResource(R.color.colorRed)
+                }
+                cmp == 0 -> {
+                    holder.binding.IndicatorLine.setBackgroundResource(R.color.yellow)
+                }
+                else -> {
+                    holder.binding.IndicatorLine.setBackgroundResource(R.color.blue)
+                }
+            }
+            holder.binding.taskClose.setOnClickListener {
+                listener.closeTask(item)
+            }
         }
         if (holder is HeaderViewHold){
             holder.bindData()
+            holder.binding.overDue.text=overDue.toString()
+            holder.binding.nowDue.text=nowDue.toString()
+            holder.binding.nextDue.text=nextDue.toString()
         }
     }
 

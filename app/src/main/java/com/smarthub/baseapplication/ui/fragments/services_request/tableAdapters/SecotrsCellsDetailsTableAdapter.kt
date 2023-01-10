@@ -19,13 +19,13 @@ class SecotrsCellsDetailsTableAdapter (var context : Context, var listener : Opc
         list = sectorData as ArrayList<SectorsOrCellDetail>
     }
     fun addItem(item:String){
-        list?.add(
-            SectorsOrCellDetail(AntennaHeight = "34", AzimuthOrOrientation = "dsf", Feasibility = "rgttr",
-            Frequency = "ewr", Obstructions = "sfeg", SerialNo = "54", Shape = "shetrgf",
-            Size = "43", TRXCount = "54", Technology = "4g", Type = "ercs", Weight = "45",
-            created_at = "22-10-2022", id = 7, isActive = true, modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            SectorsOrCellDetail(AntennaHeight = "34", AzimuthOrOrientation = "dsf", Feasibility = "rgttr",
+//            Frequency = "ewr", Obstructions = "sfeg", SerialNo = "54", Shape = "shetrgf",
+//            Size = "43", TRXCount = "54", Technology = "4g", Type = "ercs", Weight = "45",
+//            created_at = "22-10-2022", id = 7, isActive = true, modified_at = "22-12-2022")
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){

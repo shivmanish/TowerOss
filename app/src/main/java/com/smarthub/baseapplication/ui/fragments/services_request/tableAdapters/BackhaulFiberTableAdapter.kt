@@ -19,12 +19,12 @@ class BackhaulFiberTableAdapter (var context : Context, var listener : OpcoTssrA
         list=fiberdata as ArrayList<Fiber>
     }
     fun addItem(item:String){
-        list?.add(
-            Fiber(CableLength = "56", CableType = "dsf", Feasibility = "erf", FiberCore = "trhd",
-            LayingType = "trgtr", LmLength = "45", OpcoFarEndSite = "fgd", SerialNo = "56",
-                created_at = "22-10-2022", id = "54", isActive = "true", modified_at = "22-12-2022" )
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            Fiber(CableLength = "56", CableType = "dsf", Feasibility = "erf", FiberCore = "trhd",
+//            LayingType = "trgtr", LmLength = "45", OpcoFarEndSite = "fgd", SerialNo = "56",
+//                created_at = "22-10-2022", id = "54", isActive = "true", modified_at = "22-12-2022" )
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){

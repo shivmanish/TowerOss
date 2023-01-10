@@ -7,25 +7,25 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.task.ActivityCaptureSiteFragment
 import com.smarthub.baseapplication.ui.fragments.task.PhotoDocumentFragment
 
-class TaskViewpagerAdapter(fm: FragmentManager,var listener: PhotoDocumentFragment.PhotoDocumentListener) : FragmentPagerAdapter(fm) {
+class TaskViewpagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return 2
     }
 
     override fun getItem(position: Int): Fragment {
-        when (position) {
+        return when (position) {
             0 -> {
-                val photoDocumentFragment = PhotoDocumentFragment(listener)
-                return photoDocumentFragment
+                val photoDocumentFragment = PhotoDocumentFragment()
+                photoDocumentFragment
             }
             1 -> {
                 val capturefragment = ActivityCaptureSiteFragment()
-                return capturefragment
+                capturefragment
             }
             else -> {
-                val photoDocumentFragment = PhotoDocumentFragment(listener)
-                return photoDocumentFragment
+                val photoDocumentFragment = PhotoDocumentFragment()
+                photoDocumentFragment
             }
         }
     }

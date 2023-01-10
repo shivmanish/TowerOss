@@ -18,12 +18,12 @@ class tssrEquipmentTableAdapter (var context : Context, var listener : OpcoTssrA
         list=equipmentdata as ArrayList<OpcoTSSREquipmentTable>
     }
     fun addItem(item:String){
-        list?.add(
-            OpcoTSSREquipmentTable(Equipment = "efgf", InputPower = "tgds", MaxPower = "trgf", OperatingTemp = "54",
-            Size = "65", Technology = "4g", Type = "trhd", Voltage = "87", Weight = "73", created_at = "12-10-2022",
-            id = "543", isActive = "true", modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            OpcoTSSREquipmentTable(Equipment = "efgf", InputPower = "tgds", MaxPower = "trgf", OperatingTemp = "54",
+//            Size = "65", Technology = "4g", Type = "trhd", Voltage = "87", Weight = "73", created_at = "12-10-2022",
+//            id = "543", isActive = "true", modified_at = "22-12-2022")
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){

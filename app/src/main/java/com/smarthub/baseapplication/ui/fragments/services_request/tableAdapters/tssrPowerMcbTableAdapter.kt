@@ -18,11 +18,11 @@ class tssrPowerMcbTableAdapter (var context : Context, var listener : OpcoTssrAd
         list=McbData as ArrayList<MCBRequirement>
     }
     fun addItem(item:String){
-        list?.add(
-            MCBRequirement(Equipment = "fds", MCBRating = "54", Quantity = "53", created_at = "12-10-2022",
-                id = "543", isActive = "true", modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            MCBRequirement(Equipment = "fds", MCBRating = "54", Quantity = "53", created_at = "12-10-2022",
+//                id = "543", isActive = "true", modified_at = "22-12-2022")
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){

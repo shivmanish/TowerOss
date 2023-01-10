@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.databinding.TaskSecondFragmnetBinding
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskViewpagerAdapter
 
-class TaskSecondFragment:Fragment(), PhotoDocumentFragment.PhotoDocumentListener {
+class TaskSecondFragment:Fragment(){
 
     lateinit var binding:TaskSecondFragmnetBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -19,12 +19,18 @@ class TaskSecondFragment:Fragment(), PhotoDocumentFragment.PhotoDocumentListener
     }
 
     private fun setview() {
-        binding.viewpager.adapter = TaskViewpagerAdapter(childFragmentManager,this@TaskSecondFragment)
+        binding.viewpager.adapter = TaskViewpagerAdapter(childFragmentManager)
         binding.tabs.setupWithViewPager(binding.viewpager)
+        binding.next.setOnClickListener {
+            nextClicked()
+        }
+        binding.cancel.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
     }
 
-    override fun nextClicked() {
+    private fun nextClicked() {
         findNavController().navigate(TaskSecondFragmentDirections.actionToMoveThirdFrag())
     }
 

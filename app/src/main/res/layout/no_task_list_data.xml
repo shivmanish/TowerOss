@@ -18,7 +18,7 @@
         />
     <TextView
         android:id="@+id/item_title"
-        android:text="Empty Data"
+        android:text="No Data Found"
         android:textSize="@dimen/dp20"
         android:alpha="0.4"
         android:paddingStart="@dimen/dp10"

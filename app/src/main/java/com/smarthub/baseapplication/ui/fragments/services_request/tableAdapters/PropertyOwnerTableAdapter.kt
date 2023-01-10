@@ -18,10 +18,10 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : Acquisiti
         list= propertyOwnerData as ArrayList<ASPropertyOwnerDetail>
     }
     fun addItem(item:String){
-        list?.add(ASPropertyOwnerDetail(Action = "Goto", Address = "esrgsdfg", EmailId = "an@g.co",
-            OwnerName = "Ankit", OwnershipSeq = "21", PhoneNumber = "7269024641", Remark = "dhdhffh",
-            Share = "dwh", created_at = "22-10-2022", id = "448", isActive = "true", modified_at = "22-10-2022"))
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(ASPropertyOwnerDetail(Action = "Goto", Address = "esrgsdfg", EmailId = "an@g.co",
+//            OwnerName = "Ankit", OwnershipSeq = "21", PhoneNumber = "7269024641", Remark = "dhdhffh",
+//            Share = "dwh", created_at = "22-10-2022", id = "448", isActive = "true", modified_at = "22-10-2022"))
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -41,9 +41,9 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : Acquisiti
             performOptionsMenuClick(position,it)
         }
         holder.binding.SeqNo.text=list?.get(position)?.OwnershipSeq
-        holder.binding.PayeeName.text="Data Not found"
+        holder.binding.PayeeName.text=""
         holder.binding.PropertyShare.text=list?.get(position)?.Share
-        holder.binding.propertyPanNo.text="Data Not found"
+        holder.binding.propertyPanNo.text=""
     }
     override fun getItemCount(): Int {
         return list?.size!!

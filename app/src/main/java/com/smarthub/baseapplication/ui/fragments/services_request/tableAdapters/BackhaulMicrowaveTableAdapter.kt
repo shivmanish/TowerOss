@@ -18,13 +18,13 @@ class BackhaulMicrowaveTableAdapter (var context : Context, var listener : OpcoT
         list= microwaveData as ArrayList<MicrowaveOrUBR>
     }
     fun addItem(item:String){
-        list?.add(
-            MicrowaveOrUBR(AntennaHeight = "56", AzimuthOrOrientation = "erw", Feasibilty = "erdfs",
-            LosDistance = "54", Obstraction = "fdr", OpcoFarEndSite = "ewr", SerialNo = "42", Shape = "54",
-            Size = "58", Weight = "879", created_at = "22-10-2022", id = "4", isActive = "ture",
-            modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            MicrowaveOrUBR(AntennaHeight = "56", AzimuthOrOrientation = "erw", Feasibilty = "erdfs",
+//            LosDistance = "54", Obstraction = "fdr", OpcoFarEndSite = "ewr", SerialNo = "42", Shape = "54",
+//            Size = "58", Weight = "879", created_at = "22-10-2022", id = "4", isActive = "ture",
+//            modified_at = "22-12-2022")
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -44,8 +44,8 @@ class BackhaulMicrowaveTableAdapter (var context : Context, var listener : OpcoT
             performOptionsMenuClick(position,it)
         }
         holder.binding.SerialNo.text=list?.get(position)?.SerialNo
-        holder.binding.Technology.text="Data Not Found"
-        holder.binding.TxrCount.text="Data not found"
+        holder.binding.Technology.text=""
+        holder.binding.TxrCount.text=""
         holder.binding.AnteenaHeight.text=list?.get(position)?.AntennaHeight
     }
     override fun getItemCount(): Int {

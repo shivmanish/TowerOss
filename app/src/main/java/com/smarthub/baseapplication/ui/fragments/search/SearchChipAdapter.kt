@@ -41,7 +41,7 @@ class SearchChipAdapter(var context: Context?, var listner: SearchChipAdapterLis
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.chipItem.text = searchQatModels[position].siteID
+        holder.binding.chipItem.text = searchQatModels[position].name
         holder.binding.chipItem.setOnClickListener {
             listner.clickedSearchHistoryItem(searchQatModels[position])
         }

@@ -87,12 +87,12 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
 
-                    if (item!=null && (item?.siteID==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
+                    if (item!=null && (item?.name==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
 
                     }else {
                         it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
                         if (fetchedData.isNotEmpty())
-                            homeViewModel.fetchSiteSearchData("siteID",fetchedData)
+                            homeViewModel.fetchSiteSearchData("name",fetchedData)
                         fetchedData = ""
                     }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
@@ -111,8 +111,8 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 fetchedData = binding.searchCardView.text.toString()
                 if (fetchedData.isNotEmpty() && isDataFetched) {
                     AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
-                            "${item?.siteID},item?.id:${item?.id}")
-                    if (item!=null && (item?.siteID==fetchedData|| item?.id==fetchedData)) {
+                            "${item?.name},item?.id:${item?.id}")
+                    if (item!=null && (item?.name==fetchedData|| item?.id==fetchedData)) {
                         AppLogger.log("return : $fetchedData")
                         return
                     }
@@ -122,9 +122,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     binding.searchCardView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
 
                     if (selectedCategory.isNotEmpty()){
-                        homeViewModel.fetchSiteSearchData(selectedCategory,fetchedData)
+                        homeViewModel.fetchSiteSearchData("name",fetchedData)
                     }else {
-                        homeViewModel.fetchSiteSearchData("siteID",fetchedData)
+                        homeViewModel.fetchSiteSearchData("name",fetchedData)
                     }
 //                    fetchedData = ""
                 }
@@ -137,10 +137,10 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
         binding.viewOnIbo.setOnClickListener {
            if (AppPreferences.getInstance().isSavedDropDown){
-               if(searchHistoryList.contains(SearchListItem(item?.siteID,item?.id))){
-                   searchHistoryList.remove(SearchListItem(item?.siteID,item?.id))
+               if(searchHistoryList.contains(SearchListItem(item?.name,item?.id))){
+                   searchHistoryList.remove(SearchListItem(item?.name,item?.id))
                }
-               searchHistoryList.add(0,SearchListItem(item?.siteID,item?.id))
+               searchHistoryList.add(0,SearchListItem(item?.name,item?.id))
                if(searchHistoryList.size>=10) searchHistoryList.subList(10,searchHistoryList.size).clear()
                AppPreferences.getInstance().saveSearchList(searchHistoryList)
                searchChipAdapter.updateList(searchHistoryList)
@@ -186,7 +186,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun onSearchItemSelected(item: SearchListItem?) {
         this.item = item
         if (item!=null){
-            binding.searchCardView.text = if (item.siteID!=null) item.siteID.toEditable() else item.id?.toEditable()
+            binding.searchCardView.text = if (item.name!=null) item.name.toEditable() else item.id?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         } else {

@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.notification.newData.NotificationNew
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
@@ -16,6 +17,7 @@ import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompMod
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
@@ -63,7 +65,9 @@ class HomeViewModel : ViewModel() {
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAgreementModel>>? = null
+    var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null
+    var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -93,6 +97,8 @@ class HomeViewModel : ViewModel() {
         dropDownResponseNew = homeRepo?.dropDownResponseNew
         utilityEquipResponse=homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
+        siteInfoModelNew = homeRepo?.siteInfoModelNew
+        notificationNew = homeRepo?.notificationNew
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -123,7 +129,9 @@ class HomeViewModel : ViewModel() {
         homeRepo?.createSite(basicinfoModel)
     }
 
-
+    fun getNotifications(){
+        homeRepo?.getAllNotification()
+    }
 
     fun updateMyTeamTask(data : List<MyTeamTask>?){
         AppLogger.log("updateMyTeamTask : data ${data?.size}")

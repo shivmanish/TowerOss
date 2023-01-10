@@ -68,9 +68,6 @@ class MenuFragment : Fragment() {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
-//        binding.cardLocation.setOnClickListener {
-//            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
-//        }
         binding.cardTeam.setOnClickListener {
             Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
@@ -80,7 +77,12 @@ class MenuFragment : Fragment() {
         }
 
         binding.AddNewSiteCard.setOnClickListener {
-            val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel!!)
+            val bottomSheetDialogFragment = AdNewSiteInfoBottomSheet(R.layout.operations_info_details_bottom_sheet,homeViewModel,
+                object : AdNewSiteInfoBottomSheet.AdNewSiteSheetListener{
+                    override fun siteCreated(id: String) {
+                findNavController().navigate(MenuFragmentDirections.actionNavigationMenuToSiteDetailFragment(id))
+                    }
+                })
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         }
     }

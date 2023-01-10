@@ -6,6 +6,8 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
+import com.smarthub.baseapplication.model.notification.newData.SendData;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
@@ -13,6 +15,7 @@ import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
@@ -168,8 +171,11 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
-    Call<BasicInfoDialougeResponse> createSite(@Body CreateSiteModel basicinfoModel);
+    Call<SiteInfoModelNew> createSite(@Body CreateSiteModel basicinfoModel);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET(EndPoints.NOTIFICATION_DATA)
+    Call<NotificationNew> getNotification();
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DASHBOARD_DATA_URL)

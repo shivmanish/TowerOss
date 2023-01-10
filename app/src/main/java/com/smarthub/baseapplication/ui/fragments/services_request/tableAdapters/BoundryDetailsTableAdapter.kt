@@ -18,12 +18,12 @@ class BoundryDetailsTableAdapter (var context : Context, var listener : Acquisit
         list=boundryData as ArrayList<ASBoundryStructureDetail>
     }
     fun addItem(item:String){
-        list?.add(
-            ASBoundryStructureDetail(Action = "goto", BuidingName = "sdafg", BuildingHeight = "78",
-        BuildingType = "Comercial", Direction = "East", NoofFloor = "6", Remark = "fewref",
-            created_at = "22-10-2022", id = "448", isActive = "true", modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            ASBoundryStructureDetail(Action = "goto", BuidingName = "sdafg", BuildingHeight = "78",
+//        BuildingType = "Comercial", Direction = "East", NoofFloor = "6", Remark = "fewref",
+//            created_at = "22-10-2022", id = "448", isActive = "true", modified_at = "22-12-2022")
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){

@@ -41,8 +41,8 @@ class ServicesDataAdapter(var listener: ServicesDataAdapterListener, Id: String)
     override fun onBindViewHolder(holder: ServiceEmptyDataAdapterViewHold, position: Int) {
         if (holder is ServiceDataAdapterViewHold) {
             var item = list[position] as ServiceRequestAllDataItem
-            holder.binding.textRfiDate.text = "RFI Date:DataNotFoundFromApi"
-            holder.binding.textRfsDate.text = "RFS Date: DataNotFoundFromApi"
+            holder.binding.textRfiDate.text = ""
+            holder.binding.textRfsDate.text = ""
             holder.binding?.cardItem?.setOnClickListener {
                 listener.clickedItem(item, id)
             }
