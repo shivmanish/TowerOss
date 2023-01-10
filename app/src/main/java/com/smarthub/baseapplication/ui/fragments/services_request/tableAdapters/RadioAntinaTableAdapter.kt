@@ -19,12 +19,12 @@ class RadioAntinaTableAdapter (var context : Context, var listener : ServicesReq
         list=radioAnteenaData as ArrayList<RadioAntenna>
     }
     fun addItem(){
-        list.add(
-            RadioAntenna(AntennaCount = "3", AntennaHeight = "76", AntennaSize = "50",
-        AntennaTotalWeight = "54",Technology = "empty", created_at = "22-10-2022", id = 448, isActive = true,
-        modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list.size.plus(1))
+//        list.add(
+//            RadioAntenna(AntennaCount = "3", AntennaHeight = "76", AntennaSize = "50",
+//        AntennaTotalWeight = "54",Technology = "empty", created_at = "22-10-2022", id = 448, isActive = true,
+//        modified_at = "22-12-2022")
+//        )
+//        notifyItemInserted(list.size.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -43,9 +43,9 @@ class RadioAntinaTableAdapter (var context : Context, var listener : ServicesReq
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-        holder.binding.AnteenaTechnology.text="Data not found"
+        holder.binding.AnteenaTechnology.text=""
         holder.binding.AnteenaCount.text=list[position].AntennaCount
-        holder.binding.AnteenaShape.text="Data not found"
+        holder.binding.AnteenaShape.text=""
         holder.binding.AnteenaSize.text=list[position].AntennaSize
 
     }

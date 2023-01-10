@@ -33,10 +33,7 @@
                         android:id="@+id/img_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="14dp"
-                        android:paddingTop="6dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="6dp"
+                        android:padding="@dimen/dp15"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -47,28 +44,20 @@
                         android:id="@+id/title"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="4dp"
                         android:gravity="center|start"
                         android:paddingEnd="4dp"
                         android:singleLine="true"
-                        android:textColor="@color/iconBlack"
+                        android:textStyle="bold"
+                        android:textColor="@color/color1"
                         android:textSize="18sp"
                         android:text="Profile"
                         android:fontFamily="@font/poppins"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/img_back"
-                        app:layout_constraintEnd_toStartOf="@+id/menu_view"
+                        app:layout_constraintEnd_toStartOf="@+id/img_menu"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <View
-                        android:id="@+id/menu_view"
-                        android:layout_width="@dimen/dp20"
-                        android:layout_height="match_parent"
-                        app:layout_constraintEnd_toStartOf="@+id/img_menu"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
 
                     <ImageView
                         android:id="@+id/img_menu"
@@ -110,9 +99,9 @@
 
                     <TextView
                         android:text="#JP364"
-                        android:paddingEnd="5dp"
+                        android:paddingEnd="8dp"
                         android:ellipsize="marquee"
-                        android:paddingStart="5dp"
+                        android:paddingStart="8dp"
                         android:id="@+id/text_yellow"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/white"
@@ -125,9 +114,10 @@
                     <TextView
                         android:text="Shyam Suryavansi"
                         android:layout_marginTop="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/color1"
                         android:textSize="15sp"
                         android:id="@+id/text_name"
+                        android:textStyle="bold"
                         android:fontFamily="@font/poppins"
                         android:layout_marginStart="@dimen/dp15"
                         android:layout_width="wrap_content"
@@ -154,7 +144,7 @@
                         android:textColor="#787878"
                         android:textSize="12sp"
                         android:id="@+id/text_message"
-                        android:drawablePadding="5dp"
+                        android:drawablePadding="6dp"
                         android:drawableStart="@drawable/ic_inbox"
                         android:fontFamily="@font/poppins"
                         android:layout_marginStart="@dimen/dp15"
@@ -165,105 +155,99 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <View
-                    android:id="@+id/divider1"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_status"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/profile_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:layout_marginStart="-1dp"
                     android:layout_marginEnd="-1dp"
                     android:background="@drawable/blank_border"
-                    app:layout_constraintTop_toBottomOf="@+id/divider1">
+                    app:layout_constraintTop_toBottomOf="@+id/profile_status"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
                         android:layout_width="0dp"
-                        app:layout_constraintWidth_percent="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dp10"
+                        android:paddingBottom="@dimen/dp10"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/view_lin1"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_height="wrap_content">
+                        >
                         <TextView
-                            android:text="Area Manager, ManagerRole"
-                            android:layout_marginTop="10dp"
-                            android:textColor="#000000"
-                            android:textSize="28sp"
-                            android:id="@+id/text_role"
-                            android:maxLines="1"
-                            android:padding="5dp"
-                            android:ellipsize="marquee"
-                            android:gravity="center"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins_light"
+                            android:id="@+id/textRole"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/dp5"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_height="wrap_content"
+                            android:text="Area Manager,Manager"
                             android:textStyle="bold"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_height="wrap_content"
-                            />
+                            android:fontFamily="@font/poppins_light"
+                            android:textSize="15dp"
+                            android:textColor="@color/color1"/>
                         <TextView
-                            android:text="Role"
-                            android:textColor="#7B7979"
-                            android:textSize="12sp"
-                            android:id="@+id/text_2"
-                            android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/text_role"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:paddingLeft="@dimen/dp5"
+                            android:paddingRight="@dimen/dp5"
                             android:layout_height="wrap_content"
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:text="Role"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_light"
+                            android:textSize="12dp"
+                            android:textColor="@color/textGray"/>
+                    </LinearLayout>
+
                     <View
+                        android:id="@+id/view_lin1"
                         android:layout_width="1dp"
+                        android:alpha="1"
                         android:layout_height="match_parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:background="#D8D8D8"/>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="0dp"
-                        app:layout_constraintWidth_percent="0.5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_height="wrap_content">
+                        android:background="#D8D8D8"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view_lin1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        >
                         <TextView
-                            android:text="Active"
-                            android:layout_marginTop="10dp"
-                            android:textColor="#018101"
-                            android:textSize="28sp"
                             android:id="@+id/text_active"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins_light"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/dp5"
+                            android:paddingRight="@dimen/dp5"
+                            android:layout_height="wrap_content"
+                            android:text="Active"
                             android:textStyle="bold"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_height="wrap_content"
-                            />
+                            android:fontFamily="@font/poppins"
+                            android:textSize="20dp"
+                            android:textColor="@color/green"/>
                         <TextView
-                            android:text="Status"
-                            android:textColor="#7B7979"
-                            android:textSize="12sp"
-                            android:id="@+id/text_status"
-                            android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/text_active"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:paddingLeft="@dimen/dp5"
+                            android:paddingRight="@dimen/dp5"
                             android:layout_height="wrap_content"
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:text="Status"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_light"
+                            android:textSize="12dp"
+                            android:textColor="@color/textGray"/>
+                    </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -293,6 +277,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp15"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginTop="@dimen/dp15"
                         android:id="@+id/layout1"
                         app:layout_constraintStart_toStartOf="parent"
@@ -314,11 +299,11 @@
 
                         <TextView
                             android:text="TowerOSS pvt ltd"
-                            android:layout_marginTop="2dp"
-                            android:textColor="#000000"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/color1"
                             android:textSize="14sp"
                             android:id="@+id/text_c_title"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/poppins_bold"
                             android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -327,11 +312,12 @@
 
                         <TextView
                             android:text="Company Name"
-                            android:layout_marginTop="3dp"
-                            android:textColor="#787878"
+                            android:textColor="@color/textGray"
                             android:textSize="12sp"
+                            android:paddingBottom="@dimen/dp5"
                             android:id="@+id/text_c_name"
                             android:drawablePadding="5dp"
+                            android:textStyle="bold"
                             android:fontFamily="@font/poppins"
                             android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
@@ -344,7 +330,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp10"
                         android:id="@+id/layout2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/layout1">
@@ -364,11 +350,11 @@
 
                         <TextView
                             android:text="Support Department"
-                            android:layout_marginTop="2dp"
-                            android:textColor="#000000"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/color1"
                             android:textSize="14sp"
                             android:id="@+id/text_s_department"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/poppins_bold"
                             android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -377,8 +363,9 @@
 
                         <TextView
                             android:text="Department Name"
-                            android:layout_marginTop="3dp"
-                            android:textColor="#787878"
+                            android:textColor="@color/textGray"
+                            android:paddingBottom="@dimen/dp5"
+                            android:textStyle="bold"
                             android:textSize="12sp"
                             android:id="@+id/text_d_name"
                             android:drawablePadding="5dp"
@@ -394,7 +381,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp10"
                         android:id="@+id/layout3"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/layout2">
@@ -415,11 +402,11 @@
 
                         <TextView
                             android:text="Maintenance Enginee"
-                            android:layout_marginTop="2dp"
-                            android:textColor="#000000"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/color1"
                             android:textSize="14sp"
                             android:id="@+id/text_m_engineer"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/poppins_bold"
                             android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -428,8 +415,9 @@
 
                         <TextView
                             android:text="Role Name"
-                            android:layout_marginTop="3dp"
-                            android:textColor="#787878"
+                            android:textColor="@color/textGray"
+                            android:paddingBottom="@dimen/dp5"
+                            android:textStyle="bold"
                             android:textSize="12sp"
                             android:id="@+id/text_m_name"
                             android:drawablePadding="5dp"
@@ -445,7 +433,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp10"
                         android:id="@+id/layout4"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/layout3">
@@ -464,11 +452,11 @@
 
                         <TextView
                             android:text="HGHG5454"
-                            android:layout_marginTop="2dp"
-                            android:textColor="#000000"
+                            android:paddingTop="5dp"
+                            android:textColor="@color/color1"
                             android:textSize="14sp"
                             android:id="@+id/text_em_engineer"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/poppins_bold"
                             android:layout_marginStart="@dimen/dp15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -477,8 +465,9 @@
 
                         <TextView
                             android:text="Employee ID"
-                            android:layout_marginTop="3dp"
-                            android:textColor="#787878"
+                            android:textColor="@color/textGray"
+                            android:paddingBottom="@dimen/dp5"
+                            android:textStyle="bold"
                             android:textSize="12sp"
                             android:id="@+id/text_em_name"
                             android:drawablePadding="5dp"
@@ -503,11 +492,13 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:orientation="vertical"
+                        tools:itemCount="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_items_list"
                         tools:listitem="@layout/profile_list_item"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        />
                 </LinearLayout>
 
                 <TextView

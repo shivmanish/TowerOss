@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BackhaulLinkTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
 
@@ -138,6 +139,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
     class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
+        var BackhaulLinkTableList: RecyclerView=binding.SRRadioAnteenaTableItem
         init {
             binding.collapsingLayout.tag = false
 
@@ -324,15 +326,13 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
 
             is ViewHold4 -> {
-                holder.binding.imgEdit.setOnClickListener() {
-                    listener.editBackhaulLinkItemClicked()
-                }
+
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -340,12 +340,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                holder.BackhaulLinkTableList.setHasFixedSize(true)
+                holder.BackhaulLinkTableList.adapter=BackhaulLinkTableAdapter(context,listener)
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {

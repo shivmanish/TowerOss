@@ -20,8 +20,8 @@ class PoDetailsTableAdapter (var context : Context, var listener : AcquisitionSu
         list.add("item1")
     }
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+//        list.add(item)
+//        notifyItemInserted(list.size.plus(1))
     }
 
     fun removeItem(position:Int){

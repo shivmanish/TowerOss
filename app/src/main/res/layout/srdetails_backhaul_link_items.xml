@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/item_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:layout_height="wrap_content">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Backhaul Technology" />
+
+                <TextView
+                    android:id="@+id/Backhaul_Technology"
+                    android:text=""
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Link Count" />
+
+                <TextView
+                    android:id="@+id/Link_Count"
+                    android:text=""
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/fiber_anteena_common_lable"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Antenna Size, Dia (m)" />
+
+                <TextView
+                    android:id="@+id/Anteena_size"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Antenna Height, AGL (m)" />
+
+                <TextView
+                    android:id="@+id/Anteena_height"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </GridLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/item_layout"
+        android:background="@color/view_color"
+        android:layout_height="2dp"
+        android:layout_width="match_parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
