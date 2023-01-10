@@ -9,6 +9,8 @@ import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
+import com.smarthub.baseapplication.model.notification.newData.SendData;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
@@ -58,6 +60,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serRequestData;
     private SingleLiveEvent<Resource<BasicInfoDialougeResponse>> basicInfoUpdate;
     private SingleLiveEvent<Resource<SiteInfoModelNew>> siteInfoModelNew;
+    private SingleLiveEvent<Resource<NotificationNew>> notificationNew;
     private SingleLiveEvent<Resource<SiteInfoModelUpdate>> siteInfoUpdate;
     private SingleLiveEvent<Resource<SiteInfoModel>> siteInfoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
@@ -91,6 +94,10 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
         return siteInfoModelNew;
+    }
+
+    public SingleLiveEvent<Resource<NotificationNew>> getNotificationNew() {
+        return notificationNew;
     }
 
     public SingleLiveEvent<Resource<SearchList>> getSiteSearchResponseData() {
@@ -169,6 +176,7 @@ public class HomeRepo {
         siteAgreementModel = new SingleLiveEvent<>();
         dropDownResponseNew = new SingleLiveEvent<>();
         siteInfoModelNew = new SingleLiveEvent<>();
+        notificationNew = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -432,6 +440,42 @@ public class HomeRepo {
                     siteInfoModelNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteInfoModelNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getAllNotification() {
+        apiClient.getNotification().enqueue(new Callback<NotificationNew>() {
+            @Override
+            public void onResponse(@NonNull Call<NotificationNew> call, Response<NotificationNew> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<NotificationNew> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<NotificationNew> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    notificationNew.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    notificationNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    notificationNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

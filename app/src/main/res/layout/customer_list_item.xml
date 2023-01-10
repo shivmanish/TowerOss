@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_item"
-    android:layout_margin="@dimen/dp10"
+    android:layout_margin="@dimen/dp5"
     app:cardElevation="@dimen/dp5"
     app:cardCornerRadius="@dimen/dp5">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/top"
-        android:padding="@dimen/dp10"
-
-
+        android:padding="@dimen/dp5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -20,7 +18,8 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
-            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginStart="@dimen/dp8"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:id="@+id/image"
@@ -31,6 +30,7 @@
             android:id="@+id/text_content"
             app:layout_constraintStart_toEndOf="@+id/image"
             android:layout_width="0dp"
+            android:paddingTop="@dimen/dp5"
             app:layout_constraintEnd_toStartOf="@+id/menu"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content"
@@ -121,29 +121,56 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:alpha="0.21"/>
-
         <TextView
-            android:layout_width="0dp"
-            android:id="@+id/text_rfi_date"
-            android:text="RFI Date 05-Oct-2018"
-            android:layout_marginTop="@dimen/dp10"
-            android:maxLength="20"
+            android:id="@+id/text_rfi_date_lable"
+            android:layout_width="wrap_content"
+            android:text="RFI Date:"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp5"
+            android:textColor="@color/textGray"
+            android:maxLength="10"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="@dimen/dp15"
-            app:layout_constraintWidth_percent="0.5"/>
+            android:layout_marginStart="@dimen/dp8"/>
         <TextView
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:maxLength="20"
+            android:id="@+id/text_rfi_date"
+            android:layout_width="wrap_content"
+            android:text="05-Oct-2018"
+            android:textColor="@color/color1"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp5"
+            android:maxLength="10"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/text_rfi_date_lable"
+            android:layout_marginStart="@dimen/dp5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp5"
+            android:maxLength="10"
+            android:id="@+id/text_rfs_date_lable"
+            android:layout_height="wrap_content"
+            android:text="RFS Date:"
+            app:layout_constraintEnd_toStartOf="@+id/text_rfs_date"
+            app:layout_constraintTop_toTopOf="@+id/text_rfi_date"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_marginEnd="@dimen/dp5"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp5"
+            android:maxLength="10"
+            android:textColor="@color/color1"
             android:id="@+id/text_rfs_date"
             app:layout_constraintTop_toTopOf="@+id/text_rfi_date"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             android:layout_height="wrap_content"
-            android:text="RFS Date 10-Nov-2018"
+            android:text="10-Nov-2018"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/dp15"
-            app:layout_constraintWidth_percent="0.5"/>
+            android:layout_marginEnd="@dimen/dp10"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

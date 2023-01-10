@@ -230,17 +230,17 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 if(BuildingDetailData!=null){
-                    holder.binding.BuildingLatLong.text="Data not found"
-                    holder.binding.BuildingType.text="Data not found"
-                    holder.binding.GateFence.text="Data not found"
-                    holder.binding.SiteAccessArea.text="Data not found"
-                    holder.binding.BuildingHeight.text="Data not found"
-                    holder.binding.NoOfFloor.text="Data not found"
-                    holder.binding.TypicalFloorArea.text="Data not found"
-                    holder.binding.YearOfConstruction.text="Data not found"
-                    holder.binding.PropertyOwnership.text="Data not found"
-                    holder.binding.PropertyOfferForAcquisition.text="Data not found"
-                    holder.binding.AcquisitionOfferType.text="Data not found"
+                    holder.binding.BuildingLatLong.text=""
+                    holder.binding.BuildingType.text=""
+                    holder.binding.GateFence.text=""
+                    holder.binding.SiteAccessArea.text=""
+                    holder.binding.BuildingHeight.text=""
+                    holder.binding.NoOfFloor.text=""
+                    holder.binding.TypicalFloorArea.text=""
+                    holder.binding.YearOfConstruction.text=""
+                    holder.binding.PropertyOwnership.text=""
+                    holder.binding.PropertyOfferForAcquisition.text=""
+                    holder.binding.AcquisitionOfferType.text=""
                     holder.binding.OverallFeasibility.text=BuildingDetailData?.ASOverallFeasiblity
                     holder.binding.FiberLMCLaying.text=BuildingDetailData?.ASFibreLmcLaying
                     holder.binding.TowerPoleInstallation.text=BuildingDetailData?.ASTowerPoleInstallation
@@ -250,8 +250,8 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                     holder.binding.OverallFeasibillity.text=BuildingDetailData?.ASOverallFeasiblity
                     holder.binding.Availability.text=BuildingDetailData?.ASAvailablityofStatuaryPermission
                     holder.binding.SurveyDate.text=BuildingDetailData?.ASSurveyDate
-                    holder.binding.OfficeAddress.text="Data Not found"
-                    holder.binding.Remmarks.text="Data Not found"
+                    holder.binding.OfficeAddress.text=""
+                    holder.binding.Remmarks.text=""
                 }
             }
             is BoundryDetailsViewHold->{

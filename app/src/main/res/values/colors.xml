@@ -10,6 +10,7 @@
 
 
     <color name="collapse_card_bg">#F0F0F0</color>
+    <color name="task_selected_bg">#E9EEF7</color>
     <color name="colorRed">#FF0000</color>
 
     <color name="tab_deselected">#E9EEF7</color>

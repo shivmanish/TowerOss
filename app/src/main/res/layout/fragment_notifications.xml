@@ -1,136 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.notifications.NotificationsFragment">
+    android:background="#F0F0F0"
+    android:orientation="vertical"
+    android:id="@+id/swipe_layout"
+    tools:context=".ui.fragments.opcoTenancy.OpcoTanacyFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/iconBlack"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-
-        <ImageView
-            android:id="@+id/back_image"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:padding="@dimen/dp5"
-            android:layout_marginStart="@dimen/dp10"
-            android:adjustViewBounds="true"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/iconBlack"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            android:layout_marginEnd="@dimen/dp20"/>
+            >
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notifications"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp17"
-            android:id="@+id/title_text"
-            android:layout_marginStart="@dimen/dp10"
-            app:layout_constraintVertical_bias="0.2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/back_image"
-            app:layout_constraintTop_toTopOf="parent"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Unread"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp14"
-            android:id="@+id/subtitle_text"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp15"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            app:layout_constraintStart_toEndOf="@id/back_image"
-            />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/subtitle_text_unread"
-            android:text="10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp14"
-            android:layout_marginStart="@dimen/dp5"
-            android:layout_marginBottom="@dimen/dp15"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            app:layout_constraintStart_toEndOf="@id/subtitle_text"
-            />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/subtitle_text_mark_read"
-            android:text="Marks As all read"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp14"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp15"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            app:layout_constraintStart_toEndOf="@id/subtitle_text_unread"
-            />
+            <ImageView
+                android:id="@+id/back_image"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:paddingLeft="@dimen/dp5"
+                android:layout_marginStart="@dimen/dp10"
+                android:adjustViewBounds="true"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                android:layout_marginEnd="@dimen/dp20"/>
 
-        <CheckBox
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:scaleX="0.70"
-            android:scaleY="0.70"
-            android:layout_marginLeft="@dimen/dp2"
-            android:buttonTint="@color/white"
-            android:layout_marginBottom="@dimen/dp12"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            app:layout_constraintStart_toEndOf="@id/subtitle_text_mark_read"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notifications"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp17"
+                android:id="@+id/title_text"
+                android:paddingTop="@dimen/dp15"
+                android:paddingBottom="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp15"
+                app:layout_constraintVertical_bias="0.2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/back_image"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unread"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp14"
+                android:id="@+id/subtitle_text"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_text"
+                app:layout_constraintStart_toEndOf="@id/back_image"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:visibility="gone"
+                android:id="@+id/subtitle_text_unread"
+                android:text="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp14"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_text"
+                app:layout_constraintStart_toEndOf="@id/subtitle_text"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:visibility="gone"
+                android:id="@+id/subtitle_text_mark_read"
+                android:text="Marks As all read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp14"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_text"
+                app:layout_constraintStart_toEndOf="@id/subtitle_text_unread"
+                />
 
-        <ImageView
-            android:id="@+id/mic_image"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:padding="@dimen/dp5"
-            android:adjustViewBounds="true"
-            android:src="@drawable/filter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421"
-            android:layout_marginEnd="@dimen/dp20"/>
+            <CheckBox
+                android:visibility="gone"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleX="0.70"
+                android:scaleY="0.70"
+                android:layout_marginLeft="@dimen/dp2"
+                android:buttonTint="@color/white"
+                android:layout_marginBottom="@dimen/dp12"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_text"
+                app:layout_constraintStart_toEndOf="@id/subtitle_text_mark_read"/>
 
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginRight="@dimen/dp10"
-            android:padding="@dimen/dp5"
-            android:adjustViewBounds="true"
-            android:src="@drawable/search"
-            app:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/mic_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/mic_image"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:padding="@dimen/dp5"
+                android:adjustViewBounds="true"
+                android:src="@drawable/notification_filter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.421"
+                android:layout_marginEnd="@dimen/dp20"/>
 
+            <ImageView
+                android:id="@+id/search"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_marginRight="@dimen/dp15"
+                android:padding="@dimen/dp5"
+                android:adjustViewBounds="true"
+                android:src="@drawable/search"
+                app:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mic_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.421" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/list"
+            tools:itemCount="1"
+            tools:listitem="@layout/notification_list_title"
+            app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:id="@+id/list"
-       tools:itemCount="1"
-       tools:listitem="@layout/notification_list_title"
-       app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginRight="@dimen/dp5"
     android:layout_marginLeft="@dimen/dp5"
     android:elevation="@dimen/dp30"
@@ -39,9 +39,9 @@
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
             <ImageView
-                android:id="@+id/img_edit"
+                android:id="@+id/img_add"
                 android:visibility="gone"
-                android:src="@drawable/edit_ico_black"
+                android:src="@drawable/add_ico"
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="@dimen/dp12"
@@ -83,127 +83,15 @@
             android:scrollbars="vertical"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/SR_Radio_Anteena_Table_Item"
                 android:orientation="vertical"
-                android:scrollbars="vertical"
-                android:layout_height="wrap_content">
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Backhaul Technology" />
-
-                        <TextView
-                            android:id="@+id/Backhaul_Technology"
-                            android:text="Backhaul Technology"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Link Count" />
-
-                        <TextView
-                            android:id="@+id/Link_Count"
-                            android:text="Link Count"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="FIber Pairs" />
-
-                        <TextView
-                            android:id="@+id/FIber_Pairs"
-                            android:text="FIber Pairs"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Antenna Size, Dia (m)" />
-
-                        <TextView
-                            android:id="@+id/Anteena_size"
-                            android:text="Antenna Size, Dia (m)FIber Pairs"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Antenna Height, AGL (m)" />
-
-                        <TextView
-                            android:id="@+id/Anteena_height"
-                            android:text="Antenna height, Dia (m)FIber Pairs"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-                </GridLayout>
-
-            </LinearLayout>
+                tools:listitem="@layout/srdetails_backhaul_link_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

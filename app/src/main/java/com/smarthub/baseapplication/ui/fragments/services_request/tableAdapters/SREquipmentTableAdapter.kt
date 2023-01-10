@@ -24,11 +24,11 @@ class SREquipmentTableAdapter (var context : Context, var listener : ServicesReq
     }
 
     fun addItem(){
-        list?.add(Equipment(CabinetSize = "4", EquipmentWeight = "8",
-            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723", Technology = "empty",
-            Voltage ="43", created_at = "22-10-2022", id = 448,
-            isActive = true, modified_at = "22-12-2022" ))
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(Equipment(CabinetSize = "4", EquipmentWeight = "8",
+//            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723", Technology = "empty",
+//            Voltage ="43", created_at = "22-10-2022", id = 448,
+//            isActive = true, modified_at = "22-12-2022" ))
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -51,8 +51,8 @@ class SREquipmentTableAdapter (var context : Context, var listener : ServicesReq
         }
         holder.binding.Technology.text= list?.get(position)?.Technology
         holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
-        holder.binding.EquipmentType.text="Data Not Found"
-        holder.binding.EquipmentSize.text="Data Not Found"
+        holder.binding.EquipmentType.text=""
+        holder.binding.EquipmentSize.text=""
     }
 
     override fun getItemCount(): Int {

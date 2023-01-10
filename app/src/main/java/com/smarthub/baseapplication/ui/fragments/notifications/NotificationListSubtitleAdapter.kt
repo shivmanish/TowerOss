@@ -10,23 +10,24 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NotificationListSubtitleBinding
 import com.smarthub.baseapplication.model.notification.NotificationData
 import com.smarthub.baseapplication.model.notification.NotificationListItem
+import com.smarthub.baseapplication.model.notification.newData.NotificationNewItem
 
-class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<NotificationListItem>) : Adapter<NotificationListSubtitleAdapter.Viewholder>() {
-
-    init {
-        list.add(NotificationListItem("Ajay", "5 min ago", "10:00 am", "13-Dec-22", false, ArrayList()))
-        list.add(NotificationListItem("Ankit", "5 min ago", "10:00 am", "13-Dec-22", false, ArrayList()))
-        list.add(NotificationListItem("Manish", "5 min ago", "10:00 am", "13-Dec-22", false, ArrayList()))
-        list.add(NotificationListItem("Sandeep", "5 min ago", "10:00 am", "13-Dec-22", false, ArrayList()))
+class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<NotificationNewItem>) : Adapter<NotificationListSubtitleAdapter.Viewholder>() {
+    fun setData(data : List<NotificationNewItem>){
+        list.clear()
+        list.addAll(data)
+        notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_list_subtitle, parent, false)
         return Viewholder(view)
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        var item = list[position]
-        holder.binding.list.adapter = NotificationListItemAdapter(context,item.sublist)
+        val item : NotificationNewItem = list[position]
+        holder.binding.textName.text = "${item.UserFirstName} ${item.UserLastName}"
+//        holder.binding.list.adapter = NotificationListItemAdapter(context,item.sublist)
     }
 
     override fun getItemCount(): Int {
