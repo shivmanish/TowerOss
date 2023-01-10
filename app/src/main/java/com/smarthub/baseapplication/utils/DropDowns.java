@@ -7,5 +7,12 @@ public enum DropDowns {
     Siteownership,
     Buildingtype,
     Sitebillingstatus,
-    Towncategory
+    Towncategory,
+    RagistrationsNo,
+    BookingCostCentre,
+    RentPaymentFrequency,
+    EBInclusiveinRental,
+    EBBillLimit,
+    PropertyOwnership,
+    PropertyAcquired,
 }
