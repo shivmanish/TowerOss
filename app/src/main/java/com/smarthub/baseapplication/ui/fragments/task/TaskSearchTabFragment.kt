@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
@@ -65,12 +66,9 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
 
-        var recyclerListener = view.findViewById<RecyclerView>(R.id.horizontal_only_list)
         var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
-        recyclerListener.adapter = adapter
-        adapter.addItem()
-
-
+        binding.horizontalOnlyList.adapter = adapter
+        binding.horizontalOnlyList.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         setDataObserver()
     }
     private fun setDataObserver() {
@@ -132,11 +130,11 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
-        addImage.setOnClickListener {
-            val intent = Intent(activity, SiteImages::class.java)
-            startActivity(intent)
-        }
+//        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
+//        addImage.setOnClickListener {
+//            val intent = Intent(activity, SiteImages::class.java)
+//            startActivity(intent)
+//        }
     }
     @SuppressLint("SuspiciousIndentation")
     fun setCustomTab() {
