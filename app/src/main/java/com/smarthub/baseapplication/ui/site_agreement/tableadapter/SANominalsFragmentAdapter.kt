@@ -115,12 +115,12 @@ class SANominalsFragmentAdapter(
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("gsfbgksf")
+                addTableItem()
 
             }
         }
 
-        private fun addTableItem(item: String) {
+        private fun addTableItem() {
             if (ownerList.adapter != null && ownerList.adapter is PropertyOwenerTableAdapter) {
                 var adapter = ownerList.adapter as PropertyOwenerTableAdapter
                 adapter.addItem()

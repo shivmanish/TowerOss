@@ -12,7 +12,7 @@
         <TextView
             android:id="@+id/Item_name"
             android:layout_weight="1"
-            android:textSize="@dimen/dp14"
+            android:textSize="@dimen/dp9"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
             android:maxLines="1"
@@ -24,7 +24,7 @@
         <TextView
             android:id="@+id/Item_code"
             android:layout_weight="1"
-            android:textSize="@dimen/dp14"
+            android:textSize="@dimen/dp9"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
@@ -37,7 +37,7 @@
         <TextView
             android:id="@+id/Description"
             android:layout_weight="1"
-            android:textSize="@dimen/dp14"
+            android:textSize="@dimen/dp9"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/Qty"
-                android:textSize="@dimen/dp14"
+                android:textSize="@dimen/dp9"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"
                 android:maxLines="1"
@@ -72,7 +72,7 @@
             <ImageView
                 android:layout_width="@dimen/dp24"
                 android:id="@+id/menu"
-                android:paddingLeft="10dp"
+                android:paddingLeft="20dp"
                 android:paddingBottom="@dimen/dp7"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
