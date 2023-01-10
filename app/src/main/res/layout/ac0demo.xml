@@ -2,1322 +2,258 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_data_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="@dimen/dp15"
+        android:layout_marginStart="-1dp"
+        android:layout_marginEnd="-1dp"
+        android:background="#F5F5F5"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/list_title"
+            android:textColor="#000000"
+            android:text="Offical Detail"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp15"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/layout1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_title">
 
-            <LinearLayout
-                android:id="@+id/collapsing_layout_equipment"
-                android:layout_width="match_parent"
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/circle"
+                android:backgroundTint="#3D4E6D"
+                android:src="@drawable/ic_building"
+                android:id="@+id/img_building"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+            </ImageView>
+
+            <TextView
+                android:text="TowerOSS pvt ltd"
+                android:paddingTop="5dp"
+                android:textColor="@color/color1"
+                android:textSize="14sp"
+                android:id="@+id/text_c_title"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/equipment_root"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/expand_colaps_background"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/item_title_eqipment"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:clickable="false"
-                        android:padding="@dimen/dp15"
-                        android:text="Equipment" />
-
-                    <ImageView
-                        android:id="@+id/equipment_edit"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/edit_fav_btn"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/equipment_arrow"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/ic_arrow_down_black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/item_collapse_equipment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingBottom="@dimen/dp10">
-
-                        <GridLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:columnCount="2"
-                            android:orientation="horizontal"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Equipment Name" />
-
-                                <TextView
-                                    android:id="@+id/spinEquipmentName"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Serial Number" />
-
-                                <TextView
-                                    android:id="@+id/editSerialNumber"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="S3058940"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Make" />
-
-                                <TextView
-                                    android:id="@+id/editMake"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="xxxx"
-
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Model" />
-
-                                <TextView
-                                    android:id="@+id/editModel"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="xxxx"
-
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Rating/Capacity" />
-
-                                <TextView
-                                    android:id="@+id/spinRationCapacity"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Manufacturing Month/Year" />
-
-                                <TextView
-                                    android:id="@+id/editManufacturingMonthYear"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nov/2018"
-
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Warranty Period" />
-
-                                <TextView
-                                    android:id="@+id/editWarrantyPeriod"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="xxxx"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Warranty Expiry Date" />
-
-                                <TextView
-                                    android:id="@+id/editWarrantyExpiryDate"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:drawableRight="@drawable/icon_date"
-                                    android:text="10-Nov-22"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Cabinet Size" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/editCabinSize"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="L - "
-                                            android:textColor="@color/black" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/editCabinSizeW"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=" | W - "
-                                            android:textColor="@color/black" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/editCabinSizeH"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=" | H - "
-                                            android:textColor="@color/black" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Overall Weight" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/editOverallWeight"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".3"
-                                        android:text="50"
-                                        android:textColor="@color/black" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".7"
-                                        android:gravity="end"
-                                        android:text="Kg"
-                                        android:textColor="@color/black" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Operating Temp" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/editOperatingTemp"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="Min - "
-                                            android:textColor="@color/black" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/editOperatingMax"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=" Max-  "
-                                            android:textColor="@color/black" />
-
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Max Power Rating" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/editMaxPowerRating"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".3"
-                                        android:text="50"
-                                        android:textColor="@color/black" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".7"
-                                        android:gravity="end"
-                                        android:text="KW"
-                                        android:textColor="@color/black" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Installed Location Type" />
-
-                                <TextView
-                                    android:id="@+id/spinInstalledLocationType"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Location Mark" />
-
-                                <TextView
-                                    android:id="@+id/spinMountingStyle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Rack ID" />
-
-                                <TextView
-                                    android:id="@+id/spinInstallationPoint"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Owner Company" />
-
-                                <TextView
-                                    android:id="@+id/spinOwnerCompany"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/ColumnItemInfo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="User Company" />
-
-                                <TextView
-                                    android:id="@+id/spinUserCompany"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                        </GridLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/item_line_2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-
-            <LinearLayout
-                android:id="@+id/rectifier_module_root"
-                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_building"/>
+
+            <TextView
+                android:text="Company Name"
+                android:textColor="@color/textGray"
+                android:textSize="12sp"
+                android:paddingBottom="@dimen/dp5"
+                android:id="@+id/text_c_name"
+                android:drawablePadding="5dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/expand_colaps_background"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/item_title_rectifier_module_root"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:clickable="false"
-                    android:padding="@dimen/dp15"
-                    android:text="Rectifier Module" />
-                <ImageView
-                    android:id="@+id/rectifier_module_edit"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/edit_fav_btn"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/rectifier_module_delete"
-                    android:layout_width="@dimen/dp51"
-                    android:layout_height="@dimen/dp51"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/delete_utilities"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/rectifier_module_add"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/add_utilities"
-                    android:visibility="gone" />
+                app:layout_constraintTop_toBottomOf="@+id/text_c_title"
+                app:layout_constraintStart_toEndOf="@+id/img_building"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/rectifier_module_arrow"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:clickable="false"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/ic_arrow_down_black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:id="@+id/rectifier_module_collapse"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingBottom="@dimen/dp10"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <include layout="@layout/rectifier_module_details"
-                        android:id="@+id/rectifier_module_recycler"/>
-                </LinearLayout>
-            </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:id="@+id/layout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout1">
 
-            <View
-                android:id="@+id/item_line_3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-            <LinearLayout
-                android:id="@+id/connected_loads_root"
-                android:layout_width="match_parent"
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/circle"
+                android:src="@drawable/ic_circle_icon"
+                android:id="@+id/img_circle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+            </ImageView>
+
+            <TextView
+                android:text="Support Department"
+                android:paddingTop="5dp"
+                android:textColor="@color/color1"
+                android:textSize="14sp"
+                android:id="@+id/text_s_department"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/expand_colaps_background"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/item_title_connected_loads_root"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:clickable="false"
-                    android:padding="@dimen/dp15"
-                    android:text="Connected Loads" />
-                <ImageView
-                    android:id="@+id/connected_loads_edit"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/edit_fav_btn"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/connected_loads_delete"
-                    android:layout_width="@dimen/dp51"
-                    android:layout_height="@dimen/dp51"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/delete_utilities"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/connected_loads_add"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/add_utilities"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/connected_loads_arrow"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:clickable="false"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/ic_arrow_down_black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:id="@+id/connected_loads_collapse"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingBottom="@dimen/dp10"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <include layout="@layout/connected_loads_details"
-                        android:id="@+id/connected_loads_recycler"/>
-                </LinearLayout>
-            </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_circle"/>
 
-            <View
-                android:id="@+id/item_line"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:text="Department Name"
+                android:textColor="@color/textGray"
+                android:paddingBottom="@dimen/dp5"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:id="@+id/text_d_name"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/text_s_department"
+                app:layout_constraintStart_toEndOf="@+id/img_circle"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:id="@+id/layout3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout2">
 
-                <LinearLayout
-                    android:id="@+id/instanlation_root"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/expand_colaps_background"
-                    android:orientation="horizontal">
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/circle"
+                android:backgroundTint="#3D4E6D"
+                android:src="@drawable/ic_menu_list"
+                android:id="@+id/img_menu_list"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+            </ImageView>
 
-                    <TextView
-                        android:id="@+id/item_title_instalation"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:clickable="false"
-                        android:padding="@dimen/dp15"
-                        android:text="Installation/ Acceptance" />
-
-                    <ImageView
-                        android:id="@+id/edit_instanlation"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/edit_fav_btn"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/instalation_arrow"
-                        android:layout_width="@dimen/dp50"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:padding="@dimen/dp18"
-                        android:src="@drawable/ic_arrow_down_black" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/item_collapse_acceptance"
-                android:layout_width="match_parent"
+            <TextView
+                android:text="Maintenance Enginee"
+                android:paddingTop="5dp"
+                android:textColor="@color/color1"
+                android:textSize="14sp"
+                android:id="@+id/text_m_engineer"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/dp10">
-
-                    <GridLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Installation Vendor" />
-
-                            <TextView
-                                android:id="@+id/spinInstallationVendor"
-                                android:textColor="@color/black"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                android:text="On-Air" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Installation Date" />
-
-                            <EditText
-                                android:id="@+id/editInstallationDate"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:drawableRight="@drawable/icon_date"
-
-                                android:text="24" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="Installation Executive Name" />
-
-                            <EditText
-                                android:id="@+id/editExcutiveName"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:text="xxxx" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="Installation Executive Num..." />
-
-                            <EditText
-                                android:id="@+id/editExcutiveNum"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:drawableRight="@drawable/ic_call"
-                                android:text="9890000009" />
-
-                        </LinearLayout>
-
-
-                    </GridLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp40"
-                    android:layout_gravity="center_vertical"
-                    android:background="#f9f9f9"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dp12">
-
-                    <TextView
-                        android:id="@+id/atp_checkli"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|start"
-                        android:layout_weight=".3"
-                        android:gravity="start"
-                        android:text="ATP Checklist"
-                        android:textColor="#3D4E6D" />
-
-                    <TextView
-                        android:id="@+id/addmore"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp40"
-                        android:layout_gravity="center|right"
-                        android:layout_weight=".7"
-                        android:fontFamily="@font/poppins_bold"
-                        android:gravity="center"
-                        android:text="Continue"
-                        android:textColor="@color/normalTextColor"
-                        android:textSize="@dimen/sp12" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dp12">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|start"
-                        android:layout_weight=".3"
-                        android:gravity="start"
-                        android:text="Acceptance Punch Points"
-                        android:textColor="#3D4E6D" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="3">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/mark"
-                                    android:layout_width="@dimen/dp30"
-                                    android:layout_height="@dimen/dp30"
-                                    android:layout_centerVertical="true"
-                                    android:background="@drawable/roundedtextblack"
-                                    android:gravity="center"
-                                    android:text="4"
-                                    android:textColor="@android:color/white"
-                                    android:textSize="12sp" />
-
-                                <TextView
-                                    android:layout_marginLeft="@dimen/dp5"
-                                    android:textSize="@dimen/dp12"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_toRightOf="@+id/mark"
-                                    android:gravity="center_vertical"
-                                    android:text=" Closed"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/mark2"
-                                    android:layout_width="@dimen/dp30"
-                                    android:layout_height="@dimen/dp30"
-                                    android:layout_centerVertical="true"
-                                    android:background="@drawable/roundedtextview_yellow"
-                                    android:gravity="center"
-                                    android:text="4"
-                                    android:textColor="@android:color/white"
-                                    android:textSize="12sp" />
-
-                                <TextView
-                                    android:layout_marginLeft="@dimen/dp5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center|start"
-                                    android:layout_toRightOf="@+id/mark2"
-                                    android:gravity="center_vertical"
-                                    android:textSize="@dimen/dp12"
-                                    android:text=" OPEN"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:textColor="@color/black" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="right"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="@dimen/dp30"
-                                    android:layout_height="@dimen/dp30"
-                                    android:paddingLeft="@dimen/dp10"
-                                    android:paddingRight="@dimen/dp10"
-                                    android:src="@drawable/add_ico_white"
-                                    android:background="@drawable/circleblue_1"
-                                    />
-                                <TextView
-                                    android:layout_marginRight="@dimen/dp10"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp30"
-                                    android:paddingLeft="@dimen/dp10"
-                                    android:paddingRight="@dimen/dp10"
-                                    android:fontFamily="@font/poppins"
-                                    android:text="Add"
-                                    android:id="@+id/add"
-                                    android:gravity="center"
-                                    android:textColor="@color/normalTextColor"
-                                    android:textSize="@dimen/sp12"
-                                    />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="I/p Voltage Reading" />
-
-                        <EditText
-                            android:id="@+id/editIpVoltageReading"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="220V" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="O/p Voltage Reading" />
-
-                        <EditText
-                            android:id="@+id/editOpVoltageReading"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="540V" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="Acceptance Status" />
-
-                        <EditText
-                            android:id="@+id/editAcceptanceStatus"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Completed" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="Conditional Acceptance Da.." />
-
-                        <EditText
-                            android:id="@+id/editCondtionalAcceptance"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableRight="@drawable/icon_date"
-                            android:text="10-Nov-22" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="Final Acceptance Date" />
-
-                        <EditText
-                            android:id="@+id/editFinalDateAcceptance"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableRight="@drawable/icon_date"
-                            android:text="10-Nov-22" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Operational Status" />
-
-                        <TextView
-                            android:id="@+id/spinOperationalStatus"
-                            android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
-                            android:text="On-Air" />
-
-                    </LinearLayout>
-                </GridLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/rectangle_9"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dp12"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|start"
-                        android:layout_weight=".3"
-                        android:gravity="start"
-                        android:text="@string/po_details"
-                        android:textColor="#3D4E6D" />
-
-                    <TextView
-                        android:id="@+id/txtAddCommersial"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp40"
-
-                        android:layout_gravity="center|right"
-                        android:layout_weight=".7"
-                        android:background="@drawable/yellow_text_button"
-                        android:drawableLeft="@drawable/add_ico"
-                        android:fontFamily="@font/poppins"
-                        android:gravity="center"
-                        android:text="ADD"
-                        android:textColor="@color/normalTextColor"
-                        android:textSize="@dimen/sp12"
-                        app:drawableLeftCompat="@drawable/add_ico" />
-                </LinearLayout>
-            </LinearLayout>
-            <View
-                android:id="@+id/item_line_4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-            <LinearLayout
-                android:id="@+id/consumable_materials_root"
-                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_menu_list"/>
+
+            <TextView
+                android:text="Role Name"
+                android:textColor="@color/textGray"
+                android:paddingBottom="@dimen/dp5"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:id="@+id/text_m_name"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/expand_colaps_background"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/item_title_consumable_materials_root"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:clickable="false"
-                    android:padding="@dimen/dp15"
-                    android:text="Consumable Materials" />
-                <ImageView
-                    android:id="@+id/consumable_materials_edit"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/edit_fav_btn"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/consumable_materials_delete"
-                    android:layout_width="@dimen/dp51"
-                    android:layout_height="@dimen/dp51"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/delete_utilities"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/consumable_materials_add"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/add_utilities"
-                    android:visibility="gone" />
+                app:layout_constraintTop_toBottomOf="@+id/text_m_engineer"
+                app:layout_constraintStart_toEndOf="@+id/img_menu_list"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/consumable_materials_arrow"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:clickable="false"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/ic_arrow_down_black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:id="@+id/consumable_materials_collapse"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingBottom="@dimen/dp10"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <include layout="@layout/consumable_material_details"
-                        android:id="@+id/consumable_materials_recycler"/>
-                </LinearLayout>
-            </LinearLayout>
-            <View
-                android:id="@+id/item_line_5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.37"
-                android:background="#263238" />
-            <LinearLayout
-                android:id="@+id/po_details_root"
-                android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:id="@+id/layout4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout3">
+
+            <ImageView
+                android:padding="3dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/circle"
+                android:src="@drawable/ic_portal"
+                android:id="@+id/img_calendar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:text="HGHG5454"
+                android:paddingTop="5dp"
+                android:textColor="@color/color1"
+                android:textSize="14sp"
+                android:id="@+id/text_em_engineer"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/expand_colaps_background"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/item_title_po_details_root"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:clickable="false"
-                    android:padding="@dimen/dp15"
-                    android:text="PO Details" />
-                <ImageView
-                    android:id="@+id/po_details_edit"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/edit_fav_btn"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/po_details_delete"
-                    android:layout_width="@dimen/dp51"
-                    android:layout_height="@dimen/dp51"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/delete_utilities"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/po_details_add"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/add_utilities"
-                    android:visibility="gone" />
-                <ImageView
-                    android:id="@+id/po_details_arrow"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp50"
-                    android:layout_gravity="center_vertical"
-                    android:clickable="false"
-                    android:padding="@dimen/dp18"
-                    android:src="@drawable/ic_arrow_down_black" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_calendar"/>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:id="@+id/po_details_collapse"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingBottom="@dimen/dp10"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <include layout="@layout/po_details_details"
-                        android:id="@+id/po_details_recycler"/>
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:text="Employee ID"
+                android:textColor="@color/textGray"
+                android:paddingBottom="@dimen/dp5"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:id="@+id/text_em_name"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/text_em_engineer"
+                app:layout_constraintStart_toEndOf="@+id/img_calendar"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/items_list"
+        app:layout_constraintTop_toBottomOf="@+id/profile_data_list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="vertical"
+            tools:itemCount="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_items_list"
+            tools:listitem="@layout/profile_list_item"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
