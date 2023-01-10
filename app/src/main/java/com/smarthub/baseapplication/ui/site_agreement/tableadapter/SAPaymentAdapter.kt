@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PaymentTableItemBinding
@@ -40,7 +41,7 @@ class SAPaymentAdapter(
     class PaymentViewHold(itemView: View) : ViewHold(itemView) {
         var binding: PaymentTableItemBinding = PaymentTableItemBinding.bind(itemView)
 
-        var paymentList: RecyclerView=binding.paylist
+        val paymentList: RecyclerView=binding.paylist
 
         init {
                    binding.collapsingLayout.tag = false
@@ -53,14 +54,16 @@ class SAPaymentAdapter(
                    }
 
                    binding.imgAdd.setOnClickListener {
-                       addTableItem("gsfbgksf")
+                       addTableItem()
                    }
                }
-        private fun addTableItem(item: String) {
+         fun addTableItem() {
                 if (paymentList.adapter!=null && paymentList.adapter is PaymentTableAdapter){
                     var adapter = paymentList.adapter as PaymentTableAdapter
+                    paymentList.setAdapter(adapter);
                     adapter.addItem()
                 }
+             print("jjj")
         }
     }
 
@@ -112,8 +115,11 @@ class SAPaymentAdapter(
                        }
                        holder.binding.itemTitleStr.text = list[position]
                        try {
+                           holder.paymentList.layoutManager=LinearLayoutManager(context)
+                          holder. paymentList.setHasFixedSize(true);
                            holder.paymentList.adapter=
                                PaymentTableAdapter(context,listener!!,paymentList!!)
+
                        }catch (e:java.lang.Exception){
                            AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                        }

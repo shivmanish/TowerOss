@@ -91,9 +91,8 @@ class PaymentTableAdapter(
 
     override fun getItemCount(): Int {
         return list.size
-    }
 
-    // this method will handle the onclick options click
+    }
     private fun performOptionsMenuClick(position: Int, view: View) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
