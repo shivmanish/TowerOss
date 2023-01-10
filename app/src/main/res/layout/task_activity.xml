@@ -94,6 +94,7 @@
         android:id="@+id/add_more"
         android:layout_width="@dimen/dp50"
         android:layout_height="@dimen/dp50"
+        android:visibility="gone"
         android:layout_marginEnd="@dimen/dp20"
         android:layout_marginBottom="@dimen/dp20"
         app:cardCornerRadius="@dimen/dp100"

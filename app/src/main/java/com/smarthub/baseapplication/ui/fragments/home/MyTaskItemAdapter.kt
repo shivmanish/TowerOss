@@ -1,28 +1,21 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
-    var c: Calendar = Calendar.getInstance()
-    var sdf: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
-    var getCurrentDateTime = sdf.format(c.time)
     var overDue:Int ?=0
     var nowDue:Int ?=0
     var nextDue:Int ?=0
@@ -54,6 +47,26 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     fun updateList(list : List<Any>){
         this.list = ArrayList(list)
+        overDue=0
+        nowDue=0
+        nextDue=0
+        for (item in list){
+            if (item is MyTeamTask){
+                val date = item.enddate.substring(0,19)
+                val cmp = Utils.compareDate(date)
+                when {
+                    cmp > 0 -> {
+                        overDue=overDue!!+1
+                    }
+                    cmp == 0 -> {
+                        nowDue=nowDue!!+1
+                    }
+                    else -> {
+                        nextDue=nextDue!!+1
+                    }
+                }
+            }
+        }
         notifyDataSetChanged()
     }
 
@@ -87,37 +100,21 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ListItemViewHold && list[position] is MyTeamTask){
-            var item=list[position] as MyTeamTask
+            val item=list[position] as MyTeamTask
             holder.bindData(item)
-            try {
-                AppLogger.log("date format1:${item.enddate.split(".")[0]}")
-                val endDate = Calendar.getInstance()
-                try {
-                    endDate.time = sdf.parse(item.enddate)
-                } catch (e: ParseException) {
-                    e.printStackTrace()
-                }
-                if (getCurrentDateTime.compareTo(endDate.toString()) > 0)
-                {
+            val date = item.enddate.substring(0,19)
+            val cmp = Utils.compareDate(date)
+            when {
+                cmp > 0 -> {
                     holder.binding.IndicatorLine.setBackgroundResource(R.color.colorRed)
-                    overDue=overDue!!+1
-                    notifyDataSetChanged()
                 }
-                else if(getCurrentDateTime.compareTo(endDate.toString()) == 0){
-                    nowDue=nowDue!!+1
+                cmp == 0 -> {
                     holder.binding.IndicatorLine.setBackgroundResource(R.color.yellow)
-                    notifyDataSetChanged()
                 }
-                else{
+                else -> {
                     holder.binding.IndicatorLine.setBackgroundResource(R.color.blue)
-                    nextDue=nextDue!!+1
-                    notifyDataSetChanged()
                 }
-            }catch (e:Exception){
-                AppLogger.log("date format error:${e.localizedMessage}")
             }
-            AppLogger.log("date format:${item.enddate}")
-
         }
         if (holder is HeaderViewHold){
             holder.bindData()
