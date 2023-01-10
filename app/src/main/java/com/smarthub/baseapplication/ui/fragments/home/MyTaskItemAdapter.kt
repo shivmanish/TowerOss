@@ -8,12 +8,13 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import java.text.ParseException
 import java.util.*
 
-class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
+class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var overDue:Int ?=0
@@ -114,6 +115,9 @@ class MyTaskItemAdapter : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
                 else -> {
                     holder.binding.IndicatorLine.setBackgroundResource(R.color.blue)
                 }
+            }
+            holder.binding.taskClose.setOnClickListener {
+                listener.closeTask(item)
             }
         }
         if (holder is HeaderViewHold){

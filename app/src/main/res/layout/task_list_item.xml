@@ -159,7 +159,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/item_collapse"
             android:orientation="vertical"
             android:paddingEnd="@dimen/dp10"

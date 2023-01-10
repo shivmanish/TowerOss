@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.FragmentMyTaskHomeBinding
+import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class MyTeamTaskFragment : Fragment() {
+class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
 
     var homeViewModel : HomeViewModel?=null
     lateinit var binding : FragmentMyTaskHomeBinding
@@ -24,7 +25,7 @@ class MyTeamTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter()
+        adapterList = MyTaskItemAdapter(listener)
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")
@@ -33,20 +34,14 @@ class MyTeamTaskFragment : Fragment() {
         if (homeViewModel?.myTeamTask?.hasActiveObservers() == true)
             homeViewModel?.myTeamTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTeamTask?.observe(viewLifecycleOwner){
-            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
                 list.add("header")
                 list.addAll(it)
                 adapterList.updateList(list)
             }else{
-//                no data found
                 adapterList.addItem("no_data")
             }
-        }
-
-        binding.refreshLayout.setOnRefreshListener {
-            homeViewModel?.fetchHomeData()
         }
     }
 

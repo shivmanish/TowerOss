@@ -15,15 +15,18 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
+import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.fragments.home.HomeFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTaskFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTeamTaskFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAssignToDialouge
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.CloseTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
+class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
 
     private lateinit var binding: FragmentTaskBinding
     private lateinit var homeViewModel:HomeViewModel
@@ -31,14 +34,12 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-//        homeViewModel.isActionBarHide(false)
         binding = FragmentTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.listItem.adapter = TaskItemAdapter(this@TaskFragment)
 
         binding.addItem.setOnClickListener {
             val intent = Intent(requireActivity(),TaskActivity::class.java)
@@ -49,12 +50,13 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
             requireActivity().startActivity(intent)
         }
 
-        binding.homePager.adapter = TaskViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        binding.homePager.adapter = TaskViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,this@TaskFragment)
         binding.homeTab.setupWithViewPager(binding.homePager)
 
         if (homeViewModel.homeData()?.hasActiveObservers() == true)
             homeViewModel.homeData()?.removeObservers(viewLifecycleOwner)
         homeViewModel.homeData()?.observe(viewLifecycleOwner){
+            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 if (it.data!=null){
                     AppLogger.log("fetched data:"+ Gson().toJson(it))
@@ -66,20 +68,15 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
                 AppLogger.log("data not fetched")
             }
         }
-
+        binding.refreshLayout.setOnRefreshListener {
+            homeViewModel.fetchHomeData()
+        }
         homeViewModel.fetchHomeData()
     }
 
     private fun mapUIData(data: HomeResponse){
         if (data.Sitestatus !=null && data.Sitestatus.isNotEmpty()){
-//            for (item in data.Sitestatus){
-//                if (item.name == "RFI")
-//                    binding.totalRfi.text = item.Totalcount
-//                if (item.name == "Under Construction")
-//                    binding.totalInProgress.text = item.Totalcount
-//                if (item.name == "On-Air")
-//                    binding.totalOnAir.text = item.Totalcount
-//            }
+
         }else if (data.Sitestatus!=null)
             AppLogger.log("empty list for siteStatus")
         else AppLogger.log("null data for siteStatus")
@@ -103,12 +100,12 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
         Toast.makeText(requireContext(),"Commercial Item clicked", Toast.LENGTH_SHORT).show()
     }
 
-    internal inner class TaskViewPagerAdapter(manager: FragmentManager, behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
+    internal inner class TaskViewPagerAdapter(manager: FragmentManager, behaviour:Int,var listener: TaskListener) : FragmentPagerAdapter(manager,behaviour) {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
-                0-> MyTaskFragment()
-                else -> MyTeamTaskFragment()
+                0-> MyTaskFragment(listener)
+                else -> MyTeamTaskFragment(listener)
             }
         }
 
@@ -122,5 +119,11 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner {
         }
 
     }
+
+    override fun closeTask(task: MyTeamTask) {
+        val bottomSheetDialogFragment = CloseTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
 
 }

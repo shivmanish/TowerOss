@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.FragmentMyTaskHomeBinding
+import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class MyTaskFragment : Fragment() {
+class MyTaskFragment(var listener: TaskListener) : Fragment() {
 
     var homeViewModel : HomeViewModel?=null
     lateinit var binding : FragmentMyTaskHomeBinding
@@ -24,7 +25,7 @@ class MyTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter()
+        adapterList = MyTaskItemAdapter(listener)
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")
@@ -33,7 +34,6 @@ class MyTaskFragment : Fragment() {
         if (homeViewModel?.myTask?.hasActiveObservers() == true)
             homeViewModel?.myTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTask?.observe(viewLifecycleOwner){
-            binding.refreshLayout.isRefreshing = false
             if (it!=null && it.isNotEmpty()){
                 AppLogger.log("myTask data not null")
                 val list :ArrayList<Any> = ArrayList()
@@ -47,9 +47,9 @@ class MyTaskFragment : Fragment() {
             }
         }
 
-        binding.refreshLayout.setOnRefreshListener {
-            homeViewModel?.fetchHomeData()
-        }
+//        binding.refreshLayout.setOnRefreshListener {
+//            homeViewModel?.fetchHomeData()
+//        }
     }
 
 }

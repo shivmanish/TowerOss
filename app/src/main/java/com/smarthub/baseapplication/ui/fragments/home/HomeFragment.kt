@@ -18,15 +18,18 @@ import com.smarthub.baseapplication.databinding.FragmentHomeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
+import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.search.SearchFragmentDirections
+import com.smarthub.baseapplication.ui.fragments.task.TaskListener
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.CloseTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),TaskListener {
 
     lateinit var adapterList : MyTaskItemAdapter
     private val binding get() = _binding!!
@@ -79,7 +82,7 @@ class HomeFragment : Fragment() {
         homeViewModel.fetchSiteDropDownData()
 
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter()
+        adapterList = MyTaskItemAdapter(this@HomeFragment)
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")
@@ -150,7 +153,6 @@ class HomeFragment : Fragment() {
         if (homeViewModel.dropDownResponseNew?.hasActiveObservers() == true)
             homeViewModel.dropDownResponseNew?.removeObservers(viewLifecycleOwner)
         homeViewModel.dropDownResponseNew?.observe(viewLifecycleOwner) {
-//            hideLoader()
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     AppPreferences.getInstance().saveDropDownData(it.data)
@@ -165,6 +167,11 @@ class HomeFragment : Fragment() {
             }
         }
         homeViewModel.fetchDropDownNew()
+    }
+
+    override fun closeTask(task: MyTeamTask) {
+        val bottomSheetDialogFragment = CloseTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 
 
