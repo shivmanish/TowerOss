@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.notification.newData.NotificationNew
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.search.SearchList
@@ -66,6 +67,7 @@ class HomeViewModel : ViewModel() {
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAgreementModel>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null
+    var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -96,6 +98,7 @@ class HomeViewModel : ViewModel() {
         utilityEquipResponse=homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
         siteInfoModelNew = homeRepo?.siteInfoModelNew
+        notificationNew = homeRepo?.notificationNew
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -126,7 +129,9 @@ class HomeViewModel : ViewModel() {
         homeRepo?.createSite(basicinfoModel)
     }
 
-
+    fun getNotifications(){
+        homeRepo?.getAllNotification()
+    }
 
     fun updateMyTeamTask(data : List<MyTeamTask>?){
         AppLogger.log("updateMyTeamTask : data ${data?.size}")

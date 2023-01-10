@@ -6,6 +6,8 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
+import com.smarthub.baseapplication.model.notification.newData.SendData;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
@@ -171,6 +173,9 @@ public interface APIClient {
     @POST(EndPoints.SITE_INFO_DATA)
     Call<SiteInfoModelNew> createSite(@Body CreateSiteModel basicinfoModel);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET(EndPoints.NOTIFICATION_DATA)
+    Call<NotificationNew> getNotification();
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DASHBOARD_DATA_URL)
