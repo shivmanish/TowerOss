@@ -12,16 +12,10 @@ import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisitio
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
 import com.smarthub.baseapplication.utils.AppLogger
 
-class SAPaymentAdapter(
-    var context: Context,
-    var listener: PaymentTableAdapter.PaymentInfoListListener? = null,
-     allPayment: List<SiteacquisitionPayment>?,
-
-    ) :
-    RecyclerView.Adapter<SAPaymentAdapter.ViewHold>() {
+class SAPaymentAdapter(var context: Context, var listener: PaymentTableAdapter.PaymentInfoListListener? = null,var allPayment: List<SiteacquisitionPayment>?) : RecyclerView.Adapter<SAPaymentAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
-     var paymentList: SiteacquisitionPayment?=null
+//     var paymentList: SiteacquisitionPayment?=null
     private var siteAgreementsData : SiteacquisitionAgreement?=null
 
     var type1 = "Payment"
@@ -31,7 +25,7 @@ class SAPaymentAdapter(
 
     init {
         list.add("Payment")
-        paymentList=allPayment?.get(0);
+//        paymentList=allPayment?.get(0);
 
 
     }
@@ -59,7 +53,7 @@ class SAPaymentAdapter(
                }
          fun addTableItem() {
                 if (paymentList.adapter!=null && paymentList.adapter is PaymentTableAdapter){
-                    var adapter = paymentList.adapter as PaymentTableAdapter
+                    val adapter = paymentList.adapter as PaymentTableAdapter
                     paymentList.setAdapter(adapter);
                     adapter.addItem()
                 }
@@ -94,35 +88,34 @@ class SAPaymentAdapter(
         when (holder) {
 
             is PaymentViewHold -> {
-                       if (currentOpened == position) {
-                           holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                           holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                           holder.binding.itemLine.visibility = View.GONE
-                           holder.binding.itemCollapse.visibility = View.VISIBLE
-                           holder.binding.imgAdd.visibility = View.VISIBLE
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
 
-                       }
-                       else {
-                           holder.binding.collapsingLayout.tag = false
-                           holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                           holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                           holder.binding.itemLine.visibility = View.VISIBLE
-                           holder.binding.itemCollapse.visibility = View.GONE
-                           holder.binding.imgAdd.visibility = View.GONE
-                       }
-                       holder.binding.collapsingLayout.setOnClickListener {
-                           updateList(position)
-                       }
-                       holder.binding.itemTitleStr.text = list[position]
-                       try {
-                           holder.paymentList.layoutManager=LinearLayoutManager(context)
-                          holder. paymentList.setHasFixedSize(true);
-                           holder.paymentList.adapter=
-                               PaymentTableAdapter(context,listener!!,paymentList!!)
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.paymentList.layoutManager=LinearLayoutManager(context)
+                    holder. paymentList.setHasFixedSize(true)
+                    holder.paymentList.adapter= PaymentTableAdapter(context,listener!!, ArrayList(allPayment))
 
-                       }catch (e:java.lang.Exception){
-                           AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                       }
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                }
             }
 
         }

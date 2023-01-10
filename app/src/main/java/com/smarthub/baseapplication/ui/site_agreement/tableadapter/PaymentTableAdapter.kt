@@ -13,22 +13,16 @@ import com.smarthub.baseapplication.databinding.PaymentTableItemRowBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
 import com.smarthub.baseapplication.utils.AppLogger
 
-class PaymentTableAdapter(
-    var context: Context,
-    var listener: PaymentInfoListListener,
-    paymentModel: SiteacquisitionPayment
-) : RecyclerView.Adapter<PaymentTableAdapter.ViewHold>() {
+class PaymentTableAdapter(var context: Context, var listener: PaymentInfoListListener,var list: ArrayList<SiteacquisitionPayment>) : RecyclerView.Adapter<PaymentTableAdapter.ViewHold>() {
 
-    var list = ArrayList<SiteacquisitionPayment>()
+//    var list = ArrayList<SiteacquisitionPayment>()
 
-    init {
-        list = paymentModel as ArrayList<SiteacquisitionPayment>
-
-    }
+//    init {
+//        list = paymentModel as ArrayList<SiteacquisitionPayment>
+//    }
 
     fun addItem() {
-        list.add(
-            SiteacquisitionPayment(
+        list.add(SiteacquisitionPayment(
                 Amount = "",
                 Date = "",
                 DueDate = "",
@@ -64,9 +58,7 @@ class PaymentTableAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.payment_table_item_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.payment_table_item_row, parent, false)
         return ViewHold(view)
     }
 
