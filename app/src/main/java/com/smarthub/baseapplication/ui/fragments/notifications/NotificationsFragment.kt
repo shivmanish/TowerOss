@@ -37,12 +37,17 @@ class NotificationsFragment : Fragment() {
             homeViewModel.notificationNew?.removeObservers(viewLifecycleOwner)
         homeViewModel.notificationNew?.observe(viewLifecycleOwner){
             if (it?.data!=null && it.status == Resource.Status.SUCCESS){
+                binding.swipeLayout.isRefreshing=false
                 (binding.list.adapter as NotificationListSubtitleAdapter).setData(it.data)
                 Toast.makeText(requireContext(),"notification fetched successfully",Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(requireContext(),"something wend wrong e:${it.message}",Toast.LENGTH_LONG).show()
 
             }
+        }
+
+        binding.swipeLayout.setOnRefreshListener {
+            homeViewModel.getNotifications()
         }
     }
 

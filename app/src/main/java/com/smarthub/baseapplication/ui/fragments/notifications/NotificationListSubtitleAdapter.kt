@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.model.notification.newData.NotificationNewIt
 
 class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<NotificationNewItem>) : Adapter<NotificationListSubtitleAdapter.Viewholder>() {
     fun setData(data : List<NotificationNewItem>){
+        list.clear()
         list.addAll(data)
         notifyDataSetChanged()
     }
