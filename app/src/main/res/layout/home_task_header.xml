@@ -140,12 +140,12 @@
         android:layout_height="@dimen/dp35"
         app:layout_constraintEnd_toStartOf="@+id/card_filter"
         app:cardCornerRadius="@dimen/dp5"
+        app:layout_constraintTop_toTopOf="@+id/over_due"
         app:cardBackgroundColor="#E9EEF7"
-        android:layout_marginEnd="@dimen/dp10"
-        app:layout_constraintTop_toTopOf="@+id/title1">
+        android:layout_marginEnd="@dimen/dp10">
 
         <ImageView
-            android:padding="@dimen/dp6"
+            android:padding="@dimen/dp10"
             android:src="@drawable/add_card"
             app:tint="#3D4E6D"
             android:layout_width="match_parent"
@@ -155,13 +155,13 @@
         android:layout_width="@dimen/dp35"
         android:id="@+id/card_filter"
         android:layout_height="@dimen/dp35"
+        app:layout_constraintTop_toTopOf="@+id/card_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="@dimen/dp5"
-        app:cardBackgroundColor="#E9EEF7"
-        app:layout_constraintTop_toTopOf="@+id/title1">
+        app:cardBackgroundColor="#E9EEF7">
 
         <ImageView
-            android:padding="@dimen/dp6"
+            android:padding="@dimen/dp10"
             android:src="@drawable/icon_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

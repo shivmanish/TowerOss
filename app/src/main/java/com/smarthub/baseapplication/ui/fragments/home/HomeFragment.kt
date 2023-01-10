@@ -28,6 +28,7 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
 
+    lateinit var adapterList : MyTaskItemAdapter
     private val binding get() = _binding!!
     lateinit var homeViewModel : HomeViewModel
     private var _binding: FragmentHomeBinding? = null
@@ -39,7 +40,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         binding.searchBoxLayout.setOnClickListener {
 //            set menu selection for site iBoard
-
         }
         binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
@@ -50,13 +50,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.homePager.adapter = HomeViewPagerAdapter(childFragmentManager,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-        binding.homeTab.setupWithViewPager(binding.homePager)
         binding.notificationLayout.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
             Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
-
         binding.addNewSite.setOnClickListener { clickNewSiteData() }
 
         binding.searchBoxLayout.setOnClickListener {
@@ -80,6 +77,29 @@ class HomeFragment : Fragment() {
 
         homeViewModel.fetchHomeData()
         homeViewModel.fetchSiteDropDownData()
+
+        binding.taskList.setHasFixedSize(true)
+        adapterList = MyTaskItemAdapter()
+        binding.taskList.adapter = adapterList
+
+        adapterList.addItem("loading")
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+
+        if (homeViewModel.myTeamTask?.hasActiveObservers() == true)
+            homeViewModel.myTeamTask?.removeObservers(viewLifecycleOwner)
+        homeViewModel.myTeamTask?.observe(viewLifecycleOwner){
+            if (it!=null && it.isNotEmpty()){
+                val list :ArrayList<Any> = ArrayList()
+                list.add("header")
+                list.addAll(it)
+                adapterList.updateList(list)
+                binding.tastCount.text = it.size.toString()
+            }else{
+//                no data found
+                adapterList.addItem("no_data")
+            }
+        }
+
     }
 
     private fun mapUIData(data: HomeResponse){
@@ -97,41 +117,21 @@ class HomeFragment : Fragment() {
         else AppLogger.log("null data for siteStatus")
 
         if (data.MyTeamTask!=null && data.MyTeamTask.isNotEmpty()){
-            homeViewModel?.updateMyTeamTask(data.MyTeamTask)
+            homeViewModel.updateMyTeamTask(data.MyTeamTask)
         }else if (data.MyTeamTask!=null) AppLogger.log("empty list for MyTeamTask")
         else AppLogger.log("empty list for MyTeamTask")
 
         if (data.MyTask!=null && data.MyTask.isNotEmpty()){
-            homeViewModel?.updateMyTask(data.MyTask)
+            homeViewModel.updateMyTask(data.MyTask)
         }else if (data.MyTask!=null) {
             AppLogger.log("empty list for MyTask")
-            homeViewModel?.updateMyTask(null)
+            homeViewModel.updateMyTask(null)
         }else AppLogger.log("empty list for MyTask")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    internal inner class HomeViewPagerAdapter(manager: FragmentManager, behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
-
-        override fun getItem(position: Int): Fragment {
-            return when(position){
-                0-> MyTaskFragment()
-                else -> MyTeamTaskFragment()
-            }
-        }
-
-
-        override fun getCount(): Int {
-            return 2
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return if (position==0) "My Tasks" else "My Team Tasks"
-        }
-
     }
 
     private fun clickNewSiteData(){
