@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPOViewBottomShee
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PoTableAdapter
 
 
-class SANomonalsFrag(private val siteacquisitionAgreements: List<SiteacquisitionAgreement>?) : BaseFragment(), PoTableAdapter.PoInfoListListener {
+class SANomonalsFrag( val siteacquisitionAgreements: List<SiteacquisitionAgreement>?) : BaseFragment(), PoTableAdapter.PoInfoListListener {
     lateinit var adapter : SANominalsFragmentAdapter
     var binding : NominalsFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

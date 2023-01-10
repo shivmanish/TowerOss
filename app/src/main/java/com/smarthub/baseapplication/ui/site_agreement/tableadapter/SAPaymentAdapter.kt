@@ -4,27 +4,35 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PaymentTableItemBinding
-import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PaymentModel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
 import com.smarthub.baseapplication.utils.AppLogger
 
 class SAPaymentAdapter(
     var context: Context,
-    var listener: PaymentTableAdapter.PaymentInfoListListener,
-) :
+    var listener: PaymentTableAdapter.PaymentInfoListListener? = null,
+     allPayment: List<SiteacquisitionPayment>?,
+
+    ) :
     RecyclerView.Adapter<SAPaymentAdapter.ViewHold>() {
 
     var list: ArrayList<String> = ArrayList()
-    private var datalist: PaymentModel?=null
+     var paymentList: SiteacquisitionPayment?=null
+    private var siteAgreementsData : SiteacquisitionAgreement?=null
 
     var type1 = "Payment"
+
 
     var currentOpened = -1
 
     init {
         list.add("Payment")
+        paymentList=allPayment?.get(0);
+
 
     }
 
@@ -33,8 +41,9 @@ class SAPaymentAdapter(
     class PaymentViewHold(itemView: View) : ViewHold(itemView) {
         var binding: PaymentTableItemBinding = PaymentTableItemBinding.bind(itemView)
 
-            var paymentList : RecyclerView = binding.root.findViewById(R.id.paylist)
-               init {
+        val paymentList: RecyclerView=binding.paylist
+
+        init {
                    binding.collapsingLayout.tag = false
                    if ((binding.collapsingLayout.tag as Boolean)) {
                        binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -45,14 +54,16 @@ class SAPaymentAdapter(
                    }
 
                    binding.imgAdd.setOnClickListener {
-                       addTableItem("gsfbgksf")
+                       addTableItem()
                    }
                }
-        private fun addTableItem(item: String) {
+         fun addTableItem() {
                 if (paymentList.adapter!=null && paymentList.adapter is PaymentTableAdapter){
                     var adapter = paymentList.adapter as PaymentTableAdapter
-                    adapter.addItem(item)
+                    paymentList.setAdapter(adapter);
+                    adapter.addItem()
                 }
+             print("jjj")
         }
     }
 
@@ -104,8 +115,11 @@ class SAPaymentAdapter(
                        }
                        holder.binding.itemTitleStr.text = list[position]
                        try {
+                           holder.paymentList.layoutManager=LinearLayoutManager(context)
+                          holder. paymentList.setHasFixedSize(true);
                            holder.paymentList.adapter=
-                               PaymentTableAdapter(context,listener,list)
+                               PaymentTableAdapter(context,listener!!,paymentList!!)
+
                        }catch (e:java.lang.Exception){
                            AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                        }

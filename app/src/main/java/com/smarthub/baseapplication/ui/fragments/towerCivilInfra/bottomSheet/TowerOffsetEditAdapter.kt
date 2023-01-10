@@ -14,7 +14,6 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class TowerOffsetEditAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId),
     ImageAttachmentAdapter.ItemClickListener {
-
     lateinit var binding: TowerOffsetEditDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,14 +28,11 @@ class TowerOffsetEditAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(
             adapter.addItem()
         }
     }
-
     override fun getTheme() = R.style.NewDialogTask
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = TowerOffsetEditDialougeBinding.inflate(inflater)
         return binding.root
     }
-
     override fun itemClicked() {
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
