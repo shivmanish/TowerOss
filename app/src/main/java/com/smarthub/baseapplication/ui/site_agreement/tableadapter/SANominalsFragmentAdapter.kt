@@ -216,7 +216,7 @@ class SANominalsFragmentAdapter(
                 }
 
 
-                AppPreferences.getInstance().setDropDown(
+            /*    AppPreferences.getInstance().setDropDown(
                     holder.binding.textRegistrationNumber,
                     DropDowns.RagistrationsNo.name, siteAgreementsData?.RegistrationNumber
                 )
@@ -248,7 +248,7 @@ class SANominalsFragmentAdapter(
                     holder.binding.textPropertyAcquired,
                     DropDowns.PropertyAcquired.name, siteAgreementsData?.PropertyAcquired
                 )
-
+*/
                 holder.binding.txtTermLease.text = siteAgreementsData?.AgreementType
 /*
                holder.binding.textRegistrationNumber.setText(siteAgreementsData?.RegistrationNumber)
