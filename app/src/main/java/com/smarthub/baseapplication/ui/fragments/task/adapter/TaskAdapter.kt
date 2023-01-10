@@ -39,8 +39,6 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 
         list.add("Operations Team")
         list.add("Attachments")
- /*       list.add("OPCO Info")
-        list.add("Equipment")*/
 
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)

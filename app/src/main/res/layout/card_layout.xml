@@ -10,12 +10,13 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp120"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp20"
-            android:layout_marginBottom="39dp"
+            android:layout_margin="@dimen/dp5"
+            android:translationZ="5dp"
             android:background="@drawable/dotted"
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="@dimen/dp10"
+            app:cardBackgroundColor="@color/color1"
             app:cardElevation="@dimen/dp5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -26,30 +27,24 @@
                 android:layout_gravity="center"
                 android:gravity="center|center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp12"
+                android:layout_marginRight="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp5"
+                android:padding="@dimen/dp5"
                 android:weightSum="1">
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/Load"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp15"
-
-                    android:gravity="start"
-                    android:minWidth="@dimen/dp200"
-                    android:text="Load Nominals"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp17"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:text="Assign ASQ Team"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dp11" />
 
                 <ImageView
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:adjustViewBounds="true"
-                    android:padding="@dimen/dp5"
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
+                    android:padding="@dimen/dp3"
                     android:src="@drawable/ic_check_green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/camera"
@@ -57,19 +52,6 @@
                     app:layout_constraintVertical_bias="0.421"
                     app:tint="@color/green" />
 
-                <ImageView
-
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:adjustViewBounds="true"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/ic_sugggestion"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/camera"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.421" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
