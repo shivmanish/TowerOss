@@ -11,22 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoTableItemRowBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PODetail
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
 
 import com.smarthub.baseapplication.utils.AppLogger
 
 class PoTableAdapter(
     var context: Context,
     var listener: PoInfoListListener,
-    poDetailsModel: PODetail?
+    var list: ArrayList<PODetail>
 
 ) : RecyclerView.Adapter<PoTableAdapter.ViewHold>() {
 
-    var list: ArrayList<PODetail>?
 
-    init {
-        list = poDetailsModel as ArrayList<PODetail>
-
-    }
 
     fun addItem() {
         list?.add(

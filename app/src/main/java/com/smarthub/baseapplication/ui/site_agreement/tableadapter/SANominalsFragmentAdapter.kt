@@ -19,7 +19,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 class SANominalsFragmentAdapter(
     var context: Context,
     var listener: PoTableAdapter.PoInfoListListener? = null,
-    allData: List<SiteacquisitionAgreement>?,
+   var allData: List<SiteacquisitionAgreement>?,
     var listener2: PropertyOwenerTableAdapter.PropertyOwenerInfoListListener? = null,
 ) :
     RecyclerView.Adapter<SANominalsFragmentAdapter.ViewHold>() {
@@ -31,7 +31,7 @@ class SANominalsFragmentAdapter(
     var type4 = "Attachments"
     var currentOpened = -1
     private var siteAgreementsData : SiteacquisitionAgreement?=null
-    private var poDetail : PODetail?=null
+
     private var properData : PropertyOwnerPaymentDetail?=null
 
 
@@ -44,7 +44,7 @@ class SANominalsFragmentAdapter(
         list.add("PO Details")
         list.add("Attachments")
         siteAgreementsData=allData?.get(0);
-        poDetail=siteAgreementsData?.PODetails?.get(0);
+
         properData=siteAgreementsData?.PropertyOwnerPaymentDetails?.get(0);
 
     }
@@ -277,7 +277,7 @@ class SANominalsFragmentAdapter(
                 try {
 
                     holder.paymentList.adapter =
-                        PoTableAdapter(context, listener!!, poDetail)
+                        PoTableAdapter(context, listener!!,ArrayList(siteAgreementsData?.PODetails))
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -304,7 +304,8 @@ class SANominalsFragmentAdapter(
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     holder.ownerList.adapter =
-                        PropertyOwenerTableAdapter(context, listener2!!, properData)
+                        PropertyOwenerTableAdapter(context, listener2!!, ArrayList(siteAgreementsData?.PropertyOwnerPaymentDetails
+                        ))
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
