@@ -17,7 +17,7 @@
             android:id="@+id/back_image"
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
-            android:padding="@dimen/dp5"
+            android:paddingLeft="@dimen/dp5"
             android:layout_marginStart="@dimen/dp10"
             android:adjustViewBounds="true"
             android:src="@drawable/arrow_back"
@@ -34,12 +34,15 @@
             android:textColor="@color/white"
             android:textSize="@dimen/dp17"
             android:id="@+id/title_text"
-            android:layout_marginStart="@dimen/dp10"
+            android:paddingTop="@dimen/dp15"
+            android:paddingBottom="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp15"
             app:layout_constraintVertical_bias="0.2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/back_image"
             app:layout_constraintTop_toTopOf="parent"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Unread"
@@ -54,6 +57,7 @@
             app:layout_constraintStart_toEndOf="@id/back_image"
             />
         <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
             android:id="@+id/subtitle_text_unread"
             android:text="10"
             android:layout_width="wrap_content"
@@ -68,6 +72,7 @@
             app:layout_constraintStart_toEndOf="@id/subtitle_text"
             />
         <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
             android:id="@+id/subtitle_text_mark_read"
             android:text="Marks As all read"
             android:layout_width="wrap_content"
@@ -83,6 +88,7 @@
             />
 
         <CheckBox
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:scaleX="0.70"
@@ -96,12 +102,13 @@
             app:layout_constraintStart_toEndOf="@id/subtitle_text_mark_read"/>
 
         <ImageView
+            android:visibility="visible"
             android:id="@+id/mic_image"
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
             android:padding="@dimen/dp5"
             android:adjustViewBounds="true"
-            android:src="@drawable/filter"
+            android:src="@drawable/notification_filter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -112,7 +119,7 @@
             android:id="@+id/search"
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp15"
             android:padding="@dimen/dp5"
             android:adjustViewBounds="true"
             android:src="@drawable/search"
