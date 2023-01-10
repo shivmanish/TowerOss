@@ -13,6 +13,10 @@ import com.smarthub.baseapplication.model.notification.NotificationListItem
 import com.smarthub.baseapplication.model.notification.newData.NotificationNewItem
 
 class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<NotificationNewItem>) : Adapter<NotificationListSubtitleAdapter.Viewholder>() {
+    fun setData(data : List<NotificationNewItem>){
+        list.addAll(data)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_list_subtitle, parent, false)
