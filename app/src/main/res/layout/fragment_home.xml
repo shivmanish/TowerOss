@@ -165,7 +165,7 @@
                                             app:layout_constraintEnd_toEndOf="parent"
                                             android:src="@drawable/text_rfi"
                                             android:paddingEnd="@dimen/dp5"
-                                            android:layout_margin="@dimen/dp3"
+                                            android:layout_margin="@dimen/dp5"
                                             app:layout_constraintBottom_toBottomOf="parent"/>
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </com.google.android.material.card.MaterialCardView>
@@ -217,7 +217,6 @@
                                             app:layout_constraintEnd_toEndOf="parent"
                                             android:src="@drawable/tower_card"
                                             android:paddingEnd="@dimen/dp5"
-                                            android:layout_margin="@dimen/dp3"
                                             app:layout_constraintBottom_toBottomOf="parent"/>
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </com.google.android.material.card.MaterialCardView>
@@ -262,14 +261,14 @@
                                             app:layout_constraintStart_toStartOf="parent"/>
 
                                         <ImageView
-                                            android:visibility="gone"
+                                            android:visibility="visible"
                                             android:id="@+id/icon_progress"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            android:src="@drawable/text_rfi"
+                                            android:src="@drawable/home_inprogress_icon"
                                             android:paddingEnd="@dimen/dp5"
-                                            android:layout_margin="@dimen/dp3"
+                                            android:layout_margin="@dimen/dp5"
                                             app:layout_constraintBottom_toBottomOf="parent"/>
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </com.google.android.material.card.MaterialCardView>
@@ -322,14 +321,14 @@
                                             app:layout_constraintStart_toStartOf="parent"/>
 
                                         <ImageView
-                                            android:visibility="gone"
+                                            android:visibility="visible"
                                             android:id="@+id/icon_faults"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            android:src="@drawable/text_rfi"
+                                            android:src="@drawable/home_faults_icon"
                                             android:paddingEnd="@dimen/dp5"
-                                            android:layout_margin="@dimen/dp3"
+                                            android:layout_margin="@dimen/dp5"
                                             app:layout_constraintBottom_toBottomOf="parent"/>
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </com.google.android.material.card.MaterialCardView>
@@ -380,7 +379,7 @@
                                             app:layout_constraintEnd_toEndOf="parent"
                                             android:src="@drawable/ic_clock"
                                             android:paddingEnd="@dimen/dp5"
-                                            android:layout_margin="@dimen/dp3"
+                                            android:layout_margin="@dimen/dp5"
                                             app:layout_constraintBottom_toBottomOf="parent"/>
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </com.google.android.material.card.MaterialCardView>
@@ -470,15 +469,15 @@
 
                         <TextView
                             android:id="@+id/tast_count"
-                            android:layout_width="24dp"
-                            android:layout_height="@dimen/dp24"
+                            android:layout_width="@dimen/dp22"
+                            android:layout_height="@dimen/dp22"
                             android:background="@drawable/circle"
                             android:layout_marginStart="@dimen/dp5"
                             android:backgroundTint="#B1C0DC"
                             android:textColor="@color/black"
                             android:text="0"
                             android:gravity="center"
-                            android:textSize="12sp"
+                            android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="@+id/task_title"
                             app:layout_constraintTop_toTopOf="@+id/task_title"
                             app:layout_constraintStart_toEndOf="@+id/task_title"/>
