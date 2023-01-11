@@ -6,28 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.databinding.Ac0demoBinding
+import com.smarthub.baseapplication.databinding.ProfileOfficeComunicationAddressBinding
 import com.smarthub.baseapplication.databinding.ProfileRoleGeographiBinding
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OfficialDetailFragment(var manager: FragmentManager) : BaseFragment() {
-    lateinit var binding:ProfileRoleGeographiBinding
+class AddressFragment (var manager: FragmentManager) : BaseFragment() {
+    var binding : ProfileOfficeComunicationAddressBinding?=null
     lateinit var viewmodel: HomeViewModel
-    lateinit var adapter: ServicesRequestAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        binding=ProfileRoleGeographiBinding.inflate(inflater, container, false)
+        binding=ProfileOfficeComunicationAddressBinding.inflate(inflater, container, false)
         return binding?.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.level1?.text="Company Name"
-        binding?.level2?.text="Department Name"
-        binding?.level3?.text="Role Name"
-        binding?.lavel4Layout?.visibility=View.GONE
 
     }
 

@@ -256,7 +256,6 @@
                 app:tabIndicatorHeight="3dp"
                 app:tabIndicatorGravity="bottom"
                 app:tabBackground="@drawable/tab_color_selector"
-                app:tabMode="fixed"
                 app:tabPaddingStart="@dimen/dp10"
                 app:tabPaddingEnd="@dimen/dp10"
                 app:layout_constraintTop_toBottomOf="@+id/profile_data"

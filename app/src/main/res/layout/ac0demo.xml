@@ -9,6 +9,7 @@
     <LinearLayout
         android:visibility="visible"
         android:id="@+id/items_list"
+        android:paddingBottom="@dimen/dp20"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profile_items_list"
-            tools:listitem="@layout/profile_list_item"
+            tools:listitem="@layout/profile_history"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             />
     </LinearLayout>
