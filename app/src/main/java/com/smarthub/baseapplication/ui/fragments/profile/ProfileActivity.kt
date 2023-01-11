@@ -1,12 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.profile
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.activities.LoginActivity
@@ -15,7 +17,6 @@ import com.smarthub.baseapplication.databinding.ProfileCustomMenuBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.ProfileDetails
-import com.smarthub.baseapplication.ui.adapter.ProfileListViewAdapter
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
 
@@ -24,10 +25,15 @@ class ProfileActivity : BaseActivity() {
 
     lateinit var binding : ActivityProfileBinding
     private var profileViewModel : ProfileViewModel?=null
+    lateinit var adapter: ProfilePageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
+        adapter=ProfilePageAdapter(supportFragmentManager)
+        binding.viewpager.adapter=adapter
+        binding.tabs.setupWithViewPager(binding.viewpager)
+        tabCustomization()
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -41,6 +47,7 @@ class ProfileActivity : BaseActivity() {
                 if (it.status == Resource.Status.SUCCESS) {
                     AppPreferences.getInstance().saveString("data", it.data[0].data)
                     uiDataMapping(it.data[0])
+                    adapter.setdata(it.data[0])
                     Log.d("status", "${it.message}")
                     Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
@@ -65,6 +72,11 @@ class ProfileActivity : BaseActivity() {
         profileViewModel?.getProfileData()
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+
+    }
+
     private fun uiDataMapping(profileDetails: ProfileDetails){
         binding.textName.text = String.format("%s %s",profileDetails.first_name,profileDetails.last_name)
         binding.textCall.text = profileDetails.phone
@@ -72,7 +84,7 @@ class ProfileActivity : BaseActivity() {
         binding.textYellow.text = profileDetails.id
         binding.textActive.text = profileDetails.active
         binding.textRole.text = profileDetails.roles
-        binding.textSDepartment.text = profileDetails.department
+
 
     }
 
@@ -82,14 +94,14 @@ class ProfileActivity : BaseActivity() {
             onBackPressed()
         }
 
-        binding.profileItemsList.setHasFixedSize(true)
+//        binding.profileItemsList.setHasFixedSize(true)
 
         val list : ArrayList<Any> = ArrayList()
         list.add("single_item")
         list.add("default")
         list.add("double_item")
         list.add("double_half_item")
-        binding.profileItemsList.adapter = ProfileListViewAdapter()
+//        binding.profileItemsList.adapter = ProfileListViewAdapter()
 
         binding.imgMenu.setOnClickListener {
             createPopWindow(it)
@@ -132,6 +144,16 @@ class ProfileActivity : BaseActivity() {
                 startActivity(intent)
             }
         }
+    }
+    private fun tabCustomization(){
+        if(binding.tabs.tabCount==1) {
+            binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
+            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+        }
+        if(binding.tabs.tabCount<=5)
+            binding.tabs.tabMode = TabLayout.MODE_FIXED
+        else
+            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
 }

@@ -12,510 +12,287 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
-            android:scrollbars="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:paddingBottom="@dimen/dp25"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:id="@+id/toolbar"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/bgColor"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:gravity="center">
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/bgColor"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/img_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/dp15"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_back"
-                        app:tint="@color/iconBlack"/>
-
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center|start"
-                        android:paddingEnd="4dp"
-                        android:singleLine="true"
-                        android:textStyle="bold"
-                        android:textColor="@color/color1"
-                        android:textSize="18sp"
-                        android:text="Profile"
-                        android:fontFamily="@font/poppins"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/img_back"
-                        app:layout_constraintEnd_toStartOf="@+id/img_menu"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <ImageView
-                        android:id="@+id/img_menu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:paddingStart="14dp"
-                        android:paddingTop="6dp"
-                        android:paddingEnd="18dp"
-                        android:paddingBottom="6dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_menu"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/profile_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/profile_card"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_marginStart="@dimen/dp15"
-                        app:cardCornerRadius="15dp"
-                        app:strokeWidth="0dp"
-                        app:layout_constraintWidth_percent="0.35"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:background="#c1c0c6"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/img_profile"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:text="#JP364"
-                        android:paddingEnd="8dp"
-                        android:ellipsize="marquee"
-                        android:paddingStart="8dp"
-                        android:id="@+id/text_yellow"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/white"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/yellow_text_card"
-                        app:layout_constraintStart_toEndOf="@+id/profile_card"/>
-                    <TextView
-                        android:text="Shyam Suryavansi"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/color1"
-                        android:textSize="15sp"
-                        android:id="@+id/text_name"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/text_yellow"
-                        app:layout_constraintStart_toEndOf="@+id/profile_card"/>
-                    <TextView
-                        android:text="+91 6522 222 356"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#787878"
-                        android:textSize="12sp"
-                        android:id="@+id/text_call"
-                        android:drawablePadding="5dp"
-                        android:drawableStart="@drawable/ic_call"
-                        android:fontFamily="@font/poppins"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/text_name"
-                        app:layout_constraintStart_toEndOf="@+id/profile_card"/>
-                    <TextView
-                        android:text="Brajesh@towerOSS.com"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#787878"
-                        android:textSize="12sp"
-                        android:id="@+id/text_message"
-                        android:drawablePadding="6dp"
-                        android:drawableStart="@drawable/ic_inbox"
-                        android:fontFamily="@font/poppins"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/text_call"
-                        app:layout_constraintStart_toEndOf="@+id/profile_card"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/profile_data"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="-1dp"
-                    android:layout_marginEnd="-1dp"
-                    android:background="@drawable/blank_border"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_status"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/dp10"
-                        android:paddingBottom="@dimen/dp10"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/view_lin1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        >
-                        <TextView
-                            android:id="@+id/textRole"
-                            android:layout_width="wrap_content"
-                            android:paddingLeft="@dimen/dp5"
-                            android:paddingRight="@dimen/dp5"
-                            android:layout_height="wrap_content"
-                            android:text="Area Manager,Manager"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/poppins_light"
-                            android:textSize="15dp"
-                            android:textColor="@color/color1"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:paddingLeft="@dimen/dp5"
-                            android:paddingRight="@dimen/dp5"
-                            android:layout_height="wrap_content"
-                            android:text="Role"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/poppins_light"
-                            android:textSize="12dp"
-                            android:textColor="@color/textGray"/>
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/view_lin1"
-                        android:layout_width="1dp"
-                        android:alpha="1"
-                        android:layout_height="match_parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:background="#D8D8D8"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/view_lin1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        >
-                        <TextView
-                            android:id="@+id/text_active"
-                            android:layout_width="wrap_content"
-                            android:paddingLeft="@dimen/dp5"
-                            android:paddingRight="@dimen/dp5"
-                            android:layout_height="wrap_content"
-                            android:text="Active"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/poppins"
-                            android:textSize="20dp"
-                            android:textColor="@color/green"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:paddingLeft="@dimen/dp5"
-                            android:paddingRight="@dimen/dp5"
-                            android:layout_height="wrap_content"
-                            android:text="Status"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/poppins_light"
-                            android:textSize="12dp"
-                            android:textColor="@color/textGray"/>
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/profile_data_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="@dimen/dp15"
-                    android:layout_marginStart="-1dp"
-                    android:layout_marginEnd="-1dp"
-                    android:background="#F5F5F5"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_data">
-
-                    <TextView
-                        android:id="@+id/list_title"
-                        android:textColor="#000000"
-                        android:text="Offical Detail"
-                        android:textStyle="bold"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:fontFamily="@font/poppins_bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginTop="@dimen/dp15"
-                        android:id="@+id/layout1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/list_title">
-
-                        <ImageView
-                            android:padding="10dp"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:adjustViewBounds="true"
-                            android:background="@drawable/circle"
-                            android:backgroundTint="#3D4E6D"
-                            android:src="@drawable/ic_building"
-                            android:id="@+id/img_building"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
-                        </ImageView>
-
-                        <TextView
-                            android:text="TowerOSS pvt ltd"
-                            android:paddingTop="5dp"
-                            android:textColor="@color/color1"
-                            android:textSize="14sp"
-                            android:id="@+id/text_c_title"
-                            android:fontFamily="@font/poppins_bold"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_building"/>
-
-                        <TextView
-                            android:text="Company Name"
-                            android:textColor="@color/textGray"
-                            android:textSize="12sp"
-                            android:paddingBottom="@dimen/dp5"
-                            android:id="@+id/text_c_name"
-                            android:drawablePadding="5dp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/text_c_title"
-                            app:layout_constraintStart_toEndOf="@+id/img_building"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp10"
-                        android:id="@+id/layout2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layout1">
-
-                        <ImageView
-                            android:padding="10dp"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:adjustViewBounds="true"
-                            android:background="@drawable/circle"
-                            android:src="@drawable/ic_circle_icon"
-                            android:id="@+id/img_circle"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
-                        </ImageView>
-
-                        <TextView
-                            android:text="Support Department"
-                            android:paddingTop="5dp"
-                            android:textColor="@color/color1"
-                            android:textSize="14sp"
-                            android:id="@+id/text_s_department"
-                            android:fontFamily="@font/poppins_bold"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_circle"/>
-
-                        <TextView
-                            android:text="Department Name"
-                            android:textColor="@color/textGray"
-                            android:paddingBottom="@dimen/dp5"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:id="@+id/text_d_name"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/text_s_department"
-                            app:layout_constraintStart_toEndOf="@+id/img_circle"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp10"
-                        android:id="@+id/layout3"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layout2">
-
-                        <ImageView
-                            android:padding="10dp"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:adjustViewBounds="true"
-                            android:background="@drawable/circle"
-                            android:backgroundTint="#3D4E6D"
-                            android:src="@drawable/ic_menu_list"
-                            android:id="@+id/img_menu_list"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
-                        </ImageView>
-
-                        <TextView
-                            android:text="Maintenance Enginee"
-                            android:paddingTop="5dp"
-                            android:textColor="@color/color1"
-                            android:textSize="14sp"
-                            android:id="@+id/text_m_engineer"
-                            android:fontFamily="@font/poppins_bold"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_menu_list"/>
-
-                        <TextView
-                            android:text="Role Name"
-                            android:textColor="@color/textGray"
-                            android:paddingBottom="@dimen/dp5"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:id="@+id/text_m_name"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/text_m_engineer"
-                            app:layout_constraintStart_toEndOf="@+id/img_menu_list"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp10"
-                        android:id="@+id/layout4"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layout3">
-
-                        <ImageView
-                            android:padding="3dp"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:adjustViewBounds="true"
-                            android:background="@drawable/circle"
-                            android:src="@drawable/ic_portal"
-                            android:id="@+id/img_calendar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-
-                        <TextView
-                            android:text="HGHG5454"
-                            android:paddingTop="5dp"
-                            android:textColor="@color/color1"
-                            android:textSize="14sp"
-                            android:id="@+id/text_em_engineer"
-                            android:fontFamily="@font/poppins_bold"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_calendar"/>
-
-                        <TextView
-                            android:text="Employee ID"
-                            android:textColor="@color/textGray"
-                            android:paddingBottom="@dimen/dp5"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:id="@+id/text_em_name"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginStart="@dimen/dp15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/text_em_engineer"
-                            app:layout_constraintStart_toEndOf="@+id/img_calendar"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:visibility="visible"
-                    android:id="@+id/items_list"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_data_list"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:orientation="vertical"
-                        tools:itemCount="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/profile_items_list"
-                        tools:listitem="@layout/profile_list_item"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_marginTop="@dimen/dp50"
-                    android:layout_marginStart="@dimen/dp15"
-                    app:layout_constraintStart_toStartOf="parent"
+                <ImageView
+                    android:id="@+id/img_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#3D4E6D"
-                    android:text="@string/logout"
-                    android:id="@+id/logout"
+                    android:padding="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_back"
+                    app:tint="@color/iconBlack"/>
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|start"
+                    android:paddingEnd="4dp"
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/color1"
+                    android:textSize="18sp"
+                    android:text="Profile"
                     android:fontFamily="@font/poppins"
-                    android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_back"
+                    app:layout_constraintEnd_toStartOf="@+id/img_menu"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/img_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:paddingStart="14dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="6dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_menu"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.core.widget.NestedScrollView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/profile_card"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/dp15"
+                    app:cardCornerRadius="15dp"
+                    app:strokeWidth="0dp"
+                    app:layout_constraintWidth_percent="0.35"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:background="#c1c0c6"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/img_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:text="#JP364"
+                    android:paddingEnd="8dp"
+                    android:ellipsize="marquee"
+                    android:paddingStart="8dp"
+                    android:id="@+id/text_yellow"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/yellow_text_card"
+                    app:layout_constraintStart_toEndOf="@+id/profile_card"/>
+                <TextView
+                    android:text="Shyam Suryavansi"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/color1"
+                    android:textSize="15sp"
+                    android:id="@+id/text_name"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/text_yellow"
+                    app:layout_constraintStart_toEndOf="@+id/profile_card"/>
+                <TextView
+                    android:text="+91 6522 222 356"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#787878"
+                    android:textSize="12sp"
+                    android:id="@+id/text_call"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_call"
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/text_name"
+                    app:layout_constraintStart_toEndOf="@+id/profile_card"/>
+                <TextView
+                    android:text="Brajesh@towerOSS.com"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#787878"
+                    android:textSize="12sp"
+                    android:id="@+id/text_message"
+                    android:drawablePadding="6dp"
+                    android:drawableStart="@drawable/ic_inbox"
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/text_call"
+                    app:layout_constraintStart_toEndOf="@+id/profile_card"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_data"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginEnd="-1dp"
+                android:background="@drawable/blank_border"
+                app:layout_constraintTop_toBottomOf="@+id/profile_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/view_lin1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                    <TextView
+                        android:id="@+id/textRole"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:layout_height="wrap_content"
+                        android:text="Area Manager,Manager"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_light"
+                        android:textSize="15dp"
+                        android:textColor="@color/color1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:layout_height="wrap_content"
+                        android:text="Role"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_light"
+                        android:textSize="12dp"
+                        android:textColor="@color/textGray"/>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_lin1"
+                    android:layout_width="1dp"
+                    android:alpha="1"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="#D8D8D8"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view_lin1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                    <TextView
+                        android:id="@+id/text_active"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:layout_height="wrap_content"
+                        android:text="Active"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="20dp"
+                        android:textColor="@color/green"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_light"
+                        android:textSize="12dp"
+                        android:textColor="@color/textGray"/>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:elevation="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:background="@color/tab_deselected"
+                app:tabIndicatorColor="@color/yellow"
+                app:tabGravity="fill"
+                app:tabIndicatorHeight="3dp"
+                app:tabIndicatorGravity="bottom"
+                app:tabBackground="@drawable/tab_color_selector"
+                app:tabPaddingStart="@dimen/dp10"
+                app:tabPaddingEnd="@dimen/dp10"
+                app:layout_constraintTop_toBottomOf="@+id/profile_data"
+                app:tabTextAppearance="@style/TabTextView"
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:cardElevation="2dp"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabs">
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager"
+                    android:scrollbars="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_marginTop="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp15"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3D4E6D"
+            android:text="@string/logout"
+            android:id="@+id/logout"
+            android:fontFamily="@font/poppins"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
