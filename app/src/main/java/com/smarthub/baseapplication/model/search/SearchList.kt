@@ -1,3 +1,3 @@
 package com.smarthub.baseapplication.model.search
 
-class SearchList : ArrayList<SearchListItem>()
+class SearchList : ArrayList<Any>()

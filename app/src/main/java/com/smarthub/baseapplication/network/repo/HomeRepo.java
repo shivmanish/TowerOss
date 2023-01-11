@@ -10,10 +10,11 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
-import com.smarthub.baseapplication.model.notification.newData.SendData;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.model.search.SearchListItem;
+import com.smarthub.baseapplication.model.search.SearchSiteIdItem;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
@@ -41,9 +42,8 @@ import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -1031,117 +1031,192 @@ public class HomeRepo {
         });
     }
 
-    public void siteSearchData(String id) {
+//    public void siteSearchData(String id) {
+//
+//        apiClient.searchSiteInfoData(id).enqueue(new Callback<List<SearchListItem>>() {
+//            @Override
+//            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
+//                reportErrorResponse(null, t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
+//
+//                if (response != null && response.body()!=null) {
+//                    SearchList searchList = new SearchList();
+//                    searchList.addAll(response.body());
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
+//                    siteSearchResponse.postValue(Resource.success(searchList, 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+//                if (response != null) {
+//                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+//                } else if (iThrowableLocalMessage != null)
+//                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+//    }
 
-        apiClient.searchSiteInfoData(id).enqueue(new Callback<SearchList>() {
-            @Override
-            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
-                if (response.isSuccessful()){
-                    reportSuccessResponse(response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
-                }
-            }
+//    public void siteSearchDataNew(String id) {
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("siteID",id);
+//        apiClient.searchSiteInfoDataNew(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
+//            @Override
+//            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
+//                reportErrorResponse(null, t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
+//
+//                if (response != null && response.body()!=null) {
+//                    SearchList searchList = new SearchList();
+//                    searchList.addAll(response.body());
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
+//                    siteSearchResponse.postValue(Resource.success(searchList, 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+//                if (response != null) {
+//                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+//                } else if (iThrowableLocalMessage != null)
+//                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<SearchList> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
-            }
+//    public void siteSearchData(String id,String category) {
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty(id,category);
+//        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
+//            @Override
+//            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
+//                if (response.isSuccessful()){
+//                    reportSuccessResponse(response);
+//                }else {
+//                    AppLogger.INSTANCE.log("error :"+response);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
+//                reportErrorResponse(null, t.getLocalizedMessage());
+//            }
+//
+//            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
+//
+//                if (response != null && response.body()!=null) {
+//                    SearchList searchList = new SearchList();
+//                    searchList.addAll(response.body());
+//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
+//                    siteSearchResponse.postValue(Resource.success(searchList, 200));
+//                }
+//            }
+//
+//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+//                if (response != null) {
+//                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+//                } else if (iThrowableLocalMessage != null)
+//                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+//                else
+//                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+//            }
+//        });
+//    }
 
-            private void reportSuccessResponse(Response<SearchList> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
-                }
-            }
-
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
-                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
-    }
-
-    public void siteSearchDataNew(String id) {
+    public void searchSiteAll(String category,String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("siteID",id);
-        apiClient.searchSiteInfoDataNew(jsonObject).enqueue(new Callback<SearchList>() {
-            @Override
-            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
-                if (response.isSuccessful()){
-                    reportSuccessResponse(response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+        jsonObject.addProperty(category,id);
+        AppLogger.INSTANCE.log("category:"+category);
+        if (category.equalsIgnoreCase("name"))
+            apiClient.searchSiteByName(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
+                @Override
+                public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
+                    if (response.isSuccessful()){
+                        reportSuccessResponse(response);
+                    }else {
+                        AppLogger.INSTANCE.log("error :"+response);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<SearchList> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
-            }
-
-            private void reportSuccessResponse(Response<SearchList> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                @Override
+                public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
+                    reportErrorResponse(null, t.getLocalizedMessage());
                 }
-            }
 
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
-                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
-    }
-
-    public void siteSearchData(String id,String category) {
-
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(id,category);
-        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<SearchList>() {
-            @Override
-            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
-                if (response.isSuccessful()){
-                    reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                private void reportSuccessResponse(Response<List<SearchListItem>> response) {
+                    if (response != null && response.body()!=null) {
+                        SearchList searchList = new SearchList();
+                        searchList.addAll(response.body());
+                        siteSearchResponse.postValue(Resource.success(searchList, 200));
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<SearchList> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
-            }
-
-            private void reportSuccessResponse(Response<SearchList> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                    if (response != null) {
+                        siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                    } else if (iThrowableLocalMessage != null)
+                        siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    else
+                        siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
                 }
-            }
+            });
+        else if (category.equalsIgnoreCase("siteID"))
+            apiClient.searchSiteBySite(jsonObject).enqueue(new Callback<List<SearchSiteIdItem>>() {
+                @Override
+                public void onResponse(Call<List<SearchSiteIdItem>> call, Response<List<SearchSiteIdItem>> response) {
+                    if (response.isSuccessful()){
+                        reportSuccessResponse(response);
+                    }else {
+                        AppLogger.INSTANCE.log("error :"+response);
+                    }
+                }
 
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
-                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
+                @Override
+                public void onFailure(Call<List<SearchSiteIdItem>> call, Throwable t) {
+                    reportErrorResponse(null, t.getLocalizedMessage());
+                }
+
+                private void reportSuccessResponse(Response<List<SearchSiteIdItem>> response) {
+                    if (response != null && response.body()!=null) {
+                        SearchList searchList = new SearchList();
+                        searchList.addAll(response.body());
+                        siteSearchResponse.postValue(Resource.success(searchList, 200));
+                    }
+                }
+
+                private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                    if (response != null) {
+                        siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                    } else if (iThrowableLocalMessage != null)
+                        siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    else
+                        siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                }
+            });
     }
 
     public void siteInfoDropDown() {

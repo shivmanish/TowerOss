@@ -7,11 +7,11 @@ import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
-import com.smarthub.baseapplication.model.notification.newData.SendData;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
-import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.model.search.SearchListItem;
+import com.smarthub.baseapplication.model.search.SearchSiteIdItem;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
@@ -140,14 +140,22 @@ public interface APIClient {
     Call<PowerAndFuelModel> fetchPowerFuelRequest(@Body SiteInfoParam data);
 
     @GET(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<SearchList> searchSiteInfoData(@Query("id") String id);
+    Call<List<SearchListItem>> searchSiteInfoData(@Query("id") String id);
 
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
-    Call<SearchList> searchSiteInfoDataNew(@Body JsonObject data);
+    Call<List<SearchListItem>> searchSiteInfoDataNew(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
-    Call<SearchList> searchSiteInfoData(@Body JsonObject data);
+    Call<List<SearchListItem>> searchSiteInfoData(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
+    Call<List<SearchListItem>> searchSiteByName(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
+    Call<List<SearchSiteIdItem>> searchSiteBySite(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)

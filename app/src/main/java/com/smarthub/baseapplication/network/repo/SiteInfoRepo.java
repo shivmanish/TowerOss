@@ -9,11 +9,14 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.model.search.SearchListItem;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppLogger;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -138,28 +141,28 @@ public class SiteInfoRepo {
 
     public void siteSearchData(String id) {
 
-        apiClient.searchSiteInfoData(id).enqueue(new Callback<SearchList>() {
+        apiClient.searchSiteInfoData(id).enqueue(new Callback<List<SearchListItem>>() {
             @Override
-            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
+                }else {
                     AppLogger.INSTANCE.log("error :"+response);
-                }else if (response!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else AppLogger.INSTANCE.log("getProfileData response is null");
+                }
             }
 
             @Override
-            public void onFailure(Call<SearchList> call, Throwable t) {
+            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<SearchList> response) {
+            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
 
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                if (response != null && response.body()!=null) {
+                    SearchList searchList = new SearchList();
+                    searchList.addAll(response.body());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
+                    siteSearchResponse.postValue(Resource.success(searchList, 200));
                 }
             }
 
@@ -178,28 +181,28 @@ public class SiteInfoRepo {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(id,category);
-        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<SearchList>() {
+        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
             @Override
-            public void onResponse(Call<SearchList> call, Response<SearchList> response) {
+            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
                 }else {
                     AppLogger.INSTANCE.log("error :"+response);
                 }
             }
 
             @Override
-            public void onFailure(Call<SearchList> call, Throwable t) {
+            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<SearchList> response) {
+            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
 
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    siteSearchResponse.postValue(Resource.success(response.body(), 200));
+                if (response != null && response.body()!=null) {
+                    SearchList searchList = new SearchList();
+                    searchList.addAll(response.body());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
+                    siteSearchResponse.postValue(Resource.success(searchList, 200));
                 }
             }
 
