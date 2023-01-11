@@ -113,7 +113,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 fetchedData = binding.searchCardView.text.toString()
-                if (fetchedData.isNotEmpty() && isDataFetched) {
+                if (fetchedData.isNotEmpty() && fetchedData.length>=3 && isDataFetched) {
                     AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
                             "${item?.name},item?.id:${item?.id}")
                     if (item!=null && (item?.name==fetchedData|| item?.id==fetchedData)) {
@@ -202,6 +202,21 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         } else if (item!=null && item is SearchSiteNameItem){
             this.item = SearchListItem(item.siteName,item.id)
             binding.searchCardView.text = item.siteName?.toEditable()
+            binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
+            enableButton()
+        } else if (item!=null && item is SearchAliasNameItem){
+            this.item = SearchListItem(item.aliasName,item.id)
+            binding.searchCardView.text = item.aliasName?.toEditable()
+            binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
+            enableButton()
+        } else if (item!=null && item is SearchSiteOpcoName){
+            this.item = SearchListItem(item.OpcoName,item.id)
+            binding.searchCardView.text = item.OpcoName?.toEditable()
+            binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
+            enableButton()
+        }  else if (item!=null && item is SearchSiteOpcoSiteId){
+            this.item = SearchListItem(item.OpcoSiteID,item.id)
+            binding.searchCardView.text = item.OpcoSiteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         } else {
