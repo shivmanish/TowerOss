@@ -12,10 +12,9 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPaymentEditBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.dialogs.SAPaymentViewBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.PaymentTableAdapter
-import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SANominalsFragmentAdapter
 import com.smarthub.baseapplication.ui.site_agreement.tableadapter.SAPaymentAdapter
 
-class SAPaymentFrag(siteacquisitionPayment: List<SiteacquisitionPayment>?) :BaseFragment(), PaymentTableAdapter.PaymentInfoListListener{
+class SAPaymentFrag(val payment: List<SiteacquisitionPayment>?) :BaseFragment(), PaymentTableAdapter.PaymentInfoListListener{
     lateinit var adapter : SAPaymentAdapter
 
     var binding : PaymentFragmentBinding?=null
@@ -26,7 +25,7 @@ class SAPaymentFrag(siteacquisitionPayment: List<SiteacquisitionPayment>?) :Base
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= SAPaymentAdapter(requireContext(),this@SAPaymentFrag)
+        adapter= SAPaymentAdapter(requireContext(),this@SAPaymentFrag,payment)
         binding?.listItem?.adapter = adapter
         initViews(view)
     }

@@ -6,85 +6,246 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_action_bar"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardtop"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/iconBlack"
-        tools:ignore="MissingConstraints">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/card_bg"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="2dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp15"
-            android:text="Task \n SMRT Process Templates 1 Task2"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp17"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/camera"
+            <LinearLayout
+                android:id="@id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp10"
+                android:paddingEnd="@dimen/dp15"
+                android:paddingBottom="5dp">
 
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginEnd="10dp"
-            android:adjustViewBounds="true"
-            android:padding="3dp"
-            android:src="@drawable/qr_scanner"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:adjustViewBounds="true"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
 
-        <ImageView
-            android:id="@+id/add_image"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginEnd="@dimen/dp20"
-            android:adjustViewBounds="true"
-            android:padding="@dimen/dp5"
-            android:src="@drawable/mic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
 
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginRight="@dimen/dp10"
-            android:adjustViewBounds="true"
-            android:padding="@dimen/dp5"
-            android:src="@drawable/search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/camera"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421"
-            app:tint="@color/white" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp8">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/info_ico"
+                        android:fontFamily="@font/poppins"
+                        android:text="Load Nominals (Closed)"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp14" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center"
+                            android:text="Count :"
+                            android:textAppearance="@style/RowTextItemInfosmall"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/mark4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp5"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="1sp"
+                            android:text=" | "
+                            android:textAppearance="@style/RowTextItemInfosmall"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="2sp"
+                            android:text="Capacity : "
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:lineSpacingExtra="2sp"
+                            android:text="5 kw"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:id="@+id/closedby"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Closed by"
+                        android:textColor="@color/milky_white"
+                        android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Umesh Salunke"
+                        android:textColor="@color/milky_white"
+                        android:textSize="@dimen/sp12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="@dimen/dp10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Date:"
+                        android:textColor="#CCCCCC"
+                        android:textSize="@dimen/dp12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:text="05-Oct-2018"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:layout_weight="1"
+                    android:gravity="end">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Closed date:"
+                        android:textColor="#CCCCCC"
+                        android:textSize="@dimen/dp12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:text="10-Nov-2018"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontal_only_list"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp90"
-        android:scrollbars="horizontal"
-        tools:listitem="@layout/card_layout"
-        app:layout_constraintTop_toBottomOf="@+id/main_action_bar"
-        tools:ignore="MissingConstraints">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:requiresFadingEdge="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E9EEF7"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardtop"
+        tools:ignore="MissingConstraints"
+        tools:itemCount="1"
+        tools:listitem="@layout/card_layout" />
+
     <com.google.android.material.card.MaterialCardView
-           android:id="@+id/card"
+        android:id="@+id/card"
         android:layout_width="match_parent"
 
 
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp15"
+        android:layout_margin="@dimen/dp10"
         android:layout_marginBottom="39dp"
         android:background="@color/bg_card"
         app:cardCornerRadius="15dp"
@@ -102,53 +263,39 @@
                 android:id="@+id/topln"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp15"
                 android:background="@color/bg_card"
-                android:gravity="center|center_vertical"
-
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:paddingBottom="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatTextView
-
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-
-                    android:gravity="start"
-                    android:text="Acquisition Survey"
+                    android:text="Site Info"
+                    android:fontFamily="@font/poppins_medium"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp17"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="@dimen/dp14"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp15"
-
-                    android:backgroundTint="@color/bg_card"
-                    android:drawablePadding="@dimen/dp12"
-
-                    android:gravity="start"
-                    android:text="Reopen Prev Task"
+                    android:text="iBoard"
+                    android:fontFamily="@font/poppins_medium"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp17"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="@dimen/dp14"/>
 
                 <ImageView
-
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_gravity="end"
-
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/ic_vertical_menu"
-
+                    android:src="@drawable/down_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/camera"
                     app:layout_constraintTop_toTopOf="parent"
@@ -157,11 +304,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/topln"
-                android:layout_marginTop="@dimen/dp15"
-
                 android:background="@drawable/dotted"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="@dimen/dp5"
@@ -169,157 +313,148 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <LinearLayout
-                    android:paddingLeft="@dimen/dp15"
-                    android:paddingRight="@dimen/dp15"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingRight="@dimen/dp15"
                     android:scrollbars="vertical">
-
-
                     <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:columnCount="2"
-
+                        android:layout_marginBottom="@dimen/dp10"
                         android:orientation="horizontal"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="SLA:" />
-
-                                <TextView
-                                    android:id="@+id/textStart"
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
 
 
-                                    style="@style/RowTextviewItem"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text=" Start" />
-                            </LinearLayout>
+                        <TextView
+                            android:id="@+id/ac_make"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:fontFamily="@font/poppins"
+                            android:text="Mangolpuri"
+                            android:textColor="@color/black" />
+                        <TextView
+                            style="@style/RowTextItemInfosmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Site Name" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
 
 
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/ac_modal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:fontFamily="@font/poppins"
+                            android:text="CE-MHMUMB-SC-A0123"
+                            android:textColor="@color/black" />
+                        <TextView
+                            style="@style/RowTextItemInfosmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sit ID" />
 
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
+                    </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="end"
-                                    android:text="Pending" />
+                        <TextView
+                            android:id="@+id/ac_Rating_capacity_kw"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:fontFamily="@font/poppins"
+                            android:text="Mangolpuri"
+                            android:textColor="@color/black" />
+                        <TextView
+                            style="@style/RowTextItemInfosmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alternate Site name" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
 
 
-                            </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/sd"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:fontFamily="@font/poppins"
+                            android:text="Under Construction"
+                            android:textColor="@color/black" />
+                        <TextView
+                            style="@style/RowTextItemInfosmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Site Status" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
 
 
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/du"
+                            android:fontFamily="@font/poppins"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="RTP"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            style="@style/RowTextItemInfosmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Site Category" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/poppins"
+                            android:id="@+id/ac_indore_unit_weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="Smalll Cell"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            style="@style/RowTextItemInfosmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Site Type" />
 
 
+                    </LinearLayout>
                     </GridLayout>
-                    <TextView
-                        android:id="@+id/line_129"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:backgroundTint="@color/bg_card"
-                        android:layout_alignParentLeft="true"
 
-                        android:background="@drawable/line"
-                        />
-                    <GridLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:columnCount="2"
-
-                        android:orientation="horizontal"
-
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Start Date:" />
-
-                                <TextView
-                                    android:id="@+id/textStartDate"
-
-
-                                    style="@style/RowTextviewItem"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text=" Start" />
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/RowTextItemInfo"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Target Date:" />
-
-                                <TextView
-                                    android:id="@+id/textTargetDate"
-
-
-                                    style="@style/RowTextviewItem"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text=" 09-Nov-22" />
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-
-
-                    </GridLayout>
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -327,43 +462,46 @@
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
-     <androidx.recyclerview.widget.RecyclerView
-         android:layout_margin="@dimen/dp15"
-         android:visibility="gone"
-         android:orientation="vertical"
-         app:layout_constraintTop_toBottomOf="@+id/card"
-         tools:itemCount="3"
-         android:padding="5dp"
-         android:id="@+id/list_item"
-         tools:listitem="@layout/task_list_item"
-         android:layout_width="match_parent"
-         android:layout_height="0dp"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp15"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card"
+        tools:itemCount="3"
+        tools:listitem="@layout/task_list_item" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
-        android:layout_margin="@dimen/dp15"
+        android:elevation="@dimen/dp5"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp38"
         android:background="@color/tab_deselected"
-        android:layout_gravity="start"
         app:tabPaddingEnd="@dimen/dp5"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp15"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabGravity="fill"
+        app:tabBackground="@drawable/tab_color_selector"
         app:tabPaddingStart="@dimen/dp5"
-        app:tabIndicatorHeight="3dp"
-        app:tabMinWidth="@dimen/dp100"
-        app:tabIndicatorColor="@color/tab_selected_color"
-        app:tabMode="scrollable"
         app:layout_constraintTop_toBottomOf="@+id/card"
         app:tabTextAppearance="@style/TabTextView"
         />
     <com.smarthub.baseapplication.widgets.NonDragableViewPager
         android:id="@+id/viewpager"
-        android:layout_marginTop="@dimen/dp2"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/tabs"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp2"
+        android:layout_marginRight="@dimen/dp15"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_constraintTop_toBottomOf="@+id/tabs" />
 </androidx.constraintlayout.widget.ConstraintLayout>

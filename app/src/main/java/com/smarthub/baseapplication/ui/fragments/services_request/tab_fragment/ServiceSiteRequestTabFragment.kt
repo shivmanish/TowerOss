@@ -50,7 +50,7 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
                     Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
                     AppLogger.log("Service request Fragment card Data fetched successfully")
                     AppLogger.log("size :${it.data.item?.size}")
-                }else Toast.makeText(requireContext(), "Empty Data found", Toast.LENGTH_SHORT).show()
+                }else Toast.makeText(requireContext(), "No Data Found found", Toast.LENGTH_SHORT).show()
 
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()

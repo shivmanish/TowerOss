@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PropertyOwnerTableItemRowBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PropertyViewDetailsModel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PropertyOwnerPaymentDetail
 import com.smarthub.baseapplication.utils.AppLogger
 
 class PropertyOwenerTableAdapter(
     var context: Context,
-    var listener: PropertyOwenerTableAdapter.PropertyOwenerInfoListListener,
-    propertyViewDetailsModel: List<Any>?
+    var listener: PropertyOwenerInfoListListener,
+    propertyViewDetailsModel: PropertyOwnerPaymentDetail?
 ) : RecyclerView.Adapter<PropertyOwenerTableAdapter.ViewHold>() {
 
     var list: ArrayList<PropertyViewDetailsModel>?
@@ -25,7 +26,7 @@ class PropertyOwenerTableAdapter(
         list = propertyViewDetailsModel as ArrayList<PropertyViewDetailsModel>
     }
 
-    fun addItem(item: String) {
+    fun addItem() {
         list?.add(
             PropertyViewDetailsModel(
                 ItemNo = "ass",
