@@ -224,24 +224,14 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
+    <ImageView
         android:id="@+id/add_more"
+        android:adjustViewBounds="true"
         android:layout_width="@dimen/dp50"
         android:layout_height="@dimen/dp50"
         android:layout_marginEnd="@dimen/dp20"
         android:layout_marginBottom="@dimen/dp20"
-        app:cardCornerRadius="@dimen/dp100"
+        app:srcCompat="@drawable/ic_new_menu_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:cardBackgroundColor="#3D4E6D"
-        app:cardElevation="2dp"
-        app:strokeColor="@color/tab_deselected"
-        app:strokeWidth="1dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <ImageView
-            android:padding="@dimen/dp12"
-            android:adjustViewBounds="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_new_menu_icon"/>
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
