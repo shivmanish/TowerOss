@@ -30,15 +30,15 @@ class ProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(binding.root)
+        initViews()
         adapter=ProfilePageAdapter(supportFragmentManager)
         binding.viewpager.adapter=adapter
         binding.tabs.setupWithViewPager(binding.viewpager)
         tabCustomization()
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        binding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initViews()
         if (profileViewModel?.profileResponse?.hasActiveObservers()==true)
             profileViewModel?.profileResponse?.removeObservers(this)
         profileViewModel?.profileResponse?.observe(this) {

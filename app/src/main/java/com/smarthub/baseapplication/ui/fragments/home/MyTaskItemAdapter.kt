@@ -1,18 +1,19 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
-import java.text.ParseException
 import java.util.*
+
 
 class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
@@ -29,6 +30,7 @@ class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTas
         fun bindData(data : MyTeamTask){
             binding.taskName.text = data.Taskname
             binding.taskDueData.text = data.enddate
+            binding.TaskId.text=data.Taskid
         }
     }
 
