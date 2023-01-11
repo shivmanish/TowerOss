@@ -48,8 +48,8 @@
                             android:layout_height="wrap_content"/>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="@dimen/dp35"
-                            android:layout_height="@dimen/dp35"
+                            android:layout_width="@dimen/dp33"
+                            android:layout_height="@dimen/dp33"
                             android:id="@+id/notification_layout"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/btn_logo">
@@ -58,13 +58,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"/>
                             <com.google.android.material.card.MaterialCardView
-                                android:layout_width="@dimen/dp20"
-                                android:layout_height="@dimen/dp20"
-                                app:strokeWidth="@dimen/dp2"
-                                app:strokeColor="@color/white"
-                                app:cardBackgroundColor="@color/colorRed"
+                                android:layout_width="@dimen/dp15"
+                                android:layout_height="@dimen/dp15"
+                                app:cardBackgroundColor="@color/yellow"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginEnd="@dimen/dp3"
+                                android:layout_marginTop="@dimen/dp3"
                                 app:cardCornerRadius="@dimen/dp20">
 
                                 <TextView
@@ -73,7 +73,7 @@
                                     android:inputType="number"
                                     android:maxLines="1"
                                     style="@style/AutoResizeTextView"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/color1"
                                     android:fontFamily="@font/poppins_bold"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"/>
@@ -456,12 +456,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/items">
 
                        <TextView
-                           android:text="My Task 16"
+                           android:text="My Task"
                            android:textColor="@color/black"
                            android:textSize="17sp"
                            android:id="@+id/task_title"
                            android:layout_marginStart="@dimen/dp15"
                            android:layout_marginTop="@dimen/dp15"
+                           android:fontFamily="@font/poppins_medium"
                            app:layout_constraintStart_toStartOf="parent"
                            app:layout_constraintTop_toTopOf="parent"
                            android:layout_width="wrap_content"
@@ -469,10 +470,10 @@
 
                         <TextView
                             android:id="@+id/tast_count"
-                            android:layout_width="@dimen/dp22"
-                            android:layout_height="@dimen/dp22"
+                            android:layout_width="@dimen/dp28"
+                            android:layout_height="@dimen/dp28"
                             android:background="@drawable/circle"
-                            android:layout_marginStart="@dimen/dp5"
+                            android:layout_marginStart="@dimen/dp8"
                             android:backgroundTint="#B1C0DC"
                             android:textColor="@color/black"
                             android:text="0"

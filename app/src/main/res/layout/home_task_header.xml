@@ -135,9 +135,9 @@
         app:layout_constraintStart_toEndOf="@+id/total_in_progress"/>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/dp35"
+        android:layout_width="@dimen/dp32"
         android:id="@+id/card_add"
-        android:layout_height="@dimen/dp35"
+        android:layout_height="@dimen/dp32"
         app:layout_constraintEnd_toStartOf="@+id/card_filter"
         app:cardCornerRadius="@dimen/dp5"
         app:layout_constraintTop_toTopOf="@+id/over_due"
@@ -145,23 +145,23 @@
         android:layout_marginEnd="@dimen/dp10">
 
         <ImageView
-            android:padding="@dimen/dp10"
+            android:padding="@dimen/dp8"
             android:src="@drawable/add_card"
             app:tint="#3D4E6D"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/dp35"
+        android:layout_width="@dimen/dp32"
         android:id="@+id/card_filter"
-        android:layout_height="@dimen/dp35"
+        android:layout_height="@dimen/dp32"
         app:layout_constraintTop_toTopOf="@+id/card_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="@dimen/dp5"
         app:cardBackgroundColor="#E9EEF7">
 
         <ImageView
-            android:padding="@dimen/dp10"
+            android:padding="@dimen/dp8"
             android:src="@drawable/icon_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
