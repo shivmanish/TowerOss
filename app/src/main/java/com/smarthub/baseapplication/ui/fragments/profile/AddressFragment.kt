@@ -8,10 +8,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.ProfileOfficeComunicationAddressBinding
 import com.smarthub.baseapplication.databinding.ProfileRoleGeographiBinding
+import com.smarthub.baseapplication.network.ProfileDetails
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AddressFragment (var manager: FragmentManager) : BaseFragment() {
+class AddressFragment (var profiledata: ProfileDetails?) : BaseFragment() {
     var binding : ProfileOfficeComunicationAddressBinding?=null
     lateinit var viewmodel: HomeViewModel
 

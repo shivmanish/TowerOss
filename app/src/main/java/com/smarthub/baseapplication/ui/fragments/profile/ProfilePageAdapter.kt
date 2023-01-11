@@ -3,21 +3,29 @@ package com.smarthub.baseapplication.ui.fragments.profile
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.smarthub.baseapplication.network.ProfileDetails
 
 class ProfilePageAdapter (var manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
         return 6
     }
 
+    var profiledata:ProfileDetails?=null
+
+    fun setdata(profileDetails: ProfileDetails){
+        profiledata=profileDetails
+        notifyDataSetChanged()
+    }
+
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            0 -> OfficialDetailFragment(manager)
-            1 -> ManagerInfoFragment(manager)
-            2 -> RoleGeographiFragment(manager)
-            3 -> AddressFragment(manager)
-            4 -> UserRoleTabFragment()
-            5 -> HistoryFragment(manager)
-            else -> OfficialDetailFragment(manager)
+            0 -> OfficialDetailFragment(profiledata)
+            1 -> ManagerInfoFragment(profiledata)
+            2 -> RoleGeographiFragment(profiledata)
+            3 -> AddressFragment(profiledata)
+            4 -> UserRoleTabFragment(profiledata)
+            5 -> HistoryFragment(profiledata)
+            else -> OfficialDetailFragment(profiledata)
         }
     }
 

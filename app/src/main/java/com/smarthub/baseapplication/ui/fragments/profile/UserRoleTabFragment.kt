@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.Ac0demoBinding
+import com.smarthub.baseapplication.network.ProfileDetails
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class UserRoleTabFragment : BaseFragment() {
+class UserRoleTabFragment(var profiledata: ProfileDetails?) : BaseFragment() {
     var binding: Ac0demoBinding? = null
     lateinit var viewmodel: HomeViewModel
 

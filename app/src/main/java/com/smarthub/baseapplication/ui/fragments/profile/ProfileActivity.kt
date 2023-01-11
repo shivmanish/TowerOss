@@ -25,10 +25,15 @@ class ProfileActivity : BaseActivity() {
 
     lateinit var binding : ActivityProfileBinding
     private var profileViewModel : ProfileViewModel?=null
+    lateinit var adapter: ProfilePageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         profileViewModel= ViewModelProvider(this)[ProfileViewModel::class.java]
+        adapter=ProfilePageAdapter(supportFragmentManager)
+        binding.viewpager.adapter=adapter
+        binding.tabs.setupWithViewPager(binding.viewpager)
+        tabCustomization()
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -42,6 +47,7 @@ class ProfileActivity : BaseActivity() {
                 if (it.status == Resource.Status.SUCCESS) {
                     AppPreferences.getInstance().saveString("data", it.data[0].data)
                     uiDataMapping(it.data[0])
+                    adapter.setdata(it.data[0])
                     Log.d("status", "${it.message}")
                     Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
@@ -68,16 +74,7 @@ class ProfileActivity : BaseActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        binding.viewpager.adapter=ProfilePageAdapter(supportFragmentManager)
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        if(binding.tabs.tabCount==1) {
-            binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
-            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
-        }
-        if(binding.tabs.tabCount<=5)
-            binding.tabs.tabMode = TabLayout.MODE_FIXED
-        else
-            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
+
     }
 
     private fun uiDataMapping(profileDetails: ProfileDetails){
@@ -147,6 +144,16 @@ class ProfileActivity : BaseActivity() {
                 startActivity(intent)
             }
         }
+    }
+    private fun tabCustomization(){
+        if(binding.tabs.tabCount==1) {
+            binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
+            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+        }
+        if(binding.tabs.tabCount<=5)
+            binding.tabs.tabMode = TabLayout.MODE_FIXED
+        else
+            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
 }

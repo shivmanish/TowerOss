@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.databinding.Ac0demoBinding
 import com.smarthub.baseapplication.databinding.ProfileRoleGeographiBinding
+import com.smarthub.baseapplication.network.ProfileDetails
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OfficialDetailFragment(var manager: FragmentManager) : BaseFragment() {
+class OfficialDetailFragment(var profiledata: ProfileDetails?) : BaseFragment() {
     lateinit var binding:ProfileRoleGeographiBinding
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: ServicesRequestAdapter
@@ -28,6 +27,9 @@ class OfficialDetailFragment(var manager: FragmentManager) : BaseFragment() {
         binding?.level2?.text="Department Name"
         binding?.level3?.text="Role Name"
         binding?.lavel4Layout?.visibility=View.GONE
+        if(profiledata!=null){
+
+        }
 
     }
 
