@@ -56,6 +56,9 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
+            holder.binding.addItem.setOnClickListener {
+                listner.addTower()
+            }
             holder.binding.titalStr.text = list[position]
         }
         else if (list[position]==type2) {
@@ -73,6 +76,9 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
+            holder.binding.addItem.setOnClickListener {
+                listner.addPole()
+            }
         }
         else if (list[position]==type3) {
             try {
@@ -89,6 +95,9 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
+            holder.binding.addItem.setOnClickListener {
+                listner.addEquipmentRoom()
+            }
         }
         else if (list[position]==type4) {
             try {
@@ -103,6 +112,9 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
                 Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
+            holder.binding.addItem.setOnClickListener {
+                listner.addEarthing()
+            }
         }
         else{
             try {
@@ -132,6 +144,10 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         fun clickedPoleItem(id:String,data: List<TowerAndCivilInfraPoleModel>)
         fun clickedEquipmentRoomItem(id:String,data: List<TowerAndCivilInfraEquipmentModel>)
         fun clickedEarthingItem(id:String,data: List<TowerAndCivilInfraEarthingModel>)
+        fun addTower()
+        fun addPole()
+        fun addEquipmentRoom()
+        fun addEarthing()
     }
 }
 
