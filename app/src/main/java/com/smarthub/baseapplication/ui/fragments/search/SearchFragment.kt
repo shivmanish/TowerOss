@@ -28,7 +28,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     var fetchedData = ""
     var isDataFetched = true
     var item: SearchListItem?=null
-    var searchHistoryList=SearchList()
+    var searchHistoryList=SearchHistoryList()
     var selectedCategory: String="siteID"
     private lateinit var binding: SearchFragmentBinding
     lateinit var homeViewModel : HomeViewModel
@@ -141,11 +141,11 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
         binding.viewOnIbo.setOnClickListener {
            if (AppPreferences.getInstance().isSavedDropDown){
-//               if(searchHistoryList.contains(SearchListItem(item?.name,item?.id))){
-//                   searchHistoryList.remove(SearchListItem(item?.name,item?.id))
-//               }
-//               searchHistoryList.add(0,SearchListItem(item?.name,item?.id))
-//               if(searchHistoryList.size>=10) searchHistoryList.subList(10,searchHistoryList.size).clear()
+               if(searchHistoryList.contains(SearchListItem(item?.name,item?.id))){
+                   searchHistoryList.remove(SearchListItem(item?.name,item?.id))
+               }
+               searchHistoryList.add(0,SearchListItem(item?.name,item?.id))
+               if(searchHistoryList.size>=10) searchHistoryList.subList(10,searchHistoryList.size).clear()
                AppPreferences.getInstance().saveSearchList(searchHistoryList)
                searchChipAdapter.updateList(searchHistoryList)
                findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
@@ -245,7 +245,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         Log.d("status", "selectedCategory:$item")
     }
     override fun clickedSearchHistoryItem(historyItem: SearchListItem?) {
-        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("448"))
+        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(historyItem?.id.toString()))
     }
 
 }

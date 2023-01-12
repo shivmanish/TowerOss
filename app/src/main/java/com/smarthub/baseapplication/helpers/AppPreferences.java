@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
+import com.smarthub.baseapplication.model.search.SearchHistoryList;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppController;
@@ -107,19 +108,19 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         prefsEditor.apply();
     }
 
-    public SearchList getSearchList() {
-        SearchList list = new SearchList();
+    public SearchHistoryList getSearchList() {
+        SearchHistoryList list = new SearchHistoryList();
         String listJson=getString("SearchHistory");
         try{
-            list=new Gson().fromJson(listJson, SearchList.class);
+            list=new Gson().fromJson(listJson, SearchHistoryList.class);
         }catch (Exception e){
             e.printStackTrace();
         }
         if(list==null)
-            list=new SearchList();
+            list=new SearchHistoryList();
         return list;
     }
-    public void saveSearchList(SearchList iValue) {
+    public void saveSearchList(SearchHistoryList iValue) {
         String searchhistoryJson= new Gson().toJson(iValue);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString("SearchHistory",searchhistoryJson);
