@@ -67,10 +67,10 @@ class PaymentTableAdapter(var context: Context, var listener: PaymentInfoListLis
             performOptionsMenuClick(position, it)
         }
         try {
-            holder.binding.ItemName.text = list.get(position).InvoiceNumber
-            holder.binding.ItemCode.text = list.get(position).PayeeName
-            holder.binding.Description.text = list.get(position).PaymentAmount
-            holder.binding.Qty.text = list.get(position).LineItemNumber
+            holder.binding.ItemName.text = list.get(position).PayeeName
+            holder.binding.ItemCode.text = list.get(position).InvoiceNumber
+            holder.binding.Description.text = list.get(position).NetPayable
+            holder.binding.Qty.text = list.get(position).DueDate
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
             Toast.makeText(
