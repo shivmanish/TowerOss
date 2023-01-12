@@ -83,9 +83,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int,
             basicinfoModel?.id = id
             viewModel.updateBasicInfo(basicinfoModel!!)
         }
-        binding.cancelTxt.setOnClickListener {
-            dismiss()
-        }
+
 
         hideProgressLayout()
         if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)

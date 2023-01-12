@@ -26,28 +26,27 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/dummy_network_call" />
+        <TextView
+            android:id="@+id/titel"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Reliance jio pvt ltd"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15"
+            android:paddingTop="@dimen/dp5"
+            android:layout_marginStart="@dimen/dp15"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="parent"/>
         <LinearLayout
             android:id="@+id/text_content"
             app:layout_constraintStart_toEndOf="@+id/image"
-            android:layout_width="0dp"
-            android:paddingTop="@dimen/dp5"
-            app:layout_constraintEnd_toStartOf="@+id/menu"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/titel"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp15"
-            android:layout_weight="2"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/titel"
-                android:layout_marginEnd="@dimen/dp10"
-                android:drawableRight="@drawable/ic_4g"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Reliance jio pvt ltd"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp15" />
             <TextView
                 android:id="@+id/Site_id"
                 android:layout_width="match_parent"
@@ -102,17 +101,34 @@
             </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/generation_technology"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/menu"
+            android:paddingEnd="@dimen/dp1"
+            android:paddingTop="@dimen/dp5"
+            android:text="4"
+            android:textColor="#4F4D4D"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintTop_toTopOf="@+id/titel"
+            app:layout_constraintBottom_toBottomOf="@+id/titel"/>
         <ImageView
             android:id="@+id/menu"
-            android:layout_width="20dp"
-            android:visibility="gone"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_marginBottom="@dimen/dp7"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/dp15"
             android:adjustViewBounds="true"
-            android:src="@drawable/dummy_3g"
+            android:src="@drawable/g_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/titel"
+            app:layout_constraintBottom_toBottomOf="@+id/titel" />
         <View
             android:id="@+id/divider"
             android:layout_marginTop="5dp"

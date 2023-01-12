@@ -3,14 +3,14 @@
 xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:background="@drawable/dialog_bg"
+android:background="@color/transparent"
 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 <ImageView
     android:id="@+id/ic_menu_close"
-    android:translationZ="@dimen/dp6"
+    android:translationZ="@dimen/dp7"
     android:layout_alignParentEnd="true"
-    android:layout_marginEnd="@dimen/dp5"
+    android:layout_marginEnd="@dimen/dp20"
     android:layout_width="@dimen/dp30"
     android:layout_height="@dimen/dp30"
     android:src="@drawable/cross_ico"
@@ -20,6 +20,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     android:background="@drawable/drawable_cross_back"/>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:minHeight="@dimen/dp400"
+    android:background="@drawable/dialog_bg"
+    android:layout_marginTop="@dimen/dp15"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/container_layout"
@@ -255,16 +257,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:gravity="center_vertical"
-            android:id="@+id/cancel_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Cancel"
-            android:paddingLeft="@dimen/dp15"
-            android:paddingRight="@dimen/dp15"
-            android:textColor="#3D4E6D"
-            android:textSize="@dimen/dp15"/>
+
 
         <TextView
             android:id="@+id/update"

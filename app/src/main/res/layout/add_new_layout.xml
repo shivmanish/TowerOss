@@ -36,8 +36,6 @@
         android:layout_height="@dimen/dp30"
         android:gravity="center"
         android:layout_alignBaseline="@+id/ic_menu_close"
-
-
         android:layout_marginStart="0dp"
         android:layout_toRightOf="@+id/ic_menu_close"
         android:fontFamily="@font/poppins_regular"

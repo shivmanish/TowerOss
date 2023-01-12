@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.ui.dialog.services_request.RequestInfoBottomSheet
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -68,6 +69,11 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             customerBinding.swipeLayout.isRefreshing=false
             serviceFragAdapterAdapter.addLoading()
             viewmodel?.serviceRequestAll(id)
+        }
+
+        customerBinding.addItemsLayout.setOnClickListener {
+            val bmSheet = ServiceRequestAddNew(R.layout.service_request_add_new_dialouge)
+            bmSheet.show(childFragmentManager,"category")
         }
     }
 
