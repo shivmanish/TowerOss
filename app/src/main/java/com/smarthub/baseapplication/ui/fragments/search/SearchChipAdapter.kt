@@ -7,21 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchChilpLayoutBinding
+import com.smarthub.baseapplication.model.search.SearchHistoryList
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.search.SearchListItem
 
 class SearchChipAdapter(var context: Context?, var listner: SearchChipAdapterListner) : RecyclerView.Adapter<SearchChipAdapter.ViewHold>() {
 
     private var searchQatModels: ArrayList<SearchListItem> = ArrayList()
-//    init {
-//        searchQatModels.add("SC_066593333")
-//        searchQatModels.add("CSE_0665")
-//        searchQatModels.add("TSC_6542STFC")
-//        searchQatModels.add("ZABBSC_6542FC")
-//        searchQatModels.add("SC_65FC")
-//        searchQatModels.add("FCC_65FC")
-//    }
-    fun updateList(list:SearchList){
+
+    fun updateList(list: SearchHistoryList){
     searchQatModels=list
     notifyDataSetChanged()
     }
@@ -41,9 +35,10 @@ class SearchChipAdapter(var context: Context?, var listner: SearchChipAdapterLis
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.chipItem.text = searchQatModels[position].name
+        val item = searchQatModels[position]
+        holder.binding.chipItem.text = item.name
         holder.binding.chipItem.setOnClickListener {
-            listner.clickedSearchHistoryItem(searchQatModels[position])
+            listner.clickedSearchHistoryItem(item)
         }
     }
 
