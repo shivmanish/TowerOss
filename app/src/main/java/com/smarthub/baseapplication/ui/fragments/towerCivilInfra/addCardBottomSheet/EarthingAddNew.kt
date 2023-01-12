@@ -24,7 +24,7 @@ class EarthingAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment(conte
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.65).toInt()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
@@ -34,6 +34,7 @@ class EarthingAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment(conte
             dismiss()
         }
 
+        binding.titleText.text="Add Earthing"
     }
 
     override fun getTheme() = R.style.NewDialogTask
