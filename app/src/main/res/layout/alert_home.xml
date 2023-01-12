@@ -58,6 +58,7 @@
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_theft"
+                    android:padding="@dimen/dp10"
                     app:layout_constraintBottom_toTopOf="@+id/text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -105,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Fire"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
@@ -144,11 +145,12 @@
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_door_open"
+                    android:padding="@dimen/dp10"
                     app:layout_constraintBottom_toTopOf="@+id/text3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Door Open"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
@@ -188,6 +190,7 @@
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_sabotage"
+                    android:padding="@dimen/dp10"
                     app:layout_constraintBottom_toTopOf="@+id/text4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -223,29 +226,29 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 style="@style/AlertGridLayoutStyles"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
                     android:id="@+id/ic_theft5"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_suspicious_activity"
-                    app:layout_constraintBottom_toTopOf="@+id/text5"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Suspicious Activity"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
                     android:id="@+id/text5"
-                    app:layout_constraintBottom_toTopOf="@+id/v5"
-                    android:layout_marginTop="@dimen/dp10"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"
-                    style="@style/AlertGridViewStyles"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -266,25 +269,27 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 style="@style/AlertGridLayoutStyles"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
                     android:id="@+id/ic_theft6"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_hygiene_issue"
-                    app:layout_constraintBottom_toTopOf="@+id/text6"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Hygiene Issue"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
                     android:id="@+id/text6"
                     style="@style/AlertGridViewStyles"
-                    app:layout_constraintBottom_toTopOf="@+id/v6"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_theft6"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginTop="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -318,18 +323,19 @@
                     android:id="@+id/ic_theft7"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
+                    android:padding="@dimen/dp8"
                     android:src="@drawable/ic_property_damage"
                     app:layout_constraintBottom_toTopOf="@+id/text7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Property Damage"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
                     android:id="@+id/text7"
                     app:layout_constraintBottom_toTopOf="@+id/v7"
-                    android:layout_marginTop="@dimen/dp10"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_theft7"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"
@@ -366,13 +372,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Mob \nGathering"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
                     android:id="@+id/text8"
                     app:layout_constraintBottom_toTopOf="@+id/v8"
-                    android:layout_marginTop="@dimen/dp10"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_theft8"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"
@@ -397,15 +403,17 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 style="@style/AlertGridLayoutStyles"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
                     android:id="@+id/ic_theft9"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_flood"
-                    app:layout_constraintBottom_toTopOf="@+id/text9"
+                    android:padding="@dimen/dp6"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -415,8 +423,8 @@
                     android:textStyle="bold"
                     android:id="@+id/text9"
                     style="@style/AlertGridViewStyles"
-                    app:layout_constraintBottom_toTopOf="@+id/v9"
-                    android:layout_marginTop="@dimen/dp10"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_theft9"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"
