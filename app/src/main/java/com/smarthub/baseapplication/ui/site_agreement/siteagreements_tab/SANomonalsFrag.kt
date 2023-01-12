@@ -45,8 +45,8 @@ class SANomonalsFrag( val siteacquisitionAgreements: List<SiteacquisitionAgreeme
         viewPo?.show(childFragmentManager,"category")
     }
 
-    override fun AgreementEditViewClick() {
-        var saAgreementsBottomSheet = SAAgreementsBottomSheet(R.layout.sa_agreement_dialog)
+    override fun AgreementEditViewClick(siteAgreementsData: SiteacquisitionAgreement?) {
+        var saAgreementsBottomSheet = SAAgreementsBottomSheet(R.layout.sa_agreement_dialog,siteAgreementsData)
         saAgreementsBottomSheet?.show(childFragmentManager,"category")
     }
 

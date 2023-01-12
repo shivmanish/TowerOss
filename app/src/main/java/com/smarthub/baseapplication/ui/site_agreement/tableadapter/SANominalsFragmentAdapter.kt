@@ -198,7 +198,7 @@ class SANominalsFragmentAdapter(
         when (holder) {
             is AgreemetViewHold -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener!!.AgreementEditViewClick()
+                    listener!!.AgreementEditViewClick(siteAgreementsData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -268,10 +268,7 @@ class SANominalsFragmentAdapter(
                 holder.binding.txtLastEscalationDate.text = siteAgreementsData?.LastescalationDate
                 holder.binding.txtLockPeriod.text = siteAgreementsData?.LockInPeriod
                 holder.binding.txtOnetimeAmount.text = siteAgreementsData?.OnetimeAmount
-/*
-               holder.binding.textRentPaymentFrequency.setText(siteAgreementsData?.PeriodicRentPayableAmount)
-*/
-                holder.binding.textPropertyOwnership.text = siteAgreementsData?.RentStartDate
+               holder.binding.textPropertyOwnership.text = siteAgreementsData?.RentStartDate
                 holder.binding.textPropertyAcquired.text = siteAgreementsData?.PropertyAcquired
                 holder.binding.textPropertyOwnership.text = siteAgreementsData?.PropertyOwnership
                 holder.binding.textRegistrationDate.text = siteAgreementsData?.RegistrationDate
