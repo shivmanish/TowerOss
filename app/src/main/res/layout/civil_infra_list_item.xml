@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/top"
-        android:padding="@dimen/dp10"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -20,7 +20,8 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
-            android:layout_marginStart="@dimen/dp5"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp15"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:id="@+id/image"
@@ -32,30 +33,26 @@
             android:id="@+id/tital_str"
             android:maxLines="1"
             android:layout_marginEnd="@dimen/dp10"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="Reliance jio pvt ltd"
             android:textColor="@color/black"
             android:textSize="@dimen/sp15"
-            app:layout_constraintEnd_toStartOf="@+id/text7"
             app:layout_constraintTop_toTopOf="@+id/image"
             app:layout_constraintStart_toEndOf="@+id/image"
             android:layout_marginStart="@dimen/dp10"/>
 
-        <TextView
+
+        <ImageView
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginEnd="@dimen/dp3"
             android:id="@+id/text7"
-            android:maxLines="1"
-            android:layout_marginEnd="@dimen/dp10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="10kw"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp14"
-            app:layout_constraintTop_toTopOf="@+id/image"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/dp10"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/card_corner_add_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/max_height_title"
@@ -78,10 +75,37 @@
             android:textSize="@dimen/sp12"
             app:layout_constraintStart_toEndOf="@+id/max_height_title"
             app:layout_constraintTop_toBottomOf="@+id/tital_str"/>
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:id="@+id/add_item"
+            android:backgroundTint="@color/color1"
+            android:background="@color/color1"
+            android:layout_width="@dimen/dp23"
+            android:layout_height="@dimen/dp23"
+            android:elevation="@dimen/dp12"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:layout_marginStart="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp5"
+            app:layout_constraintTop_toTopOf="@id/text7"
+            app:layout_constraintBottom_toBottomOf="@id/text7"
+            app:layout_constraintEnd_toEndOf="@id/text7"
+            app:layout_constraintStart_toStartOf="@id/text7"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="@dimen/dp40">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:padding="@dimen/dp3"
+                android:src="@drawable/ic_baseline_add_24"/>
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
         <View
             android:id="@+id/divider"
             android:layout_marginTop="5dp"
+
             app:layout_constraintTop_toBottomOf="@+id/max_height_title"
             android:background="@color/tab_text_color"
             android:layout_width="match_parent"
@@ -92,8 +116,9 @@
             android:id="@+id/rfi_date_lable"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp5"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp8"
+            android:paddingBottom="@dimen/dp8"
             android:fontFamily="@font/poppins_medium"
             android:textSize="12dp"
             android:text="RFI Date:"
@@ -106,7 +131,8 @@
             android:maxLength="10"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp5"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp8"
+            android:paddingBottom="@dimen/dp8"
             android:fontFamily="@font/poppins_medium"
             android:textSize="12dp"
             android:text="2022-10-22"
@@ -120,7 +146,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:maxLength="10"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/poppins_medium"
             android:textSize="12dp"
             android:text="2018-10-22"
