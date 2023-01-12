@@ -24,7 +24,6 @@ class SAAgreementsBottomSheet(
     lateinit var binding : SaAgreementDialogBinding
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.constraint.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
