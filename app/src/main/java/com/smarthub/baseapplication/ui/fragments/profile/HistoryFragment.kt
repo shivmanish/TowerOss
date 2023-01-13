@@ -11,13 +11,14 @@ import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails
 import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import java.text.SimpleDateFormat
 
 class HistoryFragment (var profiledata: ProfileData?) : BaseFragment() {
     lateinit var binding : ProfileRoleGeographiBinding
     lateinit var viewmodel: HomeViewModel
-    val sdf = SimpleDateFormat("yyyy-MMM-dd")
+    val sdf:String = "dd-MMM-yyyy"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
@@ -34,7 +35,7 @@ class HistoryFragment (var profiledata: ProfileData?) : BaseFragment() {
 
         try {
             binding.text1.text= String.format("%s %s",profiledata?.first_name,profiledata?.last_name)
-            binding.text2.text= profiledata?.createddate?.take(10)
+            binding.text2.text= "${Utils.getShortForm(profiledata?.createddate!!,sdf)} , ${profiledata?.createddate!!}"
             binding.text3.text=profiledata?.approvedby
             binding.text4.text=profiledata?.approveddate
         }catch (e : Exception){
