@@ -136,6 +136,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
                     disableButton()
                 }
+
             }
         })
 
@@ -225,6 +226,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     }
 
     fun disableButton() {
+        binding.lnButtonLayout.visibility=View.GONE
         binding.viewOnIbo.alpha = 0.2f
         binding.viewOnMap.alpha = 0.2f
         binding.viewOnIbo.isEnabled = false
@@ -233,6 +235,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     }
 
     private fun enableButton() {
+        binding.lnButtonLayout.visibility=View.VISIBLE
         binding.viewOnIbo.alpha = 1.0f
         binding.viewOnMap.alpha = 1.0f
         binding.viewOnIbo.isEnabled = true

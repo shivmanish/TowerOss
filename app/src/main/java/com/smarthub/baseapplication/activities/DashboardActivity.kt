@@ -81,6 +81,9 @@ class  DashboardActivity : BaseActivity() {
     fun openSearchMenu(){
         navController.navigate(R.id.site_board)
     }
+    fun openTaskMenu(){
+        navController.navigate(R.id.navigation_task)
+    }
     private fun initializeCustomActionBar() {
         val actionBar: ActionBar? = this.supportActionBar
         actionBar?.hide()

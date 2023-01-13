@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.utils.Utils
 import java.util.*
 
 
-class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
+class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var overDue:Int ?=0
@@ -49,7 +49,10 @@ class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTas
     }
 
     fun updateList(list : List<Any>){
-        this.list = ArrayList(list)
+        if(token=="home_navigation")
+        this.list = ArrayList(list.subList(0,5))
+        else
+            this.list = ArrayList(list)
         overDue=0
         nowDue=0
         nextDue=0
@@ -118,7 +121,7 @@ class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTas
                     holder.binding.IndicatorLine.setBackgroundResource(R.color.blue)
                 }
             }
-            holder.binding.taskClose.setOnClickListener {
+            holder.itemView.setOnClickListener {
                 listener.closeTask(item)
             }
         }
