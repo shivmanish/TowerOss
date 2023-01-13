@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NominalsFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
@@ -23,6 +24,8 @@ class SANomonalsFrag( val siteacquisitionAgreements: List<SiteacquisitionAgreeme
     lateinit var homeViewModel: HomeViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = NominalsFragmentBinding.inflate(inflater, container, false)
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+
         return binding?.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

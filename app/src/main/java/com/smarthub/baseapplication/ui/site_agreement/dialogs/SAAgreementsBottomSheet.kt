@@ -22,85 +22,84 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class SAAgreementsBottomSheet(
     contentLayoutId: Int,
-    var siteAgreementsData: SiteacquisitionAgreement?,var viewModel: HomeViewModel
+    var siteAgreementsData: SiteacquisitionAgreement?, var viewModel: HomeViewModel
 
-    ): BottomSheetDialogFragment(contentLayoutId)  {
-    lateinit var binding : SaAgreementDialogBinding
+) : BottomSheetDialogFragment(contentLayoutId) {
+    lateinit var binding: SaAgreementDialogBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.constraint.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+        binding.constraint.layoutParams.height = (Utils.getScreenHeight() * 0.75).toInt()
         binding.canecl.setOnClickListener {
             dismiss()
         }
 
-        if (viewModel.basicinfoModel?.hasActiveObservers() == true){
-            viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
+        if (viewModel.siteAgreementModel?.hasActiveObservers() == true) {
+            viewModel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
         }
-        viewModel.basicinfoModel?.observe(viewLifecycleOwner) {
+        viewModel.siteAgreementModel?.observe(viewLifecycleOwner) {
             dialog!!.dismiss()
             dialog!!.cancel()
         }
-        binding.textSave.setOnClickListener {
-            siteAgreementsData.let{
+             binding.textSave.setOnClickListener {
+                 siteAgreementsData.let{
 
-          it?.AgreementType=   binding.editTermLease.text.toString()
-                it?.RegistrationDate=   binding.textRegistrationDate.text.toString()
+               it?.AgreementType=   binding.editTermLease.text.toString()
+                     it?.RegistrationDate=   binding.textRegistrationDate.text.toString()
 
-                it?.AgreementPeriod=    binding.editAgreemenPeriod.text.toString()
-                it?.LockInPeriod=  binding.editLockPeriod.text.toString()
-                it?.AgreementEffectiveDate=    binding.editAgreemenDate.text.toString()
-                it?.AgreementExpiryDate=   binding.editAgreementExpiryDate.text.toString()
-                it?.RentStartDate=   binding.editRentStartDate.text.toString()
-                it?.InitialAnnualRentAmount=   binding.editInitialAnnualRentAmount.text.toString()
-                it?.PeriodicRentPayableAmount=   binding.editPeriodicRent.text.toString()
-                it?.RentEscalation=    binding.editRentEscalation.text.toString()
-                it?.RentEscalationPeriod=    binding.editRentEscalationPeriod.text.toString()
-                it?.LastescalationDate=    binding.editLastEscalationDate.text.toString()
-                it?.LastRevisedRentAmount=    binding.editLastRevisedRentAmount.text.toString()
-                it?.EBBillingBasis=  binding.textEBBillingBasis.text.toString()
-                it?.EBPerUnitRate=  binding.editEBperunitRate.text.toString()
-                it?.OnetimeAmount=   binding.editOnetimeAmount.text.toString()
-                it?.SecurityDepositAmount=   binding.editAmount.text.toString()
-                it?.GroundUsableArea=   binding.editArea.text.toString()
-                it?.RooftopacquiredArea=   binding.editArea.text.toString()
+                     it?.AgreementPeriod=    binding.editAgreemenPeriod.text.toString()
+                     it?.LockInPeriod=  binding.editLockPeriod.text.toString()
+                     it?.AgreementEffectiveDate=    binding.editAgreemenDate.text.toString()
+                     it?.AgreementExpiryDate=   binding.editAgreementExpiryDate.text.toString()
+                     it?.RentStartDate=   binding.editRentStartDate.text.toString()
+                     it?.InitialAnnualRentAmount=   binding.editInitialAnnualRentAmount.text.toString()
+                     it?.PeriodicRentPayableAmount=   binding.editPeriodicRent.text.toString()
+                     it?.RentEscalation=    binding.editRentEscalation.text.toString()
+                     it?.RentEscalationPeriod=    binding.editRentEscalationPeriod.text.toString()
+                     it?.LastescalationDate=    binding.editLastEscalationDate.text.toString()
+                     it?.LastRevisedRentAmount=    binding.editLastRevisedRentAmount.text.toString()
+                     it?.EBBillingBasis=  binding.textEBBillingBasis.text.toString()
+                     it?.EBPerUnitRate=  binding.editEBperunitRate.text.toString()
+                     it?.OnetimeAmount=   binding.editOnetimeAmount.text.toString()
+                     it?.SecurityDepositAmount=   binding.editAmount.text.toString()
+                     it?.GroundUsableArea=   binding.editArea.text.toString()
+                     it?.RooftopacquiredArea=   binding.editArea.text.toString()
 
 
-            }
+                 }
 
-            siteAgreementsData?.id = siteAgreementsData!!.id
+                 siteAgreementsData?.id = siteAgreementsData!!.id
             viewModel.updateSiteInfo(siteAgreementsData!!)
         }
 
 
         hideProgressLayout()
-        if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
-            viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
-         viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
-            if (it!=null){
-                if (it.status == Resource.Status.LOADING){
+        if (viewModel.siteAgreementModel?.hasActiveObservers() == true)
+            viewModel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
+           viewModel.siteAgreementModel?.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.status == Resource.Status.LOADING) {
                     showProgressLayout()
-                }else{
+                } else {
                     hideProgressLayout()
                 }
-                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
+                if (it.status == Resource.Status.SUCCESS && it.data?.item?.isNotEmpty() == true) {
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
-                //    viewModel.fetchSiteInfoData(id)
-                }else{
+                    //    viewModel.fetchSiteInfoData(id)
+                } else {
                     AppLogger.log("UnExpected Error found")
                 }
-            }else{
+            } else {
                 AppLogger.log("Something went wrong")
             }
         }
-
         AppPreferences.getInstance().setDropDown(
             binding.textRegistrationNumber,
             DropDowns.RegistrationNumber.name, siteAgreementsData?.RegistrationNumber
         )
-    
+
         AppPreferences.getInstance().setDropDown(
             binding.textBookingCostCentre,
             DropDowns.BookingCostCentre.name, siteAgreementsData?.BookingCostCentre
@@ -149,23 +148,29 @@ class SAAgreementsBottomSheet(
         binding.editArea.setText(siteAgreementsData?.RooftopacquiredArea)
 
     }
+
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        if (viewModel.basicinfoModel?.hasActiveObservers() == true)
-            viewModel.basicinfoModel?.removeObservers(viewLifecycleOwner)
+        if (viewModel.siteAgreementModel?.hasActiveObservers() == true)
+            viewModel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
     }
 
-    fun showProgressLayout(){
+    fun showProgressLayout() {
         if (binding.progressLayout.visibility != View.VISIBLE)
             binding.progressLayout.visibility = View.VISIBLE
     }
-    fun hideProgressLayout(){
+
+    fun hideProgressLayout() {
         if (binding.progressLayout.visibility == View.VISIBLE)
             binding.progressLayout.visibility = View.GONE
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = SaAgreementDialogBinding.inflate(inflater)
 
 
@@ -179,7 +184,6 @@ class SAAgreementsBottomSheet(
         dialog.behavior.skipCollapsed = true
         return dialog
     }
-
 
 
     override fun getTheme() = R.style.NewDialogTask
