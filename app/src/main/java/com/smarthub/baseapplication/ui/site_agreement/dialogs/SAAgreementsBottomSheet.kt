@@ -70,7 +70,7 @@ class SAAgreementsBottomSheet(
             }
 
             siteAgreementsData?.id = siteAgreementsData!!.id
-            viewModel.updateAgreementSiteInfo(siteAgreementsData!!)
+            viewModel.updateSiteInfo(siteAgreementsData!!)
         }
 
 
