@@ -3,16 +3,17 @@ package com.smarthub.baseapplication.ui.fragments.profile
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.network.ProfileDetails
+import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
 
 class ProfilePageAdapter (var manager: FragmentManager) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
         return 6
     }
 
-    var profiledata:ProfileDetails?=null
+    var profiledata: ProfileData?=null
 
-    fun setdata(profileDetails: ProfileDetails){
+    fun setdata(profileDetails: ProfileData){
         profiledata=profileDetails
         notifyDataSetChanged()
     }

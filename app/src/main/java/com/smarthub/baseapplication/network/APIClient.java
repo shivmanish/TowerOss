@@ -8,6 +8,8 @@ import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
+import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails;
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
@@ -74,7 +76,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)
-    Call<List<ProfileDetails>> getProfile(@Body JsonObject data);
+    Call<List<ProfileData>> getProfile(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.PROFILE)

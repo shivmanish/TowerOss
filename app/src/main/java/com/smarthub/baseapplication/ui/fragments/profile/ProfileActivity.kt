@@ -9,6 +9,7 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.activities.LoginActivity
@@ -16,8 +17,9 @@ import com.smarthub.baseapplication.databinding.ActivityProfileBinding
 import com.smarthub.baseapplication.databinding.ProfileCustomMenuBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.network.ProfileDetails
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
 
 
@@ -43,9 +45,9 @@ class ProfileActivity : BaseActivity() {
             profileViewModel?.profileResponse?.removeObservers(this)
         profileViewModel?.profileResponse?.observe(this) {
             hideLoader()
-            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
+            if (it != null && it.data?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
-                    AppPreferences.getInstance().saveString("data", it.data[0].data)
+                    AppPreferences.getInstance().saveString("data", Gson().toJson(it.data[0]))
                     uiDataMapping(it.data[0])
                     adapter.setdata(it.data[0])
                     Log.d("status", "${it.message}")
@@ -77,13 +79,20 @@ class ProfileActivity : BaseActivity() {
 
     }
 
-    private fun uiDataMapping(profileDetails: ProfileDetails){
-        binding.textName.text = String.format("%s %s",profileDetails.first_name,profileDetails.last_name)
-        binding.textCall.text = profileDetails.phone
-        binding.textMessage.text = profileDetails.email
-        binding.textYellow.text = profileDetails.id
-        binding.textActive.text = profileDetails.active
-        binding.textRole.text = profileDetails.roles
+    private fun uiDataMapping(profileDetails: ProfileData){
+        try{
+            binding.textName.text = String.format("%s %s",profileDetails.first_name,profileDetails.last_name)
+            binding.textCall.text = profileDetails.phone
+            binding.textMessage.text = profileDetails.email
+            binding.textYellow.text = profileDetails.id
+            binding.textActive.text = profileDetails.active
+            binding.textRole.text = profileDetails.roles.get(0)
+        }
+        catch (e : Exception){
+            AppLogger.log("Profile View Error ${e.localizedMessage}")
+            Toast.makeText(this,"Profile View Error",Toast.LENGTH_LONG).show()
+        }
+
 
 
     }
