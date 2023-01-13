@@ -117,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button"
 
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -138,7 +138,6 @@
             android:layout_marginRight="@dimen/dp10"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginBottom="@dimen/dp15"
-            android:text="20 days"
             android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -279,12 +278,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <com.smarthub.baseapplication.widgets.CustomSpinner
-                android:id="@+id/spinSelectCategory"
+                android:id="@+id/spinrecipientdepartmanet"
                 android:maxWidth="@dimen/dp200"
                 android:layout_weight=".5"
-
                 android:text=""
-
                 style="@style/SpinnerTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -307,20 +304,10 @@
 
             <TextView
                 android:maxWidth="@dimen/dp200"
-
+                android:id="@+id/spinRecipients"
                 android:text="Recipients - 4"
                 style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.smarthub.baseapplication.widgets.CustomSpinner
-                android:id="@+id/spinRecipients"
-                android:maxWidth="@dimen/dp200"
-                android:layout_weight=".5"
-
-                android:text=""
-
-                style="@style/SpinnerTheme"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <View
                 android:alpha="0.37"
@@ -380,11 +367,9 @@
                 android:layout_height="wrap_content"/>
             <com.smarthub.baseapplication.widgets.CustomSpinner
                 android:id="@+id/spinDepartment"
-                android:maxWidth="@dimen/dp200"
+                android:maxWidth="@dimen/dp250"
                 android:layout_weight=".5"
-
                 android:text=""
-
                 style="@style/SpinnerTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -420,7 +405,7 @@
             <TextView
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="@dimen/dp120"
-
+android:id="@+id/sendalert"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color1"
                 android:text="Send Alert"

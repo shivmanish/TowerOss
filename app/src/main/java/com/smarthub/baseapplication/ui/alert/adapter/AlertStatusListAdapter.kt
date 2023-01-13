@@ -4,21 +4,31 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
+import com.smarthub.baseapplication.utils.SendAlertDropDowns
 
-class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListener) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
-
-    var list : ArrayList<Any> = ArrayList()
+class AlertStatusListAdapter(
+    var context: Context,
+    viewmodel: AlertViewModel,
+    var listener: AlertStatusListener
+) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
+    var count: Int = 0
+    var list: ArrayList<Any> = ArrayList()
     var currentOpened = -1
     var type1 = "What?*"
     var type2 = "When?"
     var type3 = "Where?"
     var type4 = "Who?"
     var type5 = "How?"
-   // var type6 = "others"
+    // var type6 = "others"
 
     init {
         list.add("What?*")
@@ -26,29 +36,34 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
         list.add("Where?")
         list.add("Who?")
         list.add("How?")
-      //  list.add("others")
+        //  list.add("others")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    fun setusercount(countt: Int) {
+        count = countt
+        notifyItemChanged((list.size)-1)
+    }
+
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if (list[position] is String && list[position] == type1)
             return 1
-        else if (list[position] is String && list[position]==type2)
+        else if (list[position] is String && list[position] == type2)
             return 2
-        else if (list[position] is String && list[position]==type3)
+        else if (list[position] is String && list[position] == type3)
             return 3
-        else if (list[position] is String && list[position]==type4)
+        else if (list[position] is String && list[position] == type4)
             return 4
-        else if (list[position] is String && list[position]==type5)
+        else if (list[position] is String && list[position] == type5)
             return 5
-     /*   else if (list[position] is String && list[position]==type6)
-            return 6*/
+        /*   else if (list[position] is String && list[position]==type6)
+               return 6*/
         return 0
     }
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : AlertWhatLayoutBinding = AlertWhatLayoutBinding.bind(itemView)
+        var binding: AlertWhatLayoutBinding = AlertWhatLayoutBinding.bind(itemView)
 
 
         init {
@@ -65,8 +80,9 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
 
         }
     }
+
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : AlertWhenLayoutBinding = AlertWhenLayoutBinding.bind(itemView)
+        var binding: AlertWhenLayoutBinding = AlertWhenLayoutBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -83,7 +99,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
     }
 
     class ViewHold3(itemView: View) : ViewHold(itemView) {
-        var binding : AlertWhereLayoutBinding = AlertWhereLayoutBinding.bind(itemView)
+        var binding: AlertWhereLayoutBinding = AlertWhereLayoutBinding.bind(itemView)
 
         init {
             binding.itemTitle.tag = false
@@ -96,8 +112,10 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
             }
         }
     }
+
     class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : AlertWhoLayoutBinding = AlertWhoLayoutBinding.bind(itemView)
+        var binding: AlertWhoLayoutBinding = AlertWhoLayoutBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -112,7 +130,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
     }
 
     class ViewHold5(itemView: View) : ViewHold(itemView) {
-        var binding : AlertHowLayoutBinding = AlertHowLayoutBinding.bind(itemView)
+        var binding: AlertHowLayoutBinding = AlertHowLayoutBinding.bind(itemView)
 
 
         init {
@@ -129,8 +147,10 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
 
         }
     }
+
     class ViewHold6(itemView: View) : ViewHold(itemView) {
-        var binding : AlertOthersLayoutBinding = AlertOthersLayoutBinding.bind(itemView)
+        var binding: AlertOthersLayoutBinding = AlertOthersLayoutBinding.bind(itemView)
+
         init {
             binding.itemTitle.tag = false
             binding.itemTitle.tag = false
@@ -145,31 +165,37 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty, parent, false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_what_layout, parent, false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.alert_what_layout, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_when_layout, parent, false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.alert_when_layout, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_where_layout, parent, false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.alert_where_layout, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_who_layout, parent, false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.alert_who_layout, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_how_layout, parent, false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.alert_how_layout, parent, false)
                 return ViewHold5(view)
             }
 
             6 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_others_layout, parent, false)
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.alert_others_layout, parent, false)
                 return ViewHold6(view)
             }
 
@@ -181,7 +207,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+//                    listener.detailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -189,8 +215,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -202,6 +227,12 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
+
+                AppPreferences.getInstance()
+                    .setDropDown(holder.binding.spinIssueType, SendAlertDropDowns.SAIssueType.name)
+                AppPreferences.getInstance()
+                    .setDropDown(holder.binding.spinSeverity, SendAlertDropDowns.SASeverity.name)
+
 
             }
             is ViewHold2 -> {
@@ -211,8 +242,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -224,6 +254,16 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
+                holder.binding.status.setOnCheckedChangeListener(object :
+                    RadioGroup.OnCheckedChangeListener {
+                    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                        val radioButton = holder.itemView.findViewById(checkedId) as RadioButton
+                        Toast.makeText(context, radioButton.getText(), Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+
+
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -232,8 +272,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -245,6 +284,12 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
+                AppPreferences.getInstance().setDropDown(
+                    holder.binding.spinSelectCategory,
+                    SendAlertDropDowns.SACategory.name
+                )
+                AppPreferences.getInstance()
+                    .setDropDown(holder.binding.spinSiteSearch, SendAlertDropDowns.SACategory.name)
 
             }
             is ViewHold4 -> {
@@ -254,8 +299,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -267,37 +311,55 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
+                AppPreferences.getInstance().setDropDown(
+                    holder.binding.spinTroublemaker,
+                    SendAlertDropDowns.SATroubleMaker.name
+                )
             }
             is ViewHold5 -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
+                /* if (currentOpened == position) {
+                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                     holder.binding.itemLine.visibility = View.GONE
+                     holder.binding.itemCollapse.visibility = View.VISIBLE
+                     holder.binding.iconLayout.visibility = View.VISIBLE
+                 }
+                 else {
+                     holder.binding.itemTitle.tag = false
+                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                     holder.binding.itemLine.visibility = View.VISIBLE
+                     holder.binding.itemCollapse.visibility = View.GONE
+                     holder.binding.iconLayout.visibility = View.GONE
+                 }*/
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
+                }
+                if (count > 0) {
+                    holder.binding.spinRecipients.text = "Recipients - " + count
+                } else {
+                    holder.binding.spinRecipients.text = "Recipients - " + 0
                 }
                 holder.binding.itemTitle.text = list[position] as String
 
-                val adapter =  AlertImageAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+                val adapter = AlertImageAdapter(object : ImageAttachmentAdapter.ItemClickListener {
                     override fun itemClicked() {
                         //  listener.attachmentItemClicked()
                     }
                 })
                 holder.binding.rvAlertImageList.adapter = adapter
-
-
                 adapter.addItem()
+                holder.binding.sendalert.setOnClickListener {
+                    listener.sendAlertData()
+                }
+
+                holder.binding.spinRecipients.setOnClickListener {
+                    listener.getuser()
+                }
+                AppPreferences.getInstance()
+                    .setDropDown(holder.binding.spinDepartment, SendAlertDropDowns.SAMedium.name)
+                AppPreferences.getInstance()
+                    .setDropDown(holder.binding.spinDepartment, SendAlertDropDowns.SARecepient.name)
 
             }
             is ViewHold6 -> {
@@ -307,8 +369,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     holder.binding.itemTitle.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -320,18 +381,20 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
+
+
             }
         }
     }
 
-    fun updateList(position: Int){
-        currentOpened = if(currentOpened == position) -1 else position
+    fun updateList(position: Int) {
+        currentOpened = if (currentOpened == position) -1 else position
         notifyDataSetChanged()
-        if (this.recyclerView!=null)
+        if (this.recyclerView != null)
             this.recyclerView?.scrollToPosition(position)
     }
 
-    var recyclerView: RecyclerView?=null
+    var recyclerView: RecyclerView? = null
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         this.recyclerView = recyclerView
         super.onAttachedToRecyclerView(recyclerView)
@@ -343,6 +406,7 @@ class AlertStatusListAdapter(var context: Context,var listener: AlertStatusListe
 }
 
 interface AlertStatusListener {
-    fun detailsItemClicked()
+    fun sendAlertData()
+    fun getuser()
 
 }
