@@ -68,9 +68,9 @@ class SAAgreementsBottomSheet(
 
 
             }
-       /*     siteAgreementsData?.Si = basicinfodata
+        /*    siteAgreementsData?.Si = basicinfodata
             siteAgreementsData?.id = id
-            viewModel.updateBasicInfo(basicinfoModel!!)*/
+            viewModel.updateBasicInfo(siteAgreementsData!!)*/
         }
 
 

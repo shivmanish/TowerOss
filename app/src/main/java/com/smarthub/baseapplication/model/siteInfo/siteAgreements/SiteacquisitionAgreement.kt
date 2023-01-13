@@ -32,7 +32,7 @@ data class SiteacquisitionAgreement(
     var RooftopacquiredArea: String,
     var SecurityDepositAmount: String,
     val created_at: String,
-    val id: String,
+    var id: String,
     val isActive: String,
     val modified_at: String
 )
