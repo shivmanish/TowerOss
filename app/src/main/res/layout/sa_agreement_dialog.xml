@@ -84,7 +84,7 @@
                             android:id="@+id/textRegistrationNumber"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
 
                         <View
@@ -109,7 +109,7 @@
                             style="@style/RowTestItemEdit"
                             android:drawableRight="@drawable/icon_date"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                         android:layout_height="wrap_content"
                             android:text="On-Air" />
 
                         <View
@@ -132,7 +132,7 @@
                             android:id="@+id/textBookingCostCentre"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -290,7 +290,7 @@
                             android:id="@+id/textRentPaymentFrequency"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -425,7 +425,7 @@
                             android:id="@+id/editEBInclusiveRental"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                         android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -447,7 +447,7 @@
                             android:id="@+id/editEBBillLimit"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                         android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -469,7 +469,7 @@
                             android:id="@+id/textEBBillingBasis"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                         android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -514,7 +514,7 @@
                             android:id="@+id/editPropertyOwnership"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                         android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -536,7 +536,7 @@
                             android:id="@+id/editPropertyAcquired"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                         android:layout_height="wrap_content"
                             android:text="On-Air" />
                         <View
                             android:layout_width="wrap_content"
@@ -575,6 +575,7 @@
                         <TextView
                             android:text="Security Deposit Amount"
                             style="@style/RowTextItemInfo"
+                            android:maxLines="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
