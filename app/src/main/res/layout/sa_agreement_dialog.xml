@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparent">
+
     <ImageView
         android:id="@+id/canecl"
         android:layout_width="@dimen/dp30"
@@ -17,6 +18,7 @@
         android:translationZ="@dimen/dp6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
