@@ -121,19 +121,36 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.421"
-                android:layout_marginEnd="@dimen/dp20"/>
+                android:layout_marginEnd="@dimen/dp15"/>
 
             <ImageView
                 android:id="@+id/search"
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp30"
-                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp10"
                 android:padding="@dimen/dp5"
                 android:adjustViewBounds="true"
                 android:src="@drawable/search"
                 app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/mic_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.421" />
+            <TextView
+                android:id="@+id/add_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:paddingStart="@dimen/dp8"
+                android:paddingEnd="@dimen/dp8"
+                android:paddingTop="@dimen/dp3"
+                android:paddingBottom="@dimen/dp1"
+                android:background="@drawable/rounded_background_2"
+                android:textColor="@color/color1"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginRight="@dimen/dp15"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/search"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.421" />
 
