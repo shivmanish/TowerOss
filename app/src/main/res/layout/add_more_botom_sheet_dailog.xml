@@ -164,7 +164,7 @@
                                 android:paddingStart="@dimen/dp10"
                                 android:paddingTop="@dimen/dp10"
                                 android:paddingEnd="@dimen/dp10"
-                                android:text="Map View" />
+                                android:text="Send Alert" />
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -449,7 +449,7 @@
                                 android:paddingStart="@dimen/dp10"
                                 android:paddingTop="@dimen/dp10"
                                 android:paddingEnd="@dimen/dp10"
-                                android:text="Logs" />
+                                android:text="Notification" />
                         </RelativeLayout>
 
 
