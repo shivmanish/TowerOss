@@ -167,7 +167,6 @@
                         android:textColor="#fff"
                         android:maxLines="1"
                         android:inputType="text"
-
                         android:id="@+id/password"
                         android:nextFocusForward="@id/password"
                         android:drawablePadding="@dimen/dp10"
