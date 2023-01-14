@@ -43,8 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editBackhaul"
-                    android:text="MW"
+                    android:id="@+id/technology"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -62,88 +61,15 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Link Type"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Ring/ Spur"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Site Category"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Tail end/ Hub"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Link Bandwidth"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="1Gbps"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Link ID"
+                    android:text="Equipment"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editLinkID"
-
-                    android:text="ZGSHD_231Z"
+                    android:id="@+id/equipment"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
@@ -152,18 +78,18 @@
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
             <LinearLayout
+                android:paddingTop="0dp"
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Link Name"
+                    android:text="Type"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editLinkName"
-                    android:text="Fiber Gio"
+                    android:id="@+id/type"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -174,125 +100,141 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp8" />
             </LinearLayout>
-
             <LinearLayout
+                android:paddingTop="0dp"
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Connected Site’B’ Name"
+                    android:text="Cabinet Size"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:text="Airtel"
+                    android:id="@+id/cabinetsize"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
                     android:layout_height="1dp"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
+            </LinearLayout>  <LinearLayout
+            android:paddingTop="0dp"
+            android:layout_width="0dp"
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Equipment Waight"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/equipment_weight"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+        </LinearLayout>
             <LinearLayout
+                android:paddingTop="0dp"
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Connected Site’B’ ID"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Live"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Owner Company"
+                    android:text="Input Power"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:text="Airtel"
+                    android:id="@+id/input_Power"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
                     android:layout_height="1dp"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
+            </LinearLayout>  <LinearLayout
+            android:paddingTop="0dp"
+            android:layout_width="0dp"
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Voltage (V)"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/voltage"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+        </LinearLayout>
             <LinearLayout
+                android:paddingTop="0dp"
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="User Company"
+                    android:text="Max Power Rating (KW)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Live"
+                <EditText
+                    android:id="@+id/max_Power_Rating"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                    android:layout_height="wrap_content" />
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
                     android:layout_height="1dp"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
+            </LinearLayout>  <LinearLayout
+            android:paddingTop="0dp"
+            android:layout_width="0dp"
+            style="@style/ColumnItemInfo"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Link Operational Status"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Live"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_down_black"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
-
+            <TextView
+                android:text="Operating Power (C)"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/operating_Power"
+                style="@style/RowTestItemEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8" />
+        </LinearLayout>
 
         </GridLayout>
 
@@ -320,6 +262,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Update"
+                android:id="@+id/update"
                 android:paddingLeft="@dimen/dp15"
                 android:paddingRight="@dimen/dp15"
                 android:paddingTop="@dimen/dp10"

@@ -23,8 +23,12 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
     init {
         list.add("Details")
         list.add("Attachments")
-        AssignAcqTeamData=serviceRequestAllData?.AssignACQTeam?.get(0)
-        AssignAcqTeamDetailsData=AssignAcqTeamData?.AssignACQTeamTeam?.get(0)
+        try {
+            AssignAcqTeamData = serviceRequestAllData?.AssignACQTeam?.get(0)
+            AssignAcqTeamDetailsData = AssignAcqTeamData?.AssignACQTeamTeam?.get(0)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
       }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {
