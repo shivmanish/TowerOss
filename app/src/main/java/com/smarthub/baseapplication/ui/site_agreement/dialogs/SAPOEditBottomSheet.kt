@@ -20,13 +20,13 @@ class SAPOEditBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(cont
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-      //  binding.constraint.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+/*      //  binding.constraint.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
         var adapter = ImageAttachmentAdapter(this@SAPOEditBottomSheet)
         attacmentsItem.adapter=adapter
         view.findViewById<View>(R.id.attach_card).setOnClickListener{
             adapter.addItem()
-        }
+        }*/
 
         binding.canecl.setOnClickListener {
             dismiss()
