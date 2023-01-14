@@ -16,6 +16,11 @@ import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCi
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.ServiceRequestAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EquipmentRoomAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.PoleAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.TowerAddNew
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -117,5 +122,25 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         TowerEarthingFragment.Id=id
         TowerEarthingFragment.EarthingModelData=data as ArrayList<TowerAndCivilInfraEarthingModel>
         requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
+    }
+
+    override fun addTower() {
+        val bmSheet = TowerAddNew(R.layout.tower_civil_add_tower)
+        bmSheet.show(childFragmentManager,"category")
+    }
+
+    override fun addPole() {
+        val bmSheet = PoleAddNew(R.layout.tower_civil_add_tower)
+        bmSheet.show(childFragmentManager,"category")
+    }
+
+    override fun addEquipmentRoom() {
+        val bmSheet = EquipmentRoomAddNew(R.layout.tower_civil_add_equipment_room)
+        bmSheet.show(childFragmentManager,"category")
+    }
+
+    override fun addEarthing() {
+        val bmSheet = EarthingAddNew(R.layout.tower_civil_add_earthing)
+        bmSheet.show(childFragmentManager,"category")
     }
 }

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp10"
+    android:paddingRight="@dimen/dp10"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:scrollbars="vertical"
+        android:layout_marginTop="@dimen/dp20"
+        android:paddingBottom="@dimen/dp40"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/dot_img"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:src="@drawable/circleblue_1"
+                />
+            <TextView
+                style="@style/RowTestItemEdit"
+                android:text="Office Address"
+                android:textSize="15sp"
+                android:textColor="@color/color1"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/dp8"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <GridLayout
+            android:visibility="visible"
+            android:columnCount="2"
+            android:layout_marginLeft="@dimen/dp10"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House No" />
+
+                <TextView
+                    android:id="@+id/office_house_no"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Building / Compnay" />
+
+                <TextView
+                    android:id="@+id/office_building"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="District" />
+
+                <TextView
+                    android:id="@+id/office_District"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="State" />
+
+                <TextView
+                    android:id="@+id/office_State"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pin code" />
+
+                <TextView
+                    android:id="@+id/office_pin_code"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+
+        </GridLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:src="@drawable/circleblue_1"
+                />
+            <TextView
+                style="@style/RowTestItemEdit"
+                android:textColor="@color/color1"
+                android:text="Communication Address"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/dp8"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+
+               <GridLayout
+            android:visibility="visible"
+            android:columnCount="2"
+            android:layout_marginLeft="@dimen/dp10"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House No" />
+
+                <TextView
+                    android:id="@+id/communication_house_no"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Building / Compnay" />
+
+                <TextView
+                    android:id="@+id/communication_building"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="District" />
+
+                <TextView
+                    android:id="@+id/communication_District"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="State" />
+
+                <TextView
+                    android:id="@+id/communication_State"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pin code" />
+
+                <TextView
+                    android:id="@+id/communication_pin_code"
+                    style="@style/RowTestItemEdit"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="@dimen/dp15"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Milan M" />
+
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

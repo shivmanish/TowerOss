@@ -31,43 +31,71 @@
             android:alpha="2"
             />
         <TextView
+            android:id="@+id/Dues_date_level"
+            android:layout_width="wrap_content"
+            android:paddingStart="@dimen/dp15"
+            android:text="Due On: "
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/task_close"
+            app:layout_constraintStart_toEndOf="@+id/Indicator_line"
+            android:layout_height="wrap_content"
+
+            />
+        <TextView
+            android:id="@+id/task_due_data"
+            android:layout_width="wrap_content"
+            android:paddingEnd="@dimen/dp7"
+            android:paddingTop="@dimen/dp7"
+            android:paddingBottom="@dimen/dp7"
+            android:text="10-Nov-22"
+            android:textSize="11sp"
+            android:maxLength="10"
+            android:ellipsize="end"
+            android:textColor="@color/colorRed"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/task_close"
+            app:layout_constraintStart_toEndOf="@+id/Dues_date_level"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_down_black"
+            />
+        <TextView
             android:id="@+id/task_name"
             android:text="Add Site Nominals"
-            android:textSize="14sp"
+            android:textSize="15sp"
             style="@style/AutoResizeTextView"
             android:fontFamily="@font/poppins_semibold"
             android:paddingEnd="@dimen/dp5"
-            android:paddingStart="@dimen/dp10"
-            android:textColor="#3F3F3F"
-            android:alpha="0.8"
+            android:paddingStart="@dimen/dp15"
+            android:textColor="#000000"
             android:gravity="center_vertical"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:ellipsize="marquee"
-            app:layout_constraintEnd_toStartOf="@+id/task_close"
-            app:layout_constraintBottom_toBottomOf="@+id/task_close"
+            app:layout_constraintTop_toBottomOf="@+id/Dues_date_level"
             app:layout_constraintStart_toEndOf="@+id/Indicator_line"/>
         <TextView
-            android:id="@+id/item_title_text_h"
+            android:id="@+id/Task_id"
             android:text="Acquistion"
             android:textSize="12sp"
             android:paddingEnd="@dimen/dp10"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_semibold"
             android:gravity="center_vertical"
-            android:textColor="@color/green"
-            android:layout_width="0dp"
+            android:textColor="@color/textGray"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:paddingStart="@dimen/dp10"
+            android:paddingStart="@dimen/dp15"
             android:ellipsize="marquee"
-            app:layout_constraintEnd_toStartOf="@+id/icon_layout"
             app:layout_constraintStart_toEndOf="@+id/Indicator_line"
             app:layout_constraintTop_toBottomOf="@+id/task_name"
-            android:layout_marginTop="@dimen/dp5"/>
+            />
         <TextView
             android:padding="5dp"
-            android:text="Close task"
+            android:text="@string/Close_task"
             style="@style/AutoResizeTextView"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
@@ -91,6 +119,7 @@
                 android:adjustViewBounds="true"
                 android:id="@+id/person_task_item"
                 android:layout_width="@dimen/dp18"
+                android:layout_marginEnd="@dimen/dp8"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/edit_task_item_layout"
@@ -103,7 +132,8 @@
                 android:id="@+id/edit_task_item_layout"
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/task_list_dropdown"
+                android:layout_marginEnd="@dimen/dp10"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="@dimen/dp24"
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
@@ -137,9 +167,9 @@
                     app:cardBackgroundColor="@color/color1"
                     app:strokeColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@+id/edit_task_item"
-                    app:layout_constraintBottom_toBottomOf="@+id/edit_task_item">
+                    app:layout_constraintBottom_toBottomOf="parent">
                     <ImageView
-                        android:padding="6dp"
+                        android:padding="5dp"
                         android:id="@+id/btn_edit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -148,38 +178,8 @@
                 </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/task_list_dropdown"
-                android:layout_width="wrap_content"
-                android:paddingStart="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
-                android:paddingBottom="@dimen/dp7"
-                android:text="Due On: "
-                android:textSize="10sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/task_due_data"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_arrow_down_black"
-                />
-            <TextView
-                android:id="@+id/task_due_data"
-                android:layout_width="wrap_content"
-                android:paddingEnd="@dimen/dp7"
-                android:paddingTop="@dimen/dp7"
-                android:paddingBottom="@dimen/dp7"
-                android:text="10-Nov-22"
-                android:textSize="10sp"
-                android:maxLength="10"
-                android:ellipsize="end"
-                android:textColor="@color/search_background"
-                android:fontFamily="@font/poppins_semibold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_arrow_down_black"
-                />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

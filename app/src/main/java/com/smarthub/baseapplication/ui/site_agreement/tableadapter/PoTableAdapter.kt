@@ -10,25 +10,23 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoTableItemRowBinding
-import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PODetailsModel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PODetail
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
 
 import com.smarthub.baseapplication.utils.AppLogger
 
 class PoTableAdapter(
     var context: Context,
-    var listener: PoTableAdapter.PoInfoListListener,
-    poDetailsModel: List<Any>?
+    var listener: PoInfoListListener,
+    var list: ArrayList<PODetail>
+
 ) : RecyclerView.Adapter<PoTableAdapter.ViewHold>() {
 
-    var list: ArrayList<PODetailsModel>?
 
-    init {
-        list = poDetailsModel as ArrayList<PODetailsModel>
-    }
 
-    fun addItem(item: String) {
+    fun addItem() {
         list?.add(
-            PODetailsModel(Item = "ass", PONo = "1st", Vendor = "53", Date = "10-Nov-18")
+            PODetail(POAmount = "ass", PONumber = "1st", created_at = "1st",isActive = "false",modified_at = "false",id = "1st", VendorName = "1st", POLineNumber = "53", PODate = "10-Nov-18")
         )
         notifyItemInserted(list?.size!!.plus(1))
     }
@@ -55,9 +53,9 @@ class PoTableAdapter(
         }
         try {
             holder.binding.ItemName.text = "Data Not Found"
-            holder.binding.ItemCode.text = list?.get(position)?.PONo
-            holder.binding.Description.text = list?.get(position)?.Vendor
-            holder.binding.Qty.text = list?.get(position)?.Date
+            holder.binding.ItemCode.text = list?.get(position)?.VendorName
+            holder.binding.Description.text = list?.get(position)?.VendorName
+            holder.binding.Qty.text = list?.get(position)?.created_at
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
             Toast.makeText(

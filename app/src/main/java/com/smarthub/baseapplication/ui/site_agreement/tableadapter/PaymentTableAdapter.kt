@@ -10,31 +10,40 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PaymentTableItemRowBinding
-
-import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PaymentModel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
 import com.smarthub.baseapplication.utils.AppLogger
 
-class PaymentTableAdapter(
-    var context: Context,
-    var listener: PaymentTableAdapter.PaymentInfoListListener,
-    paymentModel: List<Any>?
-) : RecyclerView.Adapter<PaymentTableAdapter.ViewHold>() {
+class PaymentTableAdapter(var context: Context, var listener: PaymentInfoListListener,var list: ArrayList<SiteacquisitionPayment>) : RecyclerView.Adapter<PaymentTableAdapter.ViewHold>() {
 
-    var list: ArrayList<PaymentModel>?
+//    var list = ArrayList<SiteacquisitionPayment>()
 
-    init {
-        list = paymentModel as ArrayList<PaymentModel>
-    }
+//    init {
+//        list = paymentModel as ArrayList<SiteacquisitionPayment>
+//    }
 
-    fun addItem(item: String) {
-        list?.add(
-            PaymentModel(PayeeName = "ass", ACCNo = "dsfg", Bank = "53", Branch = "654d2")
+    fun addItem() {
+        list.add(SiteacquisitionPayment(
+                Amount = "",
+                Date = "",
+                DueDate = "",
+                InvoiceNumber = "",
+                LineItemNumber = "",
+                NetPayable = "",
+                PayeeName = "",
+                PaymentAmount = "",
+                PaymentDate = "",
+                Status = "",
+                created_at = "",
+                id = "",
+                isActive = "",
+                modified_at = ""
+            )
         )
-        notifyItemInserted(list?.size!!.plus(1))
+        notifyItemInserted(list.size.plus(1))
     }
 
     fun removeItem(position: Int) {
-        list?.removeAt(position)
+        list.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -49,8 +58,7 @@ class PaymentTableAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.payment_table_item_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.payment_table_item_row, parent, false)
         return ViewHold(view)
     }
 
@@ -59,10 +67,10 @@ class PaymentTableAdapter(
             performOptionsMenuClick(position, it)
         }
         try {
-            holder.binding.ItemName.text = "Data Not Found"
-            holder.binding.ItemCode.text = list?.get(position)?.ACCNo
-            holder.binding.Description.text = list?.get(position)?.Bank
-            holder.binding.Qty.text = list?.get(position)?.Branch
+            holder.binding.ItemName.text = list.get(position).PayeeName
+            holder.binding.ItemCode.text = list.get(position).InvoiceNumber
+            holder.binding.Description.text = list.get(position).NetPayable
+            holder.binding.Qty.text = list.get(position).DueDate
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
             Toast.makeText(
@@ -74,10 +82,9 @@ class PaymentTableAdapter(
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
-    }
+        return list.size
 
-    // this method will handle the onclick options click
+    }
     private fun performOptionsMenuClick(position: Int, view: View) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu

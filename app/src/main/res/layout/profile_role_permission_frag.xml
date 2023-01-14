@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginStart="@dimen/dp5"
+    android:layout_marginEnd="@dimen/dp10"
+    android:paddingTop="@dimen/dp10"
+    android:paddingBottom="@dimen/dp10"
+    android:layout_marginTop="@dimen/dp8"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/light_border"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:paddingLeft="@dimen/dp8"
+                android:id="@+id/file_ico"
+                android:src="@drawable/file_ico"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="File.Doc"
+                android:textStyle="bold"
+                android:textColor="@color/color1"
+                android:paddingLeft="@dimen/dp8"
+                android:textSize="14sp"
+                android:layout_marginStart="@dimen/dp5"
+                android:fontFamily="@font/poppins"
+                app:layout_constraintStart_toEndOf="@id/file_ico"
+                app:layout_constraintTop_toTopOf="@+id/file_ico"
+                app:layout_constraintBottom_toBottomOf="@+id/file_ico"
+                />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

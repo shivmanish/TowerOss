@@ -11,36 +11,38 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PropertyOwnerTableItemRowBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAcqutiuons.PropertyViewDetailsModel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PropertyOwnerPaymentDetail
 import com.smarthub.baseapplication.utils.AppLogger
 
 class PropertyOwenerTableAdapter(
     var context: Context,
-    var listener: PropertyOwenerTableAdapter.PropertyOwenerInfoListListener,
-    propertyViewDetailsModel: List<Any>?
+    var listener: PropertyOwenerInfoListListener,
+    var list: ArrayList<PropertyOwnerPaymentDetail>
 ) : RecyclerView.Adapter<PropertyOwenerTableAdapter.ViewHold>() {
-
-    var list: ArrayList<PropertyViewDetailsModel>?
-
-    init {
-        list = propertyViewDetailsModel as ArrayList<PropertyViewDetailsModel>
-    }
-
-    fun addItem(item: String) {
-        list?.add(
-            PropertyViewDetailsModel(
-                ItemNo = "ass",
+    fun addItem() {
+        list.add(
+            PropertyOwnerPaymentDetail(
+                ACNumber = "ass",
                 share = "1st",
-                ownerName = "53",
-                phNo = "8884",
-                emailId = "kk@gmail.com",
-                address = "NA"
+                BankBranch = "53",
+                BankIFCCode = "8884",
+                GSTNumber = "kk@gmail.com",
+                PanNumber = "NA",
+                PayeeBank = "NA",
+                PayeeName = "NA",
+                PayeeStatus = "NA",
+                created_at = "NA",
+                id = "NA",
+                isActive = "NA",
+                modified_at = "NA",
+
             )
         )
-        notifyItemInserted(list?.size!!.plus(1))
+        notifyItemInserted(list.size.plus(1))
     }
 
     fun removeItem(position: Int) {
-        list?.removeAt(position)
+        list.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -61,10 +63,10 @@ class PropertyOwenerTableAdapter(
             performOptionsMenuClick(position, it)
         }
         try {
-            holder.binding.ItemName.text = "Data Not Found"
-            holder.binding.ItemCode.text = list?.get(position)?.share
-            holder.binding.Description.text = list?.get(position)?.share
-            holder.binding.Qty.text = list?.get(position)?.address
+            holder.binding.ItemName.text =list.get(position).share
+            holder.binding.ItemCode.text = list.get(position).share
+            holder.binding.Description.text = list.get(position).share
+            holder.binding.Qty.text = list.get(position).created_at
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
             Toast.makeText(
@@ -76,7 +78,7 @@ class PropertyOwenerTableAdapter(
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        return list.size
     }
 
     // this method will handle the onclick options click

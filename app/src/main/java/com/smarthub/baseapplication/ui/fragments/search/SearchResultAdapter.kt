@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchResultItemBinding
-import com.smarthub.baseapplication.model.search.SearchList
-import com.smarthub.baseapplication.model.search.SearchListItem
+import com.smarthub.baseapplication.model.search.*
 import com.smarthub.baseapplication.utils.AppLogger
 
 class SearchResultAdapter(var context: Context?,var listener : SearchResultListener) : RecyclerView.Adapter<SearchResultAdapter.ViewHold>() {
 
     var list: ArrayList<Any> = ArrayList()
 
-    fun updateList(data: SearchList){
+    fun updateList(data: List<Any>){
         this.list.clear()
         this.list.addAll(data)
 
@@ -53,21 +53,69 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
 
        when(holder){
            is ItemViewHold->{
-               val item  = list[position] as SearchListItem
-               AppLogger.log("name:${ item.name}, id:${item.id}")
-               holder.binding.textName.text = item.name
-               holder.binding.text.text = item.id
-               holder.binding.textLayout.setOnClickListener {
-                   listener.onSearchItemSelected(item)
-                   list.clear()
-                   notifyDataSetChanged()
+               AppLogger.log("item :${Gson().toJson(list[position])}")
+               if (list[position] is SearchListItem) {
+                   val item = list[position] as SearchListItem
+                   holder.binding.textName.text = item.name
+                   holder.binding.text.text = item.id
+                   holder.binding.textLayout.setOnClickListener {
+                       listener.onSearchItemSelected(item)
+                       list.clear()
+                       notifyDataSetChanged()
+                   }
+               }else  if (list[position] is SearchSiteIdItem) {
+                   val item = list[position] as SearchSiteIdItem
+                   holder.binding.textName.text = item.siteID
+                   holder.binding.text.text = item.id
+                   holder.binding.textLayout.setOnClickListener {
+                       listener.onSearchItemSelected(item)
+                       list.clear()
+                       notifyDataSetChanged()
+                   }
+               }else  if (list[position] is SearchSiteNameItem) {
+                   val item = list[position] as SearchSiteNameItem
+                   holder.binding.textName.text = item.siteName
+                   holder.binding.text.text = item.id
+                   holder.binding.textLayout.setOnClickListener {
+                       listener.onSearchItemSelected(item)
+                       list.clear()
+                       notifyDataSetChanged()
+                   }
+               } else  if (list[position] is SearchAliasNameItem) {
+                   val item = list[position] as SearchAliasNameItem
+                   holder.binding.textName.text = item.aliasName
+                   holder.binding.text.text = item.id
+                   holder.binding.textLayout.setOnClickListener {
+                       listener.onSearchItemSelected(item)
+                       list.clear()
+                       notifyDataSetChanged()
+                   }
+               }
+               else  if (list[position] is SearchSiteOpcoName) {
+                   val item = list[position] as SearchSiteOpcoName
+                   holder.binding.textName.text = item.OpcoName
+                   holder.binding.text.text = item.id
+                   holder.binding.textLayout.setOnClickListener {
+                       listener.onSearchItemSelected(item)
+                       list.clear()
+                       notifyDataSetChanged()
+                   }
+               }else  if (list[position] is SearchSiteOpcoSiteId) {
+                   val item = list[position] as SearchSiteOpcoSiteId
+                   holder.binding.textName.text = item.OpcoSiteID
+                   holder.binding.text.text = item.id
+                   holder.binding.textLayout.setOnClickListener {
+                       listener.onSearchItemSelected(item)
+                       list.clear()
+                       notifyDataSetChanged()
+                   }
                }
            }
        }
     }
 
     interface SearchResultListener{
-        fun onSearchItemSelected(item : SearchListItem?)
+        fun onSearchItemSelected(item : Any?)
     }
 
 

@@ -10,9 +10,10 @@ import com.smarthub.baseapplication.databinding.SearchCategoryListItemBinding
 
 class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryListener) : RecyclerView.Adapter<SearchCategoryAdapter.ViewHold>() {
 
-    var currentPos = -1
+    var currentPos = 1
     var hashMap = HashMap<String,String>()
     private var list: ArrayList<String> = ArrayList()
+
     init {
         list.add("name")
         list.add("siteID")
@@ -40,7 +41,7 @@ class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryL
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.search_category_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.search_category_list_item, parent, false)
         return ViewHold(view)
     }
 
@@ -49,7 +50,7 @@ class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryL
         holder.binding.checkText.setCompoundDrawablesWithIntrinsicBounds(0,0,
             if (currentPos == position) R.drawable.btn_select_checked else R.drawable.btn_lang_unchecked,0)
         holder.binding.checkText.setOnClickListener {
-            var old = currentPos
+            val old = currentPos
             currentPos = position
             listener.selectedCategory(list[position])
             if (old>=0 && old<list.size)

@@ -93,7 +93,7 @@ class HomeFragment : Fragment(),TaskListener {
         homeViewModel.myTeamTask?.observe(viewLifecycleOwner){
             if (it!=null && it.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
-                list.add("header")
+//                list.add("header")
                 list.addAll(it)
                 adapterList.updateList(list)
                 binding.tastCount.text = it.size.toString()
