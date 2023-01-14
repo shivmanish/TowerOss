@@ -195,32 +195,38 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
             binding.searchCardView.text = item.name?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        } else if (item!=null && item is SearchSiteIdItem){
+        }
+        else if (item!=null && item is SearchSiteIdItem){
             this.item = SearchListItem(item.siteID,item.id)
             binding.searchCardView.text = item.siteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        } else if (item!=null && item is SearchSiteNameItem){
+        }
+        else if (item!=null && item is SearchSiteNameItem){
             this.item = SearchListItem(item.siteName,item.id)
             binding.searchCardView.text = item.siteName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        } else if (item!=null && item is SearchAliasNameItem){
+        }
+        else if (item!=null && item is SearchAliasNameItem){
             this.item = SearchListItem(item.aliasName,item.id)
             binding.searchCardView.text = item.aliasName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        } else if (item!=null && item is SearchSiteOpcoName){
+        }
+        else if (item!=null && item is SearchSiteOpcoName){
             this.item = SearchListItem(item.OpcoName,item.id)
             binding.searchCardView.text = item.OpcoName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        }  else if (item!=null && item is SearchSiteOpcoSiteId){
+        }
+        else if (item!=null && item is SearchSiteOpcoSiteId){
             this.item = SearchListItem(item.OpcoSiteID,item.id)
             binding.searchCardView.text = item.OpcoSiteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
-        } else {
+        }
+        else {
             disableButton()
         }
     }

@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeamTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
 class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
 
@@ -23,8 +24,12 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
     init {
         list.add("Details")
         list.add("Attachments")
-        AssignAcqTeamData=serviceRequestAllData?.AssignACQTeam?.get(0)
-        AssignAcqTeamDetailsData=AssignAcqTeamData?.AssignACQTeamTeam?.get(0)
+        try {
+            AssignAcqTeamData=serviceRequestAllData?.AssignACQTeam?.get(0)
+            AssignAcqTeamDetailsData=AssignAcqTeamData?.AssignACQTeamTeam?.get(0)
+        } catch (e: Exception){
+           AppLogger.log("Error in Assign ACQ fragment ${e.localizedMessage}")
+        }
       }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class DetailsViewHold(itemView: View) : ViewHold(itemView) {

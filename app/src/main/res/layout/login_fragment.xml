@@ -108,13 +108,14 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:padding="@dimen/dp10"
                         android:textColorHint="@color/white"
+                        android:paddingTop="@dimen/dp15"
                         android:textSize="15sp"
                         android:letterSpacing="0.1"
                         android:textColor="#fff"
                         android:maxLines="1"
                         android:id="@+id/user_mail"
                         android:inputType="text"
-
+                        android:textCursorDrawable="@null"
                         android:nextFocusForward="@id/password"
                         android:drawablePadding="@dimen/dp10"
                         android:drawableStart="@drawable/ic_profile_border"
@@ -123,7 +124,6 @@
                         android:gravity="center_vertical"
                         style="@style/CustomTextInputEdit"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp3"
                         android:fontFamily="@font/poppins_regular"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -150,8 +150,6 @@
                     android:id="@+id/password_layout"
                     android:textColorHint="@color/white"
                     style="@style/TextInputLayout"
-                    app:endIconMode="password_toggle"
-                    app:passwordToggleEnabled="false"
                     app:boxStrokeErrorColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -164,11 +162,11 @@
                         android:textColorHint="@color/white"
                         android:textSize="15sp"
                         android:letterSpacing="0.1"
-                        android:textCursorDrawable="@drawable/cursure_color"
                         android:textColor="#fff"
                         android:maxLines="1"
                         android:inputType="text"
                         android:id="@+id/password"
+                        android:textCursorDrawable="@null"
                         android:nextFocusForward="@id/password"
                         android:drawablePadding="@dimen/dp10"
                         android:drawableStart="@drawable/ic_carbon_password"
@@ -184,6 +182,19 @@
                         app:layout_constraintBottom_toTopOf="@+id/email_error"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/password_hide_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp22"
+                    android:scaleX="1.6"
+                    android:scaleY="1.5"
+                    android:src="@drawable/password_eye_close"
+                    app:layout_constraintTop_toTopOf="@+id/password_layout"
+                    app:layout_constraintBottom_toBottomOf="@+id/password_layout"
+                    app:layout_constraintEnd_toEndOf="@+id/password_layout"
+                    />
 
                 <TextView
                     android:text="Password is incorrect"

@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
+import android.provider.Settings.Global.getString
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +31,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
         fun bindData(data : MyTeamTask){
             binding.taskName.text = data.Taskname
             binding.taskDueData.text = data.enddate
-            binding.TaskId.text=data.Taskid
+            binding.TaskId.text=data.workorderid
         }
     }
 
@@ -123,6 +124,12 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             }
             holder.itemView.setOnClickListener {
                 listener.closeTask(item)
+            }
+            if(item.Status=="Closed"){
+                holder.binding.taskClose.text="Task Closed"
+            }
+            else{
+                holder.binding.taskClose.setText(R.string.Close_task)
             }
         }
         if (holder is HeaderViewHold){
