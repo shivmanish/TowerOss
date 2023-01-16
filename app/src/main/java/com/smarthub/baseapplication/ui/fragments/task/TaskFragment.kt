@@ -72,6 +72,12 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             homeViewModel.fetchHomeData()
         }
         homeViewModel.fetchHomeData()
+//        if (requireActivity().intent.hasExtra("isFromHome")){
+//            var isFromHome=requireActivity().intent.getBooleanExtra("isFromHome",false)
+//            if(isFromHome){
+//                binding.homePager.currentItem=1
+//            }
+//        }
     }
 
     private fun mapUIData(data: HomeResponse){

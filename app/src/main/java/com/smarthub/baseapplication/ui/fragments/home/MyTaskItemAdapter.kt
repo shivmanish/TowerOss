@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
+import android.content.Intent
 import android.provider.Settings.Global.getString
 import android.text.Html
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.TaskDetailActivity
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
@@ -124,6 +126,15 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             }
             holder.itemView.setOnClickListener {
                 listener.closeTask(item)
+            }
+            if(item.Status!="Closed" && item.Auto!="true")
+            {
+                holder.binding.taskClose.setOnClickListener {
+                    val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.putExtra("url", "${item.Taskid}")
+                    holder.itemView.context.startActivity(intent)
+                }
             }
             if(item.Status=="Closed"){
                 holder.binding.taskClose.text="Task Closed"
