@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDat
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.CreateNocBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -38,6 +39,11 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         NocCompBinding.customerList.adapter = nocDataAdapter
         NocCompBinding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
+
+        }
+        NocCompBinding.addmoreItems.setOnClickListener(){
+            val dalouge = CreateNocBottomSheet(R.layout.create_noc_site_info_dialoge)
             dalouge.show(childFragmentManager,"")
 
         }
@@ -69,7 +75,6 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 Toast.makeText(requireContext(),"NocAndComp Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
-
         NocCompBinding.swipeLayout.setOnRefreshListener {
             viewmodel.NocAndCompRequestAll(id)
         }

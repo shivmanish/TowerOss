@@ -13,14 +13,12 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
 class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
-
     var currentOpened = -1
     var list: ArrayList<String> = ArrayList()
     private var  AssignAcqTeamData: AssignACQTeam?=null
     private var AssignAcqTeamDetailsData: AssignACQTeamTeam?=null
     var type1="Details"
     var type2="Attachments"
-
     init {
         list.add("Details")
         list.add("Attachments")
@@ -76,7 +74,6 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
 
         return when (viewType) {
@@ -95,7 +92,6 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
             }
         }
     }
-
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position]==type1)
             return 1
@@ -103,7 +99,6 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
             return 2
       else return 0
     }
-
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is DetailsViewHold) {
             holder.binding.imgEdit.setOnClickListener {
@@ -171,7 +166,6 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
         }
 
     }
-
     override fun getItemCount(): Int {
         return list.size
     }
@@ -182,8 +176,6 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
         if (this.recyclerView!=null)
             this.recyclerView?.scrollToPosition(position)
     }
-
-
     interface AssignAcqTeamListItemListner {
         fun attachmentItemClicked()
         fun EditdetailsItemClicked()
