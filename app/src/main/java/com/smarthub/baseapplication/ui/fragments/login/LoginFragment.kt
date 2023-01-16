@@ -78,6 +78,7 @@ class LoginFragment : Fragment() {
             }
 
         })
+
         binding?.passwordHideShow?.setOnClickListener {
             if(binding?.password?.transformationMethod?.equals(PasswordTransformationMethod.getInstance())!!){
                 binding?.password?.transformationMethod= HideReturnsTransformationMethod.getInstance()

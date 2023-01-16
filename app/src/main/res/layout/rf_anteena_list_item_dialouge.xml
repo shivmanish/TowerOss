@@ -67,7 +67,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editAntennaSerialNumber"
                                 android:text="S3058940"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -90,7 +91,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editAntennaMake"
                                 android:text="xxxx"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -114,11 +116,11 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
                                 android:text="xxxx"
-                                style="@style/RowTestItemEdit"
+                                android:id="@+id/spinAntenna"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
-                                android:drawableEnd="@drawable/ic_arrow_down_black"
                                 android:layout_height="wrap_content"/>
                             <View
                                 android:alpha="0.37"
@@ -137,7 +139,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editTechnology"
                                 android:text="3G"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -161,7 +164,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editInstalledHeight"
                                 android:text="50"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -183,10 +187,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinSpaceUsed"
                                 android:text="2U"
-                                android:drawableEnd="@drawable/ic_arrow_down_black"
-                                style="@style/RowTestItemEdit"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                             <View
@@ -207,7 +211,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editTowerPoleID"
                                 android:text="R1"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -229,10 +234,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                 android:id="@+id/spinSectorNumber"
                                 android:text="R1"
-                                style="@style/RowTestItemEdit"
-                                android:drawableEnd="@drawable/ic_arrow_down_black"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                             <View
@@ -253,7 +258,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editAntennaShape"
                                 android:text="Cubic"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -275,7 +281,9 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editAntennaSize"
+
                                 android:text="L -    |    W -    |    H -"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -298,7 +306,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editAntennaWeight"
+
+
                                 android:text="50"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -320,10 +331,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinAntennaType"
                                 android:text="Directional"
-                                style="@style/RowTestItemEdit"
-                                android:drawableEnd="@drawable/ic_arrow_down_black"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                             <View
@@ -344,10 +355,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinAntennaOrientation"
                                 android:text="23.3 deg NE"
-                                style="@style/RowTestItemEdit"
-                                android:drawableEnd="@drawable/ic_arrow_down_black"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                             <View
@@ -367,7 +378,9 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editAntennaTilt"
+
                                 android:text="6 deg down"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -390,7 +403,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editTotalPowerRating"
                                 android:text="1.2"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -412,7 +426,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editFeederCableLength"
                                 android:text="80"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -435,7 +450,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editPowerCableLength"
                                 android:text="80"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -457,7 +473,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editCPRICableLength"
                                 android:text="80"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -480,7 +497,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editGPSCableLength"
                                 android:text="80"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -502,7 +520,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editOwnerCompany"
                                 android:text="CloudExtel"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
@@ -547,7 +566,8 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <EditText
+                                android:id="@+id/editInstallationDate"
                                 android:text="10-Nov-22"
                                 android:drawableEnd="@drawable/icon_date"
                                 style="@style/RowTestItemEdit"
@@ -571,10 +591,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
-                            <TextView
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinOperationalStatus"
                                 android:text="Live"
-                                style="@style/RowTestItemEdit"
-                                android:drawableEnd="@drawable/ic_arrow_down_black"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                             <View
@@ -596,6 +616,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/editRemarks"
                         android:hint="Type Here"
                         android:textSize="15sp"
                         android:layout_margin="@dimen/dp5"
@@ -625,6 +646,7 @@
                         android:textSize="@dimen/dp15"/>
 
                     <TextView
+                        android:id="@+id/update"
                         android:layout_marginLeft="@dimen/dp25"
                         android:background="@drawable/yellow_text_button"
                         android:layout_width="wrap_content"

@@ -11,13 +11,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CreateAlertDialogBinding
 import com.smarthub.baseapplication.databinding.SaAgreementDialogBinding
+import com.smarthub.baseapplication.databinding.SaOwnerPropertyViewDialogBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.alert.adapter.AlertImageAdapter
 import com.smarthub.baseapplication.utils.Utils
 
 
 class SAPropertyOwnerViewBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId)  {
-    lateinit var binding : SaAgreementDialogBinding
+    lateinit var binding : SaOwnerPropertyViewDialogBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,7 +30,7 @@ class SAPropertyOwnerViewBottomSheet (contentLayoutId: Int): BottomSheetDialogFr
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = SaAgreementDialogBinding.inflate(inflater)
+        binding = SaOwnerPropertyViewDialogBinding.inflate(inflater)
 
         return binding.root
     }

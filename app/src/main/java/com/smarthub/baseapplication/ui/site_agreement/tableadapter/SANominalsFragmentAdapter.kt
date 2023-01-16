@@ -10,9 +10,11 @@ import com.smarthub.baseapplication.databinding.SaAgreementsItemViewBinding
 import com.smarthub.baseapplication.databinding.SaAttachmentsBinding
 import com.smarthub.baseapplication.databinding.SaPoInfoViewBinding
 import com.smarthub.baseapplication.databinding.SaPropertyInfoViewBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class SANominalsFragmentAdapter(
     var context: Context,
@@ -196,7 +198,7 @@ class SANominalsFragmentAdapter(
         when (holder) {
             is AgreemetViewHold -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener!!.AgreementEditViewClick()
+                    listener!!.AgreementEditViewClick(siteAgreementsData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -204,7 +206,8 @@ class SANominalsFragmentAdapter(
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
-                } else {
+                }
+                else {
                     holder.binding.collapsingLayout.tag = false
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
@@ -213,11 +216,15 @@ class SANominalsFragmentAdapter(
                     holder.binding.imgEdit.visibility = View.GONE
                 }
 
+                AppPreferences.getInstance().setDropDown(
+                    holder.binding.textRegistrationNumber,
+                    DropDowns.RegistrationNumber.name, siteAgreementsData?.RegistrationNumber
+                )
+                AppPreferences.getInstance().setDropDown(
+                    holder.binding.textRegistrationNumber,
+                    DropDowns.BookingCostCentre.name, siteAgreementsData?.BookingCostCentre
+                )
 
-                /*    AppPreferences.getInstance().setDropDown(
-                        holder.binding.textRegistrationNumber,
-                        DropDowns.RagistrationsNo.name, siteAgreementsData?.RegistrationNumber
-                    )
                     AppPreferences.getInstance().setDropDown(
                         holder.binding.textBookingCostCentre,
                         DropDowns.BookingCostCentre.name, siteAgreementsData?.BookingCostCentre
@@ -234,10 +241,7 @@ class SANominalsFragmentAdapter(
                         holder.binding.textEBBillLimit,
                         DropDowns.EBBillLimit.name, siteAgreementsData?.EBBillLimit
                     )
-                    AppPreferences.getInstance().setDropDown(
-                        holder.binding.textEBBillLimit,
-                        DropDowns.EBBillLimit.name, siteAgreementsData?.EBBillLimit
-                    )
+
                        AppPreferences.getInstance().setDropDown(
                         holder.binding.textPropertyOwnership,
                         DropDowns.PropertyOwnership.name, siteAgreementsData?.PropertyOwnership
@@ -246,7 +250,6 @@ class SANominalsFragmentAdapter(
                         holder.binding.textPropertyAcquired,
                         DropDowns.PropertyAcquired.name, siteAgreementsData?.PropertyAcquired
                     )
-    */
                 holder.binding.txtTermLease.text = siteAgreementsData?.AgreementType
 /*
                holder.binding.textRegistrationNumber.setText(siteAgreementsData?.RegistrationNumber)
@@ -265,10 +268,7 @@ class SANominalsFragmentAdapter(
                 holder.binding.txtLastEscalationDate.text = siteAgreementsData?.LastescalationDate
                 holder.binding.txtLockPeriod.text = siteAgreementsData?.LockInPeriod
                 holder.binding.txtOnetimeAmount.text = siteAgreementsData?.OnetimeAmount
-/*
-               holder.binding.textRentPaymentFrequency.setText(siteAgreementsData?.PeriodicRentPayableAmount)
-*/
-                holder.binding.textPropertyOwnership.text = siteAgreementsData?.RentStartDate
+               holder.binding.textPropertyOwnership.text = siteAgreementsData?.RentStartDate
                 holder.binding.textPropertyAcquired.text = siteAgreementsData?.PropertyAcquired
                 holder.binding.textPropertyOwnership.text = siteAgreementsData?.PropertyOwnership
                 holder.binding.textRegistrationDate.text = siteAgreementsData?.RegistrationDate

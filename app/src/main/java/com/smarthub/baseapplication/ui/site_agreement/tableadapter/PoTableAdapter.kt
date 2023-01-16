@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoTableItemRowBinding
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.PODetail
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionPayment
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 
 import com.smarthub.baseapplication.utils.AppLogger
 
@@ -113,7 +113,7 @@ class PoTableAdapter(
     interface PoInfoListListener {
         fun editClicked(position: Int)
         fun viewClicked(position: Int)
-        fun AgreementEditViewClick()
+        fun AgreementEditViewClick(siteAgreementsData: SiteacquisitionAgreement?)
         fun attachmentItemClicked()
 
     }

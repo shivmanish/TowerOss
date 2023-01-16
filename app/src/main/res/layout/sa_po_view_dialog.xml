@@ -66,15 +66,17 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Item Description"
+                            android:text="Item"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editItemCode"
                             android:text="..qweg"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
@@ -86,11 +88,14 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editVendorName"
+
                             android:text="Vodafone Idea Ltd."
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -103,11 +108,14 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editVendorCode"
                             android:text="12346"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
@@ -119,11 +127,13 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editPONumber"
                             android:text="213"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -136,11 +146,14 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editPODate"
                             android:text="12-Nov-22"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
+                            android:drawableEnd="@drawable/calender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
@@ -152,11 +165,13 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editPOLine"
                             android:text="8924786"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -169,11 +184,14 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editPOQty"
                             android:text="5"
-                            style="@style/RowTestItemEdit"
+
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
@@ -185,11 +203,13 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editPORate"
                             android:text="1200"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -202,17 +222,18 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/editPOAmount"
                             android:text="1200"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
+                            android:drawableEnd="@drawable/rupee_symbol"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
+
                     </LinearLayout>
 
 
                 </GridLayout>
-
-                <include layout="@layout/layout_img_attachment"/>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

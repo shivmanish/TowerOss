@@ -65,11 +65,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Payment Type"
+                            android:text="Payee Name"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
+                            android:id="@+id/editPayName"
                             android:text="Appliction Fee"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -87,38 +88,15 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="App No."
+                            android:text="Acc No."
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:text="RD45"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
+                            android:id="@+id/editAcc"
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="13-Dec-22"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/calender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -134,12 +112,39 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Amout(RS)"
+                            android:text="Bank"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="2000"
+                            android:id="@+id/editBank"
+                            android:text="RD45"
+
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Branch"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/editBranch"
+                            android:text="ICIC"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -155,7 +160,6 @@
 
                 </GridLayout>
 
-                <include layout="@layout/layout_img_attachment"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

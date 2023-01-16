@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/dp30" />
+
     <LinearLayout
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical" >
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/collapse_card_bg"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/collapse_card_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:layout_constraintTop_toTopOf="parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/collapsing_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp50">
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/icon_layout"
                     android:layout_width="0dp"
-                    android:orientation="horizontal"
+                    android:layout_height="0dp"
                     android:gravity="end"
-                    app:layout_constraintStart_toEndOf="@+id/item_title"
-                    app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_height="0dp">
+                    app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                    app:layout_constraintStart_toEndOf="@+id/item_title"
+                    app:layout_constraintTop_toTopOf="parent">
+
                     <ImageView
-                        app:tint="@color/black"
-                        android:visibility="visible"
                         android:id="@+id/img_edit"
+                        android:layout_width="@dimen/dp58"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
                         android:paddingStart="@dimen/dp20"
                         android:paddingEnd="@dimen/dp20"
-                        android:layout_gravity="center_vertical"
                         android:src="@drawable/edit_ico_black"
-                        android:layout_width="@dimen/dp58"
-                        android:layout_height="match_parent"/>
+                        android:visibility="visible"
+                        app:tint="@color/black" />
                 </LinearLayout>
 
                 <ImageView
@@ -74,7 +79,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:paddingStart="@dimen/dp20"
-
                     android:paddingTop="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10"
                     android:text="Link Name"
@@ -92,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:background="@drawable/circle"
-                    android:padding="@dimen/dp5"
                     android:backgroundTint="@color/white"
+                    android:padding="@dimen/dp5"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -112,95 +116,97 @@
         </LinearLayout>
 
     </LinearLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintTop_toBottomOf="@+id/button"
 
-        android:layout_margin="5dp"
-        android:visibility="gone"
+    <RelativeLayout
         android:id="@+id/item_collapse"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="@dimen/dp150"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/button">
 
-            android:weightSum="1"
-
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtOngoing"
-                    android:padding="@dimen/dp10"
-                    android:drawableLeft="@drawable/selected_check"
-                    android:fontFamily="serif-monospace"
-                    style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="  On-Going:" />
-                <TextView
-                    android:minWidth="100dp"
-                    android:id="@+id/txtCompleted"
-                    android:layout_below="@+id/txtOngoing"
-                    android:padding="@dimen/dp10"
-                    android:drawableLeft="@drawable/ic_circleblue"
-                    android:fontFamily="serif-monospace"
-                    style="@style/RowTextItemInfo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="  Complete" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/txtOngoing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif-monospace"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dp10"
+                        android:button="@drawable/radio_background"
+                        android:text="On-Going:" />
+
+                    <RadioButton
+                        android:id="@+id/txtCompleted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif-monospace"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dp10"
+                        android:button="@drawable/radio_background"
+                        android:text="Complete" />
+
+                    <RadioButton
+                        android:button="@drawable/radio_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif-monospace"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dp10"
+                        android:text="Planned" />
+
+                </RadioGroup>
+
                 <LinearLayout
-                    android:layout_toRightOf="@+id/txtCompleted"
-                    android:layout_width="wrap_content"
-                    android:background="#DDE7FA"
-
                     style="@style/ColumnItemInfo"
-                    android:padding="@dimen/dp10"
-                    android:layout_height="wrap_content">
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_toRightOf="@+id/txtCompleted"
+                    android:layout_weight="1"
+                    android:background="#DDE7FA"
+                    android:padding="@dimen/dp10">
 
                     <TextView
-                        android:text="Date &amp; Time"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:background="#DDE7FA"
-                        android:text="12-Nov-22"
+                        android:layout_height="wrap_content"
+                        android:text="Date &amp; Time" />
+
+                    <TextView
+                        android:id="@+id/date"
                         style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#DDE7FA"
                         android:drawableEnd="@drawable/calender"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="12-Nov-22" />
+
                     <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:alpha="0.37"
+                        android:background="#263238" />
                 </LinearLayout>
-                <TextView
-                    android:layout_below="@+id/txtCompleted"
-                    android:padding="@dimen/dp10"
-                    android:drawableLeft="@drawable/selected_check"
-                    android:fontFamily="serif-monospace"
-                    style="@style/RowTextItemInfo"
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="  Planned" />
-
-            </RelativeLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

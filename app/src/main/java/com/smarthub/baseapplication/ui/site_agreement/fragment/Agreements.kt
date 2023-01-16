@@ -46,14 +46,13 @@ class Agreements(val data: ServiceRequestAllDataItem? = null, id: String? = null
     }
 
     override fun addNewClicked(adapter: AtpCardListAdapter) {
-        TODO("Not yet implemented")
+
     }
 
     override fun itemClicked() {
-        TODO("Not yet implemented")
     }
 
     override fun cardClicked() {
-        TODO("Not yet implemented")
+
     }
 }

@@ -39,6 +39,7 @@ import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignMo
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -47,6 +48,10 @@ import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.request.GetUserList;
+import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel;
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
+import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
@@ -194,6 +199,9 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<BasicInfoDialougeResponse> updateSiteInfo(@Body BasicinfoModel basicinfoModel);
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<SiteacquisitionAgreement> updateAgreementSiteInfo(@Body SiteacquisitionAgreement siteacquisitionAgreement);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
@@ -226,6 +234,14 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.WORKFLOW_DATA_URL)
     Call<TaskDataList> getTaskDataById(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponse> sendAlert(@Body SendAlertModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<UserDataResponse> getuserlist(@Body GetUserList data);
 
 
 }
