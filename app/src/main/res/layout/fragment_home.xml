@@ -28,6 +28,8 @@
                 <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp65"/>
+
+                <!--        collapsable part    -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/toolbar"
                     app:layout_constraintTop_toTopOf="parent"
@@ -487,6 +489,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+<!--        non collapsable part    -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
