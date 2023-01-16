@@ -131,6 +131,14 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             else{
                 holder.binding.taskClose.setText(R.string.Close_task)
             }
+            if(item.Auto=="true"){
+                holder.binding.editTaskItem.text="A"
+                holder.binding.btnEditCard.visibility=View.GONE
+            }
+            else{
+                holder.binding.editTaskItem.text="M"
+                holder.binding.btnEditCard.visibility=View.VISIBLE
+            }
         }
         if (holder is HeaderViewHold){
             holder.bindData()

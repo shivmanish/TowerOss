@@ -142,7 +142,7 @@
                     android:padding="5dp"
                     android:layout_gravity="center"
                     android:id="@+id/edit_task_item"
-                    android:layout_width="@dimen/dp24"
+                    android:layout_width="@dimen/dp25"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_height="@dimen/dp24"
