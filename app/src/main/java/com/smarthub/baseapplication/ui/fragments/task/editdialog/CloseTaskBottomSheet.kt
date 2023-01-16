@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CloseTaskBottomSheetBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class CloseTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask,var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
@@ -19,11 +20,14 @@ class CloseTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask,var viewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         basicinfoModel = BasicinfoModel()
         binding = CloseTaskBottomSheetBinding.bind(view)
 
         binding.icMenuClose.setOnClickListener {
+            dismiss()
+        }
+        binding.closeTaskBtn.setOnClickListener {
             dismiss()
         }
     }

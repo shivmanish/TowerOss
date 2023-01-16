@@ -121,7 +121,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     }
 
     override fun closeTask(task: MyTeamTask) {
-        val bottomSheetDialogFragment = CloseTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
+        val bottomSheetDialogFragment = CloseTaskBottomSheet(R.layout.close_task_bottom_sheet, task,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 

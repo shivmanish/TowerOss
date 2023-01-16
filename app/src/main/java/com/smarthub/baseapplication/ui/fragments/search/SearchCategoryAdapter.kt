@@ -10,26 +10,28 @@ import com.smarthub.baseapplication.databinding.SearchCategoryListItemBinding
 
 class SearchCategoryAdapter(var context: Context?,var listener : SearchCategoryListener) : RecyclerView.Adapter<SearchCategoryAdapter.ViewHold>() {
 
-    var currentPos = 1
+    var currentPos = 0
     var hashMap = HashMap<String,String>()
     private var list: ArrayList<String> = ArrayList()
 
     init {
-        list.add("name")
         list.add("siteID")
         list.add("siteName")
         list.add("aliasName")
-        list.add("OpcoName")
         list.add("OpcoSiteID")
+        list.add("OpcoSapID")
+        list.add("OpcoName")
+//        list.add("name")
         list.add("LatLongRadius")
 
-        hashMap["name"] = "Name"
+//        hashMap["name"] = "Name"
         hashMap["siteID"] = "Site UID"
         hashMap["siteName"] = "Site Name"
-        hashMap["aliasName"] = "Alias Name"
+        hashMap["aliasName"] = "Site Alternate Name"
         hashMap["OpcoName"] = "OPCO Site Name"
         hashMap["OpcoSiteID"] = "OPCO UID"
-        hashMap["LatLongRadius"] = ""
+        hashMap["OpcoSapID"] = "OPCO SAP ID"
+        hashMap["LatLongRadius"] = "Lat Long and Radius"
     }
 
     override fun getItemCount(): Int {

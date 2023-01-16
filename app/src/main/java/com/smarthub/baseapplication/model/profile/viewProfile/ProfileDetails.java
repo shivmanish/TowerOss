@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.network;
+package com.smarthub.baseapplication.model.profile.viewProfile;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -62,7 +62,6 @@ public class ProfileDetails {
     @SerializedName("communicationAddress")
     @Expose
     private HashMap<String,String> communicationAddress;
-
 
 
     public String getId() {

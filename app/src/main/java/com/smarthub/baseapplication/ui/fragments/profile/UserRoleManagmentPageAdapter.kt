@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProfileRolePermissionFragBinding
 
-class UserRoleManagmentPageAdapter () : RecyclerView.Adapter<UserRoleManagmentPageAdapter.ViewHolder>() {
-    var list : ArrayList<String> = ArrayList()
+class UserRoleManagmentPageAdapter (var list : ArrayList<String>?) : RecyclerView.Adapter<UserRoleManagmentPageAdapter.ViewHolder>() {
+
 
 
     open class ViewHolder(var itemView: View): RecyclerView.ViewHolder(itemView){
@@ -26,13 +26,11 @@ class UserRoleManagmentPageAdapter () : RecyclerView.Adapter<UserRoleManagmentPa
 
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-
-
+        holder.binding.fileName.text=list?.get(position)
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return list?.size!!
     }
 
 

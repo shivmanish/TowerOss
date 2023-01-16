@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
+import android.provider.Settings.Global.getString
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import com.smarthub.baseapplication.utils.Utils
 import java.util.*
 
 
-class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
+class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var overDue:Int ?=0
@@ -30,7 +31,7 @@ class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTas
         fun bindData(data : MyTeamTask){
             binding.taskName.text = data.Taskname
             binding.taskDueData.text = data.enddate
-            binding.TaskId.text=data.Taskid
+            binding.TaskId.text=data.workorderid
         }
     }
 
@@ -49,7 +50,10 @@ class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTas
     }
 
     fun updateList(list : List<Any>){
-        this.list = ArrayList(list)
+        if(token=="home_navigation")
+        this.list = ArrayList(list.subList(0,5))
+        else
+            this.list = ArrayList(list)
         overDue=0
         nowDue=0
         nextDue=0
@@ -118,8 +122,14 @@ class MyTaskItemAdapter(var listener: TaskListener) : RecyclerView.Adapter<MyTas
                     holder.binding.IndicatorLine.setBackgroundResource(R.color.blue)
                 }
             }
-            holder.binding.taskClose.setOnClickListener {
+            holder.itemView.setOnClickListener {
                 listener.closeTask(item)
+            }
+            if(item.Status=="Closed"){
+                holder.binding.taskClose.text="Task Closed"
+            }
+            else{
+                holder.binding.taskClose.setText(R.string.Close_task)
             }
         }
         if (holder is HeaderViewHold){

@@ -67,6 +67,7 @@
         android:layout_marginStart="@dimen/dp10"
         android:layout_marginEnd="@dimen/dp10"
         android:drawableTint="@color/white"
+        android:backgroundTint="@color/textGray"
         android:background="@drawable/bg_search_box"
         android:drawableEnd="@drawable/search"/>
 

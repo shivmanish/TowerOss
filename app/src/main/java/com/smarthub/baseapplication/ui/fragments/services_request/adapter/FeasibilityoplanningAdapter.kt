@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.model.siteInfo.SafetyAndAcces
 import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.AppLogger
 
 class FeasibilityoplanningAdapter(
     var context: Context,
@@ -189,17 +190,11 @@ class FeasibilityoplanningAdapter(
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if (data != null) {
-
-                }
                 if (fieldData != null && fieldData?.item!!.size > 0 && fieldData?.item!![0].Basicinfo.isNotEmpty()) {
                     val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(
-                        0
-                    ) != null
-                ) {
+                try {
                     serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.SiteDetails?.get(0).let {
                         holder.binding.editSiteId.text = it?.OpcoSiteID
                         holder.binding.editOPCOSiteName.text = it?.OpcoSiteName
@@ -218,6 +213,8 @@ class FeasibilityoplanningAdapter(
                         holder.binding.existingTentant.text = it?.ExistingTenants
                         holder.binding.address.text = it?.Address
                     }
+                }catch (e:Exception){
+                    AppLogger.log("Error in Feasibility planing Adapter ${e.localizedMessage}")
                 }
             }
             is ViewHold2 -> {
@@ -250,8 +247,7 @@ class FeasibilityoplanningAdapter(
                     val siteBasicinfo: SiteBasicinfo = fieldData?.item!![0].Basicinfo[0]
 
                 }
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.RadioAntenna!!.isNotEmpty()
-                ) {
+                try{
                     serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.RadioAntenna?.get(0).let {
                         holder.binding.editTechnology.text = it?.RFTechnology
                         holder.binding.editRRUCount.text = it?.RRUCount
@@ -265,6 +261,8 @@ class FeasibilityoplanningAdapter(
                         holder.binding.editAntennaSpace.text = it?.AntennaSpace
                         holder.binding.editTimeline.text = it?.Timeline
                     }
+                }catch (e:Exception){
+                    AppLogger.log("Error in Feasibility planing Adapter ${e.localizedMessage}")
                 }
             }
             is ViewHold3 -> {
@@ -293,8 +291,7 @@ class FeasibilityoplanningAdapter(
 
                 }
 
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.BackHaul?.isNotEmpty() == true
-                ) {
+                try {
                     serviceRequestAllData!!.FeasibilityPlanning!![0].BackHaul[0].Microwave[0].let {
                         holder.binding.editAntennaCount.text = it.AntennaCount
                         holder.binding.editMaxheight.text = it.MaxHeight
@@ -319,6 +316,8 @@ class FeasibilityoplanningAdapter(
                         holder.binding.editRemark1.text = it.Remark
                     }
 
+                }catch (e:Exception){
+                    AppLogger.log("Error in Feasibility planing Adapter ${e.localizedMessage}")
                 }
 
 
@@ -348,10 +347,7 @@ class FeasibilityoplanningAdapter(
                 if (fieldData != null && fieldData?.item!!.size > 0 && fieldData?.item!![0].SafetyAndAccess.isNotEmpty()) {
 //                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
                 }
-                if (serviceRequestAllData != null && serviceRequestAllData!!.FeasibilityPlanning != null && serviceRequestAllData!!.FeasibilityPlanning?.get(
-                        0
-                    )?.PowerAndMCB!!.isNotEmpty()
-                ) {
+                try {
                     serviceRequestAllData!!.FeasibilityPlanning!![0].PowerAndMCB[0].Power.get(0).let {
                         holder.binding.editPowerType.text = it.PowerType
                         holder.binding.editVoltage.text = it.Voltage
@@ -374,6 +370,8 @@ class FeasibilityoplanningAdapter(
                         holder.binding.editRemark.text = it.Remark
                     }
 
+                }catch (e:Exception){
+                    AppLogger.log("Error in Feasibility planing Adapter ${e.localizedMessage}")
                 }
 
             }

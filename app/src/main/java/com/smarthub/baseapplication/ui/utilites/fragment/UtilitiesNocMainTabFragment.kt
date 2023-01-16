@@ -95,12 +95,20 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun clickedItem(position:Int) {
         if(position==0 && isDataLoaded) { // SMPS
             SMPSDetailsActivity.id=id
-            SMPSDetailsActivity.utilitySmpsData=utilitydatalist?.get(0)?.UtilitieSmps as ArrayList<UtilitieSmp>
+            try {
+                SMPSDetailsActivity.utilitySmpsData=utilitydatalist?.get(0)?.UtilitieSmps as ArrayList<UtilitieSmp>
+            }catch (e:Exception){
+                AppLogger.log("Error in Utility Main Tab fragment")
+            }
             requireActivity().startActivity(Intent(requireContext(), SMPSDetailsActivity::class.java))
         }
         else if(position==1) { //Battery bank
             BatteryBankDetailsActivity.id=id
-            BatteryBankDetailsActivity.utilityBatteryBankData=utilitydatalist?.get(0)?.BatteryBank as ArrayList<BatteryBank>
+            try {
+                BatteryBankDetailsActivity.utilityBatteryBankData=utilitydatalist?.get(0)?.BatteryBank as ArrayList<BatteryBank>
+            }catch (e:Exception){
+                AppLogger.log("Error in Utility Main Tab fragment")
+            }
             BatteryBankDetailsActivity.position=position
             requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
         }
@@ -109,7 +117,11 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
         }
         else if(position==3) { //AC
             BatteryBankDetailsActivity.id=id
-            BatteryBankDetailsActivity.utilityAcData=utilitydatalist?.get(0)?.AC as ArrayList<AcUtility>
+            try {
+                BatteryBankDetailsActivity.utilityAcData=utilitydatalist?.get(0)?.AC as ArrayList<AcUtility>
+            }catch (e:Exception){
+                AppLogger.log("Error in Utility Main Tab fragment")
+            }
             BatteryBankDetailsActivity.position=position
             requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
         }
@@ -121,7 +133,11 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
 
         }else{
             SMPSDetailsActivity.id=id
-            SMPSDetailsActivity.utilitySmpsData=utilitydatalist?.get(0)?.UtilitieSmps as ArrayList<UtilitieSmp>
+            try {
+                SMPSDetailsActivity.utilitySmpsData=utilitydatalist?.get(0)?.UtilitieSmps as ArrayList<UtilitieSmp>
+            }catch (e:Exception){
+                AppLogger.log("Error in Utility Main Tab fragment")
+            }
             requireActivity().startActivity(Intent(requireContext(), SMPSDetailsActivity::class.java))
         }
     }

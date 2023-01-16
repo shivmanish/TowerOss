@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BoundryDetailsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PoDetailsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PropertyOwnerTableAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
 class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
 
@@ -37,8 +38,13 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
         list.add("Property Owner's Details")
         list.add("PO Details")
         list.add("Attachments")
-        AcquisitionSurveyData=serviceRequestAllData?.ASAcquitionSurvey?.get(0)
-        BuildingDetailData=AcquisitionSurveyData?.ASAquisitionSurveyBuildingDetail?.get(0)
+        try {
+            AcquisitionSurveyData=serviceRequestAllData?.ASAcquitionSurvey?.get(0)
+            BuildingDetailData=AcquisitionSurveyData?.ASAquisitionSurveyBuildingDetail?.get(0)
+        }catch (e: Exception){
+            AppLogger.log("Error in Acquisition Survey fragment ${e.localizedMessage}")
+        }
+
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     class BuildingDetailsViewHold(itemView: View) : ViewHold(itemView) {
@@ -274,7 +280,11 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.BoundryTableList.adapter=BoundryDetailsTableAdapter(context,listener,AcquisitionSurveyData?.ASBoundryStructureDetail!!)
+                try {
+                    holder.BoundryTableList.adapter=BoundryDetailsTableAdapter(context,listener,AcquisitionSurveyData?.ASBoundryStructureDetail!!)
+                }catch (e: Exception){
+                    AppLogger.log("Error in Acquisition Survey fragment ${e.localizedMessage}")
+                }
             }
             is PropertyOwnerDetailsViewHold->{
                 if (currentOpened == position) {
@@ -296,7 +306,11 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.PropertyOwnerTableList.adapter=PropertyOwnerTableAdapter(context,listener,AcquisitionSurveyData?.ASPropertyOwnerDetail!!)
+                try {
+                    holder.PropertyOwnerTableList.adapter=PropertyOwnerTableAdapter(context,listener,AcquisitionSurveyData?.ASPropertyOwnerDetail!!)
+                }catch (e: Exception){
+                    AppLogger.log("Error in Acquisition Survey fragment ${e.localizedMessage}")
+                }
             }
             is PoDetailsViewHold->{
                 if (currentOpened == position) {

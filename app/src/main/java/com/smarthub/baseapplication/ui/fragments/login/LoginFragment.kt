@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
-import androidx.fragment.app.Fragment
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
@@ -41,7 +42,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        binding?.password?.transformationMethod= HideReturnsTransformationMethod.getInstance()
+        binding?.password?.transformationMethod= PasswordTransformationMethod.getInstance()
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             loginValidation()
@@ -77,6 +78,18 @@ class LoginFragment : Fragment() {
             }
 
         })
+
+        binding?.passwordHideShow?.setOnClickListener {
+            if(binding?.password?.transformationMethod?.equals(PasswordTransformationMethod.getInstance())!!){
+                binding?.password?.transformationMethod= HideReturnsTransformationMethod.getInstance()
+                binding?.passwordHideShow?.setImageResource(R.drawable.password_eye_open)
+            }
+            else
+            {
+                binding?.password?.transformationMethod= PasswordTransformationMethod.getInstance()
+                binding?.passwordHideShow?.setImageResource(R.drawable.password_eye_close)
+            }
+        }
     }
 
     private fun loginValidation(){

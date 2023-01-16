@@ -62,6 +62,9 @@ class HomeFragment : Fragment(),TaskListener {
         binding.searchBoxLayout.setOnClickListener {
             (requireActivity() as DashboardActivity).openSearchMenu()
         }
+        binding.seeAllTask.setOnClickListener {
+            (requireActivity() as DashboardActivity).openTaskMenu()
+        }
 
         if (homeViewModel.homeData()?.hasActiveObservers() == true)
             homeViewModel.homeData()?.removeObservers(viewLifecycleOwner)
@@ -82,7 +85,7 @@ class HomeFragment : Fragment(),TaskListener {
         homeViewModel.fetchSiteDropDownData()
 
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter(this@HomeFragment)
+        adapterList = MyTaskItemAdapter(this@HomeFragment,"home_navigation")
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")

@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
 import java.io.IOException
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -240,6 +241,37 @@ object Utils {
             AppLogger.log("compareDate error :${e.localizedMessage}")
         }
         return 0
+    }
+    fun getShortForm(currentDate: String?,format:String): String? {
+        var dateInString = currentDate
+        if(dateInString?.contains(" ")==true)
+            dateInString=dateInString.split(" ")[0]
+        val sdf = SimpleDateFormat(format)
+        val c = Calendar.getInstance()
+        try {
+            c.time = sdf.parse(dateInString)
+        } catch (e:java.lang.Exception){
+            AppLogger.log("getShortForm error :${e.localizedMessage}")
+        }
+        val resultdate = Date(c.timeInMillis)
+        dateInString = sdf.format(resultdate)
+        return dateInString
+    }
+    fun getFormatedDate(d : String,format:String) : String{
+        var date=d
+        if(date.contains(" "))
+            date=date.split(" ")[0]
+        AppLogger.log("getformatedDate:$date")
+        try {
+            val sdf = SimpleDateFormat(format)
+            val secondDate: Date = sdf.parse(date)
+
+            date=secondDate.toString()
+            AppLogger.log("date :$date")
+        }catch (e:java.lang.Exception){
+            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return date
     }
 
     fun isValid(value: String):Boolean {

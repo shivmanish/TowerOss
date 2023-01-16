@@ -1,14 +1,13 @@
 package com.smarthub.baseapplication.network.repo;
 
 import com.google.gson.JsonObject;
-import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
-import com.smarthub.baseapplication.model.profile.UserProfileGet;
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate;
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
 import com.smarthub.baseapplication.network.APIClient;
-import com.smarthub.baseapplication.network.ProfileDetails;
+import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails;
 import com.smarthub.baseapplication.network.ProfileUpdate;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppLogger;
@@ -24,7 +23,7 @@ public class ProfileRepo {
     private final APIClient apiClient;
     private static ProfileRepo sInstance;
     private static final Object LOCK = new Object();
-    private SingleLiveEvent<Resource<List<ProfileDetails>>> profileResponse;
+    private SingleLiveEvent<Resource<List<ProfileData>>> profileResponse;
     private SingleLiveEvent<Resource<ProfileUpdate>> profileUpdate;
 
     public static ProfileRepo getInstance(APIClient apiClient) {
@@ -42,7 +41,7 @@ public class ProfileRepo {
         profileUpdate = new SingleLiveEvent<>();
     }
 
-    public SingleLiveEvent<Resource<List<ProfileDetails>>> getProfileResponse() {
+    public SingleLiveEvent<Resource<List<ProfileData>>> getProfileResponse() {
         return profileResponse;
     }
 
@@ -53,9 +52,9 @@ public class ProfileRepo {
     public void getProfileData() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("get","");
-        apiClient.getProfile(jsonObject).enqueue(new Callback<List<ProfileDetails>>() {
+        apiClient.getProfile(jsonObject).enqueue(new Callback<List<ProfileData>>() {
             @Override
-            public void onResponse(Call<List<ProfileDetails>> call, Response<List<ProfileDetails>> response) {
+            public void onResponse(Call<List<ProfileData>> call, Response<List<ProfileData>> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -66,11 +65,11 @@ public class ProfileRepo {
             }
 
             @Override
-            public void onFailure(Call<List<ProfileDetails>> call, Throwable t) {
+            public void onFailure(Call<List<ProfileData>> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<List<ProfileDetails>> response) {
+            private void reportSuccessResponse(Response<List<ProfileData>> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());

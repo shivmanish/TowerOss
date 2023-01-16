@@ -1,14 +1,18 @@
 package com.smarthub.baseapplication.ui.fragments.profile
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProfileHistoryBinding
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
+import com.smarthub.baseapplication.utils.AppLogger
 
 
-class UserRoleFragAdapter() : RecyclerView.Adapter<UserRoleFragAdapter.ViewHolder>() {
+class UserRoleFragAdapter(var contecxt:Context,var profiledata: ProfileData?) : RecyclerView.Adapter<UserRoleFragAdapter.ViewHolder>() {
     var list : ArrayList<String> = ArrayList()
     var type1="Roles"
     var type2="Permissions"
@@ -63,12 +67,21 @@ class UserRoleFragAdapter() : RecyclerView.Adapter<UserRoleFragAdapter.ViewHolde
         when(holder){
             is UserRoleViewHolder ->{
                 holder.binding.titelText.text="Roles"
-                holder.binding.list.adapter=UserRoleManagmentPageAdapter()
+                try {
+                    holder.binding.list.adapter=UserRoleManagmentPageAdapter(profiledata?.roles as ArrayList<String>)
+                }catch (e : Exception){
+                    AppLogger.log("Profile role permission view frag Error ${e.localizedMessage}")
+                    Toast.makeText(contecxt,"Profile role permission view frag Error", Toast.LENGTH_LONG).show()
+                }
             }
             is UserPermissionViewHolder ->{
                 holder.binding.titelText.text="Permission"
-                holder.binding.list.adapter=UserRoleManagmentPageAdapter()
-            }
+                try {
+                    holder.binding.list.adapter=UserRoleManagmentPageAdapter(profiledata?.roles as ArrayList<String>)
+                }catch (e : Exception){
+                    AppLogger.log("Profile role permission view frag Error ${e.localizedMessage}")
+                    Toast.makeText(contecxt,"Profile role permission view frag Error", Toast.LENGTH_LONG).show()
+                }            }
 
         }
 

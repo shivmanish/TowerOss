@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityProfileEditBinding
@@ -13,7 +14,8 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate
 import com.smarthub.baseapplication.model.register.Commucationaddess
-import com.smarthub.baseapplication.network.ProfileDetails
+import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
 import com.smarthub.baseapplication.ui.adapter.ProfileListItemAdapter
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.viewmodels.ProfileViewModel
@@ -81,9 +83,9 @@ class EditProfileActivity : BaseActivity() {
         profileViewModel?.getProfileData()
         profileViewModel?.profileResponse?.observe(this) {
             hideLoader()
-            if (it != null && it.data?.get(0)?.data?.isNotEmpty() == true) {
+            if (it != null && it.data?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
-                    AppPreferences.getInstance().saveString("data", it.data[0].data)
+                    AppPreferences.getInstance().saveString("data", Gson().toJson(it.data[0]))
                     uiDataMapping(it.data[0])
                     Log.d("status", "${it.message}")
                     Toast.makeText(this@EditProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
@@ -101,7 +103,7 @@ class EditProfileActivity : BaseActivity() {
 
     }
 
-    private fun uiDataMapping(profileDetails: ProfileDetails){
+    private fun uiDataMapping(profileDetails: ProfileData){
         Log.d("status","UI Data mapping")
         dataBinding?.firstName?.text = profileDetails.first_name.toEditable()
         dataBinding?.lastName?.text =  profileDetails.last_name.toEditable()

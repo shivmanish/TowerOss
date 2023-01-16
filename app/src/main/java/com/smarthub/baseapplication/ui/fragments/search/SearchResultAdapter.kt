@@ -63,7 +63,8 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
                        list.clear()
                        notifyDataSetChanged()
                    }
-               }else  if (list[position] is SearchSiteIdItem) {
+               }
+               else  if (list[position] is SearchSiteIdItem) {
                    val item = list[position] as SearchSiteIdItem
                    holder.binding.textName.text = item.siteID
                    holder.binding.text.text = item.id
@@ -72,7 +73,8 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
                        list.clear()
                        notifyDataSetChanged()
                    }
-               }else  if (list[position] is SearchSiteNameItem) {
+               }
+               else  if (list[position] is SearchSiteNameItem) {
                    val item = list[position] as SearchSiteNameItem
                    holder.binding.textName.text = item.siteName
                    holder.binding.text.text = item.id
@@ -81,7 +83,8 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
                        list.clear()
                        notifyDataSetChanged()
                    }
-               } else  if (list[position] is SearchAliasNameItem) {
+               }
+               else  if (list[position] is SearchAliasNameItem) {
                    val item = list[position] as SearchAliasNameItem
                    holder.binding.textName.text = item.aliasName
                    holder.binding.text.text = item.id
@@ -100,7 +103,8 @@ class SearchResultAdapter(var context: Context?,var listener : SearchResultListe
                        list.clear()
                        notifyDataSetChanged()
                    }
-               }else  if (list[position] is SearchSiteOpcoSiteId) {
+               }
+               else  if (list[position] is SearchSiteOpcoSiteId) {
                    val item = list[position] as SearchSiteOpcoSiteId
                    holder.binding.textName.text = item.OpcoSiteID
                    holder.binding.text.text = item.id

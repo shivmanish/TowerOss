@@ -25,7 +25,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter(listener)
+        adapterList = MyTaskItemAdapter(listener,"task_navigation")
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")
