@@ -39,6 +39,7 @@ import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignMo
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -198,6 +199,9 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<BasicInfoDialougeResponse> updateSiteInfo(@Body BasicinfoModel basicinfoModel);
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<SiteacquisitionAgreement> updateAgreementSiteInfo(@Body SiteacquisitionAgreement siteacquisitionAgreement);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)

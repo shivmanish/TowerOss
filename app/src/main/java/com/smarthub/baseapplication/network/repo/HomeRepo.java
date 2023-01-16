@@ -32,6 +32,7 @@ import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationI
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -83,6 +84,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
+    private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -373,6 +375,43 @@ public class HomeRepo {
                     basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void updateAgreementSiteInfo(SiteacquisitionAgreement siteacquisitionAgreement) {
+        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+        basicInfoUpdate.postValue(Resource.loading(d, 200));
+        apiClient.updateAgreementSiteInfo(siteacquisitionAgreement).enqueue(new Callback<SiteacquisitionAgreement>() {
+            @Override
+            public void onResponse(@NonNull Call<SiteacquisitionAgreement> call, Response<SiteacquisitionAgreement> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SiteacquisitionAgreement> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteacquisitionAgreement> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    updateAgreementInfo.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    updateAgreementInfo.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    updateAgreementInfo.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

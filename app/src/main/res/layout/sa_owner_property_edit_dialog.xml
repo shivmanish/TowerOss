@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:id="@+id/canecl"
-        android:translationZ="@dimen/dp7"
-        android:layout_alignParentRight="true"
-        android:layout_width="@dimen/dp30"
-        android:layout_height="@dimen/dp30"
-        android:src="@drawable/cross_ico"
-        android:padding="@dimen/dp5"
-        android:background="@drawable/drawable_cross_back"/>
+    android:layout_alignParentBottom="true"
+    android:background="@color/transparent">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:id="@+id/constraint"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <ImageView
+            android:id="@+id/canecl"
+            android:translationZ="@dimen/dp7"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:src="@drawable/cross_ico"
+            android:padding="@dimen/dp5"
+            android:background="@drawable/drawable_cross_back"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +48,7 @@
                     android:id="@+id/title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Edit"
+                    android:text="Edit "
                     android:layout_gravity="center"
                     android:textStyle="bold"
                     android:textColor="#3D4E6D"
@@ -52,109 +61,139 @@
                     android:layout_marginTop="@dimen/dp8" />
 
                 <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:columnCount="2"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/dp15"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Payee Name"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Name" />
+
                         <EditText
-                            android:id="@+id/editPayName"
-                            android:text="Appliction Fee"
+                            android:id="@+id/editName"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:hint="Term Lease" />
+
                         <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:id="@+id/item_line"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Acc No."
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="RD45"
-                            android:id="@+id/editAcc"
-
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Bank"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:id="@+id/editBank"
-                            android:text="RD45"
-
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Branch"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Share%" />
+
                         <EditText
-                            android:id="@+id/editBranch"
-                            android:text="ICIC"
+                            android:id="@+id/textshare"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="Share%" />
+
                         <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
                     </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Pan Number" />
+
+                        <EditText
+                            android:id="@+id/editPanNumber"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:maxLines="1"
+                            android:text="Status" />
+
+                        <EditText
+                            android:id="@+id/editStatus"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
+                    </LinearLayout>
+
 
 
 
@@ -197,3 +236,4 @@
 
     </LinearLayout>
 </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

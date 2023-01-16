@@ -27,6 +27,7 @@ import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -222,5 +223,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchDropDownNew() {
         homeRepo?.siteInfoDropDownNew()
+    }
+
+    fun updateSiteInfo(siteAgreementsData: SiteacquisitionAgreement) {
+        homeRepo?.updateAgreementSiteInfo(siteAgreementsData)
     }
 }

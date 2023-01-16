@@ -1,67 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/transparent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/transparent">
+
     <ImageView
         android:id="@+id/canecl"
-        android:translationZ="@dimen/dp6"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp5"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
-        android:src="@drawable/cross_ico"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5"
+        android:background="@drawable/drawable_cross_back"
         android:padding="@dimen/dp5"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/cross_ico"
+        android:translationZ="@dimen/dp6"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/drawable_cross_back"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_bg"
         android:layout_marginTop="@dimen/dp20"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="@drawable/dialog_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:scrollbars="vertical"
             android:layout_height="match_parent"
-            android:requiresFadingEdge="vertical">
-            <LinearLayout android:paddingBottom="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp15"
-                android:orientation="vertical"
+            android:requiresFadingEdge="vertical"
+            android:scrollbars="vertical">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                android:layout_marginBottom="@dimen/dp15"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp10">
 
                 <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:columnCount="2"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Agreement Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Agreement Type" />
+
                         <EditText
                             android:id="@+id/editTermLease"
-                            android:hint="Term Lease"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="Term Lease" />
 
                         <View
                             android:id="@+id/item_line"
@@ -70,21 +76,24 @@
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Registration Number"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Registration Number" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/textRegistrationNumber"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
 
                         <View
@@ -95,584 +104,686 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Registration Date"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Registration Date" />
+
                         <EditText
                             android:id="@+id/textRegistrationDate"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Booking Cost Centre"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Booking Cost Centre" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/textBookingCostCentre"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Agreement Period"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Agreement Period" />
+
                         <EditText
                             android:id="@+id/editAgreemenPeriod"
-                            android:hint="5 Years"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="5 Years" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Lock-in Period"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Lock-in Period" />
+
                         <EditText
                             android:id="@+id/editLockPeriod"
-                            android:hint="2 Years"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="2 Years" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Agreement effective Date"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:drawableRight="@drawable/icon_date"
-
-                            android:id="@+id/editAgreemenDate"
-                            android:hint="27-Jun-22"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dp1"
-                            android:alpha="2"
-                            android:background="@color/view_color" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Agreement Expiry Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:drawableRight="@drawable/icon_date"
-
-                            android:id="@+id/editAgreementExpiryDate"
-                            android:hint="27-Jun-22"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Rent Start Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-
-                            android:drawableRight="@drawable/icon_date"
-                            android:id="@+id/editRentStartDate"
-                            android:hint="27-Jun-22"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dp1"
-                            android:alpha="2"
-                            android:background="@color/view_color" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
+                            android:layout_height="wrap_content"
                             android:maxLines="1"
-                            android:text="Initial Annual Rent Amount"
+                            android:text="Agreement effective Date" />
+
+                        <EditText
+                            android:id="@+id/editAgreemenDate"
+
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:hint="27-Jun-22" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Agreement Expiry Date" />
+
+                        <EditText
+                            android:id="@+id/editAgreementExpiryDate"
+
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:hint="27-Jun-22" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Rent Start Date" />
+
+                        <EditText
+
+                            android:id="@+id/editRentStartDate"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:hint="27-Jun-22" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Initial Annual Rent Amount" />
+
                         <EditText
                             android:id="@+id/editInitialAnnualRentAmount"
-                            android:hint="27-Jun-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="27-Jun-22" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:maxLines="1"
-                            android:text="Rent Payment Frequency"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Rent Payment Frequency" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/textRentPaymentFrequency"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:maxLines="1"
-                            android:text="Periodic Rent Payable Amo..."
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Periodic Rent Payable Amo..." />
+
                         <EditText
                             android:id="@+id/editPeriodicRent"
-                            android:hint="75,000
-"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Rent Escalation"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Rent Escalation" />
+
                         <EditText
                             android:id="@+id/editRentEscalation"
-                            android:hint="10"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="10" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Rent Escalation Period"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Rent Escalation Period" />
+
                         <EditText
                             android:id="@+id/editRentEscalationPeriod"
-                            android:hint="2 year"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="2 year" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Last Escalation Date"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Last Escalation Date" />
+
                         <EditText
                             android:id="@+id/editLastEscalationDate"
-                            android:hint="27-Jun-22"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_date"
+                            android:hint="27-Jun-22" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Last Revised Rent Amount"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Last Revised Rent Amount" />
+
                         <EditText
                             android:id="@+id/editLastRevisedRentAmount"
-                            android:hint="3,00,000"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="3,00,000" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="EB Inclusive in Rental"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="EB Inclusive in Rental" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/editEBInclusiveRental"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="EB Bill Limit"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="EB Bill Limit" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/editEBBillLimit"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="EB Billing Basis"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="EB Billing Basis" />
+
                         <EditText
                             android:id="@+id/textEBBillingBasis"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="EB per unit Rate"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="EB per unit Rate" />
+
                         <EditText
                             android:id="@+id/editEBperunitRate"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:hint="75,000
-"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Property Ownership"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Property Ownership" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/editPropertyOwnership"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Property Acquired"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Property Acquired" />
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/editPropertyAcquired"
-                            style="@style/RowTestItemEdit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:text="On-Air" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Onetime Amount"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Onetime Amount" />
+
                         <EditText
                             android:id="@+id/editOnetimeAmount"
-                            android:hint="75,000
-"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Security Deposit Amount"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+
+                            android:maxLines="1"
+                            android:text="Security Deposit Amount" />
+
                         <EditText
                             android:id="@+id/editAmount"
-                            android:hint="75,000
-"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Rooftop acquired Area"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Rooftop acquired Area" />
+
                         <EditText
                             android:id="@+id/editArea"
-                            android:hint="75,000
-"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp1"
                             android:alpha="2"
                             android:background="@color/view_color" />
-                    </LinearLayout>                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
+                    </LinearLayout>
 
-                    <TextView
-                        android:text="Ground acquired Area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editUsableArea"
-                        android:hint="75,000
-"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp1"
-                        android:alpha="2"
-                        android:background="@color/view_color" />
-                </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Ground acquired Area" />
+
+                        <EditText
+                            android:id="@+id/editGroundArea"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="75,000
+" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp1"
+                            android:alpha="2"
+                            android:background="@color/view_color" />
+                    </LinearLayout>
 
                 </GridLayout>
 
-                <LinearLayout android:gravity="end"
-                    android:orientation="horizontal"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto">
-                    <TextView
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color1"
-                        android:text="Cancel"
-                        android:textSize="14sp"
+
                         android:layout_margin="@dimen/dp10"
                         android:gravity="center"
                         android:paddingTop="@dimen/dp10"
                         android:paddingBottom="@dimen/dp10"
-
+                        android:text="Cancel"
+                        android:textColor="@color/color1"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
 
-                        app:layout_constraintTop_toBottomOf="@+id/items_list"/>
-                    <TextView
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="@dimen/dp120"
 
+                        app:layout_constraintTop_toBottomOf="@+id/items_list" />
+
+                    <TextView
+                        android:id="@+id/textSave"
+                        android:layout_width="@dimen/dp120"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color1"
-                        android:text="Save"
-                        android:textSize="14sp"
+
                         android:layout_margin="@dimen/dp10"
+                        android:background="@drawable/login_yellow_bg"
                         android:gravity="center"
                         android:paddingTop="@dimen/dp5"
                         android:paddingBottom="@dimen/dp5"
+                        android:text="Save"
+                        android:textColor="@color/color1"
+                        android:textSize="14sp"
 
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:background="@drawable/login_yellow_bg"
-                        app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/items_list" />
                 </LinearLayout>
 
 
@@ -680,6 +791,39 @@
 
 
         </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/dialog_bg"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/tab_text_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:fontFamily="@font/poppins"
+                android:text="Updating Data"
+                android:textColor="@color/tab_text_color"
+                android:textSize="@dimen/sp17"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progress" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
