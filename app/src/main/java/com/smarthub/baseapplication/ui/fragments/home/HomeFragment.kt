@@ -88,7 +88,6 @@ class HomeFragment : Fragment(),TaskListener {
         binding.taskList.setHasFixedSize(true)
         adapterList = MyTaskItemAdapter(this@HomeFragment,"home_navigation")
         binding.taskList.adapter = adapterList
-
         adapterList.addItem("loading")
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
