@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.serviceRequest.*
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BackhaulLinkTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
@@ -300,7 +299,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener,servicerequestData?.Equipments!!)
+                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener,
+                    servicerequestData?.Equipments!! as ArrayList<Equipment>,serviceRequestAllData!!)
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -418,7 +418,11 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem)
         fun editBackhaulLinkItemClicked()
         fun editRequestInfoClicked()
-        fun editEquipmentClicked(position:Int)
+        fun editEquipmentClicked(
+            equipment: Equipment,
+            serviceRequestAllData: ServiceRequestAllDataItem,
+            s: String
+        )
         fun viewEquipmentClicked(position:Int)
         fun editRadioAnteenaClicked(position:Int)
         fun viewRadioAnteenaClicked(position:Int)

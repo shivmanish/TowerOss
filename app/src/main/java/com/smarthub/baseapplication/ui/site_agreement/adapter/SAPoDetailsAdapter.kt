@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EquipmentTableItemBinding
 import com.smarthub.baseapplication.databinding.SaPoTableItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.Equipment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
@@ -74,7 +73,7 @@ class SAPoDetailsAdapter (var context : Context, var listener : ServicesRequestA
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editEquipmentClicked(position)
+//                        listener.editEquipmentClicked(position, serviceRequestAllData)
 
                         return true
                     }

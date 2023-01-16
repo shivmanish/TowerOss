@@ -115,7 +115,7 @@
     <LinearLayout
         app:layout_constraintTop_toBottomOf="@+id/button"
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"

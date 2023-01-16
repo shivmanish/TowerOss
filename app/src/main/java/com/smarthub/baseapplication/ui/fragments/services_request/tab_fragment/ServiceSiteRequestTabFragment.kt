@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.databinding.ServiceRequestInfoBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.Equipment
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity.Companion.Id
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -86,9 +85,13 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
-    override fun editEquipmentClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Equipment  Item clicked for edit", Toast.LENGTH_SHORT).show()
-
+    override fun editEquipmentClicked(
+        equipmant: Equipment,
+        serviceRequestAllData: ServiceRequestAllDataItem,
+        s: String
+    ) {
+        val bottomSheetDialogFragment = EditEquipmentBottomSheet(R.layout.backhaul_link_list_item,equipmant,serviceRequestAllData,viewmodel,Id)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun viewEquipmentClicked(position: Int) {

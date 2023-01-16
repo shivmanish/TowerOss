@@ -21,6 +21,7 @@ public class EndPoints {
     public static final String WORKFLOW_DATA_URL = "/toweross/workflow/";
     public static final String SERVICE_REQUEST_DATA_URL = "/toweross/ServiceRequestMain/";
     public static final String SERVICE_REQUEST_GENERATE_ITEM = "/toweross/Generatesitename/";
+    public static final String SERVICE_REQUEST_SEND_ALERT = "/toweross/sendalertdata/";
 
 
     public static final String BASIC_INFO_UPDATE = "/Basicinfoapi/";

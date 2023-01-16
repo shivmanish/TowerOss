@@ -10,18 +10,18 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.EquipmentTableItemBinding
-import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.Equipment
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
 
-class SREquipmentTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener, equipmentData:List<Equipment> ): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
+class SREquipmentTableAdapter(
+    var context: Context,
+    var listener: ServicesRequestAdapter.ServicesRequestLisListener,
+    var list: ArrayList<Equipment>,
+    var serviceRequestAllData: ServiceRequestAllDataItem
+): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
 
-    var list : ArrayList<Equipment>?
-
-    init {
-        list=equipmentData as ArrayList<Equipment>
-    }
 
     fun addItem(){
 //        list?.add(Equipment(CabinetSize = "4", EquipmentWeight = "8",
@@ -72,8 +72,7 @@ class SREquipmentTableAdapter (var context : Context, var listener : ServicesReq
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editEquipmentClicked(position)
-
+                        listener.editEquipmentClicked(list.get(position),serviceRequestAllData,"edit")
                         return true
                     }
                     // in the same way you can implement others
