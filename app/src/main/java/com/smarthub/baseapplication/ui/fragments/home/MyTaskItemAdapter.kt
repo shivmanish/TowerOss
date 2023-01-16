@@ -53,7 +53,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
 
     fun updateList(list : List<Any>){
         if(token=="home_navigation")
-        this.list = ArrayList(list.subList(0,5))
+        this.list = ArrayList(list.subList(0,4))
         else
             this.list = ArrayList(list)
         overDue=0
