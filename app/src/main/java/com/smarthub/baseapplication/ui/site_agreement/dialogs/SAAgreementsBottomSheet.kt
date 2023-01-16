@@ -18,8 +18,6 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
-
-
 class SAAgreementsBottomSheet(
     contentLayoutId: Int,
     var siteAgreementsData: SiteacquisitionAgreement?, var viewModel: HomeViewModel
