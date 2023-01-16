@@ -30,7 +30,9 @@ class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener,  
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (list[position] is NocAndCompAllDataItem) 0 else 1
+        return if (list[position] is NocAndCompAllDataItem)
+            0
+        else 1
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): nocEmptyDataViewHolder {
         return if (viewType == 0){

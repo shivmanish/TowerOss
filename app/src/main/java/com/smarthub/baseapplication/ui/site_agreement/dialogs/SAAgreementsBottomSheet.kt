@@ -45,7 +45,7 @@ class SAAgreementsBottomSheet(
              binding.textSave.setOnClickListener {
                  siteAgreementsData.let{
 
-               it?.AgreementType=   binding.editTermLease.text.toString()
+                    it?.AgreementType=   binding.editTermLease.text.toString()
                      it?.RegistrationDate=   binding.textRegistrationDate.text.toString()
 
                      it?.AgreementPeriod=    binding.editAgreemenPeriod.text.toString()

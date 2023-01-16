@@ -42,11 +42,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
             dalouge.show(childFragmentManager,"")
 
         }
-        NocCompBinding.addmoreItems.setOnClickListener(){
-            val dalouge = CreateNocBottomSheet(R.layout.create_noc_site_info_dialoge)
-            dalouge.show(childFragmentManager,"")
 
-        }
 
         if (viewmodel.NocAndCompModelResponse?.hasActiveObservers() == true){
             viewmodel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
@@ -78,7 +74,11 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         NocCompBinding.swipeLayout.setOnRefreshListener {
             viewmodel.NocAndCompRequestAll(id)
         }
+        NocCompBinding.addmoreItems.setOnClickListener(){
+            val dalouge = CreateNocBottomSheet(R.layout.create_noc_site_info_dialoge)
+            dalouge.show(childFragmentManager,"")
 
+        }
     }
 
     override fun onViewPageSelected() {

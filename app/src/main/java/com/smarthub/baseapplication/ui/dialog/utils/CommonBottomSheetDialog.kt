@@ -6,6 +6,7 @@ import android.view.*
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
 import com.smarthub.baseapplication.ui.alert.AlertActivity
 import com.smarthub.baseapplication.ui.fragments.Logs.LogActivity
 import com.smarthub.baseapplication.ui.logs.LogsActivity
@@ -15,6 +16,7 @@ class CommonBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(
 
     lateinit var binding: AddMoreBotomSheetDailogBinding
 
+    lateinit var applicationInitial:ApplicationInitial
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = AddMoreBotomSheetDailogBinding.bind(view)
@@ -41,9 +43,7 @@ class CommonBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(
             dismiss()
         }
     }
-
     override fun getTheme() = R.style.NewDialogTask
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AddMoreBotomSheetDailogBinding.inflate(inflater)
         return binding.root

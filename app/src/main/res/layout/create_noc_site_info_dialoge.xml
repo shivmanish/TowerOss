@@ -139,7 +139,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/editApplicationName"
+                            android:id="@+id/ApplicationName"
                             android:hint=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/editApplicationNumber"
+                            android:id="@+id/ApplicationNumber"
                             android:hint=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -187,7 +187,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/OPCO_Site_type"
+                            android:id="@+id/spinApplicationsStatus"
                             android:text="Small Cell"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
@@ -202,6 +202,7 @@
                     </LinearLayout>
 
 
+
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
@@ -213,31 +214,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:id="@+id/txtApplicationDate"
-                            android:text="05-Oct-2018"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableEnd="@drawable/icon_date"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="RFR Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/RFR_Date"
+                            android:id="@+id/ApplicationDate"
                             android:text="10-Nov-2018"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -400,7 +377,7 @@
                 </GridLayout>
                 <RelativeLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/frame_275"
+                    android:id="@+id/update"
                     android:layout_width="wrap_content"
                     android:layout_gravity="end"
                     android:gravity="center"
