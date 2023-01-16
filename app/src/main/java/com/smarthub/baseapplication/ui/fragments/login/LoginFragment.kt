@@ -2,6 +2,8 @@ package com.smarthub.baseapplication.ui.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
@@ -61,6 +63,21 @@ class LoginFragment : Fragment() {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOtpVerificationStep1())
         }
 
+        binding?.requestMsg?.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (binding?.requestMsg?.text != "Please enter your User Id and Password")
+                    binding?.requestMsg?.text = "Please enter your User Id and Password"
+            }
+
+        })
         binding?.passwordHideShow?.setOnClickListener {
             if(binding?.password?.transformationMethod?.equals(PasswordTransformationMethod.getInstance())!!){
                 binding?.password?.transformationMethod= HideReturnsTransformationMethod.getInstance()
