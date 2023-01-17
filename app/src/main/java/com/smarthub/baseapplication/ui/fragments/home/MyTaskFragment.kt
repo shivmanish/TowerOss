@@ -47,9 +47,6 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
             }
         }
 
-//        binding.refreshLayout.setOnRefreshListener {
-//            homeViewModel?.fetchHomeData()
-//        }
     }
 
 }
