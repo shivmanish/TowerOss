@@ -29,16 +29,25 @@ class AuthorityDetailsDialougeAdapter(
             authorityDetails?.ApplicationInitialPreferredLaungauge
         )
 
-
-
-
         binding.authorityName.setText(authorityDetails?.Name)
-        binding.authorityContactPerson.setText(authorityDetails?.ContactPerson)
         binding.authorityContactPerson.setText(authorityDetails?.ContactPerson)
         binding.authorityContactNumber.setText(authorityDetails?.ContactNumber)
         binding.authorityEmail.setText(authorityDetails?.EmailId)
         binding.authorityLandmark.setText(authorityDetails?.LandMark)
+        binding.update.setOnClickListener {
+            authorityDetails.let {
+                it?.Name = binding.authorityName.text.toString()
+                it?.ContactPerson = binding.authorityContactPerson.text.toString()
+                it?.ContactNumber = binding.authorityContactNumber.text.toString()
+                it?.EmailId = binding.authorityEmail.text.toString()
+                it?.LandMark = binding.authorityLandmark.text.toString()
 
+
+
+            }
+
+
+        }
     }
 
     override fun getTheme() = R.style.NewDialogTask

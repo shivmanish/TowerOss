@@ -171,6 +171,7 @@
                                     android:id="@+id/authority_preffered_language"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:minHeight="@dimen/dp30"
                                     android:text="English"
                                     android:textColor="@color/black" />
                                 <View
@@ -198,7 +199,7 @@
                                     style="@style/RowTestItemEdit"
                                     android:id="@+id/authority_address"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
+                                    android:minHeight="@dimen/dp30"
                                     android:text="Mangolpuri"
                                     android:textColor="@color/black" />
                                 <View
@@ -260,6 +261,7 @@
                 android:textSize="@dimen/dp15"/>
 
             <TextView
+                android:id="@+id/update"
                 android:layout_marginLeft="@dimen/dp25"
                 android:background="@drawable/yellow_text_button"
                 android:layout_width="wrap_content"
