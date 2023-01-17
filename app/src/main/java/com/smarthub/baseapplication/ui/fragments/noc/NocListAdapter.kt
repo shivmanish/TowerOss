@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.AuthorityDetails
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
@@ -14,6 +15,7 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAndCompAllData: NocAndCompAllDataItem?) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
 
@@ -320,6 +322,16 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
 
 
                 try {
+
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.authorityPrefferedLanguage,
+                        DropDowns.ApplicationInitialPreferredLaungauge.name,
+                        authorityDetails?.ApplicationInitialPreferredLaungauge
+                    )
+                  holder.binding.ContactPerson.setText(authorityDetails?.ContactPerson)
+                  holder.binding.ContactNumber.setText(authorityDetails?.ContactNumber)
+                  holder.binding.authorityAddress.setText(authorityDetails?.Address)
+                  holder.binding.LocationMark.setText(authorityDetails?.LandMark)
 
                              }
                 catch (e:java.lang.Exception){
