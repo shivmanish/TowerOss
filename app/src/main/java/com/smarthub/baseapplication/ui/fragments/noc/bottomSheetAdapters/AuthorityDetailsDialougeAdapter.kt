@@ -11,8 +11,11 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.AuthorityDetails
 import com.smarthub.baseapplication.utils.DropDowns
 
-class AuthorityDetailsDialougeAdapter(contentLayoutId: Int,var authorityDetails: AuthorityDetails?): BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : NocAuthorityDetailsDialougeLayoutBinding
+class AuthorityDetailsDialougeAdapter(
+    contentLayoutId: Int,
+    var authorityDetails: AuthorityDetails?
+) : BottomSheetDialogFragment(contentLayoutId) {
+    lateinit var binding: NocAuthorityDetailsDialougeLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +43,11 @@ class AuthorityDetailsDialougeAdapter(contentLayoutId: Int,var authorityDetails:
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = NocAuthorityDetailsDialougeLayoutBinding.inflate(inflater)
         return binding.root
     }
