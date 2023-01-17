@@ -274,7 +274,6 @@
                 android:paddingBottom="@dimen/dp10"
                 android:textColor="#3D4E6D"
                 android:textSize="@dimen/dp15"/>
-
         </LinearLayout>
 
     </LinearLayout>
