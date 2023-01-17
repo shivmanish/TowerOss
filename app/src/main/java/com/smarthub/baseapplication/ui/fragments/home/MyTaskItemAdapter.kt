@@ -133,6 +133,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                     val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     intent.putExtra("url", "${item.Taskid}")
+                    intent.putExtra("siteId","${item.siteid}")
                     holder.itemView.context.startActivity(intent)
                 }
             }

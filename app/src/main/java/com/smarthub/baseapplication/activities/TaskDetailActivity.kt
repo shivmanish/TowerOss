@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
+    lateinit var siteId:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,9 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
             showLoader()
             viewModel.fetchTaskDetails(id!!)
         }
+        if (intent.hasExtra("siteId")){
+            siteId = intent.getStringExtra("siteId")!!
+        }
 
 
         if (viewModel.taskDataList?.hasActiveObservers() == true)
@@ -44,29 +48,29 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
                     mapUIData(it.data[0])
                 }
                 else
-                    setFragment(TaskSearchTabFragment())
+                    setFragment(TaskSearchTabFragment(siteId))
                 Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
             }
         }
-        binding.refreshLayout.setOnRefreshListener {
-            binding.refreshLayout.isRefreshing = false
-            if (intent.hasExtra("url")){
-                val id = intent.getStringExtra("url")
-//                binding.titleText.text = id
-                showLoader()
-                viewModel.fetchTaskDetails(id!!)
-            }else{
-                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
-            }
-        }
+//        binding.refreshLayout.setOnRefreshListener {
+//            binding.refreshLayout.isRefreshing = false
+//            if (intent.hasExtra("url")){
+//                val id = intent.getStringExtra("url")
+////                binding.titleText.text = id
+//                showLoader()
+//                viewModel.fetchTaskDetails(id!!)
+//            }else{
+//                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
 
     }
 
     fun mapUIData(item : TaskDataListItem){
-        setFragment(TaskSearchTabFragment())
+        setFragment(TaskSearchTabFragment(siteId))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)
