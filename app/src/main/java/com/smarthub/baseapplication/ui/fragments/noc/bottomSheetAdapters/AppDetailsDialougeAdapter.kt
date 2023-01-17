@@ -25,11 +25,11 @@ class AppDetailsDialougeAdapter(contentLayoutId: Int, var applicationDetailsData
             DropDowns.ApplicationInitialApplicationStatus.name,
             applicationDetailsData?.ApplicationInitialApplicationStatus
         )
-        AppPreferences.getInstance().setDropDown(
+     /*   AppPreferences.getInstance().setDropDown(
             binding.applycationType,
             DropDowns.ApplicationInitialApplicationType.name,
             applicationDetailsData?.ApplicationInitialApplicationType
-        )
+        )*/
 
         AppPreferences.getInstance().setDropDown(
             binding.applicationStatus,
