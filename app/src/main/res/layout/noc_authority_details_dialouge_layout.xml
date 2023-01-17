@@ -200,6 +200,7 @@
                                     android:id="@+id/authority_address"
                                     android:layout_width="match_parent"
                                     android:minHeight="@dimen/dp30"
+                                    android:layout_height="wrap_content"
                                     android:text="Mangolpuri"
                                     android:textColor="@color/black" />
                                 <View
