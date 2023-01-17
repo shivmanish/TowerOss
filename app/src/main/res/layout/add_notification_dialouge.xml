@@ -105,6 +105,7 @@
                             android:layout_height="wrap_content"
                             android:text="Flag" />
                         <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:layout_marginTop="@dimen/dp3"
                             android:id="@+id/Flag"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
@@ -173,7 +174,7 @@
 
 
                 <include
-                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp25"
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_marginRight="@dimen/dp10"
                     layout="@layout/layout_img_attachment"

@@ -25,6 +25,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.adapter.AddMoreCustomerListAdapter
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.basic_info.SiteImages
@@ -41,19 +43,23 @@ import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskEqupmentFragm
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOEditTab
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener,
+class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
     private lateinit var v: TaskTabItemsBinding
     private var tabNames: ArrayList<String> = ArrayList()
+    var viewmodel: HomeViewModel?=null
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
+        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         mainViewModel.isActionBarHide(false)
         tabNames.add("OPCO Info")
         tabNames.add("Equipment")
@@ -83,7 +89,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                    // saveDataToLocal(it.data)
-                    setData()
+//                    setData()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
@@ -96,6 +102,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
             }
         }
         siteDetailViewModel.fetchDropDown()
+        viewmodel?.opcoTenancyRequestAll(siteID!!)
     }
     fun setData(){
         val adapter = ViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
@@ -127,14 +134,8 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
 
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
-
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-//        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
-//        addImage.setOnClickListener {
-//            val intent = Intent(activity, SiteImages::class.java)
-//            startActivity(intent)
-//        }
     }
     @SuppressLint("SuspiciousIndentation")
     fun setCustomTab() {
@@ -147,6 +148,8 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
             //val imagetab: AppCompatImageView = v.tabImage
             texttab.text = tabNames?.get(i)
             texttabchange.text = tabNames?.get(i)
+            texttab.textSize=12f
+            texttabchange.textSize=13f
           //  imagetab.setImageResource(typedImages.getResourceId(i, 0))
             binding.tabs.getTabAt(i)?.customView = v.root
         }
@@ -159,14 +162,14 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
     }
     internal inner class ViewPagerAdapter(manager: FragmentManager, behaviour:Int) : FragmentPagerAdapter(manager,behaviour) {
 
+
         override fun getItem(position: Int): Fragment {
             return when(position){
-
-                0-> TaskOPCOTabFragment.newInstance(tabNames[0])
+                0-> TaskOPCOTabFragment(siteID!!)
                 1-> TaskEqupmentFragment.newInstance(tabNames[1])
                 2-> TaskOPCOEditTab.newInstance(tabNames[2])
 
-                else -> TaskOPCOTabFragment.newInstance(tabNames[1])
+                else -> TaskOPCOTabFragment(siteID!!)
             }
         }
 
@@ -180,6 +183,7 @@ class TaskSearchTabFragment : BaseFragment(), TaskAdapter.TaskLisListener,Horizo
         }
 
     }
+
     override fun attachmentItemClicked() {
 
     }
