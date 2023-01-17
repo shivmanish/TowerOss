@@ -20,7 +20,7 @@ class CreateNocBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(con
             dismiss()
         }
 
-        AppPreferences.getInstance().setDropDown(
+/*        AppPreferences.getInstance().setDropDown(
             binding.spinCategory,
             DropDowns.ApplicationInitialCategory.name,
             applicationInitial.ApplicationInitialCategory
@@ -68,7 +68,7 @@ class CreateNocBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(con
             }
 
 
-        }
+        }*/
     }
 
     override fun getTheme() = R.style.NewDialogTask
