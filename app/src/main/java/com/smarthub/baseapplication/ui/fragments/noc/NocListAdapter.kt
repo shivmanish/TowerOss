@@ -245,7 +245,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditAppDetailsItem()
+                        listner.EditAppDetailsItem(applicationDetailsData)
                     }
                 }
                 else {
@@ -422,7 +422,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
     interface NOCListListener {
         fun attachmentItemClicked()
         fun EditAuthorityDetails()
-        fun EditAppDetailsItem()
+        fun EditAppDetailsItem(applicationDetailsData: ApplicationInitial?)
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)
         fun editfeePaymentClicked(position:Int)
