@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAuthorityDetailsDialougeLayoutBinding
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.AuthorityDetails
 
-class AuthorityDetailsDialougeAdapter (contentLayoutId: Int): BottomSheetDialogFragment(contentLayoutId) {
+class AuthorityDetailsDialougeAdapter(contentLayoutId: Int,var authorityDetails: AuthorityDetails?): BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : NocAuthorityDetailsDialougeLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

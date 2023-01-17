@@ -167,7 +167,6 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
-
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()
             }
@@ -302,7 +301,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditAuthorityDetails()
+                        listner.EditAuthorityDetails(authorityDetails)
                     }
                 }
                 else {
@@ -436,7 +435,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
 
     interface NOCListListener {
         fun attachmentItemClicked()
-        fun EditAuthorityDetails()
+        fun EditAuthorityDetails(authorityDetails: AuthorityDetails?)
         fun EditAppDetailsItem(applicationDetailsData: ApplicationInitial?)
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)

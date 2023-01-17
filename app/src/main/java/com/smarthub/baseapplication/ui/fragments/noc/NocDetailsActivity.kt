@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.NocNewActivityDetailsBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.AuthorityDetails
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.*
@@ -80,8 +81,8 @@ class NocDetailsActivity : BaseActivity(), NocListAdapter.NOCListListener {
         Toast.makeText(this,"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun EditAuthorityDetails() {
-        val bm = AuthorityDetailsDialougeAdapter(R.layout.noc_authority_details_dialouge_layout)
+    override fun EditAuthorityDetails(authorityDetails: AuthorityDetails?) {
+        val bm = AuthorityDetailsDialougeAdapter(R.layout.noc_authority_details_dialouge_layout,authorityDetails)
         bm.show(supportFragmentManager, "category")
         Toast.makeText(this , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
