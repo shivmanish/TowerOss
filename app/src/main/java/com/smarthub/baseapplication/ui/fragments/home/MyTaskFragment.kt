@@ -41,7 +41,6 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
                 list.addAll(it)
                 adapterList.updateList(list)
             }else{
-//                no data found
                 AppLogger.log("myTask data is null")
                 adapterList.addItem("no_data")
             }

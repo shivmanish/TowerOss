@@ -130,7 +130,6 @@
             app:tabBackground="@drawable/home_tab_selector"
             android:background="#D9D9D9"
             app:tabIndicatorHeight="3dp"
-            android:layout_marginHorizontal="@dimen/dp15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="@dimen/dp40"/>
@@ -138,6 +137,8 @@
         <com.smarthub.baseapplication.widgets.NonDragableViewPager
             android:id="@+id/home_pager"
             android:layout_marginTop="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp5"
             app:layout_constraintTop_toBottomOf="@+id/home_tab"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
