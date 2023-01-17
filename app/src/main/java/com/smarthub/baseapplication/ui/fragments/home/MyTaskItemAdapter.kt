@@ -145,11 +145,11 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             }
             if(item.Auto=="true"){
                 holder.binding.editTaskItem.text="A"
-                holder.binding.btnEditCard.visibility=View.GONE
+                holder.binding.btnEdit.visibility=View.GONE
             }
             else{
                 holder.binding.editTaskItem.text="M"
-                holder.binding.btnEditCard.visibility=View.VISIBLE
+                holder.binding.btnEdit.visibility=View.VISIBLE
             }
         }
         if (holder is HeaderViewHold){
