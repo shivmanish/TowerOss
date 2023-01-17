@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.AuthorityDetails
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
@@ -19,6 +20,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
     private var applicationDetailsData: ApplicationInitial?=null
+    private var authorityDetails: AuthorityDetails?=null
     var type1 = "Application Details"
     var type2 = "Authority Details"
     var type3 = "PO Details"
@@ -36,6 +38,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
         list.add("NOC / Compliance Copy")
         try {
             applicationDetailsData=NocAndCompAllData?.ApplicationInitial?.get(0)
+            authorityDetails=NocAndCompAllData?.AuthorityDetails?.get(0)
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"NocDataAdapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
@@ -314,6 +317,18 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+
+
+
+                try {
+
+                             }
+                catch (e:java.lang.Exception){
+                    AppLogger.log("NocDataAdapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"NocDataAdapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+
+                }
+
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
