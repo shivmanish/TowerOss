@@ -68,7 +68,7 @@
                             style="@style/SpinnerTheme"
                             android:id="@+id/spincategory"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
+                            android:layout_height="wrap_content"
                             android:textColor="@color/black" />
                         <View
                             android:layout_width="match_parent"
