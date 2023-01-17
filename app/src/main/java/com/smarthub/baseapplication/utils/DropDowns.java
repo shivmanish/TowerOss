@@ -18,5 +18,6 @@ public enum DropDowns {
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,
     ApplicationInitialApplicationStatus,
+    ApplicationInitialPreferredLaungauge,
 
 }

@@ -54,8 +54,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="Name" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    style="@style/SpinnerTheme"
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/authority_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -81,8 +81,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="Contact Person" />
 
-                                <com.smarthub.baseapplication.widgets.CustomSpinner
-                                    style="@style/SpinnerTheme"
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/authority_contact_person"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                                     style="@style/SpinnerTheme"
                                     android:id="@+id/authority_preffered_language"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/dp20"
+                                    android:layout_height="wrap_content"
                                     android:text="English"
                                     android:textColor="@color/black" />
                                 <View
