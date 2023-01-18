@@ -12,6 +12,8 @@ import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails;
 import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
+import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
+import com.smarthub.baseapplication.model.register.dropdown.DropdownParam;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
 import com.smarthub.baseapplication.model.search.SearchListItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
@@ -242,6 +244,11 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
     Call<UserDataResponse> getuserlist(@Body GetUserList data);
+
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.DEPARTMENT_DROPDOWNS)
+    Call<DepartmentDropdown> getDepartmentList(@Body DropdownParam data);
 
 
 }

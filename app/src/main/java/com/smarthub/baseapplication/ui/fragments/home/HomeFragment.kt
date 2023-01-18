@@ -125,10 +125,10 @@ class HomeFragment : Fragment(),TaskListener {
         if (data.MyTeamTask!=null){
             homeViewModel.updateMyTeamTask(data.MyTeamTask)
         }
-        else if (data.MyTeamTask!=null) {
-            homeViewModel.updateMyTeamTask(data.MyTeamTask)
-            AppLogger.log("empty list for MyTeamTask")
-        }
+//        else if (data.MyTeamTask!=null) {
+//            homeViewModel.updateMyTeamTask(data.MyTeamTask)
+//            AppLogger.log("empty list for MyTeamTask")
+//        }
         else AppLogger.log("empty list for MyTeamTask")
 
         if (data.MyTask!=null && data.MyTask.isNotEmpty()){

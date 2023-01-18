@@ -1,11 +1,11 @@
 package com.smarthub.baseapplication.ui.alert.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -13,13 +13,11 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.SendAlertDropDowns
+import com.smarthub.baseapplication.widgets.CustomStringSpinner
 
-class AlertStatusListAdapter(
-    var context: Context,
-    viewmodel: AlertViewModel,
-    var listener: AlertStatusListener
-) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
+class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertViewModel, var listener: AlertStatusListener) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
     var count: Int = 0
     var list: ArrayList<Any> = ArrayList()
     var currentOpened = -1
@@ -194,8 +192,7 @@ class AlertStatusListAdapter(
             }
 
             6 -> {
-                view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.alert_others_layout, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.alert_others_layout, parent, false)
                 return ViewHold6(view)
             }
 
@@ -236,6 +233,7 @@ class AlertStatusListAdapter(
 
             }
             is ViewHold2 -> {
+                baseFragment.setDatePickerView(holder.binding.date)
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -254,18 +252,16 @@ class AlertStatusListAdapter(
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position] as String
-                holder.binding.status.setOnCheckedChangeListener(object :
-                    RadioGroup.OnCheckedChangeListener {
-                    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-                        val radioButton = holder.itemView.findViewById(checkedId) as RadioButton
-                        Toast.makeText(context, radioButton.getText(), Toast.LENGTH_SHORT).show();
-
-                    }
-                })
+                holder.binding.status.setOnCheckedChangeListener { group, checkedId ->
+                    val radioButton = holder.itemView.findViewById(checkedId) as RadioButton
+                    Toast.makeText(baseFragment.requireContext(), radioButton.text, Toast.LENGTH_SHORT).show();
+                }
 
 
             }
             is ViewHold3 -> {
+                listener.setSearchEditBoxAdapter(holder.binding.searchBox)
+                listener.setSearchEditProgress(holder.binding.loadingProgress)
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -288,9 +284,6 @@ class AlertStatusListAdapter(
                     holder.binding.spinSelectCategory,
                     SendAlertDropDowns.SACategory.name
                 )
-                AppPreferences.getInstance()
-                    .setDropDown(holder.binding.spinSiteSearch, SendAlertDropDowns.SACategory.name)
-
             }
             is ViewHold4 -> {
                 if (currentOpened == position) {
@@ -356,11 +349,13 @@ class AlertStatusListAdapter(
                 holder.binding.spinRecipients.setOnClickListener {
                     listener.getuser()
                 }
-                AppPreferences.getInstance()
-                    .setDropDown(holder.binding.spinDepartment, SendAlertDropDowns.SAMedium.name)
-                AppPreferences.getInstance()
-                    .setDropDown(holder.binding.spinDepartment, SendAlertDropDowns.SARecepient.name)
+//                AppPreferences.getInstance()
+//                    .setDropDown(holder.binding.spinDepartment, SendAlertDropDowns.SAMedium.name)
+//                AppPreferences.getInstance()
+//                    .setDropDown(holder.binding.spinDepartment, SendAlertDropDowns.SARecepient.name)
 
+                listener.setCustomArrayAdapter(holder.binding.spinrecipientdepartmanet)
+                listener.setCustomArrayAdapter1(holder.binding.spinDepartment)
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {
@@ -408,5 +403,9 @@ class AlertStatusListAdapter(
 interface AlertStatusListener {
     fun sendAlertData()
     fun getuser()
+    fun setSearchEditBoxAdapter(customStringSpinner: EditText)
+    fun setSearchEditProgress(customStringSpinner: ProgressBar)
+    fun setCustomArrayAdapter(customStringSpinner: CustomStringSpinner)
+    fun setCustomArrayAdapter1(customStringSpinner: CustomStringSpinner)
 
 }

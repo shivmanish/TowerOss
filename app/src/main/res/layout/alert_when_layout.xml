@@ -146,29 +146,32 @@
                         android:id="@+id/txtOngoing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif-monospace"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center_vertical"
                         android:padding="@dimen/dp10"
-                        android:button="@drawable/radio_background"
+                        android:textSize="@dimen/sp14"
+
                         android:text="On-Going:" />
 
                     <RadioButton
                         android:id="@+id/txtCompleted"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif-monospace"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center_vertical"
                         android:padding="@dimen/dp10"
-                        android:button="@drawable/radio_background"
+                        android:textSize="@dimen/sp14"
+
                         android:text="Complete" />
 
                     <RadioButton
-                        android:button="@drawable/radio_background"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif-monospace"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center_vertical"
                         android:padding="@dimen/dp10"
+                        android:textSize="@dimen/sp14"
                         android:text="Planned" />
 
                 </RadioGroup>
@@ -191,6 +194,7 @@
 
                     <TextView
                         android:id="@+id/date"
+                        android:clickable="true"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

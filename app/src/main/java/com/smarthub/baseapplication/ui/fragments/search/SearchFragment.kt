@@ -28,7 +28,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     var fetchedData = ""
     var isDataFetched = true
     var item: SearchListItem?=null
-    var searchHistoryList=SearchHistoryList()
+    var searchHistoryList = SearchHistoryList()
     var selectedCategory: String="siteID"
     private lateinit var binding: SearchFragmentBinding
     lateinit var homeViewModel : HomeViewModel
@@ -108,6 +108,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                 Toast.makeText(requireContext(),"error in fetching data",Toast.LENGTH_SHORT).show()
             }
         }
+
         binding.searchCardView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}

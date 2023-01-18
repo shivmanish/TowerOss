@@ -16,5 +16,14 @@
     <fragment
         android:id="@+id/alertStatusFragment"
         android:name="com.smarthub.baseapplication.ui.alert.AlertStatusFragment"
-        android:label="AlertStatusFragment" />
+        android:label="AlertStatusFragment" >
+        <action
+            android:id="@+id/action_alertStatusFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/alertStatusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.smarthub.baseapplication.ui.alert.dialog.ChatFragment"
+        android:label="ChatFragment" />
 </navigation>
