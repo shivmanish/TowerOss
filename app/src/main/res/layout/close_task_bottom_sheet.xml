@@ -374,7 +374,6 @@
            android:layout_marginEnd="@dimen/dp15"
            app:layout_constraintTop_toBottomOf="@+id/textView3">
            <TextView
-               android:layout_marginEnd="@dimen/dp15"
                android:padding="5dp"
                android:text="Close task"
                android:textStyle="bold"

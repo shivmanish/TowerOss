@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
@@ -179,6 +180,11 @@ class HomeFragment : Fragment(),TaskListener {
     override fun closeTask(task: MyTeamTask) {
         val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
+    override fun assignTask(task : MyTeamTask) {
+        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task)
+        bm.show(childFragmentManager, "category")
     }
 
 

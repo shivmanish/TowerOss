@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.fragments.home.MyTaskFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTeamTaskFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAssignToDialouge
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -121,6 +122,11 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     override fun closeTask(task: MyTeamTask) {
         val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.close_task_bottom_sheet, task,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
+    override fun assignTask(task : MyTeamTask) {
+        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task)
+        bm.show(childFragmentManager, "category")
     }
 
 
