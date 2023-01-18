@@ -16,15 +16,12 @@ import com.smarthub.baseapplication.databinding.FragmentTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
-import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
-import com.smarthub.baseapplication.ui.fragments.home.HomeFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTaskFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTeamTaskFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAssignToDialouge
-import com.smarthub.baseapplication.ui.fragments.task.editdialog.CloseTaskBottomSheet
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
-import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
 
@@ -122,7 +119,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     }
 
     override fun closeTask(task: MyTeamTask) {
-        val bottomSheetDialogFragment = CloseTaskBottomSheet(R.layout.close_task_bottom_sheet, task,homeViewModel)
+        val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.close_task_bottom_sheet, task,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 
