@@ -26,7 +26,7 @@
        android:layout_width="match_parent"
        android:paddingLeft="@dimen/dp10"
        android:paddingRight="@dimen/dp5"
-       android:minHeight="@dimen/dp650"
+       android:minHeight="@dimen/dp680"
        android:layout_height="match_parent"
        app:layout_constraintTop_toTopOf="parent">
        <TextView

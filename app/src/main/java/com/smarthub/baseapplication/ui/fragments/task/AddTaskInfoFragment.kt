@@ -9,34 +9,34 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentAddTaskInfoBinding
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class AddTaskInfoFragment : Fragment() {
+class AddTaskInfoFragment : BaseFragment() {
 
-    private var _binding: FragmentAddTaskInfoBinding? = null
+    lateinit var binding: FragmentAddTaskInfoBinding
     private lateinit var mainViewModel:MainViewModel
-    private val binding get() = _binding!!
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         mainViewModel.isActionBarHide(false)
-        _binding = FragmentAddTaskInfoBinding.inflate(inflater, container, false)
-        initView()
-        val root: View = binding.root
-        return root
+        binding = FragmentAddTaskInfoBinding.inflate(inflater, container, false)
+        return binding.root
+
     }
 
-    private fun initView() {
-        _binding!!.next.setOnClickListener{
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+         binding.next.setOnClickListener{
             findNavController().navigate(
                 R.id.actionToMoveSecondFrag
             )
         }
+        setDatePickerView(binding.startDate)
+        setDatePickerView(binding.endDate)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -156,9 +157,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
+                        android:id="@+id/Task_name"
                         style="@style/RowTestItemEdit"
+                        android:textSize="@dimen/dp15"
                         android:text="Task"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -180,8 +184,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/task_instruction"
                         style="@style/RowTestItemEdit"
-                        android:padding="@dimen/dp10"
+                        android:textSize="@dimen/dp15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -209,8 +214,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/start_date"
                             style="@style/RowTestItemEdit"
                             android:text="10-Nov-22"
+                            android:textSize="@dimen/dp15"
                             android:layout_width="match_parent"
                             android:drawableEnd="@drawable/icon_date"
                             android:layout_height="wrap_content"/>
@@ -233,7 +240,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/end_date"
                             style="@style/RowTestItemEdit"
+                            android:textSize="@dimen/dp15"
                             android:drawableEnd="@drawable/icon_date"
                             android:text="12-Nov-22"
                             android:layout_width="match_parent"
@@ -253,14 +262,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Weightage"
+                            android:text="Weightage(%)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
+                            android:id="@+id/Weightage"
                             style="@style/RowTestItemEdit"
+                            android:textSize="@dimen/dp15"
                             android:layout_width="match_parent"
-                            android:text="10%"
+                            android:text="10"
                             android:layout_height="wrap_content"/>
                         <View
                             android:alpha="0.37"
@@ -280,11 +291,26 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            style="@style/RowTestItemEdit"
-                            android:text="2 Days"
+                        <LinearLayout
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/sla"
+                                style="@style/RowTestItemEdit"
+                                android:text="0"
+                                android:textSize="@dimen/dp15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                style="@style/RowTestItemEdit"
+                                android:text="Days"
+                                android:textSize="@dimen/dp15"
+                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
@@ -303,13 +329,17 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Yes"
-                        android:gravity="left"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/task_for_a_single_site"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -323,13 +353,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/site_id"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="CE-MHMUM-SC-A0123"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -348,13 +376,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/assignee_department"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="Acquisition"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -373,13 +399,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/assign_to"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="Umesh"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -398,13 +422,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/priority"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="High"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
