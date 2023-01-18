@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/ic_menu_close"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/drawable_cross_back"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_layout"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@drawable/dialog_bg"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp5"
+        android:minHeight="@dimen/dp560"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:text="Task Assignment "
+            android:textSize="18dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/light_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:id="@+id/title_line"
+            android:alpha="0.5"
+            android:layout_marginTop="@dimen/dp5"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"/>
+        <LinearLayout
+            android:id="@+id/layout_li"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/dp8"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_line"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:text="Task Name:"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/task_name"
+                android:hint="@string/type_here"
+                android:text="Ankit Kumar"
+                style="@style/RowTestItemEdit"
+                android:textSize="@dimen/dp15"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="1"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/view_color"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp25"
+                android:layout_width="match_parent"
+                android:text="Work Order Number:"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/Work_order_number"
+                android:hint="@string/type_here"
+                android:text="CE-MHMUM-SC-A0123_0001"
+                style="@style/RowTestItemEdit"
+                android:textSize="@dimen/dp15"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="1"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/view_color"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp25"
+                android:layout_width="match_parent"
+                android:text="Assignee Department:"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/assignee_department"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20" />
+            <View
+                android:alpha="1"
+                android:layout_marginTop="@dimen/dp6"
+                android:background="@color/view_color"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp25"
+                android:layout_width="match_parent"
+                android:text="Assignee Geography Level :"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/Assignee_Geography_Level"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20" />
+            <View
+                android:alpha="1"
+                android:layout_marginTop="@dimen/dp6"
+                android:background="@color/view_color"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp25"
+                android:layout_width="match_parent"
+                android:text="Assign To :"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/Assign_to"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20" />
+            <View
+                android:alpha="1"
+                android:layout_marginTop="@dimen/dp6"
+                android:background="@color/view_color"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/close_task_btn"
+            android:layout_width="wrap_content"
+            app:cardBackgroundColor="#FFD72B"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="@dimen/dp5"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/dp15"
+            app:layout_constraintTop_toBottomOf="@+id/layout_li">
+            <TextView
+                android:padding="5dp"
+                android:text="Submit"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/dp14"
+                android:textColor="@color/card_bg"
+                android:layout_width="88dp"
+                android:layout_height="@dimen/dp32"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

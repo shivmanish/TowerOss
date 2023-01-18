@@ -10,8 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.CaptureDataItemBinding
 
-class CaptureItemAdapter(val context: Context) : Adapter<CaptureItemViewholder>() {
+class CaptureItemAdapter(val context: Context, sublist:ArrayList<String>) : Adapter<CaptureItemViewholder>() {
+    var list : ArrayList<String> = ArrayList()
+
+    init {
+        list.clear()
+        list.addAll(sublist)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CaptureItemViewholder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.capture_data_item, parent, false)
@@ -19,15 +27,15 @@ class CaptureItemAdapter(val context: Context) : Adapter<CaptureItemViewholder>(
     }
 
     override fun onBindViewHolder(holder: CaptureItemViewholder, position: Int) {
-
+        holder.binding.subTitle.text=list[position]
     }
 
     override fun getItemCount(): Int {
 
-        return 5
+        return list.size
     }
 }
 
 class CaptureItemViewholder(itemView: View) : ViewHolder(itemView) {
-
+    var binding : CaptureDataItemBinding=CaptureDataItemBinding.bind(itemView)
 }

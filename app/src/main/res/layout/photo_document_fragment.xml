@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,50 +14,107 @@
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="@font/poppins_medium"
         android:text="Picture"
+        android:textColor="@color/color1"
         android:id="@+id/picture_box"
         android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/dp15"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/sp14" />
+        android:textSize="@dimen/sp15" />
 
     <CheckBox
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:fontFamily="@font/poppins"
+        android:textColor="@color/color1"
+        android:fontFamily="@font/poppins_medium"
         android:text="Document"
         android:id="@+id/document_box"
         android:layoutDirection="rtl"
         app:layout_constraintTop_toBottomOf="@+id/picture_box"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/sp14" />
+        android:textSize="@dimen/sp15" />
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:fontFamily="@font/poppins"
-        android:text="Remark"
-        android:id="@+id/remark_box"
-        android:layoutDirection="rtl"
+
+    <LinearLayout
+        android:id="@+id/remark_layout"
         app:layout_constraintTop_toBottomOf="@+id/document_box"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/sp14" />
-
-    <EditText
-        android:id="@+id/edit_remark"
-        android:layout_margin="5dp"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Reamrk"
+            android:textColor="@color/black"
+            android:alpha="0.7"
+            style="@style/RowTextItemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/Remark"
+            style="@style/RowTestItemEdit"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/dp16"
+            android:text="Task"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:alpha="0.5"
+            android:background="@color/black"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rfEquipment_edit_save"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp30"
+        android:elevation="@dimen/dp10"
+        android:gravity="right"
+        app:layout_constraintTop_toBottomOf="@+id/remark_layout"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remark_box"/>
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/cancel"
+            android:padding="5dp"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="@dimen/dp14"
+            android:textColor="@color/card_bg"
+            android:layout_width="88dp"
+            android:layout_height="@dimen/dp32"
+            />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            app:cardBackgroundColor="#FFD72B"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="@dimen/dp5"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/next"
+                android:padding="5dp"
+                android:text="Next"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/dp14"
+                android:textColor="@color/card_bg"
+                android:layout_width="88dp"
+                android:layout_height="@dimen/dp32"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

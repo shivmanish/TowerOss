@@ -152,6 +152,11 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                 holder.binding.editTaskItem.text="M"
                 holder.binding.btnEdit.visibility=View.VISIBLE
             }
+            if(item.AssigneeDepartment.isNotEmpty() && item.AssigneeDepartment!=null){
+                holder.binding.personTaskItem.setOnClickListener {
+                    listener.assignTask(item)
+                }
+            }
         }
         if (holder is HeaderViewHold){
             holder.bindData()
