@@ -23,7 +23,7 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.90).toInt()
+//        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         basicinfoModel = BasicinfoModel()
         binding = CloseTaskBottomSheetBinding.bind(view)
 
@@ -48,11 +48,11 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
         return binding.root
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = BottomSheetDialog(requireContext(), theme)
-        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        dialog.behavior.skipCollapsed = false
-        return dialog
-    }
+//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+//        val dialog = BottomSheetDialog(requireContext(), theme)
+//        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+//        dialog.behavior.skipCollapsed = false
+//        return dialog
+//    }
 
 }
