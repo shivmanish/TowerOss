@@ -38,13 +38,33 @@
                android:layout_height="match_parent"
                app:layout_constraintTop_toTopOf="parent">
                <TextView
+                   android:id="@+id/title_text"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/dp15"
+                   android:text="Acqusition Site Survey "
+                   android:textSize="18dp"
+                   android:fontFamily="@font/poppins_semibold"
+                   android:textColor="@color/light_black"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"/>
+               <View
+                   android:id="@+id/title_line"
+                   android:alpha="0.37"
+                   android:layout_marginTop="@dimen/dp5"
+                   android:background="#263238"
+                   android:layout_height="1dp"
+                   android:layout_width="match_parent"
+                   app:layout_constraintTop_toBottomOf="@+id/title_text"/>
+               <TextView
                    android:id="@+id/title"
                    android:text="Task Instructions:"
                    android:layout_marginStart="@dimen/dp10"
                    style="@style/RowTextItemInfo"
-                   android:layout_marginTop="@dimen/dp15"
+                   android:layout_marginTop="@dimen/dp10"
                    android:textStyle="bold"
-                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/title_line"
                    app:layout_constraintStart_toStartOf="parent"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"/>
