@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.home
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,7 +88,6 @@ class HomeFragment : Fragment(),TaskListener {
         binding.taskList.setHasFixedSize(true)
         adapterList = MyTaskItemAdapter(this@HomeFragment,"home_navigation")
         binding.taskList.adapter = adapterList
-
         adapterList.addItem("loading")
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
@@ -98,9 +98,13 @@ class HomeFragment : Fragment(),TaskListener {
                 val list :ArrayList<Any> = ArrayList()
 //                list.add("header")
                 list.addAll(it)
+                if(list.size<3)
+                    binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
                 adapterList.updateList(list)
                 binding.tastCount.text = it.size.toString()
             }else{
+                binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
+                binding.seeAllTask.visibility=View.GONE
 //                no data found
                 adapterList.addItem("no_data")
             }
@@ -118,20 +122,25 @@ class HomeFragment : Fragment(),TaskListener {
                 if (item.name == "On-Air")
                     binding.totalOnAir.text = item.Totalcount
             }
-        }else if (data.Sitestatus!=null)
+        }
+        else if (data.Sitestatus!=null)
             AppLogger.log("empty list for siteStatus")
         else AppLogger.log("null data for siteStatus")
 
-        if (data.MyTeamTask!=null && data.MyTeamTask.isNotEmpty()){
+        if (data.MyTeamTask!=null){
             homeViewModel.updateMyTeamTask(data.MyTeamTask)
-        }else if (data.MyTeamTask!=null) AppLogger.log("empty list for MyTeamTask")
+        }
+        else if (data.MyTeamTask!=null) {
+            homeViewModel.updateMyTeamTask(data.MyTeamTask)
+            AppLogger.log("empty list for MyTeamTask")
+        }
         else AppLogger.log("empty list for MyTeamTask")
 
         if (data.MyTask!=null && data.MyTask.isNotEmpty()){
             homeViewModel.updateMyTask(data.MyTask)
         }else if (data.MyTask!=null) {
+            homeViewModel.updateMyTask(data.MyTask)
             AppLogger.log("empty list for MyTask")
-            homeViewModel.updateMyTask(null)
         }else AppLogger.log("empty list for MyTask")
     }
 

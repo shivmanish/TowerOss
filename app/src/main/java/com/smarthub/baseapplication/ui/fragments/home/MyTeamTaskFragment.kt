@@ -34,13 +34,16 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
         if (homeViewModel?.myTeamTask?.hasActiveObservers() == true)
             homeViewModel?.myTeamTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTeamTask?.observe(viewLifecycleOwner){
+
             if (it!=null && it.isNotEmpty()){
+                AppLogger.log("myTeamTask :${it?.size}")
                 val list :ArrayList<Any> = ArrayList()
                 list.add("header")
                 list.addAll(it)
                 adapterList.updateList(list)
             }else{
                 adapterList.addItem("no_data")
+                AppLogger.log("myTeamTask no_data")
             }
         }
     }

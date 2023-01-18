@@ -53,7 +53,7 @@ class NotificationsFragment : Fragment() {
         }
 
         binding.addNotification.setOnClickListener {
-            val bmSheet = EquipmentRoomAddNew(R.layout.add_notification_dialouge)
+            val bmSheet = AddNotificationDialouge(R.layout.add_notification_dialouge)
             bmSheet.show(childFragmentManager,"category")
         }
 

@@ -179,7 +179,7 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
-            android:text="Notifiacation"
+            android:text="Reminder"
             android:textColor="@color/black"
             android:textSize="@dimen/dp12" />
 
@@ -207,7 +207,7 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
-            android:text="Notifiacation"
+            android:text="Auto-esclation"
             android:textColor="@color/black"
             android:textSize="@dimen/dp12" />
 

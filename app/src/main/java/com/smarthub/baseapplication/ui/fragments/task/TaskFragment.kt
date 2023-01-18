@@ -72,6 +72,12 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             homeViewModel.fetchHomeData()
         }
         homeViewModel.fetchHomeData()
+//        if (requireActivity().intent.hasExtra("isFromHome")){
+//            var isFromHome=requireActivity().intent.getBooleanExtra("isFromHome",false)
+//            if(isFromHome){
+//                binding.homePager.currentItem=1
+//            }
+//        }
     }
 
     private fun mapUIData(data: HomeResponse){
@@ -81,17 +87,12 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             AppLogger.log("empty list for siteStatus")
         else AppLogger.log("null data for siteStatus")
 
-        if (data.MyTeamTask!=null && data.MyTeamTask.isNotEmpty()){
+        if (data.MyTeamTask!=null){
             homeViewModel.updateMyTeamTask(data.MyTeamTask)
-        }else if (data.MyTeamTask!=null) AppLogger.log("empty list for MyTeamTask")
-        else AppLogger.log("empty list for MyTeamTask")
-
-        if (data.MyTask!=null && data.MyTask.isNotEmpty()){
+        }
+        if (data.MyTask!=null){
             homeViewModel.updateMyTask(data.MyTask)
-        }else if (data.MyTask!=null) {
-            AppLogger.log("empty list for MyTask")
-            homeViewModel.updateMyTask(null)
-        }else AppLogger.log("empty list for MyTask")
+        }
     }
 
     override fun taskAssignDialouge() {

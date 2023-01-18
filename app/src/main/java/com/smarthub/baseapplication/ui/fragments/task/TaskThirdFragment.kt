@@ -9,11 +9,8 @@ import com.smarthub.baseapplication.databinding.TaskThirdFragmnetBinding
 
 class TaskThirdFragment:Fragment() {
     lateinit var binding:TaskThirdFragmnetBinding
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = TaskThirdFragmnetBinding.inflate(inflater)
         setview()
         return binding.root
