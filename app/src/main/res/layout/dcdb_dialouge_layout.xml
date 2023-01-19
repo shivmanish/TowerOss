@@ -10,8 +10,9 @@
         android:id="@+id/canecl"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp5"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/drawable_cross_back"
         android:padding="@dimen/dp5"
         android:src="@drawable/cross_ico"
@@ -68,11 +69,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Make" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_make"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="."
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -94,11 +97,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Modal" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_modal"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="0"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -120,11 +125,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity (KW)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_Rating_capacity_kw"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -146,11 +153,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_Rating_capacity"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -183,7 +192,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/dcdb_unit_sizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -198,7 +209,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/dcdb_unit_sizeb"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -213,7 +226,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/dcdb_unit_sizeh"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -244,11 +259,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Unit Weight" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_unit_weight"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -270,11 +287,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Owner Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_owner_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -296,11 +315,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="User Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_user_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -321,12 +342,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Remarks" />
-
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/dcdb_remarks"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
