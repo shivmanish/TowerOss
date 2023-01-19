@@ -133,7 +133,17 @@ class NocCompAdapter (var context: Context, var listener:NocCompListListner, all
                 holder.nocTableList.adapter=NocTableAdapter(context,listener)
             }
             is AttachmentsViewHold->{
-
+                if (currentOpened == position) {
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = true
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }

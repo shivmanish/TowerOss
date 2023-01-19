@@ -149,10 +149,10 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
                      holder.binding.itemCollapse.visibility = View.VISIBLE
                  }
                  else {
-                     holder.binding.collapsingLayout.tag = false
-                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                     holder.binding.itemLine.visibility = View.VISIBLE
-                     holder.binding.itemCollapse.visibility = View.GONE
+                     holder.binding.collapsingLayout.tag = true
+                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                     holder.binding.itemLine.visibility = View.GONE
+                     holder.binding.itemCollapse.visibility = View.VISIBLE
                  }
                  holder.binding.collapsingLayout.setOnClickListener {
                      updateList(position)
