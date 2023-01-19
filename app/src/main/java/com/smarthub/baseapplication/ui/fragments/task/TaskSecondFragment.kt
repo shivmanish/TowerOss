@@ -24,8 +24,5 @@ class TaskSecondFragment:Fragment(){
 
     }
 
-    private fun nextClicked() {
-        findNavController().navigate(TaskSecondFragmentDirections.actionToMoveThirdFrag())
-    }
 
 }

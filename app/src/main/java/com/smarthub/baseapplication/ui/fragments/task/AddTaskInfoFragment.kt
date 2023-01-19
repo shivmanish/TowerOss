@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentAddTaskInfoBinding
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -34,8 +36,22 @@ class AddTaskInfoFragment : BaseFragment() {
                 R.id.actionToMoveSecondFrag
             )
         }
+        binding.cancel.setOnClickListener {
+            findNavController().popBackStack()
+        }
+//        binding.startDate.setOnClickListener {
+//            Toast.makeText(context,"Start Date Clicked",Toast.LENGTH_SHORT).show()
+//        }
+        binding.endDate.setOnClickListener {
+            Toast.makeText(context,"end Date Clicked",Toast.LENGTH_SHORT).show()
+        }
         setDatePickerView(binding.startDate)
-        setDatePickerView(binding.endDate)
+//        setDatePickerView(binding.endDate)
+
+        var list=ArrayList<DropDownItem>()
+        list.add(DropDownItem("Yes","0"))
+        list.add(DropDownItem("No","1"))
+        binding.taskForASingleSite.setSpinnerData(list)
     }
 
 

@@ -68,12 +68,13 @@ class CaptureSiteAdapter(val context: Context) : Adapter<CaptureSiteViewholder>(
         }
         else if(list[position]==type2){
             subList.clear()
-            subList.addAll(listOf("Basic Info","Operational Info","GeoConditional","Safety/Access","Attachments"))
+            subList.addAll(listOf("Site Request","Assign ACQ Team","Acquisition Survey","OPCO TSSR",
+                "Feasibility Plan","Soft Acquisition","Site Proposal","SP Approval/SO"))
             holder.binding.list.adapter = CaptureItemAdapter(context,subList)
         }
         else if(list[position]==type3){
             subList.clear()
-            subList.addAll(listOf("Basic Info","Operational Info","GeoConditional","Safety/Access","Attachments"))
+            subList.addAll(listOf("OPCO Info","RF Equipment","Backhaul","RF Antenna","Power Load"))
             holder.binding.list.adapter = CaptureItemAdapter(context,subList)
         }
         else if(list[position]==type4){

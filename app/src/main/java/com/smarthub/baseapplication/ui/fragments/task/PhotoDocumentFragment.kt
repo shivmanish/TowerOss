@@ -30,6 +30,7 @@ class PhotoDocumentFragment: BaseFragment() {
         }
     }
 
+
     private fun nextClicked() {
         findNavController().navigate(TaskSecondFragmentDirections.actionToMoveThirdFrag())
     }

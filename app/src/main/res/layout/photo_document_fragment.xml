@@ -10,6 +10,8 @@
     android:orientation="vertical">
 
     <CheckBox
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp5"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
@@ -25,6 +27,8 @@
         android:textSize="@dimen/sp15" />
 
     <CheckBox
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp5"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
@@ -44,6 +48,8 @@
         app:layout_constraintTop_toBottomOf="@+id/document_box"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp5"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
