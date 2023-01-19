@@ -11,7 +11,8 @@
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/drawable_cross_back"
         android:padding="@dimen/dp5"
         android:src="@drawable/cross_ico"
@@ -68,11 +69,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Type" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/type"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -104,7 +107,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/editroomSizeL"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -119,7 +124,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/editroomSizeW"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -134,7 +141,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/editRoomSizeH"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -175,7 +184,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/editFoundationSizeL"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -190,7 +201,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/editFoundationSizeW"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -205,7 +218,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/editFoundationSizeH"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -236,11 +251,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Foundation Type" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/foundationType"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -262,11 +279,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="Remarks" />
 
-                                <TextView
+
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/remark"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
