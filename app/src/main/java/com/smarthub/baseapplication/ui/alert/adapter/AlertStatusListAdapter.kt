@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.RadioButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -261,29 +262,27 @@ class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertVie
             }
             is ViewHold3 -> {
                 listener.setSearchEditBoxAdapter(holder.binding.searchBox)
-                listener.setSearchEditProgress(holder.binding.loadingProgress)
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.iconLayout.visibility = View.VISIBLE
-                } else {
-                    holder.binding.itemTitle.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.iconLayout.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
+//                listener.setSearchEditProgress(holder.binding.loadingProgress)
+//                if (currentOpened == position) {
+//                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+//                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+//                    holder.binding.itemLine.visibility = View.GONE
+//                    holder.binding.itemCollapse.visibility = View.VISIBLE
+//                    holder.binding.iconLayout.visibility = View.VISIBLE
+//                }
+//                else {
+//                    holder.binding.itemTitle.tag = false
+//                    holder.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
+//                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+//                    holder.binding.itemLine.visibility = View.VISIBLE
+//                    holder.binding.itemCollapse.visibility = View.GONE
+//                    holder.binding.iconLayout.visibility = View.GONE
+//                }
+//                holder.binding.collapsingLayout.setOnClickListener {
+//                    updateList(position)
+//                }
                 holder.binding.itemTitle.text = list[position] as String
-                AppPreferences.getInstance().setDropDown(
-                    holder.binding.spinSelectCategory,
-                    SendAlertDropDowns.SACategory.name
-                )
+                AppPreferences.getInstance().setDropDown(holder.binding.spinSelectCategory, SendAlertDropDowns.SACategory.name)
             }
             is ViewHold4 -> {
                 if (currentOpened == position) {
@@ -403,7 +402,7 @@ class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertVie
 interface AlertStatusListener {
     fun sendAlertData()
     fun getuser()
-    fun setSearchEditBoxAdapter(customStringSpinner: EditText)
+    fun setSearchEditBoxAdapter(customStringSpinner: TextView)
     fun setSearchEditProgress(customStringSpinner: ProgressBar)
     fun setCustomArrayAdapter(customStringSpinner: CustomStringSpinner)
     fun setCustomArrayAdapter1(customStringSpinner: CustomStringSpinner)

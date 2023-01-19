@@ -32,29 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp50">
 
-                <LinearLayout
-                    android:visibility="visible"
-                    android:id="@+id/icon_layout"
-                    android:layout_width="0dp"
-                    android:orientation="horizontal"
-                    android:gravity="end"
-                    app:layout_constraintStart_toEndOf="@+id/item_title"
-                    app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_height="0dp">
-                    <ImageView
-                        app:tint="@color/black"
-                        android:visibility="visible"
-                        android:id="@+id/img_edit"
-                        android:paddingStart="@dimen/dp20"
-                        android:paddingEnd="@dimen/dp20"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/edit_ico_black"
-                        android:layout_width="@dimen/dp58"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-
                 <ImageView
                     android:id="@+id/img_dropdown"
                     android:layout_width="@dimen/dp58"
@@ -159,34 +136,25 @@
             style="@style/ColumnItemInfo"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Site Search"
-                style="@style/RowTextItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/search_box"
-                    android:hint="Search your site"
-                    android:textSize="15sp"
+                <TextView
+                    android:text="Site Search"
+                    style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <ProgressBar
-                    android:padding="8dp"
-                    android:visibility="visible"
-                    android:id="@+id/loading_progress"
-                    android:paddingEnd="0dp"
-                    android:layout_marginBottom="@dimen/dp5"
-                    android:indeterminateTint="@color/tab_text_color"
-                    app:layout_constraintBottom_toBottomOf="@+id/search_box"
-                    app:layout_constraintTop_toTopOf="@+id/search_box"
-                    app:layout_constraintEnd_toEndOf="@+id/search_box"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/search_box"
+                    android:hint="search site"
+                    android:textSize="@dimen/dp16"
+                    android:drawableEnd="@drawable/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp4"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8" />
         </LinearLayout>
 
 
