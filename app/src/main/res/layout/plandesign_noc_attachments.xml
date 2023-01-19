@@ -38,6 +38,7 @@
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,9 +58,6 @@
         android:background="@color/view_color"
         android:layout_height="1dp"
         android:layout_width="match_parent"/>
-
-
-
     <LinearLayout
         android:visibility="visible"
         android:id="@+id/item_collapse"
