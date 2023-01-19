@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.search.SearchList
+import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.ui.alert.AlertRepo
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
@@ -20,6 +21,7 @@ class AlertViewModel : ViewModel() {
     var sendAlertModel: SendAlertModel
     var sendAlertUsers: ArrayList<SendAlertUser>
     var selecteduserposition: ArrayList<Int>
+    var searchListItem : SingleLiveEvent<Resource<SearchListItem>> = SingleLiveEvent()
     var supportRequiredUsers: ArrayList<SupportRequiredUser>
     var repo: AlertRepo
     var department: String = "D1"

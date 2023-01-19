@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,13 +35,12 @@ import com.smarthub.baseapplication.widgets.CustomSpinner
 import com.smarthub.baseapplication.widgets.CustomStringSpinner
 
 
-class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapter.ItemClickListener, SubmitAletrBottomSheet.SubmitAlertBottomSheetListener,SelectCallBack {
+class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapter.ItemClickListener,
+    SubmitAletrBottomSheet.SubmitAlertBottomSheetListener,SelectCallBack,SearchResultAdapter.SearchResultListener {
 
-    var fetchedData = ""
-    var isDataFetched = true
     lateinit var binding: AlertStatusBinding
     lateinit var viewmodel: AlertViewModel
-    lateinit var searchCardView: EditText
+    var searchCardView: TextView?=null
     var adapter: AlertStatusListAdapter? = null
     var list : List<String> = ArrayList()
     var item: SearchListItem?=null
@@ -57,41 +57,12 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        searchResultAdapter = SearchResultAdapter(requireContext(),this@AlertStatusFragment)
         adapter = AlertStatusListAdapter(this, viewmodel, this@AlertStatusFragment)
         binding.list.adapter = adapter
 
         binding.back.setOnClickListener {
             findNavController().popBackStack()
-        }
-
-        if (viewmodel.siteSearchResponse?.hasActiveObservers() == true){
-            viewmodel.siteSearchResponse?.removeObservers(viewLifecycleOwner)
-        }
-
-        viewmodel.siteSearchResponse?.observe(viewLifecycleOwner){
-//            if (binding.loadingProgress.visibility ==View.VISIBLE)
-//                binding.loadingProgress.visibility = View.INVISIBLE
-            searchCardView.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.search,0)
-            isDataFetched = true
-            if (it!=null){
-                if (it.status == Resource.Status.SUCCESS){
-
-                    if (item!=null && (item?.name==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
-
-                    }else {
-                        it.data?.let { it1 -> searchResultAdapter.updateList(it1) }
-                        if (fetchedData.isNotEmpty()) {
-                            viewmodel.fetchSiteSearchData("siteID",fetchedData)
-                        }
-                        fetchedData = ""
-                    }
-                }else {
-                    Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
-                }
-            }
-            else{
-                Toast.makeText(requireContext(),"error in fetching data",Toast.LENGTH_SHORT).show()
-            }
         }
 
     }
@@ -116,6 +87,16 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
                 bm.show(childFragmentManager, "categoery")
             }
         }
+
+        if (viewmodel.searchListItem.hasActiveObservers())
+            viewmodel.searchListItem.removeObservers(viewLifecycleOwner)
+        viewmodel.searchListItem.observe(viewLifecycleOwner) {
+            //response will get here
+           if (searchCardView!=null){
+               searchCardView?.text = it.data?.name
+           }
+        }
+
         if (viewmodel.userDataResponseLiveData.hasActiveObservers())
             viewmodel.userDataResponseLiveData.removeObservers(viewLifecycleOwner)
         viewmodel.userDataResponseLiveData.observe(viewLifecycleOwner, Observer {
@@ -171,34 +152,13 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
         customStringSpinner.setSpinnerData(list)
     }
 
-    override fun setSearchEditBoxAdapter(searchCardView: EditText) {
+    override fun setSearchEditBoxAdapter(searchCardView: TextView) {
         this.searchCardView = searchCardView
-        this.searchCardView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                fetchedData = searchCardView.text.toString()
-                if (fetchedData.isNotEmpty() && fetchedData.length>=3 && isDataFetched) {
-                    AppLogger.log("fetchedData :$fetchedData,item?.Siteid:" +
-                            "${item?.name},item?.id:${item?.id}")
-                    if (item!=null && (item?.name==fetchedData|| item?.id==fetchedData)) {
-                        AppLogger.log("return : $fetchedData")
-                        return
-                    }
-                    isDataFetched = false
-                    if (loadingProgress?.visibility != View.VISIBLE)
-                        loadingProgress?.visibility = View.VISIBLE
-                    searchCardView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                        viewmodel.fetchSiteSearchData("siteID",fetchedData)
-
-                }
-                else if(fetchedData.isEmpty()){
-                    Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
-
-                }
-
-            }
-        })
+        if (viewmodel.searchListItem.value!=null && viewmodel.searchListItem.value?.data!=null)
+            searchCardView.text = viewmodel.searchListItem.value?.data?.name
+        searchCardView.setOnClickListener {
+            findNavController().navigate(AlertStatusFragmentDirections.actionAlertStatusFragmentToChatFragment())
+        }
     }
 
     override fun setSearchEditProgress(progress: ProgressBar) {
@@ -218,6 +178,10 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
 
     override fun clickedChat() {
         findNavController().navigate(AlertStatusFragmentDirections.actionAlertStatusFragmentToChatFragment())
+    }
+
+    override fun onSearchItemSelected(item: Any?) {
+
     }
 
 
