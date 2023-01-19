@@ -68,8 +68,10 @@
                                     android:layout_height="wrap_content"
                                     android:text="Make" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/make"
+
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="."
@@ -94,11 +96,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Modal" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/modal"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="0"
+                                    android:text=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -120,11 +123,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity (KW)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/Rating_capacity_kw"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+                                    android:text=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -157,7 +161,8 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
                                             android:id="@+id/cabinetsizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -218,11 +223,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Overall Weight (KG)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/overall_weight_kg"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+                                    android:text=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -244,11 +250,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Owner Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/owner_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Cloudextel"
+                                    android:text=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -270,11 +277,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="User Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/user_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+                                    android:text=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
