@@ -68,7 +68,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-            binding.AddNewRow.setOnClickListener {
+            binding.imgEdit.setOnClickListener {
                 addTableItem("dfsdh")
             }
         }

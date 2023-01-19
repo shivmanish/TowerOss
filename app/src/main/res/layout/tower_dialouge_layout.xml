@@ -25,17 +25,14 @@
         android:orientation="vertical"
         android:padding="@dimen/dp5"
         android:translationZ="@dimen/dp5">
-
-        <ScrollView
+     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:requiresFadingEdge="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <LinearLayout
                     android:id="@+id/item_collapse_equipment"
                     android:layout_width="match_parent"
@@ -65,14 +62,18 @@
                                 <TextView
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
+                                    android:maxLines="1"
                                     android:layout_height="wrap_content"
                                     android:text="Tower Height (m)" />
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/tower_height"
                                     android:layout_width="match_parent"
+
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
+                                    android:maxLines="1"
+                                    android:hint=""
+                                    style="@style/RowTestItemEdit"
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -90,15 +91,17 @@
 
                                 <TextView
                                     style="@style/RowTextItemInfo"
+                                    android:maxLines="1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Total Antenna Weight (kg)" />
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/total_anteen_weight"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="On-Air"
+                                    android:hint="On-Air"
+                                    style="@style/RowTestItemEdit"
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -120,10 +123,11 @@
                                     android:layout_height="wrap_content"
                                     android:text="Antenna Space (U)" />
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/antenna_space"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
+                                    style="@style/RowTestItemEdit"
                                     android:text="On-Air"
                                     android:textColor="@color/black" />
                                 <View
@@ -146,10 +150,11 @@
                                     android:layout_height="wrap_content"
                                     android:text="Max Antenna Height, AGL (m)" />
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/max_anteena_height"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
+                                    style="@style/RowTestItemEdit"
                                     android:text="On-Air"
                                     android:textColor="@color/black" />
                                 <View
@@ -172,11 +177,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Offset Pole Count" />
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/offset_pole_count"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air"
+                                    style="@style/RowTestItemEdit"
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -198,12 +204,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Offset Pole Length (cm)" />
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/offset_pole_lenght"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:text="On-Air"
-                                    android:textColor="@color/black" />
+                                    style="@style/RowTestItemEdit"
+                                    android:textColor="@color/black"/>
                                 <View
                                     android:alpha="0.37"
                                     android:background="#263238"
@@ -218,7 +225,6 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
