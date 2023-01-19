@@ -30,22 +30,31 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class AlertUserListBottomSheet(contentLayoutId: Int, var viewModel: AlertViewModel,var listner:SelectCallBack) : BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding: AlertListBottomSheetBinding
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AlertListBottomSheetBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.90).toInt()
+
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        AppLogger.log("size :${viewModel.userDataList.size}")
         binding.recyclerView.adapter = UserListAdapter(viewModel.userDataList,viewModel.selecteduserposition, listner )
 
-        return binding.root
+        binding.icMenuClose.setOnClickListener {
+            dismiss()
+        }
+        binding.close.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        dialog.behavior.skipCollapsed = false
+        dialog.behavior.skipCollapsed = true
         return dialog
     }
 }

@@ -27,13 +27,13 @@ open class BaseFragment : Fragment(){
         onViewPageSelected()
     }
 
-    protected open fun setDatePickerView(view : TextView) {
+    open fun setDatePickerView(view : TextView) {
         view.setOnClickListener {
             openDatePicker(view)
         }
     }
 
-    protected open fun openDatePicker(view : TextView) {
+    open fun openDatePicker(view : TextView) {
         var year = 0
         var month = 0
         var day = 0
@@ -53,7 +53,7 @@ open class BaseFragment : Fragment(){
         )
     }
 
-    private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
+    open fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
         textView.text = StringBuilder().append(day).append("/").append(month).append("/").append(year)
     }
 
@@ -65,7 +65,7 @@ open class BaseFragment : Fragment(){
         }
     }
 
-    fun hideLoader(){
+   open fun hideLoader(){
         if (progressDialog!=null && progressDialog?.isShowing == true){
             progressDialog?.hide()
         }

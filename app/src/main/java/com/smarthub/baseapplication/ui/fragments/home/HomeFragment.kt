@@ -2,14 +2,11 @@ package com.smarthub.baseapplication.ui.fragments.home
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
@@ -21,11 +18,10 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
-import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.fragments.search.SearchFragmentDirections
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
-import com.smarthub.baseapplication.ui.fragments.task.editdialog.CloseTaskBottomSheet
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
+import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -130,10 +126,10 @@ class HomeFragment : Fragment(),TaskListener {
         if (data.MyTeamTask!=null){
             homeViewModel.updateMyTeamTask(data.MyTeamTask)
         }
-        else if (data.MyTeamTask!=null) {
-            homeViewModel.updateMyTeamTask(data.MyTeamTask)
-            AppLogger.log("empty list for MyTeamTask")
-        }
+//        else if (data.MyTeamTask!=null) {
+//            homeViewModel.updateMyTeamTask(data.MyTeamTask)
+//            AppLogger.log("empty list for MyTeamTask")
+//        }
         else AppLogger.log("empty list for MyTeamTask")
 
         if (data.MyTask!=null && data.MyTask.isNotEmpty()){
@@ -182,8 +178,13 @@ class HomeFragment : Fragment(),TaskListener {
     }
 
     override fun closeTask(task: MyTeamTask) {
-        val bottomSheetDialogFragment = CloseTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
+        val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
+    override fun assignTask(task : MyTeamTask) {
+        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task)
+        bm.show(childFragmentManager, "category")
     }
 
 

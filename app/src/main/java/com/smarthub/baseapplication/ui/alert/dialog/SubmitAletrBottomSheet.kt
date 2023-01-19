@@ -10,21 +10,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.databinding.SubmitAllertBottomSheetBinding
 import com.smarthub.baseapplication.ui.alert.model.response.Data
 import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.utils.Utils
 
-class SubmitAletrBottomSheet(contentLayoutId: Int, var data: Data) :
+class SubmitAletrBottomSheet(contentLayoutId: Int, var data: Data,var listener : SubmitAlertBottomSheetListener) :
     BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding: SubmitAllertBottomSheetBinding
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SubmitAllertBottomSheetBinding.inflate(inflater)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.8).toInt()
+
         binding.troublemaker.text = data.SATroubleMaker
         binding.issuetype.text = data.SAIssueType
         binding.issuetypetwo.text = data.SAIssueType
@@ -50,13 +45,24 @@ class SubmitAletrBottomSheet(contentLayoutId: Int, var data: Data) :
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        binding.close.setOnClickListener {
+            dismiss()
+        }
+        binding.chat.setOnClickListener {
+            dismiss()
+            listener.clickedChat()
+        }
         return binding.root
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        dialog.behavior.skipCollapsed = false
+        dialog.behavior.skipCollapsed = true
         return dialog
+    }
+
+    interface SubmitAlertBottomSheetListener{
+        fun clickedChat()
     }
 }

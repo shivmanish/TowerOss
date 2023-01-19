@@ -142,9 +142,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.fragments.task.TaskActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MDemo.NoActionBar" />
+             />
         <activity
             android:name=".ui.basic_info.SiteImages"
             android:exported="false"
