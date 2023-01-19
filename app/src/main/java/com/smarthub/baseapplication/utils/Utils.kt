@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -21,6 +22,7 @@ import java.io.IOException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.abs
 
 
 object Utils {
@@ -276,5 +278,26 @@ object Utils {
 
     fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)
+    }
+
+
+    fun dateDiffrence(firstdate : String,secondDate : String): Int {
+        AppLogger.log("dateDiffrence:$firstdate, $secondDate")
+        try {
+            val date1: Date
+            val date2: Date
+            val dates = SimpleDateFormat("yyyy-MM-dd")
+            date1 = dates.parse(firstdate)
+            date2 = dates.parse(secondDate)
+            AppLogger.log("dateDiffrence:$date1, $date2")
+            val difference: Long = date2.time - date1.time
+            val differenceDates = difference / (24 * 60 * 60 * 1000)
+            AppLogger.log("date diffrence error :${differenceDates}")
+            return differenceDates.toInt()
+        }catch (e:java.lang.Exception){
+            AppLogger.log("date diffrence error :${e.message}")
+
+        }
+        return 0
     }
 }

@@ -1,13 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments
-
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import org.w3c.dom.Text
+import com.smarthub.baseapplication.utils.AppLogger
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -37,6 +38,7 @@ open class BaseFragment : Fragment(){
         var year = 0
         var month = 0
         var day = 0
+        AppLogger.log("function open date picker")
         val calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
@@ -50,11 +52,14 @@ open class BaseFragment : Fragment(){
                 // arg3 = day
                 showDate(arg1, arg2 + 1, arg3,view)
             }, year, month, day
-        )
+        ).show()
     }
 
     open fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
-        textView.text = StringBuilder().append(day).append("/").append(month).append("/").append(year)
+        val myFormat = "yyyy-MMM-dd" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        textView.text =
+            StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
     }
 
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)

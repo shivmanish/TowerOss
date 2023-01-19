@@ -216,7 +216,7 @@
                         <TextView
                             android:id="@+id/start_date"
                             style="@style/RowTestItemEdit"
-                            android:text="10-Nov-22"
+                            android:text="2022-11-10"
                             android:textSize="@dimen/dp15"
                             android:layout_width="match_parent"
                             android:drawableEnd="@drawable/icon_date"
@@ -244,7 +244,7 @@
                             style="@style/RowTestItemEdit"
                             android:textSize="@dimen/dp15"
                             android:drawableEnd="@drawable/icon_date"
-                            android:text="12-Nov-22"
+                            android:text="2022-11-22"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
@@ -322,6 +322,7 @@
                 <LinearLayout
                     android:layout_width= "match_parent"
                     style="@style/ColumnItemInfo"
+                    android:layout_marginBottom="@dimen/dp1"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -339,7 +340,7 @@
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp4" />
+                        android:layout_marginTop="@dimen/dp5" />
 
                 </LinearLayout>
                 <LinearLayout
