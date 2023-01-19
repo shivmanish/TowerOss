@@ -11,7 +11,8 @@
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/drawable_cross_back"
         android:padding="@dimen/dp5"
         android:src="@drawable/cross_ico"
@@ -68,11 +69,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Make" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                     android:hint=""
                                     android:id="@+id/ac_make"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="."
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -94,11 +97,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Modal" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/ac_modal"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="0"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -120,11 +125,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity (KW)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/ac_Rating_capacity_kw"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -157,7 +164,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/ac_cabinetsizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -172,7 +181,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/ac_cabinetsizeb"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -187,7 +198,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/ac_cabinetsizeh"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -229,7 +242,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/ac_indore_Unit_sizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -244,7 +259,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/ac_indore_Unit_sizeb"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -259,7 +276,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/ac_indore_Unit_sizeh"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -388,11 +407,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Outdoor Unit Weight" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/ac_outdoor_unit_weight"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Cloudextel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -414,11 +435,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Overall Weight (KG)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/ac_overall_weight"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -440,11 +463,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Owner Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/ac_owner_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+                                    android:text=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -466,12 +491,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="User Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/ac_user_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
-                                    android:textColor="@color/black" />
+                                   android:textColor="@color/black"/>
                                 <View
                                     android:alpha="0.37"
                                     android:background="#263238"
