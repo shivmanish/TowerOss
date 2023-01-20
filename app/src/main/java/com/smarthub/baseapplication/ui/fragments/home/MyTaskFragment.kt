@@ -34,15 +34,23 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
         if (homeViewModel?.myTask?.hasActiveObservers() == true)
             homeViewModel?.myTask?.removeObservers(viewLifecycleOwner)
         homeViewModel?.myTask?.observe(viewLifecycleOwner){
+
             if (it!=null && it.isNotEmpty()){
                 AppLogger.log("myTask data not null")
                 val list :ArrayList<Any> = ArrayList()
                 list.add("header")
                 list.addAll(it)
                 adapterList.updateList(list)
-            }else{
-                AppLogger.log("myTask data is null")
+            }
+            else if(it==null || it.isEmpty())
+            {
+                val list :ArrayList<Any> = ArrayList()
+                list.add("header")
+                adapterList.updateList(list)
                 adapterList.addItem("no_data")
+            }
+            else{
+                AppLogger.log("myTask data is null")
             }
         }
 

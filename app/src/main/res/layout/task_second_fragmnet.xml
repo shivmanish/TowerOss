@@ -155,6 +155,8 @@
             />
 
         <androidx.viewpager.widget.ViewPager
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"

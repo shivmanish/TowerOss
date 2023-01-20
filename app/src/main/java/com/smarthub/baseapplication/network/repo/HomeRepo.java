@@ -1473,7 +1473,6 @@ public class HomeRepo {
     }
 
     public void getTaskById(String id) {
-
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("gettaskdata",id);
         apiClient.getTaskDataById(jsonObject).enqueue(new Callback<TaskDataList>() {

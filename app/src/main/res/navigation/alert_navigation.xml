@@ -18,12 +18,52 @@
         android:name="com.smarthub.baseapplication.ui.alert.AlertStatusFragment"
         android:label="AlertStatusFragment" >
         <action
-            android:id="@+id/action_alertStatusFragment_to_chatFragment"
-            app:destination="@id/chatFragment"
+            android:id="@+id/action_alertStatusFragment_to_searchIdFragment"
+            app:destination="@id/searchIdFragment"
             app:popUpTo="@id/alertStatusFragment" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="93"/>
+        <action
+            android:id="@+id/action_alertStatusFragment_to_submitAlertFragment"
+            app:destination="@id/submitAlertFragment"
+            app:popUpTo="@id/alertStatusFragment" >
+            <argument
+                android:name="id"
+                app:argType="string"
+                android:defaultValue="93"/>
+        </action>
+    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/chatFragment"-->
+<!--        android:name="com.smarthub.baseapplication.ui.alert.dialog.ChatFragment"-->
+<!--        android:label="ChatFragment" />-->
+    <fragment
+        android:id="@+id/searchIdFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.search.SearchIdFragment"
+        android:label="SearchIdFragment" />
+    <fragment
+        android:id="@+id/submitAlertFragment"
+        android:name="com.smarthub.baseapplication.ui.alert.SubmitAlertFragment"
+        android:label="SubmitAlertFragment" >
+        <action
+            android:id="@+id/action_submitAlertFragment_to_chatFragment2"
+            app:destination="@id/chatFragment2"
+            app:popUpTo="@id/submitAlertFragment" >
+            <argument
+                android:name="id"
+                app:argType="string"
+                android:defaultValue="93"/>
+            <argument
+                android:name="reportedBy"
+                app:argType="string"
+                android:defaultValue="7269024641"/>
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/chatFragment"
+        android:id="@+id/chatFragment2"
         android:name="com.smarthub.baseapplication.ui.alert.dialog.ChatFragment"
         android:label="ChatFragment" />
+
 </navigation>
