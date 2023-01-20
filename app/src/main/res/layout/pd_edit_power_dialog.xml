@@ -71,8 +71,8 @@
                                 <EditText
                                     android:id="@+id/Power_type"
                                     android:hint=""
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
+                             
+                               
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
@@ -91,7 +91,7 @@
                                 <TextView
                                     android:text="Voltage"
                                     android:maxLines="1"
-                                    android:ellipsize="marquee"
+                                   
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
@@ -99,7 +99,7 @@
                                     android:id="@+id/voltage"
                                     android:hint=""
                                     android:maxLines="1"
-                                    android:ellipsize="marquee"
+                                   
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
@@ -125,7 +125,7 @@
                                     android:id="@+id/max_total_power"
                                     android:hint=""
                                     android:maxLines="1"
-                                    android:ellipsize="marquee"
+                                   
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
@@ -144,7 +144,7 @@
                                 <TextView
                                     android:text="Battery Backup"
                                     android:maxLines="1"
-                                    android:ellipsize="marquee"
+                                   
                                     style="@style/RowTextItemInfo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
@@ -152,7 +152,7 @@
                                     android:hint=""
                                     android:id="@+id/battery_backup"
                                     android:maxLines="1"
-                                    android:ellipsize="marquee"
+                                   
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
