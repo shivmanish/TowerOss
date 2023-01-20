@@ -257,7 +257,6 @@
                                     android:id="@+id/foundationType"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
