@@ -34,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_height="@dimen/dp35"
             android:textColor="@color/color1"
-            android:text="Close Alert"
+            android:text="Done"
             android:textSize="@dimen/dp14"
             android:gravity="center"
             android:paddingTop="@dimen/dp5"

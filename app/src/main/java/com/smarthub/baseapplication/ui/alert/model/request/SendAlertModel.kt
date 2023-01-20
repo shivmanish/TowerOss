@@ -17,7 +17,7 @@ data class SendAlertModel(
     var emailSend: String="True",
     var notiFication: String="True",
     var sendalerttoall: String="True",
-    var siteid: String="siteid",
+    var siteid: String="448",
     var sitename: String="sitename",
     var smsSend: String="True"
 )

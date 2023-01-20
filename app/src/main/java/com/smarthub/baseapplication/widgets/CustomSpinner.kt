@@ -48,10 +48,27 @@ class CustomSpinner : AppCompatSpinner {
         onItemSelectedListener = listener
     }
 
-    fun setSpinnerData(data: List<DropDownItem>, seletedString: String?) {
+    fun setSpinnerData(data: List<DropDownItem>, id: String?) {
         this.data = data
         adapter = CustomArrayAdapter(context, data)
-        setSelection(getPositionOfItem(seletedString))
+        setSelection(getIndexById(id))
+        var listener = object : OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                onItemSelected(data[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+        onItemSelectedListener = listener
+    }
+
+    fun setSpinnerDataByName(data: List<DropDownItem>, name: String?) {
+        this.data = data
+        adapter = CustomArrayAdapter(context, data)
+        setSelection(getIndexByName(name))
         var listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
@@ -73,6 +90,26 @@ class CustomSpinner : AppCompatSpinner {
         var index = 0
         for (i in 0 until count) {
             if (getItemAtPosition(i) == myString) {
+                index = i
+            }
+        }
+        return index
+    }
+
+    private fun getIndexByName(name: String?): Int {
+        var index = 0
+        for (i in data.indices) {
+            if (data[i].name == name) {
+                index = i
+            }
+        }
+        return index
+    }
+
+    private fun getIndexById(id: String?): Int {
+        var index = 0
+        for (i in data.indices) {
+            if (data[i].id == id) {
                 index = i
             }
         }

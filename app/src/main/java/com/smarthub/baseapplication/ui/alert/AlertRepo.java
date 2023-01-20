@@ -14,9 +14,11 @@ import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.network.APIClient;
+import com.smarthub.baseapplication.ui.alert.model.UpdateAlertData;
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList;
 import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppLogger;
@@ -34,6 +36,7 @@ public class AlertRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
     private SingleLiveEvent<Resource<SendAlertResponse>> sendAlertResponseLivedata;
+    private SingleLiveEvent<Resource<SendAlertResponseNew>> sendAlertResponseLivedataNew;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponseLiveData;
     private SingleLiveEvent<Resource<DepartmentDropdown>> departmentDropDownData;
 
@@ -52,11 +55,16 @@ public class AlertRepo {
         userDataResponseLiveData = new SingleLiveEvent<>();
         departmentDropDownData = new SingleLiveEvent<>();
         siteSearchResponse = new SingleLiveEvent<>();
+        sendAlertResponseLivedataNew = new SingleLiveEvent<>();
 
     }
 
     public SingleLiveEvent<Resource<SendAlertResponse>> getAlertResponseLiveData() {
         return sendAlertResponseLivedata;
+    }
+
+    public SingleLiveEvent<Resource<SendAlertResponseNew>> getAlertResponseLiveDataNew() {
+        return sendAlertResponseLivedataNew;
     }
 
     public SingleLiveEvent<Resource<UserDataResponse>> getUserDataReponseLiveData() {
@@ -74,6 +82,158 @@ public class AlertRepo {
     public void sendAlert(SendAlertModel model) {
 
         apiClient.sendAlert(model).enqueue(new Callback<SendAlertResponse>() {
+            @Override
+            public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SendAlertResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SendAlertResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    sendAlertResponseLivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    sendAlertResponseLivedata.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    sendAlertResponseLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    sendAlertResponseLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void sendAlertNew(SendAlertModel model) {
+
+        apiClient.sendAlertNew(model).enqueue(new Callback<SendAlertResponseNew>() {
+            @Override
+            public void onResponse(Call<SendAlertResponseNew> call, Response<SendAlertResponseNew> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SendAlertResponseNew> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SendAlertResponseNew> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    sendAlertResponseLivedataNew.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    sendAlertResponseLivedataNew.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    sendAlertResponseLivedataNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    sendAlertResponseLivedataNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void getAlertDetails(String model) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Get",model);
+        apiClient.sendAlert(jsonObject).enqueue(new Callback<SendAlertResponse>() {
+            @Override
+            public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SendAlertResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SendAlertResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
+                    sendAlertResponseLivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    sendAlertResponseLivedata.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    sendAlertResponseLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    sendAlertResponseLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void updateAlertDetails(UpdateAlertData model) {
+        apiClient.updateAlert(model).enqueue(new Callback<SendAlertResponse>() {
+            @Override
+            public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SendAlertResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SendAlertResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    sendAlertResponseLivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    sendAlertResponseLivedata.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    sendAlertResponseLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    sendAlertResponseLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void sendSms(String id,String sms) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("chating",id);
+        jsonObject.addProperty("message",sms);
+        apiClient.sendAlert(jsonObject).enqueue(new Callback<SendAlertResponse>() {
             @Override
             public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
                 if (response.isSuccessful()){
