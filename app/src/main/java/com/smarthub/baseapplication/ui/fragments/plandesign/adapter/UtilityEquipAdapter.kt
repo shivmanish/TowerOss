@@ -440,20 +440,20 @@ println("prinit size is "+list.size)
 
     class SmpsViewHolder(itemView: View) : ViewHold(itemView) {
         var binding: SmpsViewBinding = SmpsViewBinding.bind(itemView)
-
         init {
             binding.itemCollapseSmps.tag = false
-
             if ((binding.itemCollapseSmps.tag as Boolean)) {
                 binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
                 binding.smpsRoot.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
+            }
+            else {
                 binding.smpsArrow.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.smpsRoot.setBackgroundResource(R.color.collapse_card_bg)
             }
 
 
         }
+
     }
 
     class BatteryBankViewHolder(itemView: View) : ViewHold(itemView) {
