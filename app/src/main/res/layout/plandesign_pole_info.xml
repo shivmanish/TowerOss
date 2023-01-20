@@ -41,7 +41,8 @@
                 android:id="@+id/img_edit"
                 android:visibility="visible"
                 android:src="@drawable/add_12"
-                android:padding="@dimen/dp5"
+                android:padding="@dimen/dp7"
+
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"
 
