@@ -14,10 +14,15 @@ import com.smarthub.baseapplication.databinding.CaptureDataItemBinding
 
 class CaptureItemAdapter(val context: Context, sublist:ArrayList<String>) : Adapter<CaptureItemViewholder>() {
     var list : ArrayList<String> = ArrayList()
-
+    var selectedItem= HashMap<String,Boolean>()
+    var checkedStatus:Boolean=false;
     init {
         list.clear()
         list.addAll(sublist)
+    }
+    fun updateCheckStatus(status:Boolean){
+        checkedStatus=status
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CaptureItemViewholder {
@@ -28,6 +33,12 @@ class CaptureItemAdapter(val context: Context, sublist:ArrayList<String>) : Adap
 
     override fun onBindViewHolder(holder: CaptureItemViewholder, position: Int) {
         holder.binding.subTitle.text=list[position]
+            holder.binding.subTitleCheckbox.isChecked=checkedStatus
+        holder.binding.subTitleCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            selectedItem.put(list[position],isChecked)
+        }
+
+
     }
 
     override fun getItemCount(): Int {
