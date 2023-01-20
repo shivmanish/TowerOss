@@ -50,7 +50,11 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         searchResultAdapter = SearchResultAdapter(requireContext(),this@AlertStatusFragment)
-        adapter = AlertStatusListAdapter(this, viewmodel, this@AlertStatusFragment)
+        var type = "custom"
+        if (arguments!=null && arguments?.containsKey("type") == true){
+            type = "${arguments?.getString("type")}"
+        }
+        adapter = AlertStatusListAdapter(this, this@AlertStatusFragment,type)
         binding.list.adapter = adapter
 
         binding.back.setOnClickListener {

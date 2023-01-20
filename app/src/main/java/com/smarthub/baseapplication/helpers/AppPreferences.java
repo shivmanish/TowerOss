@@ -72,6 +72,13 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
     }
 
+    public void setDropDownByName(CustomSpinner customSpinner,String name,String item){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        customSpinner.setSpinnerDataByName(dropDownNewItem.getData(),item);
+    }
+
     public void setDropDown(CustomSpinner customSpinner,String name){
         Gson gson = new Gson();
         String jsonString = getString(name);

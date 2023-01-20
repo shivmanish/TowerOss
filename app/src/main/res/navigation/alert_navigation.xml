@@ -11,7 +11,12 @@
         <action
             android:id="@+id/action_alertHomeFragment_to_alertStatusFragment"
             app:destination="@id/alertStatusFragment"
-            app:popUpTo="@id/alertHomeFragment" />
+            app:popUpTo="@id/alertHomeFragment" >
+            <argument
+                android:name="type"
+                app:argType="string"
+                android:defaultValue="Theft"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/alertStatusFragment"

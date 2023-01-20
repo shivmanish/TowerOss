@@ -43,10 +43,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="127.0.0.1"
+                    android:host="49.50.77.81"
                     android:pathPattern="/....*"
-                    android:port="8000"
-                    android:scheme="https" />
+                    android:port="8181"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity

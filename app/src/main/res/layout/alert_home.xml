@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft1"
+                    android:id="@+id/ic_fire"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_fire_home"
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft3"
+                    android:id="@+id/ic_door_open"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_door_open"
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft4"
+                    android:id="@+id/ic_sabotage"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_sabotage"
@@ -231,7 +231,7 @@
                 android:layout_height="0dp">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft5"
+                    android:id="@+id/ic_suspicious_activity"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_suspicious_activity"
@@ -274,7 +274,7 @@
                 android:layout_height="0dp">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft6"
+                    android:id="@+id/ic_hygiene_issue"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_hygiene_issue"
@@ -288,7 +288,7 @@
                     android:textStyle="bold"
                     android:id="@+id/text6"
                     style="@style/AlertGridViewStyles"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_theft6"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_hygiene_issue"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginTop="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
@@ -320,7 +320,7 @@
                 android:layout_height="wrap_content">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft7"
+                    android:id="@+id/ic_property_damage"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:padding="@dimen/dp8"
@@ -335,7 +335,7 @@
                     android:textStyle="bold"
                     android:id="@+id/text7"
                     app:layout_constraintBottom_toTopOf="@+id/v7"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_theft7"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_property_damage"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"
@@ -364,7 +364,7 @@
                 android:layout_height="wrap_content">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft8"
+                    android:id="@+id/ic_mob_gathering"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_mob_gathering"
@@ -378,7 +378,7 @@
                     android:textStyle="bold"
                     android:id="@+id/text8"
                     app:layout_constraintBottom_toTopOf="@+id/v8"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_theft8"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_mob_gathering"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"
@@ -408,7 +408,7 @@
                 android:layout_height="0dp">
 
                 <com.smarthub.baseapplication.imagePicker.util.SquareImageView
-                    android:id="@+id/ic_theft9"
+                    android:id="@+id/ic_flood"
                     style="@style/AlertGridItemStyles"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_flood"
@@ -417,14 +417,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Theft"
+                    android:text="Flood"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins"
                     android:textStyle="bold"
                     android:id="@+id/text9"
                     style="@style/AlertGridViewStyles"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_theft9"
+                    app:layout_constraintTop_toBottomOf="@+id/ic_flood"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/black"

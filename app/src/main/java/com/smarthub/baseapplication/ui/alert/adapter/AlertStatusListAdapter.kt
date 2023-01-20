@@ -18,16 +18,15 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.SendAlertDropDowns
 import com.smarthub.baseapplication.widgets.CustomStringSpinner
 
-class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertViewModel, var listener: AlertStatusListener) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
+class AlertStatusListAdapter(var baseFragment: BaseFragment, var listener: AlertStatusListener,var type : String) : RecyclerView.Adapter<AlertStatusListAdapter.ViewHold>() {
     var count: Int = 0
     var list: ArrayList<Any> = ArrayList()
-    var currentOpened = -1
+    var currentOpened = 0
     var type1 = "What?*"
     var type2 = "When?"
     var type3 = "Where?"
     var type4 = "Who?"
     var type5 = "How?"
-    // var type6 = "others"
 
     init {
         list.add("What?*")
@@ -35,7 +34,6 @@ class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertVie
         list.add("Where?")
         list.add("Who?")
         list.add("How?")
-        //  list.add("others")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -75,8 +73,6 @@ class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertVie
                 binding.imgDropdown.setImageResource(R.drawable.down_arrow)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-
         }
     }
 
@@ -227,7 +223,7 @@ class AlertStatusListAdapter(var baseFragment: BaseFragment, viewmodel: AlertVie
                 holder.binding.itemTitle.text = list[position] as String
 
                 AppPreferences.getInstance()
-                    .setDropDown(holder.binding.spinIssueType, SendAlertDropDowns.SAIssueType.name)
+                    .setDropDownByName(holder.binding.spinIssueType, SendAlertDropDowns.SAIssueType.name,type)
                 AppPreferences.getInstance()
                     .setDropDown(holder.binding.spinSeverity, SendAlertDropDowns.SASeverity.name)
 
