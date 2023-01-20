@@ -7,15 +7,39 @@
     android:background="#3D4E6D"
     tools:context=".ui.fragments.home.HomeFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:id="@+id/toolbar"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_marginStart="@dimen/dp10"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            android:textColor="@color/search_background"
+            android:text="Search Site"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <EditText
         android:paddingStart="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:id="@+id/search_card_view"
         android:layout_width="match_parent"
         android:textColor="@color/white"
         android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp10"
         android:textCursorDrawable="@drawable/cursure_color"
         android:drawablePadding="@dimen/dp10"
         android:paddingEnd="@dimen/dp15"

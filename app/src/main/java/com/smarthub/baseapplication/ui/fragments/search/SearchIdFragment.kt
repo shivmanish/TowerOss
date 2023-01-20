@@ -43,12 +43,15 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         disableButton()
-
         searchResultAdapter = SearchResultAdapter(requireContext(),this@SearchIdFragment)
         binding.searchResult.adapter = searchResultAdapter
         binding.searchResult.setHasFixedSize(true)
         if (homeViewModel.siteSearchResponse?.hasActiveObservers() == true){
             homeViewModel.siteSearchResponse?.removeObservers(viewLifecycleOwner)
+        }
+
+        binding.back.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         homeViewModel.siteSearchResponse?.observe(viewLifecycleOwner){
@@ -161,6 +164,7 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
         AlertStatusFragment.itemNew = item
         AppLogger.log("new name :${item.name}")
         findNavController().popBackStack()
+
     }
 
 
