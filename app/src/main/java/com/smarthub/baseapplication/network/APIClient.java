@@ -50,9 +50,11 @@ import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.UpdateAlertData;
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList;
 import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
@@ -240,6 +242,19 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
     Call<SendAlertResponse> sendAlert(@Body SendAlertModel data);
+
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponseNew> sendAlertNew(@Body SendAlertModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponse> sendAlert(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponse> updateAlert(@Body UpdateAlertData data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)

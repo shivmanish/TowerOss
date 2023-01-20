@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dp150"
-    android:background="@color/transparent"
+    android:layout_height="match_parent"
+    android:id="@+id/refresh_layout"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <ImageView
-        android:id="@+id/ic_menu_close"
-        android:layout_width="@dimen/dp30"
-        android:layout_height="@dimen/dp30"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/dp5"
-        android:background="@drawable/drawable_cross_back"
-        android:padding="@dimen/dp5"
-        android:src="@drawable/cross_ico"
-        android:translationZ="@dimen/dp6"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:minHeight="@dimen/dp500"
         android:paddingTop="@dimen/dp15"
-        android:background="@drawable/dialog_bg"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
@@ -550,6 +535,8 @@
                             android:text="Fire Incident"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dp12"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -557,10 +544,10 @@
 
                     <TextView
                         android:id="@+id/send_date"
-                        android:layout_width="0dp"
+                        android:layout_marginEnd="@dimen/dp15"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
                         android:text="22-Dec-22"
@@ -580,6 +567,7 @@
                     android:padding="@dimen/dp5">
 
                     <CheckBox
+                        android:id="@+id/action_tracker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp15"
@@ -612,7 +600,8 @@
                         android:paddingHorizontal="@dimen/dp5"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/dp12"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:id="@+id/action_working"/>
 
                 </LinearLayout>
 
@@ -641,7 +630,8 @@
                             android:textColor="@color/grey"
                             android:textSize="@dimen/dp12"
                             android:paddingHorizontal="@dimen/dp5"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:id="@+id/action_ongoing"/>
 
 
                     </LinearLayout>
@@ -687,7 +677,7 @@
                             android:textSize="@dimen/dp12" />
 
                         <EditText
-
+                            android:id="@+id/detailed_text"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -738,4 +728,4 @@
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

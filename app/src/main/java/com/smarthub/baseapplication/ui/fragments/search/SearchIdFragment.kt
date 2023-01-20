@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchIdFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.*
+import com.smarthub.baseapplication.ui.alert.AlertStatusFragment
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
@@ -22,7 +23,10 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
 
     var fetchedData = ""
     var isDataFetched = true
-    var item = SearchListItem("Site Id","")
+
+    companion object{
+        var item = SearchListItem("Site Id","")
+    }
 
     var selectedCategory: String="siteID"
     private lateinit var binding: SearchIdFragmentBinding
@@ -112,50 +116,53 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
 
     }
 
-    override fun onSearchItemSelected(item: Any?) {
+    override fun onSearchItemSelected(i: Any?) {
 
-        if (item!=null && item is SearchListItem){
-            this.item = SearchListItem(item.name,item.id)
+        if (i!=null && i is SearchListItem){
+            item = SearchListItem(i.name,i.id)
             binding.searchCardView.text = item.name?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
-        else if (item!=null && item is SearchSiteIdItem){
-            this.item = SearchListItem(item.siteID,item.id)
-            binding.searchCardView.text = item.siteID?.toEditable()
+        else if (i!=null && i is SearchSiteIdItem){
+            item = SearchListItem(i.siteID,item.id)
+            binding.searchCardView.text = i.siteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
-        else if (item!=null && item is SearchSiteNameItem){
-            this.item = SearchListItem(item.siteName,item.id)
-            binding.searchCardView.text = item.siteName?.toEditable()
+        else if (i!=null && i is SearchSiteNameItem){
+            item = SearchListItem(i.siteName,i.id)
+            binding.searchCardView.text = i.siteName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
-        else if (item!=null && item is SearchAliasNameItem){
-            this.item = SearchListItem(item.aliasName,item.id)
-            binding.searchCardView.text = item.aliasName?.toEditable()
+        else if (i!=null && i is SearchAliasNameItem){
+            item = SearchListItem(i.aliasName,i.id)
+            binding.searchCardView.text = i.aliasName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
-        else if (item!=null && item is SearchSiteOpcoName){
-            this.item = SearchListItem(item.OpcoName,item.id)
-            binding.searchCardView.text = item.OpcoName?.toEditable()
+        else if (i!=null && i is SearchSiteOpcoName){
+            item = SearchListItem(i.OpcoName,item.id)
+            binding.searchCardView.text = i.OpcoName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
-        else if (item!=null && item is SearchSiteOpcoSiteId){
-            this.item = SearchListItem(item.OpcoSiteID,item.id)
-            binding.searchCardView.text = item.OpcoSiteID?.toEditable()
+        else if (i!=null && i is SearchSiteOpcoSiteId){
+            item = SearchListItem(i.OpcoSiteID,item.id)
+            binding.searchCardView.text = i.OpcoSiteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
         else {
             disableButton()
         }
-        homeViewModel.searchListItem.postValue(Resource.success(this.item,200))
+        homeViewModel.updateSearchListItem(item)
+        AlertStatusFragment.itemNew = item
+        AppLogger.log("new name :${item.name}")
         findNavController().popBackStack()
     }
+
 
     fun disableButton() {
         binding.lnButtonLayout.visibility=View.GONE

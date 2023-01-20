@@ -9,11 +9,13 @@ import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.ui.alert.AlertRepo
+import com.smarthub.baseapplication.ui.alert.model.UpdateAlertData
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel
 import com.smarthub.baseapplication.ui.alert.model.request.SendAlertUser
 import com.smarthub.baseapplication.ui.alert.model.request.SupportRequiredUser
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 
@@ -21,13 +23,14 @@ class AlertViewModel : ViewModel() {
     var sendAlertModel: SendAlertModel
     var sendAlertUsers: ArrayList<SendAlertUser>
     var selecteduserposition: ArrayList<Int>
-    var searchListItem : SingleLiveEvent<Resource<SearchListItem>> = SingleLiveEvent()
+    var searchListItem : SingleLiveEvent<SearchListItem>
     var supportRequiredUsers: ArrayList<SupportRequiredUser>
     var repo: AlertRepo
     var department: String = "D1"
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
 
     var sendAlertResponseLivedata: SingleLiveEvent<Resource<SendAlertResponse>>
+    var sendAlertResponseLivedataNew: SingleLiveEvent<Resource<SendAlertResponseNew>>
     var userDataResponseLiveData: SingleLiveEvent<Resource<UserDataResponse>>
     var departmentDropdown: SingleLiveEvent<Resource<DepartmentDropdown>>
     var userDataList: ArrayList<UserDataResponseItem>
@@ -46,10 +49,15 @@ class AlertViewModel : ViewModel() {
         sendAlertModel.SendAlertUsers = sendAlertUsers
         repo = AlertRepo(APIInterceptor.get())
         sendAlertResponseLivedata = repo.alertResponseLiveData
+        sendAlertResponseLivedataNew = repo.alertResponseLiveDataNew
         userDataResponseLiveData = repo.userDataReponseLiveData
         departmentDropdown = repo.departmentDropDownData
         siteSearchResponse = repo.siteSearchResponseData
+        searchListItem = SingleLiveEvent()
+    }
 
+    fun updateSearchListItem(item : SearchListItem){
+        searchListItem.postValue(item)
     }
 
     fun fetchSiteSearchData(id:String,category :String) {
@@ -77,9 +85,20 @@ class AlertViewModel : ViewModel() {
         }
         sendAlertModel.SupportRequiredUsers = supportRequiredUserList
         sendAlertModel.SendAlertUsers = sendAlertUserList
-        repo.sendAlert(sendAlertModel)
+        repo.sendAlertNew(sendAlertModel)
     }
 
+    fun getAlertDetails(id:String){
+        repo.getAlertDetails(id)
+    }
+
+    fun updateAlertDetails(data:UpdateAlertData){
+        repo.updateAlertDetails(data)
+    }
+
+    fun sendSms(id:String,sms :String){
+        repo.sendSms(id,sms)
+    }
     fun getUser(getuserservice: GetUserList) {
         department = getuserservice.department
         repo.getuser(getuserservice)

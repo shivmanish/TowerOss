@@ -6,9 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,11 +14,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentAddTaskInfoBinding
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
-import com.smarthub.baseapplication.ui.alert.dialog.AlertUserListBottomSheet
-import com.smarthub.baseapplication.ui.alert.dialog.SubmitAletrBottomSheet
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 

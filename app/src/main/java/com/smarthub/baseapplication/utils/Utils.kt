@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.os.Build
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -11,6 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -21,6 +23,8 @@ import com.smarthub.baseapplication.model.register.RegisterData
 import java.io.IOException
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.abs
 
@@ -259,6 +263,19 @@ object Utils {
         dateInString = sdf.format(resultdate)
         return dateInString
     }
+
+    fun getCurrentFormatedDate() : String{
+        try {
+            val time = Calendar.getInstance().time
+            val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
+            val current = formatter.format(time)
+            return current
+        }catch (e : Exception){
+            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return ""
+    }
+
     fun getFormatedDate(d : String,format:String) : String{
         var date=d
         if(date.contains(" "))
