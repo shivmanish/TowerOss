@@ -165,20 +165,20 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
 
 
     fun disableButton() {
-        binding.lnButtonLayout.visibility=View.GONE
-
-        binding.viewOnMap.alpha = 0.2f
-
-        binding.viewOnMap.isEnabled = false
+//        binding.lnButtonLayout.visibility=View.GONE
+//
+//        binding.viewOnMap.alpha = 0.2f
+//
+//        binding.viewOnMap.isEnabled = false
 
     }
 
     private fun enableButton() {
-        binding.lnButtonLayout.visibility=View.VISIBLE
-
-        binding.viewOnMap.alpha = 1.0f
-
-        binding.viewOnMap.isEnabled = true
+//        binding.lnButtonLayout.visibility=View.VISIBLE
+//
+//        binding.viewOnMap.alpha = 1.0f
+//
+//        binding.viewOnMap.isEnabled = true
 
     }
 

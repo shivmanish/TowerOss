@@ -63,34 +63,6 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/dp5"
-                android:id="@+id/ln_button_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_result"
-                android:padding="@dimen/dp5"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp10"
-                    android:text="View on Map"
-                    android:textSize="15sp"
-                    android:id="@+id/view_on_map"
-                    android:textColor="#3F4D68"
-                    android:layout_margin="@dimen/dp5"
-                    android:layout_width="match_parent"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_view_map"
-                    android:layout_height="@dimen/dp45"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/dp30"
-                    android:background="@drawable/login_yellow_bg"
-                    android:fontFamily="@font/poppins_regular"
-                    />
-            </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
