@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.PowerFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignPowerRequirement
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignPowerAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.EquipmentRoomDialouge
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PowerRequirementDialouge
 
 class PowerFragment(var powerData:List<PlanningAndDesignPowerRequirement>?):Fragment(),PlanDesignPowerAdapter.PowerListner {
 
@@ -36,7 +37,7 @@ class PowerFragment(var powerData:List<PlanningAndDesignPowerRequirement>?):Frag
     }
 
     override fun editPowerRequiements() {
-        val dalouge = EquipmentRoomDialouge()
+        val dalouge = PowerRequirementDialouge()
         dalouge.show(childFragmentManager,"")
     }
 

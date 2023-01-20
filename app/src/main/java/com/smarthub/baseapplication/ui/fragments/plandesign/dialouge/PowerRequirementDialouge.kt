@@ -8,14 +8,14 @@ import com.smarthub.baseapplication.databinding.*
 
 
 class PowerRequirementDialouge : DialogFragment() {
-lateinit var binding: EquipmentRoomDialougeLayoutBinding
+lateinit var binding: PdEditPowerDialogBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
          super.onCreateView(inflater, container, savedInstanceState)
-        binding = EquipmentRoomDialougeLayoutBinding.inflate(inflater)
+        binding = PdEditPowerDialogBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.setLayout(width, height)
