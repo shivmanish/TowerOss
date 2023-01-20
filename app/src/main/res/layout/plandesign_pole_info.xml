@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"/>
             <ImageView
                 android:id="@+id/img_edit"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:src="@drawable/add_12"
                 android:padding="@dimen/dp7"
 

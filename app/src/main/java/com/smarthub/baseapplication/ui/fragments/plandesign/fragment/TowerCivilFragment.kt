@@ -31,6 +31,7 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
         adapter= plandesignTowerCivilAdapter(requireContext(),this@TowerCivilFragment,twrCivilData)
         binding.listItem.adapter=adapter
 
+
     }
 
     override fun attachmentItemClicked() {
@@ -48,8 +49,8 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
     }
 
     override fun editPoleTableItem(position: Int) {
-        Toast.makeText(requireContext(),"edit pole table item clicked", Toast.LENGTH_SHORT).show()
-    }
+        var bm = PoleEditView(R.layout.pd_pole_edit_dialoge)
+        bm.show(childFragmentManager,"categoery")    }
 
     override fun viewPoleTableItem(position: Int) {
         var bm = PoleView(R.layout.pd_pole_edit_dialoge)
