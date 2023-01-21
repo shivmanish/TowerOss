@@ -56,11 +56,12 @@ class AddTaskInfoFragment : BaseFragment() {
              taskViewmodel.processTemplatemanual.Taskinstruction=binding.taskInstruction.text.toString()
              taskViewmodel.processTemplatemanual.startdate=binding.startDate.text.toString()
              taskViewmodel.processTemplatemanual.enddate=binding.endDate.text.toString()
-      //       taskViewmodel.processTemplatemanual.SLA=Integer.parseInt(binding.sla.toString())
+             taskViewmodel.processTemplatemanual.SLA=Integer.parseInt(binding.sla.text.toString())
              taskViewmodel.processTemplatemanual.Weightage=binding.Weightage.text.toString()
              taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
              taskViewmodel.processTemplatemanual.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
              taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.phone
+             taskViewmodel.processTemplatemanual.priority=binding.priority.selectedValue.name
             findNavController().navigate(R.id.actionToMoveSecondFrag)
         }
         binding.cancel.setOnClickListener {
