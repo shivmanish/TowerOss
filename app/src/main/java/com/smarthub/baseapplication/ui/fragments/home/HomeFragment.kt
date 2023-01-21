@@ -87,9 +87,9 @@ class HomeFragment : Fragment(),TaskListener {
         adapterList.addItem("loading")
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
-        if (homeViewModel.myTeamTask?.hasActiveObservers() == true)
-            homeViewModel.myTeamTask?.removeObservers(viewLifecycleOwner)
-        homeViewModel.myTeamTask?.observe(viewLifecycleOwner){
+        if (homeViewModel.myTask?.hasActiveObservers() == true)
+            homeViewModel.myTask?.removeObservers(viewLifecycleOwner)
+        homeViewModel.myTask?.observe(viewLifecycleOwner){
             if (it!=null && it.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
 //                list.add("header")

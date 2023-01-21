@@ -282,7 +282,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
-            android:layout_marginTop="@dimen/dp50"
+            android:layout_marginBottom="@dimen/dp10"
             android:layout_marginStart="@dimen/dp15"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
