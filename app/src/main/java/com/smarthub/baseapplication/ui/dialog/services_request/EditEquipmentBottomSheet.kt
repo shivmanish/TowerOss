@@ -20,7 +20,6 @@ class EditEquipmentBottomSheet(
     var Id: String,
 ) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding: EditEquipementDialougeBinding
-    lateinit var equipment: Equipment
     var basicinfoModel: BasicinfoModel? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

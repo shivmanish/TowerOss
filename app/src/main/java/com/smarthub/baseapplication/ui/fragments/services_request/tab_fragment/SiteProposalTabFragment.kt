@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
 import com.smarthub.baseapplication.ui.dialog.services_request.*
@@ -42,8 +41,14 @@ class SiteProposalTabFragment : BaseFragment(), SiteProposalAdapter.SiteProposal
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = RequestInfoBottomSheet(
+//            R.layout.request_info_bottom_sheet_dialog,
+//            backhaulLinksData,
+//            serviceRequestAllData,
+//            viewmodel,
+//            Id
+//        )
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
 

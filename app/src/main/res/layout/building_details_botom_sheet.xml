@@ -17,6 +17,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent">
     <LinearLayout android:paddingBottom="@dimen/dp10"
         android:layout_marginBottom="@dimen/dp15"
         android:orientation="vertical"
@@ -607,8 +612,11 @@
 
 
 
-        <include layout="@layout/cancel_save_layout"/>
+        <include
+            android:id="@+id/include"
+            layout="@layout/cancel_save_layout"/>
 
     </LinearLayout>
+   </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

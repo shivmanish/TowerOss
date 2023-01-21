@@ -20,7 +20,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PropertyOwnerTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
-class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
+class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
 
     var currentOpened = -1
     private var AcquisitionSurveyData:ASAquisitionSurvey?=null
@@ -214,7 +214,7 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
         when(holder){
             is BuildingDetailsViewHold->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.EditBuildingdetailsItemClicked()
+                    listener.EditBuildingdetailsItemClicked(BuildingDetailData,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -371,7 +371,10 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
 
     interface AcquisitionSurveyListItemListner {
         fun attachmentItemClicked()
-        fun EditBuildingdetailsItemClicked()
+        fun EditBuildingdetailsItemClicked(
+            BuildingDetailData: ASAquisitionSurveyBuildingDetail?,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun editBoundryDetailsClicked(position:Int)
         fun viewBoundryDetailsClicked(position:Int)
         fun editPropertyOwnerDetailsClicked(position:Int)

@@ -51,8 +51,8 @@ class SREquipmentTableAdapter(
         }
         holder.binding.Technology.text= list?.get(position)?.Technology
         holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
-        holder.binding.EquipmentType.text=""
-        holder.binding.EquipmentSize.text=""
+        holder.binding.EquipmentType.text = list?.get(position)?.Type
+        holder.binding.EquipmentSize.text=list?.get(position)?.CabinetSize
     }
 
     override fun getItemCount(): Int {

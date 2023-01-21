@@ -168,6 +168,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
 
 
+
         }
     }
 
@@ -322,9 +323,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener,servicerequestData?.RadioAntennas!!)
+                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener, servicerequestData?.RadioAntennas!! as ArrayList<RadioAntenna>,serviceRequestAllData!!)
             }
-
             is ViewHold4 -> {
 
                 if (currentOpened == position) {
@@ -351,7 +351,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.editRequestInfoClicked()
+                    if (SrDetailsData!=null) {
+                        listener.editRequestInfoClicked(RequesterInfoData!!,serviceRequestAllData!!)
+                    }
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -417,14 +419,19 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         fun attachmentItemClicked()
         fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem)
         fun editBackhaulLinkItemClicked()
-        fun editRequestInfoClicked()
+        fun editRequestInfoClicked(
+            backhaulLinksData: RequesterInfo,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun editEquipmentClicked(
             equipment: Equipment,
             serviceRequestAllData: ServiceRequestAllDataItem,
             s: String
         )
         fun viewEquipmentClicked(position:Int)
-        fun editRadioAnteenaClicked(position:Int)
+        fun editRadioAnteenaClicked( equipment: RadioAntenna,
+                                     serviceRequestAllData: ServiceRequestAllDataItem,
+                                     s: String)
         fun viewRadioAnteenaClicked(position:Int)
 
     }

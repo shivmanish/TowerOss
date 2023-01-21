@@ -6,8 +6,8 @@ import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcqui
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 
 data class ServiceRequestAllDataItem(
-    var ASAcquitionSurvey: List<ASAquisitionSurvey>?=null,
-    var AssignACQTeam: List<AssignACQTeam>?=null,
+    var ASAcquitionSurvey: ArrayList<ASAquisitionSurvey>?=null,
+    var AssignACQTeam: ArrayList<AssignACQTeam>?=null,
     var FeasibilityPlanning: List<FeasibilityPlanning>?=null,
     var OpcoTSSR: List<OpcoTSSR>?=null,
     var SPApprovarAndSO: List<Any>?=null,

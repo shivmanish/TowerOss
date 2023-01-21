@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignAcqTeamFragmentBinding
-import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.siteinfo.TeamVendorDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -18,7 +18,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.Assign
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AssignACQTeamFragment (var data : ServiceRequestAllDataItem?, Id: String?):BaseFragment(), AssignACQTeamFragAdapter.AssignAcqTeamListItemListner {
+class AssignACQTeamFragment (var data : ServiceRequestAllDataItem?, var Id: String?):BaseFragment(), AssignACQTeamFragAdapter.AssignAcqTeamListItemListner {
     var binding : AssignAcqTeamFragmentBinding?=null
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: AssignACQTeamFragAdapter
@@ -72,8 +72,11 @@ class AssignACQTeamFragment (var data : ServiceRequestAllDataItem?, Id: String?)
       override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
      }
-    override fun EditdetailsItemClicked() {
-        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(R.layout.teamvender_details_botom_sheet)
+    override fun EditdetailsItemClicked(
+        assignAcqTeamData: AssignACQTeam?,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(R.layout.teamvender_details_botom_sheet,assignAcqTeamData,serviceRequestAllData,viewmodel,Id)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 

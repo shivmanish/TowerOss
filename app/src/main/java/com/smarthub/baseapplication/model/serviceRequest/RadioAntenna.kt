@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
 data class RadioAntenna(
-    val AntennaCount: String,
-    val AntennaHeight: String,
-    val AntennaSize: String,
-    val AntennaTotalWeight: String,
-    val Technology: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var AntennaCount: String,
+    var AntennaHeight: String,
+    var AntennaSize: String,
+    var AntennaTotalWeight: String,
+    var Technology: String,
+    var created_at: String,
+    var id: Int,
+    var isActive: Boolean,
+    var modified_at: String
 )

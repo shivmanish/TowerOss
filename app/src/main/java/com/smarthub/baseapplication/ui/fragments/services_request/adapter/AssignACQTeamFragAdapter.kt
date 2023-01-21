@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
-class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
+class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
 
     var currentOpened = -1
     var list: ArrayList<String> = ArrayList()
@@ -107,7 +107,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is DetailsViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditdetailsItemClicked()
+                listener.EditdetailsItemClicked(AssignAcqTeamData,serviceRequestAllData)
             }
             if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -186,6 +186,9 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
 
     interface AssignAcqTeamListItemListner {
         fun attachmentItemClicked()
-        fun EditdetailsItemClicked()
+        fun EditdetailsItemClicked(
+            AssignAcqTeamData: AssignACQTeam?,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
     }
 }

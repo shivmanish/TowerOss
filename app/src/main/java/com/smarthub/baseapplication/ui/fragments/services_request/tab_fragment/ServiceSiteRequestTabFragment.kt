@@ -9,9 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ServiceRequestInfoBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.serviceRequest.Equipment
-import com.smarthub.baseapplication.model.serviceRequest.SRDetails
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
@@ -98,16 +96,23 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
         Toast.makeText(requireContext(),"SR Equipment  Item clicked for view", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editRadioAnteenaClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for edit", Toast.LENGTH_SHORT).show()
+    override fun editRadioAnteenaClicked(
+        radioanteena: RadioAntenna,
+        serviceRequestAllData: ServiceRequestAllDataItem,
+        s: String) {
+        val bottomSheetDialogFragment = RadioAnteenaBottomSheet(R.layout.radio_antena_dialouge,radioanteena,serviceRequestAllData,viewmodel,Id)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun viewRadioAnteenaClicked(position: Int) {
         Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for view", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editRequestInfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
+    override fun editRequestInfoClicked(
+        requestinfo: RequesterInfo,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog,requestinfo,serviceRequestAllData,viewmodel,Id)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
