@@ -2,7 +2,6 @@ package com.smarthub.baseapplication.utils
 
 import android.content.Context
 import android.content.res.Resources
-import android.os.Build
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -11,8 +10,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -20,13 +17,10 @@ import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
+import com.smarthub.baseapplication.model.taskModel.Processtemplatecallmanual
 import java.io.IOException
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.math.abs
 
 
 object Utils {
@@ -231,6 +225,15 @@ object Utils {
             password = ""
         )
         return registerData
+    }
+
+    fun getCreateNewTaskDummyData(): Processtemplatecallmanual {
+        var processTemplatemanual = Processtemplatecallmanual(
+            "",true,"",true,
+            "",true,0,0,"","",
+            "","","","", true,"","",true,
+            "","","","","","")
+        return processTemplatemanual
     }
 
     fun compareDate(date : String) : Int{

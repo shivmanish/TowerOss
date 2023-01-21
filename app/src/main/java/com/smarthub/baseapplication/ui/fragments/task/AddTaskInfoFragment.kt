@@ -30,6 +30,7 @@ import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
 class AddTaskInfoFragment : BaseFragment() {
     lateinit var viewmodel: AlertViewModel
+    lateinit var taskViewmodel: TaskViewModel
     lateinit var binding: FragmentAddTaskInfoBinding
     private lateinit var mainViewModel:MainViewModel
     var taskForASingleSiteList=ArrayList<DropDownItem>()
@@ -41,6 +42,7 @@ class AddTaskInfoFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this).get(AlertViewModel::class.java)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        taskViewmodel=ViewModelProvider(requireActivity()).get(TaskViewModel::class.java)
         mainViewModel.isActionBarHide(false)
         binding = FragmentAddTaskInfoBinding.inflate(inflater, container, false)
         return binding.root
@@ -50,9 +52,16 @@ class AddTaskInfoFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
          binding.next.setOnClickListener{
-            findNavController().navigate(
-                R.id.actionToMoveSecondFrag
-            )
+             taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
+             taskViewmodel.processTemplatemanual.Taskinstruction=binding.taskInstruction.text.toString()
+             taskViewmodel.processTemplatemanual.startdate=binding.startDate.text.toString()
+             taskViewmodel.processTemplatemanual.enddate=binding.endDate.text.toString()
+      //       taskViewmodel.processTemplatemanual.SLA=Integer.parseInt(binding.sla.toString())
+             taskViewmodel.processTemplatemanual.Weightage=binding.Weightage.text.toString()
+             taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
+             taskViewmodel.processTemplatemanual.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
+             taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.phone
+            findNavController().navigate(R.id.actionToMoveSecondFrag)
         }
         binding.cancel.setOnClickListener {
             findNavController().popBackStack()
@@ -71,7 +80,7 @@ class AddTaskInfoFragment : BaseFragment() {
                 val cmp=Utils.dateDiffrence(binding.startDate.text.toString(),binding.endDate.text.toString())
                 if(cmp<0){
                     Toast.makeText(context,"Invalid End date", Toast.LENGTH_SHORT).show()
-                    binding.sla.text=""
+                    binding.sla.text="0"
                 }
                 else{
                     binding.sla.text=String.format("%02d",cmp)
@@ -101,7 +110,7 @@ class AddTaskInfoFragment : BaseFragment() {
         })
         binding.assignTo.setOnItemSelectionListener(object : CustomUserSpinner.ItemSelectedListener{
             override fun itemSelected(item: UserDataResponseItem) {
-                AppLogger.log("Assign To setOnItemSelectedListener :${item.first_name} ${item.last_name}")
+                AppLogger.log("Assign To setOnItemSelectedListener :${binding.assignTo.selectedValue.phone} ${item.last_name}")
                 Toast.makeText(context,"Assign To setOnItemSelectedListener ${item.first_name}",Toast.LENGTH_SHORT).show()
 
             }
