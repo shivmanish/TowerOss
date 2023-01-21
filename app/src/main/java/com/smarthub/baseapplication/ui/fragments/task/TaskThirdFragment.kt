@@ -48,12 +48,17 @@ class TaskThirdFragment:Fragment() {
                 }
                 if (it!=null && it.Message == "Data updated"){
                     Toast.makeText(context,"Task Created SuccessFully",Toast.LENGTH_LONG).show()
+                    requireActivity().finish()
                 }
                 else {
                     Toast.makeText(context,"Something went wrong ",Toast.LENGTH_LONG).show()
                     AppLogger.log("Something went wrong in createTask fragment: ${it.Error}")
                 }
             }
+        }
+
+        binding.cancel.setOnClickListener {
+            requireActivity().finish()
         }
     }
 

@@ -64,7 +64,7 @@ class AddTaskInfoFragment : BaseFragment() {
             findNavController().navigate(R.id.actionToMoveSecondFrag)
         }
         binding.cancel.setOnClickListener {
-            findNavController().popBackStack()
+            requireActivity().finish()
         }
 
         setDatePickerView(binding.startDate)

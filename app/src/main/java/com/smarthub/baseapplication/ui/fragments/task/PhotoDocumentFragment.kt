@@ -34,7 +34,7 @@ class PhotoDocumentFragment: BaseFragment() {
             nextClicked()
         }
         binding.cancel.setOnClickListener {
-            findNavController().popBackStack()
+            requireActivity().finish()
         }
     }
 
