@@ -44,7 +44,7 @@
 
                 <data
                     android:host="49.50.77.81"
-                    android:pathPattern="/....*"
+                    android:pathPattern="/.*/.*"
                     android:port="8181"
                     android:scheme="http" />
             </intent-filter>
