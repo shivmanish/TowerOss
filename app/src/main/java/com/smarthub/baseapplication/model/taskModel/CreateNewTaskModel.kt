@@ -4,5 +4,5 @@ import com.smarthub.baseapplication.utils.AppController
 
 data class CreateNewTaskModel(
     val Processtemplatecallmanual: List<Processtemplatecallmanual>,
-    val ownerName : String ?= AppController.getInstance().ownerName
+    val ownername : String ?= AppController.getInstance().ownerName
 )
