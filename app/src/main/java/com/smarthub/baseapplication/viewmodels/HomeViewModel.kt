@@ -24,6 +24,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewM
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
+import com.smarthub.baseapplication.model.siteInfo.qat.QatModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
@@ -62,6 +63,7 @@ class HomeViewModel : ViewModel() {
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
+    var QatModelResponse : SingleLiveEvent<Resource<QatModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
@@ -93,6 +95,7 @@ class HomeViewModel : ViewModel() {
         TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
+        QatModelResponse=homeRepo?.qatModelResponse
         powerAndFuelResponse=homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
         dropDownResponseNew = homeRepo?.dropDownResponseNew
@@ -169,6 +172,10 @@ class HomeViewModel : ViewModel() {
     }
     fun planAndDesignRequestAll(id : String){
         homeRepo?.planDesignRequestAll(id)
+    }
+
+    fun qatRequestAll(id : String){
+        homeRepo?.qatRequestAll(id)
     }
 
     fun fetchSiteAgreementModelRequest(id : String){

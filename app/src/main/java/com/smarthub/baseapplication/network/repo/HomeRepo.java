@@ -31,6 +31,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
+import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
@@ -82,6 +83,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
+    private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
@@ -140,6 +142,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<PlanAndDesignModel>> getPlanAndDesignModel() {
         return planAndDesignModel;
     }
+    public SingleLiveEvent<Resource<QatModel>> getQatModelResponse() {
+        return qatModelResponse;
+    }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
         return opcoDataResponse;
@@ -183,6 +188,7 @@ public class HomeRepo {
         dropDownResponseNew = new SingleLiveEvent<>();
         siteInfoModelNew = new SingleLiveEvent<>();
         notificationNew = new SingleLiveEvent<>();
+        qatModelResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -808,6 +814,43 @@ public class HomeRepo {
                     planAndDesignModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     planAndDesignModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void qatRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("QATTemplateMain");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        apiClient.fetchQatRequest(siteInfoParam).enqueue(new Callback<QatModel>() {
+            @Override
+            public void onResponse(Call<QatModel> call, Response<QatModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QatModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<QatModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    qatModelResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    qatModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    qatModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
