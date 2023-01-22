@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.utilites
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
@@ -43,34 +44,43 @@ class BatteryBankDetailsActivity : AppCompatActivity() {
 fun initview(){
     if(position==1) {
         binding.title.text = "Battery Bank"
-        binding.viewpager.adapter =
-            BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData, id!!)
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        if (binding.tabs.tabCount == 1) {
-            binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
-            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+        if(utilityBatteryBankData!=null) {
+            binding.viewpager.adapter =
+                BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
+            binding.tabs.setupWithViewPager(binding.viewpager)
+            binding.tabs.setupWithViewPager(binding.viewpager)
+            if (binding.tabs.tabCount == 1) {
+                binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
+                binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+            }
+            if (binding.tabs.tabCount <= 3)
+                binding.tabs.tabMode = TabLayout.MODE_FIXED
+            else
+                binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
         }
-        if (binding.tabs.tabCount <= 3)
-            binding.tabs.tabMode = TabLayout.MODE_FIXED
-        else
-            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
+        else Toast.makeText(binding.tabs.context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+
     }
     else if(position==3){
         binding.title.text = "DG"
-        binding.viewpager.adapter =
-            BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData, id!!)
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        if (binding.tabs.tabCount == 1) {
-            binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
-            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+        if(utilityBatteryBankData!=null) {
+            binding.viewpager.adapter =
+                BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
+            binding.tabs.setupWithViewPager(binding.viewpager)
+            binding.tabs.setupWithViewPager(binding.viewpager)
+            if (binding.tabs.tabCount == 1) {
+                binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
+                binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))
+            }
+            if (binding.tabs.tabCount <= 5)
+                binding.tabs.tabMode = TabLayout.MODE_FIXED
+            else
+                binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
         }
-        if (binding.tabs.tabCount <= 5)
-            binding.tabs.tabMode = TabLayout.MODE_FIXED
-        else
-            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
+        else Toast.makeText(binding.tabs.context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+
     }
+
 }
 
 

@@ -163,6 +163,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                     AppPreferences.getInstance().setDropDown(holder.binding.RackCount,DropDowns.Rackcount.name,data?.Rackcount)
                     AppPreferences.getInstance().setDropDown(holder.binding.AntennaCount,DropDowns.Antenacount.name,data?.Antenacount)
                     AppPreferences.getInstance().setDropDown(holder.binding.AntennaSlotUsed,DropDowns.Antenaslotused.name,data?.Antenaslotused)
+
                 }
             }
             is ViewHold2 -> {

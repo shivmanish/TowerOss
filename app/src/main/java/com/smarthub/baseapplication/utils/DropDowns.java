@@ -81,5 +81,6 @@ public enum DropDowns {
     TowerPoleId,
     Sectornumber,
     AntenaShape,
-    OperationalStatus
+    OperationalStatus,
+    Loadtype
 }

@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.utilites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityFireExtinguisherDetailsBinding
@@ -35,8 +36,13 @@ class FireExtinguisherDetailsActivity : AppCompatActivity() {
         val titels = ArrayList<String>()
         titels.add("Fire Extinguisher#1")
         titels.add("Fire Extinguisher#2")
-        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,utilityFireExtData,id!!)
+        if(BatteryBankDetailsActivity.utilityBatteryBankData !=null) {
+        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,utilityFireExtData!!,id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
+        }
+        else Toast.makeText(binding.tabs.context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+
+
     }
 
 
