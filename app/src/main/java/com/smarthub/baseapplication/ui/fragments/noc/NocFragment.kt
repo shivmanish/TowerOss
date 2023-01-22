@@ -74,7 +74,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         NocCompBinding.swipeLayout.setOnRefreshListener {
             viewmodel.NocAndCompRequestAll(id)
         }
-        NocCompBinding.addmoreItems.setOnClickListener(){
+        NocCompBinding.addNew.setOnClickListener(){
             val dalouge = CreateNocBottomSheet(R.layout.create_noc_site_info_dialoge)
             dalouge.show(childFragmentManager,"")
 
