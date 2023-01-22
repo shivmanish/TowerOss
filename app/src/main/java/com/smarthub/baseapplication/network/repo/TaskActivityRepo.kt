@@ -23,7 +23,6 @@ import retrofit2.Response
 
 class TaskActivityRepo(private var apiClient: APIClient) {
 
-    val TAG = "TaskActivityRepo"
     val createNewTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     val assignTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     var updatedTaskResponse: SingleLiveEvent<Resource<UpdatedTaskResponseModel>>? = null
@@ -44,13 +43,13 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                 call: Call<CreateNewTaskResponse?>,
                 response: Response<CreateNewTaskResponse?>,
             ) {
-                AppLogger.log("$TAG onResponse get response $response")
+                AppLogger.log("createNewTask onResponse get response $response")
                 reportSuccessResponse(response)
             }
 
             override fun onFailure(call: Call<CreateNewTaskResponse?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+                AppLogger.log("createNewTask onResponse get response " + t.localizedMessage)
 
             }
 
@@ -81,13 +80,13 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                 call: Call<GeoGraphyLevelData?>,
                 response: Response<GeoGraphyLevelData?>,
             ) {
-                AppLogger.log("$TAG onResponse get response $response")
+                AppLogger.log("getGeoGraphylevelDropdownData onResponse get response $response")
                 reportSuccessResponse(response)
             }
 
             override fun onFailure(call: Call<GeoGraphyLevelData?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+                AppLogger.log( "getGeoGraphylevelDropdownData onResponse get response " + t.localizedMessage)
 
             }
 
@@ -118,13 +117,13 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                 call: Call<CreateNewTaskResponse?>,
                 response: Response<CreateNewTaskResponse?>,
             ) {
-                AppLogger.log("$TAG onResponse get response $response")
+                AppLogger.log("assignTask onResponse get response $response")
                 reportSuccessResponse(response)
             }
 
             override fun onFailure(call: Call<CreateNewTaskResponse?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+                AppLogger.log( "assignTask onResponse get response " + t.localizedMessage)
 
             }
 
@@ -152,13 +151,13 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                 call: Call<TaskInfo?>,
                 response: Response<TaskInfo?>,
             ) {
-                AppLogger.log("$TAG onResponse get response $response")
+                AppLogger.log("getTaskInfoById onResponse get response $response")
                 reportSuccessResponse(response)
             }
 
             override fun onFailure(call: Call<TaskInfo?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+                AppLogger.log("getTaskInfoById onResponse get response " + t.localizedMessage)
 
             }
 
@@ -212,31 +211,34 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         apiClient.updateTaskData(data!!).enqueue(object : Callback<UpdatedTaskResponseModel> {
             override fun onResponse(
                 call: Call<UpdatedTaskResponseModel?>,
-                response: Response<UpdatedTaskResponseModel?>,
-            ) {
-                AppLogger.log("$TAG onResponse get response $response")
+                response: Response<UpdatedTaskResponseModel?>, ) {
+                log("onResponse main : $response")
+                if ("$response"=="null"){
+                    updatedTaskResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+                    return
+                }
                 reportSuccessResponse(response)
             }
 
             override fun onFailure(call: Call<UpdatedTaskResponseModel?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+                log(" on failure get response " + t.localizedMessage)
 
             }
 
             private fun reportSuccessResponse(response: Response<UpdatedTaskResponseModel?>) {
                 if (response.body() != null) {
                     updatedTaskResponse?.postValue(Resource.success(response.body()!!,200))
-                }
+                }else if (response.errorBody() != null) {
+                    updatedTaskResponse?.postValue(Resource.success(response.body()!!,200))
+                }else updatedTaskResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
 
             private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
                 if (response != null) {
                     updatedTaskResponse?.postValue(Resource.error("${response.message}",null,201))
-                } else if (iThrowableLocalMessage != null) updatedTaskResponse?.postValue(
-                    Resource.error(iThrowableLocalMessage, null, 500)
-                ) else updatedTaskResponse?.postValue(
-                    Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+                } else if (iThrowableLocalMessage != null) updatedTaskResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500))
+                else updatedTaskResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }
