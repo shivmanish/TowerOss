@@ -29,9 +29,9 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
          }
      }
      override fun getItemViewType(position: Int): Int {
-         if (list[position] is String && list[position]==type1)
+         if (list[position]==type1)
              return 1
-         else if (list[position] is String && list[position]==type2)
+         else if (list[position]==type2)
              return 2
          return 0
      }
