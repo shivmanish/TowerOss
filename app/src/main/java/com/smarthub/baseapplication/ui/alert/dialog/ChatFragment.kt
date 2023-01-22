@@ -54,7 +54,7 @@ class ChatFragment: BaseFragment() {
                     AppLogger.log("ChatFragment chat size :${it.data[0].chats?.size}")
                 }else AppLogger.log("ChatFragment chat size empty")
             }
-            else Toast.makeText(context,"ChatFragment null data", Toast.LENGTH_SHORT).show()
+//            else Toast.makeText(context,"ChatFragment null data", Toast.LENGTH_SHORT).show()
         }
 
         binding.editChatBx.addTextChangedListener(object : TextWatcher{

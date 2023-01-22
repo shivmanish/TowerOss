@@ -75,7 +75,8 @@ class OtpVerificationStep2 : Fragment() {
                     if (!progressDialog.isShowing)
                         progressDialog.show()
                     loginViewModel?.getLoginWithOtp(s)
-                }else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
+                }
+//                else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -155,7 +156,7 @@ class OtpVerificationStep2 : Fragment() {
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Log.d("status","loginResponse accessToken ${it.data.access}")
-                    Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
                     val intent = Intent (requireActivity(), DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     requireActivity().startActivity(intent)
@@ -163,11 +164,11 @@ class OtpVerificationStep2 : Fragment() {
                     return@observe
                 }else{
                     Log.d("status","${it.message}")
-                    Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
 
         }
@@ -181,12 +182,12 @@ class OtpVerificationStep2 : Fragment() {
             if (it?.data != null && it.data.sucesss == true){
                 Log.d("status","getOtpResponse ${it.data}")
                 activity?.let{
-                    Toast.makeText(it,"Otp has sent successfully",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(it,"Otp has sent successfully",Toast.LENGTH_SHORT).show()
                     otpCount_timer()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
     }

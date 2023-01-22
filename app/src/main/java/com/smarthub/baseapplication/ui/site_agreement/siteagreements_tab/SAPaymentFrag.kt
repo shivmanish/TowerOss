@@ -35,7 +35,7 @@ class SAPaymentFrag(val payment: List<SiteacquisitionPayment>?) :BaseFragment(),
     }
 
     fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun editClicked(position: Int) {

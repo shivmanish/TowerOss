@@ -73,11 +73,11 @@ class PaymentTableAdapter(var context: Context, var listener: PaymentInfoListLis
             holder.binding.Qty.text = list.get(position).DueDate
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(
-                context,
-                "ToewerPoTableadapter error :${e.localizedMessage}",
-                Toast.LENGTH_LONG
-            ).show()
+//            Toast.makeText(
+//                context,
+//                "ToewerPoTableadapter error :${e.localizedMessage}",
+//                Toast.LENGTH_LONG
+//            ).show()
         }
     }
 
@@ -106,14 +106,14 @@ class PaymentTableAdapter(var context: Context, var listener: PaymentInfoListLis
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
                         listener.viewClicked(position)
-                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
                     }
 
                 }

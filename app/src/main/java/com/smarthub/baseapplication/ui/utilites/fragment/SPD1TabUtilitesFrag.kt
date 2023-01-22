@@ -105,6 +105,6 @@ class SPD1TabUtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickListener 
     }
 
     override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
 }

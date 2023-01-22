@@ -107,6 +107,6 @@ class FireExtinguisher1UtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClic
     }
 
     override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
 }

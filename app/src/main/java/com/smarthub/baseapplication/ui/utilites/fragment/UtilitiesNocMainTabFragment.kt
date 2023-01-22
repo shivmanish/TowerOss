@@ -62,17 +62,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
                     utilitydatalist?.addAll(it.data.item!![0].utilities)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("UtilityEquip Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"UtilityEquip Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context,"UtilityEquip Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
                 AppLogger.log("UtilityEquip size :${it.data.item!![0].utilities.size}")
                 isDataLoaded = true
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"UtilityEquip Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"UtilityEquip Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("UtilityEquip Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("UtilityEquip Fragment Something went wrong")
-                Toast.makeText(requireContext(),"UtilityEquip Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"UtilityEquip Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
     }

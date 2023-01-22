@@ -124,7 +124,7 @@ class DetailImageActivity : com.smarthub.baseapplication.imagePicker.BaseActivit
     }
 
     override fun finishAndShowErrorToast() {
-        Toast.makeText(this, R.string.msg_error, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, R.string.msg_error, Toast.LENGTH_SHORT).show()
         finish()
     }
 

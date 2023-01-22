@@ -33,7 +33,7 @@ class Feasibility :Fragment(), FeasibilityLeaseListAdapter.FeasibilityListItemLi
 
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
         var bottomSheetDialogFragment = BuildingDetailsBottomSheet(R.layout.building_details_botom_sheet)

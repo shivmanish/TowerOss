@@ -101,11 +101,11 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     }
 //                    Toast.makeText(requireContext(),"data fetched",Toast.LENGTH_SHORT).show()
                 }else {
-                    Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(),"error :${it.message}",Toast.LENGTH_SHORT).show()
                 }
             }
             else{
-                Toast.makeText(requireContext(),"error in fetching data",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"error in fetching data",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -134,7 +134,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 //                    fetchedData = ""
                 }
                 else if(fetchedData.isEmpty()){
-                    Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
                     disableButton()
                 }
 
@@ -153,7 +153,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
 
            }else {
-               Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
+//               Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
                homeViewModel.fetchDropDown()
            }
         }
@@ -165,15 +165,15 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
                         homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
                     AppLogger.log("Site data fetched")
-                    Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
                     findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${it.data?.item!![0].id}"))
                 }else{
-                    Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
-                    AppLogger.log("Request failed e :${it.message}")
+//                    Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
+//                    AppLogger.log("Request failed e :${it.message}")
                 }
             } else {
                 AppLogger.log("Something went wrong")
-                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
         binding.viewOnMap.setOnClickListener {

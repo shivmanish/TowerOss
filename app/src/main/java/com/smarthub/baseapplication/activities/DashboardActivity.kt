@@ -53,7 +53,7 @@ class  DashboardActivity : BaseActivity() {
                    false
                )
            }
-           Toast.makeText(this,"owner${AppController.getInstance().ownerName}",Toast.LENGTH_SHORT).show()
+//           Toast.makeText(this,"owner${AppController.getInstance().ownerName}",Toast.LENGTH_SHORT).show()
        }
 
     override fun onBackPressed() {

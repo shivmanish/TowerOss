@@ -29,6 +29,6 @@ class CommercialFragment :Fragment(), ImageAttachmentAdapter.ItemClickListener {
 
     override fun itemClicked() {
 
-        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 }

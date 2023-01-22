@@ -20,19 +20,19 @@ class EditPopMenu {
         pop?.setOnMenuItemClickListener {
             when (it!!.itemId) {
                 R.id.id_edit -> {
-                    Toast.makeText(context, "item Edite", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, "item Edite", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.id_lifecycle -> {
-                    Toast.makeText(context, "item lifecycle", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, "item lifecycle", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.id_escalation -> {
-                    Toast.makeText(context, "item escalation", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, "item escalation", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.id_viewonmap -> {
-                    Toast.makeText(context, "item viewonmap", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, "item viewonmap", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false

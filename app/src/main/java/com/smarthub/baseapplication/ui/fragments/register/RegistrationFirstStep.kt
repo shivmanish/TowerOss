@@ -220,7 +220,7 @@ class RegistrationFirstStep : Fragment() {
             registrationFirstStepBinding.loadingEmailProgress.visibility = View.GONE
             if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success" && Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString()) ) {
                 Log.d("status","email verified")
-                Toast.makeText(requireActivity(),"email verification successful", Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(),"email verification successful", Toast.LENGTH_LONG).show()
                 registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)
                 registrationFirstStepBinding.emailIdRoot.tag = true
                 return@observe
