@@ -13,8 +13,10 @@ import com.smarthub.baseapplication.databinding.PowerConnectionFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.AddNewPlanDesignDialouge
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnectionListListener
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.AddNewPowerFuelDialouge
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -41,6 +43,10 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
+        }
+        binding.addNew.setOnClickListener {
+            val bmSheet = AddNewPowerFuelDialouge(R.layout.power_fuel_addnew_dialouge)
+            bmSheet.show(childFragmentManager,"category")
         }
 
         if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){

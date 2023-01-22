@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp15"
-            android:text="Add NOC &amp; Compliance"
+            android:text="Add Power &amp; Fuel"
             android:textSize="15dp"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/light_black"
@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp10"
-                        android:text="Application Details"
+                        android:text="Power Connection Details"
                         android:textSize="@dimen/dp16"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/color1"
@@ -109,11 +109,13 @@
                         <TextView
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:layout_height="wrap_content"
-                            android:text="Category" />
+                            android:text="Power Connection Type" />
 
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/Catagory"
+                            android:id="@+id/power_connection_type"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -135,12 +137,13 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Application Type" />
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/application_type"
-                            style="@style/SpinnerTheme"
+                            android:text="Electricity Supplier" />
+                        <EditText
+                            android:id="@+id/electric_city_supplier"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="xyz"
+                            style="@style/RowTestItemEdit"/>
 
                         <View
                             android:layout_width="match_parent"
@@ -159,9 +162,9 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Application Name" />
+                            android:text="EB  Sanctioned Load" />
                         <EditText
-                            android:id="@+id/application_name"
+                            android:id="@+id/eb_sanctioned_load"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="10"
@@ -183,9 +186,9 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Application Number" />
+                            android:text="Connection Load" />
                         <EditText
-                            android:id="@+id/application_number"
+                            android:id="@+id/connection_load"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="10"
@@ -208,9 +211,211 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Application Status" />
+                            android:text="Consumer No." />
+                        <EditText
+                            android:id="@+id/consumer_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="10"
+                            style="@style/RowTestItemEdit"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Meter Type" />
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/application_status"
+                            android:id="@+id/meter_type"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Meter Serial Number" />
+                        <EditText
+                            android:id="@+id/meter_serial_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xyz"
+                            style="@style/RowTestItemEdit"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Supply Voltage" />
+                        <EditText
+                            android:id="@+id/supply_voltage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="10"
+                            style="@style/RowTestItemEdit"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cabinet Size" />
+
+                        <EditText
+                            android:id="@+id/cabinet_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="22"
+                            style="@style/RowTestItemEdit"/>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Location Mark" />
+                        <EditText
+                            android:id="@+id/location_mark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xyz"
+                            style="@style/RowTestItemEdit"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Avg Availability (hrs)" />
+                        <EditText
+                            android:id="@+id/avg_availibillity_hrs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="xyz"
+                            style="@style/RowTestItemEdit"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Owner Company" />
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/owner_company"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="User Company" />
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/User_company"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20" />
@@ -224,32 +429,6 @@
                     </LinearLayout>
                     <LinearLayout
                         style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Application Date" />
-                        <TextView
-                            android:id="@+id/application_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2023-01-22"
-                            android:drawableEnd="@drawable/calender"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
                         android:layout_marginTop="@dimen/dp5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
@@ -258,144 +437,12 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Issue Date" />
-                        <TextView
-                            android:id="@+id/Issue_date"
+                            android:text="Connection Type" />
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/connection_type"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2023-01-22"
-                            android:drawableEnd="@drawable/calender"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Document Number" />
-                        <EditText
-                            android:id="@+id/document_number"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="10"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Expiry date" />
-
-                        <TextView
-                            android:id="@+id/expiry_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2023-01-22"
-                            android:drawableEnd="@drawable/calender"
-                            style="@style/RowTestItemEdit"/>
-
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Vendor Name" />
-                        <EditText
-                            android:id="@+id/vendor_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="xyz"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Vendor Executive" />
-                        <EditText
-                            android:id="@+id/Vendor_executive"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="xyz"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Vendor Phone No." />
-                        <EditText
-                            android:id="@+id/vendor_phone_no"
-                            android:layout_width="match_parent"
-                            android:inputType="phone"
-                            android:layout_height="wrap_content"
-                            android:hint="5641453464"
-                            style="@style/RowTestItemEdit"/>
+                            android:layout_height="@dimen/dp20" />
 
                         <View
                             android:layout_width="match_parent"
