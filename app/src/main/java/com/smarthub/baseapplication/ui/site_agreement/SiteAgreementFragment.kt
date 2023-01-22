@@ -67,28 +67,28 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteLeaseDataAdapt
                     siteLeaseDataAdapter.setData(it.data.item!![0].Siteacquisition)
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("SiteAgreemnets Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(
-                        context,
-                        "SiteAgreemnets Fragment error :${e.localizedMessage}",
-                        Toast.LENGTH_LONG
-                    ).show()
+//                    Toast.makeText(
+//                        context,
+//                        "SiteAgreemnets Fragment error :${e.localizedMessage}",
+//                        Toast.LENGTH_LONG
+//                    ).show()
                 }
                 AppLogger.log("SiteAgreemnets size :${it.data.item!![0].Siteacquisition.size}")
                 isDataLoaded = true
             } else if (it != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "NocAndComp Fragment error :${it.message}, data : ${it.data}",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    requireContext(),
+//                    "NocAndComp Fragment error :${it.message}, data : ${it.data}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 AppLogger.log("SiteAgreemnets Fragment error :${it.message}, data : ${it.data}")
             } else {
                 AppLogger.log("SiteAgreemnets Fragment Something went wrong")
-                Toast.makeText(
-                    requireContext(),
-                    "SiteAgreemnets Fragment Something went wrong",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    requireContext(),
+//                    "SiteAgreemnets Fragment Something went wrong",
+//                    Toast.LENGTH_SHORT
+//                ).show()
             }
         }
     }

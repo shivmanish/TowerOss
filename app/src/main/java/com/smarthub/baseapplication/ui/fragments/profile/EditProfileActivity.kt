@@ -54,21 +54,21 @@ class EditProfileActivity : BaseActivity() {
                     AppPreferences.getInstance().saveString("data", it.data.status)
                     Log.d("status", "${it.message}")
                     if (it.data.status.equals("updated")) {
-                        Toast.makeText(this@EditProfileActivity, "Profile Update Successful", Toast.LENGTH_LONG).show()
+//                        Toast.makeText(this@EditProfileActivity, "Profile Update Successful", Toast.LENGTH_LONG).show()
                     }
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@EditProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@EditProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
 
                 }
             } else {
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(
-                    this@EditProfileActivity,
-                    AppConstants.GENERIC_ERROR,
-                    Toast.LENGTH_LONG
-                ).show()
+//                Toast.makeText(
+//                    this@EditProfileActivity,
+//                    AppConstants.GENERIC_ERROR,
+//                    Toast.LENGTH_LONG
+//                ).show()
             }
         }
         Log.d("status","Creating Update profile button")
@@ -88,16 +88,16 @@ class EditProfileActivity : BaseActivity() {
                     AppPreferences.getInstance().saveString("data", Gson().toJson(it.data[0]))
                     uiDataMapping(it.data[0])
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@EditProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@EditProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@EditProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@EditProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
 
                 }
             } else {
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(this@EditProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@EditProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
 

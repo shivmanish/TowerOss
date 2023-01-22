@@ -109,6 +109,6 @@ class BatteryBank1TabUtilitesFrag :Fragment(), ImageAttachmentAdapter.ItemClickL
     }
 
     override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
 }

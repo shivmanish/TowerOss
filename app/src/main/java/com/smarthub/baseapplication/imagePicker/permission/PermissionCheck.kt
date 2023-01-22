@@ -91,7 +91,7 @@ class PermissionCheck(private val context: Context) {
     }
 
     fun showPermissionDialog() {
-        Toast.makeText(context, R.string.msg_permission, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, R.string.msg_permission, Toast.LENGTH_SHORT).show()
     }
 
 }

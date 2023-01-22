@@ -79,7 +79,7 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
         viewmodel.sendAlertResponseLivedataNew.observe(viewLifecycleOwner) {
             //response will get here
             hideLoader()
-            if (it?.data != null) {
+            if (it?.data != null && it.data.data.isNotEmpty()) {
                 findNavController().navigate(AlertStatusFragmentDirections.actionAlertStatusFragmentToSubmitAlertFragment(it.data.data[0].id))
             }else
                 Toast.makeText(requireContext(),"empty data",Toast.LENGTH_SHORT).show()
@@ -92,7 +92,7 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
             if (it!=null){
                 if (searchCardView!=null){
                     searchCardView?.text = it.name
-                    Toast.makeText(requireContext(),"${it.name} name",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(),"${it.name} name",Toast.LENGTH_SHORT).show()
                 }else Toast.makeText(requireContext(),"null fields",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(),"null value",Toast.LENGTH_SHORT).show()

@@ -59,7 +59,7 @@ class AlertImageAdapter(var listener: ImageAttachmentAdapter.ItemClickListener) 
             }
         }else if (holder is ItemViewHold){
             holder.itemView.setOnClickListener {
-                Toast.makeText(holder.binding.root.context,"Item clicked",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(holder.binding.root.context,"Item clicked",Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -57,7 +57,7 @@ class SplashActivity : BaseActivity() {
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Log.d("status","${it.message}")
-                    Toast.makeText(this@SplashActivity,"LoginSuccessful", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@SplashActivity,"LoginSuccessful", Toast.LENGTH_LONG).show()
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)

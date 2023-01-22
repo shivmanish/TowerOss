@@ -62,7 +62,7 @@ class AtpMainFragment : Fragment(), QatListListener {
         binding.btnCreate.setOnClickListener {
             adapter.addListItem()
             b.dismiss()
-            Toast.makeText(requireContext(),"Item Added",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),"Item Added",Toast.LENGTH_SHORT).show()
         }
         b.setCanceledOnTouchOutside(false)
         b.show()

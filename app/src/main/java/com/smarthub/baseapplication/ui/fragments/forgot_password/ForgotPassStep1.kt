@@ -83,7 +83,7 @@ class ForgotPassStep1 : Fragment() {
                 }
             }else{
                 Log.d("status ","AppConstants.GENERIC_ERROR ${AppConstants.GENERIC_ERROR}")
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
                 enableErrorText()
             }
         }

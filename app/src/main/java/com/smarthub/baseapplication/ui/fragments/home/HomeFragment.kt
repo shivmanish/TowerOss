@@ -167,11 +167,11 @@ class HomeFragment : Fragment(),TaskListener {
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
-                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
                 }
             } else {
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
         homeViewModel.fetchDropDownNew()

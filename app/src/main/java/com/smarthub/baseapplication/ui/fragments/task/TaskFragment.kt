@@ -96,7 +96,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     override fun taskAssignDialouge() {
         val bottomSheetDialogFragment = TaskAssignToDialouge(R.layout.task_assignment_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
-        Toast.makeText(requireContext(),"Commercial Item clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Commercial Item clicked", Toast.LENGTH_SHORT).show()
     }
 
     internal inner class TaskViewPagerAdapter(manager: FragmentManager, behaviour:Int,var listener: TaskListener) : FragmentPagerAdapter(manager,behaviour) {

@@ -21,6 +21,6 @@ data class SendAlertModel(
     var sendalerttoall: String="True",
     var siteid: String="448",
     var sitename: String="sitename",
-    var smsSend: String="True",
-    var ownerName: String = AppController.getInstance().ownerName
+    var ownername: String ?= AppController.getInstance().ownerName,
+    var smsSend: String="True"
 )

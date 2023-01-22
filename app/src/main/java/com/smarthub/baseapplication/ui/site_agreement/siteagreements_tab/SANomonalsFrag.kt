@@ -37,7 +37,7 @@ class SANomonalsFrag( val siteacquisitionAgreements: List<SiteacquisitionAgreeme
 
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun editClicked(position: Int) {
