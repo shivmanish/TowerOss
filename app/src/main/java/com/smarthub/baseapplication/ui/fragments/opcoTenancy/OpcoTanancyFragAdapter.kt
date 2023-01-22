@@ -53,11 +53,11 @@ class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapt
             try {
                 var item = data[position] as OpcoDataItem
                 holder.binding.SiteId.text = "#${item.Opcoinfo[0].OpcoSiteID}"
+                holder.binding.titel.text=item.Opcoinfo[0].OpcoName
                 holder.binding.textRfiDate.text = item.Opcoinfo[0].rfiAcceptanceDate
                 holder.binding.textRfsDate.text = item.Opcoinfo[0].rfrDate
-                AppPreferences.getInstance().setDropDown(holder.binding.titel,DropDowns.OpcoName.name,item.Opcoinfo[0].OpcoName)
                 AppPreferences.getInstance().setDropDown(holder.binding.text7,DropDowns.Opcositetype.name,item.Opcoinfo[0].Opcositetype)
-                holder.binding.cardItem.setOnClickListener {
+                holder.itemview.setOnClickListener {
                     listener.clickedItem(item)
                 }
             }catch (e:java.lang.Exception){

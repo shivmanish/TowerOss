@@ -66,5 +66,14 @@ public enum DropDowns {
     InstallationVendor,
     MaintenanceVendor,
     Backhaultechnology,
-    OpcoName
+    OpcoName,
+    // opco tenency --> Rf Equipment Dropdowns
+    OwnerCompany,
+    OemCompany,
+    OperationStatus,
+    RackSpaceUsed,
+    // opco tenency --> Backhaul Link Dropdowns
+    BackhaulType,
+    BackhaullinkType,
+    BackhaulSiteCategory
 }
