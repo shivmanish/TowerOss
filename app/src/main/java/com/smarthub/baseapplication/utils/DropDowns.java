@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.utils;
 
+import org.jetbrains.annotations.Nullable;
+
 public enum DropDowns {
     Sitestatus,
     Sitecategory,
@@ -19,5 +21,13 @@ public enum DropDowns {
     ApplicationInitialApplicationType,
     ApplicationInitialApplicationStatus,
     ApplicationInitialPreferredLaungauge,
-
+    SRType,
+    SRDetailRequesterCompany,
+    SRDetailTechnology,
+    Priority,
+    SREquipmentsTechnology,
+    SREquipmentsEquipment,
+    SREquipmentsType,
+    SRStatus,
+    Technology
 }

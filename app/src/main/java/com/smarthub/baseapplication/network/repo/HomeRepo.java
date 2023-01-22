@@ -525,6 +525,7 @@ public class HomeRepo {
 
     public void fetchHomeData() {
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         jsonObject.addProperty("homepage","");
         apiClient.fetchHomeData(jsonObject).enqueue(new Callback<HomeResponse>() {
             @Override
@@ -1193,6 +1194,7 @@ public class HomeRepo {
     public void searchSiteAll(String category,String id) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(category,id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         AppLogger.INSTANCE.log("category:"+category);
         if (category.equalsIgnoreCase("name"))
             apiClient.searchSiteByName(jsonObject).enqueue(new Callback<List<SearchListItem>>() {

@@ -52,7 +52,7 @@ class PoTableAdapter(
             performOptionsMenuClick(position, it)
         }
         try {
-            holder.binding.ItemName.text = "Data Not Found"
+            holder.binding.ItemName.text = ""
             holder.binding.ItemCode.text = list?.get(position)?.VendorName
             holder.binding.Description.text = list?.get(position)?.VendorName
             holder.binding.Qty.text = list?.get(position)?.created_at

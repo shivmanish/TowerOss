@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.model.CommonResponse
 import com.smarthub.baseapplication.model.dropdown.DropDownList
 import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.model.otp.*
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
 import com.smarthub.baseapplication.model.register.RegstationResponse
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.RefreshToken
@@ -20,6 +21,7 @@ import com.smarthub.baseapplication.utils.Utils
 class LoginViewModel: ViewModel() {
     var loginRepo: LoginRepo?=null
     var loginResponse : SingleLiveEvent<Resource<RefreshToken>>?=null
+    var profileResponse : SingleLiveEvent<Resource<List<ProfileData>>>?=null
     var getOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
     var getResendOtpResponse : SingleLiveEvent<Resource<GetOtpResponse>>?=null
     var getPassResponse : SingleLiveEvent<Resource<GetSuccessResponse>>?=null
@@ -37,6 +39,7 @@ class LoginViewModel: ViewModel() {
         loginRepo = LoginRepo(APIInterceptor.get())
         loginResponse = loginRepo?.loginResponse
         getOtpResponse = loginRepo?.otpResponse
+        profileResponse = loginRepo?.profileResponse
         getResendOtpResponse = loginRepo?.resendOtpResponse
         getPassResponse = loginRepo?.passResponse
         registerRepo = RegisterRepo(APIInterceptor.get())
@@ -56,9 +59,13 @@ class LoginViewModel: ViewModel() {
         loginRepo?.getLoginToken(data)
     }
 
+    fun getProfileData() {
+        loginRepo?.getProfileData()
+    }
+
     fun getLoginWithOtp(otp: String) {
         AppLogger.log("s : $otp, userPhoneNumber:${userOTPGet?.userPhoneNumber}")
-        var data = UserOTPVerify(userOTPGet?.userPhoneNumber,otp)
+        val data = UserOTPVerify(userOTPGet?.userPhoneNumber,otp)
         loginRepo?.getLoginWith(data)
     }
 

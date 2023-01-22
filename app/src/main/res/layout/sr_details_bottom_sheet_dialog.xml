@@ -106,12 +106,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="sr_status" />
-                            <EditText
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
                                 android:id="@+id/edit_sr_status"
-                                style="@style/RowTestItemEdit"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:layout_height="@dimen/dp20" />
+
 
                             <View
                                 android:layout_width="match_parent"
@@ -130,14 +130,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Requester Company" />
-                            <EditText
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
                                 android:id="@+id/editRequesterCompany"
-                                style="@style/RowTestItemEdit"
-                                android:maxLength="10"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
+                                android:layout_height="@dimen/dp20" />
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
@@ -156,13 +153,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Technology" />
-                            <EditText
-                                android:id="@+id/editTechnology"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
 
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/editTechnology"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20" />
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
@@ -282,14 +278,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Priority" />
 
-                            <EditText
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
                                 android:id="@+id/editPriority"
-                                style="@style/RowTestItemEdit"
+                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:hint="xxxx" />
-
+                                android:layout_height="@dimen/dp20" />
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
@@ -509,17 +502,6 @@
             android:background="#1A807E7E"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:gravity="center_vertical"
-                android:id="@+id/cancel_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Cancel"
-                android:paddingLeft="@dimen/dp15"
-                android:paddingRight="@dimen/dp15"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"/>
 
             <TextView
                 android:id="@+id/update"

@@ -125,14 +125,14 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
                  holder.binding.itemTitleStr.text = list[position]
 
                  try {
-                     holder.binding.Type.text="Data Not Found"
+                     holder.binding.Type.text=""
                      holder.binding.sizeLenth.text=data?.SizeL
                      holder.binding.sizeWidth.text=data?.SizeB
                      holder.binding.sizeHeight.text=data?.SizeH
                      holder.binding.FoundationLenth.text=data?.FoundationSizeL
                      holder.binding.FoundationWidth.text=data?.FoundationSizeB
                      holder.binding.FoundationHeight.text=data?.FoundationSizeH
-                     holder.binding.FoundationType.text="Data Not Found"
+                     holder.binding.FoundationType.text=""
                      holder.binding.Remarks.text=data?.Remark
 
                  }catch (e:java.lang.Exception){

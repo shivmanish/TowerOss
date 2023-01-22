@@ -199,8 +199,8 @@ println("prinit size is "+list.size)
                     holder.binding.batteryBankCabinetsizeh.text = it.CabinetSizeH
                     holder.binding.batteryBankCabinetsizeb.text = it.CabinetSizeB
                     holder.binding.batteryBankOverallWeightKg.text = it.OverallWeight
-                    holder.binding.batteryBankUserCompany.text = "Data not Found"
-                    holder.binding.batteryBankOwnerCompany.text = "Data not Found"
+                    holder.binding.batteryBankUserCompany.text = ""
+                    holder.binding.batteryBankOwnerCompany.text = ""
                 }
                 holder.binding.bBankTable.adapter =SmpsTableAdapter(context, object : TableCallback {
                     override fun editItem(obj: Any?) {
@@ -246,7 +246,7 @@ println("prinit size is "+list.size)
                     holder.binding.dgCabinetsizeb.text = it.CabinetSizeB
                     holder.binding.dgOverallWeightKg.text = it.OverallWeight
                     holder.binding.dgPlatformSize.text = it.PlatformSize
-                    holder.binding.dgFuelType.text = "Data not Found"
+                    holder.binding.dgFuelType.text = ""
                     holder.binding.dgFuelConsumptionPerHour.text = it.FuelConsumptionPerHour
                 }
                 holder.binding.dgAdditionalEditTable.adapter =
@@ -295,10 +295,10 @@ println("prinit size is "+list.size)
                     holder.binding.acIndoreUnitSizeh.text = ""
                     holder.binding.acIndoreUnitSizeb.text = ""
                     holder.binding.acIndoreUnitSizel.text = ""
-                    holder.binding.acOutdoorUnitWeight.text = "Data not found"
+                    holder.binding.acOutdoorUnitWeight.text = ""
                     holder.binding.acOverallWeight.text = it.OverallWeight
-                    holder.binding.acOwnerCompany.text = "Data not Found"
-                    holder.binding.acUserCompany.text = "Data not Found"
+                    holder.binding.acOwnerCompany.text = ""
+                    holder.binding.acUserCompany.text = ""
                 }
             }
             is FireExiViewHolder -> {
@@ -326,18 +326,18 @@ println("prinit size is "+list.size)
                 data!!.FireExtinguisher.get(0).let {
                     holder.binding.fireMake.text = it.Make
                     holder.binding.fireModal.text = it.Model
-                    holder.binding.fireRatingCapacityKw.text = "Data not found"
+                    holder.binding.fireRatingCapacityKw.text = ""
                     holder.binding.fireCabinetsizel.text = it.CabinetSizeL
                     holder.binding.fireCabinetsizeh.text = it.CabinetSizeH
                     holder.binding.fireCabinetsizeb.text = it.CabinetSizeB
                     holder.binding.fireUnitSizeh.text = it.UnitSizeH
                     holder.binding.fireUnitSizeb.text = it.UnitSizeB
                     holder.binding.fireUnitSizel.text = it.UnitSizeL
-                    holder.binding.fireUnitWeight.text = "Data not Found"
-                    holder.binding.fireExtinguisherType.text = "Data not found"
+                    holder.binding.fireUnitWeight.text = ""
+                    holder.binding.fireExtinguisherType.text = ""
                     holder.binding.fireFuelConsuptionHour.text = it.FuelConsumptionPerHour
-                    holder.binding.fireOwnerCompany.text = "Data not Found"
-                    holder.binding.fireUserCompany.text = "Data not Found"
+                    holder.binding.fireOwnerCompany.text = ""
+                    holder.binding.fireUserCompany.text = ""
                 }
             }
             is SpdViewHolder -> {
@@ -365,10 +365,10 @@ println("prinit size is "+list.size)
                 data!!.SurgeProtectionDevice.get(0).let {
                     holder.binding.surgeProctetorMake.text = it.Make
                     holder.binding.surgeProctetorModal.text = it.Model
-                    holder.binding.surgeProctetorRatingCapacityKw.text = "Data not found"
-                    holder.binding.surgeProctetorSpdType.text = "Data not found"
-                    holder.binding.surgeProctetorOwnerCompany.text = "Data not Found"
-                    holder.binding.surgeProctetorUserCompany.text = "Data not Found"
+                    holder.binding.surgeProctetorRatingCapacityKw.text = ""
+                    holder.binding.surgeProctetorSpdType.text = ""
+                    holder.binding.surgeProctetorOwnerCompany.text = ""
+                    holder.binding.surgeProctetorUserCompany.text = ""
                 }
             }
             is DcdbViewHolder -> {
@@ -402,9 +402,9 @@ println("prinit size is "+list.size)
                     holder.binding.dcdbUnitSizel.text = it.UnitSizeL
                     holder.binding.dcdbUnitWeight.text = it.UnitWeight
                     holder.binding.dcdbRatingCapacity.text = it.RatingAndCapacity
-                    holder.binding.dcdbOwnerCompany.text = "Data not Found"
-                    holder.binding.dcdbRemarks.text = "Data not Found"
-                    holder.binding.dcdbUserCompany.text = "Data not Found"
+                    holder.binding.dcdbOwnerCompany.text = ""
+                    holder.binding.dcdbRemarks.text = ""
+                    holder.binding.dcdbUserCompany.text = ""
                 }
             }
         }

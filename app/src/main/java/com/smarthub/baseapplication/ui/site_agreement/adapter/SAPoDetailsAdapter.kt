@@ -52,8 +52,8 @@ class SAPoDetailsAdapter (var context : Context, var listener : ServicesRequestA
         }
         holder.binding.Technology.text= list?.get(position)?.Technology
         holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
-        holder.binding.EquipmentType.text="Data Not Found"
-        holder.binding.EquipmentSize.text="Data Not Found"
+        holder.binding.EquipmentType.text=""
+        holder.binding.EquipmentSize.text=""
     }
 
     override fun getItemCount(): Int {

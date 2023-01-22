@@ -15,9 +15,13 @@ import com.smarthub.baseapplication.model.otp.GetSuccessResponse;
 import com.smarthub.baseapplication.model.otp.UserOTPGet;
 import com.smarthub.baseapplication.model.otp.UserOTPVerify;
 import com.smarthub.baseapplication.model.otp.UserPasswordGet;
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.AppConstants;
+import com.smarthub.baseapplication.utils.AppLogger;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +37,8 @@ public class LoginRepo {
     private SingleLiveEvent<Resource<GetOtpResponse>> resendOtpResponse;
     private SingleLiveEvent<Resource<GetRegisterOtpResponse>> registerSendOtpResponse;
     private SingleLiveEvent<Resource<GetSuccessResponse>> passChangeResponse;
+    private SingleLiveEvent<Resource<List<ProfileData>>> profileResponse;
+
 
     public static LoginRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -50,10 +56,14 @@ public class LoginRepo {
         passChangeResponse = new SingleLiveEvent<>();
         registerSendOtpResponse = new SingleLiveEvent<>();
         resendOtpResponse = new SingleLiveEvent<>();
+        profileResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<RefreshToken>> getLoginResponse() {
         return logingResponse;
+    }
+    public SingleLiveEvent<Resource<List<ProfileData>>> getProfileResponse() {
+        return profileResponse;
     }
     public SingleLiveEvent<Resource<GetOtpResponse>> getOtpResponse() {
         return getOtpResponse;
@@ -268,6 +278,47 @@ public class LoginRepo {
                     passChangeResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     passChangeResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getProfileData() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("get","");
+        apiClient.getProfile(jsonObject).enqueue(new Callback<List<ProfileData>>() {
+            @Override
+            public void onResponse(Call<List<ProfileData>> call, Response<List<ProfileData>> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ProfileData>> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<List<ProfileData>> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+//                    Logger.getLogger("ProfileRepo").warning(response.toString());
+                    profileResponse.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    profileResponse.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    profileResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    profileResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

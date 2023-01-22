@@ -269,7 +269,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     holder.binding.ApplicationType.text="Data NotFound"
                     holder.binding.ApplicationNameInitial.text=applicationDetailsData?.ApplicationName
                     holder.binding.ApplicationNumber.text=applicationDetailsData?.ApplicationNumber
-                    holder.binding.ApplicationStatus.text="Data Not found"
+                    holder.binding.ApplicationStatus.text=""
                     holder.binding.ApplicationDate.text=applicationDetailsData?.ApplicationDate
                     holder.binding.IssueDate.text=applicationDetailsData?.IssueDate
                     holder.binding.DocumentNumber.text=applicationDetailsData?.DocumentNo
@@ -277,14 +277,14 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     holder.binding.VendorName.text=applicationDetailsData?.VendorName
                     holder.binding.VendorExecutive.text=applicationDetailsData?.VendorExecutive
                     holder.binding.VendorPhoneNo.text=applicationDetailsData?.VendorPhoneNo
-                    holder.binding.ApplicationTypeRenewal.text="Data Not Found"
+                    holder.binding.ApplicationTypeRenewal.text=""
                     holder.binding.ApplicationNameRenewal.text=applicationDetailsData?.ApplicationName2
                     holder.binding.ApplicationNumberRenewal.text=applicationDetailsData?.ApplicationNumber2
                     holder.binding.DocumentNoRenewal.text=applicationDetailsData?.DocumentNo2
                     holder.binding.VendorNameRenewal.text=applicationDetailsData?.VendorName2
                     holder.binding.VendorExecutiveRenewal.text=applicationDetailsData?.VendorExecutive2
                     holder.binding.VendorPhoneNoRenewal.text=applicationDetailsData?.VendorPhoneNo2
-                    holder.binding.applicationStatusRenewal.text="Data Not Found"
+                    holder.binding.applicationStatusRenewal.text=""
                     holder.binding.renewalDate.text=applicationDetailsData?.RenewalDate2
                     holder.binding.ExpiryDate.text=applicationDetailsData?.ExpiryDate2
                 }catch (e:java.lang.Exception){

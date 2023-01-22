@@ -261,7 +261,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     if (basicinfodata.GeoCondition.isNotEmpty())
                         listener.geoConditionsDetailsItemClicked(basicinfodata.GeoCondition[0],basicinfodata.id.toString())
                     else
-                        Toast.makeText(context,"Geo Condition data not found",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"Geo Condition ",Toast.LENGTH_SHORT).show()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -299,7 +299,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     if (basicinfodata.GeoCondition.isNotEmpty())
                         listener.siteAccessDetailsItemClicked(basicinfodata.SafetyAndAccess[0],basicinfodata.id.toString())
                     else
-                        Toast.makeText(context,"Geo Condition data not found",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"Geo Condition ",Toast.LENGTH_SHORT).show()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

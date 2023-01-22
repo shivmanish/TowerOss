@@ -224,12 +224,12 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 holder.binding.itemTitleStr.text = list[position]
 
                 try {
-                    holder.binding.ShelterRoom.text="Data Not Found"
+                    holder.binding.ShelterRoom.text=""
                     holder.binding.ShelterSize.text=
                         "${equipInfoData?.shelterL}X${equipInfoData?.shelterB}X${equipInfoData?.shelterH}"
                     holder.binding.FoundationSize.text=
                         "${equipInfoData?.foundationL}X${equipInfoData?.foundationB}X${equipInfoData?.foundationH}"
-                    holder.binding.Foundation.text="DAta Not Found"
+                    holder.binding.Foundation.text=""
                     holder.binding.LocationMark.text=equipInfoData?.locationmark
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
@@ -264,7 +264,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: TowerPoleList
                 try {
                     holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
                     holder.binding.InstallationDate.text=insAccepData?.InstallationDate
-                    holder.binding.InstallationExcutiveName.text="Data Not Found"
+                    holder.binding.InstallationExcutiveName.text=""
                     holder.binding.VendorPhonNo.text=insAccepData?.VendorPhoneNumber
                     holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
                     holder.binding.AcceptanceStatus.text=insAccepData?.AcceptanceStatus

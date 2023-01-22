@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.ui.fragments.search.SearchFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class  DashboardActivity : BaseActivity() {
@@ -51,21 +53,7 @@ class  DashboardActivity : BaseActivity() {
                    false
                )
            }
-
-//           if (intent.hasExtra("key")) {
-//               var path = intent.getStringExtra("key")
-//               when (path) {
-//                   "task" -> {
-//                       navController.navigate(R.id.taskDetailFragment)
-//                   }
-//                   "menu" -> {
-//                       navController.navigate(R.id.navigation_menu)
-//                   }
-//                   "projects" -> {
-//                       navController.navigate(R.id.taskDetailFragment)
-//                   }
-//               }
-//           }
+           Toast.makeText(this,"owner${AppController.getInstance().ownerName}",Toast.LENGTH_SHORT).show()
        }
 
     override fun onBackPressed() {
