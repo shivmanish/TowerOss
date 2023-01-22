@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.DropDowns
 
 class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: OpcoDataItem?) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
 
@@ -90,15 +92,13 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
             holder.binding.itemTitleStr.text = "3G RRH - S3058940 - 10-Nov-22"
             if (list !=null && list?.isNotEmpty()!!) {
                 data = list!![position]
+                holder.binding.itemTitleStr.text = "${
+                    AppPreferences.getInstance().setDropDown(holder.binding.itemTitleStr, DropDowns.Technology.name,data?.Technology)
+                } - ${data.AntenaSerialNumber} - ${data.InstallationDate.substring(0,10)}"
                 holder.binding.AntennaSerialNumber.text=data.AntenaSerialNumber
                 holder.binding.AntennaMake.text=data.AntenaMake
                 holder.binding.AntennaModel.text=data.AntenaModel
-                holder.binding.Technology.text=data.Technology
                 holder.binding.InstalledHeight.text=data.InstalledHeight
-                holder.binding.SpaceUsed.text=data.SpaceUsed
-                holder.binding.PoleID.text=data.TowerPoleId
-                holder.binding.SectorNumber.text=data.SectorNumber
-                holder.binding.AntennaShape.text=data.AntenaShape
                 holder.binding.AntennaSize.text=data.AntenaSize
                 holder.binding.AntennaWeight.text=data.AntenaWeight
                 holder.binding.AntennaType.text=data.AntenaType
@@ -109,11 +109,17 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
                 holder.binding.PowerCableLength.text=data.PowerCableLength
                 holder.binding.CPRICableLength.text=data.CPRICableLength
                 holder.binding.GPSCableLength.text=data.GPSCableLength
-                holder.binding.OwnerCompany.text=data.OwnerCompany
-                holder.binding.UserCompany.text=data.UserCompany
                 holder.binding.InstallationDate.text=data.InstallationDate
-                holder.binding.OperationalStatus.text=data.LinkOperationalStatus
                 holder.binding.remark.text=data.Remarks
+
+                AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data?.Technology)
+                AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data?.OwnerCompany)
+                AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data?.UserCompany)
+                AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data?.LinkOperationalStatus)
+                AppPreferences.getInstance().setDropDown(holder.binding.SpaceUsed, DropDowns.SpaceUsed.name,data?.SpaceUsed)
+                AppPreferences.getInstance().setDropDown(holder.binding.PoleID, DropDowns.TowerPoleId.name,data?.TowerPoleId)
+                AppPreferences.getInstance().setDropDown(holder.binding.SectorNumber, DropDowns.Sectornumber.name,data?.SectorNumber)
+                AppPreferences.getInstance().setDropDown(holder.binding.AntennaShape, DropDowns.AntenaShape.name,data?.AntenaShape)
             }
         }
     }

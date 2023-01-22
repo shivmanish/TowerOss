@@ -117,6 +117,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
                         AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data?.OemCompany)
                         AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data?.OperationStatus)
                         AppPreferences.getInstance().setDropDown(holder.binding.RackSpaceUsed, DropDowns.RackSpaceUsed.name,data?.RackSpaceUsed)
+
                     }
                 }
             }catch (e:Exception){

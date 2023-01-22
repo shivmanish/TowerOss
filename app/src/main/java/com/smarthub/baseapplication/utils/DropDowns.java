@@ -75,5 +75,11 @@ public enum DropDowns {
     // opco tenency --> Backhaul Link Dropdowns
     BackhaulType,
     BackhaullinkType,
-    BackhaulSiteCategory
+    BackhaulSiteCategory,
+    // opco tenency --> Rf Anteena Dropdowns
+    SpaceUsed,
+    TowerPoleId,
+    Sectornumber,
+    AntenaShape,
+    OperationalStatus
 }
