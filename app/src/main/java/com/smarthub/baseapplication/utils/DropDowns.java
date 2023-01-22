@@ -27,11 +27,10 @@ public enum DropDowns {
     SREquipmentsEquipment,
     SREquipmentsType,
     SRStatus,
-    Technology
-    // Site Info --> Oprational Info Dropdowns
+    Technology,
     Costcentre,
-    Sitebillingstatus,
-    Towncategory,
+//    Sitebillingstatus,
+//    Towncategory,
     Sharingfeasibility,
     Locationzone,
     Projectname,
