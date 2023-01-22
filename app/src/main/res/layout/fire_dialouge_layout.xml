@@ -11,7 +11,8 @@
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/drawable_cross_back"
         android:padding="@dimen/dp5"
         android:src="@drawable/cross_ico"
@@ -62,17 +63,20 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/RowTextItemInfo"
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Make" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_make"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="."
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -94,11 +98,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Modal" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_modal"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="0"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -120,11 +126,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity (KW)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_Rating_capacity_kw"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -157,7 +164,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/fire_cabinetsizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -172,7 +181,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/fire_cabinetsizeb"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -187,7 +198,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/fire_cabinetsizeh"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -218,11 +231,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Unit Weight" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_unit_weight"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -255,7 +270,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/fire_unit_sizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -270,7 +287,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/fire_unit_sizeb"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -285,7 +304,9 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
+
                                             android:id="@+id/fire_unit_sizeh"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -316,11 +337,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Extinguisher Type" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_extinguisher_type"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Cloudextel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -342,11 +365,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Fuel Consumption per hour" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_fuel_consuption_hour"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -368,11 +393,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Fire Extinguishe class" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_extinguishe_class"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -394,11 +421,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Owner Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_owner_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -420,11 +449,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="User Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/fire_user_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"

@@ -43,7 +43,7 @@
                 android:src="@drawable/edit_ico_black"
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"
-                android:padding="@dimen/dp12"
+                android:padding="@dimen/dp7"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
                 android:layout_height="40dp"/>
@@ -106,7 +106,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/tower_height"
-                            android:text="60"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -128,7 +128,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/total_anteena_weight"
-                            android:text="60"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -149,7 +149,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/Antena_space"
-                            android:text="60"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -170,7 +170,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="90"
+                            android:text=""
                             android:id="@+id/Max_anteena_height"
                             android:maxLines="1"
                             android:ellipsize="marquee"
@@ -192,7 +192,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/Offset_pole_count"
-                            android:text="60"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -213,7 +213,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="80"
+                            android:text=""
                             android:id="@+id/Offset_pole_lenth"
                             android:maxLines="1"
                             android:ellipsize="marquee"

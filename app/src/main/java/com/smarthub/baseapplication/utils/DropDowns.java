@@ -15,4 +15,9 @@ public enum DropDowns {
     EBBillLimit,
     PropertyOwnership,
     PropertyAcquired,
+    ApplicationInitialCategory,
+    ApplicationInitialApplicationType,
+    ApplicationInitialApplicationStatus,
+    ApplicationInitialPreferredLaungauge,
+
 }

@@ -24,7 +24,7 @@ class EquipUtilityFragment(var data:List<UtilityEquip>?) : Fragment(),UtilityEqu
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = UtilityEquipFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -7,18 +7,22 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.AuthorityDetails
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAndCompAllData: NocAndCompAllDataItem?) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
     private var applicationDetailsData: ApplicationInitial?=null
+    private var authorityDetails: AuthorityDetails?=null
     var type1 = "Application Details"
     var type2 = "Authority Details"
     var type3 = "PO Details"
@@ -36,6 +40,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
         list.add("NOC / Compliance Copy")
         try {
             applicationDetailsData=NocAndCompAllData?.ApplicationInitial?.get(0)
+            authorityDetails=NocAndCompAllData?.AuthorityDetails?.get(0)
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"NocDataAdapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
@@ -164,7 +169,6 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
 
             var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
-
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()
             }
@@ -245,7 +249,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditAppDetailsItem()
+                        listner.EditAppDetailsItem(applicationDetailsData)
                     }
                 }
                 else {
@@ -299,7 +303,7 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditAuthorityDetails()
+                        listner.EditAuthorityDetails(authorityDetails)
                     }
                 }
                 else {
@@ -314,6 +318,28 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+
+
+
+                try {
+
+                    AppPreferences.getInstance().setDropDown(
+                        holder.binding.authorityPrefferedLanguage,
+                        DropDowns.ApplicationInitialPreferredLaungauge.name,
+                        authorityDetails?.ApplicationInitialPreferredLaungauge
+                    )
+                  holder.binding.ContactPerson.setText(authorityDetails?.ContactPerson)
+                  holder.binding.ContactNumber.setText(authorityDetails?.ContactNumber)
+                  holder.binding.authorityAddress.setText(authorityDetails?.Address)
+                  holder.binding.LocationMark.setText(authorityDetails?.LandMark)
+
+                             }
+                catch (e:java.lang.Exception){
+                    AppLogger.log("NocDataAdapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"NocDataAdapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+
+                }
+
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -421,8 +447,8 @@ class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAn
 
     interface NOCListListener {
         fun attachmentItemClicked()
-        fun EditAuthorityDetails()
-        fun EditAppDetailsItem()
+        fun EditAuthorityDetails(authorityDetails: AuthorityDetails?)
+        fun EditAppDetailsItem(applicationDetailsData: ApplicationInitial?)
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)
         fun editfeePaymentClicked(position:Int)

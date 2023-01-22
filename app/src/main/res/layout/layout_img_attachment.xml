@@ -7,16 +7,7 @@
     android:layout_marginLeft="@dimen/dp5"
     android:paddingEnd="@dimen/dp20"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-        android:visibility="visible"
-        android:text="Attachments"
-        android:textStyle="bold"
-        android:drawablePadding="3dp"
-        style="@style/RowTextItemInfo"
-        android:textSize="14sp"
-        android:id="@+id/attachment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_marginTop="@dimen/dp5"

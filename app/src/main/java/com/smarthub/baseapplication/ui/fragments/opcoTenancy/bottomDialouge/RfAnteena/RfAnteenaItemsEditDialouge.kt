@@ -20,7 +20,6 @@ class RfAnteenaItemsEditDialouge (contentLayoutId: Int): BottomSheetDialogFragme
     }
 
     override fun getTheme() = R.style.NewDialogTask
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = RfAnteenaListItemDialougeBinding.inflate(inflater)
         return binding.root

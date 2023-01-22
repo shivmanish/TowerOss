@@ -7,9 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocCompFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.NOCAndComp
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.NocCompAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PDNocComplainEditDialouge
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PDNocComplainViewDialouge
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleEditView
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 
 class NocCompFragment(var nocCompList:List<NOCAndComp>?) : Fragment(),NocCompAdapter.NocCompListListner {
@@ -39,12 +43,14 @@ class NocCompFragment(var nocCompList:List<NOCAndComp>?) : Fragment(),NocCompAda
     }
 
     override fun editNocTableItem(position: Int) {
-        Toast.makeText(requireContext(),"noc table edit item clicked", Toast.LENGTH_SHORT).show()
-    }
+
+        val dalouge = PDNocComplainEditDialouge()
+        dalouge.show(childFragmentManager, "")  }
 
     override fun viewNocTableItem(position: Int) {
-        Toast.makeText(requireContext(),"noc table view item clicked", Toast.LENGTH_SHORT).show()
-    }
+
+        val dalouge = PDNocComplainViewDialouge()
+        dalouge.show(childFragmentManager, "")
+    }    }
 
 
-}

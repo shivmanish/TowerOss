@@ -40,10 +40,12 @@
             <ImageView
                 android:id="@+id/img_edit"
                 android:visibility="gone"
-                android:src="@drawable/edit_ico_black"
+                android:src="@drawable/add_12"
+                android:padding="@dimen/dp7"
+
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"
-                android:padding="@dimen/dp12"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
                 android:layout_height="40dp"/>
@@ -88,69 +90,7 @@
                 android:scrollbars="vertical"
                 android:paddingBottom="@dimen/dp20"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ellipsize="marquee"
-                        android:fontFamily="@font/poppins_regular"
-                        android:maxLines="1"
-                        android:text="Pole"
-                        android:textColor="#3F4E69"
-                        android:textSize="@dimen/dp15"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/AddNewRow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/dp5"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-                        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                            android:id="@+id/ic_menu_close"
-                            android:layout_width="@dimen/dp20"
-                            android:layout_height="@dimen/dp20"
-                            android:background="@color/color1"
-                            android:backgroundTint="@color/color1"
-                            android:elevation="@dimen/dp12"
-                            android:innerRadius="0dp"
-                            android:shape="ring"
-                            android:thicknessRatio="1.9"
-                            app:cardCornerRadius="@dimen/dp40">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_gravity="center"
-                                android:padding="@dimen/dp1"
-                                android:src="@drawable/ic_baseline_add_24"/>
-                        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBaseline="@+id/ic_menu_close"
-                            android:layout_marginStart="0dp"
-                            android:layout_toRightOf="@+id/ic_menu_close"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center"
-                            android:paddingLeft="@dimen/dp10"
-                            android:text="Add Row"
-                            android:textColor="@color/color1"
-                            android:textSize="@dimen/sp12" />
-                    </LinearLayout>
-                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -258,7 +198,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/RowTestItemEdit"
-                            android:text="54"
+                            android:text=""
                             />
 
                     </LinearLayout>
@@ -280,7 +220,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/RowTestItemEdit"
-                            android:text="78"
+                            android:text=""
                             />
 
                     </LinearLayout>
@@ -302,7 +242,7 @@
                     android:layout_marginLeft="@dimen/dp5"
                     android:layout_marginRight="@dimen/dp5"
                     style="@style/RowTestItemEdit"
-                    android:text="sdgas"
+                    android:text=""
                     />
             </LinearLayout>
 

@@ -105,7 +105,7 @@
                             android:id="@+id/Installation_Vendor"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="Yes"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -124,7 +124,7 @@
                         <TextView
                             android:id="@+id/Installation_date"
                             android:maxLength="10"
-                            android:text="27-Dec-22"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -147,7 +147,7 @@
                             android:id="@+id/Installation_Excutive_Name"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="Umesh"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
                             android:id="@+id/Vendor_phon_no"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="9172125253"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                             android:id="@+id/Acceptance_Status"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="Completed"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
                         <TextView
                             android:id="@+id/Conditional_acceptence_Date"
                             android:maxLength="10"
-                            android:text="27-Dec-22"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -232,7 +232,7 @@
                         <TextView
                             android:id="@+id/Final_acceptence_Date"
                             android:maxLength="10"
-                            android:text="27-Dec-22"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -253,7 +253,7 @@
                             android:id="@+id/Operational_status"
                             android:maxLines="1"
                             android:ellipsize="marquee"
-                            android:text="Live"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -273,7 +273,7 @@
                         <TextView
                             android:id="@+id/Next_pm_date"
                             android:maxLength="10"
-                            android:text="27-Dec-22"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />

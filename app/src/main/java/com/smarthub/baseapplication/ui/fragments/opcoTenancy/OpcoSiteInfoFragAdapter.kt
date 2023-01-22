@@ -13,24 +13,18 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
 
 class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: OpcoDataItem?) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
-
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-
     var type1 = "OPCO/Site Info"
     var type2 = "Operations Team"
     var type3 = "Attachments"
     private var data : Opcoinfo? = opcodata?.Opcoinfo?.get(0) ?:null
-
-
     init {
         list.add("OPCO/Site Info")
         list.add("Operations Team")
         list.add("Attachments")
     }
-
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-
     override fun getItemViewType(position: Int): Int {
         if (list[position] is String && list[position]==type1)
             return 1
@@ -40,7 +34,6 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
             return 3
         return 0
     }
-
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : OpcoSiteInfoItemBinding = OpcoSiteInfoItemBinding.bind(itemView)
 
@@ -78,8 +71,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         var binding : OpcoAttachmentBinding = OpcoAttachmentBinding.bind(itemView)
 
         init {
-            var attachment_title = itemView.findViewById<View>(R.id.attachment_title)
-            attachment_title.visibility = View.GONE
+
         }
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -104,7 +96,6 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
@@ -124,7 +115,6 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         }
         return ViewHold(view)
     }
-
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
@@ -228,11 +218,9 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
             }
         }
     }
-
     override fun getItemCount(): Int {
         return list.size
     }
-
     var recyclerView: RecyclerView?=null
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
@@ -240,7 +228,6 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         if (this.recyclerView!=null)
             this.recyclerView?.scrollToPosition(position)
     }
-
     interface OpcoInfoLisListener {
         fun attachmentItemClicked()
         fun operationsItemClicked()

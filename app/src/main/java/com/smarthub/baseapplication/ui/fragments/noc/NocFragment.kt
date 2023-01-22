@@ -16,8 +16,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDat
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.AddNewNocCmpDialouge
-import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.AddNewPlanDesignDialouge
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.CreateNocBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -43,6 +42,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
             dalouge.show(childFragmentManager,"")
 
         }
+
 
         if (viewmodel.NocAndCompModelResponse?.hasActiveObservers() == true){
             viewmodel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
@@ -71,16 +71,14 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 Toast.makeText(requireContext(),"NocAndComp Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
-
         NocCompBinding.swipeLayout.setOnRefreshListener {
             viewmodel.NocAndCompRequestAll(id)
         }
+        NocCompBinding.addmoreItems.setOnClickListener(){
+            val dalouge = CreateNocBottomSheet(R.layout.create_noc_site_info_dialoge)
+            dalouge.show(childFragmentManager,"")
 
-        NocCompBinding.addNew.setOnClickListener {
-            val bmSheet = AddNewNocCmpDialouge(R.layout.noc_comp_addnew_dialouge)
-            bmSheet.show(childFragmentManager,"category")
         }
-
     }
 
     override fun onViewPageSelected() {

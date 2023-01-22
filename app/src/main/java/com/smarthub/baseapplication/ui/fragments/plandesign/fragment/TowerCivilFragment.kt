@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerCivilFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignTowerAndCivil
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.plandesignTowerCivilAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleEditView
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleView
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.TowerDialouge
 
 class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?):Fragment(),plandesignTowerCivilAdapter.TowrCivilListner {
@@ -28,6 +31,7 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
         adapter= plandesignTowerCivilAdapter(requireContext(),this@TowerCivilFragment,twrCivilData)
         binding.listItem.adapter=adapter
 
+
     }
 
     override fun attachmentItemClicked() {
@@ -40,15 +44,16 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
     }
 
     override fun editPole() {
-        Toast.makeText(requireContext(),"edit pole info clicked", Toast.LENGTH_SHORT).show()
+        var bm = PoleEditView(R.layout.pd_pole_edit_dialoge)
+        bm.show(childFragmentManager,"categoery")
     }
 
     override fun editPoleTableItem(position: Int) {
-        Toast.makeText(requireContext(),"edit pole table item clicked", Toast.LENGTH_SHORT).show()
-    }
+        var bm = PoleEditView(R.layout.pd_pole_edit_dialoge)
+        bm.show(childFragmentManager,"categoery")    }
 
     override fun viewPoleTableItem(position: Int) {
-        Toast.makeText(requireContext(),"view pole table item clicked", Toast.LENGTH_SHORT).show()
-    }
+        var bm = PoleView(R.layout.pd_pole_edit_dialoge)
+        bm.show(childFragmentManager,"categoery")    }
 
 }

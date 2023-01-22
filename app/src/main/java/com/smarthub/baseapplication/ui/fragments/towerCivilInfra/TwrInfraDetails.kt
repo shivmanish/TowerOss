@@ -16,21 +16,18 @@ class TwrInfraDetails : BaseActivity() {
         var TowerModelData : ArrayList<TowerAndCivilInfraTowerModel>?=null
         var Id : String?="448"
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTwrInfraDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
     }
-
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initViews()
 
 
     }
-
     private fun initViews(){
         binding.back.setOnClickListener {
             onBackPressed()
