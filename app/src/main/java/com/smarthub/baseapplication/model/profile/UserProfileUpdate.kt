@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.model.profile
 
 import com.smarthub.baseapplication.model.register.Commucationaddess
 import com.smarthub.baseapplication.model.register.Officeaddress
+import com.smarthub.baseapplication.utils.AppController
 
 data class UserProfileUpdate(
     var communicationaddress: Commucationaddess = Commucationaddess(),
@@ -12,7 +13,7 @@ data class UserProfileUpdate(
     var maintenancepoint: List<String> = ArrayList<String>(),
     var national: String = "NA",
     var officeaddress: Officeaddress = Officeaddress(),
-    var ownername: String = "NA",
+    var ownername: String = AppController.getInstance().ownerName,
     var phone: String = "7269024641",
     var priviledgename: List<String> = ArrayList<String>(),
     var region: List<String> = ArrayList<String>(),

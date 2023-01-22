@@ -114,16 +114,8 @@ class HomeViewModel : ViewModel() {
         homeRepo?.generateSiteId(basicinfoModel)
     }
 
-    fun updateOpcoTenancy(opcoListData: List<OpcoDataItem>){
-        opcoTenancyListResponse?.postValue(Resource.success<OpcoDataList>(OpcoDataList(opcoListData), 200))
-    }
-
     fun updateBasicInfo(basicinfoModel: BasicinfoModel){
         homeRepo?.updateSiteInfo(basicinfoModel)
-    }
-
-    fun updateSiteInfoDataInfo(basicinfoModel: Any){
-        homeRepo?.updateSiteInfoData(basicinfoModel)
     }
 
     fun createSite(basicinfoModel: CreateSiteModel){

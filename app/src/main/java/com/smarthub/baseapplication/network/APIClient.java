@@ -156,16 +156,6 @@ public interface APIClient {
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<PowerAndFuelModel> fetchPowerFuelRequest(@Body SiteInfoParam data);
 
-    @GET(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<List<SearchListItem>> searchSiteInfoData(@Query("id") String id);
-
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
-    Call<List<SearchListItem>> searchSiteInfoDataNew(@Body JsonObject data);
-
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
-    Call<List<SearchListItem>> searchSiteInfoData(@Body JsonObject data);
-
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
     Call<List<SearchListItem>> searchSiteByName(@Body JsonObject data);
@@ -208,10 +198,6 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<SiteacquisitionAgreement> updateAgreementSiteInfo(@Body SiteacquisitionAgreement siteacquisitionAgreement);
-
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_DATA)
-    Call<SiteInfoModelUpdate> updateSiteInfoData(@Body Object basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)

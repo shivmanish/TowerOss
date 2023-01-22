@@ -35,18 +35,4 @@ class BasicInfoDetailViewModel : ViewModel() {
         }
     }
 
-    fun fetchSiteInfo() {
-        siteInfoRepo?.siteInfoData()
-    }
-
-    fun fetchSiteInfoById(id:String) {
-        siteInfoRepo?.siteSearchData(id)
-    }
-
-    fun fetchSiteSearchData(id:String) {
-        siteInfoRepo?.siteSearchData(id)
-    }
-    fun fetchSiteSearchData(id:String,category :String) {
-        siteInfoRepo?.siteSearchData(id,category)
-    }
 }

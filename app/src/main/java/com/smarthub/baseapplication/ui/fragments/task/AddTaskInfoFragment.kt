@@ -22,6 +22,7 @@ import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.MainViewModel
@@ -105,7 +106,7 @@ class AddTaskInfoFragment : BaseFragment() {
             override fun itemSelected(departmentName: DropDownItem) {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
                 Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
-                viewmodel.getUser(GetUserList(departmentName.name))
+                viewmodel.getUser(GetUserList(departmentName.name,AppController.getInstance().ownerName))
                 observerData()
             }
         })
@@ -124,13 +125,13 @@ class AddTaskInfoFragment : BaseFragment() {
                 departmentList.clear()
                 var i=0
                 for (x in it.data.department){
-                    departmentList.add(DropDownItem("$x","$i"))
+                    departmentList.add(DropDownItem(x,"$i"))
                     i+=1
                 }
-                binding?.assigneeDepartment?.setSpinnerData(departmentList)
+                binding.assigneeDepartment.setSpinnerData(departmentList)
             }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         }
-        viewmodel.getDepartments(DropdownParam("SMRT","department"))
+        viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
 
     }
     private fun observerData() {

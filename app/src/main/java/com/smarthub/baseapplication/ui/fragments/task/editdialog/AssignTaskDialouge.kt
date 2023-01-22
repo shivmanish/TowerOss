@@ -13,7 +13,6 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: AssignTaskDialougeBinding
-    var basicinfoModel: BasicinfoModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AssignTaskDialougeBinding.inflate(inflater)
@@ -22,8 +21,6 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
-        basicinfoModel = BasicinfoModel()
         binding = AssignTaskDialougeBinding.bind(view)
 
         binding.icMenuClose.setOnClickListener {

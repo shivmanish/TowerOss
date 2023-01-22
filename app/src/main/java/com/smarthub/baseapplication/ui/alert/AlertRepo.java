@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
+import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 
 import java.util.List;
@@ -79,43 +80,6 @@ public class AlertRepo {
         return siteSearchResponse;
     }
 
-    public void sendAlert(SendAlertModel model) {
-
-        apiClient.sendAlert(model).enqueue(new Callback<SendAlertResponse>() {
-            @Override
-            public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
-                if (response.isSuccessful()){
-                    reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SendAlertResponse> call, Throwable t) {
-                reportErrorResponse(null, t.getLocalizedMessage());
-            }
-
-            private void reportSuccessResponse(Response<SendAlertResponse> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-                    sendAlertResponseLivedata.postValue(Resource.success(response.body(), 200));
-                }
-            }
-
-            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-                if (response != null) {
-                    sendAlertResponseLivedata.postValue(Resource.error(response.getMessage(), null, 400));
-                } else if (iThrowableLocalMessage != null)
-                    sendAlertResponseLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    sendAlertResponseLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
-    }
     public void sendAlertNew(SendAlertModel model) {
 
         apiClient.sendAlertNew(model).enqueue(new Callback<SendAlertResponseNew>() {
@@ -157,6 +121,7 @@ public class AlertRepo {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("Get",model);
+        jsonObject.addProperty("ownerName", AppController.getInstance().ownerName);
         apiClient.sendAlert(jsonObject).enqueue(new Callback<SendAlertResponse>() {
             @Override
             public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
@@ -233,6 +198,7 @@ public class AlertRepo {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("chating",id);
         jsonObject.addProperty("message",sms);
+        jsonObject.addProperty("ownerName", AppController.getInstance().ownerName);
         apiClient.sendAlert(jsonObject).enqueue(new Callback<SendAlertResponse>() {
             @Override
             public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {

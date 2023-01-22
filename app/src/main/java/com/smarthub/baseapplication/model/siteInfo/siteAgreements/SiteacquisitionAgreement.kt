@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model.siteInfo.siteAgreements
 
+import com.smarthub.baseapplication.utils.AppController
+
 data class SiteacquisitionAgreement(
     var AgreementEffectiveDate: String,
     var AgreementExpiryDate: String,
@@ -34,5 +36,6 @@ data class SiteacquisitionAgreement(
     val created_at: String,
     var id: String,
     val isActive: String,
-    val modified_at: String
+    val modified_at: String,
+    var ownername: String = AppController.getInstance().ownerName,
 )

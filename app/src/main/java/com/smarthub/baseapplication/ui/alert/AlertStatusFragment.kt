@@ -25,6 +25,7 @@ import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.search.SearchResultAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.widgets.CustomStringSpinner
 
 
@@ -122,7 +123,7 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
                 customStringSpinner1?.setSpinnerData(it.data.department)
             }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         }
-        viewmodel.getDepartments(DropdownParam("SMRT","department"))
+        viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
         viewmodel.searchListItem.postValue(SearchListItem("Search Site","448"))
     }
 
@@ -140,9 +141,9 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     override fun getuser() {
         showLoader()
         if (customStringSpinner!=null)
-            viewmodel.getUser(GetUserList(customStringSpinner!!.selectedValue))
+            viewmodel.getUser(GetUserList(customStringSpinner!!.selectedValue, AppController.getInstance().ownerName))
         else
-            viewmodel.getUser(GetUserList("D1"))
+            viewmodel.getUser(GetUserList("D1",AppController.getInstance().ownerName))
     }
     var customStringSpinner: CustomStringSpinner?=null
     var customStringSpinner1: CustomStringSpinner?=null

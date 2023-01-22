@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model.siteInfo.oprationInfo
 
+import com.smarthub.baseapplication.utils.AppController
+
 data class UpdateOperationInfo(
     val Costcentre: String = "1",
     val DesignedDcLoad: String,
@@ -15,5 +17,6 @@ data class UpdateOperationInfo(
     val Scda: String = "1",
     val Sharingfeasibility: String,
     val Sitebillingstatus: String = "1",
-    val Towncategory: String = "1"
+    val Towncategory: String = "1",
+    var ownername: String = AppController.getInstance().ownerName,
 )

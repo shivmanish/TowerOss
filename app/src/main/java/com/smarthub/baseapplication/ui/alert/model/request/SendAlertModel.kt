@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.ui.alert.model.request
 
+import com.smarthub.baseapplication.utils.AppController
+
 data class SendAlertModel(
     var Happened: String="True",
     var Happening: String ="True",
@@ -19,5 +21,6 @@ data class SendAlertModel(
     var sendalerttoall: String="True",
     var siteid: String="448",
     var sitename: String="sitename",
-    var smsSend: String="True"
+    var smsSend: String="True",
+    var ownerName: String = AppController.getInstance().ownerName
 )
