@@ -9,13 +9,15 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ServiceRequestAddNewDialougeBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
 class ServiceRequestAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : ServiceRequestAddNewDialougeBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ServiceRequestAddNewDialougeBinding.inflate(inflater)
         return binding.root
     }
@@ -32,6 +34,13 @@ class ServiceRequestAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment
         binding.Add.setOnClickListener {
             dismiss()
         }
+
+        AppPreferences.getInstance().setDropDown(binding.srType,DropDowns.SRType.name,"1")
+        AppPreferences.getInstance().setDropDown(binding.srStatus,DropDowns.SRStatus.name,"1")
+        AppPreferences.getInstance().setDropDown(binding.requesterCompny,DropDowns.SRDetailRequesterCompany.name,"1")
+        AppPreferences.getInstance().setDropDown(binding.technology,DropDowns.Technology.name,"1")
+        AppPreferences.getInstance().setDropDown(binding.hubSite,DropDowns.Hubsite.name,"1")
+        AppPreferences.getInstance().setDropDown(binding.priority,DropDowns.Priority.name,"1")
     }
 
     override fun getTheme() = R.style.NewDialogTask
