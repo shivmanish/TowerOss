@@ -102,6 +102,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/txtRFCDate"
+                    android:maxLength="10"
                     android:text="12-Nov-22"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -119,6 +120,7 @@
                 <TextView
                     android:id="@+id/txtRFIDate"
                     android:text="12-Nov-22"
+                    android:maxLength="10"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -136,6 +138,7 @@
                 <TextView
                     android:id="@+id/txtRFSDate"
                     style="@style/RowTextviewItem"
+                    android:maxLength="10"
                     android:text="12-Nov-22"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -299,7 +302,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Hub City"
+                    android:text="Hub Site"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -363,6 +366,7 @@
                 <TextView
                     style="@style/RowTextviewItem"
                     android:id="@+id/dismanting"
+                    android:maxLength="10"
                     android:text="18-Nov-2022"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

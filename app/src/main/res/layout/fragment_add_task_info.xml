@@ -7,10 +7,134 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.task.TaskFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/dp25"
         app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/progress_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp35"
+        android:layout_marginRight="@dimen/dp35"
+        android:layout_marginBottom="@dimen/dp35">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p1"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardBackgroundColor="@color/card_bg"
+            app:cardCornerRadius="@dimen/dp60"
+            app:layout_constraintEnd_toEndOf="@+id/p_status1"
+            app:layout_constraintStart_toStartOf="@+id/p_status1"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp12"
+                android:src="@drawable/task_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Task info"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+        <View
+            android:id="@+id/l1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp10"
+            android:background="@color/card_bg"
+            app:layout_constraintBottom_toBottomOf="@+id/p1"
+            app:layout_constraintEnd_toStartOf="@+id/p2"
+            app:layout_constraintStart_toEndOf="@+id/p1"
+            app:layout_constraintTop_toTopOf="@+id/p1" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p2"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardCornerRadius="@dimen/dp60"
+            app:cardBackgroundColor="#ffffff"
+            app:strokeColor="@color/card_bg"
+            app:strokeWidth="1dp"
+            app:layout_constraintEnd_toEndOf="@id/p_status2"
+            app:layout_constraintStart_toStartOf="@+id/p_status2"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_margin="@dimen/dp12"
+                android:src="@drawable/menu_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Activities"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+        <View
+            android:id="@+id/l2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp10"
+            android:background="@color/circle_color"
+            app:layout_constraintBottom_toBottomOf="@+id/p2"
+            app:layout_constraintEnd_toStartOf="@+id/p3"
+            app:layout_constraintStart_toEndOf="@+id/p2"
+            app:layout_constraintTop_toTopOf="@+id/p3" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p3"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardBackgroundColor="#ffffff"
+            app:strokeColor="#3D4E6D"
+            app:strokeWidth="1dp"
+            app:cardCornerRadius="@dimen/dp60"
+            app:layout_constraintEnd_toEndOf="@id/p_status3"
+            app:layout_constraintStart_toStartOf="@+id/p_status3"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_margin="@dimen/dp12"
+                android:src="@drawable/notification_bell"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Notification"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/progress_status"
         app:layout_constraintBottom_toTopOf="@+id/rfEquipment_edit_save"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp15"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/dp5">
 
@@ -18,135 +142,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="@dimen/dp80">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="@dimen/dp25"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/progress_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp35"
-                android:layout_marginRight="@dimen/dp35"
-                android:layout_marginBottom="@dimen/dp35">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/p1"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
-                    app:cardBackgroundColor="@color/card_bg"
-                    app:cardCornerRadius="@dimen/dp60"
-                    app:layout_constraintEnd_toEndOf="@+id/p_status1"
-                    app:layout_constraintStart_toStartOf="@+id/p_status1"
-                    app:layout_constraintTop_toTopOf="parent" >
-                    <ImageView
-                        android:layout_marginEnd="@dimen/dp8"
-                        android:layout_marginStart="@dimen/dp12"
-                        android:src="@drawable/task_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/p_status1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="Task info"
-                    android:textColor="#4F4D4D"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/p1" />
-                <View
-                    android:id="@+id/l1"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dp10"
-                    android:background="@color/card_bg"
-                    app:layout_constraintBottom_toBottomOf="@+id/p1"
-                    app:layout_constraintEnd_toStartOf="@+id/p2"
-                    app:layout_constraintStart_toEndOf="@+id/p1"
-                    app:layout_constraintTop_toTopOf="@+id/p1" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/p2"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
-                    app:cardCornerRadius="@dimen/dp60"
-                    app:cardBackgroundColor="#ffffff"
-                    app:strokeColor="@color/card_bg"
-                    app:strokeWidth="1dp"
-                    app:layout_constraintEnd_toEndOf="@id/p_status2"
-                    app:layout_constraintStart_toStartOf="@+id/p_status2"
-                    app:layout_constraintTop_toTopOf="parent" >
-                    <ImageView
-                        android:layout_margin="@dimen/dp12"
-                        android:src="@drawable/menu_task"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/p_status2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="Activities"
-                    android:textColor="#4F4D4D"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/p1" />
-                <View
-                    android:id="@+id/l2"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dp10"
-                    android:background="@color/circle_color"
-                    app:layout_constraintBottom_toBottomOf="@+id/p2"
-                    app:layout_constraintEnd_toStartOf="@+id/p3"
-                    app:layout_constraintStart_toEndOf="@+id/p2"
-                    app:layout_constraintTop_toTopOf="@+id/p3" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/p3"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
-                    app:cardBackgroundColor="#ffffff"
-                    app:strokeColor="#3D4E6D"
-                    app:strokeWidth="1dp"
-                    app:cardCornerRadius="@dimen/dp60"
-                    app:layout_constraintEnd_toEndOf="@id/p_status3"
-                    app:layout_constraintStart_toStartOf="@+id/p_status3"
-                    app:layout_constraintTop_toTopOf="parent" >
-                    <ImageView
-                        android:layout_margin="@dimen/dp12"
-                        android:src="@drawable/notification_bell"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/p_status3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="Notification"
-                    android:textColor="#4F4D4D"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/p1" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp10"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/progress_status">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
