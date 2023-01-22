@@ -36,5 +36,21 @@ public enum DropDowns {
     SiteAccessArea,
     DangerSignage,
     CautionSignage,
-    Siteaccess
+    Siteaccess,
+    // opco tenency --> Opco Info Dropdowns
+    Opcositestatus,
+    Opcositetype,
+    Operatornetworktype,
+    Alarmsextension,
+    Rftechnology,
+    Telecomequipmenttype,
+    Rrucount,
+    Sectorcount,
+    Rackcount,
+    Antenacount,
+    Antenaslotused,
+    InstallationVendor,
+    MaintenanceVendor,
+    Backhaultechnology,
+    OpcoName
 }
