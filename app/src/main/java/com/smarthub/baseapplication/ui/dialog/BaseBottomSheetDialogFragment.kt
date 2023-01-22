@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.dialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -18,6 +19,8 @@ open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id
         dialog.behavior.skipCollapsed = false
         return dialog
     }
+
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     protected open fun setDatePickerView(view : TextView) {
         AppLogger.log("setDatePickerView : view")

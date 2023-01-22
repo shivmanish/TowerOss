@@ -10,7 +10,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignAcqTeamFragmentBinding
 import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeamTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.ui.dialog.siteinfo.AsignAcqTeamBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.TeamVendorDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
@@ -72,9 +74,9 @@ class AssignACQTeamFragment (var data : ServiceRequestAllDataItem?, Id: String?)
       override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
      }
-    override fun EditdetailsItemClicked() {
-        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(R.layout.teamvender_details_botom_sheet)
-        bottomSheetDialogFragment?.show(childFragmentManager,"category")
+    override fun EditdetailsItemClicked(item : AssignACQTeamTeam?) {
+        var bottomSheetDialogFragment = AsignAcqTeamBottomSheet(R.layout.teamvender_details_botom_sheet,item)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
 }

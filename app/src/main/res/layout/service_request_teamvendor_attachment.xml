@@ -39,6 +39,7 @@
                 android:layout_height="match_parent"/>
             <ImageView
                 android:id="@+id/img_dropdown"
+                android:visibility="gone"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
