@@ -83,7 +83,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
 
     override fun onViewPageSelected() {
         super.onViewPageSelected()
-        if (viewmodel!=null && !isDataLoaded){
+        if (!isDataLoaded){
             nocDataAdapter.addLoading()
             viewmodel.NocAndCompRequestAll(id)
         }
