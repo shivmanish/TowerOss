@@ -203,7 +203,7 @@
                             android:layout_height="wrap_content"
                             android:text="Hub Site" />
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/Hub_Site"
+                            android:id="@+id/hub_Site"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20" />

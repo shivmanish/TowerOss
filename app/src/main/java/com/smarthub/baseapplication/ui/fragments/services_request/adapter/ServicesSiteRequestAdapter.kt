@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BackhaulLinkTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
 
@@ -25,7 +26,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type4 = "Backhaul Links"
     var type5 = "Requester Info"
     var type6 = "Attachments"
-//    private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
     private var SrDetailsData: SRDetails ?=null
     private var BackhaulLinksData: BackHaulLink?=null
@@ -44,10 +44,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         list.add("Backhaul Links")
         list.add("Requester Info")
         list.add("Attachments")
-    servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
-    SrDetailsData=servicerequestData?.SRDetails?.get(0)
-    BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
-    RequesterInfoData=servicerequestData?.RequesterInfo?.get(0)
+        try {
+            servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
+            SrDetailsData=servicerequestData?.SRDetails?.get(0)
+            BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
+            RequesterInfoData=servicerequestData?.RequesterInfo?.get(0)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("error in site request:${e.localizedMessage}")
+        }
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -247,8 +251,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
                 if (SrDetailsData!=null) {
                     holder.binding.imgEdit.setOnClickListener {
-                        if (SrDetailsData!=null)
-                        listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
+                        if (SrDetailsData!=null && serviceRequestAllData!=null)
+                            listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
                         else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
                     }
                     AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,SrDetailsData?.SRType)
@@ -293,8 +297,11 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener,
-                    servicerequestData?.Equipments!! as ArrayList<Equipment>,serviceRequestAllData!!)
+                try {
+                    holder.equipmentTableList.adapter= serviceRequestAllData?.let { SREquipmentTableAdapter(context,listener, servicerequestData?.Equipments as ArrayList<Equipment>, it) }
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("e:${e.localizedMessage}")
+                }
                 holder.binding.imgAdd.setOnClickListener {
                     listener.editEquipmentClicked(null,null,null)
                 }
@@ -319,7 +326,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener,servicerequestData?.RadioAntennas!!)
+                 holder.RadioAnteenaTableList.adapter= servicerequestData?.RadioAntennas?.let {
+                     RadioAntinaTableAdapter(context,listener, it)
+                 }
                 holder.binding.imgAdd.setOnClickListener {
                     listener.editEquipmentClicked(null,null,null)
                 }

@@ -7,7 +7,6 @@
     <TextView
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:textColor="@color/color1"
         android:text="Cancel"

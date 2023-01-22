@@ -30,41 +30,55 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
+        adapter = ServicesRequestAdapter(requireContext(), this@ServiceRequestTabFragment, data!!)
         binding?.listItem?.adapter = adapter
 
-        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true){
+        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true) {
             viewmodel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
 
-            if (it!=null && it.status == Resource.Status.LOADING){
+            if (it != null && it.status == Resource.Status.LOADING) {
                 binding?.swipeLayout!!.isRefreshing = true
                 return@observe
             }
             binding?.swipeLayout!!.isRefreshing = false
-            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 if (it.data.item?.isNotEmpty() == true) {
                     adapter.updateData(it.data.item!![0].ServiceRequestMain[0])
-                    Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Service request Data fetched successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     AppLogger.log("Service request Fragment card Data fetched successfully")
                     AppLogger.log("size :${it.data.item?.size}")
-                }else Toast.makeText(requireContext(), "No Data Found found", Toast.LENGTH_SHORT).show()
+                } else Toast.makeText(
+                    requireContext(),
+                    "No Data Found found",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-            }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Service request Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
-            }
-            else {
+            } else {
                 AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Service Request Fragment Something went wrong",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
             viewmodel.serviceRequestAll(Id)
         }
-
     }
 
     override fun onDestroy() {
