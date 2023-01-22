@@ -150,10 +150,10 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                     holder.binding.rfrDate.text=data?.rfrDate
                     holder.binding.OPCOSignOffDate.text=data?.Opcosignoffdate
                     holder.binding.CommittedNWA.text=data?.committedNWA
+                    holder.binding.OpcoName.text=data?.OpcoName
                     AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteStatus,DropDowns.Opcositestatus.name,data?.Opcositestatus)
                     AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,data?.Opcositetype)
                     AppPreferences.getInstance().setDropDown(holder.binding.networkType,DropDowns.Operatornetworktype.name,data?.Operatornetworktype)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OpcoName,DropDowns.OpcoName.name,data?.OpcoName)
                     AppPreferences.getInstance().setDropDown(holder.binding.AlarmExtension,DropDowns.Alarmsextension.name,data?.Alarmsextension)
                     AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.Rftechnology.name,data?.Rftechnology)
                     AppPreferences.getInstance().setDropDown(holder.binding.TelecomEquipmentType,DropDowns.Telecomequipmenttype.name,data?.Telecomequipmenttype)
