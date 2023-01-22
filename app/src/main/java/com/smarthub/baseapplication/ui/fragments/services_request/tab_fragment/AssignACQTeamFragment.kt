@@ -63,6 +63,7 @@ class AssignACQTeamFragment (var data : ServiceRequestAllDataItem?, Id: String?)
         binding?.swipeLayout!!.setOnRefreshListener {
             viewmodel.fetchSiteInfoData(ServicesRequestActivity.Id!!)
         }
+        binding?.swipeLayout?.isEnabled = false
       }
 
     override fun onDestroy() {

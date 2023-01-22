@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#004C4B4B"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
@@ -17,511 +17,538 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
-    <LinearLayout android:paddingBottom="@dimen/dp10"
-        android:layout_marginBottom="@dimen/dp15"
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/dialog_bg"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="Acquisition Executive Name" />
-
-                <EditText
-                    android:id="@+id/AcquisitionExecutiveName"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="On-Air" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Executive Email ID" />
-                <EditText
-                    android:id="@+id/ExecutiveEmailID"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="On-Air" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Executive Number" />
-
-                <EditText
-                    android:id="@+id/ExecutiveNumber"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/icon_date"
-                    android:hint="9890000009" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Acquisition Lead Name" />
-
-                <EditText
-                    android:id="@+id/AcquisitionLeadName"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ajay Verma" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Lead Email ID" />
-
-                <EditText
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:id="@+id/LeadEmailId"
-                    android:layout_height="wrap_content"
-                    android:text="ajay.verma@vil.com" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Number" />
-
-                <EditText
-                    android:id="@+id/Number"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="9890000008" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Acquisition Mode" />
-
-                <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/AcquisitionMode"
-                    style="@style/SpinnerTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="On-Air" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Acquisition Type" />
-
-                <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinAcquisitionType"
-                    style="@style/SpinnerTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="On-Air" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Acquisition Budget" />
-
-                <EditText
-                    android:id="@+id/AcquisitionBudget"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="8,000" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Acquisition Target Date" />
-
-                <TextView
-                    android:id="@+id/AcquisitionTargetDate"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/icon_date"
-                    android:text="27-Jun-22" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vendor Name" />
-
-                <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/VendorName"
-                    style="@style/SpinnerTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="On-Air" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="PO Number" />
-
-                <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/PONumber"
-                    style="@style/SpinnerTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-
-        </GridLayout>
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            style="@style/ColumnItemInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/RowTextItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Office Address" />
-
-            <EditText
-                android:id="@+id/OfficeAddress"
-                style="@style/RowTestItemEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="102, Ahmedabad, Gujrat - xxxx" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp8"
-                android:alpha="0.37"
-                android:background="#263238" />
-        </LinearLayout>
-
-        <GridLayout
+            android:scrollbars="vertical"
+            android:paddingBottom="@dimen/dp10"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:orientation="horizontal"
+            android:background="@drawable/dialog_bg"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="PO Amount" />
-
-                <EditText
-                    android:id="@+id/PoAmount"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/rupee_symbol"
-                    android:hint="8,000" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vendor Executive Name" />
-
-                <EditText
-                    android:id="@+id/VendorExcutiveName"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Vishesh Sharma" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vendor Executive Email ID" />
-
-                <EditText
-                    android:id="@+id/VendorExecutiveEmail"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/email"
-                    android:text="vishesh.sharma@vde.c..." />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vendor Executive Number" />
-
-                <EditText
-                    android:id="@+id/VendorExecutiveNumber"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:drawableRight="@drawable/telephone"
-                    android:layout_height="wrap_content"
-                    android:text="989000323" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:alpha="0.37"
-                    android:background="#263238" />
-            </LinearLayout>
-
-
-        </GridLayout>
-
-        <LinearLayout
-            style="@style/ColumnItemInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/RowTextItemInfo"
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Remarks" />
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/Remmarks"
-                style="@style/RowTestItemEdit"
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="Acquisition Executive Name" />
+
+                    <EditText
+                        android:id="@+id/AcquisitionExecutiveName"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Executive Email ID" />
+                    <EditText
+                        android:id="@+id/ExecutiveEmailID"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Executive Number" />
+
+                    <EditText
+                        android:id="@+id/ExecutiveNumber"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/icon_date"
+                        android:hint="9890000009" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Acquisition Lead Name" />
+
+                    <EditText
+                        android:id="@+id/AcquisitionLeadName"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ajay Verma" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lead Email ID" />
+
+                    <EditText
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:id="@+id/LeadEmailId"
+                        android:layout_height="wrap_content"
+                        android:text="ajay.verma@vil.com" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Number" />
+
+                    <EditText
+                        android:id="@+id/Number"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="9890000008" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Acquisition Mode" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/AcquisitionMode"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Acquisition Type" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/spinAcquisitionType"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Acquisition Budget" />
+
+                    <EditText
+                        android:id="@+id/AcquisitionBudget"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="8,000" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Acquisition Target Date" />
+
+                    <TextView
+                        android:id="@+id/AcquisitionTargetDate"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/icon_date"
+                        android:text="27-Jun-22" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vendor Name" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/VendorName"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="On-Air" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PO Number" />
+
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/PONumber"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+
+            </GridLayout>
+
+            <LinearLayout
+                style="@style/ColumnItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Office Address" />
+
+                <EditText
+                    android:id="@+id/OfficeAddress"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="102, Ahmedabad, Gujrat - xxxx" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
+            </LinearLayout>
+
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="" />
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <View
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PO Amount" />
+
+                    <EditText
+                        android:id="@+id/PoAmount"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/rupee_symbol"
+                        android:hint="8,000" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vendor Executive Name" />
+
+                    <EditText
+                        android:id="@+id/VendorExcutiveName"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Vishesh Sharma" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vendor Executive Email ID" />
+
+                    <EditText
+                        android:id="@+id/VendorExecutiveEmail"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/email"
+                        android:text="vishesh.sharma@vde.c..." />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vendor Executive Number" />
+
+                    <EditText
+                        android:id="@+id/VendorExecutiveNumber"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:drawableRight="@drawable/telephone"
+                        android:layout_height="wrap_content"
+                        android:text="989000323" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:alpha="0.37"
+                        android:background="#263238" />
+                </LinearLayout>
+
+
+            </GridLayout>
+
+            <LinearLayout
+                style="@style/ColumnItemInfo"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp8"
-                android:alpha="0.37"
-                android:background="#263238" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Remarks" />
+
+                <EditText
+                    android:id="@+id/Remmarks"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.37"
+                    android:background="#263238" />
+
+                <LinearLayout
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="@dimen/dp120"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color1"
+                        android:text="Save"
+                        android:textSize="14sp"
+                        android:layout_margin="@dimen/dp10"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/login_yellow_bg"
+                        app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-        <include layout="@layout/cancel_save_layout"/>
-
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
