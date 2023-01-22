@@ -28,7 +28,6 @@ class AlertViewModel : ViewModel() {
     var repo: AlertRepo
     var department: String = "D1"
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
-
     var sendAlertResponseLivedata: SingleLiveEvent<Resource<SendAlertResponse>>
     var sendAlertResponseLivedataNew: SingleLiveEvent<Resource<SendAlertResponseNew>>
     var userDataResponseLiveData: SingleLiveEvent<Resource<UserDataResponse>>

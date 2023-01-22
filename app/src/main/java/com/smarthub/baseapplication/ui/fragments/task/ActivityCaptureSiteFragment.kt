@@ -26,7 +26,7 @@ class ActivityCaptureSiteFragment: Fragment() {
             nextClicked()
         }
         binding.cancel.setOnClickListener {
-            findNavController().popBackStack()
+            requireActivity().finish()
         }
     }
 

@@ -391,7 +391,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
-                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp1"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -399,17 +399,17 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                    <com.smarthub.baseapplication.widgets.CustomUserSpinner
                         android:id="@+id/assign_to"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20" />
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_marginTop="@dimen/dp5" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

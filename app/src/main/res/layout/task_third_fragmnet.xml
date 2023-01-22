@@ -165,14 +165,14 @@
             android:textSize="@dimen/dp14" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swOnOff"
-            android:layout_width="@dimen/dp80"
+            android:id="@+id/notification_switch"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:showText="false"
             android:checked="true"
             app:track="@drawable/custome_track"
             android:thumb="@drawable/custome_thum"
-            android:layout_height="@dimen/dp20"/>
+            android:layout_height="@dimen/dp25"/>
     </LinearLayout>
 
     <LinearLayout
@@ -195,7 +195,8 @@
             android:textSize="@dimen/dp14" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="@dimen/dp80"
+            android:id="@+id/reminder_switch"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:showText="false"
             android:checked="false"
@@ -223,7 +224,8 @@
             android:textSize="@dimen/dp14" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="@dimen/dp80"
+            android:id="@+id/AutoEsclationSwitch"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:showText="false"
             android:checked="true"

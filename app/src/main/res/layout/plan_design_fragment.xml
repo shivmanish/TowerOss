@@ -20,12 +20,16 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp">
-            <include
-                android:id="@+id/add_items_layout"
-
-                layout="@layout/add_new_layout">
-
-            </include>
+            <LinearLayout
+                android:id="@+id/add_new"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="right"
+                android:layout_height="wrap_content">
+                <include
+                    layout="@layout/add_new_layout">
+                </include>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 tools:itemCount="3"

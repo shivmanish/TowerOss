@@ -46,6 +46,8 @@ import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivil
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
+import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel;
+import com.smarthub.baseapplication.model.taskModel.CreateNewTaskResponse;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
@@ -264,6 +266,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DEPARTMENT_DROPDOWNS)
     Call<DepartmentDropdown> getDepartmentList(@Body DropdownParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<CreateNewTaskResponse> createNewTask(@Body CreateNewTaskModel data);
 
 
 }

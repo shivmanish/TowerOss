@@ -16,6 +16,8 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDat
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.AddNewNocCmpDialouge
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.AddNewPlanDesignDialouge
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -72,6 +74,11 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
 
         NocCompBinding.swipeLayout.setOnRefreshListener {
             viewmodel.NocAndCompRequestAll(id)
+        }
+
+        NocCompBinding.addNew.setOnClickListener {
+            val bmSheet = AddNewNocCmpDialouge(R.layout.noc_comp_addnew_dialouge)
+            bmSheet.show(childFragmentManager,"category")
         }
 
     }
