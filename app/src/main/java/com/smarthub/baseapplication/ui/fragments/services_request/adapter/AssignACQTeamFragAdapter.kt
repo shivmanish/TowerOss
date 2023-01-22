@@ -93,9 +93,9 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, servi
         }
     }
     override fun getItemViewType(position: Int): Int {
-        return if (list[position] is String && list[position]==type1)
+        return if (list[position]==type1)
             1
-        else if (list[position] is String && list[position]==type2)
+        else if (list[position]==type2)
             2
         else 0
     }
