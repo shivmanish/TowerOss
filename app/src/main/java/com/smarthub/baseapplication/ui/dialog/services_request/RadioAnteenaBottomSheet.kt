@@ -6,45 +6,49 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.RequestInfoBottomSheetDialogBinding
+import com.smarthub.baseapplication.databinding.EditEquipementDialougeBinding
+import com.smarthub.baseapplication.databinding.RadioAntenaDialougeBinding
 import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class RequestInfoBottomSheet(
+class RadioAnteenaBottomSheet(
     contentLayoutId: Int,
-    var requesterInfo:RequesterInfo,
-    var serviceRequestAllData: ServiceRequestAllDataItem?,
+    var radioantena: RadioAntenna,
+    var serviceRequestAllData: ServiceRequestAllDataItem,
     var viewmodel: HomeViewModel,
-    var Id: String
+    var Id: String,
 ) : BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : RequestInfoBottomSheetDialogBinding
+    lateinit var binding: RadioAntenaDialougeBinding
     var basicinfoModel: BasicinfoModel? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = RequestInfoBottomSheetDialogBinding.bind(view)
         basicinfoModel = BasicinfoModel()
-        binding.icMenuClose.setOnClickListener {
+        binding = RadioAntenaDialougeBinding.bind(view)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight() * 0.75).toInt()
+        binding.canecl.setOnClickListener {
             dismiss()
         }
-         binding.editRequesterExcutiveName.setText(requesterInfo?.RequesterExecutiveName)
-         binding.editEmailId.setText(requesterInfo?.EmailID)
-         binding.editPhoneNumber.setText(requesterInfo?.PhoneNumber)
-         binding.editRemarks.setText(requesterInfo?.Remarks)
-        binding.includeid.update.setOnClickListener {
-            requesterInfo.let {
-                it.EmailID = binding.editEmailId.text.toString()
-                it.RequesterExecutiveName = binding.editRequesterExcutiveName.text.toString()
-                it.PhoneNumber = binding.editPhoneNumber.text.toString()
+
+        radioantena.let {
+            binding.technology.setText(it.Technology)
+
+        }
+
+        binding.update.setOnClickListener {
+            radioantena.let {
+                it.Technology = binding.technology.text.toString()
+
             }
             val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
-            mServiceRequestAllDataItem.id = serviceRequestAllData!!.id
+            mServiceRequestAllDataItem.id = serviceRequestAllData.id
             mServiceRequestAllDataItem.ServiceRequest = ArrayList()
 
             val serviceRequest = ServiceRequest()
-            serviceRequest.RequesterInfo = ArrayList()
-            (serviceRequest.RequesterInfo as ArrayList<RequesterInfo>)?.add(requesterInfo)
-            serviceRequest.id = serviceRequestAllData!!.ServiceRequest!![0].id
+            serviceRequest.RadioAntennas = ArrayList()
+            (serviceRequest.RadioAntennas as ArrayList<RadioAntenna>)?.add(radioantena)
+            serviceRequest.id = serviceRequestAllData.ServiceRequest!![0].id
             mServiceRequestAllDataItem.ServiceRequest?.add(serviceRequest)
 
             val serviceRequestList = ServiceRequestAllData()
@@ -55,14 +59,15 @@ class RequestInfoBottomSheet(
             viewmodel.updateBasicInfo(basicinfoModel!!)
 
         }
-
-
     }
 
     override fun getTheme() = R.style.NewDialogTask
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = RequestInfoBottomSheetDialogBinding.inflate(inflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = RadioAntenaDialougeBinding.inflate(inflater)
         return binding.root
     }
-
 }

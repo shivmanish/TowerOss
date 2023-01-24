@@ -16,7 +16,6 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class EditEquipmentBottomSheet(contentLayoutId: Int, var equipmant: Equipment?, var serviceRequestAllData: ServiceRequestAllDataItem?, var viewmodel: HomeViewModel?, var Id: String, ) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding: EditEquipementDialougeBinding
-    lateinit var equipment: Equipment
     var basicinfoModel: BasicinfoModel? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

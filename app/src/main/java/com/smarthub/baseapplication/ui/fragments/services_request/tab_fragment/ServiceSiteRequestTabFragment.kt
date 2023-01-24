@@ -9,9 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ServiceRequestInfoBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.serviceRequest.Equipment
-import com.smarthub.baseapplication.model.serviceRequest.SRDetails
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
@@ -30,55 +28,41 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ServicesRequestAdapter(requireContext(), this@ServiceRequestTabFragment, data!!)
+        adapter=ServicesRequestAdapter(requireContext(),this@ServiceRequestTabFragment,data!!)
         binding?.listItem?.adapter = adapter
 
-        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true) {
+        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true){
             viewmodel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
 
-            if (it != null && it.status == Resource.Status.LOADING) {
+            if (it!=null && it.status == Resource.Status.LOADING){
                 binding?.swipeLayout!!.isRefreshing = true
                 return@observe
             }
             binding?.swipeLayout!!.isRefreshing = false
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 if (it.data.item?.isNotEmpty() == true) {
                     adapter.updateData(it.data.item!![0].ServiceRequestMain[0])
-                    Toast.makeText(
-                        requireContext(),
-                        "Service request Data fetched successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
                     AppLogger.log("Service request Fragment card Data fetched successfully")
                     AppLogger.log("size :${it.data.item?.size}")
-                } else Toast.makeText(
-                    requireContext(),
-                    "No Data Found found",
-                    Toast.LENGTH_SHORT
-                ).show()
+                }else Toast.makeText(requireContext(), "No Data Found found", Toast.LENGTH_SHORT).show()
 
-            } else if (it != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "Service request Fragment error :${it.message}, data : ${it.data}",
-                    Toast.LENGTH_SHORT
-                ).show()
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
-            } else {
+            }
+            else {
                 AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(
-                    requireContext(),
-                    "Service Request Fragment Something went wrong",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding?.swipeLayout!!.setOnRefreshListener {
             viewmodel.serviceRequestAll(Id)
         }
+
     }
 
     override fun onDestroy() {
@@ -90,7 +74,8 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
     override fun attachmentItemClicked() {
     }
     override fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem) {
-        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog,viewmodel, Id,srDetailsData,serviceRequestAllData)
+        val bottomSheetDialogFragment = SRDetailsBottomSheet(R.layout.sr_details_bottom_sheet_dialog,viewmodel,
+            Id,srDetailsData,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun editBackhaulLinkItemClicked() {
@@ -108,8 +93,11 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
-    override fun editRadioAnteenaClicked(position: Int) {
-        val bottomSheetDialogFragment = EditEquipmentBottomSheet(R.layout.backhaul_link_list_item,null,null,viewmodel,Id)
+    override fun editRadioAnteenaClicked(
+        radioanteena: RadioAntenna,
+        serviceRequestAllData: ServiceRequestAllDataItem,
+        s: String) {
+        val bottomSheetDialogFragment = RadioAnteenaBottomSheet(R.layout.radio_antena_dialouge,radioanteena,serviceRequestAllData,viewmodel,Id)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
@@ -118,8 +106,11 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
-    override fun editRequestInfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
+    override fun editRequestInfoClicked(
+        requestinfo: RequesterInfo,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog,requestinfo,serviceRequestAllData,viewmodel,Id)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 

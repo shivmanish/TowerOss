@@ -8,87 +8,172 @@
     tools:context=".ui.fragments.home.HomeFragment">
 
     <ImageView
-        android:layout_margin="@dimen/dp5"
         android:id="@+id/btn_logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/app_logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp5"
+        android:src="@drawable/app_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notification_layout"
         android:layout_width="@dimen/dp35"
         android:layout_height="@dimen/dp35"
         android:layout_marginEnd="@dimen/dp10"
-        android:id="@+id/notification_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_logo">
+
         <ImageView
-            android:src="@drawable/ic_baseline_notifications_none_24"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_notifications_none_24" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/dp20"
             android:layout_height="@dimen/dp20"
-            app:strokeWidth="@dimen/dp2"
-            app:strokeColor="@color/white"
             app:cardBackgroundColor="@color/colorRed"
-            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/dp20"
             app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="@dimen/dp20">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/white"
+            app:strokeWidth="@dimen/dp2">
 
             <TextView
-                android:text="2"
+                style="@style/AutoResizeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_bold"
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLines="1"
-                style="@style/AutoResizeTextView"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:text="2"
+                android:textColor="@color/white" />
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:paddingStart="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp15"
-        app:layout_constraintStart_toStartOf="@+id/btn_logo"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logo"
-        android:id="@+id/search_card_view"
+    <LinearLayout
+        android:id="@+id/searchbox"
         android:layout_width="match_parent"
-        android:textColor="@color/white"
         android:layout_height="@dimen/dp45"
-        android:textCursorDrawable="@drawable/cursure_color"
-        android:drawablePadding="@dimen/dp10"
-        android:paddingEnd="@dimen/dp15"
-        android:hint="Enter Site ID"
-        android:textColorHint="#BDBDBD"
-        android:layout_marginStart="@dimen/dp10"
-        android:layout_marginEnd="@dimen/dp10"
-        android:drawableTint="@color/white"
-        android:backgroundTint="@color/textGray"
-        android:background="@drawable/bg_search_box"
-        android:drawableEnd="@drawable/search"/>
+        android:layout_marginTop="@dimen/dp15"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/btn_logo"
+        app:layout_constraintTop_toBottomOf="@+id/btn_logo">
+
+        <EditText
+            android:id="@+id/search_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:background="@drawable/bg_search_box"
+            android:backgroundTint="@color/textGray"
+            android:drawableEnd="@drawable/search"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableTint="@color/white"
+            android:hint="Enter Site ID"
+            android:paddingStart="@dimen/dp10"
+            android:paddingEnd="@dimen/dp15"
+            android:textColor="@color/white"
+            android:textColorHint="#BDBDBD"
+            android:textCursorDrawable="@drawable/cursure_color"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/btn_logo"
+            app:layout_constraintTop_toBottomOf="@+id/btn_logo" />
+
+        <LinearLayout
+            android:id="@+id/latlong_search_box"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:background="@drawable/bg_search_box"
+            android:backgroundTint="@color/textGray"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:paddingStart="@dimen/dp10"
+            android:paddingEnd="@dimen/dp15"
+            app:layout_constraintStart_toStartOf="@+id/btn_logo"
+            app:layout_constraintTop_toBottomOf="@+id/btn_logo">
+
+            <EditText
+                android:id="@+id/lat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Lat"
+                android:text="19.210978"
+                android:textColor="@color/white"
+                android:textColorHint="@color/grey"
+                android:textCursorDrawable="@drawable/cursure_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp17" />
+
+            <EditText
+                android:id="@+id/longi"
+                android:text="72.960204"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_weight="1"
+                android:hint="Long"
+                android:textColor="@color/white"
+                android:textColorHint="@color/grey"
+                android:textCursorDrawable="@drawable/cursure_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp17" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_weight="1"
+                android:hint="Radius"
+                android:text="200"
+                android:id="@+id/radious"
+                android:textColor="@color/white"
+                android:textColorHint="@color/grey"
+                android:textCursorDrawable="@drawable/cursure_color" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/search" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <ProgressBar
-        android:padding="10dp"
-        android:visibility="invisible"
         android:id="@+id/loading_progress"
-        android:paddingEnd="@dimen/dp5"
-        android:indeterminateTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/search_card_view"
-        app:layout_constraintTop_toTopOf="@+id/search_card_view"
-        app:layout_constraintEnd_toEndOf="@+id/search_card_view"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:indeterminateTint="@color/white"
+        android:padding="10dp"
+        android:paddingEnd="@dimen/dp5"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/searchbox"
+        app:layout_constraintEnd_toEndOf="@+id/searchbox"
+        app:layout_constraintTop_toTopOf="@+id/searchbox" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_card_view">
+        app:layout_constraintTop_toBottomOf="@+id/searchbox">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -99,138 +184,140 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
                 android:id="@+id/search_result"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp10"
                 android:orientation="vertical"
+                android:padding="@dimen/dp10"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/dp5"
                 android:id="@+id/ln_button_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:orientation="horizontal"
                 android:padding="@dimen/dp5"
-                android:layout_height="wrap_content">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_result">
+
                 <TextView
+                    android:id="@+id/view_on_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp30"
                     android:layout_weight="1"
+                    android:background="@drawable/login_yellow_bg"
+                    android:drawableLeft="@drawable/ic_view_map"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
                     android:padding="@dimen/dp10"
                     android:text="View on Map"
-                    android:textSize="15sp"
-                    android:id="@+id/view_on_map"
                     android:textColor="#3F4D68"
-                    android:layout_margin="@dimen/dp5"
-                    android:layout_width="match_parent"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_view_map"
-                    android:layout_height="@dimen/dp45"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/dp30"
-                    android:background="@drawable/login_yellow_bg"
-                    android:fontFamily="@font/poppins_regular"
-                    />
-                <TextView
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp10"
-                    android:text="View on iBoard"
                     android:textSize="15sp"
-                    android:textColor="#3D4E6D"
-                    android:layout_margin="@dimen/dp5"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/view_on_ibo"
                     android:layout_width="match_parent"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/siteicon"
                     android:layout_height="@dimen/dp45"
-                    android:gravity="center|center_vertical"
+                    android:layout_margin="@dimen/dp5"
                     android:layout_marginBottom="@dimen/dp30"
+                    android:layout_weight="1"
                     android:background="@drawable/btn_blue"
                     android:backgroundTint="@color/white"
+                    android:drawableLeft="@drawable/siteicon"
                     android:fontFamily="@font/poppins_regular"
-                    />
+                    android:gravity="center|center_vertical"
+                    android:padding="@dimen/dp10"
+                    android:text="View on iBoard"
+                    android:textColor="#3D4E6D"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical"
-                android:orientation="vertical"
                 android:layout_marginTop="@dimen/dp10"
-                android:paddingTop="@dimen/dp5"
                 android:background="@drawable/dialog_bg"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp5"
+                android:scrollbars="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/ln_button_layout">
+
                 <TextView
                     android:id="@+id/history_title"
-                    android:text="History"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:textSize="15sp"
-                    android:paddingTop="@dimen/dp5"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="History"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/clear_title"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginTop="4dp"
-                    android:fontFamily="@font/poppins"
                     android:layout_marginEnd="@dimen/dp15"
+                    android:fontFamily="@font/poppins"
                     android:text="Clear history"
                     android:textColor="@color/black"
                     android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/history_title"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/history_title"
-                    app:layout_constraintBottom_toBottomOf="@+id/history_title"/>
+                    app:layout_constraintTop_toTopOf="@+id/history_title" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
                     android:id="@+id/chip_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp10"
                     android:orientation="vertical"
+                    android:padding="@dimen/dp10"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@+id/history_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/history_title" />
 
                 <LinearLayout
-                    android:background="#80E0E0E0"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp10"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chip_layout"
+                    android:background="#80E0E0E0"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chip_layout">
+
                     <TextView
                         android:id="@+id/select_sear"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp20"
-                        android:textColor="#000000"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="@dimen/dp10"
-                        android:fontFamily="@font/poppins_semibold"
                         android:layout_alignParentTop="true"
-                        android:text="Select Search Categories"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/chipLayout"
-                        android:lineSpacingExtra="16sp"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:fontFamily="@font/poppins_semibold"
                         android:gravity="center_vertical"
-                        />
+                        android:lineSpacingExtra="16sp"
+                        android:text="Select Search Categories"
+                        android:textColor="#000000"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/chipLayout" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/category_list"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:spanCount="2"
                         android:minHeight="350dp"
+                        android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        tools:listitem="@layout/search_category_list_item"/>
+                        app:spanCount="2"
+                        tools:listitem="@layout/search_category_list_item" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

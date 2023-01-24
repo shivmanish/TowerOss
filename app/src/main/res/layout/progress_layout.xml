@@ -38,7 +38,7 @@
         android:max="100"
         android:minHeight="10dp"
         android:minWidth="200dp"
-        android:progress="1"
+        android:progress="40"
         android:layout_marginLeft="@dimen/dp10"
         android:progressBackgroundTint="@android:color/darker_gray"
         android:progressTint="@color/white"

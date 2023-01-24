@@ -162,7 +162,9 @@
                             android:alpha="0.37"
                             android:background="#263238" />
                     </LinearLayout>
-                    <include layout="@layout/cancel_update_layout"/>
+                    <include
+                        android:id="@+id/includeid"
+                        layout="@layout/cancel_update_layout"/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

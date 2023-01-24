@@ -65,10 +65,13 @@ import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
+import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
+import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -256,6 +259,9 @@ public interface APIClient {
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
     Call<UserDataResponse> getuserlist(@Body GetUserList data);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
+    Call<MarkerResponse> getmaplatlong(@Body MapMarkerService data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DEPARTMENT_DROPDOWNS)

@@ -15,11 +15,20 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
 
-class SREquipmentTableAdapter(var context: Context, var listener: ServicesRequestAdapter.ServicesRequestLisListener, var list: ArrayList<Equipment>, var serviceRequestAllData: ServiceRequestAllDataItem): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
+class SREquipmentTableAdapter(
+    var context: Context,
+    var listener: ServicesRequestAdapter.ServicesRequestLisListener,
+    var list: ArrayList<Equipment>,
+    var serviceRequestAllData: ServiceRequestAllDataItem
+): RecyclerView.Adapter<SREquipmentTableAdapter.ViewHold>() {
 
 
     fun addItem(){
-//
+//        list?.add(Equipment(CabinetSize = "4", EquipmentWeight = "8",
+//            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723", Technology = "empty",
+//            Voltage ="43", created_at = "22-10-2022", id = 448,
+//            isActive = true, modified_at = "22-12-2022" ))
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -40,14 +49,14 @@ class SREquipmentTableAdapter(var context: Context, var listener: ServicesReques
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-        holder.binding.Technology.text= list[position].Technology
-        holder.binding.EquipmentInfo.text= list[position].EquipmentWeight
-        holder.binding.EquipmentType.text=""
-        holder.binding.EquipmentSize.text=""
+        holder.binding.Technology.text= list?.get(position)?.Technology
+        holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
+        holder.binding.EquipmentType.text = list?.get(position)?.Type
+        holder.binding.EquipmentSize.text=list?.get(position)?.CabinetSize
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     // this method will handle the onclick options click
@@ -63,7 +72,7 @@ class SREquipmentTableAdapter(var context: Context, var listener: ServicesReques
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editEquipmentClicked(list[position],serviceRequestAllData,"edit")
+                        listener.editEquipmentClicked(list.get(position),serviceRequestAllData,"edit")
                         return true
                     }
                     // in the same way you can implement others

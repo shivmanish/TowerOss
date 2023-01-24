@@ -37,7 +37,13 @@ class TeamVendorFragment : BaseFragment(), TeamVendorFragAdapter.TeamVendorListI
 //        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
     override fun EditdetailsItemClicked() {
-        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(R.layout.teamvender_details_botom_sheet)
+        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(
+            R.layout.teamvender_details_botom_sheet,
+            null,
+            null,
+            viewmodel,
+            ""
+        )
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 

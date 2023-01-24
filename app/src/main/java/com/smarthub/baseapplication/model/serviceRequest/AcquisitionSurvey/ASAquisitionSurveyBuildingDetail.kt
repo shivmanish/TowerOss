@@ -1,16 +1,29 @@
 package com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey
 
-data class ASAquisitionSurveyBuildingDetail(
-    val ASAvailablityofStatuaryPermission: String,
-    val ASEBSupplyThroughBuildingMeter: String,
-    val ASEquipmentRoom: String,
-    val ASFibreLmcLaying: String,
-    val ASOverallFeasiblity: String,
-    val ASRequiredAreaAvailable: String,
-    val ASSurveyDate: String,
-    val ASTowerPoleInstallation: String,
-    val created_at: String,
-    val id: String,
-    val isActive: String,
-    val modified_at: String
+data class ASAquisitionSurveyBuildingDetail
+    (
+    var ASAvailablityofStatuaryPermission: String,
+    var ASEBSupplyThroughBuildingMeter: String,
+    var ASEquipmentRoom: String,
+    var ASFibreLmcLaying: String,
+    var ASOverallFeasiblity: String,
+    var ASRequiredAreaAvailable: String,
+    var ASSurveyDate: String,
+    var ASTowerPoleInstallation: String,
+    var AreaAvailableGround: String,
+    var AreaAvailableRooftop: String,
+    var AverageMarketRate: String,
+    var BuildingAddress: String,
+    var BuildingHeight: String,
+    var ConstructionYear: String,
+    var ExpectedPrice: String,
+    var Latitude: String,
+    var Longitude: String,
+    var NoOfFloors: String,
+    var Pincode: String,
+    var TypicalFloorArea: String,
+    var created_at: String,
+    var id: String,
+    var isActive: String,
+    var modified_at: String
 )

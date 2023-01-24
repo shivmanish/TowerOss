@@ -9,16 +9,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurveyBuildingDetail
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.ui.dialog.siteinfo.TeamVendorDetailsBottomSheet
+import com.smarthub.baseapplication.ui.dialog.siteinfo.BuildingDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AcquisitionSurveyFragAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AssignACQTeamFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, Id: String?): BaseFragment(), AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner {
+class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, var Id: String?): BaseFragment(), AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner {
     var binding : AcquisitionSurveyFragmentBinding?=null
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: AcquisitionSurveyFragAdapter
@@ -71,8 +71,17 @@ class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, Id: Stri
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
-    override fun EditBuildingdetailsItemClicked() {
-        var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(R.layout.teamvender_details_botom_sheet)
+    override fun EditBuildingdetailsItemClicked(
+        buildingDetailData: ASAquisitionSurveyBuildingDetail?,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        var bottomSheetDialogFragment = BuildingDetailsBottomSheet(
+            R.layout.teamvender_details_botom_sheet,
+            buildingDetailData,
+            serviceRequestAllData,
+            viewmodel,
+            Id
+        )
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 
