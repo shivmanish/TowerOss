@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.activities.TaskDetailActivity
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.ui.fragments.task.TaskActivity
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.Utils
 import java.util.*
@@ -52,7 +53,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
     }
 
     fun updateList(list : List<Any>){
-        if(token=="home_navigation")
+        if(token=="home_navigation" && list.size>=4)
         this.list = ArrayList(list.subList(0,4))
         else
             this.list = ArrayList(list)
@@ -151,12 +152,21 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                 holder.binding.editTaskItem.text="M"
                 holder.binding.btnEdit.visibility=View.VISIBLE
             }
+            if(item.AssigneeDepartment.isNotEmpty() && item.AssigneeDepartment!=null){
+                holder.binding.personTaskItem.setOnClickListener {
+                    listener.assignTask(item)
+                }
+            }
         }
         if (holder is HeaderViewHold){
             holder.bindData()
             holder.binding.overDue.text=overDue.toString()
             holder.binding.nowDue.text=nowDue.toString()
             holder.binding.nextDue.text=nextDue.toString()
+            holder.binding.cardAdd.setOnClickListener {
+                val intent = Intent(holder.binding.cardAdd.context, TaskActivity::class.java)
+                holder.binding.cardAdd.context.startActivity(intent)
+            }
         }
     }
 

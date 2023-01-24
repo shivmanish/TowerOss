@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:id="@+id/addmore_items"
+        android:id="@+id/add_new"
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/dp5"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="5"
-        app:layout_constraintTop_toBottomOf="@+id/addmore_items"
+        app:layout_constraintTop_toBottomOf="@+id/add_new"
         app:layout_constraintStart_toStartOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/power_connection_list_item"/>

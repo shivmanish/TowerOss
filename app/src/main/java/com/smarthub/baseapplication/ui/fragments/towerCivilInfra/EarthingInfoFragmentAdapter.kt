@@ -231,18 +231,18 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                 }
             holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.binding.ShelterRoom.text="Data Not Found"
-                    holder.binding.ShelterSize.text="Data Not Found"
-                    holder.binding.FoundationSize.text="Data Not Found"
-                    holder.binding.Foundation.text="DAta Not Found"
+                    holder.binding.ShelterRoom.text=""
+                    holder.binding.ShelterSize.text=""
+                    holder.binding.FoundationSize.text=""
+                    holder.binding.Foundation.text=""
                     holder.binding.Id.text=earthingInfoData?.id
                     holder.binding.PitSize.text=
                         "${earthingInfoData?.PitSizeL}X${earthingInfoData?.PitSizeB}X${earthingInfoData?.PitSizeH}"
                     holder.binding.InstallationDate.text=earthingInfoData?.instDate
                     holder.binding.operationalDate.text=earthingInfoData?.OptDate
-                    holder.binding.OperationalStatus.text="Data Not Found"
-                    holder.binding.UsedFor.text="Data Not Found"
-                    holder.binding.EarthindRodMaterial.text="Data Not Found"
+                    holder.binding.OperationalStatus.text=""
+                    holder.binding.UsedFor.text=""
+                    holder.binding.EarthindRodMaterial.text=""
                     holder.binding.EarthingPitDepth.text=earthingInfoData?.Earthingpitdepth
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Twrcivil earth adapter error : ${e.localizedMessage}")
@@ -277,7 +277,7 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                 try {
                     holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
                     holder.binding.InstallationDate.text=insAccepData?.InstallationDate
-                    holder.binding.InstallationExcutiveName.text="Data Not Found"
+                    holder.binding.InstallationExcutiveName.text=""
                     holder.binding.VendorPhonNo.text=insAccepData?.VendorPhoneNumber
                     holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
                     holder.binding.AcceptanceStatus.text=insAccepData?.AcceptanceStatus

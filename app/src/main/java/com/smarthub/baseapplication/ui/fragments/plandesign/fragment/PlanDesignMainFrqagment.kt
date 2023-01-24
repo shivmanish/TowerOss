@@ -21,6 +21,8 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
+import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.AddNewPlanDesignDialouge
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -75,6 +77,10 @@ class PlanDesignMainFrqagment(var id:String) : BaseFragment(), PlanDesignAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
+        }
+        binding.addNew.setOnClickListener {
+            val bmSheet = AddNewPlanDesignDialouge(R.layout.plandesign_addnew_dialouge)
+            bmSheet.show(childFragmentManager,"category")
         }
     }
 

@@ -38,7 +38,7 @@ class Agreements(val data: ServiceRequestAllDataItem? = null, id: String? = null
 
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
        var bottomSheetDialogFragment = AgrementsDetailsBottomSheet(R.layout.agreement_details_botom_sheet)

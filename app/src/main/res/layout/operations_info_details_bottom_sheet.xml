@@ -60,6 +60,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/txtRFCDate"
+                        android:maxLength="10"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:drawableEnd="@drawable/icon_date"
@@ -84,6 +85,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     <TextView
                         android:id="@+id/txtRFIDate"
                         style="@style/RowTestItemEdit"
+                        android:maxLength="10"
                         android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -106,10 +108,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-
                         android:id="@+id/txtRFSDate"
                         style="@style/RowTestItemEdit"
                         android:drawableEnd="@drawable/icon_date"
+                        android:maxLength="10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View
@@ -398,6 +400,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     <TextView
                         android:id="@+id/dismanting_date"
                         style="@style/RowTestItemEdit"
+                        android:maxLength="10"
                         android:drawableEnd="@drawable/icon_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

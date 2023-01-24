@@ -410,7 +410,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                     holder.binding.EmailId.text=tSSRExecutiveInfo?.EmailID
                     holder.binding.phoneNumber.text=tSSRExecutiveInfo?.PhoneNumber
                     holder.binding.surveyDate.text=tSSRExecutiveInfo?.SurveyDate
-                    holder.binding.remarks.text="Data Not Found"
+                    holder.binding.remarks.text=""
                 }catch (e:java.lang.Exception){
                     AppLogger.log("opcotssr tssrExecutive info error : ${e.localizedMessage}")
                     Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()

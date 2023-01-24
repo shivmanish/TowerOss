@@ -8,9 +8,10 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignAcqTeamFragmentBinding
+import com.smarthub.baseapplication.databinding.TeamVendorFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.ui.dialog.siteinfo.AsignAcqTeamBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.TeamVendorDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
@@ -61,6 +62,7 @@ class AssignACQTeamFragment (var data : ServiceRequestAllDataItem?, var Id: Stri
         binding?.swipeLayout!!.setOnRefreshListener {
             viewmodel.fetchSiteInfoData(ServicesRequestActivity.Id!!)
         }
+        binding?.swipeLayout?.isEnabled = false
       }
 
     override fun onDestroy() {

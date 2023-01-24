@@ -7,6 +7,7 @@ public class EndPoints {
     public static final String GET_OTP =  "toweross/Getlogin/";
     public static final String PASSWORD_RESET =  "Passreset/";
     public static final String PROFILE = "Touweuserroles/";
+    public static final String DEPARTMENT_DROPDOWNS = "Companygeodetails/";
     public static final String REGISTRATION = "/toweross/Userregistration/";
     public static final String SITE_INFO_DROP_DOWN = "/toweross/SiteInfoDropDownView/";
     public static final String SITE_INFO_DROP_DOWN_NEW = "/toweross/DropDown/";

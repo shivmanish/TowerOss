@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:id="@+id/container_layout"
-
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/canecl"
@@ -42,11 +41,11 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:id="@+id/technology"
-                    style="@style/RowTestItemEdit"
+                    style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="@dimen/dp20"/>
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
@@ -65,13 +64,13 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:id="@+id/equipment"
-                    style="@style/RowTestItemEdit"
+                    style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="@dimen/dp20"/>
                 <View
-                    android:alpha="0.37"
+                    android:alpha="0.6"
                     android:background="#263238"
                     android:layout_height="1dp"
                     android:layout_width="match_parent"
@@ -88,11 +87,11 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <EditText
+                <com.smarthub.baseapplication.widgets.CustomSpinner
                     android:id="@+id/type"
-                    style="@style/RowTestItemEdit"
+                    style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="@dimen/dp20"/>
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
@@ -247,14 +246,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/canecel_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"/>
 
             <TextView
                 android:layout_marginLeft="@dimen/dp25"

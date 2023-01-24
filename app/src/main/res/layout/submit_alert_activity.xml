@@ -1,40 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dp150"
-    android:background="@drawable/dialog_bg"
+    android:layout_height="match_parent"
+    android:id="@+id/refresh_layout"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <ImageView
-        android:id="@+id/ic_menu_close"
-        android:layout_width="@dimen/dp30"
-        android:layout_height="@dimen/dp30"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/dp5"
-        android:background="@drawable/drawable_cross_back"
-        android:padding="@dimen/dp5"
-        android:src="@drawable/cross_ico"
-        android:translationZ="@dimen/dp6"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp800"
+        android:layout_height="match_parent"
+        android:minHeight="@dimen/dp500"
+        android:paddingTop="@dimen/dp15"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -72,6 +61,7 @@
                         android:id="@+id/date"
                         style="@style/RowTextItemInfo"
                         android:layout_width="0dp"
+                        android:maxLength="10"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -545,6 +535,8 @@
                             android:text="Fire Incident"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dp12"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -552,10 +544,10 @@
 
                     <TextView
                         android:id="@+id/send_date"
-                        android:layout_width="0dp"
+                        android:layout_marginEnd="@dimen/dp15"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
                         android:text="22-Dec-22"
@@ -574,17 +566,14 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/dp5">
 
-                    <ImageView
-                        android:layout_width="@dimen/dp20"
-                        android:layout_height="@dimen/dp20"
-                        android:src="@drawable/radio_background" />
-
-                    <TextView
+                    <CheckBox
+                        android:id="@+id/action_tracker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp15"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Action Taken"
+                        android:paddingHorizontal="@dimen/dp5"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/dp12"
                         android:textStyle="bold" />
@@ -601,20 +590,18 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/dp5">
 
-                    <ImageView
-                        android:layout_width="@dimen/dp20"
-                        android:layout_height="@dimen/dp20"
-                        android:src="@drawable/radio_background" />
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp15"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Working"
+                        android:paddingHorizontal="@dimen/dp5"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/dp12"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:id="@+id/action_working"/>
 
                 </LinearLayout>
 
@@ -633,12 +620,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="@dimen/dp20"
-                            android:layout_height="@dimen/dp20"
-                            android:src="@drawable/radio_background" />
 
-                        <TextView
+                        <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp15"
@@ -646,7 +629,9 @@
                             android:text="On going"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/dp12"
-                            android:textStyle="bold" />
+                            android:paddingHorizontal="@dimen/dp5"
+                            android:textStyle="bold"
+                            android:id="@+id/action_ongoing"/>
 
 
                     </LinearLayout>
@@ -692,7 +677,7 @@
                             android:textSize="@dimen/dp12" />
 
                         <EditText
-
+                            android:id="@+id/detailed_text"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -705,26 +690,42 @@
 
                 </LinearLayout>
 
-                <TextView
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_width="@dimen/dp120"
-                    android:id="@+id/sendalert"
-                    android:layout_gravity="center"
-                    android:layout_height="@dimen/dp35"
-                    android:textColor="@color/color1"
-                    android:text="Close Alert"
-                    android:textSize="@dimen/dp14"
-                    android:layout_margin="@dimen/dp15"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/items_list">
+                    <TextView
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="@dimen/dp120"
+                        android:id="@+id/close"
+                        android:layout_gravity="center"
+                        android:layout_height="@dimen/dp35"
+                        android:textColor="@color/color1"
+                        android:text="Close Alert"
+                        android:textSize="@dimen/dp14"
+                        android:layout_margin="@dimen/dp15"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@drawable/login_yellow_bg" />
 
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:background="@drawable/login_yellow_bg"
-                    app:layout_constraintTop_toBottomOf="@+id/items_list"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/chat"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginEnd="@dimen/dp10"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/chat_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

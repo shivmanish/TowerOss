@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -129,14 +130,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 <View
+    android:alpha="0.5"
+    android:id="@+id/view_line"
     android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="#f1f1f1"/>
-<LinearLayout
+    android:layout_height="2dp"
+    android:background="@color/view_color"
+    android:layout_marginTop="@dimen/dp10"
+    app:layout_constraintTop_toBottomOf="@+id/progress_status"
+    />
+  <LinearLayout
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="@dimen/dp10">
+    android:layout_marginTop="@dimen/dp15"
+    android:layout_marginLeft="@dimen/dp12"
+    android:layout_marginRight="@dimen/dp12"
+    app:layout_constraintTop_toBottomOf="@+id/view_line">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -148,24 +158,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
             android:text="Notifiacation"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dp12" />
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/dp14" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swOnOff"
-            android:layout_width="@dimen/dp80"
+            android:id="@+id/notification_switch"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:showText="false"
             android:checked="true"
             app:track="@drawable/custome_track"
             android:thumb="@drawable/custome_thum"
-            android:layout_height="@dimen/dp20"/>
+            android:layout_height="@dimen/dp25"/>
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -177,14 +188,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
             android:text="Reminder"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dp12" />
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/dp14" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="@dimen/dp80"
+            android:id="@+id/reminder_switch"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:showText="false"
             android:checked="false"
@@ -205,14 +217,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
             android:text="Auto-esclation"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dp12" />
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/dp14" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="@dimen/dp80"
+            android:id="@+id/AutoEsclationSwitch"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:showText="false"
             android:checked="true"
@@ -223,5 +236,49 @@
 
 
 </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rfEquipment_edit_save"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp30"
+        android:elevation="@dimen/dp10"
+        android:gravity="right"
+        app:layout_constraintTop_toBottomOf="@+id/main_layout"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/cancel"
+            android:padding="5dp"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="@dimen/dp14"
+            android:textColor="@color/card_bg"
+            android:layout_width="88dp"
+            android:layout_height="@dimen/dp32"
+            />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            app:cardBackgroundColor="#FFD72B"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="@dimen/dp5"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/Submit"
+                android:padding="5dp"
+                android:text="Submit"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/dp14"
+                android:textColor="@color/card_bg"
+                android:layout_width="88dp"
+                android:layout_height="@dimen/dp32"
+                />
 
-</LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,7 @@ class Nominals :BaseFragment(), NominalsFragmentAdapter.SiteLeaseListListener {
 
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun EditdetailsItemClicked() {
         var bottomSheetDialogFragment = NominalsDetailsBottomSheet(R.layout.nominals_details_bottom_sheet)

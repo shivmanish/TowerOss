@@ -78,7 +78,8 @@ class ForgotPassStep2 : Fragment() {
                     if (!progressDialog.isShowing)
                         progressDialog.show()
                     loginViewModel?.getLoginWithOtp(s)
-                }else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
+                }
+//                else Toast.makeText(it,"Please enter valid Otp",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -157,17 +158,17 @@ class ForgotPassStep2 : Fragment() {
 //                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
 //                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
 //                    Log.d("status","loginResponse accessToken ${it.data.access}")
-                    Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireActivity(),"Otp verification successful", Toast.LENGTH_LONG).show()
                     findNavController().navigate(ForgotPassStep2Directions.actionForgotPassStep2ToForgotPassStep3(it.data.access,it.data.refresh, phoneNumber.toString()))
                     return@observe
                 }else{
                     Log.d("status","${it.message}")
-                    Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireActivity(),"error:"+it.message, Toast.LENGTH_LONG).show()
 //                    enableErrorText()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
 //                enableErrorText()
             }
 
@@ -183,12 +184,12 @@ class ForgotPassStep2 : Fragment() {
             if (it?.data != null && it.data.sucesss == true){
                 Log.d("status","getOtpResponse ${it.data}")
                 activity?.let{
-                    Toast.makeText(it,"Otp has sent successfully",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(it,"Otp has sent successfully",Toast.LENGTH_SHORT).show()
                     otpCount_timer()
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
     }

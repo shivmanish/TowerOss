@@ -83,17 +83,14 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
-    override fun editEquipmentClicked(
-        equipmant: Equipment,
-        serviceRequestAllData: ServiceRequestAllDataItem,
-        s: String
-    ) {
+    override fun editEquipmentClicked(equipmant: Equipment?, serviceRequestAllData: ServiceRequestAllDataItem?, s: String?) {
         val bottomSheetDialogFragment = EditEquipmentBottomSheet(R.layout.backhaul_link_list_item,equipmant,serviceRequestAllData,viewmodel,Id)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun viewEquipmentClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Equipment  Item clicked for view", Toast.LENGTH_SHORT).show()
+        val bottomSheetDialogFragment = EditEquipmentBottomSheet(R.layout.backhaul_link_list_item,null,null,viewmodel,Id)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun editRadioAnteenaClicked(
@@ -105,7 +102,8 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
     }
 
     override fun viewRadioAnteenaClicked(position: Int) {
-        Toast.makeText(requireContext(),"SR Radio Anteena  Item clicked for view", Toast.LENGTH_SHORT).show()
+        val bottomSheetDialogFragment = EditEquipmentBottomSheet(R.layout.backhaul_link_list_item,null,null,viewmodel,Id)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
     override fun editRequestInfoClicked(

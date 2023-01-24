@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.fragments.search.SearchFragmentDirections
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -56,8 +57,7 @@ class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewMode
                 it.Region = addSiteHelper.region!!.name
                 it.State = addSiteHelper.state!!.name
             }
-            val datamodel = CreateSiteModel()
-            datamodel.Basicinfo = basicinfo
+            val datamodel = CreateSiteModel(basicinfo,AppController.getInstance().ownerName)
             viewModel.createSite(datamodel)
             showUploadProgress()
 

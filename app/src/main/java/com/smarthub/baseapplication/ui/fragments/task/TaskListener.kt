@@ -4,4 +4,5 @@ import com.smarthub.baseapplication.model.home.MyTeamTask
 
 interface TaskListener {
     fun closeTask(task : MyTeamTask)
+    fun assignTask(task : MyTeamTask)
 }

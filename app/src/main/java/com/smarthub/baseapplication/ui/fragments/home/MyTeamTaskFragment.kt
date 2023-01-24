@@ -41,8 +41,14 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
                 list.add("header")
                 list.addAll(it)
                 adapterList.updateList(list)
-            }else{
+            }
+            else if(it==null || it.isEmpty())
+            {
+                val list :ArrayList<Any> = ArrayList()
+                list.add("header")
+                adapterList.updateList(list)
                 adapterList.addItem("no_data")
+            }else{
                 AppLogger.log("myTeamTask no_data")
             }
         }

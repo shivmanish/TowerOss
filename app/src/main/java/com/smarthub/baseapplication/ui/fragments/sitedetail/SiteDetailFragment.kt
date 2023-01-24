@@ -37,6 +37,7 @@ import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
+import com.smarthub.baseapplication.ui.fragments.qatNew.QatMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
@@ -171,7 +172,7 @@ class SiteDetailFragment : BaseFragment() {
                 6-> NocFragment(id)
                 7-> CivilInfraFragment(id)
                 8-> PowerConnection(id)
-                9-> PlanDesignMainFrqagment(id)
+                9-> QatMainFrqagment(id)
                 else -> SiteInfoNewFragment(id)
             }
             return f
@@ -212,12 +213,12 @@ class SiteDetailFragment : BaseFragment() {
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
-                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
 
                 }
             } else {
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
         siteDetailViewModel.fetchDropDown()

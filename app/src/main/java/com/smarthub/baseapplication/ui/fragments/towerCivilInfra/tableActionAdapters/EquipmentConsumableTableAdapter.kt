@@ -49,7 +49,7 @@ class EquipmentConsumableTableAdapter (var context : Context, var listener : Tow
             performOptionsMenuClick(position,it)
         }
         try {
-            holder.binding.ItemName.text="Data Not Found"
+            holder.binding.ItemName.text=""
             holder.binding.ItemCode.text=list?.get(position)?.ItemCode
             holder.binding.Description.text=list?.get(position)?.Description
             holder.binding.Qty.text=list?.get(position)?.Qty

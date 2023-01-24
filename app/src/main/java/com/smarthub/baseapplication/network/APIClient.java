@@ -12,6 +12,8 @@ import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails;
 import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
+import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
+import com.smarthub.baseapplication.model.register.dropdown.DropdownParam;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
 import com.smarthub.baseapplication.model.search.SearchListItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
@@ -38,19 +40,24 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
+import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
+import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel;
+import com.smarthub.baseapplication.model.taskModel.CreateNewTaskResponse;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.UpdateAlertData;
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList;
 import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
@@ -135,6 +142,10 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
+    Call<QatModel> fetchQatRequest(@Body SiteInfoParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<UtilitiesEquipModel> fetchUtilitiesEquipRequest(@Body SiteInfoParam data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
@@ -152,16 +163,6 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<PowerAndFuelModel> fetchPowerFuelRequest(@Body SiteInfoParam data);
-
-    @GET(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<List<SearchListItem>> searchSiteInfoData(@Query("id") String id);
-
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
-    Call<List<SearchListItem>> searchSiteInfoDataNew(@Body JsonObject data);
-
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
-    Call<List<SearchListItem>> searchSiteInfoData(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)
@@ -208,10 +209,6 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
-    Call<SiteInfoModelUpdate> updateSiteInfoData(@Body Object basicinfoModel);
-
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_DATA)
     Call<SiteInfoModelNew> createSite(@Body CreateSiteModel basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
@@ -242,6 +239,19 @@ public interface APIClient {
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
     Call<SendAlertResponse> sendAlert(@Body SendAlertModel data);
 
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponseNew> sendAlertNew(@Body SendAlertModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponse> sendAlert(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
+    Call<SendAlertResponse> updateAlert(@Body UpdateAlertData data);
+
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)
     Call<UserDataResponse> getuserlist(@Body GetUserList data);
@@ -249,6 +259,15 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
     Call<MarkerResponse> getmaplatlong(@Body MapMarkerService data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.DEPARTMENT_DROPDOWNS)
+    Call<DepartmentDropdown> getDepartmentList(@Body DropdownParam data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<CreateNewTaskResponse> createNewTask(@Body CreateNewTaskModel data);
+
 
 }
 

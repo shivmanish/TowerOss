@@ -105,7 +105,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                 OperationsInfoBottomSheet(R.layout.operations_info_details_bottom_sheet, id, dropdowndata?.operationalInfo!!, operationalInfo,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "DropDown, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -114,7 +114,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet,id, dropdowndata?.geoCondition!!, geoCondition,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "DropDown, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -123,7 +123,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,id,dropdowndata?.safetyAndAccess!!,safetyAndAccess,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
-            Toast.makeText(context, "DropDownData not found, Please Try again !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "DropDown, Please Try again !", Toast.LENGTH_SHORT).show()
         }
     }
 

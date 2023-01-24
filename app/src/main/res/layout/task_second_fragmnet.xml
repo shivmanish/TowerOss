@@ -90,7 +90,7 @@
             android:id="@+id/l2"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp10"
-            android:background="@color/circle_color"
+            android:background="@color/color1"
             app:layout_constraintBottom_toBottomOf="@+id/p2"
             app:layout_constraintEnd_toStartOf="@+id/p3"
             app:layout_constraintStart_toEndOf="@+id/p2"
@@ -143,10 +143,10 @@
             android:layout_height="@dimen/dp38"
             android:background="@color/tab_deselected"
             android:layout_gravity="bottom"
-            app:tabPaddingEnd="@dimen/dp5"
             app:tabMaxWidth="0dp"
             app:tabIndicatorColor="@color/yellow"
             app:tabGravity="fill"
+            app:tabIndicatorHeight="2dp"
             app:tabBackground="@drawable/tab_color_selector"
             app:tabMode="fixed"
             app:tabPaddingStart="@dimen/dp5"
@@ -155,54 +155,15 @@
             />
 
         <androidx.viewpager.widget.ViewPager
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/rfEquipment_edit_save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
 
-        <LinearLayout
-            android:id="@+id/rfEquipment_edit_save"
-            android:visibility="visible"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:gravity="right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
-            <TextView
-                android:padding="5dp"
-                android:text="Cancel"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="@dimen/dp14"
-                android:id="@+id/cancel"
-                android:textColor="@color/card_bg"
-                android:layout_width="88dp"
-                android:layout_height="@dimen/dp32"
-                />
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                app:cardBackgroundColor="#FFD72B"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="@dimen/dp5"
-                android:layout_marginRight="20dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/next"
-                    android:padding="5dp"
-                    android:text="Next"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/dp14"
-                    android:textColor="@color/card_bg"
-                    android:layout_width="88dp"
-                    android:layout_height="@dimen/dp32"
-                    />
 
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

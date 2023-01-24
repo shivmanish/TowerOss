@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BasicInfoFragmentBinding
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.widgets.CustomSpinner
 
 
 class BasicInfo : Fragment(), ImageAttachmentAdapter.ItemClickListener {
@@ -54,7 +56,7 @@ class BasicInfo : Fragment(), ImageAttachmentAdapter.ItemClickListener {
     }
 
     override fun itemClicked() {
-        Toast.makeText(requireContext(), "Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
 }

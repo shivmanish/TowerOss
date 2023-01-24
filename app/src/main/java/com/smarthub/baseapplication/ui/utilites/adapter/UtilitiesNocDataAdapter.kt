@@ -64,35 +64,35 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
             holder.binding.titel.text=list[position]
             holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(position)
-                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
         else if (list[position]==type3){
             holder.binding.titel.text=list[position]
             holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(position)
-                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
         else if (list[position]==type4){
             holder.binding.titel.text=list[position]
             holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(position)
-                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
         else if (list[position]==type5){
             holder.binding.titel.text=list[position]
             holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(position)
-                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
         else if (list[position]==type6){
             holder.binding.titel.text=list[position]
             holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(position)
-                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(it.context, "login", Toast.LENGTH_SHORT).show()
             }
         }
 

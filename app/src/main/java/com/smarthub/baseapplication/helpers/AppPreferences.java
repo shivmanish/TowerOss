@@ -78,6 +78,13 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         return dropDownNewItem.getData();
     }
 
+    public void setDropDownByName(CustomSpinner customSpinner,String name,String item){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        customSpinner.setSpinnerDataByName(dropDownNewItem.getData(),item);
+    }
+
     public void setDropDown(CustomSpinner customSpinner,String name){
         Gson gson = new Gson();
         String jsonString = getString(name);
@@ -96,10 +103,15 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
     }
 
     private List<DropDownItem> getDropDownList(String name){
-        Gson gson = new Gson();
-        String jsonString = getString(name);
-        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-        return dropDownNewItem.getData();
+        try{
+            Gson gson = new Gson();
+            String jsonString = getString(name);
+            DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+            return dropDownNewItem.getData();
+        }catch (Exception e){
+           AppLogger.INSTANCE.log("Dropdown value error on: " +name);
+        }
+        return new ArrayList<DropDownItem>();
     }
 
     public void saveInteger(String iKey, int iValue) {

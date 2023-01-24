@@ -31,7 +31,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/color1"
                 android:background="@color/transparent"
-                style="@style/RowTestItemEdit"
+                style="@style/RowTextviewItem"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
@@ -103,8 +103,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/name"
                             android:text="NOC / Compliance"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -120,8 +121,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/ContactPerson"
+
                             android:text="Muncipal/ SACFA"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -138,8 +141,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/ContactNumber"
+
                             android:text="9636000032"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -156,8 +161,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/Emailr"
+
                             android:text="learning@gmail.com"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -175,8 +182,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/authority_preffered_language"
+
                             android:text="English"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -192,8 +201,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/authority_address"
                             android:text="Mangolpuri"
-                            style="@style/RowTestItemEdit"
+                            style="@style/RowTextviewItem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -208,9 +218,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/LocationMark"
+
                     android:hint="Left Corner of Roof "
                     android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
+                    style="@style/RowTextviewItem"
                     android:text="xwerhtjyg"
                     android:layout_marginTop="@dimen/dp1"
                     android:layout_marginRight="@dimen/dp10"

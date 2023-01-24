@@ -34,7 +34,7 @@ class TeamVendorFragment : BaseFragment(), TeamVendorFragAdapter.TeamVendorListI
     }
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
     override fun EditdetailsItemClicked() {
         var bottomSheetDialogFragment = TeamVendorDetailsBottomSheet(

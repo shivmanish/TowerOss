@@ -7,14 +7,12 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="16dp">
 
-
     <ImageView
         android:id="@+id/image_gchat_profile_other"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         app:layout_constraintBaseline_toBaselineOf="@id/image_gchat_profile_other"
-
         android:contentDescription="User Icon"
         android:src="@drawable/demo_user_image"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +50,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_gchat_message_other"
+                android:id="@+id/text_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"

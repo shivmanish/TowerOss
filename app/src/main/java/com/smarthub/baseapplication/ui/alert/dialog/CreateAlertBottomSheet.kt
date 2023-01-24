@@ -26,8 +26,8 @@ class CreateAlertBottomSheet (contentLayoutId: Int): BottomSheetDialogFragment(c
         }
         binding.rvAlertImageList.adapter = myAdapter
         binding.textChat.setOnClickListener {
-            val bottomSheetDialogFragment = ChetBottomSheet(R.layout.chat_dialog)
-            bottomSheetDialogFragment.show(childFragmentManager,"category")
+//            val bottomSheetDialogFragment = ChetBottomSheet(R.layout.chat_dialog)
+//            bottomSheetDialogFragment.show(childFragmentManager,"category")
         }
     }
 

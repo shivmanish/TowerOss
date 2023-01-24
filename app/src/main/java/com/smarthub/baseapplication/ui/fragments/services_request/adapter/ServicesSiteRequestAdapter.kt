@@ -8,11 +8,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BackhaulLinkTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.SREquipmentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.RadioAntinaTableAdapter
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 
 class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
@@ -47,10 +50,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         list.add("Backhaul Links")
         list.add("Requester Info")
         list.add("Attachments")
-    servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
-    SrDetailsData=servicerequestData?.SRDetails?.get(0)
-    BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
-    RequesterInfoData=servicerequestData?.RequesterInfo?.get(0)
+        try {
+            servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
+            SrDetailsData=servicerequestData?.SRDetails?.get(0)
+            BackhaulLinksData=servicerequestData?.BackHaulLinks?.get(0)
+            RequesterInfoData=servicerequestData?.RequesterInfo?.get(0)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("error in site request:${e.localizedMessage}")
+        }
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
@@ -168,7 +175,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
 
 
-
         }
     }
 
@@ -256,11 +262,16 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
                 if (SrDetailsData!=null) {
                     holder.binding.imgEdit.setOnClickListener {
-                        if (SrDetailsData!=null)
-                        listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
+                        if (SrDetailsData!=null && serviceRequestAllData!=null)
+                            listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
                         else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
                     }
-                    holder.binding.SRType.text=SrDetailsData?.SRType
+                    AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,SrDetailsData?.SRType)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SRStatus,DropDowns.SRType.name,SrDetailsData?.SRStatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.RequesterCompany,DropDowns.SRDetailRequesterCompany.name,SrDetailsData?.RequesterCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.SRDetailTechnology.name,SrDetailsData?.Technology)
+                    AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority)
+
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
                     holder.binding.SRStatus.text=SrDetailsData?.SRStatus
                     holder.binding.RequesterCompany.text=SrDetailsData?.RequesterCompany
@@ -300,8 +311,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                holder.equipmentTableList.adapter= SREquipmentTableAdapter(context,listener,
-                    servicerequestData?.Equipments!! as ArrayList<Equipment>,serviceRequestAllData!!)
+                try {
+                    holder.equipmentTableList.adapter= serviceRequestAllData?.let { SREquipmentTableAdapter(context,listener, servicerequestData?.Equipments as ArrayList<Equipment>, it) }
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("e:${e.localizedMessage}")
+                }
+                holder.binding.imgAdd.setOnClickListener {
+                    listener.editEquipmentClicked(null,null,null)
+                }
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -323,8 +340,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                 holder.RadioAnteenaTableList.adapter= RadioAntinaTableAdapter(context,listener, servicerequestData?.RadioAntennas!! as ArrayList<RadioAntenna>,serviceRequestAllData!!)
+                 holder.RadioAnteenaTableList.adapter= servicerequestData?.RadioAntennas?.let {
+                     RadioAntinaTableAdapter(context,listener, it)
+                 }
+                holder.binding.imgAdd.setOnClickListener {
+                    listener.editEquipmentClicked(null,null,null)
+                }
             }
+
             is ViewHold4 -> {
 
                 if (currentOpened == position) {
@@ -348,6 +371,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.itemTitleStr.text = list[position]
                 holder.BackhaulLinkTableList.setHasFixedSize(true)
                 holder.BackhaulLinkTableList.adapter=BackhaulLinkTableAdapter(context,listener)
+
+                holder.binding.imgAdd.setOnClickListener {
+                    listener.editEquipmentClicked(null,null,null)
+                }
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
@@ -378,6 +405,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.RequesterExcutiveName.text=RequesterInfoData?.RequesterExecutiveName
                     holder.binding.EmailId.text=RequesterInfoData?.EmailID
                     holder.binding.PhoneNumber.text=RequesterInfoData?.PhoneNumber
+                }
+
+                holder.binding.imgEdit.setOnClickListener {
+                    listener.editRequestInfoClicked()
                 }
             }
             is ViewHold6 -> {

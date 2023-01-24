@@ -33,7 +33,7 @@ class ServicesRequestActivity : BaseActivity() {
 
 
     private fun initViews(){
-        var data = AppController.getInstance().siteInfoModel.item
+        val data = AppController.getInstance().siteInfoModel.item
         binding.siteId.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
         binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
         binding.rfiDate.text= "${data?.get(0)?.OperationalInfo?.get(0)?.RFIDate}"

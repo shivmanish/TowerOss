@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.BasicInfoModelItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapterListener) : Adapter<OpcoDataViewHolder>() {
     var data = ArrayList<Any>()
@@ -50,13 +52,12 @@ class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapt
         if(holder is OpcoDataItemViewHolder) {
             try {
                 var item = data[position] as OpcoDataItem
-                holder.binding.SiteId.text = "${item.Opcoinfo[0].OpcoSiteID}"
-                holder.binding.titel.text = "${item.Opcoinfo[0].OpcoName}"
-                holder.binding.textRfiDate.text =
-                    "RFI Date: ${item.Opcoinfo[0].rfiAcceptanceDate}"
-                holder.binding.textRfsDate.text =
-                    "RFR Date: ${item.Opcoinfo[0].rfrDate}"
-                holder.binding.cardItem.setOnClickListener {
+                holder.binding.SiteId.text = "#${item.Opcoinfo[0].OpcoSiteID}"
+                holder.binding.titel.text=item.Opcoinfo[0].OpcoName
+                holder.binding.textRfiDate.text = item.Opcoinfo[0].rfiAcceptanceDate
+                holder.binding.textRfsDate.text = item.Opcoinfo[0].rfrDate
+                AppPreferences.getInstance().setDropDown(holder.binding.text7,DropDowns.Opcositetype.name,item.Opcoinfo[0].Opcositetype)
+                holder.itemview.setOnClickListener {
                     listener.clickedItem(item)
                 }
             }catch (e:java.lang.Exception){

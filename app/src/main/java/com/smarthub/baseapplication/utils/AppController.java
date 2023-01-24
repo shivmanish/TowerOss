@@ -16,19 +16,13 @@ public class AppController extends Application {
 
     static AppController mInstance;
     public SiteInfoModel siteInfoModel;
+    public String ownerName = "Test";
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        Observer ob = new Observer<Resource<GetOtpResponse>>() {
-            @Override
-            public void onChanged(Resource<GetOtpResponse> getOtpResponseResource) {
-
-            }
-        };
     }
 
     public static synchronized AppController getInstance() {

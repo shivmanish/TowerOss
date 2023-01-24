@@ -277,7 +277,7 @@
                 style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <com.smarthub.baseapplication.widgets.CustomSpinner
+            <com.smarthub.baseapplication.widgets.CustomStringSpinner
                 android:id="@+id/spinrecipientdepartmanet"
                 android:maxWidth="@dimen/dp200"
                 android:layout_weight=".5"
@@ -365,7 +365,7 @@
                 style="@style/RowTextItemInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <com.smarthub.baseapplication.widgets.CustomSpinner
+            <com.smarthub.baseapplication.widgets.CustomStringSpinner
                 android:id="@+id/spinDepartment"
                 android:maxWidth="@dimen/dp250"
                 android:layout_weight=".5"
@@ -405,7 +405,7 @@
             <TextView
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="@dimen/dp120"
-android:id="@+id/sendalert"
+                android:id="@+id/sendalert"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color1"
                 android:text="Send Alert"

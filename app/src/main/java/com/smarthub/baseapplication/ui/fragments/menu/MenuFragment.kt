@@ -65,15 +65,15 @@ class MenuFragment : Fragment() {
         }
 
         binding.cardAnalytics.setOnClickListener {
-            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
         binding.cardTeam.setOnClickListener {
-            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
         binding.cardOther1.setOnClickListener {
-            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),"Screen coming soon",Toast.LENGTH_SHORT).show()
         }
 
         binding.AddNewSiteCard.setOnClickListener {

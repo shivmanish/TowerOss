@@ -68,11 +68,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Make" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/surge_proctetor_make"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="."
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -94,11 +96,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Modal" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/surge_proctetor_modal"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="0"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -120,11 +124,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity (KW)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/surge_proctetor_Rating_capacity_kw"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -147,11 +153,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="SPD Type" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/surge_proctetor_spd_type"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -173,11 +181,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="Owner Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/surge_proctetor_owner_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -199,11 +209,13 @@
                                     android:layout_height="wrap_content"
                                     android:text="User Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
+                                    android:hint=""
                                     android:id="@+id/surge_proctetor_user_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"

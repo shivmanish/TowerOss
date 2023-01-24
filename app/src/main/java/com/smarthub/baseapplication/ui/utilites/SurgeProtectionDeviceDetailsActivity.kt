@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.utilites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityAcDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivityBatteryBankDetailsBinding
@@ -36,8 +37,11 @@ class SurgeProtectionDeviceDetailsActivity : AppCompatActivity() {
         val titels = ArrayList<String>()
         titels.add("SPD #1")
         titels.add("SPD #2")
-        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,utilitySPDData,id!!)
-        binding.tabs.setupWithViewPager(binding.viewpager)
+        if(utilitySPDData!=null){
+        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager,utilitySPDData!!,id!!)
+        binding.tabs.setupWithViewPager(binding.viewpager)}
+        else Toast.makeText(binding.tabs.context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+
     }
 
 

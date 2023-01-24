@@ -68,11 +68,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Make" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/battery_bank_make"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="."
+                                    android:hint=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -94,11 +95,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Modal" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/battery_bank_modal"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="0"
+                                    android:hint=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -119,12 +121,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Rating/ Capacity (KW)" />
-
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/battery_bank_Rating_capacity_kw"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+                                    android:hint=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -157,11 +159,12 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
                                             android:id="@+id/battery_bank_cabinetsizel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text="L - "
+                                            android:hint="L - "
                                             android:textColor="@color/black" />
 
                                     </LinearLayout>
@@ -172,11 +175,12 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
                                             android:id="@+id/battery_bank_cabinetsizeb"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text=" | B - "
+                                            android:hint=" | B - "
                                             android:textColor="@color/black" />
 
                                     </LinearLayout>
@@ -187,11 +191,12 @@
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
-                                        <TextView
+                                        <EditText
+                                            style="@style/RowTestItemEdit"
                                             android:id="@+id/battery_bank_cabinetsizeh"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text=" | H - "
+                                            android:hint=" | H - "
                                             android:textColor="@color/black" />
 
                                     </LinearLayout>
@@ -218,11 +223,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Overall Weight (KG)" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/battery_bank_overall_weight_kg"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="22"
+                                    android:hint=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -244,11 +250,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Owner Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/battery_bank_owner_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Cloudextel"
+                                    android:hint=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"
@@ -270,11 +277,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="User Company" />
 
-                                <TextView
+                                <EditText
+                                    style="@style/RowTestItemEdit"
                                     android:id="@+id/battery_bank_user_company"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
-                                    android:text="Airtel"
+                                    android:hint=""
                                     android:textColor="@color/black" />
                                 <View
                                     android:alpha="0.37"

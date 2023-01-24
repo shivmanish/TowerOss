@@ -51,16 +51,16 @@ class ProfileActivity : BaseActivity() {
                     uiDataMapping(it.data[0])
                     adapter.setdata(it.data[0])
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")
-                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@ProfileActivity, "error:" + it.message, Toast.LENGTH_LONG).show()
 
                 }
             } else {
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@ProfileActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
         binding.refreshLayuot.apply {
@@ -90,7 +90,7 @@ class ProfileActivity : BaseActivity() {
         }
         catch (e : Exception){
             AppLogger.log("Profile View Error ${e.localizedMessage}")
-            Toast.makeText(this,"Profile View Error",Toast.LENGTH_LONG).show()
+//            Toast.makeText(this,"Profile View Error",Toast.LENGTH_LONG).show()
         }
 
 

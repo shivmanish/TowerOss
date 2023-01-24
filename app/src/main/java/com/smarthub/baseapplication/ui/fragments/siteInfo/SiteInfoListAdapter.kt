@@ -200,11 +200,9 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo.Sitecategory)
                     AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Sitetype)
                     AppPreferences.getInstance().setDropDown(holder.binding.txBuildingType,DropDowns.Buildingtype.name,siteBasicinfo.Buildingtype)
-
-
-                    holder.binding.txtLocationZone.text = siteBasicinfo.Locationzone
+                    AppPreferences.getInstance().setDropDown(holder.binding.txtLocationZone,DropDowns.Locationzone.name,siteBasicinfo.Locationzone)
+                    AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo.Projectname)
                     holder.binding.txtMaintenanceZone.text = siteBasicinfo.MaintenancePoint
-                    holder.binding.txtProjectName.text = siteBasicinfo.Projectname
                     holder.binding.txtSiteInChargeName.text = siteBasicinfo.siteInChargeName
                     holder.binding.txtSiteInChargeNumber.text = siteBasicinfo.siteInChargeNumber
                     holder.binding.txtRentEscalation.text = ""
@@ -242,18 +240,19 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.txtRFCDate.text = operationalInfo.RFCDate
                     holder.binding.txtRFIDate.text = operationalInfo.RFIDate
                     holder.binding.txtRFSDate.text = operationalInfo.RFSDate
-                    holder.binding.siteBillingStatus.text = operationalInfo.Sitebillingstatus
-                    holder.binding.costCenter.text = operationalInfo.Costcentre
-                    holder.binding.operatorSharing.text = operationalInfo.Sharingfeasibility
                     holder.binding.powerSource.text = operationalInfo.Powersource
                     holder.binding.designDcLoad.text = operationalInfo.DesignedDcLoad
                     holder.binding.installedDcLoad.text = operationalInfo.InstalledDcLoad
                     holder.binding.operationTemp.text = operationalInfo.OperatingTemp
-                    holder.binding.townCategorySpinner.text = operationalInfo.Towncategory
-                    holder.binding.hubCitySpinner.text = operationalInfo.Hubsite
-                    holder.binding.ldcaSpinner.text = operationalInfo.Ldca
-                    holder.binding.scdaSpinner.text = operationalInfo.Scda
                     holder.binding.dismanting.text = operationalInfo.DismantlinglDate
+
+                    AppPreferences.getInstance().setDropDown(holder.binding.costCenter,DropDowns.Costcentre.name,operationalInfo.Costcentre)
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteBillingStatus,DropDowns.Sitebillingstatus.name,operationalInfo.Sitebillingstatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.operatorSharing,DropDowns.Sharingfeasibility.name,operationalInfo.Sharingfeasibility)
+                    AppPreferences.getInstance().setDropDown(holder.binding.townCategorySpinner,DropDowns.Towncategory.name,operationalInfo.Towncategory)
+                    AppPreferences.getInstance().setDropDown(holder.binding.hubCitySpinner,DropDowns.Hubsite.name,operationalInfo.Hubsite)
+                    AppPreferences.getInstance().setDropDown(holder.binding.ldcaSpinner,DropDowns.Ldca.name,operationalInfo.Ldca)
+                    AppPreferences.getInstance().setDropDown(holder.binding.scdaSpinner,DropDowns.Scda.name,operationalInfo.Scda)
                 }
             }
             is ViewHold3 -> {
@@ -261,7 +260,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     if (basicinfodata.GeoCondition.isNotEmpty())
                         listener.geoConditionsDetailsItemClicked(basicinfodata.GeoCondition[0],basicinfodata.id.toString())
                     else
-                        Toast.makeText(context,"Geo Condition data not found",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"Geo Condition ",Toast.LENGTH_SHORT).show()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -284,13 +283,13 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 holder.binding.itemTitle.text = list[position]
                 if(basicinfodata.GeoCondition.isNotEmpty()){
                     val geoCondition: GeoCondition = basicinfodata.GeoCondition[0]
-                    holder.binding.potentioalThreatSpinner.text = geoCondition.Potentialthreat
                     holder.binding.textAltitude.text = geoCondition.Altitude
-                    holder.binding.windZoneSpinner.text = geoCondition.Windzone
-                    holder.binding.seismecZoneSpinner.text = geoCondition.Seismiczone
-                    holder.binding.floodZoneSpinner.text = geoCondition.Floodzone
                     holder.binding.textTempZone.text = geoCondition.TempratureZone
-                    holder.binding.terrainTypeSpinner.text = geoCondition.Terraintype
+                    AppPreferences.getInstance().setDropDown(holder.binding.potentioalThreatSpinner,DropDowns.Potentialthreat.name,geoCondition.Potentialthreat)
+                    AppPreferences.getInstance().setDropDown(holder.binding.windZoneSpinner,DropDowns.Windzone.name,geoCondition.Windzone)
+                    AppPreferences.getInstance().setDropDown(holder.binding.seismecZoneSpinner,DropDowns.Seismiczone.name,geoCondition.Seismiczone)
+                    AppPreferences.getInstance().setDropDown(holder.binding.floodZoneSpinner,DropDowns.Floodzone.name,geoCondition.Floodzone)
+                    AppPreferences.getInstance().setDropDown(holder.binding.terrainTypeSpinner,DropDowns.Terraintype.name,geoCondition.Terraintype)
                 }
 
             }
@@ -299,7 +298,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     if (basicinfodata.GeoCondition.isNotEmpty())
                         listener.siteAccessDetailsItemClicked(basicinfodata.SafetyAndAccess[0],basicinfodata.id.toString())
                     else
-                        Toast.makeText(context,"Geo Condition data not found",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"Geo Condition ",Toast.LENGTH_SHORT).show()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -321,26 +320,25 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 holder.binding.itemTitle.text = list[position]
                 if(basicinfodata.SafetyAndAccess.isNotEmpty()){
-                    val saftyAcess: SafetyAndAcces = basicinfodata.SafetyAndAccess[0]
-                    if (safetyAndAccessDropdown!=null) {
-                        holder.binding.physicalSecurity.text = saftyAcess.Physicalsecurity
-                        holder.binding.textGate.text = saftyAcess.GateAndFence
-                        holder.binding.videoMonitoringSpinner.text = saftyAcess.Videomonitoring
-                        holder.binding.siteAccessAreaSpinner.text = saftyAcess.SiteAccessArea
-                        holder.binding.textCautionSignage.text = saftyAcess.CautionSignage
-                        holder.binding.siteAccess.text = saftyAcess.Siteaccess
-
-                        holder.binding.textSiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
-                        holder.binding.textPoliceNumber.text = saftyAcess.NearByPoliceStationNumber
-                        holder.binding.textPoliceStation.text = saftyAcess.NearByPoliceStation
-                        holder.binding.textFireStation.text = saftyAcess.NearByFireStation
-                        holder.binding.textFireNumber.text = saftyAcess.NearByFireStationNumber
-
-                        try {
-                            holder.binding.dangerSignageSpinner.text = safetyAndAccessDropdown?.dangerSignage!!.data[saftyAcess.DangerSignage!!.toInt()].name
-                        }catch (e:java.lang.Exception){
-                            AppLogger.log("e : ${e.localizedMessage}")
+                    try {
+                        val saftyAcess: SafetyAndAcces = basicinfodata.SafetyAndAccess[0]
+                        if (safetyAndAccessDropdown!=null) {
+                            holder.binding.textSiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
+                            holder.binding.textPoliceNumber.text = saftyAcess.NearByPoliceStationNumber
+                            holder.binding.textPoliceStation.text = saftyAcess.NearByPoliceStation
+                            holder.binding.textFireStation.text = saftyAcess.NearByFireStation
+                            holder.binding.textFireNumber.text = saftyAcess.NearByFireStationNumber
+                            AppPreferences.getInstance().setDropDown(holder.binding.physicalSecurity,DropDowns.Physicalsecurity.name,saftyAcess.Physicalsecurity)
+                            AppPreferences.getInstance().setDropDown(holder.binding.textGate,DropDowns.GateAndFence.name,saftyAcess.GateAndFence)
+                            AppPreferences.getInstance().setDropDown(holder.binding.videoMonitoringSpinner,DropDowns.Videomonitoring.name,saftyAcess.Videomonitoring)
+                            AppPreferences.getInstance().setDropDown(holder.binding.siteAccessAreaSpinner,DropDowns.SiteAccessArea.name,saftyAcess.SiteAccessArea)
+                            AppPreferences.getInstance().setDropDown(holder.binding.dangerSignageSpinner,DropDowns.DangerSignage.name,saftyAcess.DangerSignage)
+                            AppPreferences.getInstance().setDropDown(holder.binding.textCautionSignage,DropDowns.CautionSignage.name,saftyAcess.CautionSignage)
+                            AppPreferences.getInstance().setDropDown(holder.binding.siteAccess,DropDowns.Siteaccess.name,saftyAcess.Siteaccess)
                         }
+
+                    }catch (e:java.lang.Exception){
+                        AppLogger.log("e : ${e.localizedMessage}")
                     }
                 }
             }

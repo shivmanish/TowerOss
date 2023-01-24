@@ -86,7 +86,7 @@ class SiteImages : AppCompatActivity() {
         }
         else -> {
             Log.d("Gallery","Task Cancelled")
-            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
     }
@@ -122,7 +122,7 @@ class SiteImages : AppCompatActivity() {
         }
     }
     private fun processImages() {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
 
     }
 }

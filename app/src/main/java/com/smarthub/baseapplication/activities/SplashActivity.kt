@@ -20,12 +20,13 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.fragments.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class SplashActivity : BaseActivity() {
 
-    private var loginViewModel : LoginViewModel?=null
+    lateinit var loginViewModel : LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -37,28 +38,26 @@ class SplashActivity : BaseActivity() {
         findViewById<View>(R.id.manage_site).setOnClickListener {
             if (AppPreferences.getInstance().token.isNullOrEmpty()){
                 if (isNetworkConnected){
-                    var intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                    val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }else {
                     showNetworkAlert()
                 }
             }else{
-                val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
+                showLoader()
+                loginViewModel.getProfileData()
             }
-
         }
 
-        loginViewModel?.loginResponse?.observe(this) {
+        loginViewModel.loginResponse?.observe(this) {
             hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Log.d("status","${it.message}")
-                    Toast.makeText(this@SplashActivity,"LoginSuccessful", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@SplashActivity,"LoginSuccessful", Toast.LENGTH_LONG).show()
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
@@ -75,13 +74,29 @@ class SplashActivity : BaseActivity() {
             }
 
         }
+        loginViewModel.profileResponse?.observe(this) {
+            hideLoader()
+            if (it != null && it.status==Resource.Status.SUCCESS) {
+                AppController.getInstance().ownerName = it.data?.get(0)?.company
+                if (isNetworkConnected){
+                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }else {
+                    showNetworkAlert()
+                }
+            }else{
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(this@SplashActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun showNetworkAlert() {
         val dialogBuilder = AlertDialog.Builder(this)
         val dialogView: View = layoutInflater.inflate(R.layout.network_alert, null)
         dialogBuilder.setView(dialogView)
-        var b = dialogBuilder.create()
+        val b = dialogBuilder.create()
         b.setCancelable(false)
         val exitText = dialogView.findViewById<TextView>(R.id.exittext)
         val icon = dialogView.findViewById<ImageView>(R.id.icon)

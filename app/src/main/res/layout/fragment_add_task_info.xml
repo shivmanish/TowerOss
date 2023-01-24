@@ -1,15 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.task.TaskFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/dp25"
         app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/progress_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp35"
+        android:layout_marginRight="@dimen/dp35"
+        android:layout_marginBottom="@dimen/dp35">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p1"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardBackgroundColor="@color/card_bg"
+            app:cardCornerRadius="@dimen/dp60"
+            app:layout_constraintEnd_toEndOf="@+id/p_status1"
+            app:layout_constraintStart_toStartOf="@+id/p_status1"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp12"
+                android:src="@drawable/task_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Task info"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+        <View
+            android:id="@+id/l1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp10"
+            android:background="@color/card_bg"
+            app:layout_constraintBottom_toBottomOf="@+id/p1"
+            app:layout_constraintEnd_toStartOf="@+id/p2"
+            app:layout_constraintStart_toEndOf="@+id/p1"
+            app:layout_constraintTop_toTopOf="@+id/p1" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p2"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardCornerRadius="@dimen/dp60"
+            app:cardBackgroundColor="#ffffff"
+            app:strokeColor="@color/card_bg"
+            app:strokeWidth="1dp"
+            app:layout_constraintEnd_toEndOf="@id/p_status2"
+            app:layout_constraintStart_toStartOf="@+id/p_status2"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_margin="@dimen/dp12"
+                android:src="@drawable/menu_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Activities"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+        <View
+            android:id="@+id/l2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp10"
+            android:background="@color/circle_color"
+            app:layout_constraintBottom_toBottomOf="@+id/p2"
+            app:layout_constraintEnd_toStartOf="@+id/p3"
+            app:layout_constraintStart_toEndOf="@+id/p2"
+            app:layout_constraintTop_toTopOf="@+id/p3" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/p3"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            app:cardBackgroundColor="#ffffff"
+            app:strokeColor="#3D4E6D"
+            app:strokeWidth="1dp"
+            app:cardCornerRadius="@dimen/dp60"
+            app:layout_constraintEnd_toEndOf="@id/p_status3"
+            app:layout_constraintStart_toStartOf="@+id/p_status3"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_margin="@dimen/dp12"
+                android:src="@drawable/notification_bell"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/p_status3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Notification"
+            android:textColor="#4F4D4D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/progress_status"
         app:layout_constraintBottom_toTopOf="@+id/rfEquipment_edit_save"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp15"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/dp5">
 
@@ -17,135 +142,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="@dimen/dp80">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="@dimen/dp25"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/progress_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp35"
-                android:layout_marginRight="@dimen/dp35"
-                android:layout_marginBottom="@dimen/dp35">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/p1"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
-                    app:cardBackgroundColor="@color/card_bg"
-                    app:cardCornerRadius="@dimen/dp60"
-                    app:layout_constraintEnd_toEndOf="@+id/p_status1"
-                    app:layout_constraintStart_toStartOf="@+id/p_status1"
-                    app:layout_constraintTop_toTopOf="parent" >
-                    <ImageView
-                        android:layout_marginEnd="@dimen/dp8"
-                        android:layout_marginStart="@dimen/dp12"
-                        android:src="@drawable/task_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/p_status1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="Task info"
-                    android:textColor="#4F4D4D"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/p1" />
-                <View
-                    android:id="@+id/l1"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dp10"
-                    android:background="@color/card_bg"
-                    app:layout_constraintBottom_toBottomOf="@+id/p1"
-                    app:layout_constraintEnd_toStartOf="@+id/p2"
-                    app:layout_constraintStart_toEndOf="@+id/p1"
-                    app:layout_constraintTop_toTopOf="@+id/p1" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/p2"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
-                    app:cardCornerRadius="@dimen/dp60"
-                    app:cardBackgroundColor="#ffffff"
-                    app:strokeColor="@color/card_bg"
-                    app:strokeWidth="1dp"
-                    app:layout_constraintEnd_toEndOf="@id/p_status2"
-                    app:layout_constraintStart_toStartOf="@+id/p_status2"
-                    app:layout_constraintTop_toTopOf="parent" >
-                    <ImageView
-                        android:layout_margin="@dimen/dp12"
-                        android:src="@drawable/menu_task"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/p_status2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="Activities"
-                    android:textColor="#4F4D4D"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/p1" />
-                <View
-                    android:id="@+id/l2"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dp10"
-                    android:background="@color/circle_color"
-                    app:layout_constraintBottom_toBottomOf="@+id/p2"
-                    app:layout_constraintEnd_toStartOf="@+id/p3"
-                    app:layout_constraintStart_toEndOf="@+id/p2"
-                    app:layout_constraintTop_toTopOf="@+id/p3" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/p3"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
-                    app:cardBackgroundColor="#ffffff"
-                    app:strokeColor="#3D4E6D"
-                    app:strokeWidth="1dp"
-                    app:cardCornerRadius="@dimen/dp60"
-                    app:layout_constraintEnd_toEndOf="@id/p_status3"
-                    app:layout_constraintStart_toStartOf="@+id/p_status3"
-                    app:layout_constraintTop_toTopOf="parent" >
-                    <ImageView
-                        android:layout_margin="@dimen/dp12"
-                        android:src="@drawable/notification_bell"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/p_status3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="Notification"
-                    android:textColor="#4F4D4D"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/p1" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp10"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/progress_status">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
@@ -156,9 +159,12 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <EditText
+                        android:id="@+id/Task_name"
                         style="@style/RowTestItemEdit"
+                        android:textSize="@dimen/dp15"
                         android:text="Task"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -180,8 +186,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:id="@+id/task_instruction"
                         style="@style/RowTestItemEdit"
-                        android:padding="@dimen/dp10"
+                        android:textSize="@dimen/dp15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -209,8 +216,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/start_date"
                             style="@style/RowTestItemEdit"
-                            android:text="10-Nov-22"
+                            android:text="2022-11-10"
+                            android:textSize="@dimen/dp15"
                             android:layout_width="match_parent"
                             android:drawableEnd="@drawable/icon_date"
                             android:layout_height="wrap_content"/>
@@ -233,9 +242,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/end_date"
                             style="@style/RowTestItemEdit"
+                            android:textSize="@dimen/dp15"
                             android:drawableEnd="@drawable/icon_date"
-                            android:text="12-Nov-22"
+                            android:text="2022-11-22"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
@@ -253,14 +264,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Weightage"
+                            android:text="Weightage(%)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <EditText
+                            android:id="@+id/Weightage"
                             style="@style/RowTestItemEdit"
+                            android:textSize="@dimen/dp15"
                             android:layout_width="match_parent"
-                            android:text="10%"
+                            android:text="10"
                             android:layout_height="wrap_content"/>
                         <View
                             android:alpha="0.37"
@@ -280,11 +293,26 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            style="@style/RowTestItemEdit"
-                            android:text="2 Days"
+                        <LinearLayout
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/sla"
+                                style="@style/RowTestItemEdit"
+                                android:text="0"
+                                android:textSize="@dimen/dp15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                style="@style/RowTestItemEdit"
+                                android:text="Days"
+                                android:textSize="@dimen/dp15"
+                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
@@ -296,6 +324,7 @@
                 <LinearLayout
                     android:layout_width= "match_parent"
                     style="@style/ColumnItemInfo"
+                    android:layout_marginBottom="@dimen/dp1"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -303,19 +332,22 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="Yes"
-                        android:gravity="left"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/task_for_a_single_site"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5" />
 
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
-                    android:layout_marginTop="@dimen/dp5"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -323,13 +355,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/site_id"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="CE-MHMUM-SC-A0123"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -348,13 +378,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/assignee_department"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="Acquisition"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -365,7 +393,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
-                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp1"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -373,19 +401,17 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomUserSpinner
+                        android:id="@+id/assign_to"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="Umesh"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp8" />
+                        android:layout_marginTop="@dimen/dp5" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -398,13 +424,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/priority"
                         style="@style/SpinnerTheme"
-                        android:drawablePadding="20dp"
-                        android:gravity="left"
-                        android:text="High"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/dp20" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -427,6 +451,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp">
         <TextView
+            android:id="@+id/cancel"
             android:padding="5dp"
             android:text="Cancel"
             android:textStyle="bold"

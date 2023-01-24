@@ -52,17 +52,17 @@ class PoTableAdapter(
             performOptionsMenuClick(position, it)
         }
         try {
-            holder.binding.ItemName.text = "Data Not Found"
+            holder.binding.ItemName.text = ""
             holder.binding.ItemCode.text = list?.get(position)?.VendorName
             holder.binding.Description.text = list?.get(position)?.VendorName
             holder.binding.Qty.text = list?.get(position)?.created_at
         } catch (e: java.lang.Exception) {
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(
-                context,
-                "ToewerPoTableadapter error :${e.localizedMessage}",
-                Toast.LENGTH_LONG
-            ).show()
+//            Toast.makeText(
+//                context,
+//                "ToewerPoTableadapter error :${e.localizedMessage}",
+//                Toast.LENGTH_LONG
+//            ).show()
         }
     }
 
@@ -92,14 +92,14 @@ class PoTableAdapter(
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
                         listener.viewClicked(position)
-                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, "Item 2 clicked", Toast.LENGTH_SHORT).show()
                     }
 
                 }

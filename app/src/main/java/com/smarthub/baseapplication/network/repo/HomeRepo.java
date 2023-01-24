@@ -31,6 +31,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
+import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
@@ -82,6 +83,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
+    private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
@@ -140,6 +142,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<PlanAndDesignModel>> getPlanAndDesignModel() {
         return planAndDesignModel;
     }
+    public SingleLiveEvent<Resource<QatModel>> getQatModelResponse() {
+        return qatModelResponse;
+    }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
         return opcoDataResponse;
@@ -183,6 +188,7 @@ public class HomeRepo {
         dropDownResponseNew = new SingleLiveEvent<>();
         siteInfoModelNew = new SingleLiveEvent<>();
         notificationNew = new SingleLiveEvent<>();
+        qatModelResponse = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -415,41 +421,6 @@ public class HomeRepo {
             }
         });
     }
-    public void updateSiteInfoData(Object basicinfoModel) {
-        apiClient.updateSiteInfoData(basicinfoModel).enqueue(new Callback<SiteInfoModelUpdate>() {
-            @Override
-            public void onResponse(@NonNull Call<SiteInfoModelUpdate> call, Response<SiteInfoModelUpdate> response) {
-                if (response.isSuccessful()) {
-                    reportSuccessResponse(response);
-                } else if (response.errorBody() != null) {
-                    AppLogger.INSTANCE.log("error :" + response);
-                } else {
-                    AppLogger.INSTANCE.log("error :" + response);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<SiteInfoModelUpdate> call, @NonNull Throwable t) {
-                reportErrorResponse(t.getLocalizedMessage());
-            }
-
-            private void reportSuccessResponse(Response<SiteInfoModelUpdate> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
-                    siteInfoUpdate.postValue(Resource.success(response.body(), 200));
-
-                }
-            }
-
-            private void reportErrorResponse(String iThrowableLocalMessage) {
-                if (iThrowableLocalMessage != null)
-                    siteInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    siteInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
-    }
 
     public void createSite(CreateSiteModel basicinfoModel) {
         apiClient.createSite(basicinfoModel).enqueue(new Callback<SiteInfoModelNew>() {
@@ -525,6 +496,7 @@ public class HomeRepo {
 
     public void fetchHomeData() {
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         jsonObject.addProperty("homepage","");
         apiClient.fetchHomeData(jsonObject).enqueue(new Callback<HomeResponse>() {
             @Override
@@ -566,6 +538,7 @@ public class HomeRepo {
     public void fetchProjectData() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("Gettemplate","all");
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         apiClient.fetchProjectData(jsonObject).enqueue(new Callback<ProjectModelData>() {
             @Override
             public void onResponse(Call<ProjectModelData> call, Response<ProjectModelData> response) {
@@ -605,6 +578,7 @@ public class HomeRepo {
     public void fetchTaskData(String templateName) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("Gettemplate",templateName);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         apiClient.fetchTaskData(jsonObject).enqueue(new Callback<TaskModelData>() {
             @Override
             public void onResponse(@NonNull Call<TaskModelData> call, @NonNull Response<TaskModelData> response) {
@@ -644,6 +618,7 @@ public class HomeRepo {
     public void fetchServiceRequestData(String id) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         Call<ServiceRequestAllData> request = apiClient.fetchsServiceRequestData(jsonObject);
         request.enqueue(new Callback<ServiceRequestAllData>() {
             @Override
@@ -682,12 +657,9 @@ public class HomeRepo {
     }
 
     public void siteInfoById(String id) {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername","SMRT");
         opcoDataResponse.postValue(Resource.loading((opcoDataResponse.getValue()!=null)?opcoDataResponse.getValue().data:null, 200));
         siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null, 200));
-        apiClient.fetchSiteInfoById(new IdData(id)).enqueue(new Callback<SiteInfoModel>() {
+        apiClient.fetchSiteInfoById(new IdData(id,AppController.getInstance().ownerName)).enqueue(new Callback<SiteInfoModel>() {
             @Override
             public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
                 if (response.isSuccessful()){
@@ -733,7 +705,7 @@ public class HomeRepo {
     public void serviceRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("ServiceRequestMain");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
         serviceRequestModel.postValue(Resource.loading(srModel, 200));
         apiClient.fetchServiceRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
@@ -773,7 +745,7 @@ public class HomeRepo {
     public void opcoRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("Operator");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
             @Override
             public void onResponse(Call<OpcoInfoNewModel> call, Response<OpcoInfoNewModel> response) {
@@ -811,7 +783,7 @@ public class HomeRepo {
     public void planDesignRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("PlanningAndDesign");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchPlanDesignRequest(siteInfoParam).enqueue(new Callback<PlanAndDesignModel>() {
             @Override
             public void onResponse(Call<PlanAndDesignModel> call, Response<PlanAndDesignModel> response) {
@@ -845,11 +817,48 @@ public class HomeRepo {
             }
         });
     }
+    public void qatRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("QATTemplateMain");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        apiClient.fetchQatRequest(siteInfoParam).enqueue(new Callback<QatModel>() {
+            @Override
+            public void onResponse(Call<QatModel> call, Response<QatModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QatModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<QatModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    qatModelResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    qatModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    qatModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
 
     public void siteAgreementRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("Siteacquisition");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchSiteAgreementModelRequest(siteInfoParam).enqueue(new Callback<SiteAgreementModel>() {
             @Override
             public void onResponse(Call<SiteAgreementModel> call, Response<SiteAgreementModel> response) {
@@ -888,7 +897,7 @@ public class HomeRepo {
         ArrayList<String> list = new ArrayList<>();
         list.add("utilities");
         AppLogger.INSTANCE.log("id :"+id);
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchUtilitiesEquipRequest(siteInfoParam).enqueue(new Callback<UtilitiesEquipModel>() {
             @Override
             public void onResponse(Call<UtilitiesEquipModel> call, Response<UtilitiesEquipModel> response) {
@@ -926,7 +935,7 @@ public class HomeRepo {
     public void NocAndCompRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("NOCCompliance");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchNocAndCompRequest(siteInfoParam).enqueue(new Callback<NocAndCompModel>() {
             @Override
             public void onResponse(Call<NocAndCompModel> call, Response<NocAndCompModel> response) {
@@ -964,7 +973,7 @@ public class HomeRepo {
     public void TowerCivilInfraRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("TowerAndCivilInfra");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchTowerCivilInfraRequest(siteInfoParam).enqueue(new Callback<TowerCivilInfraModel>() {
             @Override
             public void onResponse(Call<TowerCivilInfraModel> call, Response<TowerCivilInfraModel> response) {
@@ -1002,7 +1011,7 @@ public class HomeRepo {
     public void powerAndFuelRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("PowerAndFuel");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchPowerFuelRequest(siteInfoParam).enqueue(new Callback<PowerAndFuelModel>() {
             @Override
             public void onResponse(Call<PowerAndFuelModel> call, Response<PowerAndFuelModel> response) {
@@ -1036,10 +1045,11 @@ public class HomeRepo {
             }
         });
     }
+
     public void chamgeLogAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("ChangeLog");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id));
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchLogData(siteInfoParam).enqueue(new Callback<LogSearchData>() {
             @Override
             public void onResponse(Call<LogSearchData> call, Response<LogSearchData> response) {
@@ -1074,126 +1084,10 @@ public class HomeRepo {
         });
     }
 
-//    public void siteSearchData(String id) {
-//
-//        apiClient.searchSiteInfoData(id).enqueue(new Callback<List<SearchListItem>>() {
-//            @Override
-//            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
-//                if (response.isSuccessful()){
-//                    reportSuccessResponse(response);
-//                }else {
-//                    AppLogger.INSTANCE.log("error :"+response);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
-//                reportErrorResponse(null, t.getLocalizedMessage());
-//            }
-//
-//            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
-//
-//                if (response != null && response.body()!=null) {
-//                    SearchList searchList = new SearchList();
-//                    searchList.addAll(response.body());
-//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
-//                    siteSearchResponse.postValue(Resource.success(searchList, 200));
-//                }
-//            }
-//
-//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-//                if (response != null) {
-//                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
-//                } else if (iThrowableLocalMessage != null)
-//                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-//                else
-//                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-//            }
-//        });
-//    }
-
-//    public void siteSearchDataNew(String id) {
-//        JsonObject jsonObject = new JsonObject();
-//        jsonObject.addProperty("siteID",id);
-//        apiClient.searchSiteInfoDataNew(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
-//            @Override
-//            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
-//                if (response.isSuccessful()){
-//                    reportSuccessResponse(response);
-//                }else {
-//                    AppLogger.INSTANCE.log("error :"+response);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
-//                reportErrorResponse(null, t.getLocalizedMessage());
-//            }
-//
-//            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
-//
-//                if (response != null && response.body()!=null) {
-//                    SearchList searchList = new SearchList();
-//                    searchList.addAll(response.body());
-//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
-//                    siteSearchResponse.postValue(Resource.success(searchList, 200));
-//                }
-//            }
-//
-//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-//                if (response != null) {
-//                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
-//                } else if (iThrowableLocalMessage != null)
-//                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-//                else
-//                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-//            }
-//        });
-//    }
-
-//    public void siteSearchData(String id,String category) {
-//        JsonObject jsonObject = new JsonObject();
-//        jsonObject.addProperty(id,category);
-//        apiClient.searchSiteInfoData(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
-//            @Override
-//            public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
-//                if (response.isSuccessful()){
-//                    reportSuccessResponse(response);
-//                }else {
-//                    AppLogger.INSTANCE.log("error :"+response);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<SearchListItem>> call, Throwable t) {
-//                reportErrorResponse(null, t.getLocalizedMessage());
-//            }
-//
-//            private void reportSuccessResponse(Response<List<SearchListItem>> response) {
-//
-//                if (response != null && response.body()!=null) {
-//                    SearchList searchList = new SearchList();
-//                    searchList.addAll(response.body());
-//                    AppLogger.INSTANCE.log("reportSuccessResponse :"+ response);
-//                    siteSearchResponse.postValue(Resource.success(searchList, 200));
-//                }
-//            }
-//
-//            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
-//                if (response != null) {
-//                    siteSearchResponse.postValue(Resource.error(response.getMessage(), null, 400));
-//                } else if (iThrowableLocalMessage != null)
-//                    siteSearchResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-//                else
-//                    siteSearchResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-//            }
-//        });
-//    }
-
     public void searchSiteAll(String category,String id) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(category,id);
-        AppLogger.INSTANCE.log("category:"+category);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         if (category.equalsIgnoreCase("name"))
             apiClient.searchSiteByName(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
                 @Override
@@ -1433,6 +1327,7 @@ public class HomeRepo {
             }
         });
     }
+
     public void siteInfoDropDownNew() {
 
         apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
@@ -1473,9 +1368,9 @@ public class HomeRepo {
     }
 
     public void getTaskById(String id) {
-
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("gettaskdata",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         apiClient.getTaskDataById(jsonObject).enqueue(new Callback<TaskDataList>() {
             @Override
             public void onResponse(Call<TaskDataList> call, Response<TaskDataList> response) {

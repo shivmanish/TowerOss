@@ -19,7 +19,6 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-
 class SAAgreementsBottomSheet(
     contentLayoutId: Int,
     var siteAgreementsData: SiteacquisitionAgreement?, var viewModel: HomeViewModel
@@ -42,34 +41,34 @@ class SAAgreementsBottomSheet(
             dialog!!.dismiss()
             dialog!!.cancel()
         }
-             binding.textSave.setOnClickListener {
-                 siteAgreementsData.let{
+        binding.textSave.setOnClickListener {
+            siteAgreementsData.let {
 
-               it?.AgreementType=   binding.editTermLease.text.toString()
-                     it?.RegistrationDate=   binding.textRegistrationDate.text.toString()
+                it?.AgreementType = binding.editTermLease.text.toString()
+                it?.RegistrationDate = binding.textRegistrationDate.text.toString()
 
-                     it?.AgreementPeriod=    binding.editAgreemenPeriod.text.toString()
-                     it?.LockInPeriod=  binding.editLockPeriod.text.toString()
-                     it?.AgreementEffectiveDate=    binding.editAgreemenDate.text.toString()
-                     it?.AgreementExpiryDate=   binding.editAgreementExpiryDate.text.toString()
-                     it?.RentStartDate=   binding.editRentStartDate.text.toString()
-                     it?.InitialAnnualRentAmount=   binding.editInitialAnnualRentAmount.text.toString()
-                     it?.PeriodicRentPayableAmount=   binding.editPeriodicRent.text.toString()
-                     it?.RentEscalation=    binding.editRentEscalation.text.toString()
-                     it?.RentEscalationPeriod=    binding.editRentEscalationPeriod.text.toString()
-                     it?.LastescalationDate=    binding.editLastEscalationDate.text.toString()
-                     it?.LastRevisedRentAmount=    binding.editLastRevisedRentAmount.text.toString()
-                     it?.EBBillingBasis=  binding.textEBBillingBasis.text.toString()
-                     it?.EBPerUnitRate=  binding.editEBperunitRate.text.toString()
-                     it?.OnetimeAmount=   binding.editOnetimeAmount.text.toString()
-                     it?.SecurityDepositAmount=   binding.editAmount.text.toString()
-                     it?.GroundUsableArea=   binding.editArea.text.toString()
-                     it?.RooftopacquiredArea=   binding.editArea.text.toString()
+                it?.AgreementPeriod = binding.editAgreemenPeriod.text.toString()
+                it?.LockInPeriod = binding.editLockPeriod.text.toString()
+                it?.AgreementEffectiveDate = binding.editAgreemenDate.text.toString()
+                it?.AgreementExpiryDate = binding.editAgreementExpiryDate.text.toString()
+                it?.RentStartDate = binding.editRentStartDate.text.toString()
+                it?.InitialAnnualRentAmount = binding.editInitialAnnualRentAmount.text.toString()
+                it?.PeriodicRentPayableAmount = binding.editPeriodicRent.text.toString()
+                it?.RentEscalation = binding.editRentEscalation.text.toString()
+                it?.RentEscalationPeriod = binding.editRentEscalationPeriod.text.toString()
+                it?.LastescalationDate = binding.editLastEscalationDate.text.toString()
+                it?.LastRevisedRentAmount = binding.editLastRevisedRentAmount.text.toString()
+                it?.EBBillingBasis = binding.textEBBillingBasis.text.toString()
+                it?.EBPerUnitRate = binding.editEBperunitRate.text.toString()
+                it?.OnetimeAmount = binding.editOnetimeAmount.text.toString()
+                it?.SecurityDepositAmount = binding.editAmount.text.toString()
+                it?.GroundUsableArea = binding.editArea.text.toString()
+                it?.RooftopacquiredArea = binding.editArea.text.toString()
 
 
-                 }
+            }
 
-                 siteAgreementsData?.id = siteAgreementsData!!.id
+            siteAgreementsData?.id = siteAgreementsData!!.id
             viewModel.updateSiteInfo(siteAgreementsData!!)
         }
 
@@ -77,7 +76,7 @@ class SAAgreementsBottomSheet(
         hideProgressLayout()
         if (viewModel.siteAgreementModel?.hasActiveObservers() == true)
             viewModel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
-           viewModel.siteAgreementModel?.observe(viewLifecycleOwner) {
+        viewModel.siteAgreementModel?.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.status == Resource.Status.LOADING) {
                     showProgressLayout()

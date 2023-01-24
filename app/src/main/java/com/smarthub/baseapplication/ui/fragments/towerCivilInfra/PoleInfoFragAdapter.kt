@@ -233,18 +233,18 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     holder.binding.TowerId.text=towerInfoData?.TowerPoleID
-                    holder.binding.TowerType.text="Data Not found"
-                    holder.binding.InstalledType.text="data not found"
+                    holder.binding.TowerType.text=""
+                    holder.binding.InstalledType.text=""
                     holder.binding.HeightTower.text=towerInfoData?.Height
                     holder.binding.Comouflage.text=towerInfoData?.Camouflage
                     holder.binding.AnteenaSlots.text=towerInfoData?.AntennaSlots
                     holder.binding.LightningArrester.text=towerInfoData?.LightningArrester
-                    holder.binding.FoundationType.text="Data Not Found"
+                    holder.binding.FoundationType.text=""
                     holder.binding.FoundationSize.text=
                         "${towerInfoData?.FoundationSizeL}X${towerInfoData?.FoundationSizeB}X${towerInfoData?.FoundationSizeH}"
                     holder.binding.TowerLegCount.text=towerInfoData?.TowerLegCount
-                    holder.binding.OwnerCompany.text="Data not found"
-                    holder.binding.UserCompany.text="Data not found"
+                    holder.binding.OwnerCompany.text=""
+                    holder.binding.UserCompany.text=""
                     holder.binding.LocationMark.text=towerInfoData?.LocationMark
                     holder.offsetTableList.adapter= poleOffsetTableAdapter(context,listener)
                 }catch (e:java.lang.Exception){
@@ -280,7 +280,7 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
                 try {
                     holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
                     holder.binding.InstallationDate.text=insAccepData?.InstallationDate
-                    holder.binding.InstallationExcutiveName.text="Data Not Found"
+                    holder.binding.InstallationExcutiveName.text=""
                     holder.binding.VendorPhonNo.text=insAccepData?.VendorPhoneNumber
                     holder.binding.InstallationVendor.text=insAccepData?.InstallationVendor
                     holder.binding.AcceptanceStatus.text=insAccepData?.AcceptanceStatus

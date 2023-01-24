@@ -9,6 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SrDetailsBottomSheetDialogBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
@@ -17,6 +18,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -35,14 +37,18 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
         }
         setDatePickerView(binding.requestDate)
         setDatePickerView(binding.expectedDate)
+
         srDetailsData.let{
+            AppPreferences.getInstance().setDropDown(binding.srType, DropDowns.SRDetailTechnology.name,it.SRType)
+            AppPreferences.getInstance().setDropDown(binding.editTechnology, DropDowns.SRDetailTechnology.name,it.Technology)
+            AppPreferences.getInstance().setDropDown(binding.editSrStatus, DropDowns.SRStatus.name,it.SRStatus)
+            AppPreferences.getInstance().setDropDown(binding.editRequesterCompany, DropDowns.SRDetailTechnology.name,it.RequesterCompany)
+            AppPreferences.getInstance().setDropDown(binding.editPriority, DropDowns.SRDetailTechnology.name,it.Priority)
+
+
             binding.expectedDate.text = it.ExpectedDate
             binding.requestDate.text = it.RequestDate
-            binding.editRequesterCompany.setText(it.RequesterCompany)
-            binding.editTechnology.setText(it.Technology)
-//            binding.editHubSite.text=it.HubSite as Editable
-            binding.editOPCOSiteID.setText("Data Not found")
-            binding.editPriority.setText(it.Priority)
+            binding.editOPCOSiteID.setText("")
             binding.editNominalsLat.setText(it.locLatitude)
             binding.editNominalsLong.setText(it.locLongitude)
             binding.editSearchRadius.setText(it.SearchRadius)
@@ -56,10 +62,6 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
             srDetailsData.let{
                 it.ExpectedDate = binding.expectedDate.text.toString()
                 it.RequestDate = binding.requestDate.text.toString()
-                it.SRStatus=binding.editSrStatus.text.toString()
-                it.RequesterCompany=binding.editRequesterCompany.text.toString()
-                it.Technology=binding.editTechnology.text.toString()
-                it.Priority=binding.editPriority.text.toString()
                 it.ExpectedDate=binding.expectedDate.text.toString()
                 it.locLatitude=binding.editNominalsLat.text.toString()
                 it.locLongitude=binding.editNominalsLong.text.toString()

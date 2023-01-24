@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
+import com.smarthub.baseapplication.model.taskModel.Processtemplatecallmanual
 import java.io.IOException
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -227,6 +227,15 @@ object Utils {
         return registerData
     }
 
+    fun getCreateNewTaskDummyData(): Processtemplatecallmanual {
+        var processTemplatemanual = Processtemplatecallmanual(
+            "",true,"",true,
+            "",true,0,0,"","",
+            "","","","", true,"","",true,
+            "","","","","","")
+        return processTemplatemanual
+    }
+
     fun compareDate(date : String) : Int{
         AppLogger.log("compareDate:$date")
         try {
@@ -257,6 +266,19 @@ object Utils {
         dateInString = sdf.format(resultdate)
         return dateInString
     }
+
+    fun getCurrentFormatedDate() : String{
+        try {
+            val time = Calendar.getInstance().time
+            val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
+            val current = formatter.format(time)
+            return current
+        }catch (e : Exception){
+            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return ""
+    }
+
     fun getFormatedDate(d : String,format:String) : String{
         var date=d
         if(date.contains(" "))
@@ -276,5 +298,26 @@ object Utils {
 
     fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)
+    }
+
+
+    fun dateDiffrence(firstdate : String,secondDate : String): Int {
+        AppLogger.log("dateDiffrence:$firstdate, $secondDate")
+        try {
+            val date1: Date
+            val date2: Date
+            val dates = SimpleDateFormat("yyyy-MM-dd")
+            date1 = dates.parse(firstdate)
+            date2 = dates.parse(secondDate)
+            AppLogger.log("dateDiffrence:$date1, $date2")
+            val difference: Long = date2.time - date1.time
+            val differenceDates = difference / (24 * 60 * 60 * 1000)
+            AppLogger.log("date diffrence error :${differenceDates}")
+            return differenceDates.toInt()
+        }catch (e:java.lang.Exception){
+            AppLogger.log("date diffrence error :${e.message}")
+
+        }
+        return 0
     }
 }

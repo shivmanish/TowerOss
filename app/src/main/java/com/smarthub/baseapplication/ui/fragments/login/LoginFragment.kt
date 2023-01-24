@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,12 +22,14 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.network.User
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private var loginViewModel : LoginViewModel?=null
     private var user : User?=null
@@ -100,18 +103,13 @@ class LoginFragment : Fragment() {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
-                    AppPreferences.getInstance().saveString("accessToken", "${it.data.access}")
-                    AppPreferences.getInstance().saveString("refreshToken", "${it.data.refresh}")
-
-
+                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
+                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
-                    val intent = Intent (requireContext(), DashboardActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    requireActivity().finish()
+                    showLoader()
+                    loginViewModel?.getProfileData()
                     return@observe
                 }else{
-
                     Toast.makeText(requireContext(),"error:"+it.message,Toast.LENGTH_LONG).show()
                     enableErrorMsg()
                 }
@@ -123,6 +121,25 @@ class LoginFragment : Fragment() {
             }
 
         }
+
+        if (loginViewModel?.profileResponse?.hasActiveObservers() == true){
+            loginViewModel?.profileResponse?.removeObservers(viewLifecycleOwner)
+        }
+        loginViewModel?.profileResponse?.observe(viewLifecycleOwner) {
+            hideLoader()
+            if (it != null && it.status==Resource.Status.SUCCESS) {
+                AppController.getInstance().ownerName = it.data?.get(0)?.company
+
+                val intent = Intent (requireContext(), DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                requireActivity().finish()
+            }else{
+                Log.d("status", AppConstants.GENERIC_ERROR)
+                Toast.makeText(requireContext(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
+
         user?.username = binding?.userMail?.text.toString()
         (requireActivity() as BaseActivity).showLoader()
         loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))

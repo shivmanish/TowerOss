@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"/>
             <ImageView
                 android:id="@+id/img_edit"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:src="@drawable/edit_ico_black"
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"

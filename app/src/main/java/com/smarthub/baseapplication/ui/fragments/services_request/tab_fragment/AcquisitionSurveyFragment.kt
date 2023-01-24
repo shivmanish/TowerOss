@@ -35,8 +35,8 @@ class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, var Id: 
         adapter= AcquisitionSurveyFragAdapter(requireContext(),this@AcquisitionSurveyFragment,data!!)
         binding?.acquisitionSurveyList?.adapter = adapter
 
-        if (viewmodel?.serviceRequestModelResponse?.hasActiveObservers() == true){
-            viewmodel?.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true){
+            viewmodel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
             binding?.swipeLayout!!.isRefreshing = false
@@ -59,6 +59,7 @@ class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, var Id: 
         binding?.swipeLayout!!.setOnRefreshListener {
             viewmodel.serviceRequestAll(ServicesRequestActivity.Id!!)
         }
+        binding?.swipeLayout?.isEnabled = false
     }
 
     override fun onDestroy() {

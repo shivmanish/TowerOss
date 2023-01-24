@@ -106,7 +106,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/Power_type"
-                            android:text="AC"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -128,7 +128,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/voltage"
-                            android:text="60"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -149,7 +149,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/max_total_power"
-                            android:text="60"
+                            android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -170,7 +170,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="90"
+                            android:text=""
                             android:id="@+id/battery_backup"
                             android:maxLines="1"
                             android:ellipsize="marquee"
@@ -193,7 +193,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="dhfsj"
+                    android:text=""
                     android:id="@+id/remark"
                     android:maxLines="1"
                     android:ellipsize="marquee"

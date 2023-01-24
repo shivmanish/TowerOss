@@ -1,26 +1,31 @@
 package com.smarthub.baseapplication.ui.fragments.task.editdialog
 
+import android.app.Dialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.TaskDetailActivity
 import com.smarthub.baseapplication.databinding.CloseTaskBottomSheetBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class CloseTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask,var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: CloseTaskBottomSheetBinding
     var basicinfoModel: BasicinfoModel? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
+//        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         basicinfoModel = BasicinfoModel()
         binding = CloseTaskBottomSheetBinding.bind(view)
 
@@ -28,7 +33,11 @@ class CloseTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask,var viewMo
             dismiss()
         }
         binding.closeTaskBtn.setOnClickListener {
-            dismiss()
+            val intent = Intent (requireActivity(), TaskDetailActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("url", "${task.Taskid}")
+            intent.putExtra("siteId","${task.siteid}")
+            requireActivity().startActivity(intent)
         }
     }
 
@@ -44,5 +53,12 @@ class CloseTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask,var viewMo
         binding = CloseTaskBottomSheetBinding.inflate(inflater)
         return binding.root
     }
+
+//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+//        val dialog = BottomSheetDialog(requireContext(), theme)
+//        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+//        dialog.behavior.skipCollapsed = false
+//        return dialog
+//    }
 
 }

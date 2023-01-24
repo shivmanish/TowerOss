@@ -7,24 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.smarthub.baseapplication.databinding.SubmitAllertBottomSheetBinding
-import com.smarthub.baseapplication.ui.alert.model.response.Data
+import com.smarthub.baseapplication.databinding.SubmitAlertBottomSheetBinding
+import com.smarthub.baseapplication.ui.alert.model.newData.NewData
 import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.utils.Utils
 
-class SubmitAletrBottomSheet(contentLayoutId: Int, var data: Data) :
+class SubmitAletrBottomSheet(contentLayoutId: Int, var data: NewData, var listener : SubmitAlertBottomSheetListener) :
     BaseBottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding: SubmitAllertBottomSheetBinding
+    lateinit var binding: SubmitAlertBottomSheetBinding
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = SubmitAlertBottomSheetBinding.inflate(inflater)
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.8).toInt()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = SubmitAllertBottomSheetBinding.inflate(inflater)
         binding.troublemaker.text = data.SATroubleMaker
         binding.issuetype.text = data.SAIssueType
         binding.issuetypetwo.text = data.SAIssueType
@@ -47,8 +42,15 @@ class SubmitAletrBottomSheet(contentLayoutId: Int, var data: Data) :
 
         binding.recipentaName.text = comma_string
 
-        binding.icMenuClose.setOnClickListener {
+//        binding.icMenuClose.setOnClickListener {
+//            dismiss()
+//        }
+        binding.close.setOnClickListener {
             dismiss()
+        }
+        binding.chat.setOnClickListener {
+            dismiss()
+//            listener.clickedChat()
         }
         return binding.root
     }
@@ -56,7 +58,11 @@ class SubmitAletrBottomSheet(contentLayoutId: Int, var data: Data) :
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        dialog.behavior.skipCollapsed = false
+        dialog.behavior.skipCollapsed = true
         return dialog
+    }
+
+    interface SubmitAlertBottomSheetListener{
+        fun clickedChat()
     }
 }

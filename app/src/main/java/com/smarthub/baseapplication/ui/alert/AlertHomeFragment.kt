@@ -21,7 +21,43 @@ class AlertHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.customizeAlert.setOnClickListener {
-            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment())
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("custom"))
+        }
+
+        binding.icTheft.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Theft"))
+        }
+
+        binding.icFire.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Fire"))
+        }
+
+        binding.icDoorOpen.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Door Open"))
+        }
+
+        binding.icSabotage.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Sabotage"))
+        }
+
+        binding.icSuspiciousActivity.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Suspicious Activity"))
+        }
+
+        binding.icHygieneIssue.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Hygiene Issue"))
+        }
+
+        binding.icPropertyDamage.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Property Damage"))
+        }
+
+        binding.icMobGathering.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Mob Gathering"))
+        }
+
+        binding.icFlood.setOnClickListener {
+            findNavController().navigate(AlertHomeFragmentDirections.actionAlertHomeFragmentToAlertStatusFragment("Flood"))
         }
 
         binding.back.setOnClickListener {
