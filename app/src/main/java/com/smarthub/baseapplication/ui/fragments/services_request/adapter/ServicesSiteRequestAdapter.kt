@@ -341,7 +341,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
                  holder.RadioAnteenaTableList.adapter= servicerequestData?.RadioAntennas?.let {
-                     RadioAntinaTableAdapter(context,listener, it)
+                     RadioAntinaTableAdapter(context,listener,
+                         it as ArrayList<RadioAntenna>,serviceRequestAllData!!)
                  }
                 holder.binding.imgAdd.setOnClickListener {
                     listener.editEquipmentClicked(null,null,null)
@@ -406,10 +407,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.EmailId.text=RequesterInfoData?.EmailID
                     holder.binding.PhoneNumber.text=RequesterInfoData?.PhoneNumber
                 }
-
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.editRequestInfoClicked()
-                }
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {
@@ -455,9 +452,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             serviceRequestAllData: ServiceRequestAllDataItem?
         )
         fun editEquipmentClicked(
-            equipment: Equipment,
-            serviceRequestAllData: ServiceRequestAllDataItem,
-            s: String
+            equipment: Equipment?,
+            serviceRequestAllData: ServiceRequestAllDataItem?,
+            s: String?
         )
         fun viewEquipmentClicked(position:Int)
         fun editRadioAnteenaClicked( equipment: RadioAntenna,

@@ -5,20 +5,19 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.Equipment
 import com.smarthub.baseapplication.model.serviceRequest.RadioAntenna
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
-class RadioAntinaTableAdapter (var context: Context,
-                               var listener: ServicesRequestAdapter.ServicesRequestLisListener,
-                               var radioAntenna: ArrayList<RadioAntenna>,
-                               var serviceRequestAllData: ServiceRequestAllDataItem
+class RadioAntinaTableAdapter(
+    var context: Context,
+    var listener: ServicesRequestAdapter.ServicesRequestLisListener,
+    var radioAntenna: ArrayList<RadioAntenna>,
+    var serviceRequestAllData: ServiceRequestAllDataItem
 ): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
     fun addItem(){
     }

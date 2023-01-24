@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/dp10"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/root"
+    android:background="@drawable/expand_colaps_background"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="MissingConstraints">
     <TextView
         android:tag="false"
-        android:paddingTop="@dimen/dp5"
+        android:paddingTop="@dimen/dp10"
         android:paddingBottom="@dimen/dp10"
         android:textColor="@color/black"
         android:maxLines="1"
@@ -19,18 +28,18 @@
         android:textSize="@dimen/sp13"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingRight="@dimen/dp15"
         android:layout_height="wrap_content"/>
+</LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
         android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/expansion_text"
+        app:layout_constraintTop_toBottomOf="@+id/root"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     <View
         android:background="#D9D9D9"
