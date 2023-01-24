@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.fragments.task.TaskActivity
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import java.util.*
 
@@ -128,23 +129,26 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             holder.itemView.setOnClickListener {
                 listener.closeTask(item)
             }
-            if(item.Status!="Closed" && item.Auto!="true")
-            {
+
                 holder.binding.taskClose.setOnClickListener {
-                    val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    intent.putExtra("url", "${item.Taskid}")
-                    intent.putExtra("siteId","${item.siteid}")
-                    holder.itemView.context.startActivity(intent)
+                    if(item.Status!="Closed")
+                    {
+                        val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        intent.putExtra("url", "${item.Taskid}")
+                        intent.putExtra("siteId","${item.siteid}")
+                        holder.itemView.context.startActivity(intent)
+                    }
                 }
-            }
             if(item.Status=="Closed"){
                 holder.binding.taskClose.text="Task Closed"
+                holder.binding.taskClose.isEnabled=false
             }
             else{
                 holder.binding.taskClose.setText(R.string.Close_task)
+                holder.binding.taskClose.isEnabled=true
             }
-            if(item.Auto=="true"){
+            if(item.Auto=="True"){
                 holder.binding.editTaskItem.text="A"
                 holder.binding.btnEdit.visibility=View.GONE
             }
@@ -152,10 +156,10 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                 holder.binding.editTaskItem.text="M"
                 holder.binding.btnEdit.visibility=View.VISIBLE
             }
-            if(item.AssigneeDepartment.isNotEmpty() && item.AssigneeDepartment!=null){
-                holder.binding.personTaskItem.setOnClickListener {
+            holder.binding.personTaskItem.setOnClickListener {
+                AppLogger.log("before updated Data for task Assign : $item")
                     listener.assignTask(item)
-                }
+
             }
         }
         if (holder is HeaderViewHold){
