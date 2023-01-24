@@ -1,20 +1,33 @@
 package com.smarthub.baseapplication.network.repo
 
 import androidx.lifecycle.MutableLiveData
+import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
-import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel
-import com.smarthub.baseapplication.model.taskModel.CreateNewTaskResponse
+import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown
+import com.smarthub.baseapplication.model.search.SearchList
+import com.smarthub.baseapplication.model.taskModel.*
 import com.smarthub.baseapplication.network.APIClient
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse
+import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew
+import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TaskActivityRepo(private val apiClient: APIClient) {
+class TaskActivityRepo(private var apiClient: APIClient) {
 
     val TAG = "TaskActivityRepo"
     val createNewTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
+    val assignTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
+    var geoGraphyDropDownDataResponse: SingleLiveEvent<Resource<GeoGraphyLevelData>>? = null
+
+    init {
+        geoGraphyDropDownDataResponse=SingleLiveEvent<Resource<GeoGraphyLevelData>>()
+    }
+
     
 
     fun createNewTask(data: CreateNewTaskModel?) {
@@ -49,6 +62,77 @@ class TaskActivityRepo(private val apiClient: APIClient) {
                         "Failed",
                         AppConstants.GENERIC_ERROR
                     )
+                )
+            }
+        })
+    }
+
+    fun getGeoGraphylevelDropdownData(data: GeoGraphyLevelPostData?) {
+        apiClient.getGeoGraphyLevel(data!!).enqueue(object : Callback<GeoGraphyLevelData> {
+            override fun onResponse(
+                call: Call<GeoGraphyLevelData?>,
+                response: Response<GeoGraphyLevelData?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<GeoGraphyLevelData?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<GeoGraphyLevelData?>) {
+                if (response.body() != null) {
+                    geoGraphyDropDownDataResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    geoGraphyDropDownDataResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null) createNewTaskResponse.postValue(
+                    CreateNewTaskResponse("Failed", iThrowableLocalMessage)
+                ) else createNewTaskResponse.postValue(
+                    CreateNewTaskResponse(
+                        "Failed",
+                        AppConstants.GENERIC_ERROR
+                    )
+                )
+            }
+        })
+    }
+
+    fun assignTask(data: TaskAssignModel?) {
+        apiClient.AssignTask(data!!).enqueue(object : Callback<CreateNewTaskResponse?> {
+            override fun onResponse(
+                call: Call<CreateNewTaskResponse?>,
+                response: Response<CreateNewTaskResponse?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<CreateNewTaskResponse?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<CreateNewTaskResponse?>) {
+                if (response.body() != null) {
+                    assignTaskResponse.postValue(response.body())
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    assignTaskResponse.postValue(CreateNewTaskResponse("Failed", response.message))
+                } else if (iThrowableLocalMessage != null) assignTaskResponse.postValue(
+                    CreateNewTaskResponse("Failed", iThrowableLocalMessage)
+                ) else assignTaskResponse.postValue(
+                    CreateNewTaskResponse("Failed", AppConstants.GENERIC_ERROR)
                 )
             }
         })
