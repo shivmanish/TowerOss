@@ -51,7 +51,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
         binding.assigneeDepartment.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener{
             override fun itemSelected(departmentName: DropDownItem) {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
-                Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
+               // Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
                 viewmodel.getUser(GetUserList(departmentName.name,AppController.getInstance().ownerName))
                 observerData()
             }
@@ -60,7 +60,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
         binding.AssignTo.setOnItemSelectionListener(object : CustomUserSpinner.ItemSelectedListener{
             override fun itemSelected(item: UserDataResponseItem) {
                 AppLogger.log("Assign To setOnItemSelectedListener :${binding.AssignTo.selectedValue.phone} ${item.last_name}")
-                Toast.makeText(context,"Assign To setOnItemSelectedListener ${item.first_name}",Toast.LENGTH_SHORT).show()
+               // Toast.makeText(context,"Assign To setOnItemSelectedListener ${item.first_name}",Toast.LENGTH_SHORT).show()
 
             }
         })
@@ -76,7 +76,8 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
                     i+=1
                 }
                 binding.assigneeDepartment.setSpinnerData(departmentList)
-            }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
+            }else AppLogger.log("Department not fetched")
+              //  Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
         }
         viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
 
@@ -102,7 +103,8 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
                 AssignToList.clear()
                 AssignToList.addAll(it.data)
                 binding.AssignTo.setSpinnerData(AssignToList)
-            }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
+            }else AppLogger.log("Department not fetched")
+               // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
 
         })
     }
