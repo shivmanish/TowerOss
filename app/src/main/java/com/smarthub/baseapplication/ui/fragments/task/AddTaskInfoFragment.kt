@@ -6,18 +6,17 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentAddTaskInfoBinding
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
+import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
-import com.smarthub.baseapplication.ui.alert.dialog.AlertUserListBottomSheet
-import com.smarthub.baseapplication.ui.alert.dialog.SubmitAletrBottomSheet
+import com.smarthub.baseapplication.model.taskModel.TaskInfoItem
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
@@ -27,12 +26,12 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 import com.smarthub.baseapplication.widgets.CustomSpinner
-import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
 class AddTaskInfoFragment : BaseFragment() {
     lateinit var viewmodel: AlertViewModel
     lateinit var taskViewmodel: TaskViewModel
     lateinit var binding: FragmentAddTaskInfoBinding
+     var taskInfo : TaskInfoItem? = null
     private lateinit var mainViewModel:MainViewModel
     var taskForASingleSiteList=ArrayList<DropDownItem>()
     var PRiorityList=ArrayList<DropDownItem>()
@@ -52,6 +51,11 @@ class AddTaskInfoFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(requireActivity().intent.hasExtra("data")){
+            var data = Gson().fromJson(requireActivity().intent.getStringExtra("data"),MyTeamTask::class.java)
+            taskViewmodel.getTaskById(data.id1)
+            taskInfoObserver()
+        }
          binding.next.setOnClickListener{
              taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
              taskViewmodel.processTemplatemanual.Taskinstruction=binding.taskInstruction.text.toString()
@@ -69,6 +73,14 @@ class AddTaskInfoFragment : BaseFragment() {
             requireActivity().finish()
         }
 
+        if(taskInfo != null){
+            binding.TaskName.text=taskInfo?.Taskname?.toEditable()
+            binding.taskInstruction.text=taskInfo?.Taskinstruction?.toEditable()
+            binding.Weightage.text=taskInfo?.Weightage?.toEditable()
+            binding.sla.text=taskInfo?.SLA
+            binding.startDate.text=taskInfo?.startdate
+            binding.endDate.text=taskInfo?.enddate
+        }
         setDatePickerView(binding.startDate)
         setDatePickerView(binding.endDate)
 
@@ -110,13 +122,7 @@ class AddTaskInfoFragment : BaseFragment() {
                 observerData()
             }
         })
-        binding.assignTo.setOnItemSelectionListener(object : CustomUserSpinner.ItemSelectedListener{
-            override fun itemSelected(item: UserDataResponseItem) {
-                AppLogger.log("Assign To setOnItemSelectedListener :${binding.assignTo.selectedValue.phone} ${item.last_name}")
-                Toast.makeText(context,"Assign To setOnItemSelectedListener ${item.first_name}",Toast.LENGTH_SHORT).show()
 
-            }
-        })
 
         if (viewmodel.departmentDropdown.hasActiveObservers())
             viewmodel.departmentDropdown.removeObservers(viewLifecycleOwner)
@@ -128,7 +134,10 @@ class AddTaskInfoFragment : BaseFragment() {
                     departmentList.add(DropDownItem(x,"$i"))
                     i+=1
                 }
-                binding.assigneeDepartment.setSpinnerData(departmentList)
+                if(taskInfo != null)
+                    binding.assigneeDepartment.setSpinnerDataByName(departmentList,taskInfo?.AssigneeDepartment)
+                else
+                  binding.assigneeDepartment.setSpinnerData(departmentList)
             }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         }
         viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
@@ -141,8 +150,25 @@ class AddTaskInfoFragment : BaseFragment() {
             if (it?.data != null) {
                AssignToList.clear()
                AssignToList.addAll(it.data)
-                binding.assignTo.setSpinnerData(AssignToList)
-            }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
+                if(taskInfo != null)
+                    binding.assignTo.setSpinnerDataByPhonNumber(AssignToList,taskInfo?.actorname)
+                else
+                    binding.assignTo.setSpinnerData(AssignToList)
+            }else AppLogger.log("Department not fetched")
+        })
+    }
+
+    fun taskInfoObserver(){
+        if (taskViewmodel.getTaskInfoResponse!!.hasActiveObservers())
+            taskViewmodel.getTaskInfoResponse!!.removeObservers(viewLifecycleOwner)
+        taskViewmodel.getTaskInfoResponse!!.observe(viewLifecycleOwner, Observer {
+            if (it?.data != null) {
+                try {
+                    taskInfo=it.data.get(0)
+                }catch (e:Exception){
+                    AppLogger.log("Somthing went wront to fetch task info ${e.localizedMessage}")
+                }
+            }else AppLogger.log("Department not fetched")
 
         })
     }

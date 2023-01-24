@@ -23,9 +23,11 @@ class TaskActivityRepo(private var apiClient: APIClient) {
     val createNewTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     val assignTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     var geoGraphyDropDownDataResponse: SingleLiveEvent<Resource<GeoGraphyLevelData>>? = null
+    var taskInfoResponse: SingleLiveEvent<Resource<TaskInfo>>? = null
 
     init {
         geoGraphyDropDownDataResponse=SingleLiveEvent<Resource<GeoGraphyLevelData>>()
+        taskInfoResponse=SingleLiveEvent<Resource<TaskInfo>>()
     }
 
     
@@ -133,6 +135,43 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                     CreateNewTaskResponse("Failed", iThrowableLocalMessage)
                 ) else assignTaskResponse.postValue(
                     CreateNewTaskResponse("Failed", AppConstants.GENERIC_ERROR)
+                )
+            }
+        })
+    }
+
+    fun getTaskInfoById(data: GetTaskInfoPostData?) {
+        apiClient.getTaskInfo(data!!).enqueue(object : Callback<TaskInfo> {
+            override fun onResponse(
+                call: Call<TaskInfo?>,
+                response: Response<TaskInfo?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<TaskInfo?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<TaskInfo?>) {
+                if (response.body() != null) {
+                    taskInfoResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    taskInfoResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null) createNewTaskResponse.postValue(
+                    CreateNewTaskResponse("Failed", iThrowableLocalMessage)
+                ) else createNewTaskResponse.postValue(
+                    CreateNewTaskResponse(
+                        "Failed",
+                        AppConstants.GENERIC_ERROR
+                    )
                 )
             }
         })

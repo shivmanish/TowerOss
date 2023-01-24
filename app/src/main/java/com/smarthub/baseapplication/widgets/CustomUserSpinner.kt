@@ -43,10 +43,10 @@ class CustomUserSpinner : AppCompatSpinner {
         onItemSelectedListener = listener
     }
 
-    fun setSpinnerData(data: List<UserDataResponseItem>, seletedString: String?) {
+    fun setSpinnerDataByPhonNumber(data: List<UserDataResponseItem>, seletedNumber: String?) {
         this.data = data
         adapter = CustomUserArrayAdapter(context, data)
-        setSelection(getPositionOfItem(seletedString))
+        setSelection(getIndexByNumber(seletedNumber))
         var listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
@@ -68,6 +68,15 @@ class CustomUserSpinner : AppCompatSpinner {
         var index = 0
         for (i in 0 until count) {
             if (getItemAtPosition(i) == myString) {
+                index = i
+            }
+        }
+        return index
+    }
+    private fun getIndexByNumber(PhoneNumber: String?): Int {
+        var index = 0
+        for (i in data.indices) {
+            if (data[i].phone == PhoneNumber) {
                 index = i
             }
         }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.TaskDetailActivity
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
@@ -157,8 +158,21 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                 holder.binding.btnEdit.visibility=View.VISIBLE
             }
             holder.binding.personTaskItem.setOnClickListener {
-                AppLogger.log("before updated Data for task Assign : $item")
+                if(item.Auto=="True"){
+                    AppLogger.log("before updated Data for task Assign : $item")
                     listener.assignTask(item)
+                }
+
+            }
+            holder.binding.btnEdit.setOnClickListener {
+                if(item.Auto!="True"){
+                    AppLogger.log("before updated Data for task Assign : $item")
+                    listener.assignTask(item)
+                    val intent = Intent(holder.itemView.context, TaskActivity::class.java)
+                    intent.putExtra("data",Gson().toJson(item))
+                    intent.putExtra("title","Edit Task")
+                    holder.itemView.context.startActivity(intent)
+                }
 
             }
         }
