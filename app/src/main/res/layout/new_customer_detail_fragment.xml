@@ -62,16 +62,6 @@
                         android:textSize="@dimen/dp12" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/menu"
-                    android:layout_width="@dimen/dp24"
-                    android:layout_height="@dimen/dp24"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
-                    android:paddingLeft="@dimen/dp5"
-                    android:rotation="90"
-                    app:tint="@color/white"
-                    android:src="@drawable/menu" />
 
 
             </LinearLayout>
@@ -91,7 +81,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:textSize="14sp"
+                        android:textSize="@dimen/dp12"
                         android:text="Site ID:"
                         android:textColor="@color/milky_white"
                         android:layout_width="wrap_content"
@@ -100,7 +90,7 @@
                     <TextView
                         android:id="@+id/site_id"
                         android:text="CE-MHMUMB-SC-A0123"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/dp12"
                         android:paddingStart="5dp"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
@@ -115,7 +105,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:textSize="14sp"
+                        android:textSize="@dimen/dp12"
                         android:text="RFI Date:"
                         android:textColor="@color/milky_white"
                         android:layout_width="wrap_content"
@@ -125,7 +115,7 @@
                         android:id="@+id/rfi_date"
                         android:text="10-Oct-2018"
                         android:maxLength="10"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/dp12"
                         android:paddingStart="5dp"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"

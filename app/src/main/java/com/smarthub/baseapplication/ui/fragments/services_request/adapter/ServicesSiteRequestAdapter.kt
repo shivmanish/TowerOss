@@ -273,14 +273,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority)
 
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
-                    holder.binding.SRStatus.text=SrDetailsData?.SRStatus
-                    holder.binding.RequesterCompany.text=SrDetailsData?.RequesterCompany
-                    holder.binding.RFTechnology.text=SrDetailsData?.Technology
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
                     holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
                     holder.binding.OPCOSIteID.text="Data Not Found"
                     holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
-                    holder.binding.Priority.text=SrDetailsData?.Priority
                     holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
                     holder.binding.nominalsLatLong.text="${SrDetailsData?.locLatitude},${SrDetailsData?.locLongitude}"
                     holder.binding.SearchRadius.text=SrDetailsData?.SearchRadius
