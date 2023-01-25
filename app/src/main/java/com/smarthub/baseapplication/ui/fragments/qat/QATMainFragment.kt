@@ -1,4 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.qat
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -72,9 +73,10 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
 
 
     override fun clickedItem(data: QatCardItem?, Id: String, index: Int) {
-        var fragment = QatNestedItemFragment()
-        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
+//        var fragment = QatNestedItemFragment()
+//        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
 
+        Intent(requireContext(),QatActivity::class.java).apply { startActivity(this) }
     }
 
     /*override fun itemClicked() {

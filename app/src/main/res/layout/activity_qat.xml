@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    tools:context=".ui.fragments.qat.QatActivity">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,18 +27,20 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:padding="7dp"
+                    android:padding="5dp"
                     android:id="@+id/back"
-                    android:layout_marginLeft="@dimen/dp10"
                     app:tint="@color/white"
                     android:src="@drawable/ic_back"
                     android:adjustViewBounds="true"
                     android:layout_width="@dimen/dp35"
                     android:layout_height="@dimen/dp35"/>
+
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp10"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
@@ -47,20 +49,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Reliance jio pvt ltd"
+                        android:text="CE-MH-MUM-SC-A0"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dp18" />
-
+                        android:textSize="@dimen/sp15" />
                     <TextView
-                        android:padding="2dp"
-                        android:id="@+id/sub_title"
+                        android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/milky_white"
-                        android:text="#DEL-VIL-SC-0001"
-                        android:textSize="@dimen/dp12" />
+                        android:text="Mangolpuri"
+                        android:textColor="#F5CA40"
+                        android:textSize="@dimen/sp12" />
+
+
                 </LinearLayout>
+
 
 
 
@@ -70,52 +73,34 @@
                 android:layout_height="1dp"
                 android:background="@color/light_gray"/>
             <LinearLayout
+                android:paddingTop="@dimen/dp5"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp35">
                 <LinearLayout
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_weight="3"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:textSize="@dimen/dp12"
-                        android:text="Site ID:"
-                        android:textColor="@color/milky_white"
+                        android:textSize="14sp"
+                        android:text="QAT"
+                        android:textColor="#CCCCCC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <TextView
-                        android:id="@+id/site_id"
-                        android:text="CE-MHMUMB-SC-A0123"
-                        android:textSize="@dimen/dp12"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:gravity="right"
+                    android:gravity="center_horizontal"
                     android:layout_weight="2"
-                    android:layout_marginRight="@dimen/dp12"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
-
                     <TextView
-                        android:textSize="@dimen/dp12"
-                        android:text="RFI Date:"
-                        android:textColor="@color/milky_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/rfi_date"
-                        android:text="10-Oct-2018"
-                        android:maxLength="10"
-                        android:textSize="@dimen/dp12"
+                        android:text="10-Nov-2018"
+                        android:textSize="14sp"
                         android:paddingStart="5dp"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
@@ -128,26 +113,26 @@
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
+        android:elevation="@dimen/dp10"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp38"
         android:background="@color/tab_deselected"
-        android:layout_gravity="start"
         app:tabPaddingEnd="@dimen/dp5"
-        app:tabPaddingStart="@dimen/dp5"
-        app:tabIndicatorHeight="3dp"
-        app:tabMinWidth="@dimen/dp100"
         app:tabIndicatorColor="@color/yellow"
-        app:tabMode="scrollable"
+        app:tabGravity="fill"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabPaddingStart="@dimen/dp5"
         app:layout_constraintTop_toBottomOf="@+id/card"
         app:tabTextAppearance="@style/TabTextView"
         />
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:cardElevation="2dp"
-        android:layout_marginStart="@dimen/dp5"
-        android:layout_marginEnd="@dimen/dp5"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs">
         <androidx.viewpager.widget.ViewPager
@@ -158,14 +143,5 @@
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
     </com.google.android.material.card.MaterialCardView>
 
-    <ImageView
-        android:id="@+id/add_more"
-        android:adjustViewBounds="true"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
-        android:layout_marginEnd="@dimen/dp20"
-        android:layout_marginBottom="@dimen/dp20"
-        app:srcCompat="@drawable/ic_new_menu_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

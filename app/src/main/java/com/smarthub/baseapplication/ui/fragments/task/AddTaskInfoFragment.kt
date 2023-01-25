@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.search.SearchIdFragment
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -46,13 +47,12 @@ class AddTaskInfoFragment : BaseFragment() {
         mainViewModel.isActionBarHide(false)
         binding = FragmentAddTaskInfoBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(requireActivity().intent.hasExtra("data")){
-            var data = Gson().fromJson(requireActivity().intent.getStringExtra("data"),MyTeamTask::class.java)
+            val data = Gson().fromJson(requireActivity().intent.getStringExtra("data"),MyTeamTask::class.java)
             taskViewmodel.getTaskById(data.id1)
             taskInfoObserver()
         }
@@ -124,6 +124,9 @@ class AddTaskInfoFragment : BaseFragment() {
             }
         })
 
+        binding.siteId.setOnClickListener {
+            findNavController().navigate(AddTaskInfoFragmentDirections.actionAddTaskFragment2ToSearchIdFragment2(true))
+        }
 
         if (viewmodel.departmentDropdown.hasActiveObservers())
             viewmodel.departmentDropdown.removeObservers(viewLifecycleOwner)
@@ -141,7 +144,10 @@ class AddTaskInfoFragment : BaseFragment() {
                   binding.assigneeDepartment.setSpinnerData(departmentList)
             }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         }
-        viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
+        viewmodel.getDepartments(DropdownParam("SMRT","department"))
+        observerData()
+
+        binding.siteId.text = SearchIdFragment.item.name
     }
     private fun observerData() {
         if (viewmodel.userDataResponseLiveData.hasActiveObservers())
@@ -158,7 +164,7 @@ class AddTaskInfoFragment : BaseFragment() {
         })
     }
 
-    fun taskInfoObserver(){
+    private fun taskInfoObserver(){
         if (taskViewmodel.getTaskInfoResponse!!.hasActiveObservers())
             taskViewmodel.getTaskInfoResponse!!.removeObservers(viewLifecycleOwner)
         taskViewmodel.getTaskInfoResponse!!.observe(viewLifecycleOwner, Observer {

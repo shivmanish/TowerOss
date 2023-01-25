@@ -81,7 +81,7 @@ class TaskThirdFragment:Fragment() {
         viewmodel.getTaskInfoResponse!!.observe(viewLifecycleOwner, Observer {
             if (it?.data != null) {
                 try {
-                    taskInfo=it.data.get(0)
+                    taskInfo= it.data[0]
                 }catch (e:Exception){
                     AppLogger.log("Somthing went wront to fetch task info ${e.localizedMessage}")
                 }

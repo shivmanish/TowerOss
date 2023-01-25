@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileDat
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.utils.AppConstants;
+import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 
 import java.util.List;
@@ -285,6 +286,7 @@ public class LoginRepo {
     public void getProfileData() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("get","");
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.getProfile(jsonObject).enqueue(new Callback<List<ProfileData>>() {
             @Override
             public void onResponse(Call<List<ProfileData>> call, Response<List<ProfileData>> response) {

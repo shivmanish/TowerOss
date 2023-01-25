@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:paddingBottom="@dimen/dp14"
+        android:padding="@dimen/dp8"
         android:textColor="@color/black"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +20,14 @@
         android:textSize="@dimen/sp13"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.8"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <View
+        app:layout_constraintTop_toBottomOf="@+id/expansion_text"
+        android:layout_width="match_parent"
+        android:id="@+id/bar"
+        android:background="#0A000000"
+        android:layout_height="1dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
         android:orientation="vertical"
@@ -31,6 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/qat_item_view"
-        app:layout_constraintTop_toBottomOf="@+id/expansion_text"
+        app:layout_constraintTop_toBottomOf="@+id/bar"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -121,7 +121,7 @@ public class AlertRepo {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("Get",model);
-        jsonObject.addProperty("ownerName", AppController.getInstance().ownerName);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.sendAlert(jsonObject).enqueue(new Callback<SendAlertResponse>() {
             @Override
             public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
@@ -198,7 +198,7 @@ public class AlertRepo {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("chating",id);
         jsonObject.addProperty("message",sms);
-        jsonObject.addProperty("ownerName", AppController.getInstance().ownerName);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.sendAlert(jsonObject).enqueue(new Callback<SendAlertResponse>() {
             @Override
             public void onResponse(Call<SendAlertResponse> call, Response<SendAlertResponse> response) {
@@ -314,6 +314,7 @@ public class AlertRepo {
     public void searchSiteAll(String category,String id) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(category,id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         AppLogger.INSTANCE.log("category:"+category);
         if (category.equalsIgnoreCase("name"))
             apiClient.searchSiteByName(jsonObject).enqueue(new Callback<List<SearchListItem>>() {

@@ -30,17 +30,6 @@
             android:ellipsize="marquee"
             android:text="BTS"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/Equipment_Type"
-            android:layout_weight="1"
-            android:textSize="@dimen/dp12"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="0dp"
-            android:maxLines="1"
-            android:ellipsize="marquee"
-            android:text="Outdoor"
-            android:gravity="center"
-            android:layout_height="wrap_content"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_weight="1.3"
