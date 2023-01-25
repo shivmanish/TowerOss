@@ -26,11 +26,17 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type4 = "Backhaul Links"
     var type5 = "Requester Info"
     var type6 = "Attachments"
+//    private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
     private var SrDetailsData: SRDetails ?=null
     private var BackhaulLinksData: BackHaulLink?=null
     private var RequesterInfoData: RequesterInfo ?=null
     var currentOpened = -1
+
+//    fun setData(data : BasicInfoModelDropDown){
+//        this.data = data
+//        notifyDataSetChanged()
+//    }
 
     fun updateData(serviceRequestAllData: ServiceRequestAllDataItem?){
         this.serviceRequestAllData = serviceRequestAllData
@@ -55,17 +61,17 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
-        if (list[position]==type1)
+        if (list[position] is String && list[position]==type1)
             return 1
-        else if (list[position]==type2)
+        else if (list[position] is String && list[position]==type2)
             return 2
-        else if (list[position]==type3)
+        else if (list[position] is String && list[position]==type3)
             return 3
-        else if (list[position]==type4)
+        else if (list[position] is String && list[position]==type4)
             return 4
-        else if (list[position]==type5)
+        else if (list[position] is String && list[position]==type5)
             return 5
-        else if (list[position]==type6)
+        else if (list[position] is String && list[position]==type6)
             return 6
         return 0
     }
@@ -100,6 +106,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
         }
         private fun addTableItem(item:String){
             if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
@@ -122,7 +131,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
+            binding.imgAdd.setOnClickListener {
+                addTableItem("dfsdh")
+            }
         }
         private fun addTableItem(item:String){
             if (RadioAnteenaTableList.adapter!=null && RadioAnteenaTableList.adapter is RadioAntinaTableAdapter){
@@ -262,11 +273,14 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority)
 
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
+                    holder.binding.SRStatus.text=SrDetailsData?.SRStatus
+                    holder.binding.RequesterCompany.text=SrDetailsData?.RequesterCompany
+                    holder.binding.RFTechnology.text=SrDetailsData?.Technology
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
                     holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
-                    holder.binding.OPCOSIteID.text=""
+                    holder.binding.OPCOSIteID.text="Data Not Found"
                     holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
-
+                    holder.binding.Priority.text=SrDetailsData?.Priority
                     holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
                     holder.binding.nominalsLatLong.text="${SrDetailsData?.locLatitude},${SrDetailsData?.locLongitude}"
                     holder.binding.SearchRadius.text=SrDetailsData?.SearchRadius
@@ -327,7 +341,8 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
                 holder.binding.itemTitleStr.text = list[position]
                  holder.RadioAnteenaTableList.adapter= servicerequestData?.RadioAntennas?.let {
-                     RadioAntinaTableAdapter(context,listener, it)
+                     RadioAntinaTableAdapter(context,listener,
+                         it as ArrayList<RadioAntenna>,serviceRequestAllData!!)
                  }
                 holder.binding.imgAdd.setOnClickListener {
                     listener.editEquipmentClicked(null,null,null)
@@ -364,7 +379,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.editRequestInfoClicked()
+                    if (SrDetailsData!=null) {
+                        listener.editRequestInfoClicked(RequesterInfoData!!,serviceRequestAllData!!)
+                    }
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -389,10 +406,6 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.RequesterExcutiveName.text=RequesterInfoData?.RequesterExecutiveName
                     holder.binding.EmailId.text=RequesterInfoData?.EmailID
                     holder.binding.PhoneNumber.text=RequesterInfoData?.PhoneNumber
-                }
-
-                holder.binding.imgEdit.setOnClickListener {
-                    listener.editRequestInfoClicked()
                 }
             }
             is ViewHold6 -> {
@@ -434,10 +447,19 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
         fun attachmentItemClicked()
         fun editSrDetailsItemClicked(srDetailsData: SRDetails,serviceRequestAllData: ServiceRequestAllDataItem)
         fun editBackhaulLinkItemClicked()
-        fun editRequestInfoClicked()
-        fun editEquipmentClicked(equipment: Equipment?, serviceRequestAllData: ServiceRequestAllDataItem?, s: String?)
+        fun editRequestInfoClicked(
+            backhaulLinksData: RequesterInfo,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
+        fun editEquipmentClicked(
+            equipment: Equipment?,
+            serviceRequestAllData: ServiceRequestAllDataItem?,
+            s: String?
+        )
         fun viewEquipmentClicked(position:Int)
-        fun editRadioAnteenaClicked(position:Int)
+        fun editRadioAnteenaClicked( equipment: RadioAntenna,
+                                     serviceRequestAllData: ServiceRequestAllDataItem,
+                                     s: String)
         fun viewRadioAnteenaClicked(position:Int)
 
     }

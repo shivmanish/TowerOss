@@ -5,30 +5,25 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.RadioAntenna
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
 
-class RadioAntinaTableAdapter (var context : Context, var listener : ServicesRequestAdapter.ServicesRequestLisListener,radioAnteenaData:List<RadioAntenna>): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
-    var list  = ArrayList<RadioAntenna>()
-    init {
-        list=radioAnteenaData as ArrayList<RadioAntenna>
-    }
+class RadioAntinaTableAdapter(
+    var context: Context,
+    var listener: ServicesRequestAdapter.ServicesRequestLisListener,
+    var radioAntenna: ArrayList<RadioAntenna>,
+    var serviceRequestAllData: ServiceRequestAllDataItem
+): RecyclerView.Adapter<RadioAntinaTableAdapter.ViewHold>() {
     fun addItem(){
-//        list.add(
-//            RadioAntenna(AntennaCount = "3", AntennaHeight = "76", AntennaSize = "50",
-//        AntennaTotalWeight = "54",Technology = "empty", created_at = "22-10-2022", id = 448, isActive = true,
-//        modified_at = "22-12-2022")
-//        )
-//        notifyItemInserted(list.size.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        radioAntenna.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -43,28 +38,24 @@ class RadioAntinaTableAdapter (var context : Context, var listener : ServicesReq
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-        holder.binding.AnteenaTechnology.text=""
-        holder.binding.AnteenaCount.text=list[position].AntennaCount
-        holder.binding.AnteenaShape.text=""
-        holder.binding.AnteenaSize.text=list[position].AntennaSize
+        holder.binding.AnteenaTechnology.text="Na"
+        holder.binding.AnteenaCount.text=radioAntenna[position].AntennaCount
+        holder.binding.AnteenaShape.text="Na"
+        holder.binding.AnteenaSize.text=radioAntenna[position].AntennaSize
 
     }
     override fun getItemCount(): Int {
-        return list.size
+        return radioAntenna.size
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
-        // create object of PopupMenu and pass context and view where we want
-        // to show the popup menu
         val popupMenu = PopupMenu(context , view)
-        // add the menu
         popupMenu.inflate(R.menu.options_menu)
-        // implement on menu item click Listener
         popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
             override fun onMenuItemClick(item: MenuItem?): Boolean {
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editRadioAnteenaClicked(position)
+                        listener.editRadioAnteenaClicked(radioAntenna.get(position),serviceRequestAllData,"edit")
                         return true
                     }
                     // in the same way you can implement others

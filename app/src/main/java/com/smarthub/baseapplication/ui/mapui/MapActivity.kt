@@ -10,6 +10,8 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,23 +19,31 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMapBinding
+import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService
+import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponseItem
+import com.smarthub.baseapplication.ui.mapui.viewmodel.MapViewModel
 
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+    private var mapObj: GoogleMap? = null
+    var candraw: Boolean = false
     var mapFragment: SupportMapFragment? = null
-    var latlonglist: ArrayList<LatlongValue>? = null
+    var lat:String? = null
+    var long:String? = null
+    var rad:String? = null
+    lateinit var viewmodel:MapViewModel
+
     lateinit var binding: ActivityMapBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMapBinding.inflate(layoutInflater)
+        viewmodel = ViewModelProvider(this).get(MapViewModel::class.java)
         setContentView(binding.root)
+        lat = intent.getStringExtra("lat")
+        long = intent.getStringExtra("long")
+        rad = intent.getStringExtra("rad")
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        latlonglist = ArrayList<LatlongValue>()
-        latlonglist!!.add(LatlongValue(20.906166, 85.616768, "Site one", "01"))
-        latlonglist!!.add(LatlongValue(20.894459, 85.595809, "Site two", "02"))
-        latlonglist!!.add(LatlongValue(20.887563, 85.629649, "Site three", "03"))
-        latlonglist!!.add(LatlongValue(20.893016, 85.614353, "Site four", "04"))
         setMap()
 
         binding.filter.setOnClickListener {
@@ -59,7 +69,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.siteCategory.onItemSelectedListener = listener
         binding.siteTime.onItemSelectedListener = listener
         binding.opcoName.onItemSelectedListener = listener
-
+        viewmodel.mapmarketLivedata!!.observe(this, Observer {
+            if(it!=null && it.data!=null) {
+                showpointsonmap(it.data)
+            }
+        })
     }
 
     fun setMap() {
@@ -69,27 +83,35 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     override fun onMapReady(mMap: GoogleMap) {
-        for (latlong in latlonglist!!) {
+        mapObj = mMap
+        viewmodel.fetchData(MapMarkerService(Lat = lat!!,Long =long!!, Radius   = rad!!))
+    }
+
+    fun showpointsonmap(latlonglist : ArrayList<MarkerResponseItem>){
+        if(mapObj!=null) {
+
+            for (latlong in latlonglist!!) {
 
 
-            var marker = MarkerOptions().position(LatLng(latlong.lattitue, latlong.longitude))
-                .title("Site Name: " + latlong.sitename+"\nSite Id: " + latlong.site_Id)
-                .icon(BitmapFromVector(getApplicationContext(), R.drawable.map_marker))
-            mMap.addMarker(marker)!!.isVisible = true
-            val cameraPosition = CameraPosition.Builder()
-                .target(
-                    LatLng(
-                        latlong.lattitue,
-                        latlong.longitude
-                    )
-                ) // Sets the center of the map to location user
-                .zoom(17f) // Sets the zoom
-                .bearing(90f) // Sets the orientation of the camera to east
-                .tilt(40f) // Sets the tilt of the camera to 30 degrees
-                .build() // Creates a CameraPosition from the builder
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                var marker = MarkerOptions().position(LatLng(latlong.locLatitude.toDouble(), latlong.locLongitude.toDouble()))
+                    .title("Site Name: " + latlong.siteName + "\nSite Id: " + latlong.siteID)
+                    .icon(BitmapFromVector(getApplicationContext(), R.drawable.map_marker))
+                mapObj!!.addMarker(marker)!!.isVisible = true
+                val cameraPosition = CameraPosition.Builder()
+                    .target(
+                        LatLng(
+                            latlong.locLatitude.toDouble(),
+                            latlong.locLongitude.toDouble()
+                        )
+                    ) // Sets the center of the map to location user
+                    .zoom(15f) // Sets the zoom
+                    .bearing(90f) // Sets the orientation of the camera to east
+                    .tilt(40f) // Sets the tilt of the camera to 30 degrees
+                    .build() // Creates a CameraPosition from the builder
+                mapObj!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
+            }
         }
     }
 
@@ -137,4 +159,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+
+
 }

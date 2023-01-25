@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
@@ -17,7 +16,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
-import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
+
 class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener {
     lateinit var adapter:OpcoTssrAdapter
     lateinit var viewmodel: HomeViewModel
@@ -124,7 +123,13 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : 
     }
 
     override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = RequestInfoBottomSheet(R.layout.request_info_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = RequestInfoBottomSheet(
+//            R.layout.request_info_bottom_sheet_dialog,
+//            backhaulLinksData,
+//            serviceRequestAllData,
+//            viewmodel,
+//            Id
+//        )
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 }

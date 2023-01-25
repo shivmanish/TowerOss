@@ -11,5 +11,6 @@ data class Equipment(
     var created_at: String? = null,
     var id: Int? = null,
     var isActive: Boolean? = null,
-    var modified_at: String ?=null
+    var modified_at: String ?=null,
+    var Type:String? =null
 )

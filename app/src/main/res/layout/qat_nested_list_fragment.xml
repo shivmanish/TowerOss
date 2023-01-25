@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#f1f1f1">
+    android:background="@color/white"
+    android:clickable="true">
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Pole Mount"
+                        android:text="CE-MH-MUM-SC-A0"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp15" />
                     <TextView
@@ -57,8 +58,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Punchpoint- 04"
-                        android:textColor="#A5A5A5"
+                        android:text="Mangolpuri"
+                        android:textColor="#F5CA40"
                         android:textSize="@dimen/sp12" />
 
 
@@ -111,82 +112,12 @@
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-    <androidx.core.widget.NestedScrollView
-        android:orientation="vertical"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/card"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp10"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:scrollbars="vertical"
-            android:background="#f1f1f1"
-            android:paddingBottom="@dimen/dp50"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/title"
-                app:layout_constraintWidth_percent="0.9"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:tag="false"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp3"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="Electircal / Civil Material"
-                    android:id="@+id/expansion_text"
-                    android:textSize="@dimen/sp13"
-                    android:fontFamily="@font/poppins"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:paddingBottom="@dimen/dp14"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="Pole &amp; Mount Material > Pole"
-                    android:id="@+id/expansion_sub_text"
-                    android:textSize="@dimen/sp11"
-                    android:fontFamily="@font/poppins_medium"
-                    app:layout_constraintTop_toBottomOf="@+id/expansion_text"
-                    android:layout_width="match_parent"
-                    android:layout_marginEnd="@dimen/dp10"
-                    android:layout_marginStart="@dimen/dp10"
-                    android:layout_height="wrap_content"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_open"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                tools:listitem="@layout/qat_punch_point_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
-
-            <TextView
-                android:id="@+id/btn_create"
-                android:layout_marginTop="@dimen/dp20"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:backgroundTint="#3D4E6D"
-                android:textColor="@color/white"
-                android:text="Create QAT"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_open"
-                android:background="@drawable/login_yellow_bg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp45"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/card" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,15 +11,16 @@ import com.smarthub.baseapplication.databinding.BuildingDetailsBotomSheetBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
 import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurveyBuildingDetail
+import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASBoundryStructureDetail
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class BuildingDetailsBottomSheet(
+class BoundaryStructureDetailsBottomSheet(
     contentLayoutId: Int,
-    var buildingDetailData: ASAquisitionSurveyBuildingDetail?,
+    var buildingDetailData: ASBoundryStructureDetail?,
     var serviceRequestAllData: ServiceRequestAllDataItem?,
     var viewmodel: HomeViewModel?,
     var Id: String?
@@ -35,19 +36,14 @@ var basicinfoModel:BasicinfoModel? = null
             dismiss()
         }
 buildingDetailData!!.let {
-    binding.editBuildingLatLong.setText(it.Latitude+""+it.Longitude)
-    binding.EditAddress.setText(it.BuildingAddress)
-    binding.editTypicalFloorArea.setText(it.TypicalFloorArea)
-    binding.editYearofConstruction.setText(it.ConstructionYear)
-    binding.spinBuildingType.data =  AppPreferences.getInstance().getDropDown(DropDowns.BuildingBuildType.name)
-    binding.spinGate.data =  AppPreferences.getInstance().getDropDown(DropDowns.GateAndFence.name)
-    binding.spinSiteAccessArea.data =  AppPreferences.getInstance().getDropDown(DropDowns.SiteAccessArea.name)
+//    binding.editBuildingLatLong.setText(it.Latitude+""+it.Longitude)
+//    binding.EditAddress.setText(it.BuildingAddress)
+//    binding.editTypicalFloorArea.setText(it.TypicalFloorArea)
+//    binding.editYearofConstruction.setText(it.ConstructionYear)
+//    binding.spinBuildingType.data =  AppPreferences.getInstance().getDropDown(DropDowns.BuildingBuildType.name)
+//    binding.spinGate.data =  AppPreferences.getInstance().getDropDown(DropDowns.GateAndFence.name)
+//    binding.spinSiteAccessArea.data =  AppPreferences.getInstance().getDropDown(DropDowns.SiteAccessArea.name)
 
-    AppPreferences.getInstance().setDropDown(
-        binding.spinNoofFloors,
-        DropDowns.NoOfFloors.name,
-        it.NoOfFloors
-    )
 
     binding.spinNoofFloors.onItemSelectedListener = object :
         AdapterView.OnItemSelectedListener {
@@ -57,9 +53,9 @@ buildingDetailData!!.let {
             position: Int,
             id: Long
         ) {
-            buildingDetailData!!.NoOfFloors =
-                AppPreferences.getInstance().getDropDown(DropDowns.NoOfFloors.name)
-                    .get(position).id
+//            buildingDetailData!!.NoOfFloors =
+//                AppPreferences.getInstance().getDropDown(DropDowns.NoOfFloors.name)
+//                    .get(position).id
 
         }
 
@@ -70,9 +66,9 @@ buildingDetailData!!.let {
 
     binding.include.update.setOnClickListener {
         buildingDetailData!!.apply {
-            this.BuildingAddress = binding.EditAddress.text.toString()
-            this.TypicalFloorArea = binding.editTypicalFloorArea.text.toString()
-            ConstructionYear = binding.editYearofConstruction.text.toString()
+//            this.BuildingAddress = binding.EditAddress.text.toString()
+//            this.TypicalFloorArea = binding.editTypicalFloorArea.text.toString()
+//            ConstructionYear = binding.editYearofConstruction.text.toString()
         }
 
         val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
@@ -80,8 +76,8 @@ buildingDetailData!!.let {
         mServiceRequestAllDataItem.ASAcquitionSurvey = ArrayList()
 
         val acquitionSurvey = ASAquisitionSurvey()
-        acquitionSurvey.ASAquisitionSurveyBuildingDetail = ArrayList()
-        acquitionSurvey.ASAquisitionSurveyBuildingDetail?.add(buildingDetailData!!)
+        acquitionSurvey.ASBoundryStructureDetail = ArrayList()
+        acquitionSurvey.ASBoundryStructureDetail?.add(buildingDetailData!!)
         acquitionSurvey.id =       buildingDetailData!!.id
         mServiceRequestAllDataItem.ASAcquitionSurvey?.add(acquitionSurvey)
         val serviceRequestList = ServiceRequestAllData()

@@ -36,17 +36,18 @@ class QatSubTitleAdapter(var listener: QatItemListener) : RecyclerView.Adapter<Q
         init {
             binding.expansionText.tag = false
             binding.expansionText.setOnClickListener {
-                if (it.tag is Boolean && it.tag as Boolean){
+               /* if (it.tag is Boolean && it.tag as Boolean){
                     binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
                     Utils.collapse(binding.listView)
                 }else{
                     binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
                     Utils.expand(binding.listView)
                 }
-                it.tag = !(it.tag as Boolean)
+                it.tag = !(it.tag as Boolean)*/
+                listener.itemClicked()
             }
-            Utils
-            binding.listView.adapter = QatItemAdapter(listener)
+//            Utils
+//            binding.listView.adapter = QatItemAdapter(listener)
         }
     }
 

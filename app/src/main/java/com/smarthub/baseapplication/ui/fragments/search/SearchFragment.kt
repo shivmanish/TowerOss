@@ -23,36 +23,42 @@ import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener, SearchChipAdapter.SearchChipAdapterListner {
+class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
+    SearchCategoryAdapter.SearchCategoryListener, SearchChipAdapter.SearchChipAdapterListner {
 
     var fetchedData = ""
     var isDataFetched = true
-    var item: SearchListItem?=null
+    var item: SearchListItem? = null
     var searchHistoryList = SearchHistoryList()
-    var selectedCategory: String="siteID"
+    var selectedCategory: String = "siteID"
     private lateinit var binding: SearchFragmentBinding
-    lateinit var homeViewModel : HomeViewModel
-    lateinit var searchResultAdapter : SearchResultAdapter
+    lateinit var homeViewModel: HomeViewModel
+    lateinit var searchResultAdapter: SearchResultAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = SearchFragmentBinding.inflate(layoutInflater)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        searchHistoryList=AppPreferences.getInstance().searchList
+        searchHistoryList = AppPreferences.getInstance().searchList
         return binding.root
     }
 
-    fun clearResult(){
+    fun clearResult() {
         searchResultAdapter.list.clear()
         searchResultAdapter.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        disableButton()
-        val searchChipAdapter = SearchChipAdapter(requireContext(),this@SearchFragment)
+          disableButton()
+        val searchChipAdapter = SearchChipAdapter(requireContext(), this@SearchFragment)
         binding.chipLayout.adapter = searchChipAdapter
         searchChipAdapter.updateList(searchHistoryList)
-        val chipsLayoutManager = ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
+        val chipsLayoutManager =
+            ChipsLayoutManager.newBuilder(requireContext()) //set vertical gravity for all items in a row. Default = Gravity.CENTER_VERTICAL
                 .setChildGravity(Gravity.TOP) //whether RecyclerView can scroll. TRUE by default
                 .setScrollingEnabled(true) //set maximum views count in a particular row
                 .setMaxViewsInRow(5) //set gravity resolver where you can determine gravity for item in position.
@@ -108,7 +114,6 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 //                Toast.makeText(requireContext(),"error in fetching data",Toast.LENGTH_SHORT).show()
             }
         }
-
         binding.searchCardView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -132,9 +137,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                         homeViewModel.fetchSiteSearchData("name",fetchedData)
                     }
 //                    fetchedData = ""
-                }
-                else if(fetchedData.isEmpty()){
-//                    Toast.makeText(requireContext(),"Input can't be empty",Toast.LENGTH_SHORT).show()
+                } else if (fetchedData.isEmpty()) {
+                    Toast.makeText(requireContext(), "Input can't be empty", Toast.LENGTH_SHORT)
+                        .show()
                     disableButton()
                 }
 
@@ -153,7 +158,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
 
            }else {
-//               Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
+               Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
                homeViewModel.fetchDropDown()
            }
         }
@@ -165,26 +170,51 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                     if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
                         homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
                     AppLogger.log("Site data fetched")
-//                    Toast.makeText(requireContext(),"Site data fetched",Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${it.data?.item!![0].id}"))
-                }else{
-//                    Toast.makeText(requireContext(),"Request failed",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Site data fetched", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(
+                        SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(
+                            "${it.data?.item!![0].id}"
+                        )
+                    )
+                } else {
+//                    Toast.makeText(requireContext(), "Request failed", Toast.LENGTH_SHORT).show()
 //                    AppLogger.log("Request failed e :${it.message}")
                 }
             } else {
                 AppLogger.log("Something went wrong")
-//                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
         binding.viewOnMap.setOnClickListener {
+            var lat = binding.lat.text.toString()
+            var long = binding.longi.text.toString()
+            var radius = binding.radious.text.toString()
+
+            if(lat.equals("")){
+                Toast.makeText(requireContext(),"Please enter Lattitude!",Toast.LENGTH_SHORT).show()
+            return@setOnClickListener
+            }
+            if(long.equals("")){
+                Toast.makeText(requireContext(),"Please enter Longitude!",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(radius.equals("")){
+                Toast.makeText(requireContext(),"Please enter Radius!",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             val intent = Intent(requireContext(), MapActivity::class.java)
+            intent.putExtra("lat",lat)
+            intent.putExtra("long",long)
+            intent.putExtra("rad",radius)
             startActivity(intent)
 
         }
 
         binding.notificationLayout.setOnClickListener {
             findNavController().navigate(SearchFragmentDirections.actionSiteBoardToNotificationsFragment2())
-            Log.d("notification Nvigate","navigated from home to navigation fragment")
+            Log.d("notification Nvigate", "navigated from home to navigation fragment")
         }
 
     }
@@ -253,9 +283,33 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun selectedCategory(item: String) {
         this.selectedCategory = item
         Log.d("status", "selectedCategory:$item")
+        viewHandler()
     }
+
     override fun clickedSearchHistoryItem(historyItem: SearchListItem?) {
-        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(historyItem?.id.toString()))
+        findNavController().navigate(
+            SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(
+                historyItem?.id.toString()
+            )
+        )
+    }
+
+    fun viewHandler() {
+        if(selectedCategory.equals("LatLongRadius",true)){
+            binding.searchCardView.visibility = View.GONE
+            binding.latlongSearchBox.visibility = View.VISIBLE
+            binding.lnButtonLayout.visibility = View.VISIBLE
+            binding.viewOnIbo.alpha = 0.1f
+            binding.viewOnMap.alpha = 1.0f
+            binding.viewOnIbo.isEnabled = false
+            binding.viewOnMap.isEnabled = true
+
+        }else{
+            binding.searchCardView.visibility = View.VISIBLE
+            binding.latlongSearchBox.visibility = View.GONE
+            disableButton()
+        }
+
     }
 
 }

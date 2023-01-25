@@ -88,6 +88,7 @@ class QatMainFrqagment(var id:String) : BaseFragment(), QatMainAdapterListener {
         }
     }
 
+
     override fun onViewPageSelected() {
         super.onViewPageSelected()
         if (isDataLoaded){

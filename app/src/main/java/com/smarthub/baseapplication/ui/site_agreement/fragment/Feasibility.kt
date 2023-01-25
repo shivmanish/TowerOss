@@ -36,7 +36,14 @@ class Feasibility :Fragment(), FeasibilityLeaseListAdapter.FeasibilityListItemLi
 //        Toast.makeText(requireContext(),"Item Clicked",Toast.LENGTH_SHORT).show()
     }
     override fun detailsItemClicked() {
-        var bottomSheetDialogFragment = BuildingDetailsBottomSheet(R.layout.building_details_botom_sheet)
+        var bottomSheetDialogFragment = BuildingDetailsBottomSheet(
+            R.layout.building_details_botom_sheet,
+
+            null,
+            null,
+            null,
+            ""
+        )
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
     }
 }
