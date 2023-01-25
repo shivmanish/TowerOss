@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.smarthub.baseapplication.databinding.CaptureSiteFragmentDataBinding
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.CaptureSiteAdapter
+import com.smarthub.baseapplication.utils.Utils
 
 class ActivityCaptureSiteFragment: Fragment() {
     lateinit var binding:CaptureSiteFragmentDataBinding
@@ -20,7 +23,9 @@ class ActivityCaptureSiteFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.list.layoutManager = LinearLayoutManager(context)
-        binding.list.adapter = CaptureSiteAdapter(requireContext())
+        var json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
+        var model = Gson().fromJson(json,TaskDropDownModel::class.java)
+        binding.list.adapter = CaptureSiteAdapter(requireContext(),model)
 
         binding.next.setOnClickListener {
             nextClicked()
