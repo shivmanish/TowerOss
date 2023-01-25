@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/qat_navigation"
+    app:startDestination="@id/qat_details_fragment">
+
+    <fragment
+        android:id="@+id/qat_details_fragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.qat.QatPunchPointFragment"
+        android:label="Qat Fragment"
+        tools:layout="@layout/fragment_punch_point_qat"></fragment>
+</navigation>
