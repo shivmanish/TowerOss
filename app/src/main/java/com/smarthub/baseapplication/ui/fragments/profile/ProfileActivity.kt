@@ -2,11 +2,11 @@ package com.smarthub.baseapplication.ui.fragments.profile
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
