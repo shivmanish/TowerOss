@@ -12,7 +12,7 @@ public class EndPoints {
     public static final String SITE_INFO_DROP_DOWN = "/toweross/SiteInfoDropDownView/";
     public static final String SITE_INFO_DROP_DOWN_NEW = "/toweross/DropDown/";
     public static final String SITE_INFO_MODEL = "/toweross/Basicinfoapi/";
-    public static final String SITE_INFO_DATA = "/toweross/SiteInfoApi/";
+    public static final String  SITE_INFO_DATA = "/toweross/SiteInfoApi/";
     public static final String NOTIFICATION_DATA = "/toweross/Notifoications/";
     public static final String SITE_INFO_SEARCH_DATA = "/toweross/Basicinfosearchdata/";
     public static final String SITE_INFO_SEARCH_DATA_NEW = "/toweross/Sitebasicgetdata/";

@@ -223,6 +223,7 @@
                         <TextView
                             android:id="@+id/RFI_Acceptance_Date"
                             android:text="05-Oct-2018"
+                            android:maxLength="10"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -247,6 +248,7 @@
                         <TextView
                             android:id="@+id/RFR_Date"
                             android:text="10-Nov-2018"
+                            android:maxLength="10"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -272,6 +274,7 @@
                         <TextView
                             android:id="@+id/OPCO_Sign_off_date"
                             android:text="15-Nov-2018"
+                            android:maxLength="10"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -299,7 +302,7 @@
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableEnd="@drawable/ic_arrow_down_black"/>
+                            />
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
