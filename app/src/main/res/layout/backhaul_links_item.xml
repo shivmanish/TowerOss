@@ -1,98 +1,317 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginRight="@dimen/dp5"
     android:layout_marginLeft="@dimen/dp5"
+    android:layout_marginRight="@dimen/dp5"
     android:elevation="@dimen/dp30"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_layout"
         android:background="@color/collapse_card_bg"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45">
+
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="Backhaul Link"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="@dimen/dp14"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:gravity="center_vertical"
-                android:textColor="@color/color1"
-                android:background="@color/transparent"
                 style="@style/RowTestItemEdit"
                 android:layout_width="0dp"
-                app:layout_constraintWidth_percent=".7"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:text="Backhaul Link"
+                android:textColor="@color/color1"
+                android:textSize="@dimen/dp14"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".7" />
+
             <ImageView
                 android:id="@+id/img_add"
-                android:visibility="gone"
-                android:src="@drawable/add_ico"
-                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="@dimen/dp12"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:padding="@dimen/dp12"
+                android:src="@drawable/add_ico"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/img_dropdown"
-                android:src="@drawable/ic_arrow_down_black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="40dp"
                 android:paddingStart="@dimen/dp16"
                 android:paddingEnd="@dimen/dp16"
+                android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+
     <View
         android:id="@+id/item_line"
-        android:alpha="1"
-        app:layout_constraintTop_toBottomOf="@+id/title_layout"
-        android:background="@color/view_color"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_width="match_parent"/>
-
+        android:alpha="1"
+        android:background="@color/view_color"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout" />
 
 
     <LinearLayout
-        android:visibility="visible"
         android:id="@+id/item_collapse"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/item_line">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:scrollbars="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/SR_Radio_Anteena_Table_Item"
-                android:orientation="vertical"
-                tools:listitem="@layout/srdetails_backhaul_link_items"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:orientation="vertical">
 
+                <!--
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/SR_Radio_Anteena_Table_Item"
+                                android:orientation="vertical"
+                                tools:listitem="@layout/srdetails_backhaul_link_items"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                            </androidx.recyclerview.widget.RecyclerView>
+                -->
+
+                <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp15"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_layout">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_bold"
+                            android:maxLines="1"
+                            android:text="TAB 1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp14"
+                            android:textStyle="bold" />
+                        <ImageView
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:layout_width="wrap_content"
+                            android:src="@drawable/add_text_ico"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
+                            android:text="Technology"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Link Count"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.3"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Fiber Pairs"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/backhaul_table_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                     tools:itemCount="5"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/backhaul_table_one_item"></androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp15"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_layout">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_bold"
+                            android:maxLines="1"
+                            android:text="TAB 2"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp14"
+                            android:textStyle="bold" />
+                        <ImageView
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:layout_width="wrap_content"
+                            android:src="@drawable/add_text_ico"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
+                            android:text="Technology"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Link Count"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_weight="1"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Antenna size"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.3"
+                            android:ellipsize="marquee"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Antenna height"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp12"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/backhaul_table_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:itemCount="5"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/equipment_table_item"></androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 

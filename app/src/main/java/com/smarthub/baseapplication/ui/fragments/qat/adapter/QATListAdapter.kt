@@ -38,6 +38,7 @@ class QATListAdapter(var context: Context, var listener: QatMainAdapterListener,
         holder.binding.root.setOnClickListener {
             listener.clickedItem(list.get(position),Id,position)
         }
+
     }
 
     override fun getItemCount(): Int {

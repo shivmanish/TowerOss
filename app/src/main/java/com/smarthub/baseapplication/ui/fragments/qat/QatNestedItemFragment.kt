@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,6 @@ class QatNestedItemFragment : Fragment(), QatItemListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.qat_nested_list_fragment, container, false)
-
         binding = QatNestedListFragmentBinding.bind(view)
         binding?.list?.adapter = QatTitleAdapter(this@QatNestedItemFragment)
         return view
@@ -49,9 +49,15 @@ class QatNestedItemFragment : Fragment(), QatItemListener {
         }
     }
     override fun itemClicked() :String {
-        var fragment = QatPunchPointFragment()
+      /*  var fragment = QatPunchPointFragment()
         addFragment(fragment)
-        return "ghjsjbsdkvna"
+        return "ghjsjbsdkvna"*/
+
+        Intent(requireContext(),QatDetailsActivity::class.java).apply {
+            startActivity(this)
+        }
+        return ""
+
     }
 
 }
