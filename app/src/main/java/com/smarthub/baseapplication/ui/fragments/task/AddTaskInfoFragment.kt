@@ -119,7 +119,7 @@ class AddTaskInfoFragment : BaseFragment() {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
                 Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
                 viewmodel.getUser(GetUserList(departmentName.name,AppController.getInstance().ownerName))
-                observerData()
+
             }
         })
 
@@ -141,7 +141,7 @@ class AddTaskInfoFragment : BaseFragment() {
             }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         }
         viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
-
+        observerData()
     }
     private fun observerData() {
         if (viewmodel.userDataResponseLiveData.hasActiveObservers())
