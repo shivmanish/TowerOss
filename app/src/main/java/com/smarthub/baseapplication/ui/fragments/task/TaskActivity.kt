@@ -23,6 +23,9 @@ class TaskActivity : BaseActivity() {
         dataBinding?.mainActionBar?.setOnClickListener {
             onBackPressed()
         }
+        if (intent.hasExtra("title")){
+              dataBinding?.titleText?.text= intent.getStringExtra("title")
+        }
 
     }
 

@@ -51,7 +51,9 @@ import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel;
 import com.smarthub.baseapplication.model.taskModel.CreateNewTaskResponse;
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelData;
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData;
+import com.smarthub.baseapplication.model.taskModel.GetTaskInfoPostData;
 import com.smarthub.baseapplication.model.taskModel.TaskAssignModel;
+import com.smarthub.baseapplication.model.taskModel.TaskInfo;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
@@ -278,6 +280,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.WORKFLOW_DATA_URL)
     Call<CreateNewTaskResponse> AssignTask(@Body TaskAssignModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<TaskInfo> getTaskInfo(@Body GetTaskInfoPostData data);
 
 }
 

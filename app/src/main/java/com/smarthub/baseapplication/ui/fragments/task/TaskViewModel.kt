@@ -18,6 +18,7 @@ class TaskViewModel : ViewModel() {
     var processTemplatemanual :Processtemplatecallmanual
     var geoGraphyLevelDataResponse: SingleLiveEvent<Resource<GeoGraphyLevelData>>?=null
     var taskAssignResponse: MutableLiveData<CreateNewTaskResponse>?=null
+    var getTaskInfoResponse: SingleLiveEvent<Resource<TaskInfo>>?=null
 
 init {
     processTemplatemanual = Utils.getCreateNewTaskDummyData()
@@ -25,6 +26,7 @@ init {
     createTaskResponse=taskActivityRepo?.createNewTaskResponse
     geoGraphyLevelDataResponse=taskActivityRepo?.geoGraphyDropDownDataResponse
     taskAssignResponse=taskActivityRepo?.assignTaskResponse
+    getTaskInfoResponse=taskActivityRepo?.taskInfoResponse
 }
 
     fun updateProcessTempletManual(item:Processtemplatecallmanual){
@@ -52,5 +54,10 @@ init {
     fun taskAssign(data:Updateprocesstask){
         var item = TaskAssignModel(data)
         taskActivityRepo?.assignTask(item)
+    }
+
+    fun getTaskById(id: String){
+        val item = GetTaskInfoPostData(id.toInt())
+        taskActivityRepo?.getTaskInfoById(item)
     }
 }

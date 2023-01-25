@@ -220,6 +220,7 @@
                             style="@style/RowTestItemEdit"
                             android:text="2022-11-10"
                             android:textSize="@dimen/dp15"
+                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:drawableEnd="@drawable/icon_date"
                             android:layout_height="wrap_content"/>
@@ -247,6 +248,7 @@
                             android:textSize="@dimen/dp15"
                             android:drawableEnd="@drawable/icon_date"
                             android:text="2022-11-22"
+                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
