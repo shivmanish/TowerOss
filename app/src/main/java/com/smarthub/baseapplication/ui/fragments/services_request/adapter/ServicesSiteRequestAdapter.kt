@@ -145,7 +145,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
     class ViewHold4(itemView: View) : ViewHold(itemView) {
         var binding : BackhaulLinksItemBinding = BackhaulLinksItemBinding.bind(itemView)
-        var BackhaulLinkTableList: RecyclerView=binding.SRRadioAnteenaTableItem
+//        var BackhaulLinkTableList: RecyclerView=binding.SRRadioAnteenaTableItem
         init {
             binding.collapsingLayout.tag = false
 
@@ -366,8 +366,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.BackhaulLinkTableList.setHasFixedSize(true)
-                holder.BackhaulLinkTableList.adapter=BackhaulLinkTableAdapter(context,listener)
+
+//                holder.BackhaulLinkTableList.setHasFixedSize(true)
+//                holder.BackhaulLinkTableList.adapter=BackhaulLinkTableAdapter(context,listener)
 
                 holder.binding.imgAdd.setOnClickListener {
                     listener.editEquipmentClicked(null,null,null)
