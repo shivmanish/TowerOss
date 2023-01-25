@@ -97,7 +97,7 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
                         return@Observer
                     }
                 }
-                AppLogger.log("user list : $AssignToList")
+                AppLogger.log("user not found list : $AssignToList")
 
             }else AppLogger.log("Department not fetched")
         })
