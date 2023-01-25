@@ -78,6 +78,7 @@ class SplashActivity : BaseActivity() {
             hideLoader()
             if (it != null && it.status==Resource.Status.SUCCESS) {
                 AppController.getInstance().ownerName = it.data?.get(0)?.company
+                Log.d("status", "ownerName :${AppController.getInstance().ownerName}")
                 if (isNetworkConnected){
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

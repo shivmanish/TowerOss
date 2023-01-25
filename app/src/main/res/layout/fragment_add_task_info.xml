@@ -357,11 +357,13 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                    <TextView
+                        android:text=""
+                        android:hint="Search your site here"
                         android:id="@+id/site_id"
-                        style="@style/SpinnerTheme"
+                        style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp20" />
+                        android:layout_height="wrap_content"/>
                     <View
                         android:alpha="0.37"
                         android:background="#263238"

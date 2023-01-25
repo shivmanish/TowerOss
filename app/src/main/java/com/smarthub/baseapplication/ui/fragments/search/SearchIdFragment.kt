@@ -43,6 +43,10 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         disableButton()
+        if (arguments!=null && arguments?.containsKey("hideNav")==true){
+            if (arguments?.getBoolean("hideNav",false) == true)
+                binding.toolbar.visibility = View.GONE
+        }
         searchResultAdapter = SearchResultAdapter(requireContext(),this@SearchIdFragment)
         binding.searchResult.adapter = searchResultAdapter
         binding.searchResult.setHasFixedSize(true)
@@ -62,7 +66,7 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
             if (it!=null){
                 if (it.status == Resource.Status.SUCCESS){
 
-                    if (item!=null && (item?.name==fetchedData|| item?.id==fetchedData || fetchedData.isEmpty())) {
+                    if ((item.name==fetchedData|| item.id==fetchedData || fetchedData.isEmpty())) {
 
                     }else {
                         it.data?.let { it1 -> searchResultAdapter.updateList(it1) }

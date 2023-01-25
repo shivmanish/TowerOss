@@ -10,6 +10,15 @@
         android:label="AddTaskFragment" >
         <action android:id="@+id/actionToMoveSecondFrag"
             app:destination="@+id/taskSecondFragment"/>
+        <action
+            android:id="@+id/action_addTaskFragment2_to_searchIdFragment2"
+            app:destination="@id/searchIdFragment2"
+            app:popUpTo="@id/addTaskFragment2" >
+            <argument
+                android:name="hideNav"
+                android:defaultValue="false"
+                app:argType="boolean"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/taskSecondFragment"
@@ -22,4 +31,8 @@
         android:id="@+id/taskThirdFragment"
         android:name="com.smarthub.baseapplication.ui.fragments.task.TaskThirdFragment"
         android:label="TaskThirdFragment" />
+    <fragment
+        android:id="@+id/searchIdFragment2"
+        android:name="com.smarthub.baseapplication.ui.fragments.search.SearchIdFragment"
+        android:label="SearchIdFragment" />
 </navigation>
