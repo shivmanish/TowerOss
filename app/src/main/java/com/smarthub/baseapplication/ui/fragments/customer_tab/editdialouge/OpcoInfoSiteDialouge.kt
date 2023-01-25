@@ -35,11 +35,11 @@ lateinit var binding: OpcoInfoSiteDialougeLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.canecl.setOnClickListener{
+        binding.Cancle.setOnClickListener{
             dialog!!.dismiss()
             dialog!!.cancel()
         }
-        binding.canecelText.setOnClickListener{
+        binding.cancelTxt.setOnClickListener{
             dialog!!.dismiss()
             dialog!!.cancel()
         }

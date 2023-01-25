@@ -100,8 +100,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
                 if (list !=null && list?.isNotEmpty()!!){
                     data= list!![position]
                     if(data!=null){
-                        holder.binding.itemTitleStr.text = "${AppPreferences.getInstance().setDropDown(holder.binding.itemTitleStr, DropDowns.Technology.name,data?.Technology)
-                        } ${data.Equipementname} - ${data.SerialNumber} - ${data.InstallationDate.substring(0,10)}"
+                        holder.binding.itemTitleStr.text = "${holder.binding.Technology.text} - ${data.Equipementname} - ${data.SerialNumber} - ${data.InstallationDate.substring(0,10)}"
                         holder.binding.EquipmentName.text=data.Equipementname
                         holder.binding.Model.text=data.Model
                         holder.binding.SerialNumber.text=data.SerialNumber

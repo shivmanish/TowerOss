@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
 
@@ -34,9 +35,8 @@ class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :Fragment(), OpcoSiteIn
 
     }
 
-    override fun opcoSiteInfoItemClicked() {
-
-        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout)
+    override fun opcoSiteInfoItemClicked(data: Opcoinfo) {
+        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout,data)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }

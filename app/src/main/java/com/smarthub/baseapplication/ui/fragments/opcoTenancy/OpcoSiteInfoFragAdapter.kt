@@ -121,7 +121,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.opcoSiteInfoItemClicked()
+                    listener.opcoSiteInfoItemClicked(data!!)
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -235,6 +235,6 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
     interface OpcoInfoLisListener {
         fun attachmentItemClicked()
         fun operationsItemClicked()
-        fun opcoSiteInfoItemClicked()
+        fun opcoSiteInfoItemClicked(data:Opcoinfo)
     }
 }

@@ -15,7 +15,7 @@ class OPCOSiteInfoEdit (contentLayoutId: Int): BottomSheetDialogFragment(content
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.canecl.setOnClickListener {
+        binding.Cancle.setOnClickListener {
             dismiss()
         }
     }
