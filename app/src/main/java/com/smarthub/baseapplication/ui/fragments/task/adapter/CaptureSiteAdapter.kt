@@ -32,7 +32,22 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel) : Ad
             updateList(position)
         }
 
-        val sublistAdapter=CaptureItemAdapter(context,list[position].tabs,holder.binding.titleCheckbox)
+        val sublistAdapter=CaptureItemAdapter(context,list[position].tabs,object : CaptureItemAdapterListener{
+            override fun onCheckedCountChanged(count: Int) {
+                holder.binding.titleCheckbox.tag = count > 0
+                if (holder.binding.titleCheckbox.tag as Boolean) holder.binding.titleCheckbox.setImageResource(R.drawable.check_selected)
+                else holder.binding.titleCheckbox.setImageResource(R.drawable.check_unselected)
+            }
+
+        })
+        holder.binding.titleCheckbox.setOnClickListener {
+            if (holder.binding.titleCheckbox.tag==null) holder.binding.titleCheckbox.tag = false
+            if (holder.binding.titleCheckbox.tag is Boolean){
+                holder.binding.titleCheckbox.tag = !(holder.binding.titleCheckbox.tag as Boolean)
+            }
+            if (holder.binding.titleCheckbox.tag as Boolean) holder.binding.titleCheckbox.setImageResource(R.drawable.check_selected)
+            else holder.binding.titleCheckbox.setImageResource(R.drawable.check_unselected)
+        }
         holder.binding.titleStr.text = list[position].name
         holder.binding.list.adapter = sublistAdapter
     }
@@ -45,6 +60,11 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel) : Ad
 
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
+        notifyDataSetChanged()
+    }
+
+    fun updateSelection(position: Int){
+        currentSelected = if(currentSelected == position) -1 else position
         notifyDataSetChanged()
     }
 }
