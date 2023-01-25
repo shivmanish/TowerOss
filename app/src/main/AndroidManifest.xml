@@ -151,6 +151,7 @@
         <activity
             android:name=".ui.fragments.task.TaskActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait"
              />
         <activity
