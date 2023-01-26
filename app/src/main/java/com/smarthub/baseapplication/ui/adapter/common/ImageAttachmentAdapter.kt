@@ -12,8 +12,6 @@ class ImageAttachmentAdapter(var listener: ItemClickListener) : RecyclerView.Ada
     var list : ArrayList<String> = ArrayList()
 
     init {
-        list.add("item1")
-        list.add("item1")
     }
     fun addItem(){
         list.add("item1")

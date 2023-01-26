@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     android:layout_marginStart="@dimen/dp15"
     app:cardBackgroundColor="#D9D9D9"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:adjustViewBounds="true"
-        android:src="@drawable/img_profile"
-        android:layout_width="@dimen/dp60"
-        android:layout_height="@dimen/dp60"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:paddingRight="@dimen/dp5"
+            android:id="@+id/attachments"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_image_24"
+            android:layout_width="@dimen/dp65"
+            android:layout_height="@dimen/dp60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginEnd="@dimen/dp3"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintTop_toTopOf="@+id/attachments"
+            app:layout_constraintEnd_toEndOf="@+id/attachments"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
