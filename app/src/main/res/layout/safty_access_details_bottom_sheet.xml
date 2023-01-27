@@ -58,12 +58,12 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
                         android:id="@+id/physicalSecurity"
-                        android:text="Available"
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -81,12 +81,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/textGate"
-                        android:text="Yes"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
+                        android:id="@+id/textGate"                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -175,12 +174,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/textCautionSignage"
-                        android:text="Available"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:text="Billable"
+                        android:id="@+id/textCautionSignage"                       style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -340,28 +338,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <include layout="@layout/layout_img_attachment"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Address"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    android:id="@+id/address"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
-            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <LinearLayout

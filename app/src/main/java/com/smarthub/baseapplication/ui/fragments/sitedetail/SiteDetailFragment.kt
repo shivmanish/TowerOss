@@ -69,11 +69,17 @@ class SiteDetailFragment : BaseFragment() {
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         if (arguments?.containsKey("id") == true)
             id = arguments?.getString("id")!!
+        if (arguments?.containsKey("siteName") == true)
+            siteName = arguments?.getString("siteName")!!
     }
 
     var id = "430"
+    var siteName ="#ce-dlhi-sc-0179"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
+        title.text = siteName
+
         setDataObserver()
     }
 
@@ -124,11 +130,11 @@ class SiteDetailFragment : BaseFragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
-        addImage.setOnClickListener {
-            val intent = Intent(activity, SiteImages::class.java)
-            startActivity(intent)
-        }
+//        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
+//        addImage.setOnClickListener {
+//            val intent = Intent(activity, SiteImages::class.java)
+//            startActivity(intent)
+//        }
     }
 
     @SuppressLint("SuspiciousIndentation")

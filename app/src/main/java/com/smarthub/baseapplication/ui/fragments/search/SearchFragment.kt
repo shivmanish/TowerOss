@@ -155,7 +155,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                if(searchHistoryList.size>=10) searchHistoryList.subList(10,searchHistoryList.size).clear()
                AppPreferences.getInstance().saveSearchList(searchHistoryList)
                searchChipAdapter.updateList(searchHistoryList)
-               findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}"))
+               findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}","${item?.name}"))
 
            }else {
                Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
@@ -173,7 +173,8 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 //                    Toast.makeText(requireContext(), "Site data fetched", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(
                         SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(
-                            "${it.data?.item!![0].id}"
+                            "${it.data?.item!![0].id}",
+                            "${item?.name}"
                         )
                     )
                 } else {
@@ -289,7 +290,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
     override fun clickedSearchHistoryItem(historyItem: SearchListItem?) {
         findNavController().navigate(
             SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment(
-                historyItem?.id.toString()
+                historyItem?.id.toString(), historyItem?.name.toString()
             )
         )
     }

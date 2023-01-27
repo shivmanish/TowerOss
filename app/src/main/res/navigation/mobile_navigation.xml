@@ -56,6 +56,10 @@
                 android:name="id"
                 app:argType="string"
                 android:defaultValue="1234"/>
+            <argument
+                android:name="siteName"
+                app:argType="string"
+                android:defaultValue="1234"/>
         </action>
         <action
             android:id="@+id/action_site_board_to_notificationsFragment2"
