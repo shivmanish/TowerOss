@@ -124,9 +124,9 @@ class AddTaskInfoFragment : BaseFragment() {
             }
         })
 
-        binding.siteId.setOnClickListener {
-            findNavController().navigate(AddTaskInfoFragmentDirections.actionAddTaskFragment2ToSearchIdFragment2(true))
-        }
+//        binding.siteId.setOnClickListener {
+//            findNavController().navigate(AddTaskInfoFragmentDirections.actionAddTaskFragment2ToSearchIdFragment2(true))
+//        }
 
         if (viewmodel.departmentDropdown.hasActiveObservers())
             viewmodel.departmentDropdown.removeObservers(viewLifecycleOwner)
