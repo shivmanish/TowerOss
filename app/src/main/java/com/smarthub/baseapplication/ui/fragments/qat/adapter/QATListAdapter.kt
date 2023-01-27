@@ -14,10 +14,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
 
 class QATListAdapter(var context: Context, var listener: QatMainAdapterListener,var Id: String) : RecyclerView.Adapter<QATListAdapter.ViewHold>() {
 
-    var list: ArrayList<QatCardItem>
-    init{
-        list = ArrayList()
-    }
+    var list: ArrayList<QatCardItem> = ArrayList()
 
     fun setData(data: ArrayList<QatCardItem>) {
         this.list.clear()

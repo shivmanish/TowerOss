@@ -38,9 +38,14 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
         return viewlay
     }
 
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+        viewmodel.qatRequestAll(id)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel.qatRequestAll(id)
+
         if (viewmodel.QatModelResponse?.hasActiveObservers() == true){
             viewmodel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -52,7 +57,6 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 adapter.setData(it.data.item!![0].QATTemplateMain)
                 AppLogger.log("size :${it.data.item?.size}")
-//                isDataLoaded = true
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
@@ -71,16 +75,7 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
         recyclerView.adapter = adapter
     }
 
-
     override fun clickedItem(data: QatCardItem?, Id: String, index: Int) {
-//        var fragment = QatNestedItemFragment()
-//        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
-
         Intent(requireContext(),QatActivity::class.java).apply { startActivity(this) }
     }
-
-    /*override fun itemClicked() {
-        var fragment = QatCheckNestedList()
-        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
-    }*/
 }
