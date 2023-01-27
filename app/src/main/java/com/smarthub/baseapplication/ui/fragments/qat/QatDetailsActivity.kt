@@ -7,11 +7,12 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityQatBinding
 import com.smarthub.baseapplication.databinding.ActivityQatDetailsBinding
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
+import com.smarthub.baseapplication.model.siteInfo.qat.QatTemplateModel
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
 
 class QatDetailsActivity : AppCompatActivity() {
     companion object{
-        var data : QatCardItem?=null
+        var data : QatTemplateModel?=null
     }
     lateinit var binding: ActivityQatDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {

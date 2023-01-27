@@ -20,11 +20,7 @@ class PageAdapterQat(fm:FragmentManager,var data: List<QatTemplateModel>) : Frag
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(position){
-            0 -> {return data[0].}
-            1 -> {return pageTitles[1]}
-        }
-        return super.getPageTitle(position)
+        return data[0].QATItem
     }
 
 }
