@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PlandesignEquipRoomBinding
 import com.smarthub.baseapplication.databinding.PlandesignEquiproomAttachmentsBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignEquipRoomEquipmentRoom
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListner,allData:List<PlanningAndDesignEquipRoomEquipmentRoom>?):RecyclerView.Adapter<equipmentRoomAdapter.ViewHold>() {
     var currentOpened = -1
@@ -125,15 +127,16 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
                  holder.binding.itemTitleStr.text = list[position]
 
                  try {
-                     holder.binding.Type.text=""
                      holder.binding.sizeLenth.text=data?.SizeL
                      holder.binding.sizeWidth.text=data?.SizeB
                      holder.binding.sizeHeight.text=data?.SizeH
                      holder.binding.FoundationLenth.text=data?.FoundationSizeL
                      holder.binding.FoundationWidth.text=data?.FoundationSizeB
                      holder.binding.FoundationHeight.text=data?.FoundationSizeH
-                     holder.binding.FoundationType.text=""
                      holder.binding.Remarks.text=data?.Remark
+
+                     AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,data?.FoundationType)
+                     AppPreferences.getInstance().setDropDown(holder.binding.Type,DropDowns.EquipmentType.name,data?.Type)
 
                  }catch (e:java.lang.Exception){
                      AppLogger.log("PlanDesign Equip Room Adapter error : ${e.localizedMessage}")

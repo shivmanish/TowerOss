@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.databinding.ActivitySmpsdetailsBinding
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.utilites.adapter.SMPSViewpagerAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
 class SMPSDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivitySmpsdetailsBinding
@@ -39,6 +40,7 @@ class SMPSDetailsActivity : AppCompatActivity() {
 
     fun initview(){
         if (utilitySmpsData !=null){
+            AppLogger.log("utilitySmpsData : ${utilitySmpsData!!}")
         binding.viewpager.adapter = SMPSViewpagerAdapter(supportFragmentManager, utilitySmpsData!!, id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
@@ -50,6 +52,7 @@ class SMPSDetailsActivity : AppCompatActivity() {
         else
             binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
         }
-        else Toast.makeText(binding.tabs.context,"Something Went Wrong",Toast.LENGTH_SHORT).show()
+        else AppLogger.log("Something Went Wrong in SMPSDetailsActivity code line 54")
+           // Toast.makeText(binding.tabs.context,"Something Went Wrong",Toast.LENGTH_SHORT).show()
     }
 }

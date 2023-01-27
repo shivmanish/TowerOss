@@ -42,8 +42,8 @@ class PlanDesignAdapter(var listener: PlanDesignAdapterListener, Id: String) : R
 
         if (holder is PlanDesignViewHolder) {
             var item = list[position] as PlanAndDesignDataItem
-            holder.binding.rfiDate.text = "DataNotFoundFromApi"
-            holder.binding.rfsDate.text = "DataNotFoundFromApi"
+            holder.binding.rfiDate.text = item.created_at
+            holder.binding.rfsDate.text = item.created_at
             holder.binding?.cardItem?.setOnClickListener {
                 listener.clickedItem(item, id,position)
             }
