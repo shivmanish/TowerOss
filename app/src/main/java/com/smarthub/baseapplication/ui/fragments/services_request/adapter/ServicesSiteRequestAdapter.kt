@@ -275,7 +275,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
                     holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
-                    holder.binding.OPCOSIteID.text="Data Not Found"
+                    holder.binding.OPCOSIteID.text=""
                     holder.binding.OPCOSIteType.text=SrDetailsData?.OpcoSiteType
                     holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
                     holder.binding.nominalsLatLong.text="${SrDetailsData?.locLatitude},${SrDetailsData?.locLongitude}"
@@ -308,7 +308,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.itemTitleStr.text = list[position]
 
                 try {
-                    holder.equipmentTableList.adapter= serviceRequestAllData?.let { SREquipmentTableAdapter(context,listener, servicerequestData?.Equipments as ArrayList<Equipment>, it) }
+                  //  holder.equipmentTableList.adapter= serviceRequestAllData?.let { SREquipmentTableAdapter(context,listener, servicerequestData?.Equipments as ArrayList<Equipment>, it) }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("e:${e.localizedMessage}")
                 }

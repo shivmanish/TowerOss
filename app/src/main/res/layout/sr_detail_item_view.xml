@@ -75,349 +75,342 @@
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:scrollbars="vertical"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:scrollbars="vertical"
                 android:layout_height="wrap_content">
-                <GridLayout
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="SR Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/SR_Type"
+                        android:text="New Site Request"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="SR Type"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/SR_Type"
-                            android:text="New Site Request"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Request Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Request_Date"
+                        android:text="27-Jun-22"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Request Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Request_Date"
-                            android:text="27-Jun-22"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="SR Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="SR_Status"
+                        android:id="@+id/SR_Status"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                        <TextView
-                            android:text="SR Status"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="SR_Status"
-                            android:id="@+id/SR_Status"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Requester Company"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="On-Air"
+                        android:id="@+id/RequesterCompany"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                        <TextView
-                            android:text="Requester Company"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="On-Air"
-                            android:id="@+id/RequesterCompany"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="RF Technology"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="On-Air"
+                        android:id="@+id/RFTechnology"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                        <TextView
-                            android:text="RF Technology"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="On-Air"
-                            android:id="@+id/RFTechnology"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Hub Site"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="On-Air"
+                        android:id="@+id/HubSite"
+                        style="@style/RowTextviewItem"
+                        android:gravity="left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                        <TextView
-                            android:text="Hub Site"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="On-Air"
-                            android:id="@+id/HubSite"
-                            style="@style/RowTextviewItem"
-                            android:gravity="left"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="OPCO SIte Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/OPCOSIteName"
+                        android:text="Residential"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-                        <TextView
-                            android:text="OPCO SIte Name"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/OPCOSIteName"
-                            android:text="Residential"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="OPCO SIte ID"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/OPCOSIteID"
+                        android:text="Residential"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-                        <TextView
-                            android:text="OPCO SIte ID"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/OPCOSIteID"
-                            android:text="Residential"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="OPCO SIte Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/OPCOSIteType"
+                        android:text="Urban"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-                        <TextView
-                            android:text="OPCO SIte Type"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/OPCOSIteType"
-                            android:text="Urban"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Priority"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Priority"
+                        android:text="Priority"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Priority"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Priority"
-                            android:text="Priority"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Expected Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/ExpectedDate"
+                        android:text="27-Jun-22"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Expected Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/ExpectedDate"
-                            android:text="27-Jun-22"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Nominals Lat-Long"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/nominals_Lat_Long"
+                        android:text="22.968035,76.085596"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Nominals Lat-Long"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/nominals_Lat_Long"
-                            android:text="22.968035,76.085596"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Search Radius"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/SearchRadius"
+                        android:text="100"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Search Radius"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/SearchRadius"
-                            android:text="100"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Circle"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Circle"
+                        android:text="Mumbai"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Circle"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Circle"
-                            android:text="Mumbai"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="City/Town"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/CityTown"
+                        android:text="Mumbai"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="City/Town"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/CityTown"
-                            android:text="Mumbai"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Area"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Area"
+                        android:text="Area"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Area"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Area"
-                            android:text="Area"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Pin Code"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/PinCode"
+                        android:text="247001"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:text="Pin Code"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/PinCode"
-                            android:text="247001"
-                            style="@style/RowTextviewItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+            </GridLayout>
 
-                </GridLayout>
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

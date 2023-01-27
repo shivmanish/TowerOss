@@ -18,7 +18,7 @@
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp8"
             android:padding="@dimen/dp10"
             android:src="@drawable/arrow_back"
             android:tint="@color/white"
@@ -29,7 +29,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp8"
             android:orientation="vertical"
             android:id="@+id/linearlayout"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +39,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/title"
                 android:layout_marginBottom="-6dp"
                 android:text="#ce-dlhi-sc-0179"
                 android:textAllCaps="true"
@@ -48,40 +49,26 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mangolpuri"
+                android:id="@+id/subtitle"
+                android:text="--------------"
                 android:textColor="@color/tab_selected_color"
                 android:textSize="@dimen/dp12" />
         </LinearLayout>
 
-        <ImageView
 
-            android:id="@+id/search_"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginRight="@dimen/dp10"
-            android:padding="@dimen/dp5"
-            app:tint="@color/white"
-            android:adjustViewBounds="true"
-            android:src="@drawable/search_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_image"
-            app:layout_constraintLeft_toRightOf="@id/linearlayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
-
-        <ImageView
-            android:id="@+id/add_image"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginRight="@dimen/dp10"
-            android:padding="@dimen/dp4"
-            android:adjustViewBounds="true"
-            android:src="@drawable/qr_scanner"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/search"
-            app:layout_constraintLeft_toRightOf="@id/linearlayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
+<!--        <ImageView-->
+<!--            android:id="@+id/add_image"-->
+<!--            android:layout_width="@dimen/dp30"-->
+<!--            android:layout_height="@dimen/dp30"-->
+<!--            android:layout_marginRight="@dimen/dp10"-->
+<!--            android:padding="@dimen/dp4"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:src="@drawable/qr_scanner"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/search"-->
+<!--            app:layout_constraintLeft_toRightOf="@id/linearlayout"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.421" />-->
 
         <ImageView
             android:id="@+id/search"

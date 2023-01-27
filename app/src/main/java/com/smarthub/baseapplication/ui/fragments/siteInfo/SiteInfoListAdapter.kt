@@ -320,9 +320,9 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 holder.binding.itemTitle.text = list[position]
                 if(basicinfodata.SafetyAndAccess.isNotEmpty()){
+                    AppLogger.log("basic info site data safty not empty: ${basicinfodata.SafetyAndAccess}")
                     try {
                         val saftyAcess: SafetyAndAcces = basicinfodata.SafetyAndAccess[0]
-                        if (safetyAndAccessDropdown!=null) {
                             holder.binding.textSiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
                             holder.binding.textPoliceNumber.text = saftyAcess.NearByPoliceStationNumber
                             holder.binding.textPoliceStation.text = saftyAcess.NearByPoliceStation
@@ -335,12 +335,15 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                             AppPreferences.getInstance().setDropDown(holder.binding.dangerSignageSpinner,DropDowns.DangerSignage.name,saftyAcess.DangerSignage)
                             AppPreferences.getInstance().setDropDown(holder.binding.textCautionSignage,DropDowns.CautionSignage.name,saftyAcess.CautionSignage)
                             AppPreferences.getInstance().setDropDown(holder.binding.siteAccess,DropDowns.Siteaccess.name,saftyAcess.Siteaccess)
-                        }
+
 
                     }catch (e:java.lang.Exception){
                         AppLogger.log("e : ${e.localizedMessage}")
                     }
                 }
+                else
+                    AppLogger.log("basic info site data safty empty: ${basicinfodata.SafetyAndAccess}")
+
             }
             is ViewHold5 -> {
                 if (currentOpened == position) {
