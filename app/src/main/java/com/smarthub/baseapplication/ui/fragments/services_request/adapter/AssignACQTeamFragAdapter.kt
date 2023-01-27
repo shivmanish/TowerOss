@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeamTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
 
@@ -144,8 +146,12 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var s
                 holder.binding.AcquisitionLeadName.text = AssignAcqTeamDetailsData?.LeadName
                 holder.binding.LeadEmailId.text = AssignAcqTeamDetailsData?.LeadEmailId
                 holder.binding.Number.text = AssignAcqTeamDetailsData?.LeadMobile
-                holder.binding.AcquisitionMode.text = AssignAcqTeamDetailsData?.AcquistionMode
-                holder.binding.AcquisitionType.text = AssignAcqTeamDetailsData?.AcquisitionType
+//                holder.binding.AcquisitionMode.text = AssignAcqTeamDetailsData?.AcquistionMode
+
+                AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionMode,DropDowns.AssignACQAcquistionMode.name,AssignAcqTeamDetailsData?.AcquistionMode)
+                AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.AssignACQAcquisitionType.name,AssignAcqTeamDetailsData?.AcquisitionType)
+
+//                holder.binding.AcquisitionType.text = AssignAcqTeamDetailsData?.AcquisitionType
                 holder.binding.AcquisitionBudget.text = AssignAcqTeamDetailsData?.AcquisitionBudget
                 holder.binding.AcquisitionTargetDate.text =
                     AssignAcqTeamDetailsData?.AcquisitionTargetDate
@@ -162,7 +168,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var s
                 holder.binding.Remmarks.text = AssignAcqTeamDetailsData?.Remark
             }
         } else if (holder is AttachmentViewHold) {
-            if (currentOpened == position) {
+//            if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                 holder.binding.itemLine.visibility = View.GONE
@@ -179,7 +185,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var s
 //                updateList(position)
 //            }
                 holder.binding.itemTitleStr.text = list[position]
-            }
+//            }
 
         }
     }

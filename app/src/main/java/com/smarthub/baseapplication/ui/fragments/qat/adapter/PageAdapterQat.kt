@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.ui.fragments.qat.QatNestedItemFragment
 
 
 class PageAdapterQat(fm:FragmentManager) : FragmentPagerAdapter(fm) {
-    private val pageTitles = arrayOf("TAB1","TAB2")
+    private val pageTitles = arrayOf("Electrical/Civil Material","Category 2")
     override fun getCount(): Int {
         return pageTitles.size
     }
