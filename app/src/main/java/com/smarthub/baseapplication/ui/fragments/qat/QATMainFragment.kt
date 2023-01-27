@@ -76,6 +76,7 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
     }
 
     override fun clickedItem(data: QatCardItem?, Id: String, index: Int) {
+        QatActivity.data = data?.QATTemplate
         Intent(requireContext(),QatActivity::class.java).apply { startActivity(this) }
     }
 }
