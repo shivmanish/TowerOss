@@ -17,6 +17,7 @@ public class AppController extends Application {
     static AppController mInstance;
     public SiteInfoModel siteInfoModel;
     public String ownerName = "SMRT";
+    public String siteid = "448";
 
     @Override
     public void onCreate() {
