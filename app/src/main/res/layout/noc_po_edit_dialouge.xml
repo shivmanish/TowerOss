@@ -115,7 +115,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="12346"
+                            android:text=" "
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

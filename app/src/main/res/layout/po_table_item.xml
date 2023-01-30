@@ -30,7 +30,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="rgsgs"
+            android:text=" "
             android:layout_gravity="center_vertical"
 
             style="@style/RowTextItemInfo"

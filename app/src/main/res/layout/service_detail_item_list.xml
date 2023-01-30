@@ -18,7 +18,7 @@
           android:id="@+id/txtItemDescription"
           android:layout_weight="1"
           android:layout_width="0dp"
-          android:text="rgsgs"
+          android:text=" "
           android:gravity="center"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>
@@ -34,7 +34,7 @@
           android:id="@+id/txtDate"
           android:layout_weight="1"
           android:layout_width="0dp"
-          android:text="10-Nov-18"
+          android:text="    "
           android:gravity="center"
           style="@style/RowTextItemInfo"
           android:layout_height="wrap_content"/>

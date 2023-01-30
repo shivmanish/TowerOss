@@ -70,7 +70,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="Appliction Fee"
+                            android:text="  "
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -92,7 +92,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="RD45"
+                            android:text="   "
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -139,7 +139,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="2000"
+                            android:text=" "
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

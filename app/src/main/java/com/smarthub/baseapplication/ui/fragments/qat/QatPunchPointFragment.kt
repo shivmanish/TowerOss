@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FragmentPunchPointQatBinding
 import com.smarthub.baseapplication.ui.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
 import com.smarthub.baseapplication.listeners.PunchPointListener
@@ -22,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
 class QatPunchPointFragment : Fragment(), PunchPointListener {
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: FragmentPunchPointQatBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +35,23 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewlay = inflater.inflate(R.layout.fragment_punch_point_qat, container, false)
-        setRecyclerView(viewlay)
-        return viewlay
+        binding = FragmentPunchPointQatBinding.bind(viewlay)
+
+        return binding.root
     }
 
-    private fun setRecyclerView(view: View) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setRecyclerView()
+    }
+
+    private fun setRecyclerView() {
         val adapter = QatPunchPointAdapter(this)
-        recyclerView = view.findViewById(R.id.recyclerView_open)
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+        binding.recyclerViewOpen.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.recyclerViewOpen.adapter = adapter
+        binding.back.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     companion object {
@@ -57,7 +66,7 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
     }
 
     override fun itemClicked() {
-//        Toast.makeText(requireActivity(),"Click event not implemented", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun addPunchPoint() {

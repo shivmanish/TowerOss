@@ -71,6 +71,8 @@ class SiteDetailFragment : BaseFragment() {
             id = arguments?.getString("id")!!
         if (arguments?.containsKey("siteName") == true)
             siteName = arguments?.getString("siteName")!!
+
+        AppLogger.log(" id ---:$id")
     }
 
     var id = "430"

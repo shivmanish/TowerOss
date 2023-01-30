@@ -71,7 +71,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/editPayName"
-                            android:text="Appliction Fee"
+                            android:text="  "
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -93,7 +93,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="RD45"
+                            android:text="   "
                             android:id="@+id/editAcc"
 
                             style="@style/RowTestItemEdit"
@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/editBank"
-                            android:text="RD45"
+                            android:text="   "
 
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"

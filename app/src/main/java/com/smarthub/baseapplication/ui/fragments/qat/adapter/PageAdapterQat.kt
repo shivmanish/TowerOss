@@ -5,11 +5,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
 import com.smarthub.baseapplication.model.siteInfo.qat.QatTemplateModel
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
 import com.smarthub.baseapplication.ui.fragments.customer_tab.faq.Fragment2_faq
 import com.smarthub.baseapplication.ui.fragments.qat.QatNestedItemFragment
 
 
-class PageAdapterQat(fm:FragmentManager,var data: List<QatTemplateModel>) : FragmentPagerAdapter(fm) {
+class PageAdapterQat(fm:FragmentManager,var data: List<Category>) : FragmentPagerAdapter(fm) {
 //    private val pageTitles = arrayOf("Electrical/Civil Material","Category 2")
     override fun getCount(): Int {
         return data.size
@@ -20,7 +21,7 @@ class PageAdapterQat(fm:FragmentManager,var data: List<QatTemplateModel>) : Frag
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return data[0].QATItem
+        return data[0].QATCategory
     }
 
 }

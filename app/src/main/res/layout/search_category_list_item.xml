@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/dp10"
-    android:background="#E0E0E0"
+    android:background="#80E0E0E0"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView

@@ -31,7 +31,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="rgsgs"
+            android:text="model[position].name"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:maxLines="1"
             android:ellipsize="marquee"
-            android:text="1234"
+            android:text=" "
             android:layout_marginLeft="@dimen/dp10"
             android:gravity="center"
             style="@style/RowTextItemInfo"

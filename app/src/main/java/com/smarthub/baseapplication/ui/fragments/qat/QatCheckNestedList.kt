@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.ui.adapter.qat.QatTitleAdapter
 import com.smarthub.baseapplication.databinding.QatNestedListBinding
 import com.smarthub.baseapplication.listeners.QatItemListener
+import com.smarthub.baseapplication.ui.adapter.qat.QatTitleAdapterNew
 
 class QatCheckNestedList : Fragment(), QatItemListener {
 
@@ -18,7 +19,7 @@ class QatCheckNestedList : Fragment(), QatItemListener {
         val view = inflater.inflate(R.layout.qat_nested_list, container, false)
 
         binding = QatNestedListBinding.bind(view)
-        binding?.list?.adapter = QatTitleAdapter(this@QatCheckNestedList)
+        binding?.list?.adapter = QatTitleAdapterNew(this@QatCheckNestedList)
         return view
 
     }

@@ -241,6 +241,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/dp650"
                 android:layout_marginTop="@dimen/dp10"
                 android:background="@drawable/dialog_bg"
                 android:orientation="vertical"

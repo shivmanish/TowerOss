@@ -7,11 +7,12 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityQatBinding
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
 import com.smarthub.baseapplication.model.siteInfo.qat.QatTemplateModel
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
 
 class QatActivity : AppCompatActivity() {
     companion object{
-        var data : List<QatTemplateModel>?=null
+        var data : List<Category>?=null
     }
     lateinit var binding: ActivityQatBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,9 @@ class QatActivity : AppCompatActivity() {
         binding = ActivityQatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
         init()
     }
 
