@@ -100,9 +100,17 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
                 return;
             }
         }
+    }public String getDropDownValue(String name, String id){
+        List<DropDownItem> list = getDropDownList(name);
+        for (DropDownItem i : list) {
+            if (i.getId().equalsIgnoreCase(id)) {
+                return i.getName();
+            }
+        }
+        return "";
     }
 
-    private List<DropDownItem> getDropDownList(String name){
+    public List<DropDownItem> getDropDownList(String name){
         try{
             Gson gson = new Gson();
             String jsonString = getString(name);

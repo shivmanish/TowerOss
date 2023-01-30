@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PlandesignNocAttachmentsBinding
@@ -28,7 +27,8 @@ class NocCompAdapter (var context: Context, var listener:NocCompListListner, all
         try {
             data=allData?.get(0)
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"PlanDesign noc Adapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("PlanDesign noc Adapter error :${e.localizedMessage}")
+         //   Toast.makeText(context,"PlanDesign noc Adapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
     open class ViewHold(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -126,8 +126,8 @@ class NocCompAdapter (var context: Context, var listener:NocCompListListner, all
                     holder.binding.remarks.text=data?.Remark
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PlanDesign noc Adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"PlanDesign noc Adapter error :${e.localizedMessage}",
-                        Toast.LENGTH_LONG).show()
+                 //   Toast.makeText(context,"PlanDesign noc Adapter error :${e.localizedMessage}",
+//                        Toast.LENGTH_LONG).show()
 
                 }
                 holder.nocTableList.adapter=NocTableAdapter(context,listener)

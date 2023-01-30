@@ -118,6 +118,7 @@
                     <TextView
                         android:id="@+id/Request_Date"
                         android:text="27-Jun-22"
+                        android:maxLength="10"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>

@@ -98,5 +98,9 @@ public enum DropDowns {
     Sectornumber,
     AntenaShape,
     OperationalStatus,
-    Loadtype
+    Loadtype,
+
+    // plan design
+    FoundationType,
+    EquipmentType
 }

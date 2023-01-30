@@ -3,7 +3,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PlandesignPowerAttachmetsBinding
@@ -26,7 +25,8 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
         try {
             data=allData?.get(0)
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"PlanDesign power Adapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("PlanDesign power Adapter error :${e.localizedMessage}")
+//            Toast.makeText(context,"PlanDesign power Adapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
     open class ViewHold(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -125,8 +125,8 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
                     holder.binding.remark.text=data?.Remark
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",
-                        Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",
+//                        Toast.LENGTH_LONG).show()
 
                 }
             }

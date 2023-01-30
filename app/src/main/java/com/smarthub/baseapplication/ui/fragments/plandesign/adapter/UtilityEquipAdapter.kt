@@ -4,15 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.UtilityEquip
-import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.SmpsPlannedTableEditDialouge
-import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.SmpsRectifierTableEditDialouge
 import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.SmpsTableAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 
 class UtilityEquipAdapter(
     var context: Context,
@@ -40,15 +37,15 @@ class UtilityEquipAdapter(
         list.add(type6)
         list.add(type7)
 //        list.add(type8)
-println("prinit size is "+list.size)
         try {
             data = allData?.get(0)
         } catch (e: java.lang.Exception) {
-            Toast.makeText(
-                context,
-                "PlanDesign Utility Equip Adapter error :${e.localizedMessage}",
-                Toast.LENGTH_LONG
-            ).show()
+            AppLogger.log("PlanDesign Utility Equip Adapter error :${e.localizedMessage}")
+//            Toast.makeText(
+//                context,
+//                "PlanDesign Utility Equip Adapter error :${e.localizedMessage}",
+//                Toast.LENGTH_LONG
+//            ).show()
         }
     }
 
@@ -142,31 +139,36 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.SMPS.get(0).let {
-                    holder.binding.make.text = it.Make
-                    holder.binding.modal.text = it.Model
-                    holder.binding.RatingCapacityKw.text = it.RatingAndCapacity
-                    holder.binding.cabinetsizel.text = it.CabinetSizeL
-                    holder.binding.cabinetsizeh.text = it.CabinetSizeH
-                    holder.binding.cabinetsizel.text = it.CabinetSizeL
-                    holder.binding.overallWeightKg.text = it.OverallWeight
-                    holder.binding.ownerCompany.text = "Data Not Set"
-                    holder.binding.userCompany.text = "Data Not Set"
+                try {
+                    data!!.SMPS.get(0).let {
+                        holder.binding.make.text = it.Make
+                        holder.binding.modal.text = it.Model
+                        holder.binding.RatingCapacityKw.text = it.RatingAndCapacity
+                        holder.binding.cabinetsizel.text = it.CabinetSizeL
+                        holder.binding.cabinetsizeh.text = it.CabinetSizeH
+                        holder.binding.cabinetsizel.text = it.CabinetSizeL
+                        holder.binding.overallWeightKg.text = it.OverallWeight
+                        holder.binding.ownerCompany.text = ""
+                        holder.binding.userCompany.text = ""
 
-
-                }
-                holder.binding.smpsPlanLeadTable.adapter =
-                    SmpsTableAdapter(context, object : TableCallback {
-                        override fun editItem(obj: Any?) {
+                        holder.binding.smpsPlanLeadTable.adapter =
+                            SmpsTableAdapter(context, object : TableCallback {
+                                override fun editItem(obj: Any?) {
 //                            val dalouge= SmpsPlannedTableEditDialouge()
 //                            dalouge.show(childFragmentManager, "")
-                        }
+                                }
 
-                        override fun viewItem(obj: Any?) {
+                                override fun viewItem(obj: Any?) {
 //                            val dalouge= SmpsPlannedTableEditDialouge ()
 //                            dalouge.show(childFragmentManager, "")
-                        }
-                    })
+                                }
+                            })
+                    }
+                }catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
+                }
+
+
 
             }
             is BatteryBankViewHolder -> {
@@ -191,28 +193,33 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.BatteryBank.get(0).let {
-                    holder.binding.batteryBankMake.text = it.Make
-                    holder.binding.batteryBankModal.text = it.Model
-                    holder.binding.batteryBankRatingCapacityKw.text = it.RatingAndCapacity
-                    holder.binding.batteryBankCabinetsizel.text = it.CabinetSizeL
-                    holder.binding.batteryBankCabinetsizeh.text = it.CabinetSizeH
-                    holder.binding.batteryBankCabinetsizeb.text = it.CabinetSizeB
-                    holder.binding.batteryBankOverallWeightKg.text = it.OverallWeight
-                    holder.binding.batteryBankUserCompany.text = ""
-                    holder.binding.batteryBankOwnerCompany.text = ""
-                }
-                holder.binding.bBankTable.adapter =SmpsTableAdapter(context, object : TableCallback {
-                    override fun editItem(obj: Any?) {
+                try {
+                    data!!.BatteryBank.get(0).let {
+                        holder.binding.batteryBankMake.text = it.Make
+                        holder.binding.batteryBankModal.text = it.Model
+                        holder.binding.batteryBankRatingCapacityKw.text = it.RatingAndCapacity
+                        holder.binding.batteryBankCabinetsizel.text = it.CabinetSizeL
+                        holder.binding.batteryBankCabinetsizeh.text = it.CabinetSizeH
+                        holder.binding.batteryBankCabinetsizeb.text = it.CabinetSizeB
+                        holder.binding.batteryBankOverallWeightKg.text = it.OverallWeight
+                        holder.binding.batteryBankUserCompany.text = ""
+                        holder.binding.batteryBankOwnerCompany.text = ""
+                    }
+                    holder.binding.bBankTable.adapter =SmpsTableAdapter(context, object : TableCallback {
+                        override fun editItem(obj: Any?) {
 //                        val dalouge= SmpsRectifierTableEditDialouge()
 //                        dalouge.show(childFragmentManager, "")
-                    }
+                        }
 
-                    override fun viewItem(obj: Any?) {
+                        override fun viewItem(obj: Any?) {
 //                        val dalouge= SmpsRectifierTableEditDialouge ()
 //                        dalouge.show(childFragmentManager, "")
-                    }
-                })
+                        }
+                    })
+                }catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
+                }
+
 
             }
             is DgViewHolder -> {
@@ -237,30 +244,35 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.DG.get(0).let {
-                    holder.binding.dgMake.text = it.Make
-                    holder.binding.dgModal.text = it.Model
-                    holder.binding.dgRatingCapacityKw.text = it.RatingAndCapacity
-                    holder.binding.dgCabinetsizel.text = it.CabinetSizeL
-                    holder.binding.dgCabinetsizeh.text = it.CabinetSizeH
-                    holder.binding.dgCabinetsizeb.text = it.CabinetSizeB
-                    holder.binding.dgOverallWeightKg.text = it.OverallWeight
-                    holder.binding.dgPlatformSize.text = it.PlatformSize
-                    holder.binding.dgFuelType.text = ""
-                    holder.binding.dgFuelConsumptionPerHour.text = it.FuelConsumptionPerHour
-                }
-                holder.binding.dgAdditionalEditTable.adapter =
-                    SmpsTableAdapter(context, object : TableCallback {
-                        override fun editItem(obj: Any?) {
-                            /*val dalouge= SmpsRectifierTableEditDialouge()
-                            dalouge.show(childFragmentManager, "")*/
-                        }
+                try {
+                    data!!.DG.get(0).let {
+                        holder.binding.dgMake.text = it.Make
+                        holder.binding.dgModal.text = it.Model
+                        holder.binding.dgRatingCapacityKw.text = it.RatingAndCapacity
+                        holder.binding.dgCabinetsizel.text = it.CabinetSizeL
+                        holder.binding.dgCabinetsizeh.text = it.CabinetSizeH
+                        holder.binding.dgCabinetsizeb.text = it.CabinetSizeB
+                        holder.binding.dgOverallWeightKg.text = it.OverallWeight
+                        holder.binding.dgPlatformSize.text = it.PlatformSize
+                        holder.binding.dgFuelType.text = ""
+                        holder.binding.dgFuelConsumptionPerHour.text = it.FuelConsumptionPerHour
+                    }
+                    holder.binding.dgAdditionalEditTable.adapter =
+                        SmpsTableAdapter(context, object : TableCallback {
+                            override fun editItem(obj: Any?) {
+                                /*val dalouge= SmpsRectifierTableEditDialouge()
+                                dalouge.show(childFragmentManager, "")*/
+                            }
 
-                        override fun viewItem(obj: Any?) {
-                           /* val dalouge= SmpsRectifierTableEditDialouge ()
-                            dalouge.show(childFragmentManager, "")*/
-                        }
-                    })
+                            override fun viewItem(obj: Any?) {
+                                /* val dalouge= SmpsRectifierTableEditDialouge ()
+                                 dalouge.show(childFragmentManager, "")*/
+                            }
+                        })
+                }catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
+                }
+
 
             }
             is AcViewHolder -> {
@@ -285,20 +297,25 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.DG.get(0).let {
-                    holder.binding.acMake.text = it.Make
-                    holder.binding.acModal.text = it.Model
-                    holder.binding.acRatingCapacityKw.text = it.RatingAndCapacity
-                    holder.binding.acCabinetsizel.text = it.CabinetSizeL
-                    holder.binding.acCabinetsizeh.text = it.CabinetSizeH
-                    holder.binding.acCabinetsizeb.text = it.CabinetSizeB
-                    holder.binding.acIndoreUnitSizeh.text = ""
-                    holder.binding.acIndoreUnitSizeb.text = ""
-                    holder.binding.acIndoreUnitSizel.text = ""
-                    holder.binding.acOutdoorUnitWeight.text = ""
-                    holder.binding.acOverallWeight.text = it.OverallWeight
-                    holder.binding.acOwnerCompany.text = ""
-                    holder.binding.acUserCompany.text = ""
+                try {
+                    data!!.DG.get(0).let {
+                        holder.binding.acMake.text = it.Make
+                        holder.binding.acModal.text = it.Model
+                        holder.binding.acRatingCapacityKw.text = it.RatingAndCapacity
+                        holder.binding.acCabinetsizel.text = it.CabinetSizeL
+                        holder.binding.acCabinetsizeh.text = it.CabinetSizeH
+                        holder.binding.acCabinetsizeb.text = it.CabinetSizeB
+                        holder.binding.acIndoreUnitSizeh.text = ""
+                        holder.binding.acIndoreUnitSizeb.text = ""
+                        holder.binding.acIndoreUnitSizel.text = ""
+                        holder.binding.acOutdoorUnitWeight.text = ""
+                        holder.binding.acOverallWeight.text = it.OverallWeight
+                        holder.binding.acOwnerCompany.text = ""
+                        holder.binding.acUserCompany.text = ""
+                    }
+                }
+                catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
                 }
             }
             is FireExiViewHolder -> {
@@ -323,22 +340,27 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.FireExtinguisher.get(0).let {
-                    holder.binding.fireMake.text = it.Make
-                    holder.binding.fireModal.text = it.Model
-                    holder.binding.fireRatingCapacityKw.text = ""
-                    holder.binding.fireCabinetsizel.text = it.CabinetSizeL
-                    holder.binding.fireCabinetsizeh.text = it.CabinetSizeH
-                    holder.binding.fireCabinetsizeb.text = it.CabinetSizeB
-                    holder.binding.fireUnitSizeh.text = it.UnitSizeH
-                    holder.binding.fireUnitSizeb.text = it.UnitSizeB
-                    holder.binding.fireUnitSizel.text = it.UnitSizeL
-                    holder.binding.fireUnitWeight.text = ""
-                    holder.binding.fireExtinguisherType.text = ""
-                    holder.binding.fireFuelConsuptionHour.text = it.FuelConsumptionPerHour
-                    holder.binding.fireOwnerCompany.text = ""
-                    holder.binding.fireUserCompany.text = ""
+                try {
+                    data!!.FireExtinguisher.get(0).let {
+                        holder.binding.fireMake.text = it.Make
+                        holder.binding.fireModal.text = it.Model
+                        holder.binding.fireRatingCapacityKw.text = ""
+                        holder.binding.fireCabinetsizel.text = it.CabinetSizeL
+                        holder.binding.fireCabinetsizeh.text = it.CabinetSizeH
+                        holder.binding.fireCabinetsizeb.text = it.CabinetSizeB
+                        holder.binding.fireUnitSizeh.text = it.UnitSizeH
+                        holder.binding.fireUnitSizeb.text = it.UnitSizeB
+                        holder.binding.fireUnitSizel.text = it.UnitSizeL
+                        holder.binding.fireUnitWeight.text = ""
+                        holder.binding.fireExtinguisherType.text = ""
+                        holder.binding.fireFuelConsuptionHour.text = it.FuelConsumptionPerHour
+                        holder.binding.fireOwnerCompany.text = ""
+                        holder.binding.fireUserCompany.text = ""
+                    }
+                }catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
                 }
+
             }
             is SpdViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
@@ -362,14 +384,19 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.SurgeProtectionDevice.get(0).let {
-                    holder.binding.surgeProctetorMake.text = it.Make
-                    holder.binding.surgeProctetorModal.text = it.Model
-                    holder.binding.surgeProctetorRatingCapacityKw.text = ""
-                    holder.binding.surgeProctetorSpdType.text = ""
-                    holder.binding.surgeProctetorOwnerCompany.text = ""
-                    holder.binding.surgeProctetorUserCompany.text = ""
+                try {
+                    data!!.SurgeProtectionDevice.get(0).let {
+                        holder.binding.surgeProctetorMake.text = it.Make
+                        holder.binding.surgeProctetorModal.text = it.Model
+                        holder.binding.surgeProctetorRatingCapacityKw.text = ""
+                        holder.binding.surgeProctetorSpdType.text = ""
+                        holder.binding.surgeProctetorOwnerCompany.text = ""
+                        holder.binding.surgeProctetorUserCompany.text = ""
+                    }
+                }catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
                 }
+
             }
             is DcdbViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
@@ -393,19 +420,24 @@ println("prinit size is "+list.size)
                     updateList(position)
                 }
                 holder.binding.itemTitleSmps.text = list[position]
-                data!!.DCDB.get(0).let {
-                    holder.binding.dcdbMake.text = it.Make
-                    holder.binding.dcdbModal.text = it.Model
-                    holder.binding.dcdbRatingCapacityKw.text = it.RatingAndCapacity
-                    holder.binding.dcdbUnitSizeb.text = it.UnitSizeB
-                    holder.binding.dcdbUnitSizeh.text = it.UnitSizeH
-                    holder.binding.dcdbUnitSizel.text = it.UnitSizeL
-                    holder.binding.dcdbUnitWeight.text = it.UnitWeight
-                    holder.binding.dcdbRatingCapacity.text = it.RatingAndCapacity
-                    holder.binding.dcdbOwnerCompany.text = ""
-                    holder.binding.dcdbRemarks.text = ""
-                    holder.binding.dcdbUserCompany.text = ""
+                try {
+                    data!!.DCDB.get(0).let {
+                        holder.binding.dcdbMake.text = it.Make
+                        holder.binding.dcdbModal.text = it.Model
+                        holder.binding.dcdbRatingCapacityKw.text = it.RatingAndCapacity
+                        holder.binding.dcdbUnitSizeb.text = it.UnitSizeB
+                        holder.binding.dcdbUnitSizeh.text = it.UnitSizeH
+                        holder.binding.dcdbUnitSizel.text = it.UnitSizeL
+                        holder.binding.dcdbUnitWeight.text = it.UnitWeight
+                        holder.binding.dcdbRatingCapacity.text = it.RatingAndCapacity
+                        holder.binding.dcdbOwnerCompany.text = ""
+                        holder.binding.dcdbRemarks.text = ""
+                        holder.binding.dcdbUserCompany.text = ""
+                    }
+                }catch (e : Exception){
+                    AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
                 }
+
             }
         }
     }
