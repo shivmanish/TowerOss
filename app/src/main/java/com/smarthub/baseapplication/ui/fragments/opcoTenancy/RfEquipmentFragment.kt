@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfEquipmentFregmentTempBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewOpcoCardAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewRfEquipmentAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfEquipment.RfEquipmentEditDialouge
 
 class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentAdapter.RfEquipmentItemListner {
@@ -28,18 +31,17 @@ class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentA
         adapter = RfEquipmentAdapter(this@RfEquipmentFragment,opcodata!!)
         binding?.listItem?.adapter = adapter
 
-//        binding?.addItemsLayout?.setOnClickListener {
-//            adapter?.addItem()
-//        }
+        binding?.addItemsLayout?.setOnClickListener {
+            val dalouge = AddNewRfEquipmentAdapter(R.layout.addnew_rfequipment_dialouge)
+            dalouge.show(childFragmentManager,"")
+        }
     }
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Attachment Item clicked",Toast.LENGTH_SHORT).show()
     }
-    override fun EditDialouge() {
-        val bottomSheetDialogFragment = RfEquipmentEditDialouge(R.layout.rf_equipment_list_item_dialouge)
+    override fun EditDialouge(data : rfEquipmentData) {
+        val bottomSheetDialogFragment = RfEquipmentEditDialouge(R.layout.addnew_rfequipment_dialouge,data,opcodata?.id.toString())
         bottomSheetDialogFragment.show(childFragmentManager,"category")
-        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
 

@@ -20,8 +20,6 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
-import java.util.*
-import kotlin.collections.ArrayList
 
 class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var id:String): BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : OpcoInfoSiteDialougeLayoutBinding

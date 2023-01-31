@@ -12,6 +12,6 @@ data class updateOpcoDataItem(
     var Opcoinfo: Opcoinfo?=null,
     var PowerLoad: List<PowerLoadData>?=null,
     var RfAntena: List<RfAnteenaData>?=null,
-    var RfEquipment: List<rfEquipmentData>?=null,
+    var RfEquipment: rfEquipmentData?=null,
     var id: String ?= AppController.getInstance().siteid,
 )

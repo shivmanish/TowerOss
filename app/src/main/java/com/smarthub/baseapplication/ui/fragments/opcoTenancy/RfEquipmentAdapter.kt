@@ -76,7 +76,10 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditDialouge()
+                if(data!=null)
+                listener.EditDialouge(data)
+                else
+                    AppLogger.log("found null value")
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -140,7 +143,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
 
 
     interface RfEquipmentItemListner {
-        fun EditDialouge()
+        fun EditDialouge(data : rfEquipmentData)
         fun attachmentItemClicked()
     }
 }
