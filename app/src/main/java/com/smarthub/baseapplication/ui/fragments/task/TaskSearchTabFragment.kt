@@ -204,9 +204,10 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
 
     }
     override fun siteAccessDetailsItemClicked() {
+        Toast.makeText(context,"site acces botton sheet clicked",Toast.LENGTH_SHORT).show()
 
-        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun EditInstallationAcceptence() {
 

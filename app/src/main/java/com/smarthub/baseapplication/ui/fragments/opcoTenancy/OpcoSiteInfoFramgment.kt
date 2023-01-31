@@ -16,14 +16,16 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
     var binding : OpcoInfoFregmentBinding?=null
-    lateinit var viewModel: SiteInfoViewModel
+    var viewmodel: HomeViewModel?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProvider(requireActivity())[SiteInfoViewModel::class.java]
+        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -31,14 +33,34 @@ class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.listItem?.adapter = OpcoSiteInfoFragAdapter(this@OpcoSiteInfoFramgment,opcodata!!)
+
+        binding?.swipeLayout?.setOnRefreshListener {
+            viewmodel?.opcoTenancyRequestAll(AppController.getInstance().siteid)
+        }
+        if (viewmodel?.opcoTenencyModelResponse?.hasActiveObservers() == true)
+            viewmodel?.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
+        viewmodel?.opcoTenencyModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            if (it!=null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("OpcoSiteInfo Frag Data fetched successfully")
+                binding?.swipeLayout?.isRefreshing = false
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"OpcoSiteInfo Frag error :${it.message}", Toast.LENGTH_SHORT).show()
+            }else{
+                AppLogger.log("OpcoSiteInfo Frag Something went wrong")
+                Toast.makeText(requireContext(),"OpcoSiteInfo Frag Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun attachmentItemClicked() {
 
     }
 
-    override fun operationsItemClicked() {
-        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
+    override fun operationsItemClicked(data: Opcoinfo) {
+        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge,data,opcodata?.id.toString())
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
