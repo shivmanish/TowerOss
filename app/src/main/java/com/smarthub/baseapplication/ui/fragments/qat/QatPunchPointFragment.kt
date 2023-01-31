@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FragmentPunchPointQatBinding
 import com.smarthub.baseapplication.ui.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
 import com.smarthub.baseapplication.listeners.PunchPointListener
@@ -22,6 +23,8 @@ private const val ARG_PARAM2 = "param2"
 class QatPunchPointFragment : Fragment(), PunchPointListener {
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentPunchPointQatBinding
+
     private lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

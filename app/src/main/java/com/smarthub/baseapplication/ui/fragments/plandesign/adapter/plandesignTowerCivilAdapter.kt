@@ -3,7 +3,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PlandesignPoleInfoBinding
@@ -35,7 +34,8 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
             towerData=data?.Tower?.get(0)
             poleData=data?.Pole?.get(0)
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"PlanDesign TwrCivil Adapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("PlanDesign TwrCivil Adapter error :${e.localizedMessage}")
+          //  Toast.makeText(context,"PlanDesign TwrCivil Adapter error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
     open class ViewHold(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -163,7 +163,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
                     holder.binding.OffsetPoleLenth.text=towerData?.OffsetPoleLength
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                 //   Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
 
                 }
             }
@@ -197,7 +197,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
                     holder.binding.remarks.text = poleData?.Remark
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                   // Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
 
                 }
             }

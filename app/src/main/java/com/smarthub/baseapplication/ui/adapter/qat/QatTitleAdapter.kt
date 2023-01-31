@@ -13,25 +13,26 @@ import com.smarthub.baseapplication.model.atp.AtpCardList
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.HeaderList
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Item
 import com.smarthub.baseapplication.utils.Utils
 
-class QatTitleAdapter(var listener: QatItemListener) : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
+class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
-    init {
-        list.add("Electircal / Civil Material")
-        list.add("Electircal / Civil Construction")
-        list.add("Earthing Department")
-        list.add("Pole Construction")
-        list.add("Others")
-    }
+//    var list : ArrayList<String> = ArrayList()
+//    init {
+//        list.add("Electircal / Civil Material")
+//        list.add("Electircal / Civil Construction")
+//        list.add("Earthing Department")
+//        list.add("Pole Construction")
+//        list.add("Others")
+//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_title_view, parent, false)
         return ViewHold(view,listener)
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
-        hold.binding.expansionText.text = "${list[pos]}"
+        hold.binding.expansionText.text = "${list[pos].QATItem}"
     }
 
     override fun getItemCount(): Int {

@@ -9,5 +9,5 @@
         android:id="@+id/qat_details_fragment"
         android:name="com.smarthub.baseapplication.ui.fragments.qat.QatPunchPointFragment"
         android:label="Qat Fragment"
-        tools:layout="@layout/fragment_punch_point_qat"></fragment>
+        tools:layout="@layout/fragment_punch_point_qat"/>
 </navigation>

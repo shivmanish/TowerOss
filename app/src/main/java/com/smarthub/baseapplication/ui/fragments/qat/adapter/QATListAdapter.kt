@@ -11,15 +11,13 @@ import com.smarthub.baseapplication.databinding.QatListItemBinding
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 
 class QATListAdapter(var context: Context, var listener: QatMainAdapterListener,var Id: String) : RecyclerView.Adapter<QATListAdapter.ViewHold>() {
 
-    var list: ArrayList<QatCardItem>
-    init{
-        list = ArrayList()
-    }
+    var list: ArrayList<QATMainLaunch> = ArrayList()
 
-    fun setData(data: ArrayList<QatCardItem>) {
+    fun setData(data: ArrayList<QATMainLaunch>) {
         this.list.clear()
         this.list.addAll(data)
         notifyDataSetChanged()
@@ -38,7 +36,8 @@ class QATListAdapter(var context: Context, var listener: QatMainAdapterListener,
         holder.binding.root.setOnClickListener {
             listener.clickedItem(list.get(position),Id,position)
         }
-
+        holder.binding.textName3.text = list[position].Instruction
+        holder.binding.assignee.text = list[position].AssignedToUserName
     }
 
     override fun getItemCount(): Int {

@@ -68,7 +68,7 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
                 isDataLoaded = true
             }else if (it!=null) {
 //                Toast.makeText(requireContext(),"UtilityEquip Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
-                AppLogger.log("UtilityEquip Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("UtilityEquip Fragment error :${it.message}, it.data : ${it.data}, in line 71")
             }
             else {
                 AppLogger.log("UtilityEquip Fragment Something went wrong")
@@ -98,7 +98,7 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
             try {
                 SMPSDetailsActivity.utilitySmpsData=utilitydatalist?.get(0)?.UtilitieSmps as ArrayList<UtilitieSmp>
             }catch (e:Exception){
-                AppLogger.log("Error in Utility Main Tab fragment")
+                AppLogger.log("Error in Utility Main Tab fragment: ${e.localizedMessage}")
             }
             requireActivity().startActivity(Intent(requireContext(), SMPSDetailsActivity::class.java))
         }

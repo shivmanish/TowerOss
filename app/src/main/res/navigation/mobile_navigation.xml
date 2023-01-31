@@ -17,7 +17,7 @@
         <argument
             android:name="id"
             app:argType="string"
-            android:defaultValue="1234"/>
+            android:defaultValue=" "/>
         <action
             android:id="@+id/action_navigation_home_to_siteDetailFragment"
             app:destination="@id/siteDetailFragment"
@@ -25,7 +25,7 @@
             <argument
                 android:name="id"
                 app:argType="string"
-                android:defaultValue="1234"/>
+                android:defaultValue=" "/>
         </action>
     </fragment>
 
@@ -43,11 +43,11 @@
         <argument
             android:name="siteId"
             app:argType="string"
-            android:defaultValue="1234"/>
+            android:defaultValue=" "/>
         <argument
             android:name="id"
             app:argType="string"
-            android:defaultValue="1234"/>
+            android:defaultValue=" "/>
         <action
             android:id="@+id/action_searchFragment_to_siteDetailFragment"
             app:destination="@id/siteDetailFragment"
@@ -55,7 +55,11 @@
             <argument
                 android:name="id"
                 app:argType="string"
-                android:defaultValue="1234"/>
+                android:defaultValue=" "/>
+            <argument
+                android:name="siteName"
+                app:argType="string"
+                android:defaultValue=" "/>
         </action>
         <action
             android:id="@+id/action_site_board_to_notificationsFragment2"
@@ -74,7 +78,7 @@
         <argument
             android:name="id"
             app:argType="string"
-            android:defaultValue="1234"/>
+            android:defaultValue=" "/>
         <action
             android:id="@+id/action_navigation_menu_to_siteDetailFragment"
             app:destination="@id/siteDetailFragment"
@@ -82,7 +86,7 @@
             <argument
                 android:name="id"
                 app:argType="string"
-                android:defaultValue="1234"/>
+                android:defaultValue=" "/>
         </action>
     </fragment>
     <fragment

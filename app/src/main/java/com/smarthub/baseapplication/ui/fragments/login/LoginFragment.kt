@@ -128,7 +128,7 @@ class LoginFragment : BaseFragment() {
         loginViewModel?.profileResponse?.observe(viewLifecycleOwner) {
             hideLoader()
             if (it != null && it.status==Resource.Status.SUCCESS) {
-                AppController.getInstance().ownerName = it.data?.get(0)?.company
+//                AppController.getInstance().ownerName = it.data?.get(0)?.company
 
                 val intent = Intent (requireContext(), DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

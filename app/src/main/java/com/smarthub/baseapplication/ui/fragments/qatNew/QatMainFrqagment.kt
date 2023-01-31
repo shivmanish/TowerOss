@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
@@ -58,7 +59,7 @@ class QatMainFrqagment(var id:String) : BaseFragment(), QatMainAdapterListener {
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                adapter.setData(it.data.item!![0].QATTemplateMain)
+                adapter.setData(it.data.item!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true
             }else if (it!=null) {
@@ -114,7 +115,7 @@ class QatMainFrqagment(var id:String) : BaseFragment(), QatMainAdapterListener {
 //        requireActivity().startActivity(Intent(requireContext(), PowerDesignDetailsActivity::class.java))
 //    }
 
-    override fun clickedItem(data: QatCardItem?, Id: String, index: Int) {
+    override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
         val intent = Intent(requireActivity(), QATCheckActivity::class.java)
         startActivity(intent)
     }

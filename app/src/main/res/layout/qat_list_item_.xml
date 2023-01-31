@@ -143,6 +143,7 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="MarkTaylor"
                                 android:gravity="left"
+                                android:id="@+id/assignee"
                                 android:layout_weight="1"
                                 android:textColor="#3F4E69"
                                 android:textSize="12sp" />

@@ -4,6 +4,8 @@ data class PlanningAndDesignEquipRoomEquipmentRoom(
     val FoundationSizeB: String,
     val FoundationSizeH: String,
     val FoundationSizeL: String,
+    val Type : String,
+    val FoundationType : String,
     val Remark: String,
     val SizeB: String,
     val SizeH: String,

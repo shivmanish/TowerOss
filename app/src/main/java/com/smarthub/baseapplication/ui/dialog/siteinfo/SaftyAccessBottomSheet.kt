@@ -5,16 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SaftyAccessDetailsBottomSheetBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.SafetyAndAcces
 import com.smarthub.baseapplication.network.pojo.site_info.SafetyAndAccessModel
+import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.GeoConditionUpdateModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.SafetyAndAccessUpdateModel
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -31,14 +35,24 @@ class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: 
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+            override fun itemClicked() {
+            }
+        })
+
+        var recyclerListener = binding.root.findViewById<RecyclerView>(R.id.list_item)
+        recyclerListener.adapter = adapter
+        binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+            adapter.addItem()
+        }
 
         binding.update.setOnClickListener {
             safetyAndAccess.let{
                 it.id = safetyAndAccess.id
-                it.CautionSignage = binding.textCautionSignage.text.toString()
+                it.CautionSignage = binding.textCautionSignage.selectedValue.id
                 it.DangerSignage = binding.dangerSignageSpinner.selectedValue.id
                 it.SiteAccessArea = binding.siteAccessAreaSpinner.selectedValue.id
-                it.GateAndFence = binding.textGate.text.toString()
+                it.GateAndFence = binding.textGate.selectedValue.id
                 it.NearByFireStation = binding.textFireStation.text.toString()
                 it.NearByPoliceStation = binding.textPoliceStation.text.toString()
                 it.NearByPoliceStationNumber = safetyAndAccess.NearByPoliceStationNumber//binding.textTempZone.text.toString()
@@ -53,13 +67,6 @@ class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: 
         }
 
         val saftyAcess: SafetyAndAcces = safetyAndAccess
-        binding.physicalSecurity.setText(saftyAcess.Physicalsecurity)
-        binding.textGate.setText(saftyAcess.GateAndFence)
-        binding.videoMonitoringSpinner.setSpinnerData(dropdown.videomonitoring.data,saftyAcess.Videomonitoring)
-        binding.siteAccessAreaSpinner.setSpinnerData(dropdown.siteAccessArea.data ,saftyAcess.SiteAccessArea)
-        binding.dangerSignageSpinner.setSpinnerData(dropdown.dangerSignage.data ,saftyAcess.DangerSignage)
-        binding.textCautionSignage.setText(saftyAcess.CautionSignage)
-        binding.siteAccess.setSpinnerData(dropdown.siteaccess.data ,saftyAcess.Siteaccess)
 
         binding.textSiteAccesseethodology.setText(saftyAcess.Siteaccessmethodology)
         binding.textPoliceNumber.setText(saftyAcess.NearByPoliceStationNumber)
@@ -67,6 +74,13 @@ class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: 
         binding.textFireStation.setText( saftyAcess.NearByFireStation)
         binding.textFireNumber.setText( saftyAcess.NearByFireStationNumber)
 
+        AppPreferences.getInstance().setDropDownByName(binding.siteAccess, DropDowns.Siteaccess.name,saftyAcess.Siteaccess)
+        AppPreferences.getInstance().setDropDownByName(binding.physicalSecurity, DropDowns.Physicalsecurity.name,saftyAcess.Physicalsecurity)
+        AppPreferences.getInstance().setDropDownByName(binding.textGate, DropDowns.GateAndFence.name,saftyAcess.GateAndFence)
+        AppPreferences.getInstance().setDropDownByName(binding.textCautionSignage, DropDowns.CautionSignage.name,saftyAcess.CautionSignage)
+        AppPreferences.getInstance().setDropDownByName(binding.videoMonitoringSpinner, DropDowns.Videomonitoring.name,saftyAcess.Videomonitoring)
+        AppPreferences.getInstance().setDropDownByName(binding.siteAccessAreaSpinner, DropDowns.SiteAccessArea.name,saftyAcess.SiteAccessArea)
+        AppPreferences.getInstance().setDropDownByName(binding.dangerSignageSpinner, DropDowns.DangerSignage.name,saftyAcess.DangerSignage)
         hideProgressLayout()
         if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
             viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
@@ -112,5 +126,6 @@ class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: 
         binding = SaftyAccessDetailsBottomSheetBinding.inflate(inflater)
         return binding.root
     }
+
 
 }

@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.QatMainListItemBinding
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 
 
 class QatMainAdapter(var listener: QatMainAdapterListener, Id: String) : RecyclerView.Adapter<QatMainEmptyViewHolder>() {
 
     var list = ArrayList<Any>()
     var id=Id
-    fun setData(data: ArrayList<QatCardItem>) {
+    fun setData(data: ArrayList<QATMainLaunch>) {
         this.list.clear()
         this.list.addAll(data)
         notifyDataSetChanged()
@@ -41,10 +42,10 @@ class QatMainAdapter(var listener: QatMainAdapterListener, Id: String) : Recycle
     override fun onBindViewHolder(holder: QatMainEmptyViewHolder, position: Int) {
 
         if (holder is QatMainViewHolder) {
-            var item = list[position] as QatCardItem
-            holder.binding.rfiDate.text = "DataNotFoundFromApi"
-            holder.binding.rfsDate.text = "DataNotFoundFromApi"
-            holder.binding?.cardItem?.setOnClickListener {
+            var item = list[position] as QATMainLaunch
+            holder.binding.rfiDate.text = ""
+            holder.binding.rfsDate.text = ""
+            holder.binding.cardItem.setOnClickListener {
                 listener.clickedItem(item, id,position)
             }
         }
@@ -61,5 +62,5 @@ class QatMainViewHolder(itemview: View) :QatMainEmptyViewHolder(itemview) {
 }
 
 interface QatMainAdapterListener{
-    fun clickedItem(data : QatCardItem?, Id :String,index:Int)
+    fun clickedItem(data : QATMainLaunch?, Id :String, index:Int)
 }

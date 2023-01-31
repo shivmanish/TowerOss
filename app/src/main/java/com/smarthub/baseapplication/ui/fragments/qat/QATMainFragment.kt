@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QATListAdapter
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
@@ -38,9 +39,14 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
         return viewlay
     }
 
+    override fun onViewPageSelected() {
+        super.onViewPageSelected()
+        viewmodel.qatMainRequestAll(id)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel.qatRequestAll(id)
+
         if (viewmodel.QatModelResponse?.hasActiveObservers() == true){
             viewmodel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -48,11 +54,10 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                adapter.setData(it.data.item!![0].QATTemplateMain)
+                adapter.setData(it.data.item!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.item?.size}")
-//                isDataLoaded = true
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
@@ -71,16 +76,8 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
         recyclerView.adapter = adapter
     }
 
-
-    override fun clickedItem(data: QatCardItem?, Id: String, index: Int) {
-//        var fragment = QatNestedItemFragment()
-//        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
-
+    override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
+        QatActivity.data = data?.Category
         Intent(requireContext(),QatActivity::class.java).apply { startActivity(this) }
     }
-
-    /*override fun itemClicked() {
-        var fragment = QatCheckNestedList()
-        Utils.addFragment(fragment,requireActivity() as AppCompatActivity,R.id.container)
-    }*/
 }

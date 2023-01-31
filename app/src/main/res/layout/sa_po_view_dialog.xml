@@ -110,7 +110,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/editVendorCode"
-                            android:text="12346"
+                            android:text=" "
                             style="@style/RowTextviewItem"
 
                             android:layout_width="match_parent"

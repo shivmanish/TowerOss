@@ -27,7 +27,7 @@ class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         val item : NotificationNewItem = list[position]
         holder.binding.textName.text = "${item.UserFirstName} ${item.UserLastName}"
-//        holder.binding.list.adapter = NotificationListItemAdapter(context,item.sublist)
+
     }
 
     override fun getItemCount(): Int {
