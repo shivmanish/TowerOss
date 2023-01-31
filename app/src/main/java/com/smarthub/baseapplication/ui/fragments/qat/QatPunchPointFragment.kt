@@ -23,7 +23,6 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,6 +42,7 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
         recyclerView = view.findViewById(R.id.recyclerView_open)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
     }
 
     companion object {
