@@ -308,7 +308,16 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 holder.binding.itemTitleStr.text = list[position]
 
                 try {
-                  //  holder.equipmentTableList.adapter= serviceRequestAllData?.let { SREquipmentTableAdapter(context,listener, servicerequestData?.Equipments as ArrayList<Equipment>, it) }
+                    if(servicerequestData!=null && servicerequestData?.Equipments!=null) {
+                        holder.equipmentTableList.adapter = serviceRequestAllData?.let {
+                            SREquipmentTableAdapter(
+                                context,
+                                listener,
+                                servicerequestData?.Equipments as ArrayList<Equipment>,
+                                it
+                            )
+                        }
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("e:${e.localizedMessage}")
                 }
