@@ -47,7 +47,7 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
         binding.make.setText(rfData.Make)
         binding.band.setText(rfData.Band)
         binding.minOpratingTemp.setText(rfData.OperatingTempMin)
-        binding.minOpratingTemp.setText(rfData.OperatingTempMax)
+        binding.maxOpratingTemp.setText(rfData.OperatingTempMax)
         binding.InatallationDate.text=rfData.InstallationDate
         binding.maxPowerRating.setText(rfData.PowerRating)
         binding.Weight.setText(rfData.Weight)
@@ -55,7 +55,7 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
         binding.remark.setText(rfData.Remarks)
 
         AppPreferences.getInstance().setDropDown(binding.technology,DropDowns.Technology.name,rfData.Technology)
-        AppPreferences.getInstance().setDropDown(binding.ownerCompany,DropDowns.OwnerCompany.name,rfData.OemCompany)
+        AppPreferences.getInstance().setDropDown(binding.ownerCompany,DropDowns.OwnerCompany.name,rfData.OwnerCompany)
         AppPreferences.getInstance().setDropDown(binding.userCompany,DropDowns.OemCompany.name,rfData.OemCompany)
         AppPreferences.getInstance().setDropDown(binding.oprationalStatus,DropDowns.OperationStatus.name,rfData.OperationStatus)
         AppPreferences.getInstance().setDropDown(binding.rackSpaceUsed,DropDowns.RackSpaceUsed.name,rfData.RackSpaceUsed)
