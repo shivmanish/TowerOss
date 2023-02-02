@@ -25,7 +25,7 @@ class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentA
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RfEquipmentAdapter(this@RfEquipmentFragment,opcodata!!)
+        adapter = RfEquipmentAdapter(this@RfEquipmentFragment,opcodata!!,requireContext())
         binding?.listItem?.adapter = adapter
 
 //        binding?.addItemsLayout?.setOnClickListener {
