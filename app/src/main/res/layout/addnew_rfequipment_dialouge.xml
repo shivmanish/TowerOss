@@ -191,7 +191,7 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                     <LinearLayout
                         android:paddingTop="0dp"
@@ -384,7 +384,7 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp5" />
                     </LinearLayout>
                     <LinearLayout
                         android:paddingTop="0dp"
@@ -459,7 +459,7 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp5" />
                     </LinearLayout>
 
                     <LinearLayout

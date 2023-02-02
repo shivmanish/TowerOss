@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfEquipmentListItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -18,7 +19,7 @@ import com.smarthub.baseapplication.utils.DropDowns
 class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoDataItem?,var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
 
     var list : ArrayList<rfEquipmentData> = ArrayList(opcodata?.RfEquipment)
-    lateinit var data : rfEquipmentData
+
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
 
@@ -82,6 +83,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        var data : rfEquipmentData = list[position]
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
                 listener.EditDialouge(data,position)
@@ -120,13 +122,13 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
                     holder.binding.remark.text=data.Remarks
                     holder.binding.minOpratingTemp.text=data.OperatingTempMin
                     holder.binding.maxOpratingTemp.text=data.OperatingTempMax
-                    AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data.Technology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OwnerCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data.OemCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RackSpaceUsed, DropDowns.RackSpaceUsed.name,data.RackSpaceUsed)
-                    AppLogger.log("data : ${Gson().toJson(data)}")
+                    AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data?.Technology)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data?.OwnerCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data?.OemCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data?.OperationStatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.RackSpaceUsed, DropDowns.RackSpaceUsed.name,data?.RackSpaceUsed)
 
+                    AppLogger.log("data : ${Gson().toJson(data)}")
 
                 }
             }catch (e:Exception){
@@ -137,7 +139,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        return list.size
     }
 
     fun updateList(position: Int){

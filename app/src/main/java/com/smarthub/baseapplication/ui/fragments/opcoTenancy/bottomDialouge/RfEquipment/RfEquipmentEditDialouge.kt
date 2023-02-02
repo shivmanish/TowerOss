@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.OpcoInfoUpdateResponse
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.updateOpcoDataItem
+import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -20,7 +21,7 @@ import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,var id:String,var listener : RfEquipmentListener): BottomSheetDialogFragment(contentLayoutId) {
+class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,var id:String,var listener : RfEquipmentListener): BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : AddnewRfequipmentDialougeBinding
     lateinit var viewModel: SiteInfoViewModel
     lateinit var homeViewModel: HomeViewModel
@@ -54,6 +55,7 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
         binding.Weight.setText(rfData.Weight)
         binding.rackNumber.setText(rfData.RackNumber)
         binding.remark.setText(rfData.Remarks)
+        setDatePickerView(binding.InatallationDate)
 
         AppPreferences.getInstance().setDropDown(binding.technology,DropDowns.Technology.name,rfData.Technology)
         AppPreferences.getInstance().setDropDown(binding.ownerCompany,DropDowns.OwnerCompany.name,rfData.OwnerCompany)
