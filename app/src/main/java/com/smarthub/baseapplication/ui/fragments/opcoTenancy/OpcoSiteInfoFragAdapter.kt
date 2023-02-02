@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
@@ -21,6 +22,10 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
     var type2 = "Operations Team"
     var type3 = "Attachments"
     private var data : Opcoinfo? = opcodata?.Opcoinfo?.get(0) ?:null
+    fun updateOpcoInfoData(data:Opcoinfo){
+        this.data=data
+        notifyDataSetChanged()
+    }
     init {
         list.add("OPCO/Site Info")
         list.add("Operations Team")
@@ -168,7 +173,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.operationsItemClicked()
+                    listener.operationsItemClicked(data!!)
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -234,7 +239,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
     }
     interface OpcoInfoLisListener {
         fun attachmentItemClicked()
-        fun operationsItemClicked()
+        fun operationsItemClicked(data:Opcoinfo)
         fun opcoSiteInfoItemClicked(data:Opcoinfo)
     }
 }

@@ -9,10 +9,9 @@ import com.smarthub.baseapplication.utils.AppController
 data class updateOpcoDataItem(
     var Backhaullink: List<Any>?=null,
     var Commercials: List<Any>?=null,
-    var Opcoinfo: List<Opcoinfo>?=null,
+    var Opcoinfo: Opcoinfo?=null,
     var PowerLoad: List<PowerLoadData>?=null,
     var RfAntena: List<RfAnteenaData>?=null,
-    var RfEquipment: List<rfEquipmentData>?=null,
-    var id: String ?= "448",
-    var ownername: String = AppController.getInstance().ownerName,
+    var RfEquipment: rfEquipmentData?=null,
+    var id: String ?= AppController.getInstance().siteid,
 )

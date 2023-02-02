@@ -79,7 +79,10 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditDialouge()
+                if(data!=null)
+                listener.EditDialouge(data)
+                else
+                    AppLogger.log("found null value")
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -113,12 +116,15 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
                     holder.binding.Weight.text=data.Weight
                     holder.binding.RackNumber.text=data.RackNumber
                     holder.binding.remark.text=data.Remarks
+                    holder.binding.minOpratingTemp.text=data.OperatingTempMin
+                    holder.binding.maxOpratingTemp.text=data.OperatingTempMax
+                    AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data?.Technology)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data?.OwnerCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data?.OemCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data?.OperationStatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.RackSpaceUsed, DropDowns.RackSpaceUsed.name,data?.RackSpaceUsed)
                     AppLogger.log("data : ${Gson().toJson(data)}")
-                    AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data.Technology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OemCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data.OemCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RackSpaceUsed, DropDowns.RackSpaceUsed.name,data.RackSpaceUsed)
+
 
                 }
             }catch (e:Exception){
@@ -131,7 +137,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     override fun getItemCount(): Int {
         return list?.size!!
     }
-    
+
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position
         notifyDataSetChanged()
@@ -141,7 +147,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
 
 
     interface RfEquipmentItemListner {
-        fun EditDialouge()
+        fun EditDialouge(data : rfEquipmentData)
         fun attachmentItemClicked()
     }
 }

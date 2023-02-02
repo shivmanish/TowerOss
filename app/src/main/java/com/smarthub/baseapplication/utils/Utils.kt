@@ -1,7 +1,12 @@
 package com.smarthub.baseapplication.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -10,6 +15,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -319,5 +325,22 @@ object Utils {
 
         }
         return 0
+    }
+    fun dialogYesOrNo(
+        context: Context,
+        title: String,
+        message: String,
+        listener: DialogInterface.OnClickListener
+    ) {
+        val builder = AlertDialog.Builder(context)
+        builder.setPositiveButton("Yes", listener
+        )
+        builder.setNegativeButton("No", listener)
+        val alert = builder.create()
+        alert.setTitle(title)
+        alert.window?.setBackgroundDrawableResource(R.drawable.round_corner_background)
+        alert.setMessage(message)
+        alert.setCancelable(false)
+        alert.show()
     }
 }

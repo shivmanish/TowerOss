@@ -44,6 +44,7 @@ import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragm
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -72,6 +73,7 @@ class SiteDetailFragment : BaseFragment() {
         if (arguments?.containsKey("siteName") == true)
             siteName = arguments?.getString("siteName")!!
 
+        AppController.getInstance().siteid=id
         AppLogger.log(" id ---:$id")
     }
 

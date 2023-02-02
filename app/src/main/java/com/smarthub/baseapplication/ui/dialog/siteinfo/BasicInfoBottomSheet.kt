@@ -32,7 +32,6 @@ class BasicInfoBottomSheet(contentLayoutId: Int,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         basicinfoModel = BasicinfoModel()
         binding = BasicInfoDetailsBottomSheetBinding.bind(view)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
