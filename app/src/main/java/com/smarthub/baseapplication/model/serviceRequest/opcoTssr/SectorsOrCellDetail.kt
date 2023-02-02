@@ -1,20 +1,20 @@
 package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class SectorsOrCellDetail(
-    val AntennaHeight: String,
-    val AzimuthOrOrientation: String,
-    val Feasibility: String,
-    val Frequency: String,
-    val Obstructions: String,
-    val SerialNo: String,
-    val Shape: String,
-    val Size: String,
-    val TRXCount: String,
-    val Technology: String,
-    val Type: String,
-    val Weight: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var AntennaHeight: String,
+    var AzimuthOrOrientation: String,
+    var Feasibility: String,
+    var Frequency: String,
+    var Obstructions: String,
+    var SerialNo: String,
+    var Shape: String,
+    var Size: String,
+    var TRXCount: String,
+    var Technology: String,
+    var Type: String,
+    var Weight: String,
+    var created_at: String,
+    var id: Int,
+    var isActive: Boolean,
+    var modified_at: String
 )

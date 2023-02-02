@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
@@ -17,7 +18,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTs
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener {
+class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?) : BaseFragment(), OpcoTssrAdapter.OpcoTssrLisListener {
     lateinit var adapter:OpcoTssrAdapter
     lateinit var viewmodel: HomeViewModel
     var binding : OpsrTabFragmaentLayoutBinding?=null
@@ -65,8 +66,11 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : 
     override fun attachmentItemClicked() {
 
     }
-    override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = RFFeasibilityBottomSheet(R.layout.rf_feasibility_bottom_sheet_dialog)
+    override fun detailsItemClicked(
+        RfFeasibility: RFFeasibility?,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = RFFeasibilityBottomSheet(R.layout.rf_feasibility_bottom_sheet_dialog,Id,viewmodel,RfFeasibility,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {
@@ -82,8 +86,16 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, Id: String?) : 
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
-    override fun editSectorCellsDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit sector celss item clicked",Toast.LENGTH_SHORT).show()
+    override fun editSectorCellsDetailsClicked(
+        RfFeasibility: RFFeasibility,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = RfCellDetailsBottomSheet(R.layout.rf_feasibility_bottom_sheet_dialog,Id,viewmodel,RfFeasibility,serviceRequestAllData)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+
+//        Toast.makeText(requireContext(),"Edit sector celss item clicked",Toast.LENGTH_SHORT).show()
+//        RfCellDetailsBottomSheet
+//        BackhaulFeasibilityBottomSheet
     }
 
     override fun viewSectorCellsDetailsClicked(position: Int) {

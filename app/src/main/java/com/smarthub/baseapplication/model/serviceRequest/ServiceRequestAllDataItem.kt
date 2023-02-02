@@ -9,7 +9,7 @@ data class ServiceRequestAllDataItem(
     var ASAcquitionSurvey: ArrayList<ASAquisitionSurvey>?=null,
     var AssignACQTeam: ArrayList<AssignACQTeam>?=null,
     var FeasibilityPlanning: List<FeasibilityPlanning>?=null,
-    var OpcoTSSR: List<OpcoTSSR>?=null,
+    var OpcoTSSR: ArrayList<OpcoTSSR>?=null,
     var SPApprovarAndSO: List<Any>?=null,
     var ServiceRequest: ArrayList<ServiceRequest>?=null,
     var PowerAndFuel: List<PowerAndFuel>?=null,
