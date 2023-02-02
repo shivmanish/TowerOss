@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.RfEquipmentListItemDialougeBindi
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.OpcoInfoUpdateResponse
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.updateOpcoDataItem
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -19,7 +20,7 @@ import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,var id:String): BottomSheetDialogFragment(contentLayoutId) {
+class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,var id:String,var listener : RfEquipmentListener): BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : AddnewRfequipmentDialougeBinding
     lateinit var viewModel: SiteInfoViewModel
     lateinit var homeViewModel: HomeViewModel
@@ -99,7 +100,8 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
                 if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
-                    homeViewModel.opcoTenancyRequestAll(AppController.getInstance().siteid)
+                    listener.updatedData(dataModel?.RfEquipment!!)
+//                    homeViewModel.opcoTenancyRequestAll(AppController.getInstance().siteid)
                 }else{
                     AppLogger.log("UnExpected Error found")
                 }
@@ -121,5 +123,8 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
 
     override fun getTheme() = R.style.NewDialogTask
 
+    interface RfEquipmentListener{
+        fun updatedData(data : rfEquipmentData)
+    }
 
 }

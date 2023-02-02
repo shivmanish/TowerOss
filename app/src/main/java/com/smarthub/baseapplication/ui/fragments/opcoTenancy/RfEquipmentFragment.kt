@@ -39,8 +39,14 @@ class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentA
 
     override fun attachmentItemClicked() {
     }
-    override fun EditDialouge(data : rfEquipmentData) {
-        val bottomSheetDialogFragment = RfEquipmentEditDialouge(R.layout.addnew_rfequipment_dialouge,data,opcodata?.id.toString())
+    override fun EditDialouge(data : rfEquipmentData,pos:Int) {
+        val bottomSheetDialogFragment = RfEquipmentEditDialouge(R.layout.addnew_rfequipment_dialouge,data,opcodata?.id.toString(),
+        object : RfEquipmentEditDialouge.RfEquipmentListener{
+            override fun updatedData(data: rfEquipmentData) {
+                adapter?.updateItem(pos,data)
+            }
+
+        })
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 

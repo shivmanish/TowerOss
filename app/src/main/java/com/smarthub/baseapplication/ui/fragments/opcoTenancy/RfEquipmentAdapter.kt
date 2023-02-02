@@ -17,10 +17,15 @@ import com.smarthub.baseapplication.utils.DropDowns
 
 class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoDataItem?,var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
 
-    var list : List<rfEquipmentData> ? = opcodata?.RfEquipment
+    var list : ArrayList<rfEquipmentData> = ArrayList(opcodata?.RfEquipment)
     lateinit var data : rfEquipmentData
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
+
+    fun updateItem(pos : Int,data :rfEquipmentData){
+        list[pos] = data
+        notifyItemChanged(pos)
+    }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -79,10 +84,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                if(data!=null)
-                listener.EditDialouge(data)
-                else
-                    AppLogger.log("found null value")
+                listener.EditDialouge(data,position)
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -147,7 +149,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
 
 
     interface RfEquipmentItemListner {
-        fun EditDialouge(data : rfEquipmentData)
+        fun EditDialouge(data : rfEquipmentData,pos:Int)
         fun attachmentItemClicked()
     }
 }
