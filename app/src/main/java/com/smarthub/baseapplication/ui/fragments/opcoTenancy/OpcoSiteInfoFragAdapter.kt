@@ -21,9 +21,11 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
     var type1 = "OPCO/Site Info"
     var type2 = "Operations Team"
     var type3 = "Attachments"
-    private var data : Opcoinfo? = opcodata?.Opcoinfo?.get(0) ?:null
-    fun updateOpcoInfoData(data:Opcoinfo){
-        this.data=data
+    private var data : Opcoinfo? = opcodata?.Opcoinfo?.get(0)
+
+    fun updateOpcoInfoData(updateddata:Opcoinfo){
+        opcodata?.Opcoinfo?.set(0, updateddata)
+        this.data=updateddata
         notifyDataSetChanged()
     }
     init {
@@ -96,7 +98,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
 //                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
 //            }
 
-            var recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
             recyclerListener.adapter = adapter
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
                 adapter.addItem()

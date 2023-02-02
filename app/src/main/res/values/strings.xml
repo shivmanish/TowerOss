@@ -263,4 +263,5 @@
 
 
     <string name="rf_equipment_title_str_formate">%s-%s-%s-%s</string>
+    <string name="rf_antenna_title_str_formate">%s-%s-%s</string>
 </resources>
