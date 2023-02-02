@@ -22,28 +22,45 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,var id : String,var srDetailsData: SRDetails,var serviceRequestAllData: ServiceRequestAllDataItem) : BaseBottomSheetDialogFragment(contentLayoutId) {
+class SRDetailsBottomSheet(
+    contentLayoutId: Int,
+    var viewModel: HomeViewModel,
+    var id: String,
+    var srDetailsData: SRDetails,
+    var serviceRequestAllData: ServiceRequestAllDataItem
+) : BaseBottomSheetDialogFragment(contentLayoutId) {
 
     var basicinfoModel: BasicinfoModel? = null
-    lateinit var binding : SrDetailsBottomSheetDialogBinding
+    lateinit var binding: SrDetailsBottomSheetDialogBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = SrDetailsBottomSheetDialogBinding.bind(view)
         basicinfoModel = BasicinfoModel()
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.95).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight() * 0.95).toInt()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
         setDatePickerView(binding.requestDate)
         setDatePickerView(binding.expectedDate)
 
-        srDetailsData.let{
-            AppPreferences.getInstance().setDropDown(binding.srType, DropDowns.SRDetailTechnology.name,it.SRType)
-            AppPreferences.getInstance().setDropDown(binding.editTechnology, DropDowns.SRDetailTechnology.name,it.Technology)
-            AppPreferences.getInstance().setDropDown(binding.editSrStatus, DropDowns.SRStatus.name,it.SRStatus)
-            AppPreferences.getInstance().setDropDown(binding.editRequesterCompany, DropDowns.SRDetailTechnology.name,it.RequesterCompany)
-            AppPreferences.getInstance().setDropDown(binding.editPriority, DropDowns.SRDetailTechnology.name,it.Priority)
+        srDetailsData.let {
+            AppPreferences.getInstance()
+                .setDropDown(binding.srType, DropDowns.SRType.name, it.SRType)
+            AppPreferences.getInstance().setDropDown(
+                binding.editTechnology,
+                DropDowns.SRDetailTechnology.name,
+                it.Technology
+            )
+            AppPreferences.getInstance()
+                .setDropDown(binding.editSrStatus, DropDowns.SRStatus.name, it.SRStatus)
+            AppPreferences.getInstance().setDropDown(
+                binding.editRequesterCompany,
+                DropDowns.SRDetailRequesterCompany.name,
+                it.RequesterCompany
+            )
+            AppPreferences.getInstance()
+                .setDropDown(binding.editPriority, DropDowns.Priority.name, it.Priority)
 
 
             binding.expectedDate.text = it.ExpectedDate
@@ -59,17 +76,17 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
         }
 
         binding.update.setOnClickListener {
-            srDetailsData.let{
+            srDetailsData.let {
                 it.ExpectedDate = binding.expectedDate.text.toString()
                 it.RequestDate = binding.requestDate.text.toString()
-                it.ExpectedDate=binding.expectedDate.text.toString()
-                it.locLatitude=binding.editNominalsLat.text.toString()
-                it.locLongitude=binding.editNominalsLong.text.toString()
-                it.SearchRadius=binding.editSearchRadius.text.toString()
-                it.Circle=binding.editCircle.text.toString()
-                it.CityOrTown=binding.editCityTown.text.toString()
-                it.Area=binding.editArea.text.toString()
-                it.Pincode=binding.editPinCode.text.toString()
+                it.ExpectedDate = binding.expectedDate.text.toString()
+                it.locLatitude = binding.editNominalsLat.text.toString()
+                it.locLongitude = binding.editNominalsLong.text.toString()
+                it.SearchRadius = binding.editSearchRadius.text.toString()
+                it.Circle = binding.editCircle.text.toString()
+                it.CityOrTown = binding.editCityTown.text.toString()
+                it.Area = binding.editArea.text.toString()
+                it.Pincode = binding.editPinCode.text.toString()
             }
 
             val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
@@ -92,32 +109,32 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
 
         if (viewModel.basicInfoUpdate?.hasActiveObservers() == true)
             viewModel.basicInfoUpdate?.removeObservers(viewLifecycleOwner)
-        viewModel.basicInfoUpdate?.observe(viewLifecycleOwner){
-            if (it!=null){
-                if (it.status == Resource.Status.LOADING){
+        viewModel.basicInfoUpdate?.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.status == Resource.Status.LOADING) {
                     showProgressLayout()
-                }else{
+                } else {
                     hideProgressLayout()
                 }
-                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
+                if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true) {
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
                     viewModel.serviceRequestAll(id)
-                }else{
+                } else {
                     AppLogger.log("UnExpected Error found")
                 }
-            }else{
+            } else {
                 AppLogger.log("Something went wrong")
             }
         }
     }
 
-    private fun showProgressLayout(){
+    private fun showProgressLayout() {
         if (binding.progressLayout.visibility != View.VISIBLE)
             binding.progressLayout.visibility = View.VISIBLE
     }
 
-    private fun hideProgressLayout(){
+    private fun hideProgressLayout() {
         if (binding.progressLayout.visibility == View.VISIBLE)
             binding.progressLayout.visibility = View.GONE
     }
@@ -131,7 +148,11 @@ class SRDetailsBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,va
 
     override fun getTheme() = R.style.NewDialogTask
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = SrDetailsBottomSheetDialogBinding.inflate(inflater)
         return binding.root
     }

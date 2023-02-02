@@ -8,13 +8,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
-class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
+class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<OpcoTssrAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     private var opcoTssrdata: OpcoTSSR?=null
     private var RfFeasibility: RFFeasibility?=null
@@ -250,7 +252,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    listener.detailsItemClicked(RfFeasibility,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -272,13 +274,13 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
                 }
                 holder.binding.itemTitleStr.text = list[position]
                try {
-                   holder.binding.TechnologyRfFeasibility.text=RfFeasibility?.Technology
+                   AppPreferences.getInstance().setDropDown(holder.binding.TechnologyRfFeasibility,DropDowns.Rftechnology.name,RfFeasibility?.Technology)
+
                    holder.binding.SectorCount.text=RfFeasibility?.SectorCount
                    holder.binding.RRUCountRfFeasibility.text=RfFeasibility?.RRUCount
                    holder.binding.OfSetPoleRead.text=RfFeasibility?.OffSetPoleReqd
                    holder.binding.RemarkRfFeasibility.text=RfFeasibility?.RFFeasibiltyRemarks
-
-                   holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener,RfFeasibility?.SectorsOrCellDetails!!)
+                   holder.SectorTableList.adapter=SecotrsCellsDetailsTableAdapter(context,listener,RfFeasibility!!,serviceRequestAllData)
 
                }catch (e:java.lang.Exception){
                    AppLogger.log("opcotssr rf feasibility error : ${e.localizedMessage}")
@@ -455,12 +457,18 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,s
 
     interface OpcoTssrLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked()
+        fun detailsItemClicked(
+            RfFeasibility: RFFeasibility?,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun requestinfoClicked()
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
-        fun editSectorCellsDetailsClicked(position:Int)
+        fun editSectorCellsDetailsClicked(
+            position: RFFeasibility,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun viewSectorCellsDetailsClicked(position:Int)
         fun editBackhaulMicrowaveClicked(position:Int)
         fun viewBackhaulMicrowaveClicked(position:Int)

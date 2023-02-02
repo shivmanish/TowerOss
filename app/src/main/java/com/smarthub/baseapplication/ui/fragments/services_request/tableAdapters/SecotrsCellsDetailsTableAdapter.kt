@@ -9,23 +9,24 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoTssrRfFeasibilityTableItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASBoundryStructureDetail
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.SectorsOrCellDetail
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
+import com.smarthub.baseapplication.utils.DropDowns
 
-class SecotrsCellsDetailsTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,sectorData:List<SectorsOrCellDetail>): RecyclerView.Adapter<SecotrsCellsDetailsTableAdapter.ViewHold>() {
+class SecotrsCellsDetailsTableAdapter(
+    var context: Context,
+    var listener: OpcoTssrAdapter.OpcoTssrLisListener,
+    var rfFeasibility: RFFeasibility,
+    var serviceRequestAllData: ServiceRequestAllDataItem?
+): RecyclerView.Adapter<SecotrsCellsDetailsTableAdapter.ViewHold>() {
     var list : ArrayList<SectorsOrCellDetail>?
     init {
-        list = sectorData as ArrayList<SectorsOrCellDetail>
+        list = rfFeasibility.SectorsOrCellDetails as ArrayList<SectorsOrCellDetail>
     }
     fun addItem(item:String){
-//        list?.add(
-//            SectorsOrCellDetail(AntennaHeight = "34", AzimuthOrOrientation = "dsf", Feasibility = "rgttr",
-//            Frequency = "ewr", Obstructions = "sfeg", SerialNo = "54", Shape = "shetrgf",
-//            Size = "43", TRXCount = "54", Technology = "4g", Type = "ercs", Weight = "45",
-//            created_at = "22-10-2022", id = 7, isActive = true, modified_at = "22-12-2022")
-//        )
-//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -45,7 +46,10 @@ class SecotrsCellsDetailsTableAdapter (var context : Context, var listener : Opc
             performOptionsMenuClick(position,it)
         }
         holder.binding.SerislNo.text=list?.get(position)?.SerialNo
-        holder.binding.Technology.text=list?.get(position)?.Technology
+        AppPreferences.getInstance().setDropDown(holder.binding.Technology,
+            DropDowns.Rftechnology.name,list?.get(position)?.Technology)
+
+//        holder.binding.Technology.text=list?.get(position)?.Technology
         holder.binding.TrxCount.text=list?.get(position)?.TRXCount
         holder.binding.AnteenaHeight.text=list?.get(position)?.AntennaHeight
 
@@ -65,7 +69,10 @@ class SecotrsCellsDetailsTableAdapter (var context : Context, var listener : Opc
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editSectorCellsDetailsClicked(position)
+//                        val data = rfFeasibility.clone()
+//                        data.SectorsOrCellDetails!!.clear()
+//                        data.SectorsOrCellDetails!!.add(list!!.get(position))
+//                        listener.editSectorCellsDetailsClicked(data,serviceRequestAllData)
                         return true
                     }
                     // in the same way you can implement others
