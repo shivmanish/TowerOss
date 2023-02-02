@@ -103,7 +103,6 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
                     listener.updatedData(dataModel?.RfEquipment!!)
-//                    homeViewModel.opcoTenancyRequestAll(AppController.getInstance().siteid)
                 }else{
                     AppLogger.log("UnExpected Error found")
                 }
