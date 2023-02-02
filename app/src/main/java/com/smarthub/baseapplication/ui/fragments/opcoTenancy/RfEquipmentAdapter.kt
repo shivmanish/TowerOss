@@ -76,8 +76,8 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                if(data!=null)
-                listener.EditDialouge(data)
+                if (list !=null && list?.isNotEmpty()!!)
+                    list?.get(position)?.let { it1 -> listener.EditDialouge(it1) }
                 else
                     AppLogger.log("found null value")
             }
@@ -103,7 +103,8 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
                 if (list !=null && list?.isNotEmpty()!!){
                     data= list!![position]
                     if(data!=null){
-                        holder.binding.itemTitleStr.text = "${holder.binding.Technology.text} - ${data.Equipementname} - ${data.SerialNumber} - ${data.InstallationDate.substring(0,10)}"
+                        holder.binding.itemTitleStr.text = "${AppPreferences.getInstance().getDropDownValue(DropDowns.Technology.name,data?.Technology)} " +
+                                "- ${data.Equipementname} - ${data.SerialNumber} - ${data.InstallationDate.substring(0,10)}"
                         holder.binding.EquipmentName.text=data.Equipementname
                         holder.binding.Model.text=data.Model
                         holder.binding.SerialNumber.text=data.SerialNumber
