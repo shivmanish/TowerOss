@@ -98,7 +98,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Equipment_Name"
-                        android:text="RRH"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -116,7 +115,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Model"
-                        android:text="xxxx"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,7 +134,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Serial_Number"
-                        android:text="S3058940"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -155,7 +152,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Make"
-                        android:text="xxxx"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -174,7 +170,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Technology"
-                        android:text="3G"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -192,7 +187,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Band"
-                        android:text="1800 GHz"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -211,7 +205,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Owner_Company"
-                        android:text="CloudExtel"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -229,7 +222,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/User_Company"
-                        android:text="Nokia"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -316,7 +308,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Installation_Date"
-                        android:text="10-Nov-22"
                         style="@style/RowTestItemEdit"
                         android:maxLength="10"
                         android:layout_width="match_parent"
@@ -336,7 +327,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Operational_Status"
-                        android:text="Live"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -354,7 +344,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Max_Power_Rating"
-                        android:text="1.2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -373,7 +362,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Weight"
-                        android:text="1.2"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -391,7 +379,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Rack_Space_Used"
-                        android:text="3U"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -410,7 +397,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Rack_Number"
-                        android:text="R1"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -429,7 +415,6 @@
                 android:hint="Type Here"
                 android:textSize="15sp"
                 style="@style/RowTestItemEdit"
-                android:text="xwerhtjyg"
                 android:maxLines="1"
                 android:ellipsize="marquee"
                 android:layout_margin="@dimen/dp10"

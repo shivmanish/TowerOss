@@ -35,8 +35,11 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("token:${AppPreferences.getInstance().token}")
         AppLogger.log("refresh:${AppPreferences.getInstance().refresh}")
         AppLogger.log("refresh:${AppPreferences.getInstance().bearerToken}")
+        val loginTime = AppPreferences.getInstance().getLong("loginTime")
+        val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
+        AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
-            if (AppPreferences.getInstance().token.isNullOrEmpty()){
+            if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > (1*60)){
                 if (isNetworkConnected){
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
@@ -57,7 +60,7 @@ class SplashActivity : BaseActivity() {
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Log.d("status","${it.message}")
-//                    Toast.makeText(this@SplashActivity,"LoginSuccessful", Toast.LENGTH_LONG).show()
+                    AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)

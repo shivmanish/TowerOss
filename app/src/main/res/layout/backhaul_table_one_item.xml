@@ -20,7 +20,7 @@
             android:text="3G"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/Equipment_info"
+            android:id="@+id/link_count"
             android:layout_weight="1"
             android:textSize="@dimen/dp12"
             android:fontFamily="@font/poppins_regular"
@@ -35,7 +35,7 @@
             android:layout_weight="1.3"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/Equipment_size"
+                android:id="@+id/fiber_paires"
                 android:visibility="visible"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="0dp"

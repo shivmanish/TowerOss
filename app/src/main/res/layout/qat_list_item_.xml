@@ -8,8 +8,8 @@
         android:id="@+id/search_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp8"
-        android:layout_marginVertical="@dimen/dp6"
+        android:layout_marginHorizontal="@dimen/dp10"
+        android:layout_marginVertical="@dimen/dp10"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/dp16"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
                             android:fontFamily="@font/poppins_medium"
                             android:text="Status"
                             android:textColor="#3F4E69"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/dp14"
                             android:paddingRight="@dimen/dp10"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -88,11 +88,10 @@
                             android:id="@+id/text_name5_child"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
                             android:fontFamily="@font/poppins_medium"
                             android:text="open"
                             android:textColor="#03C83A"
-                            android:textSize="12sp"
+                            android:textSize="@dimen/dp14"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toRightOf="@+id/text_name5" />
@@ -119,7 +118,6 @@
                             android:visibility="visible"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
