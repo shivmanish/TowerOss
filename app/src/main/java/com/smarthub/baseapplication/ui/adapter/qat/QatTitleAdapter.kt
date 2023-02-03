@@ -18,21 +18,14 @@ import com.smarthub.baseapplication.utils.Utils
 
 class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
 
-//    var list : ArrayList<String> = ArrayList()
-//    init {
-//        list.add("Electircal / Civil Material")
-//        list.add("Electircal / Civil Construction")
-//        list.add("Earthing Department")
-//        list.add("Pole Construction")
-//        list.add("Others")
-//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_title_view, parent, false)
         return ViewHold(view,listener)
     }
 
-    override fun onBindViewHolder(hold: ViewHold, pos: Int) {
-        hold.binding.expansionText.text = "${list[pos].QATItem}"
+    override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        holder.binding.itemTitle.text = "${list[position].QATItem}"
+
     }
 
     override fun getItemCount(): Int {
@@ -42,15 +35,15 @@ class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : Rec
     open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
         val binding = QatTitleViewBinding.bind(itemView)
         init {
-            binding.expansionText.tag = false
-            binding.expansionText.setOnClickListener {
+            binding.itemTitle.tag = false
+            binding.itemTitle.setOnClickListener {
                 if (it.tag is Boolean && it.tag as Boolean){
                     Utils.collapse(binding.listView)
-                    binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                    binding.imgDropdown.setImageResource(R.drawable.down_arrow,)
                binding.root.isSelected = false
                 }else{
                     Utils.expand(binding.listView)
-                    binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
+                    binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up_faq)
                     binding.root.isSelected = true
                 }
                 it.tag = !(it.tag as Boolean)
@@ -59,5 +52,6 @@ class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : Rec
             binding.listView.adapter = QatSubTitleAdapter(listener)
         }
     }
+
 
 }

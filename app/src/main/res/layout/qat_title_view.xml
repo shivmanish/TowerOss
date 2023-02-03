@@ -4,40 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:orientation="vertical"
-    android:id="@+id/root"
-    android:background="@drawable/expand_colaps_background"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingConstraints">
-    <TextView
-        android:tag="false"
-        android:paddingTop="@dimen/dp15"
-        android:paddingBottom="@dimen/dp15"
-        android:textColor="@color/black"
-        android:maxLines="1"
-        android:drawablePadding="@dimen/dp10"
-        android:drawableTint="@color/black"
-        android:drawableEnd="@drawable/arrow_farword"
-        android:text="Electircal / Civil Material"
-        android:id="@+id/expansion_text"
-        android:textSize="@dimen/sp13"
-        android:fontFamily="@font/poppins_bold"
-        app:layout_constraintTop_toTopOf="parent"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:paddingLeft="@dimen/dp15"
-        android:paddingRight="@dimen/dp15"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/root"
+        android:background="@color/collapse_card_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50">
+            <TextView
+                android:id="@+id/item_title"
+                android:text="qat title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/dp15"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/down_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp18"
+                android:paddingEnd="@dimen/dp18"
+                android:paddingTop="@dimen/dp18"
+                android:paddingBottom="@dimen/dp18"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/root"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
         android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/root"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

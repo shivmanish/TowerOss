@@ -33,7 +33,7 @@ class QatTitleAdapterNew(var listener: QatItemListener) : RecyclerView.Adapter<Q
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
-        hold.binding.expansionText.text = "${list[pos]}"
+        hold.binding.itemTitle.text = "${list[pos]}"
     }
 
     override fun getItemCount(): Int {
@@ -43,15 +43,15 @@ class QatTitleAdapterNew(var listener: QatItemListener) : RecyclerView.Adapter<Q
     open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
         val binding = QatTitleViewBinding.bind(itemView)
         init {
-            binding.expansionText.tag = false
-            binding.expansionText.setOnClickListener {
+            binding.itemTitle.tag = false
+            binding.itemTitle.setOnClickListener {
                 if (it.tag is Boolean && it.tag as Boolean){
                     Utils.collapse(binding.listView)
-                    binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
+                    binding.itemTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
                binding.root.isSelected = false
                 }else{
                     Utils.expand(binding.listView)
-                    binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
+                    binding.itemTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
                     binding.root.isSelected = true
                 }
                 it.tag = !(it.tag as Boolean)
