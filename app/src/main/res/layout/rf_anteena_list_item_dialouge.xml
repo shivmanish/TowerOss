@@ -181,7 +181,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/installed_height"
-                            android:text="50"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -313,7 +313,7 @@
                                     android:layout_height="wrap_content" />
                                 <EditText
                                     android:layout_weight="1"
-                                    android:text="40"
+                                    android:text=""
                                     android:id="@+id/antenna_lenth"
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
@@ -342,7 +342,7 @@
                                     android:layout_height="wrap_content" />
                                 <EditText
                                     android:layout_weight="1"
-                                    android:text="40"
+                                    android:text=""
                                     android:id="@+id/antenna_bidth"
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
@@ -372,7 +372,7 @@
                                     android:layout_height="wrap_content" />
                                 <EditText
                                     android:layout_weight="1"
-                                    android:text="40"
+                                    android:text=""
                                     android:id="@+id/antenna_height"
                                     style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
@@ -542,7 +542,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/PowerCableLength"
-                            android:text="80"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -565,7 +565,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/CPRICableLength"
-                            android:text="80"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -589,7 +589,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/GPSCableLength"
-                            android:text="80"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

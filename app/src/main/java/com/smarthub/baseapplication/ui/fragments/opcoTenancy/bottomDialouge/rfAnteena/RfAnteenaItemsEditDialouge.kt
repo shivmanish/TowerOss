@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAnteenaListItemDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -25,6 +26,8 @@ class RfAnteenaItemsEditDialouge (contentLayoutId: Int,var rfAntenadata : RfAnte
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = RfAnteenaListItemDialougeBinding.inflate(inflater)
+        viewModel = ViewModelProvider(requireActivity())[SiteInfoViewModel::class.java]
+        homeViewModel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
     }
 
@@ -53,11 +56,17 @@ class RfAnteenaItemsEditDialouge (contentLayoutId: Int,var rfAntenadata : RfAnte
         binding.GPSCableLength.text=rfAntenadata.GPSCableLength.toEditable()
         binding.editInstallationDate.text=rfAntenadata.InstallationDate.toEditable()
         binding.antenaType.text=rfAntenadata.AntenaType.toEditable()
+        binding.editRemarks.text=rfAntenadata.Remarks.toEditable()
 
 
-//        AppPreferences.getInstance().setDropDown(binding.userCompany,DropDowns.UserCompany.name,rfAntenadata.UserCompany)
+        AppPreferences.getInstance().setDropDown(binding.userCompany,DropDowns.BackhaulLinkUserCompany.name,rfAntenadata.UserCompany)
         AppPreferences.getInstance().setDropDown(binding.technology,DropDowns.Technology.name,rfAntenadata.Technology)
         AppPreferences.getInstance().setDropDown(binding.antennaShape,DropDowns.AntenaShape.name,rfAntenadata.AntenaShape)
+        AppPreferences.getInstance().setDropDown(binding.spaceUsed,DropDowns.BackhaulSpaceUsed.name,rfAntenadata.SpaceUsed)
+        AppPreferences.getInstance().setDropDown(binding.SectorNumber,DropDowns.RFSectornumber.name,rfAntenadata.SectorNumber)
+        AppPreferences.getInstance().setDropDown(binding.ownerCompany,DropDowns.OwnerCompany.name,rfAntenadata.OwnerCompany)
+        AppPreferences.getInstance().setDropDown(binding.towerPoleId,DropDowns.BackhaulAntenaTowerPoleId.name,rfAntenadata.TowerPoleId)
+        AppPreferences.getInstance().setDropDown(binding.OperationalStatus,DropDowns.BackhaulLinkOperationalStatus.name,rfAntenadata.LinkOperationalStatus)
         binding.update.setOnClickListener {
             rfAntenadata.let {
                 it.AntenaSerialNumber=binding.editAntennaSerialNumber.text.toString()
@@ -77,11 +86,21 @@ class RfAnteenaItemsEditDialouge (contentLayoutId: Int,var rfAntenadata : RfAnte
                 it.CPRICableLength=binding.CPRICableLength.text.toString()
                 it.GPSCableLength=binding.GPSCableLength.text.toString()
                 it.InstallationDate=binding.editInstallationDate.text.toString()
+                it.Remarks=binding.editRemarks.text.toString()
 
                 it.Technology=binding.technology.selectedValue.id
                 it.AntenaShape=binding.antennaShape.selectedValue.id
-
+                it.SpaceUsed=binding.spaceUsed.selectedValue.id
+                it.TowerPoleId=binding.towerPoleId.selectedValue.id
+                it.SectorNumber=binding.SectorNumber.selectedValue.id
+                it.OwnerCompany=binding.ownerCompany.selectedValue.id
+                it.UserCompany=binding.userCompany.selectedValue.id
+                it.LinkOperationalStatus=binding.OperationalStatus.selectedValue.id
             }
+            dataModel?.RfAntena=rfAntenadata
+            dataModel?.id=id
+            AppLogger.log("opcoInfo data for update: ${dataModel?.RfAntena}, whole Data: ${dataModel}")
+            viewModel.updateOpcoTenency(dataModel!!)
         }
         hideProgressLayout()
         if (viewModel.opcoTenencyUpdateResoponse?.hasActiveObservers() == true)

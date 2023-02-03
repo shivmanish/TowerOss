@@ -100,7 +100,11 @@ public enum DropDowns {
     OperationalStatus,
     Loadtype,
     UserCompany,
-
+    BackhaulAntenaTowerPoleId,
+    RFSectornumber,
+    BackhaulLinkUserCompany,
+    BackhaulLinkOperationalStatus,
+    BackhaulSpaceUsed,
     // plan design
     FoundationType,
     EquipmentType
