@@ -86,9 +86,9 @@
                                 android:layout_height="wrap_content"
                                 android:text="Sector Count" />
 
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                            <EditText
+                                style="@style/RowTestItemEdit"
                                 android:id="@+id/spinSectorCount"
-                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
                                 android:text="On-Air" />
@@ -111,9 +111,9 @@
                                 android:layout_height="wrap_content"
                                 android:text="RRU Count" />
 
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                            <EditText
+                                style="@style/RowTestItemEdit"
                                 android:id="@+id/spinRRUCount"
-                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
                                 android:text="On-Air" />
@@ -136,9 +136,9 @@
                                 android:layout_height="wrap_content"
                                 android:text="Off-Set Pole Read" />
 
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                            <EditText
+                                style="@style/RowTestItemEdit"
                                 android:id="@+id/spinOfSetPoleRead"
-                                style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
                                 android:text="On-Air" />
@@ -163,98 +163,7 @@
 
 
                     </GridLayout>
-                    <TextView
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp16"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_width="match_parent"
-                        android:gravity="start"
-                        android:padding="@dimen/dp10"
-                        android:text="Sectors/ Cell Details"
-                        style="@style/RowTextItemInfo"
-                        android:layout_height="wrap_content"/>
 
-                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
-                        android:padding="@dimen/dp10"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:weightSum="4"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:maxLines="1"
-                                android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp14"
-                                android:fontFamily="@font/poppins_regular"
-                                android:layout_width="0dp"
-                                android:gravity="start"
-                                android:text="Sr. No"
-                                style="@style/RowTextItemInfo"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp14"
-                                android:fontFamily="@font/poppins_regular"
-                                android:layout_width="0dp"
-                                android:maxLines="1"
-                                android:gravity="center"
-                                android:text="Technology"
-                                style="@style/RowTextItemInfo"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp14"
-                                android:fontFamily="@font/poppins_regular"
-                                android:layout_width="0dp"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:text="TRX Count"
-                                style="@style/RowTextItemInfo"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp14"
-                                android:fontFamily="@font/poppins_regular"
-                                android:layout_width="0dp"
-                                android:gravity="center"
-
-                                android:maxLines="1"
-                                android:text="Antenna Heigh"
-                                style="@style/RowTextItemInfo"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_boundry_item_list"
-                            tools:listitem="@layout/po_item_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        </androidx.recyclerview.widget.RecyclerView>
-                        <TextView
-                            android:id="@+id/txtAddTable"
-
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/dp14"
-                            android:textStyle="bold"
-                            android:layout_gravity="end"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:layout_width="wrap_content"
-                            android:text="ADD"
-                            android:gravity=""
-                            style="@style/RowTextItemInfo"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -266,8 +175,8 @@
                             android:layout_height="wrap_content"
                             android:text="RF Feasibility Remarks" />
                         <EditText
-                            android:id="@+id/editRemarks"
                             style="@style/RowTestItemEdit"
+                            android:id="@+id/editRemarks"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Remarks in text" />
@@ -279,7 +188,9 @@
                             android:alpha="0.37"
                             android:background="#263238" />
                     </LinearLayout>
-                    <include layout="@layout/cancel_update_layout"/>
+                    <include
+                        android:id="@+id/include"
+                        layout="@layout/cancel_update_layout"/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

@@ -55,7 +55,7 @@
                 android:paddingStart="@dimen/dp16"
                 android:paddingEnd="@dimen/dp16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
+                android:layout_width="@dimen/dp45"
                 android:layout_height="40dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,7 +99,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/SR_Type"
-                        android:text="New Site Request"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -117,7 +116,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Request_Date"
-                        android:text="27-Jun-22"
                         android:maxLength="10"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
@@ -136,7 +134,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="SR_Status"
                         android:id="@+id/SR_Status"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
@@ -154,7 +151,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="On-Air"
                         android:id="@+id/RequesterCompany"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
@@ -173,7 +169,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="On-Air"
                         android:id="@+id/RFTechnology"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
@@ -191,7 +186,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="On-Air"
                         android:id="@+id/HubSite"
                         style="@style/RowTextviewItem"
                         android:gravity="left"
@@ -212,7 +206,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/OPCOSIteName"
-                        android:text="Residential"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -231,7 +224,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/OPCOSIteID"
-                        android:text="Residential"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -251,7 +243,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/OPCOSIteType"
-                        android:text="Urban"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -270,7 +261,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Priority"
-                        android:text="Priority"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -289,7 +279,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/ExpectedDate"
-                        android:text="27-Jun-22"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -307,7 +296,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/nominals_Lat_Long"
-                        android:text="22.968035,76.085596"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         style="@style/RowTextviewItem"
@@ -328,7 +316,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/SearchRadius"
-                        android:text="100"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -346,7 +333,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Circle"
-                        android:text="Mumbai"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -365,7 +351,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/CityTown"
-                        android:text="Mumbai"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -383,7 +368,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/Area"
-                        android:text="Area"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -402,7 +386,6 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/PinCode"
-                        android:text="247001"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>

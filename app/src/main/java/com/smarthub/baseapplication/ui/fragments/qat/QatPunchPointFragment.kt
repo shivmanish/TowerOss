@@ -66,7 +66,7 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
     }
 
     override fun itemClicked() {
-
+//        Toast.makeText(requireActivity(),"Click event not implemented", Toast.LENGTH_SHORT).show()
     }
 
     override fun addPunchPoint() {
