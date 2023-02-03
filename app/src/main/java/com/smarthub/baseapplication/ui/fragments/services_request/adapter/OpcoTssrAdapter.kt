@@ -290,7 +290,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                    listener.requestinfoClicked(BackhaulFeasibility,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -314,8 +314,8 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
                 try{
                     holder.binding.BackhaulNodeType.text=BackhaulFeasibility?.BackHaulNodeType
                     holder.binding.OffsetPoleRequired.text=BackhaulFeasibility?.OffSetPoleRequired
-                    holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener,BackhaulFeasibility?.MicrowaveOrUBR!!)
-                    holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener,BackhaulFeasibility?.Fiber!!)
+                    holder.MicrowaveTableList.adapter=BackhaulMicrowaveTableAdapter(context,listener,BackhaulFeasibility!!,serviceRequestAllData)
+                    holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener,BackhaulFeasibility!!,serviceRequestAllData)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("opcotssr Backhaul feasibility error : ${e.localizedMessage}")
                     Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -461,7 +461,10 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             RfFeasibility: RFFeasibility?,
             serviceRequestAllData: ServiceRequestAllDataItem?
         )
-        fun requestinfoClicked()
+        fun requestinfoClicked(
+            BackhaulFeasibility: BackhaulFeasibility?,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()
@@ -470,9 +473,15 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             serviceRequestAllData: ServiceRequestAllDataItem?
         )
         fun viewSectorCellsDetailsClicked(position:Int)
-        fun editBackhaulMicrowaveClicked(position:Int)
+        fun editBackhaulMicrowaveClicked(
+            position: BackhaulFeasibility,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun viewBackhaulMicrowaveClicked(position:Int)
-        fun editBackhaulFiberClicked(position:Int)
+        fun editBackhaulFiberClicked(
+            position: BackhaulFeasibility,
+            serviceRequestAllData: ServiceRequestAllDataItem?
+        )
         fun viewBackhaulFiberClicked(position:Int)
         fun editEquipmentClicked(position:Int)
         fun viewEquipmentClicked(position:Int)

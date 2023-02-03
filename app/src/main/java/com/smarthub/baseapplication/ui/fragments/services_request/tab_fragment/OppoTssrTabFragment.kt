@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.BackhaulFeasibility
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -102,16 +103,29 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
         Toast.makeText(requireContext(),"view sector celss item clicked",Toast.LENGTH_SHORT).show()
     }
 
-    override fun editBackhaulMicrowaveClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Backhaul microwave item clicked",Toast.LENGTH_SHORT).show()
+    override fun editBackhaulMicrowaveClicked(
+        backhaulFeasibility: BackhaulFeasibility,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = BackhaulMicrowaveBottomSheet(R.layout.backhaul_microwave_bottom_sheet_dialog,Id,viewmodel, backhaulFeasibility,serviceRequestAllData)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+
     }
 
     override fun viewBackhaulMicrowaveClicked(position: Int) {
-        Toast.makeText(requireContext(),"View Backhaul microwave item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"View Backhaul microwave item clicked",Toast.LENGTH_SHORT).show()
+
     }
 
-    override fun editBackhaulFiberClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Backhaul Fiber item clicked",Toast.LENGTH_SHORT).show()
+    override fun editBackhaulFiberClicked(
+        backhaulFeasibility: BackhaulFeasibility,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+//        Toast.makeText(requireContext(),"Edit Backhaul Fiber item clicked",Toast.LENGTH_SHORT).show()
+        val bottomSheetDialogFragment = BackhaulFiberBottomSheet(R.layout.backhaul_fiber_bottom_sheet_dialog,Id,viewmodel, backhaulFeasibility,serviceRequestAllData)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+
+
     }
 
     override fun viewBackhaulFiberClicked(position: Int) {
@@ -134,7 +148,13 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
         Toast.makeText(requireContext(),"view Power Mcb item clicked",Toast.LENGTH_SHORT).show()
     }
 
-    override fun requestinfoClicked() {
+    override fun requestinfoClicked(
+        backhaulFeasibility: BackhaulFeasibility?,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = BackhaulFeasibilityBottomSheet(R.layout.backhaul_feasibility_bottom_sheet_dialog,Id,viewmodel, backhaulFeasibility,serviceRequestAllData)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
+
 //        val bottomSheetDialogFragment = RequestInfoBottomSheet(
 //            R.layout.request_info_bottom_sheet_dialog,
 //            backhaulLinksData,

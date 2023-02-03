@@ -21,58 +21,79 @@ class SecotrsCellsDetailsTableAdapter(
     var listener: OpcoTssrAdapter.OpcoTssrLisListener,
     var rfFeasibility: RFFeasibility,
     var serviceRequestAllData: ServiceRequestAllDataItem?
-): RecyclerView.Adapter<SecotrsCellsDetailsTableAdapter.ViewHold>() {
-    var list : ArrayList<SectorsOrCellDetail>?
+) : RecyclerView.Adapter<SecotrsCellsDetailsTableAdapter.ViewHold>() {
+    var list: ArrayList<SectorsOrCellDetail>?
+
     init {
         list = rfFeasibility.SectorsOrCellDetails as ArrayList<SectorsOrCellDetail>
     }
-    fun addItem(item:String){
+
+    fun addItem(item: String) {
     }
 
-    fun removeItem(position:Int){
+    fun removeItem(position: Int) {
         list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
-    class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= OpcoTssrRfFeasibilityTableItemBinding.bind(view)
+    class ViewHold(view: View) : RecyclerView.ViewHolder(view) {
+        var binding = OpcoTssrRfFeasibilityTableItemBinding.bind(view)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.opco_tssr_rf_feasibility_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.opco_tssr_rf_feasibility_table_item, parent, false)
         return ViewHold(view)
     }
+
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-            performOptionsMenuClick(position,it)
+            performOptionsMenuClick(position, it)
         }
-        holder.binding.SerislNo.text=list?.get(position)?.SerialNo
-        AppPreferences.getInstance().setDropDown(holder.binding.Technology,
-            DropDowns.Rftechnology.name,list?.get(position)?.Technology)
+        holder.binding.SerislNo.text = list?.get(position)?.SerialNo
+        AppPreferences.getInstance().setDropDown(
+            holder.binding.Technology,
+            DropDowns.Rftechnology.name, list?.get(position)?.Technology
+        )
 
 //        holder.binding.Technology.text=list?.get(position)?.Technology
-        holder.binding.TrxCount.text=list?.get(position)?.TRXCount
-        holder.binding.AnteenaHeight.text=list?.get(position)?.AntennaHeight
+        holder.binding.TrxCount.text = list?.get(position)?.TRXCount
+        holder.binding.AnteenaHeight.text = list?.get(position)?.AntennaHeight
 
     }
+
     override fun getItemCount(): Int {
         return list?.size!!
     }
-    private fun performOptionsMenuClick(position: Int,view : View) {
+
+    private fun performOptionsMenuClick(position: Int, view: View) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
-        val popupMenu = PopupMenu(context , view)
+        val popupMenu = PopupMenu(context, view)
         // add the menu
         popupMenu.inflate(R.menu.options_menu)
         // implement on menu item click Listener
-        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
-                when(item?.itemId){
+                when (item?.itemId) {
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        val data = rfFeasibility.clone()
-//                        data.SectorsOrCellDetails!!.clear()
-//                        data.SectorsOrCellDetails!!.add(list!!.get(position))
-//                        listener.editSectorCellsDetailsClicked(data,serviceRequestAllData)
+                        val data = RFFeasibility().apply {
+                            OffSetPoleReqd = rfFeasibility.OffSetPoleReqd
+                            RFFeasibiltyRemarks = rfFeasibility.RFFeasibiltyRemarks
+                             RRUCount = rfFeasibility.RRUCount
+                             SectorCount = rfFeasibility.SectorCount
+                             SectorsOrCellDetails = rfFeasibility.SectorsOrCellDetails
+                             Technology = rfFeasibility.Technology
+                             created_at = rfFeasibility.created_at
+                             id = rfFeasibility.id
+                             isActive = rfFeasibility.isActive
+                             modified_at = rfFeasibility.modified_at
+                            SectorsOrCellDetails = ArrayList()
+
+                        }
+                        data.SectorsOrCellDetails!!.add(list!!.get(position))
+                        listener.editSectorCellsDetailsClicked(data,serviceRequestAllData)
                         return true
                     }
                     // in the same way you can implement others

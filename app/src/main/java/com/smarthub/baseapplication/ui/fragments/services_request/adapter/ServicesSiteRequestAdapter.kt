@@ -415,19 +415,19 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 }
             }
             is ViewHold6 -> {
-                if (currentOpened == position) {
+//                if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                }
-                else {
-                    holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                }
+//                }
+//                else {
+//                    holder.binding.collapsingLayout.tag = false
+//                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+//                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+//                    holder.binding.itemLine.visibility = View.VISIBLE
+//                    holder.binding.itemCollapse.visibility = View.GONE
+//                }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }

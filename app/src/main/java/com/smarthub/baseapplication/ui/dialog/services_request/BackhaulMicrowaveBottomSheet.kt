@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.BackhaulMicrowaveBottomSheetDialogBinding
+import com.smarthub.baseapplication.databinding.RfFeasibilityBottomSheetDialogBinding
+import com.smarthub.baseapplication.databinding.RfSectorBottomSheetDialogBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.BackhaulFeasibility
@@ -18,36 +21,34 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class BackhaulFeasibilityBottomSheet(
+class BackhaulMicrowaveBottomSheet(
     contentLayoutId: Int,
     var Id: String?,
     var viewmodel: HomeViewModel,
-    var backhaulFeasibility: BackhaulFeasibility?,
+    var BackhaulFeasibility: BackhaulFeasibility?,
     var serviceRequestAllData: ServiceRequestAllDataItem?
 ) : BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : BackhaulFeasibilityBottomSheetDialogBinding
     lateinit var basicinfoModel: BasicinfoModel
-
+    lateinit var binding : BackhaulMicrowaveBottomSheetDialogBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = BackhaulFeasibilityBottomSheetDialogBinding.bind(view)
         basicinfoModel = BasicinfoModel()
+        binding = BackhaulMicrowaveBottomSheetDialogBinding.bind(view)
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
-
-        if (backhaulFeasibility != null) {
-//            AppPreferences.getInstance().setDropDown(
-//                binding.backhaulnodetype,
-//                DropDowns.Off.name,
-//                backhaulFeasibility!!.BackHaulNodeType
-//            )
-            binding.editRemarks.setText(backhaulFeasibility!!.BackHaulFeasibilityRemark)
-            binding.ofsetpolerequired.setText(backhaulFeasibility!!.OffSetPoleRequired)
-//            binding.spinRRUCount.setText(backhaulFeasibility!!.RRUCount)
-//            binding.spinOfSetPoleRead.setText(backhaulFeasibility!!.OffSetPoleReqd)
+        BackhaulFeasibility!!.MicrowaveOrUBR!!.get(0).let {
+            if (BackhaulFeasibility != null) {
+//                AppPreferences.getInstance().setDropDown(
+//                    binding.spinEquipmentName,
+//                    DropDowns.Rftechnology.name,
+//                    it.
+//                )
+//                binding.trxcounter.setText(it.TRXCount)
+                binding.anteenaheight.setText(it.AntennaHeight)
+            }
         }
-        binding.backhaulnodetype.onItemSelectedListener = object :
+        binding.spinEquipmentName.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -55,20 +56,16 @@ class BackhaulFeasibilityBottomSheet(
                 position: Int,
                 id: Long
             ) {
-//                backhaulFeasibility!!.Technology = AppPreferences.getInstance().getDropDownList(DropDowns.Rftechnology.name).get(position).id
+//                RfFeasibility!!.SectorsOrCellDetails!!.get(0).Technology = AppPreferences.getInstance().getDropDownList(DropDowns.Rftechnology.name).get(position).id
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
         binding.include.update.setOnClickListener {
-
-            backhaulFeasibility!!.let {
-
-                it.BackHaulFeasibilityRemark = binding.editRemarks.text.toString()
-                it.OffSetPoleRequired = binding.ofsetpolerequired.text.toString()
-//                it.RRUCount = binding.spinRRUCount.text.toString()
-//                it.OffSetPoleReqd = binding.spinOfSetPoleRead.text.toString()
+            BackhaulFeasibility!!.MicrowaveOrUBR!!.get(0).let {
+//                it.TRXCount = binding.trxcounter.text.toString()
+                it.AntennaHeight = binding.anteenaheight.text.toString()
             }
 
             val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
@@ -77,7 +74,7 @@ class BackhaulFeasibilityBottomSheet(
 
             val opcoTSSR = OpcoTSSR()
             opcoTSSR.BackHaulFeasibility = ArrayList()
-            opcoTSSR.BackHaulFeasibility?.add(backhaulFeasibility!!)
+            opcoTSSR.BackHaulFeasibility?.add(BackhaulFeasibility!!)
             opcoTSSR.id = serviceRequestAllData!!.OpcoTSSR!![0].id
             mServiceRequestAllDataItem.OpcoTSSR?.add(opcoTSSR)
             val serviceRequestList = ServiceRequestAllData()
@@ -87,10 +84,18 @@ class BackhaulFeasibilityBottomSheet(
             basicinfoModel?.id = Id!!
             viewmodel.updateBasicInfo(basicinfoModel!!)
         }
+
+
     }
+
     override fun getTheme() = R.style.NewDialogTask
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = BackhaulFeasibilityBottomSheetDialogBinding.inflate(inflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = BackhaulMicrowaveBottomSheetDialogBinding.inflate(inflater)
         return binding.root
     }
+
 }

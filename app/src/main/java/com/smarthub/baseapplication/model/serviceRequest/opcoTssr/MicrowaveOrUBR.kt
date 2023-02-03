@@ -1,18 +1,18 @@
 package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class MicrowaveOrUBR(
-    val AntennaHeight: String,
-    val AzimuthOrOrientation: String,
-    val Feasibilty: String,
-    val LosDistance: String,
-    val Obstraction: String,
-    val OpcoFarEndSite: String,
-    val SerialNo: String,
-    val Shape: String,
-    val Size: String,
-    val Weight: String,
-    val created_at: String,
-    val id: String,
-    val isActive: String,
-    val modified_at: String
+    var AntennaHeight: String,
+    var AzimuthOrOrientation: String,
+    var Feasibilty: String,
+    var LosDistance: String,
+    var Obstraction: String,
+    var OpcoFarEndSite: String,
+    var SerialNo: String,
+    var Shape: String,
+    var Size: String,
+    var Weight: String,
+    var created_at: String,
+    var id: String,
+    var isActive: String,
+    var modified_at: String
 )
