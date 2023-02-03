@@ -24,6 +24,7 @@ import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
     var binding : OpcoInfoFregmentBinding?=null
     var viewmodel: HomeViewModel?=null
+    lateinit var adapter: OpcoSiteInfoFragAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         binding = OpcoInfoFregmentBinding.inflate(inflater, container, false)
@@ -32,8 +33,8 @@ class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = OpcoSiteInfoFragAdapter(this@OpcoSiteInfoFramgment,opcodata!!)
-
+        adapter = OpcoSiteInfoFragAdapter(this@OpcoSiteInfoFramgment,opcodata!!)
+        binding?.listItem?.adapter=adapter
         binding?.swipeLayout?.setOnRefreshListener {
             viewmodel?.opcoTenancyRequestAll(AppController.getInstance().siteid)
         }
@@ -66,21 +67,14 @@ class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSi
     }
 
     override fun opcoSiteInfoItemClicked(data: Opcoinfo) {
-        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout,data,opcodata?.id.toString())
-//        bottomSheetDialogFragment.onDismiss(
-//            object :DialogInterface{
-//                override fun cancel() {
-//                    if (viewModel.opcoTenencyUpdateResoponse?.hasActiveObservers() == true)
-//                        viewModel.opcoTenencyUpdateResoponse?.removeObservers(viewLifecycleOwner)
-//                }
-//
-//                override fun dismiss() {
-//                    if (viewModel.opcoTenencyUpdateResoponse?.hasActiveObservers() == true)
-//                        viewModel.opcoTenencyUpdateResoponse?.removeObservers(viewLifecycleOwner)
-//                }
-//
-//            }
-//        )
+        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout,data,opcodata?.id.toString(),
+        object : OpcoSiteInfoEditDialouge.OpcoInfoListener{
+            override fun updatedData(data: Opcoinfo) {
+                adapter.updateOpcoInfoData(data)
+            }
+
+        })
+
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }

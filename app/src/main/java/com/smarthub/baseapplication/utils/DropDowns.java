@@ -99,6 +99,7 @@ public enum DropDowns {
     AntenaShape,
     OperationalStatus,
     Loadtype,
+    UserCompany,
 
     // plan design
     FoundationType,

@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfEquipmentFregmentTempBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewOpcoCardAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewRfEquipmentAdapter
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfEquipment.RfEquipmentEditDialouge
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfEquipment.RfEquipmentEditDialouge
 
 class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentAdapter.RfEquipmentItemListner {
 

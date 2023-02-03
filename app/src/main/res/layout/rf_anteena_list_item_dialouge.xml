@@ -1,666 +1,812 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
-    android:paddingTop="@dimen/dp150">
-
+    android:background="@color/transparent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:id="@+id/canecl"
+        android:id="@+id/Cancle"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp20"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp25"
-        android:background="@drawable/drawable_cross_back"
-        android:padding="@dimen/dp5"
         android:src="@drawable/cross_ico"
-        android:translationZ="@dimen/dp6" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp20"
-        android:background="@drawable/dialog_bg"
-        android:orientation="vertical"
         android:padding="@dimen/dp5"
-        android:translationZ="@dimen/dp5">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/drawable_cross_back"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:minHeight="@dimen/dp600"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@drawable/dialog_bg"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_layout"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit RF Antenna"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#3D4E6D"
+            android:textSize="@dimen/sp15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:id="@+id/title_text_line"
+            android:alpha=".37"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text"/>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:scrollbars="vertical"
-            android:layout_height="match_parent"
-            android:requiresFadingEdge="vertical">
-
+            app:layout_constraintTop_toBottomOf="@id/title_text_line"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
             <LinearLayout
                 android:scrollbars="vertical"
+                android:layout_margin="5dp"
+                android:paddingBottom="@dimen/dp10"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="visible"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/item_collapse_equipment"
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:layout_marginBottom="@dimen/dp20"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginBottom="@dimen/dp10"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:layout_height="wrap_content">
 
-                    <GridLayout
-                        android:visibility="visible"
-                        android:columnCount="2"
-                        android:layout_marginBottom="@dimen/dp30"
-                        android:orientation="horizontal"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
+                        <TextView
+                            android:text="Antenna Serial Number"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/editAntennaSerialNumber"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Antenna Make"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/editAntennaMake"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Antenna Model"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/antenna_model"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp7" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Technology"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/technology"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp5" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installed Height(m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/installed_height"
+                            android:text="50"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp5" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Space Used"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/space_used"
+                            android:text="2U"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Tower/Pole ID"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/tower_pole_id"
+                            android:text="R1"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Sector Number"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/SectorNumber"
+                            android:text="R1"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Antenna Shape"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/antenna_shape"
+                            android:text="R1"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Antenna Size(cm)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
                         <LinearLayout
-                            android:paddingTop="0dp"
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
                             android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Antenna Serial Number"
-                                style="@style/RowTextItemInfo"
+                            <LinearLayout
+                                android:layout_weight="1"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editAntennaSerialNumber"
-                                android:text="S3058940"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L:"
+                                    android:paddingRight="@dimen/dp2"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <EditText
+                                    android:layout_weight="1"
+                                    android:text="40"
+                                    android:id="@+id/antenna_lenth"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
                             <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp3"
+                                android:layout_marginRight="3dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginBottom="@dimen/dp4"
+                                android:layout_gravity="center_vertical"
+                                android:alpha="1"
+                                android:background="@color/background_login"
+                                android:layout_height="match_parent"
+                                android:layout_width="1dp"/>
+                            <LinearLayout
+                                android:layout_weight="1"
                                 android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:paddingTop="0dp"
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B:"
+                                    android:paddingRight="@dimen/dp2"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <EditText
+                                    android:layout_weight="1"
+                                    android:text="40"
+                                    android:id="@+id/antenna_bidth"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
 
-                            <TextView
-                                android:text="Antenna Make"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editAntennaMake"
-                                android:text="xxxx"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
+                            </LinearLayout>
                             <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp3"
+                                android:layout_marginRight="3dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginBottom="@dimen/dp4"
+                                android:layout_gravity="center_vertical"
+                                android:alpha="1"
+                                android:background="@color/background_login"
+                                android:layout_height="match_parent"
+                                android:layout_width="1dp"/>
+                            <LinearLayout
+                                android:layout_weight="1"
                                 android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="H:"
+                                    android:paddingRight="@dimen/dp2"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <EditText
+                                    android:layout_weight="1"
+                                    android:text="40"
+                                    android:id="@+id/antenna_height"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+
                         </LinearLayout>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Antenna Model"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:text="xxxx"
-                                android:id="@+id/spinAntenna"
-                                style="@style/SpinnerTheme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Antenna Weight"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/AntennaWeight"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Technology"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editTechnology"
-                                android:text="3G"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
+                        <TextView
+                            android:text="Antenna Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/antena_type"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Installed Height"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editInstalledHeight"
-                                android:text="50"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Antenna Orientation"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Antenna_Orientation"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Space Used"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinSpaceUsed"
-                                android:text="2U"
-                                style="@style/SpinnerTheme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
+                        <TextView
+                            android:text="Antenna Tilt"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/AntennaTilt"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Tower/Pole ID"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editTowerPoleID"
-                                android:text="R1"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Total Power Rating(Kw)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/TotalPowerRating"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Sector Number"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                 android:id="@+id/spinSectorNumber"
-                                android:text="R1"
-                                style="@style/SpinnerTheme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
+                        <TextView
+                            android:text="Feeder Cable Length(m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/FeederCableLength"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Antenna Shape"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editAntennaShape"
-                                android:text="Cubic"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Power Cable Length(m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/PowerCableLength"
+                            android:text="80"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Antenna Size"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editAntennaSize"
+                        <TextView
+                            android:text="CPRI Cable Length(m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/CPRICableLength"
+                            android:text="80"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
 
-                                android:text="L -    |    W -    |    H -"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                        <TextView
+                            android:text="GPS Cable Length(m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/GPSCableLength"
+                            android:text="80"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Antenna Weight"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editAntennaWeight"
+                        <TextView
+                            android:text="Owner Company"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/owner_company"
+                            android:text="Live"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                                android:text="50"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                        <TextView
+                            android:text="User Company"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/user_company"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Antenna Type"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinAntennaType"
-                                android:text="Directional"
-                                style="@style/SpinnerTheme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
+                        <TextView
+                            android:text="Installation Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/editInstallationDate"
+                            android:text=""
+                            android:maxLength="10"
+                            android:drawableEnd="@drawable/icon_date"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
 
-                            <TextView
-                                android:text="Antenna Orientation"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinAntennaOrientation"
-                                android:text="23.3 deg NE"
-                                style="@style/SpinnerTheme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Antenna Tilt"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editAntennaTilt"
-
-                                android:text="6 deg down"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Total Power Rating"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editTotalPowerRating"
-                                android:text="1.2"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Feeder Cable Length"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editFeederCableLength"
-                                android:text="80"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Power Cable Length"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editPowerCableLength"
-                                android:text="80"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="CPRI Cable Length"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editCPRICableLength"
-                                android:text="80"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="GPS Cable Length"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editGPSCableLength"
-                                android:text="80"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Owner Company"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editOwnerCompany"
-                                android:text="CloudExtel"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="User Company"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="Nokia"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Installation Date"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/editInstallationDate"
-                                android:text="10-Nov-22"
-                                android:drawableEnd="@drawable/icon_date"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            style="@style/ColumnItemInfo"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:text="Operational Status"
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinOperationalStatus"
-                                android:text="Live"
-                                style="@style/SpinnerTheme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:alpha="0.37"
-                                android:background="#263238"
-                                android:layout_height="1dp"
-                                android:layout_width="match_parent"
-                                android:layout_marginTop="@dimen/dp8" />
-                        </LinearLayout>
+                        <TextView
+                            android:text="Operational Status"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/OperationalStatus"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
 
 
-                    </GridLayout>
+                </GridLayout>
 
-                    <TextView
-                        android:text="Remark"
-                        android:layout_marginStart="@dimen/dp10"
-                        android:textStyle="bold"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/editRemarks"
-                        android:hint="Type Here"
-                        android:textSize="15sp"
-                        android:layout_margin="@dimen/dp5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Remark"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textStyle="bold"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/editRemarks"
+                    android:layout_marginStart="@dimen/dp10"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginStart="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp6" />
 
-                    <include
-                        layout="@layout/layout_img_attachment"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/dp15"
+                <TextView
+                    android:text="Attachments"
+                    android:layout_marginStart="@dimen/dp10"
                     android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginBottom="@dimen/dp15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:textStyle="bold"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-                    <TextView
-                        android:id="@+id/canecel_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cancel"
-                        android:textColor="#3D4E6D"
-                        android:textSize="@dimen/dp15"/>
-
-                    <TextView
-                        android:id="@+id/update"
-                        android:layout_marginLeft="@dimen/dp25"
-                        android:background="@drawable/yellow_text_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Update"
-                        android:paddingLeft="@dimen/dp15"
-                        android:paddingRight="@dimen/dp15"
-                        android:paddingTop="@dimen/dp10"
-                        android:paddingBottom="@dimen/dp10"
-                        android:textColor="#3D4E6D"
-                        android:textSize="@dimen/dp15"/>
-
-                </LinearLayout>
+                <include
+                    layout="@layout/layout_img_attachment"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp5"
+            android:background="#1A807E7E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/cancel_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cancel"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"/>
+
+            <TextView
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@drawable/yellow_text_button"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:text="Update"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15" />
+
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:background="@drawable/dialog_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ProgressBar
+                android:id="@+id/progress"
+                android:indeterminateTint="@color/tab_text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:text="Updating Data"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/sp17"
+                android:layout_marginTop="@dimen/dp15"
+                android:textColor="@color/tab_text_color"
+                app:layout_constraintTop_toBottomOf="@+id/progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

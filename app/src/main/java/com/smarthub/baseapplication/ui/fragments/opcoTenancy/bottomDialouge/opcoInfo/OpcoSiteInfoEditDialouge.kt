@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBindin
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.updateOpcoDataItem
 import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppController
@@ -21,7 +22,7 @@ import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var id:String): BaseBottomSheetDialogFragment(contentLayoutId) {
+class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var id:String, var listner:OpcoInfoListener): BaseBottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : OpcoInfoSiteDialougeLayoutBinding
     lateinit var viewModel:SiteInfoViewModel
     lateinit var homeViewModel: HomeViewModel
@@ -120,7 +121,8 @@ class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var 
                 if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
-                    homeViewModel.opcoTenancyRequestAll(AppController.getInstance().siteid)
+                    dataModel?.Opcoinfo?.let { it1 -> listner.updatedData(it1) }
+//                    homeViewModel.opcoTenancyRequestAll(AppController.getInstance().siteid)
                 }else{
                     AppLogger.log("UnExpected Error found")
                 }
@@ -140,5 +142,7 @@ class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var 
 
     override fun getTheme() = R.style.NewDialogTask
 
-
+    interface OpcoInfoListener{
+        fun updatedData(data : Opcoinfo)
+    }
 }
