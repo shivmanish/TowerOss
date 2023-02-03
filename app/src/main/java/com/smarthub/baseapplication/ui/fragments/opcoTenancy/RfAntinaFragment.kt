@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.RfAnteena.RfAnteenaItemsEditDialouge
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAnteena.RfAnteenaItemsEditDialouge
 
 class RfAntinaFragment(var opcodata: OpcoDataItem?) :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListener {
 

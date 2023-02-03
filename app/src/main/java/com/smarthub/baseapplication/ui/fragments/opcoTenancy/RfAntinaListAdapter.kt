@@ -1,17 +1,15 @@
 package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.RfAntinaListItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -58,16 +56,16 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
         return when (viewType) {
             1 ->{
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
-                return ViewHold1(view,listener)
+                ViewHold1(view,listener)
             }
             2 ->{
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
-                return ViewHold(view)
+                ViewHold(view)
             }
 
             else -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
-                return ViewHold1(view,listener)
+                ViewHold1(view,listener)
             }
         }
 
@@ -97,7 +95,7 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                if (list !=null && list?.isNotEmpty()!!) {
+                if (list !=null && list.isNotEmpty()) {
                     data=list[position]
                     AppLogger.log("data of $position is =======: $data")
                     holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.Technology.name,data.Technology),data.AntenaSerialNumber,data.InstallationDate.substring(0,10))
@@ -121,7 +119,7 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
                     holder.binding.antennaHeight.text=data.AntenaSizeH
 
                     AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data.Technology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OwnerCompany)
+//                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OwnerCompany)
                     AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.UserCompany.name,data.UserCompany)
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data.LinkOperationalStatus)
                     AppPreferences.getInstance().setDropDown(holder.binding.SpaceUsed, DropDowns.SpaceUsed.name,data.SpaceUsed)
@@ -139,14 +137,14 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list?.isEmpty()!! || list?.get(position)==null)
+        return if (list.isEmpty() || list.get(position)==null)
             2
         else
             1
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        return list.size
     }
 
     var recyclerView: RecyclerView?=null

@@ -117,7 +117,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
             return dropDownNewItem.getData();
         }catch (Exception e){
-           AppLogger.INSTANCE.log("Dropdown value error on: " +name);
+           AppLogger.INSTANCE.log("Dropdown value error on: " +name + "message: "+ e.getLocalizedMessage());
         }
         return new ArrayList<DropDownItem>();
     }

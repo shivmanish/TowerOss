@@ -422,10 +422,10 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/AntennaType"
-                            android:text="Directional"
-                            style="@style/SpinnerTheme"
+                        <EditText
+                            android:id="@+id/antena_type"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -433,7 +433,7 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp6" />
+                            android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -659,6 +659,7 @@
                         <TextView
                             android:id="@+id/editInstallationDate"
                             android:text=""
+                            android:maxLength="10"
                             android:drawableEnd="@drawable/icon_date"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
