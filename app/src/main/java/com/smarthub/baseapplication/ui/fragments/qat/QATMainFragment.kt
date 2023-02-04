@@ -18,9 +18,12 @@ import com.smarthub.baseapplication.ui.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewOpcoCardAdapter
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QATListAdapter
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
+import com.smarthub.baseapplication.ui.fragments.qat.bottomDialouge.AddNewQatDialougeAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -48,6 +51,15 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
         adapter = QATListAdapter(requireContext(),this,id)
         binding.recyclerViewOpen.adapter=adapter
 
+        binding.addNewQat.setOnClickListener{
+            val dalouge = AddNewQatDialougeAdapter(R.layout.addnew_qat_dialouge)
+            dalouge.show(childFragmentManager,"")
+        }
+
+        binding.addMore.setOnClickListener{
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
+        }
         if (viewmodel.QatModelResponse?.hasActiveObservers() == true){
             viewmodel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
