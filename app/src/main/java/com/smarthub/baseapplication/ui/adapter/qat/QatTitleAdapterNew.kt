@@ -17,23 +17,23 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Item
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.utils.Utils
 
-class QatTitleAdapterNew(var listener: QatItemListener) : RecyclerView.Adapter<QatTitleAdapterNew.ViewHold>() {
+class QatTitleAdapterNew(var listener: QatItemListener,val list: List<Subitem>) : RecyclerView.Adapter<QatTitleAdapterNew.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
-    init {
-        list.add("Electircal / Civil Material")
-        list.add("Electircal / Civil Construction")
-        list.add("Earthing Department")
-        list.add("Pole Construction")
-        list.add("Others")
-    }
+//    var list : ArrayList<String> = ArrayList()
+//    init {
+//        list.add("Electircal / Civil Material")
+//        list.add("Electircal / Civil Construction")
+//        list.add("Earthing Department")
+//        list.add("Pole Construction")
+//        list.add("Others")
+//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_title_view, parent, false)
         return ViewHold(view,listener)
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
-        hold.binding.itemTitle.text = "${list[pos]}"
+        hold.binding.itemTitle.text = list[pos].QATSubItem
     }
 
     override fun getItemCount(): Int {
@@ -56,8 +56,6 @@ class QatTitleAdapterNew(var listener: QatItemListener) : RecyclerView.Adapter<Q
                 }
                 it.tag = !(it.tag as Boolean)
             }
-//            Utils
-            binding.listView.adapter = QatSubTitleAdapter(listener)
         }
     }
 

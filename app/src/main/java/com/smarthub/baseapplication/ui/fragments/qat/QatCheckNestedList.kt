@@ -19,7 +19,7 @@ class QatCheckNestedList : Fragment(), QatItemListener {
         val view = inflater.inflate(R.layout.qat_nested_list, container, false)
 
         binding = QatNestedListBinding.bind(view)
-        binding?.list?.adapter = QatTitleAdapterNew(this@QatCheckNestedList)
+        binding?.list?.adapter = QatTitleAdapterNew(this@QatCheckNestedList,ArrayList())
         return view
 
     }

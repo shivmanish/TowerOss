@@ -18,17 +18,17 @@
         android:drawableTint="@color/black"
         android:drawableEnd="@drawable/arrow_farword"
         android:text="Electircal / Civil Material"
-        android:id="@+id/expansion_text"
+        android:id="@+id/title_text"
         android:textSize="@dimen/sp13"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/poppins"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <View
-        app:layout_constraintTop_toBottomOf="@+id/expansion_text"
+        app:layout_constraintTop_toBottomOf="@+id/title_text"
         android:layout_width="match_parent"
         android:id="@+id/bar"
-        android:background="#0A000000"
+        android:background="#D9D9D9"
         android:layout_height="1dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
