@@ -41,10 +41,10 @@ class QatPunchPointAdapter(var listener: PunchPointListener) : RecyclerView.Adap
 //                attachmentAdapter.addItem("")
                 listener.addPunchPoint()
             }
-            binding?.punchPoint?.setOnClickListener {
-//                attachmentAdapter.addItem("")
-                listener.addPunchPoint()
-            }
+//            binding?.punchPoint?.setOnClickListener {
+////                attachmentAdapter.addItem("")
+//                listener.addPunchPoint()
+//            }
         }
     }
 

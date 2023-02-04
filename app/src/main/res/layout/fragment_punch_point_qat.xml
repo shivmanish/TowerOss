@@ -131,6 +131,7 @@
             android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                 app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
                 android:id="@+id/title"
                 app:layout_constraintWidth_percent="0.9"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +172,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_open"
                 android:layout_width="match_parent"
+                tools:itemCount="2"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 tools:listitem="@layout/qat_punch_point_item"
