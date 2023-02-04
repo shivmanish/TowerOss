@@ -35,8 +35,8 @@ class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : Rec
     open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
         val binding = QatTitleViewBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.setOnClickListener {
+            binding.collapsingLayout.tag = false
+            binding.collapsingLayout.setOnClickListener {
                 if (it.tag is Boolean && it.tag as Boolean){
                     Utils.collapse(binding.listView)
                     binding.imgDropdown.setImageResource(R.drawable.down_arrow,)

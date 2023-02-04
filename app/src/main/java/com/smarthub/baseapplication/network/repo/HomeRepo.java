@@ -848,7 +848,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<QatModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse on qatRequestAll :"+response+"===>:"+response.body());
                     qatModelResponse.postValue(Resource.success(response.body(), 200));
                 }
             }

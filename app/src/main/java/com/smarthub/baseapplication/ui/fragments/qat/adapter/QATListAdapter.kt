@@ -38,6 +38,7 @@ class QATListAdapter(var context: Context, var listener: QatMainAdapterListener,
         }
         holder.binding.textName3.text = list[position].Instruction
         holder.binding.assignee.text = list[position].AssignedToUserName
+//        holder.binding.statusQat.text=list[position].
     }
 
     override fun getItemCount(): Int {

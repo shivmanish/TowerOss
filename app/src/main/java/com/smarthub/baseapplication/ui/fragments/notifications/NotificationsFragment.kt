@@ -44,7 +44,7 @@ class NotificationsFragment : Fragment() {
             if (it?.data!=null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
                 adapter.setData(it.data)
-                AppLogger.log("notification fetched successfully in NotificationFragment class")
+                AppLogger.log("notification fetched successfully in NotificationFragment class ${it.data}")
             }else{
                 AppLogger.log("something wend wrong in NotificationFragment class e:${it.message}")
 

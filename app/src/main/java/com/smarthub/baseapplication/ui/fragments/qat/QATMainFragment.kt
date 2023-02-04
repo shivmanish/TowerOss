@@ -56,6 +56,11 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
             dalouge.show(childFragmentManager,"")
         }
 
+        binding.swipeLayout.setOnRefreshListener {
+            viewmodel.qatMainRequestAll(id)
+
+        }
+
         binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
@@ -68,8 +73,9 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+                AppLogger.log("qat card Data fetched successfully:${it.data.item} ")
                 adapter.setData(it.data.item!![0].QATMainLaunch)
+                binding.swipeLayout.isRefreshing=false
                 AppLogger.log("size :${it.data.item?.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()

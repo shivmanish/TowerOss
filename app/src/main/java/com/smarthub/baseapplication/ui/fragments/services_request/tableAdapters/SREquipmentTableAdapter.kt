@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.Equipment
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
 
@@ -58,8 +59,15 @@ class SREquipmentTableAdapter(
 
         holder.binding.EquipmentInfo.text = list?.get(position)?.EquipmentWeight
 //        holder.binding.EquipmentType.text = list?.get(position)?.Type
-        AppPreferences.getInstance().getDropDown(DropDowns.SREquipmentsType.name)
-            .get(list?.get(position)?.Type!!.toInt())
+        try {
+            list?.get(position)?.Type?.toInt()?.let {
+                AppPreferences.getInstance().getDropDown(DropDowns.SREquipmentsType.name)
+                    .get(it)
+            }
+        }catch (e:Exception){
+            AppLogger.log("${e.localizedMessage}")
+        }
+
 
         holder.binding.EquipmentSize.text = list?.get(position)?.CabinetSize
     }
