@@ -17,31 +17,37 @@ import com.smarthub.baseapplication.utils.Utils
 
 class QatPunchPointAdapter(var listener: PunchPointListener) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
 
+    var list = ArrayList<String>()
+    init {
+        list.add("Pole Height")
+        list.add("Pole Dia")
+    }
+
     class ViewHold(itemView: View,var listener: PunchPointListener) : RecyclerView.ViewHolder(itemView) {
         var binding : QatPunchPointItemBinding = QatPunchPointItemBinding.bind(itemView)
         var adapter = QatSpinnerItemAdapter(listener)
         var attachmentAdapter = QatAttachmentAdapter(listener)
         var tag = false
         init {
-            binding?.recyclerView?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-            binding?.recyclerView?.adapter = adapter
+            binding.recyclerView?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+            binding.recyclerView?.adapter = adapter
 
-            binding?.recyclerView?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-            binding?.punchCountList?.adapter = QatPunchCountAdapter(listener)
+            binding.recyclerView?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+            binding.punchCountList?.adapter = QatPunchCountAdapter(listener)
 
-            binding?.attachmentList?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            binding?.attachmentList?.adapter = attachmentAdapter
+            binding.attachmentList?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            binding.attachmentList?.adapter = attachmentAdapter
 
-            binding?.editRemark?.let { Utils.collapse(it) }
+            binding.editRemark.let { Utils.collapse(it) }
 
-            binding?.attachment?.setOnClickListener {
+            binding.attachment?.setOnClickListener {
                 attachmentAdapter.addItem("")
             }
-            binding?.punchPlush?.setOnClickListener {
+            binding.punchPlush?.setOnClickListener {
 //                attachmentAdapter.addItem("")
                 listener.addPunchPoint()
             }
-//            binding?.punchPoint?.setOnClickListener {
+//            binding.punchPoint?.setOnClickListener {
 ////                attachmentAdapter.addItem("")
 //                listener.addPunchPoint()
 //            }
@@ -82,21 +88,18 @@ class QatPunchPointAdapter(var listener: PunchPointListener) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-//        holder.binding.root.setOnClickListener {
-//            listener.itemClicked()
-//        }
-
-        holder.binding?.addRemark?.setOnClickListener {
+        holder.binding.titleText.text = list[position]
+        holder.binding.addRemark.setOnClickListener {
             holder.tag = !holder.tag
             if (holder.tag) {
-                holder.binding?.editRemark?.let { expand(it) }
+                holder.binding.editRemark.let { expand(it) }
             } else {
-                holder.binding?.editRemark?.let { Utils.collapse(it) }
+                holder.binding.editRemark.let { Utils.collapse(it) }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return list.size
     }
 }
