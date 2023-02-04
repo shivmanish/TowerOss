@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.NotificationListSubtitleBinding
 import com.smarthub.baseapplication.model.notification.NotificationData
 import com.smarthub.baseapplication.model.notification.NotificationListItem
 import com.smarthub.baseapplication.model.notification.newData.NotificationNewItem
+import com.smarthub.baseapplication.utils.AppLogger
 
 class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<NotificationNewItem>) : Adapter<NotificationListSubtitleAdapter.Viewholder>() {
     fun setData(data : List<NotificationNewItem>){
@@ -26,7 +27,14 @@ class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         val item : NotificationNewItem = list[position]
-        holder.binding.textName.text = "${item.UserFirstName} ${item.UserLastName}"
+        try {
+            holder.binding.textName.text = "${item.UserFirstName} ${item.UserLastName}"
+            if (item.files.isNotEmpty()){
+                holder.filesList.adapter=NotificationFilesListItemAdapter(context,item.files)
+            }
+        }catch (e:Exception){
+            AppLogger.log("somthing went wrong in NotificationListSubtitleAdapter class: ${e.localizedMessage}")
+        }
 
     }
 
@@ -36,5 +44,6 @@ class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<
 
     class Viewholder(item:View) : RecyclerView.ViewHolder(item) {
         var binding = NotificationListSubtitleBinding.bind(item)
+        val filesList:RecyclerView=binding.filesList
     }
 }

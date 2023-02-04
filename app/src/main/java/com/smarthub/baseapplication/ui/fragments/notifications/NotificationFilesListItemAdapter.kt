@@ -9,17 +9,10 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NotificationItemBinding
 import com.smarthub.baseapplication.model.notification.NotificationData
-import com.smarthub.baseapplication.model.notification.NotificationListItem
 
-class NotificationListItemAdapter(val context: Context,var list : ArrayList<NotificationData>) : Adapter<NotificationListItemAdapter.Viewholder>() {
+class NotificationFilesListItemAdapter(val context: Context, var list : ArrayList<Any>) : Adapter<NotificationFilesListItemAdapter.Viewholder>() {
 
-    init {
-        list.add(NotificationData("item"))
-        list.add(NotificationData("item1"))
-        list.add(NotificationData("item2"))
-        list.add(NotificationData("item3"))
-        list.add(NotificationData("item4"))
-    }
+
     class Viewholder(item:View) : RecyclerView.ViewHolder(item) {
         var binding = NotificationItemBinding.bind(item)
     }
@@ -31,7 +24,7 @@ class NotificationListItemAdapter(val context: Context,var list : ArrayList<Noti
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         var item = list[position]
-        holder.binding.fileName.text = item.files
+//        holder.binding.fileName.text = item.files
     }
 
     override fun getItemCount(): Int {

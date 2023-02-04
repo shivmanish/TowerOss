@@ -25,7 +25,7 @@ data class NotificationNewItem(
     val created_at: String,
     val documents: String,
     val enddate: String,
-    val files: List<Any>,
+    val files: ArrayList<Any>,
     val geolevel: String,
     val id: String,
     val isActive: String,
