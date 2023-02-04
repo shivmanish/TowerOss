@@ -15,147 +15,247 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:paddingBottom="@dimen/dp12"
             android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/top"
-            android:padding="@dimen/dp15"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/title_view"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:tag="false"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp3"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="1. Pole Height"
-                    android:id="@+id/title_text"
-                    android:textSize="@dimen/sp13"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:fontFamily="@font/poppins"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="0dp"
-                    app:layout_constraintEnd_toStartOf="@+id/status"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:tag="false"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp3"
-                    android:textColor="#03C83A"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="OK"
-                    android:id="@+id/status"
-                    android:textSize="@dimen/sp11"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                tools:itemCount="5"
-                tools:listitem="@layout/qat_spinner_item_view"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/title_view"/>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_remark"
-                android:layout_marginTop="@dimen/dp15"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:tag="false"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp3"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="Add Remark"
-                    android:id="@+id/add_remark"
-                    android:textSize="@dimen/sp13"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:drawableEnd="@drawable/ic_edit_menu"
-                    android:fontFamily="@font/poppins_regular"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:tag="false"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp3"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="Pole height not as per specification"
-                    android:layout_margin="@dimen/dp5"
-                    android:id="@+id/edit_remark"
-                    android:textSize="@dimen/sp13"
-                    android:textStyle="bold"
-                    android:background="@drawable/atp_blank_border"
-                    android:padding="5dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:fontFamily="@font/poppins_regular"
-                    app:layout_constraintTop_toBottomOf="@id/add_remark"
+                android:padding="@dimen/dp15"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/title_view"
                     android:layout_width="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="@dimen/dp80"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_attachment"
-                android:layout_marginTop="@dimen/dp15"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_remark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:tag="false"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp3"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:drawablePadding="@dimen/dp10"
-                    android:text="Image Attechment"
-                    android:id="@+id/attachment"
-                    android:textSize="@dimen/sp13"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:drawableEnd="@drawable/ic_edit_menu"
-                    android:fontFamily="@font/poppins_regular"
+                    android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.55">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:orientation="horizontal"
-                    android:id="@+id/attachment_list"
-                    android:layout_marginTop="@dimen/dp10"
-                    app:layout_constraintTop_toBottomOf="@+id/attachment"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/id_txt_circle"
+                        android:layout_width="@dimen/dp25"
+                        android:layout_height="@dimen/dp25"
+                        android:background="@drawable/circle"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/color1"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_text" />
+
+                    <TextView
+                        android:id="@+id/title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:drawablePadding="@dimen/dp10"
+                        android:fontFamily="@font/poppins_medium"
+                        android:maxLines="1"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp3"
+                        android:tag="false"
+                        android:text="Pole Height"
+                        android:textColor="@color/color1"
+                        android:textSize="@dimen/sp15"
+                        app:layout_constraintStart_toEndOf="@+id/id_txt_circle"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:src="@drawable/exclation__circle"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_text"
+                        app:layout_constraintStart_toEndOf="@+id/title_text"
+                        app:layout_constraintTop_toTopOf="@+id/title_text" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/dp20"
+                        app:layout_constraintTop_toBottomOf="@+id/id_txt_circle">
+
+                        <TextView
+                            android:text="Reading"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/reading"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                        <TextView
+                            android:text="Observation"
+                            style="@style/RowTextItemInfo"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/opco_site_type"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:itemCount="4"
-                    tools:listitem="@layout/punch_attachment_layout"/>
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/dp20"
+                    app:layout_constraintTop_toBottomOf="@+id/title_view">
+                    <TextView
+                        android:text="Remark"
+                        android:textStyle="bold"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/editRemarks"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+
+                    <TextView
+                        android:text="Attachments"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:textStyle="bold"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <include
+                        layout="@layout/layout_img_attachment"/>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/title_view"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/qat_spinner_item_view" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_remark"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_view">
+
+                    <TextView
+                        android:id="@+id/add_remark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_edit_menu"
+                        android:drawablePadding="@dimen/dp10"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="1"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp3"
+                        android:tag="false"
+                        android:text="Add Remark"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp13"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/edit_remark"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_margin="@dimen/dp5"
+                        android:background="@drawable/atp_blank_border"
+                        android:drawablePadding="@dimen/dp10"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp3"
+                        android:tag="false"
+                        android:text="Pole height not as per specification"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp13"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/add_remark" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_attachment"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_remark">
+
+                    <TextView
+                        android:id="@+id/attachment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_edit_menu"
+                        android:drawablePadding="@dimen/dp10"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="1"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp3"
+                        android:tag="false"
+                        android:text="Image Attechment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp13"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/attachment_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/attachment"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/punch_attachment_layout" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginTop="@dimen/dp5"
+            android:id="@+id/punch_point_card"
             app:cardCornerRadius="@dimen/dp10"
             app:layout_constraintTop_toBottomOf="@+id/top"
             android:layout_width="match_parent"
@@ -163,46 +263,48 @@
             app:cardBackgroundColor="#F8F8F8">
            <androidx.constraintlayout.widget.ConstraintLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:padding="@dimen/dp15">
+               android:layout_height="wrap_content">
                <androidx.constraintlayout.widget.ConstraintLayout
-                   android:layout_marginTop="@dimen/dp15"
                    android:id="@+id/punch_point_layout"
                    android:layout_width="match_parent"
+                   android:paddingLeft="@dimen/dp15"
+                   android:paddingRight="@dimen/dp15"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toTopOf="parent">
                    <TextView
                        android:tag="false"
-                       android:paddingTop="@dimen/dp5"
                        android:paddingBottom="@dimen/dp3"
-                       android:textColor="@color/black"
+                       android:textColor="@color/color1"
                        android:maxLines="1"
                        android:drawablePadding="@dimen/dp10"
                        android:text="Punch Point"
-                       android:id="@+id/punch_point"
-                       android:textSize="@dimen/sp13"
+                       android:id="@+id/punch_point_text"
+                       android:textSize="@dimen/sp14"
                        android:textStyle="bold"
                        app:layout_constraintStart_toStartOf="parent"
-                       android:fontFamily="@font/poppins_regular"
+                       android:fontFamily="@font/poppins_medium"
                        app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintBottom_toBottomOf="parent"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>
                    <TextView
                        android:tag="false"
-                       android:textColor="#BABABA"
+                       android:textColor="@color/view_color"
                        android:maxLines="1"
                        android:text="+"
                        android:id="@+id/punch_plush"
-                       android:textSize="@dimen/sp20"
+                       android:textSize="@dimen/sp25"
                        android:textStyle="bold"
-                       android:paddingLeft="@dimen/dp10"
-                       app:layout_constraintStart_toEndOf="@+id/punch_point"
+                       android:layout_marginLeft="@dimen/dp10"
+                       app:layout_constraintStart_toEndOf="@+id/punch_point_text"
                        android:fontFamily="@font/poppins_bold"
-                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintTop_toTopOf="@+id/punch_point_text"
+                       app:layout_constraintBottom_toBottomOf="@+id/punch_point_text"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>
                    <androidx.constraintlayout.widget.ConstraintLayout
                        android:layout_width="0dp"
+                       android:visibility="gone"
                        app:layout_constraintStart_toEndOf="@+id/punch_plush"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
@@ -219,12 +321,35 @@
                            android:id="@+id/punch_count_list"
                            android:layout_height="wrap_content"/>
                    </androidx.constraintlayout.widget.ConstraintLayout>
+                   <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/id_txt_circle1"
+                       android:layout_width="@dimen/dp25"
+                       android:layout_height="@dimen/dp25"
+                       android:background="@drawable/circle"
+                       android:gravity="center"
+                       android:text="1"
+                       android:textColor="@color/color1"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+                   <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/id_txt_circle2"
+                       android:layout_width="@dimen/dp25"
+                       android:layout_height="@dimen/dp25"
+                       android:background="@drawable/circle"
+                       android:backgroundTint="@color/light_gray"
+                       android:layout_marginEnd="@dimen/dp10"
+                       android:gravity="center"
+                       android:text="1"
+                       android:textColor="@color/white"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toStartOf="@+id/id_txt_circle1"
+                       app:layout_constraintTop_toTopOf="parent" />
 
                </androidx.constraintlayout.widget.ConstraintLayout>
 
                <View
                    android:id="@+id/view"
-                   android:layout_marginTop="3dp"
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="#D3D3D3"
@@ -232,47 +357,94 @@
 
                <androidx.constraintlayout.widget.ConstraintLayout
                    app:layout_constraintTop_toBottomOf="@+id/view"
+                   android:paddingLeft="@dimen/dp15"
+                   android:paddingRight="@dimen/dp15"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content">
 
                    <TextView
                        android:tag="false"
-                       android:paddingTop="@dimen/dp5"
-                       android:paddingBottom="@dimen/dp3"
-                       android:textColor="@color/black"
+                       android:paddingTop="@dimen/dp8"
+                       android:paddingBottom="@dimen/dp8"
+                       android:textColor="@color/color1"
                        android:maxLines="1"
-                       android:drawablePadding="@dimen/dp10"
                        android:text="Mark Taylor"
                        android:id="@+id/name"
-                       android:textSize="@dimen/sp12"
-                       android:layout_marginTop="@dimen/dp15"
-                       android:textStyle="bold"
+                       android:textSize="@dimen/sp14"
                        app:layout_constraintTop_toTopOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
-                       android:fontFamily="@font/poppins_regular"
-                       android:layout_width="0dp"
-                       app:layout_constraintEnd_toStartOf="@+id/date"
-                       android:layout_height="wrap_content"/>
-                   <TextView
-                       android:tag="false"
-                       android:paddingTop="@dimen/dp5"
-                       android:paddingBottom="@dimen/dp3"
-                       android:textColor="#949191"
-                       android:maxLines="1"
-                       android:drawablePadding="@dimen/dp10"
-                       android:text="03-Oct-22 ; 12:56 PM"
-                       android:id="@+id/date"
-                       android:textSize="@dimen/sp11"
-                       android:layout_marginTop="@dimen/dp15"
-                       android:textStyle="bold"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       android:fontFamily="@font/poppins_regular"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       android:fontFamily="@font/poppins_medium"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>
+                   <TextView
+                       android:id="@+id/time_period"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textColor="@color/color1"
+                       android:textSize="14sp"
+                       android:text="pm"
+                       android:fontFamily="@font/poppins_medium"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"/>
+                   <TextView
+                       android:id="@+id/time"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textColor="@color/color1"
+                       android:textSize="14sp"
+                       android:text="12:56"
+                       android:fontFamily="@font/poppins_medium"
+                       android:layout_marginEnd="@dimen/dp1"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintEnd_toStartOf="@+id/time_period"
+                       app:layout_constraintBottom_toBottomOf="parent"/>
+                   <TextView
+                       android:id="@+id/divider_bw_date_time"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textColor="@color/color1"
+                       android:textSize="14sp"
+                       android:text=";"
+                       android:fontFamily="@font/poppins_medium"
+                       android:layout_marginEnd="@dimen/dp1"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintEnd_toStartOf="@+id/time"
+                       app:layout_constraintBottom_toBottomOf="parent"/>
+                   <TextView
+                       android:id="@+id/date"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textColor="@color/color1"
+                       android:textSize="14sp"
+                       android:text="2023-02-03"
+                       android:maxLength="10"
+                       android:fontFamily="@font/poppins_medium"
+                       android:layout_marginEnd="@dimen/dp1"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintEnd_toStartOf="@+id/divider_bw_date_time"
+                       app:layout_constraintBottom_toBottomOf="parent"/>
                </androidx.constraintlayout.widget.ConstraintLayout>
            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_marginTop="@dimen/dp15"
+                android:id="@+id/Save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp20"
+                android:background="@drawable/yellow_text_button"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:text="Save"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/punch_point_card"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

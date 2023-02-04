@@ -10,6 +10,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewRfAntennaAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewRfEquipmentAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAnteena.RfAnteenaItemsEditDialouge
 
 class RfAntinaFragment(var opcodata: OpcoDataItem?) :Fragment(), RfAntinaListAdapter.RfAnteenaItemClickListener {
@@ -27,6 +29,11 @@ class RfAntinaFragment(var opcodata: OpcoDataItem?) :Fragment(), RfAntinaListAda
         super.onViewCreated(view, savedInstanceState)
         adapter = RfAntinaListAdapter(this@RfAntinaFragment,opcodata!!,requireContext())
         binding?.listItem?.adapter=adapter
+
+        binding?.addItemsLayout?.setOnClickListener {
+            val dalouge = AddNewRfAntennaAdapter(R.layout.rf_anteena_list_item_dialouge)
+            dalouge.show(childFragmentManager,"")
+        }
     }
 
 

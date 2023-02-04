@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FragmentOpenQatBinding
+import com.smarthub.baseapplication.databinding.OpcoTenencyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.ui.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.listeners.QatProfileListener
@@ -27,16 +29,12 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
     lateinit var viewmodel: HomeViewModel
     private lateinit var recyclerView: RecyclerView
     lateinit var  adapter:QATListAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-
-    }
+    lateinit var binding:FragmentOpenQatBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val viewlay = inflater.inflate(R.layout.fragment_open_qat, container, false)
-        setRecyclerView(viewlay)
-        return viewlay
+        binding= FragmentOpenQatBinding.inflate(inflater, container, false)
+        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        return binding.root
     }
 
     override fun onViewPageSelected() {
@@ -46,6 +44,9 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerViewOpen.layoutManager=LinearLayoutManager(requireContext())
+        adapter = QATListAdapter(requireContext(),this,id)
+        binding.recyclerViewOpen.adapter=adapter
 
         if (viewmodel.QatModelResponse?.hasActiveObservers() == true){
             viewmodel.QatModelResponse?.removeObservers(viewLifecycleOwner)
@@ -68,12 +69,6 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
             }
         }
 
-    }
-    private fun setRecyclerView(view: View) {
-        adapter = QATListAdapter(requireContext(),this,id)
-        recyclerView = view.findViewById(R.id.recyclerView_open)
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
     }
 
     override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {

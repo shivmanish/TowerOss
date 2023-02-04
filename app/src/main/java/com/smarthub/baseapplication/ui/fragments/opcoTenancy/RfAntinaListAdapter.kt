@@ -119,12 +119,12 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
                     holder.binding.antennaHeight.text=data.AntenaSizeH
 
                     AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data.Technology)
-//                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OwnerCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.UserCompany.name,data.UserCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data.LinkOperationalStatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SpaceUsed, DropDowns.SpaceUsed.name,data.SpaceUsed)
-                    AppPreferences.getInstance().setDropDown(holder.binding.PoleID, DropDowns.TowerPoleId.name,data.TowerPoleId)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SectorNumber, DropDowns.Sectornumber.name,data.SectorNumber)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OwnerCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.BackhaulLinkUserCompany.name,data.UserCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.BackhaulLinkOperationalStatus.name,data.LinkOperationalStatus)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SpaceUsed, DropDowns.BackhaulSpaceUsed.name,data.SpaceUsed)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PoleID, DropDowns.BackhaulAntenaTowerPoleId.name,data.TowerPoleId)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SectorNumber, DropDowns.RFSectornumber.name,data.SectorNumber)
                     AppPreferences.getInstance().setDropDown(holder.binding.AntennaShape, DropDowns.AntenaShape.name,data.AntenaShape)
                 }
             }catch (e:Exception){

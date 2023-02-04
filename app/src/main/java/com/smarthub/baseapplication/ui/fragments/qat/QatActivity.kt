@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,14 +20,17 @@ class QatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityQatBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.back.setOnClickListener {
-            onBackPressed()
-        }
         init()
     }
 
-    fun init() {
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    private fun init() {
         if (data!=null) {
             binding.viewpager.adapter = PageAdapterQat(supportFragmentManager, data!!)
             binding.tabs.setupWithViewPager(binding.viewpager)
