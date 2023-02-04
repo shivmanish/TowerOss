@@ -51,8 +51,8 @@ class MenuFragment : Fragment() {
             requireActivity().startActivity(intent)
         }
         binding.cardQat.setOnClickListener {
-            val intent = Intent(requireActivity(),QATCheckActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(requireActivity(),QATCheckActivity::class.java)
+//            startActivity(intent)
         }
         binding.cardProject.setOnClickListener {
             findNavController().navigate(MenuFragmentDirections.actionNavigationMenuToProjectsFragment2())

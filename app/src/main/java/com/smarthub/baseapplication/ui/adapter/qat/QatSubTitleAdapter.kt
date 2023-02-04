@@ -14,9 +14,11 @@ import com.smarthub.baseapplication.model.atp.AtpCardList
 import com.smarthub.baseapplication.model.atp.AtpHeaderStatus
 import com.smarthub.baseapplication.model.atp.AtpHeaderTitle
 import com.smarthub.baseapplication.model.atp.HeaderList
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Item
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.utils.Utils
 
-class QatSubTitleAdapter(var listener: QatItemListener) : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
+class QatSubTitleAdapter(var listener: QatItemListener,val list: List<Subitem>) : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_sub_title_view, parent, false)
@@ -24,30 +26,20 @@ class QatSubTitleAdapter(var listener: QatItemListener) : RecyclerView.Adapter<Q
     }
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
-
+        hold.binding.titleText.text = list[pos].QATSubItem
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return list.size
     }
 
     open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
         val binding = QatSubTitleViewBinding.bind(itemView)
         init {
-            binding.expansionText.tag = false
-            binding.expansionText.setOnClickListener {
-               /* if (it.tag is Boolean && it.tag as Boolean){
-                    binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_farword,0)
-                    Utils.collapse(binding.listView)
-                }else{
-                    binding.expansionText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_arrow_down,0)
-                    Utils.expand(binding.listView)
-                }
-                it.tag = !(it.tag as Boolean)*/
+            binding.titleText.tag = false
+            binding.titleText.setOnClickListener {
                 listener.itemClicked()
             }
-//            Utils
-//            binding.listView.adapter = QatItemAdapter(listener)
         }
     }
 
