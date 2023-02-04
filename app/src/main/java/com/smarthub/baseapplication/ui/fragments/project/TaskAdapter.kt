@@ -24,9 +24,9 @@ class TaskAdapter : Adapter<TaskAdapter.ViewHold>() {
     class ListItemViewHold(itemView: View) : ViewHold(itemView) {
         var binding : ProjectTaskListItemBinding = ProjectTaskListItemBinding.bind(itemView)
 
-        fun bindData(data : TaskModelData){
-
-
+        fun bindData(data : TaskModelClass){
+            binding.titleText.text=data.AssigneeDepartment
+            binding.sla.text=data.SLA
         }
     }
 
@@ -44,8 +44,8 @@ class TaskAdapter : Adapter<TaskAdapter.ViewHold>() {
         else 2
     }
 
-    fun updateList(list : List<Any>){
-        this.list = ArrayList(list)
+    fun updateList(list : ArrayList<Any>){
+        this.list = list
         notifyDataSetChanged()
     }
 
@@ -74,8 +74,8 @@ class TaskAdapter : Adapter<TaskAdapter.ViewHold>() {
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (holder is ListItemViewHold && list[position] is TaskModelData){
-            holder.bindData(list[position] as TaskModelData)
+        if (holder is ListItemViewHold && list[position] is TaskModelClass){
+            holder.bindData(list[position] as TaskModelClass)
         }
         if (holder is HeaderViewHold){
             holder.bindData()

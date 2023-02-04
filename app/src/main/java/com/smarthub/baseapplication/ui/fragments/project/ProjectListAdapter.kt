@@ -67,6 +67,7 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
             binding.remark.text = data.Remarks
             binding.processStatus.text = data.Status
             binding.totalTask.text = String.format("%d/%d",0,data.Total_Task)
+            binding.totalSla.text=String.format("%d/%d",0,data.Total_SLA)
             binding.processId.apply {
                 text = data.id
                 backgroundTintList = ColorStateList.valueOf(Color.parseColor(
@@ -94,7 +95,8 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (holder is ViewHoldItem && list[position] is ProjectModelDataItem) holder.bindData(list[position] as ProjectModelDataItem)
+        if (holder is ViewHoldItem && list[position] is ProjectModelDataItem)
+            holder.bindData(list[position] as ProjectModelDataItem)
     }
 
     override fun getItemCount(): Int {

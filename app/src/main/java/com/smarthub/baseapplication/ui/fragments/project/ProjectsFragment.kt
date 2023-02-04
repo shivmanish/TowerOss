@@ -25,6 +25,9 @@ class ProjectsFragment : BaseFragment(), ProjectListAdapter.ProjectsListAdapterL
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setList()
+        binding.back.setOnClickListener {
+           requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun setList(){

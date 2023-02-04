@@ -15,6 +15,18 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:padding="7dp"
+            android:id="@+id/back"
+            android:layout_marginLeft="@dimen/dp10"
+            app:tint="@color/white"
+            android:src="@drawable/ic_back"
+            android:adjustViewBounds="true"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -25,7 +37,7 @@
             android:id="@+id/title_text"
             android:layout_marginStart="@dimen/dp15"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
@@ -81,50 +93,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_margin="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="right"
                 android:id="@+id/add_new"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                >
 
                 <ImageView
-                    app:layout_constraintEnd_toStartOf="@+id/add"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp12"
                     android:layout_marginEnd="@dimen/dp10"
-                    app:layout_constraintTop_toTopOf="@+id/add"
-                    app:layout_constraintBottom_toBottomOf="@+id/add"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="@dimen/dp20"
                     android:layout_height="@dimen/dp20"
                     android:src="@drawable/filter_ico"/>
 
-                <TextView
-                    android:id="@+id/add"
-                    android:visibility="gone"
-                    android:layout_marginStart="@dimen/dp20"
-                    android:layout_width="@dimen/dp75"
-                    android:padding="@dimen/dp5"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp13"
-                    android:textColor="@color/white"
-                    android:text="Project"
-                    android:drawablePadding="@dimen/dp5"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:paddingStart="@dimen/dp10"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:src="@drawable/filter_ico"
-                    android:background="@drawable/button_background_5"
-                    app:drawableLeftCompat="@drawable/add_12"
-                    app:drawableTint="@color/white" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/dp5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:requiresFadingEdge="vertical"
