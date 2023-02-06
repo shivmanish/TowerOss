@@ -21,7 +21,7 @@ class PageAdapterQat(fm:FragmentManager,var data: List<Category>) : FragmentPage
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return data[0].QATCategory
+        return data[position].QATCategory
     }
 
 }

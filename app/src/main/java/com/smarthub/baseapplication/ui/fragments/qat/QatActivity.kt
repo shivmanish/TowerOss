@@ -38,7 +38,7 @@ class QatActivity : AppCompatActivity() {
             for (j in 0 until tabsCount) {
                 val view = layoutInflater.inflate(R.layout.tabbutton_faq, null)
                 val textview = view.findViewById<TextView>(R.id.tabtext)
-                val text = binding.tabs.getTabAt(j)?.text
+                val text = data!![j].QATCategory
                 textview.text = text
                 binding.tabs.getTabAt(j)?.customView = view
             }
