@@ -59,11 +59,11 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Input Voltage" />
+                                android:text="OPCO for-end Site" />
 
                             <EditText
                                 style="@style/RowTestItemEdit"
-                                android:id="@+id/input_voltage"
+                                android:id="@+id/opcoforendsite"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20" />
 
@@ -83,11 +83,11 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Max Total Power" />
+                                android:text="LM Length" />
 
                             <EditText
                                 style="@style/RowTestItemEdit"
-                                android:id="@+id/maxtotalpower"
+                                android:id="@+id/lmlength"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20" />
 
@@ -107,14 +107,14 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Input Type" />
+                                android:text="Cable Length" />
 
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/inputtype"
-                                style="@style/SpinnerTheme"
+                            <EditText
+                                style="@style/RowTestItemEdit"
+                                android:id="@+id/cableLenth"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
-                                android:text="On-Air" />
+                                 />
 
                             <View
                                 android:layout_width="match_parent"
@@ -124,30 +124,6 @@
                                 android:background="#263238" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Battery Backup Required" />
-
-                            <EditText
-                                style="@style/RowTestItemEdit"
-                                android:id="@+id/batteryBackup"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
 
 
 

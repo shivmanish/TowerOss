@@ -24,7 +24,7 @@ class ServicePageAdapter(manager: FragmentManager,var data : ServiceRequestAllDa
             4 -> FeasibilityPlanningTabFragment(data,Id!!)
             5 -> Agreements(data,Id!!)
             6-> SiteProposalTabFragment()
-            7 -> SPApprovalTabFragment()
+            7 -> SPApprovalTabFragment(data,Id!!)
             else -> ServiceRequestTabFragment(data, Id!!)
         }
     }

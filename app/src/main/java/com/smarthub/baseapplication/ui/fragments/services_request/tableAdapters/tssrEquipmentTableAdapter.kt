@@ -9,8 +9,10 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcotssrEquipmentTableItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSREquipmentTable
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
+import com.smarthub.baseapplication.utils.DropDowns
 
 class tssrEquipmentTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,equipmentdata:List<OpcoTSSREquipmentTable>): RecyclerView.Adapter<tssrEquipmentTableAdapter.ViewHold>() {
     var list : ArrayList<OpcoTSSREquipmentTable>?
@@ -42,9 +44,12 @@ class tssrEquipmentTableAdapter (var context : Context, var listener : OpcoTssrA
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it)
         }
-        holder.binding.Technology.text=list?.get(position)?.Technology
+        AppPreferences.getInstance().setDropDown(holder.binding.Technology,DropDowns.Technology.name,list?.get(position)?.Technology)
+//        holder.binding.Technology.text=list?.get(position)?.Technology
         holder.binding.EquipmentInfo.text=list?.get(position)?.Equipment
-        holder.binding.EquipmentType.text=list?.get(position)?.Type
+//        holder.binding.EquipmentType.text=list?.get(position)?.Type
+        AppPreferences.getInstance().setDropDown(holder.binding.EquipmentType,DropDowns.EquipmentType.name,list?.get(position)?.Type)
+
         holder.binding.EquipmentSize.text=list?.get(position)?.Size
     }
     override fun getItemCount(): Int {

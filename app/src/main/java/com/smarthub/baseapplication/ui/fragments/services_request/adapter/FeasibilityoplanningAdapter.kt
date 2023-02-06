@@ -10,8 +10,7 @@ import com.smarthub.baseapplication.databinding.BackhualPlanningItemViewBinding
 import com.smarthub.baseapplication.databinding.PowerMsbPlanningItemViewBinding
 import com.smarthub.baseapplication.databinding.RpRadioAntineListItemBinding
 import com.smarthub.baseapplication.databinding.SiteDetailItemViewBinding
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.model.siteInfo.SafetyAndAcces
+import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
@@ -20,13 +19,19 @@ import com.smarthub.baseapplication.utils.AppLogger
 class FeasibilityoplanningAdapter(
     var context: Context,
     var listener: FeasibilityoplanningLisListener,
-    var serviceRequestAllData: ServiceRequestAllDataItem?
+    var serviceRequestAllData: ServiceRequestAllDataItem
+
 ) : RecyclerView.Adapter<FeasibilityoplanningAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
     var type1 = "Site Details"
     var type2 = "Radio Antenna"
     var type3 = "Backhaul"
     var type4 = "Power & MCB"
+    var backHaul:BackHaul?= null
+    var powerAndMcb: PowerAndMCB?= null
+    var radioAntena: RadioAntennaX? =null
+    var siteDetails:SiteDetail? = null
+    var feasibilityPlanning:FeasibilityPlanning? = null
 
     private var data: BasicInfoModelDropDown? = null
     private var fieldData: SiteInfoModel? = null
@@ -46,7 +51,10 @@ class FeasibilityoplanningAdapter(
         list.add("Radio Antenna")
         list.add("Backhaul")
         list.add("Power & MCB")
-
+        feasibilityPlanning = serviceRequestAllData?.FeasibilityPlanning!!.get(0)
+        siteDetails = feasibilityPlanning!!.SiteDetails!!.get(0)
+        radioAntena = feasibilityPlanning!!.RadioAntenna!!.get(0)
+        powerAndMcb = feasibilityPlanning!!.PowerAndMCB!!.get(0)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -169,7 +177,7 @@ class FeasibilityoplanningAdapter(
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    listener.detailsItemClicked(siteDetails,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -195,7 +203,7 @@ class FeasibilityoplanningAdapter(
 
                 }
                 try {
-                    serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.SiteDetails?.get(0).let {
+                    siteDetails.let {
                         holder.binding.editSiteId.text = it?.OpcoSiteID
                         holder.binding.editOPCOSiteName.text = it?.OpcoSiteName
                         holder.binding.editOPCOSiteType.text = ""
@@ -219,7 +227,7 @@ class FeasibilityoplanningAdapter(
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                    listener.requestinfoClicked(radioAntena,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -248,7 +256,7 @@ class FeasibilityoplanningAdapter(
 
                 }
                 try{
-                    serviceRequestAllData!!.FeasibilityPlanning?.get(0)?.RadioAntenna?.get(0).let {
+                    radioAntena.let {
                         holder.binding.editTechnology.text = it?.RFTechnology
                         holder.binding.editRRUCount.text = it?.RRUCount
                         holder.binding.editSectocCount.text = it?.SectorCount
@@ -267,7 +275,7 @@ class FeasibilityoplanningAdapter(
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.geoConditionsDetailsItemClicked()
+                    listener.geoConditionsDetailsItemClicked(backHaul,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -292,7 +300,7 @@ class FeasibilityoplanningAdapter(
                 }
 
                 try {
-                    serviceRequestAllData!!.FeasibilityPlanning!![0].BackHaul[0].Microwave[0].let {
+                    backHaul!!.Microwave.get(0).let {
                         holder.binding.editAntennaCount.text = it.AntennaCount
                         holder.binding.editMaxheight.text = it.MaxHeight
                         holder.binding.editTotalWaight.text = it.TotalWeight
@@ -307,7 +315,7 @@ class FeasibilityoplanningAdapter(
 
                     }
 
-                    serviceRequestAllData!!.FeasibilityPlanning!!.get(0).BackHaul.get(0).Fiber.get(0).let {
+                    backHaul!!.Fiber.get(0).let {
                         holder.binding.editLMLength.text = it.LMLength
                         holder.binding.editCableLength.text = it.CableLength
                         holder.binding.editLayingType.text = ""
@@ -324,7 +332,7 @@ class FeasibilityoplanningAdapter(
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.operationInfoDetailsItemClicked()
+                    listener.operationInfoDetailsItemClicked(powerAndMcb,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -348,7 +356,7 @@ class FeasibilityoplanningAdapter(
 //                    val geoCondition: SafetyAndAcces = fieldData?.item!![0].SafetyAndAccess[0]
                 }
                 try {
-                    serviceRequestAllData!!.FeasibilityPlanning!![0].PowerAndMCB[0].Power.get(0).let {
+                    powerAndMcb!!.Power.get(0).let {
                         holder.binding.editPowerType.text = it.PowerType
                         holder.binding.editVoltage.text = it.Voltage
                         holder.binding.editMaxTotalPower.text = it.MaxTotalPower
@@ -364,7 +372,7 @@ class FeasibilityoplanningAdapter(
 
                     }
 
-                    serviceRequestAllData!!.FeasibilityPlanning!![0].PowerAndMCB[0].MCB[0].let {
+                    powerAndMcb!!.MCB[0].let {
                         holder.binding.editMCBRequirement.text = it.MCBRequirement
                         holder.binding.editMCBCount.text = it.TotalMCBCount
                         holder.binding.editRemark.text = it.Remark
@@ -396,10 +404,22 @@ class FeasibilityoplanningAdapter(
 
     interface FeasibilityoplanningLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked()
-        fun requestinfoClicked()
-        fun operationInfoDetailsItemClicked()
-        fun geoConditionsDetailsItemClicked()
+        fun detailsItemClicked(
+            siteDetails: SiteDetail?,
+            serviceRequestAllData: ServiceRequestAllDataItem
+        )
+        fun requestinfoClicked(
+            radioAntena: RadioAntennaX?,
+            serviceRequestAllData: ServiceRequestAllDataItem
+        )
+        fun operationInfoDetailsItemClicked(
+            powerAndMcb: PowerAndMCB?,
+            serviceRequestAllData: ServiceRequestAllDataItem
+        )
+        fun geoConditionsDetailsItemClicked(
+            backHaul: BackHaul?,
+            serviceRequestAllData: ServiceRequestAllDataItem
+        )
         fun siteAccessDetailsItemClicked()
     }
 }

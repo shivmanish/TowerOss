@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
 data class FeasibilityPlanning(
-    val BackHaul: List<BackHaul>,
-    val Equipments: List<EquipmentXX>,
-    val PowerAndMCB: List<PowerAndMCB>,
-    val RadioAntenna: List<RadioAntennaX>,
-    val SiteDetails: List<SiteDetail>,
-    val created_at: String,
-    val id: String,
-    val isActive: String,
-    val modified_at: String
+    var BackHaul: ArrayList<BackHaul>?=null,
+    var Equipments: ArrayList<EquipmentXX>?=null,
+    var PowerAndMCB: ArrayList<PowerAndMCB>?=null,
+    var RadioAntenna: ArrayList<RadioAntennaX>?=null,
+    var SiteDetails: ArrayList<SiteDetail>?=null,
+    var created_at: String?=null,
+    var id: String?=null,
+    var isActive: String?=null,
+    var modified_at: String?=null,
 )

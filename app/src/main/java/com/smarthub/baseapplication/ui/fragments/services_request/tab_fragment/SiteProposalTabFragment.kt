@@ -37,8 +37,14 @@ class SiteProposalTabFragment : BaseFragment(), SiteProposalAdapter.SiteProposal
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun siteAccessDetailsItemClicked() {
-        val bottomSheetDialogFragment = TssrExecutiveBottomSheet(R.layout.tssr_executive_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = TssrExecutiveBottomSheet(
+//            R.layout.tssr_executive_bottom_sheet_dialog,
+//            Id,
+//            viewmodel,
+//            backhaulFeasibility,
+//            serviceRequestAllData
+//        )
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun requestinfoClicked() {
 //        val bottomSheetDialogFragment = RequestInfoBottomSheet(

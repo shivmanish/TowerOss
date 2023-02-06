@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.databinding.SpApprovalTabFragmentBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.SPApprovalAdapter
-import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SPApprovalTabFragment : BaseFragment(), SPApprovalAdapter.SPSoftLisListener {
-    var siteViewModel : SiteInfoViewModel?=null
+class SPApprovalTabFragment(var data: ServiceRequestAllDataItem?, var Id: String?) : BaseFragment(), SPApprovalAdapter.SPSoftLisListener {
+    lateinit var viewmodel: HomeViewModel
     var binding : SpApprovalTabFragmentBinding?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = SpApprovalTabFragmentBinding.inflate(inflater, container, false)
@@ -22,7 +22,8 @@ class SPApprovalTabFragment : BaseFragment(), SPApprovalAdapter.SPSoftLisListene
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = SPApprovalAdapter(this@SPApprovalTabFragment)
+        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        binding?.listItem?.adapter = SPApprovalAdapter( requireContext(),this@SPApprovalTabFragment, data!!)
     }
     override fun attachmentItemClicked() {
 

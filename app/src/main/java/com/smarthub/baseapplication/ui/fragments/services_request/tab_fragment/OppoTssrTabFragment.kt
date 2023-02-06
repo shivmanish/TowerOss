@@ -11,7 +11,9 @@ import com.smarthub.baseapplication.databinding.OpsrTabFragmaentLayoutBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.BackhaulFeasibility
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.PowerRequirement
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.TSSRExecutiveInfo
 import com.smarthub.baseapplication.ui.dialog.services_request.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
@@ -79,11 +81,26 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun geoConditionsDetailsItemClicked() {
-        val bottomSheetDialogFragment = PowerMSBBottomSheet(R.layout.power_msb_bottom_sheet_dialog)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+//        val bottomSheetDialogFragment = PowerMSBBottomSheet(
+//            R.layout.power_msb_bottom_sheet_dialog,
+//            Id,
+//            viewmodel,
+//            powerMcb,
+//            serviceRequestAllData
+//        )
+//        bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-    override fun siteAccessDetailsItemClicked() {
-        val bottomSheetDialogFragment = TssrExecutiveBottomSheet(R.layout.tssr_executive_bottom_sheet_dialog)
+    override fun siteAccessDetailsItemClicked(
+        powerMcb: PowerRequirement,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = PowerMSBBottomSheet(
+            R.layout.power_msb_bottom_sheet_dialog,
+            Id,
+            viewmodel,
+            powerMcb,
+            serviceRequestAllData
+        )
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
 
@@ -125,6 +142,14 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
         val bottomSheetDialogFragment = BackhaulFiberBottomSheet(R.layout.backhaul_fiber_bottom_sheet_dialog,Id,viewmodel, backhaulFeasibility,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
+    }
+
+    override fun TSSRExecutiveInfo(
+        tssrExcutive: TSSRExecutiveInfo,
+        serviceRequestAllData: ServiceRequestAllDataItem?
+    ) {
+        val bottomSheetDialogFragment = TssrExecutiveBottomSheet(R.layout.tssr_executive_bottom_sheet_dialog,Id, viewmodel,tssrExcutive,serviceRequestAllData)
+        bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
@@ -141,7 +166,7 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
     }
 
     override fun editPowerMcbClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Power Mcb item clicked",Toast.LENGTH_SHORT).show()
+
     }
 
     override fun viewPowerMcbClicked(position: Int) {

@@ -6,10 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BackhaulLinkListItemDialougeBinding
 import com.smarthub.baseapplication.databinding.TssrExecutiveBottomSheetDialogBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.TSSRExecutiveInfo
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TssrExecutiveBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class TssrExecutiveBottomSheet(
+    contentLayoutId: Int,
+    Id: String?,
+    viewmodel: HomeViewModel,
+    tssrExcutive: TSSRExecutiveInfo,
+    serviceRequestAllData: ServiceRequestAllDataItem?
+) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : TssrExecutiveBottomSheetDialogBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,58 +1,55 @@
-package com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AcquisitionPropertyOwnerTableItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASPropertyOwnerDetail
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AcquisitionSurveyFragAdapter
+import com.smarthub.baseapplication.databinding.MicrowaveTableItemBinding
+import com.smarthub.baseapplication.databinding.PoItemListBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.softAqusition.PropertyOwnerAndPaymentDetail
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.ui.site_agreement.adapter.AgrementLeaseListAdapter
 
-class PropertyOwnerTableAdapter (var context : Context, var listener : AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner,propertyOwnerData:List<ASPropertyOwnerDetail>): RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {
-    var list : ArrayList<ASPropertyOwnerDetail>?
+class PropertyOwnerTableAdapter (var context : Context, var listener : AgrementLeaseListAdapter.AgreementListItemlistner, var list :ArrayList<PropertyOwnerAndPaymentDetail>, var servicerequirement: ServiceRequestAllDataItem): RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {
     init {
-        list= propertyOwnerData as ArrayList<ASPropertyOwnerDetail>
     }
     fun addItem(item:String){
-//        list?.add(ASPropertyOwnerDetail(Action = "Goto", Address = "esrgsdfg", EmailId = "an@g.co",
-//            OwnerName = "Ankit", OwnershipSeq = "21", PhoneNumber = "7269024641", Remark = "dhdhffh",
-//            Share = "dwh", created_at = "22-10-2022", id = "448", isActive = "true", modified_at = "22-10-2022"))
-//        notifyItemInserted(list?.size!!.plus(1))
+//        list.add(item)
+//        notifyItemInserted(list.size.plus(1))
     }
 
     fun removeItem(position:Int){
-        list?.removeAt(position)
+        list.removeAt(position)
         notifyItemRemoved(position)
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= AcquisitionPropertyOwnerTableItemBinding.bind(view)
+        var binding= PoItemListBinding.bind(view)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.acquisition_property_owner_table_item,parent,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.po_item_list,parent,false)
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
+//            show pop up menu
+            list.get(position).let {
+                holder.binding.Seq.setText(it.Seq)
+                holder.binding.Status.setText(it.PayeeStatus)
+                holder.binding.pannno.setText(it.PanNumber)
+                holder.binding.Share.setText(it.Share)
+            }
             performOptionsMenuClick(position,it)
         }
-        holder.binding.SeqNo.text=list?.get(position)?.OwnershipSeq
-        holder.binding.PayeeName.text=""
-        holder.binding.PropertyShare.text=list?.get(position)?.Share
-        holder.binding.propertyPanNo.text=""
-
-//        holder.binding.Seq.setText(it.Seq)
-//        holder.binding.Status.setText(it.PayeeStatus)
-//        holder.binding.pannno.setText(it.PanNumber)
-//        holder.binding.Share.setText(it.Share)
-
     }
     override fun getItemCount(): Int {
-        return list?.size!!
+        return list.size
     }
     private fun performOptionsMenuClick(position: Int,view : View) {
         // create object of PopupMenu and pass context and view where we want
@@ -66,7 +63,8 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : Acquisiti
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPropertyOwnerDetailsClicked(position)
+                        listener.propertyOwonertemClicked(arrayListOf(list.get(position)),servicerequirement)
+
                         return true
                     }
                     // in the same way you can implement others
@@ -74,13 +72,13 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : Acquisiti
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
+                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPropertyOwnerDetailsClicked(position)
-                        return true
+                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 
                 }

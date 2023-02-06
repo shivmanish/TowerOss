@@ -4,7 +4,7 @@ data class OpcoTSSR(
     var Attachments: List<Any>?=null,
     var BackHaulFeasibility: ArrayList<BackhaulFeasibility>?=null,
     var Equipments: List<Equipment>?=null,
-    var PowerAndMCB: List<PowerAndMcb>?=null,
+    var PowerAndMCB: ArrayList<PowerAndMcb>?=null,
     var RFFeasibility: ArrayList<RFFeasibility>?=null,
     var TSSRExecutiveInfo: List<TSSRExecutiveInfo>?=null,
     var created_at: String?=null,

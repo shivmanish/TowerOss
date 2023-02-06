@@ -12,12 +12,18 @@ import com.smarthub.baseapplication.databinding.OpcotssrPowermcbTableItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.MCBRequirement
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class tssrPowerMcbTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,McbData:List<MCBRequirement>): RecyclerView.Adapter<tssrPowerMcbTableAdapter.ViewHold>() {
-    var list : ArrayList<MCBRequirement>?
+class tssrPowerMcbTableAdapter(
+    var context: Context,
+    var listener: OpcoTssrAdapter.OpcoTssrLisListener,
+    McbData: List<MCBRequirement>
+) : RecyclerView.Adapter<tssrPowerMcbTableAdapter.ViewHold>() {
+    var list: ArrayList<MCBRequirement>?
+
     init {
-        list=McbData as ArrayList<MCBRequirement>
+        list = McbData as ArrayList<MCBRequirement>
     }
-    fun addItem(item:String){
+
+    fun addItem(item: String) {
 //        list?.add(
 //            MCBRequirement(Equipment = "fds", MCBRating = "54", Quantity = "53", created_at = "12-10-2022",
 //                id = "543", isActive = "true", modified_at = "22-12-2022")
@@ -25,39 +31,44 @@ class tssrPowerMcbTableAdapter (var context : Context, var listener : OpcoTssrAd
 //        notifyItemInserted(list?.size!!.plus(1))
     }
 
-    fun removeItem(position:Int){
+    fun removeItem(position: Int) {
         list?.removeAt(position)
         notifyItemRemoved(position)
     }
 
-    class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= OpcotssrPowermcbTableItemBinding.bind(view)
+    class ViewHold(view: View) : RecyclerView.ViewHolder(view) {
+        var binding = OpcotssrPowermcbTableItemBinding.bind(view)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.opcotssr_powermcb_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.opcotssr_powermcb_table_item, parent, false)
         return ViewHold(view)
     }
+
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.menu.setOnClickListener {
-            performOptionsMenuClick(position,it)
+            performOptionsMenuClick(position, it)
         }
-        holder.binding.McbRating.text=list?.get(position)?.MCBRating
-        holder.binding.Quantity.text=list?.get(position)?.Quantity
-        holder.binding.Equipment.text=list?.get(position)?.Equipment
+        holder.binding.McbRating.text = list?.get(position)?.MCBRating
+        holder.binding.Quantity.text = list?.get(position)?.Quantity
+        holder.binding.Equipment.text = list?.get(position)?.Equipment
     }
+
     override fun getItemCount(): Int {
         return list?.size!!
     }
-    private fun performOptionsMenuClick(position: Int,view : View) {
+
+    private fun performOptionsMenuClick(position: Int, view: View) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
-        val popupMenu = PopupMenu(context , view)
+        val popupMenu = PopupMenu(context, view)
         // add the menu
         popupMenu.inflate(R.menu.options_menu)
         // implement on menu item click Listener
-        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
-                when(item?.itemId){
+                when (item?.itemId) {
                     R.id.action_edit -> {
                         popupMenu.dismiss()
                         listener.editPowerMcbClicked(position)
