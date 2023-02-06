@@ -183,9 +183,9 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                        <com.smarthub.baseapplication.widgets.CustomStringSpinner
                             android:text=""
-                            android:id="@+id/txBuildingType"
+                            android:id="@+id/txt_where_type"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />

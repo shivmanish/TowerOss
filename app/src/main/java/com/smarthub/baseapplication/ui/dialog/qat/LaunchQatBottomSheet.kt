@@ -74,10 +74,10 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
 
         val dropdownList = ArrayList<DropDownItem>()
         if (qatMainModel.item!=null && qatMainModel.item?.isNotEmpty() == true && qatMainModel.item!![0].QATMainLaunch.isNotEmpty())
-        for(i in qatMainModel.item?.get(0)?.QATMainLaunch!![0].Category){
-            val data = DropDownItem(i.QATCategory,i.id)
-            dropdownList.add(data)
-        }
+            for(i in qatMainModel.item?.get(0)?.QATMainLaunch!![0].Category){
+                val data = DropDownItem(i.QATCategory,i.id)
+                dropdownList.add(data)
+            }
         binding.txQatCategory.setSpinnerData(dropdownList)
         AppLogger.log("dropdownList size:${dropdownList.size}")
         binding.update.setOnClickListener {
@@ -99,6 +99,7 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
             listener.onQatCreated(data)
            dismiss()
         }
+        binding.txtWhereType.setSpinnerData(arrayOf("Tower Check","Test Template","Name 43","ABCD QAT","QAT Test","QAT Template Smartmile","QAT TEMP 1","Truss inspection").asList())
 
     }
 
