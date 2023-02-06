@@ -1,42 +1,75 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
 import android.os.Bundle
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smarthub.baseapplication.R
+import com.bumptech.glide.util.Util
 import com.smarthub.baseapplication.activities.BaseActivity
-import com.smarthub.baseapplication.databinding.ActivityQatBinding
 import com.smarthub.baseapplication.databinding.ActivityQatDetailsBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.listeners.PunchPointListener
-import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
-import com.smarthub.baseapplication.model.siteInfo.qat.QatTemplateModel
-import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
-import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Item
+import com.smarthub.baseapplication.model.qatcheck.punch_point.PunchPointUpdate
+import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
-import com.smarthub.baseapplication.ui.dialog.qat.PunchPointCreateDialog
+import com.smarthub.baseapplication.ui.dialog.qat.CreateQatPunchPointBottomSheet
 import com.smarthub.baseapplication.ui.dialog.qat.PunchPointResolveDialog
-import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
+import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class QatDetailsActivity : BaseActivity(), PunchPointListener {
     companion object{
         var data : Subitem?=null
     }
+    lateinit var viewmodel: HomeViewModel
     lateinit var binding: ActivityQatDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = ActivityQatDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.subTitle.text = data?.QATSubItem
         init()
     }
 
     fun init() {
+        if (viewmodel.QatModelResponse?.hasActiveObservers() == true){
+            viewmodel.QatModelResponse?.removeObservers(this)
+        }
+        viewmodel.QatModelResponse?.observe(this) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                Toast.makeText(this@QatDetailsActivity,"Data updated successfully",Toast.LENGTH_SHORT).show()
+//                adapter.addItem(punchPointUpdate)
+
+            }else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew!=null && it.data.itemNew?.isNotEmpty()==true){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                it.data.item = it.data.itemNew
+                Toast.makeText(this@QatDetailsActivity,"Data updated successfully",Toast.LENGTH_SHORT).show()
+                AppLogger.log("size :${it.data.itemNew?.size}")
+            }else if (it!=null) {
+                Toast.makeText(this@QatDetailsActivity,"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(this@QatDetailsActivity,"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
         setRecyclerView()
     }
-
+    lateinit var adapter : QatPunchPointAdapter
     private fun setRecyclerView() {
-        val adapter = data?.checkpoint?.let { QatPunchPointAdapter(this, it) }
+        adapter = data?.checkpoint?.let { QatPunchPointAdapter(this, ArrayList(it)) }!!
         binding.recyclerViewOpen.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewOpen.adapter = adapter
         binding.back.setOnClickListener {
@@ -44,13 +77,24 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
         }
     }
 
-    override fun itemClicked() {
+    var punchPointUpdate : PunchPointUpdate?=null
 
+    override fun addPunchPoint(punchPointUpdate : PunchPointUpdate) {
+        this.punchPointUpdate = punchPointUpdate
+        val listPunch = ArrayList<PunchPointUpdate>()
+        listPunch.add(punchPointUpdate)
+        val updateData = QatPunchPointModel(listPunch, AppController.getInstance().siteid,AppController.getInstance().ownerName)
+        viewmodel.qatLaunchMain(updateData)
     }
 
-    override fun addPunchPoint() {
-        val dialog = PunchPointCreateDialog(this)
-        dialog.show()
+    override fun editPunchPoint(item:Checkpoint,pos: Int) {
+        val bottomSheetDialogFragment = CreateQatPunchPointBottomSheet(object : CreateQatPunchPointBottomSheet.LaunchQatBottomSheetListener{
+            override fun onPunchPointCreated(data: QatPunchPointModel) {
+                showLoader()
+                viewmodel.qatLaunchMain(data)
+            }
+        },item.QATItem_id)
+        bottomSheetDialogFragment.show(supportFragmentManager, "category")
     }
 
     override fun punchPointClicked() {

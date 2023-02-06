@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.notification.newData.NotificationNew
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
+import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData
@@ -183,6 +184,10 @@ class HomeViewModel : ViewModel() {
     }
 
     fun qatLaunchMain(data : QalLaunchModel){
+        homeRepo?.qatMainRequestAll(data)
+    }
+
+    fun qatLaunchMain(data : QatPunchPointModel){
         homeRepo?.qatMainRequestAll(data)
     }
 

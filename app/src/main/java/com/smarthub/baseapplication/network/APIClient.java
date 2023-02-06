@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileDat
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
+import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
 import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
@@ -157,6 +158,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<QatMainModel> fetchQatMainRequest(@Body QalLaunchModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<QatMainModel> fetchQatMainRequest(@Body QatPunchPointModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

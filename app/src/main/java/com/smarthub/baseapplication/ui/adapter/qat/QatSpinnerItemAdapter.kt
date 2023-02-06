@@ -3,16 +3,10 @@ package com.smarthub.baseapplication.ui.adapter.qat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.Transformation
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.QatCheckopenItemBinding
-import com.smarthub.baseapplication.databinding.QatPunchPointItemBinding
 import com.smarthub.baseapplication.databinding.QatSpinnerItemViewBinding
 import com.smarthub.baseapplication.listeners.PunchPointListener
-import com.smarthub.baseapplication.listeners.QatProfileListener
-import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
 
 class QatSpinnerItemAdapter(var listener: PunchPointListener) : RecyclerView.Adapter<QatSpinnerItemAdapter.ViewHold>() {
 
@@ -33,9 +27,6 @@ class QatSpinnerItemAdapter(var listener: PunchPointListener) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.root.setOnClickListener {
-            listener.itemClicked()
-        }
         holder.binding.firstName.text = "${list[position]}"
     }
 
