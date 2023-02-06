@@ -63,11 +63,12 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
         var binding = ProjectItemListBinding.bind(itemView)
 
         fun bindData(data : ProjectModelDataItem){
-            binding.name.text = data.Processname
+            binding.name.text = data.Projectname
             binding.remark.text = data.Remarks
-            binding.processStatus.text = data.Status
-            binding.totalTask.text = String.format("%d/%d",0,data.Total_Task)
+            binding.processStatus.text = data.Currentstatus
+            binding.totalTask.text = String.format("%d/%d",data.Total_Closed,data.Total_Task)
             binding.totalSla.text=String.format("%d/%d",0,data.Total_SLA)
+            binding.siteName.text=data.sitename
             binding.processId.apply {
                 text = data.id
                 backgroundTintList = ColorStateList.valueOf(Color.parseColor(
@@ -81,11 +82,11 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
             }
         }
 
-        init {
-            binding.btnTask.setOnClickListener {
-                listener.showBottomDialog(binding.name.text.toString())
-            }
-        }
+//        init {
+//            binding.btnTask.setOnClickListener {
+//                listener.showBottomDialog(data.)
+//            }
+//        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -95,8 +96,13 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (holder is ViewHoldItem && list[position] is ProjectModelDataItem)
-            holder.bindData(list[position] as ProjectModelDataItem)
+        if (holder is ViewHoldItem && list[position] is ProjectModelDataItem){
+            var data=list[position] as ProjectModelDataItem
+            holder.bindData(data)
+            holder.binding.btnTask.setOnClickListener {
+                listener.showBottomDialog(data.Processname)
+            }
+        }
     }
 
     override fun getItemCount(): Int {

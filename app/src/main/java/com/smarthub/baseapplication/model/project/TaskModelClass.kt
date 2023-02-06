@@ -16,5 +16,12 @@ data class TaskModelClass(
     val Weightage: String,
     val Where: String,
     val Workflow: String,
-    val id: String
+    val id: String,
+    val Sequenceid:String,
+    val geolevel:String,
+    val pictures:String,
+    val documents:String,
+    val isCancel:String,
+    val reOpen:String
+
 )

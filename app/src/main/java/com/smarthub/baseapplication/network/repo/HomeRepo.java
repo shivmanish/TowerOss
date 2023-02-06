@@ -544,7 +544,7 @@ public class HomeRepo {
 
     public void fetchProjectData() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("Gettemplate","all");
+        jsonObject.addProperty("Getprocess","all");
         jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         apiClient.fetchProjectData(jsonObject).enqueue(new Callback<ProjectModelData>() {
             @Override

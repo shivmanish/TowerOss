@@ -11,5 +11,13 @@ data class ProjectModelDataItem(
     val created_by: String,
     val id: String,
     val modified_at: String,
-    val modified_by: String
+    val modified_by: String,
+    val siteid:String,
+    val sitename:String,
+    val Multi:Boolean,
+    val Projectname:String,
+    val Currentstatus:String,
+    val Total_Closed:Int,
+    val isCancel:Boolean
+
 )

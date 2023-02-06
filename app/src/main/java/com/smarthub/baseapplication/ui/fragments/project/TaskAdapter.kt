@@ -25,18 +25,11 @@ class TaskAdapter : Adapter<TaskAdapter.ViewHold>() {
         var binding : ProjectTaskListItemBinding = ProjectTaskListItemBinding.bind(itemView)
 
         fun bindData(data : TaskModelClass){
-            binding.titleText.text=data.AssigneeDepartment
+            binding.titleText.text=data.Taskname
             binding.sla.text=data.SLA
         }
     }
 
-    class HeaderViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : HomeTaskHeaderBinding = HomeTaskHeaderBinding.bind(itemView)
-
-        fun bindData(){
-
-        }
-    }
 
     override fun getItemViewType(position: Int): Int {
         return if((list[position] is String) && (list[position]=="loading")) 0
@@ -76,9 +69,6 @@ class TaskAdapter : Adapter<TaskAdapter.ViewHold>() {
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ListItemViewHold && list[position] is TaskModelClass){
             holder.bindData(list[position] as TaskModelClass)
-        }
-        if (holder is HeaderViewHold){
-            holder.bindData()
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ProjectFragmentLayoutBinding
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class ProjectsFragment : BaseFragment(), ProjectListAdapter.ProjectsListAdapterListener {
@@ -41,6 +42,7 @@ class ProjectsFragment : BaseFragment(), ProjectListAdapter.ProjectsListAdapterL
         homeViewModel?.getProjectDataResponse?.observe(viewLifecycleOwner){
             binding.refreshLayout.isRefreshing = false
             if (it?.data != null){
+                AppLogger.log("project templet data: ${it.data}")
                 val list :ArrayList<Any> = ArrayList()
                 list.addAll(it.data)
                 projectListAdapter.updateList(list)
