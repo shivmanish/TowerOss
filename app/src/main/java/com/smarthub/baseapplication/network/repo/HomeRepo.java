@@ -9,6 +9,8 @@ import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
+import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
@@ -42,6 +44,7 @@ import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquip
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
@@ -89,6 +92,8 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
+    private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
+    private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -166,6 +171,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<BasicInfoDialougeResponse>> getBasicInfoUpdate() {
         return basicInfoUpdate;
     }
+    public SingleLiveEvent<Resource<UserDataResponse>> getUserDataResponse() {
+        return userDataResponse;
+    }
 
     public HomeRepo(APIClient apiClient) {
         this.apiClient = apiClient;
@@ -196,10 +204,15 @@ public class HomeRepo {
         notificationNew = new SingleLiveEvent<>();
         qatModelResponse = new SingleLiveEvent<>();
         qatMainModelResponse = new SingleLiveEvent<>();
+        userDataResponse=new SingleLiveEvent<>();
+        addNotificationResponse=new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
         return homeResponse;
+    }
+    public SingleLiveEvent<Resource<AddNotificationResponse>> getAddNotificationResponse() {
+        return addNotificationResponse;
     }
     public SingleLiveEvent<Resource<TaskDataList>> getTaskDataList() {
         return taskDataList;
@@ -466,7 +479,10 @@ public class HomeRepo {
     }
 
     public void getAllNotification() {
-        apiClient.getNotification().enqueue(new Callback<NotificationNew>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Get","all");
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        apiClient.getNotification(jsonObject).enqueue(new Callback<NotificationNew>() {
             @Override
             public void onResponse(@NonNull Call<NotificationNew> call, Response<NotificationNew> response) {
                 if (response.isSuccessful()) {
@@ -497,6 +513,81 @@ public class HomeRepo {
                     notificationNew.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     notificationNew.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getUserData() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("getuser","All");
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        apiClient.getUsersData(jsonObject).enqueue(new Callback<UserDataResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<UserDataResponse> call, Response<UserDataResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<UserDataResponse> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<UserDataResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.body().toString());
+                    userDataResponse.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    userDataResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    userDataResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void addNotification(AddNotificationModel data) {
+        apiClient.addNotification(data).enqueue(new Callback<AddNotificationResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<AddNotificationResponse> call, Response<AddNotificationResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AddNotificationResponse> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<AddNotificationResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.body().toString());
+                    addNotificationResponse.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    addNotificationResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    addNotificationResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

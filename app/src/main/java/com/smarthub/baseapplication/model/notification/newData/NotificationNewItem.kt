@@ -20,6 +20,7 @@ data class NotificationNewItem(
     val UserLastName: String,
     val Weightage: String,
     val Where: String,
+    val Titles:String,
     val Workflow: String,
     val actorname: String,
     val created_at: String,
@@ -36,5 +37,8 @@ data class NotificationNewItem(
     val siteid: String,
     val sitename: String,
     val startdate: String,
-    val workorderid: String
+    val workorderid: String,
+    val User:String,
+    val Description:String
+
 )

@@ -6,6 +6,8 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
+import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
 import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
@@ -221,8 +223,8 @@ public interface APIClient {
     Call<SiteInfoModelNew> createSite(@Body CreateSiteModel basicinfoModel);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET(EndPoints.NOTIFICATION_DATA)
-    Call<NotificationNew> getNotification();
+    @POST(EndPoints.NOTIFICATION_DATA)
+    Call<NotificationNew> getNotification(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.DASHBOARD_DATA_URL)
@@ -292,6 +294,14 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<OpcoInfoUpdateResponse> updateOpcoTenency(@Body UpdateOpcoTenencyModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.PROFILE)
+    Call<UserDataResponse> getUsersData(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.NOTIFICATION_DATA)
+    Call<AddNotificationResponse> addNotification(@Body AddNotificationModel data);
 
 }
 

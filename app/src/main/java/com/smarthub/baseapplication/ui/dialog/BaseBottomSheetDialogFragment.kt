@@ -2,8 +2,10 @@ package com.smarthub.baseapplication.ui.dialog
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
+import android.view.View
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -12,12 +14,20 @@ import com.smarthub.baseapplication.utils.AppLogger
 import java.util.*
 
 open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id) {
+    var progressDialog : ProgressDialog?=null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = false
         return dialog
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog?.setMessage("Loading ...")
+        progressDialog?.setCancelable(true)
     }
 
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
@@ -52,5 +62,17 @@ open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
         textView.text = StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
+    }
+
+    fun showLoader(){
+        if (progressDialog!=null && progressDialog?.isShowing == false){
+            progressDialog?.show()
+        }
+    }
+
+    open fun hideLoader(){
+        if (progressDialog!=null && progressDialog?.isShowing == true){
+            progressDialog?.hide()
+        }
     }
 }

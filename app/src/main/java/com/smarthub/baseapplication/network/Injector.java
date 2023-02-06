@@ -12,7 +12,7 @@ public class Injector {
     }
 
     private static LoginRepo createVideoAnnotationShareRepo() {
-        return LoginRepo.getInstance(APIInterceptor.get());
+        return LoginRepo.getInstance(APIInterceptor. get());
     }
 
 }

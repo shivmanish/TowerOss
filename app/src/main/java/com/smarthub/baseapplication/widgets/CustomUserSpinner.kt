@@ -9,7 +9,7 @@ import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 
 class CustomUserSpinner : AppCompatSpinner {
     var data: List<UserDataResponseItem> = ArrayList()
-    var selectedValue: UserDataResponseItem = UserDataResponseItem("","","","","")
+    var selectedValue: UserDataResponseItem = UserDataResponseItem("","","","","","")
     var itemSelectedListener : ItemSelectedListener?=null
     constructor(context: Context) : super(context)
     constructor(context: Context, mode: Int) : super(context, mode)
