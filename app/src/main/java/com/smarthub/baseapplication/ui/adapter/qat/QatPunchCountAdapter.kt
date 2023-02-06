@@ -12,8 +12,10 @@ import com.smarthub.baseapplication.databinding.QatSpinnerItemViewBinding
 import com.smarthub.baseapplication.listeners.PunchPointListener
 import com.smarthub.baseapplication.listeners.QatProfileListener
 import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 
-class QatPunchCountAdapter(var listener: PunchPointListener) : RecyclerView.Adapter<QatPunchCountAdapter.ViewHold>() {
+class QatPunchCountAdapter(var listener: PunchPointListener,var list:List<Any>) : RecyclerView.Adapter<QatPunchCountAdapter.ViewHold>() {
 
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,9 +31,10 @@ class QatPunchCountAdapter(var listener: PunchPointListener) : RecyclerView.Adap
         holder.binding.root.setOnClickListener {
             listener.punchPointClicked()
         }
+//        holder.binding.p1.text= list[position].
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return list.size
     }
 }

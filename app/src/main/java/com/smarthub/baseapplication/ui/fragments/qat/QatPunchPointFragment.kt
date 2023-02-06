@@ -42,7 +42,7 @@ class QatPunchPointFragment : Fragment(), PunchPointListener {
     }
 
     private fun setRecyclerView() {
-        val adapter = QatPunchPointAdapter(this)
+        val adapter = QatPunchPointAdapter(this,ArrayList())
         binding.recyclerViewOpen.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewOpen.adapter = adapter
         binding.back.setOnClickListener {

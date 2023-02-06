@@ -215,44 +215,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layout_attachment"
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp15"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_remark">
-
-                    <TextView
-                        android:id="@+id/attachment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_edit_menu"
-                        android:drawablePadding="@dimen/dp10"
-                        android:fontFamily="@font/poppins_regular"
-                        android:maxLines="1"
-                        android:paddingTop="@dimen/dp5"
-                        android:paddingBottom="@dimen/dp3"
-                        android:tag="false"
-                        android:text="Image Attechment"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp13"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/attachment_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp10"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@+id/attachment"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/punch_attachment_layout" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/punch_point_card"
@@ -304,7 +266,7 @@
                        android:layout_height="wrap_content"/>
                    <androidx.constraintlayout.widget.ConstraintLayout
                        android:layout_width="0dp"
-                       android:visibility="gone"
+                       android:visibility="visible"
                        app:layout_constraintStart_toEndOf="@+id/punch_plush"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
@@ -314,6 +276,7 @@
                            android:layout_width="wrap_content"
                            android:orientation="horizontal"
                            tools:itemCount="3"
+                           tools:listitem="@layout/punch_point_count"
                            app:layout_constraintEnd_toEndOf="parent"
                            app:layout_constraintTop_toTopOf="parent"
                            app:layout_constraintBottom_toBottomOf="parent"
@@ -321,30 +284,6 @@
                            android:id="@+id/punch_count_list"
                            android:layout_height="wrap_content"/>
                    </androidx.constraintlayout.widget.ConstraintLayout>
-                   <androidx.appcompat.widget.AppCompatTextView
-                       android:id="@+id/id_txt_circle1"
-                       android:layout_width="@dimen/dp25"
-                       android:layout_height="@dimen/dp25"
-                       android:background="@drawable/circle"
-                       android:gravity="center"
-                       android:text="1"
-                       android:textColor="@color/color1"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintTop_toTopOf="parent" />
-                   <androidx.appcompat.widget.AppCompatTextView
-                       android:id="@+id/id_txt_circle2"
-                       android:layout_width="@dimen/dp25"
-                       android:layout_height="@dimen/dp25"
-                       android:background="@drawable/circle"
-                       android:backgroundTint="@color/light_gray"
-                       android:layout_marginEnd="@dimen/dp10"
-                       android:gravity="center"
-                       android:text="1"
-                       android:textColor="@color/white"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@+id/id_txt_circle1"
-                       app:layout_constraintTop_toTopOf="parent" />
 
                </androidx.constraintlayout.widget.ConstraintLayout>
 
