@@ -32,6 +32,22 @@ class CustomSpinner : AppCompatSpinner {
         itemSelectedListener?.itemSelected(item)
     }
 
+    fun setSpinnerData(data: ArrayList<DropDownItem>) {
+        this.data = data
+        adapter = CustomArrayAdapter(context, data)
+        var listener = object : OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                onItemSelected(data[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+        onItemSelectedListener = listener
+    }
+
     fun setSpinnerData(data: List<DropDownItem>) {
         this.data = data
         adapter = CustomArrayAdapter(context, data)

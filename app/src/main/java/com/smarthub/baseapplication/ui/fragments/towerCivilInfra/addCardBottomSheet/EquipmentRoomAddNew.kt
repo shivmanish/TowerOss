@@ -9,10 +9,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerCivilAddEquipmentRoomBinding
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.Utils
 
-class EquipmentRoomAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
+class EquipmentRoomAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : TowerCivilAddEquipmentRoomBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

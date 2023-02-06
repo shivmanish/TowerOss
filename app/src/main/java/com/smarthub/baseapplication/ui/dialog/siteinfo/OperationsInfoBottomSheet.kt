@@ -10,14 +10,14 @@ import com.smarthub.baseapplication.databinding.OperationsInfoDetailsBottomSheet
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.OperationalInfo
 import com.smarthub.baseapplication.network.pojo.site_info.OperationalInfoModel
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.OperationalInfoUploadModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment(contentLayoutId) {
+class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment() {
     var basicinfoModel: BasicinfoModel? = null
     var operationalInfoUploadModel: OperationalInfoUploadModel? = null
     lateinit var binding : OperationsInfoDetailsBottomSheetBinding

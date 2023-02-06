@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.dialog
+package com.smarthub.baseapplication.ui.dialog.qat
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
@@ -12,20 +12,20 @@ import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PunchPointResolvedDialogLayoutBinding
+import com.smarthub.baseapplication.databinding.PunchPointDialogLayoutBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PunchPointResolveDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog) {
-    private lateinit var punchPointResolvedDialogLayoutBinding: PunchPointResolvedDialogLayoutBinding
+class PunchPointCreateDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog) {
+    private lateinit var punchPointDialogLayoutBinding: PunchPointDialogLayoutBinding
     private lateinit var mCalender: Calendar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        punchPointResolvedDialogLayoutBinding = PunchPointResolvedDialogLayoutBinding.inflate(layoutInflater)
-        setContentView(punchPointResolvedDialogLayoutBinding.root)
+        punchPointDialogLayoutBinding = PunchPointDialogLayoutBinding.inflate(layoutInflater)
+        setContentView(punchPointDialogLayoutBinding.root)
 
         window!!.setBackgroundDrawableResource(android.R.color.transparent)
         val lp = WindowManager.LayoutParams()
@@ -37,7 +37,7 @@ class PunchPointResolveDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialo
         mCalender = Calendar.getInstance()
 
 
-        punchPointResolvedDialogLayoutBinding.date.setOnClickListener {
+        punchPointDialogLayoutBinding.date.setOnClickListener {
             DatePickerDialog(
                 cntx,
                 listner,
@@ -59,7 +59,7 @@ class PunchPointResolveDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialo
     private fun updateLabel() {
         val myFormat = "dd-MMM-yyyy"
         val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-        punchPointResolvedDialogLayoutBinding.date.setText(dateFormat.format(mCalender.getTime()))
+        punchPointDialogLayoutBinding.date.setText(dateFormat.format(mCalender.getTime()))
     }
 
 

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.dialog
+package com.smarthub.baseapplication.ui.dialog.qat
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
@@ -11,21 +11,24 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
+import android.widget.TextView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PunchPointDialogLayoutBinding
+import com.smarthub.baseapplication.databinding.UpdatePunchPointDialogLayoutBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PunchPointCreateDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog) {
-    private lateinit var punchPointDialogLayoutBinding: PunchPointDialogLayoutBinding
+class PunchPointUpdateDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog) {
+    private lateinit var updatePunchPointDialogLayoutBinding: UpdatePunchPointDialogLayoutBinding
     private lateinit var mCalender: Calendar
+    private lateinit var view: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        punchPointDialogLayoutBinding = PunchPointDialogLayoutBinding.inflate(layoutInflater)
-        setContentView(punchPointDialogLayoutBinding.root)
+        updatePunchPointDialogLayoutBinding = UpdatePunchPointDialogLayoutBinding.inflate(layoutInflater)
+        setContentView(updatePunchPointDialogLayoutBinding.root)
 
         window!!.setBackgroundDrawableResource(android.R.color.transparent)
         val lp = WindowManager.LayoutParams()
@@ -34,10 +37,23 @@ class PunchPointCreateDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
         lp.gravity = Gravity.CENTER
         window!!.setAttributes(lp)
-        mCalender = Calendar.getInstance()
+
+        updatePunchPointDialogLayoutBinding.resolvedDate.setOnClickListener {
+            mCalender = Calendar.getInstance()
+            view = updatePunchPointDialogLayoutBinding.resolvedDate
+            DatePickerDialog(
+                cntx,
+                listner,
+                mCalender.get(Calendar.YEAR),
+                mCalender.get(Calendar.MONTH),
+                mCalender.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
 
 
-        punchPointDialogLayoutBinding.date.setOnClickListener {
+        updatePunchPointDialogLayoutBinding.date.setOnClickListener {
+            mCalender = Calendar.getInstance()
+            view = updatePunchPointDialogLayoutBinding.date
             DatePickerDialog(
                 cntx,
                 listner,
@@ -59,7 +75,7 @@ class PunchPointCreateDialog(val cntx: Context) : Dialog(cntx, R.style.NewDialog
     private fun updateLabel() {
         val myFormat = "dd-MMM-yyyy"
         val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-        punchPointDialogLayoutBinding.date.setText(dateFormat.format(mCalender.getTime()))
+        view.setText(dateFormat.format(mCalender.getTime()))
     }
 
 

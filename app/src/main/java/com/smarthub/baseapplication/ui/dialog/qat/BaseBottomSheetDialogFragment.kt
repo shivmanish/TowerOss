@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.dialog
+package com.smarthub.baseapplication.ui.dialog.qat
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import java.util.*
 
-open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id) {
+open class BaseBottomSheetDialogFragment:BottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)

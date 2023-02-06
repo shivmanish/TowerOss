@@ -10,14 +10,14 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.updateOpcoDataItem
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,var id:String,var listener : RfEquipmentListener): BaseBottomSheetDialogFragment(contentLayoutId) {
+class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,var id:String,var listener : RfEquipmentListener): BaseBottomSheetDialogFragment() {
     lateinit var binding : AddnewRfequipmentDialougeBinding
     lateinit var viewModel: SiteInfoViewModel
     lateinit var homeViewModel: HomeViewModel

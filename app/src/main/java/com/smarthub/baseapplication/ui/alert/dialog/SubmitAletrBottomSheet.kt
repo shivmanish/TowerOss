@@ -9,11 +9,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.databinding.SubmitAlertBottomSheetBinding
 import com.smarthub.baseapplication.ui.alert.model.newData.NewData
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.Utils
 
 class SubmitAletrBottomSheet(contentLayoutId: Int, var data: NewData, var listener : SubmitAlertBottomSheetListener) :
-    BaseBottomSheetDialogFragment(contentLayoutId) {
+    BaseBottomSheetDialogFragment() {
     lateinit var binding: SubmitAlertBottomSheetBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

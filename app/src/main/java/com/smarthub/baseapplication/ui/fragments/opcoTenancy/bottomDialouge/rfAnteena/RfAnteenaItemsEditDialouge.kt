@@ -11,14 +11,14 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.updateOpcoDataItem
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class RfAnteenaItemsEditDialouge (contentLayoutId: Int,var rfAntenadata : RfAnteenaData,var id:String,var listner:rfAntenaListener): BaseBottomSheetDialogFragment(contentLayoutId) {
+class RfAnteenaItemsEditDialouge (contentLayoutId: Int,var rfAntenadata : RfAnteenaData,var id:String,var listner:rfAntenaListener): BaseBottomSheetDialogFragment() {
     lateinit var binding : RfAnteenaListItemDialougeBinding
     lateinit var viewModel: SiteInfoViewModel
     lateinit var homeViewModel: HomeViewModel

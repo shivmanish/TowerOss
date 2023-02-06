@@ -10,11 +10,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ServiceRequestAddNewDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class ServiceRequestAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
+class ServiceRequestAddNew (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : ServiceRequestAddNewDialougeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
