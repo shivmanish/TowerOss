@@ -4,10 +4,10 @@ import com.smarthub.baseapplication.utils.AppController
 
 data class AddNotificationModel(
     var Description: String?=null,
-    val Files: String?=null,
-    val Flag: String?=null,
-    val Send: String?=null,
-    val Titles: String?=null,
-    val Username: List<String>?=ArrayList<String>(),
-    val ownername: String= AppController.getInstance().ownerName
+    var Files: String?="",
+    var Flag: String?=null,
+    var Send: String?="",
+    var Titles: String?=null,
+    var Username: ArrayList<String>?=ArrayList<String>(),
+    var ownername: String= AppController.getInstance().ownerName
 )

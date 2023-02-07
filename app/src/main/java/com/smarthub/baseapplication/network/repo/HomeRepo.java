@@ -19,29 +19,29 @@ import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointMode
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.search.SearchListItem;
-import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
 import com.smarthub.baseapplication.model.search.SearchSiteIdItem;
 import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
+import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
-import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
+import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
-import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
-import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
+import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
+import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
-import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
@@ -92,7 +92,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<QatMainModel>> qatMainModelResponse;
     private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
-    private SingleLiveEvent<Resource<LogSearchData>> loglivedata;
+    private SingleLiveEvent<Resource<LogsDataModel>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
     private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
@@ -106,7 +106,7 @@ public class HomeRepo {
         return sInstance;
     }
 
-    public SingleLiveEvent<Resource<LogSearchData>> getloglivedata() {
+    public SingleLiveEvent<Resource<LogsDataModel>> getloglivedata() {
         return loglivedata;
     }
     public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
@@ -559,6 +559,7 @@ public class HomeRepo {
     }
 
     public void addNotification(AddNotificationModel data) {
+        AppLogger.INSTANCE.log("add notification data===>"+data);
         apiClient.addNotification(data).enqueue(new Callback<AddNotificationResponse>() {
             @Override
             public void onResponse(@NonNull Call<AddNotificationResponse> call, Response<AddNotificationResponse> response) {
@@ -1257,9 +1258,9 @@ public class HomeRepo {
         ArrayList<String> list = new ArrayList<>();
         list.add("ChangeLog");
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchLogData(siteInfoParam).enqueue(new Callback<LogSearchData>() {
+        apiClient.fetchLogData(siteInfoParam).enqueue(new Callback<LogsDataModel>() {
             @Override
-            public void onResponse(Call<LogSearchData> call, Response<LogSearchData> response) {
+            public void onResponse(Call<LogsDataModel> call, Response<LogsDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -1270,14 +1271,14 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<LogSearchData> call, Throwable t) {
+            public void onFailure(Call<LogsDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<LogSearchData> response) {
+            private void reportSuccessResponse(Response<LogsDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse on get logs :"+response);
                     loglivedata.postValue(Resource.success(response.body(), 200));
                 }
             }

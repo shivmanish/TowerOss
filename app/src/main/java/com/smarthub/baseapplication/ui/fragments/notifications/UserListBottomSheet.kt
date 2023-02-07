@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class UserListBottomSheet(contentLayoutId: Int, var viewModel: AlertViewModel, var listner:SelectCallBack,var listner2:SelectedUserListner) : BaseBottomSheetDialogFragment(contentLayoutId) {
+class UserListBottomSheet(contentLayoutId: Int, var viewModel: AlertViewModel, var listner:SelectCallBack,var listner2:SelectedUserListner) : BaseBottomSheetDialogFragment() {
     lateinit var binding: AlertListBottomSheetBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

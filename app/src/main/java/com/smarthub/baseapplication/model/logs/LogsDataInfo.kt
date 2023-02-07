@@ -1,6 +1,6 @@
-package com.smarthub.baseapplication.model.serviceRequest.log
+package com.smarthub.baseapplication.model.logs
 
-data class ChangeLog(
+data class LogsDataInfo(
     val Activity: String,
     val ChangesMade: String,
     val Description: String,

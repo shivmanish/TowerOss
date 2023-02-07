@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentOpenQatBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
@@ -15,6 +16,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.dialog.qat.LaunchQatBottomSheet
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QATListAdapter
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
@@ -73,7 +75,11 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
                 Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
-        binding.addItems.setOnClickListener {
+        binding.addMore.setOnClickListener{
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
+        }
+        binding.addNewQat.setOnClickListener {
             openCreateLaunchBottomSheet()
         }
 

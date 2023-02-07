@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.model.notification.NotificationData
 import com.smarthub.baseapplication.model.notification.NotificationListItem
 import com.smarthub.baseapplication.model.notification.newData.NotificationNewItem
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 
 class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<NotificationNewItem>) : Adapter<NotificationListSubtitleAdapter.Viewholder>() {
     fun setData(data : List<NotificationNewItem>){
@@ -29,6 +30,8 @@ class NotificationListSubtitleAdapter(val context: Context,var list : ArrayList<
         val item : NotificationNewItem = list[position]
         try {
             holder.binding.textName.text = "${item.UserFirstName} ${item.UserLastName}"
+            holder.binding.dateTextSubtitle.text="${Utils.getFormatedDate(item.created_at.substring(0,10),"dd MMM yyyy")};"
+            holder.binding.clocktimeTextSubtitle.text=Utils.get12hrformate(item.created_at.substring(11,19) )
             if (item.files.isNotEmpty()){
                 holder.filesList.adapter=NotificationFilesListItemAdapter(context,item.files)
             }

@@ -8,8 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddMoreBotomSheetDailogBinding
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.ApplicationInitial
 import com.smarthub.baseapplication.ui.alert.AlertActivity
-import com.smarthub.baseapplication.ui.fragments.Logs.LogActivity
-import com.smarthub.baseapplication.ui.logs.LogsActivity
+import com.smarthub.baseapplication.ui.fragments.logs.LogActivity
 
 
 class CommonBottomSheetDialog(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
