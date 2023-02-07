@@ -43,7 +43,6 @@ class AddNotificationDialouge (contentLayoutId: Int): BaseBottomSheetDialogFragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.65).toInt()
-        datamodel= AddNotificationModel()
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }

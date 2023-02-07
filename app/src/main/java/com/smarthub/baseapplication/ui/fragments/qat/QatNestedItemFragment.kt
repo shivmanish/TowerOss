@@ -14,9 +14,12 @@ import com.smarthub.baseapplication.listeners.QatItemListener
 import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
 import com.smarthub.baseapplication.model.siteInfo.qat.QatTemplateModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
+import com.smarthub.baseapplication.ui.adapter.qat.QatSubTitleAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 
-class QatNestedItemFragment(var data: Category?) : BaseFragment(), QatItemListener {
+class QatNestedItemFragment(var data: Category?) : BaseFragment(),
+    QatSubTitleAdapter.QatSubTitleAdapterListener {
 
     var binding : QatNestedListFragmentBinding ?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,12 +34,11 @@ class QatNestedItemFragment(var data: Category?) : BaseFragment(), QatItemListen
         if(data?.item!=null)
             binding?.list?.adapter = QatTitleAdapter(this@QatNestedItemFragment,data?.item!!)
     }
-    override fun itemClicked() :String {
-        QatDetailsActivity.data = data
+    override fun itemClicked(item : Subitem) {
+        QatDetailsActivity.data = item
         Intent(requireContext(),QatDetailsActivity::class.java).apply {
             startActivity(this)
         }
-        return ""
 
     }
 

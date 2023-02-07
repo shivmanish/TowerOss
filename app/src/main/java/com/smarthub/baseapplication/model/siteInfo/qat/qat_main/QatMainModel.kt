@@ -6,6 +6,9 @@ class QatMainModel {
     @SerializedName("finaldata")
     var item : List<QatMainAllData>?=null
 
+    @SerializedName("FinalData")
+    var itemNew : List<QatMainAllData>?=null
+
     @SerializedName("error")
     var error : Any?=null
 }

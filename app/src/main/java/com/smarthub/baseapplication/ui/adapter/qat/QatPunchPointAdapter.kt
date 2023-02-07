@@ -1,105 +1,96 @@
 package com.smarthub.baseapplication.ui.adapter.qat
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.Transformation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.QatCheckopenItemBinding
 import com.smarthub.baseapplication.databinding.QatPunchPointItemBinding
 import com.smarthub.baseapplication.listeners.PunchPointListener
-import com.smarthub.baseapplication.listeners.QatProfileListener
-import com.smarthub.baseapplication.model.qatcheck.OpenQatDataModel
+import com.smarthub.baseapplication.model.qatcheck.punch_point.AddPunchPoint
+import com.smarthub.baseapplication.model.qatcheck.punch_point.PunchPointUpdate
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class QatPunchPointAdapter(var listener: PunchPointListener) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
+class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<Checkpoint>) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
 
-    var list = ArrayList<String>()
-    init {
-        list.add("Pole Height")
-        list.add("Pole Dia")
-    }
 
     class ViewHold(itemView: View,var listener: PunchPointListener) : RecyclerView.ViewHolder(itemView) {
         var binding : QatPunchPointItemBinding = QatPunchPointItemBinding.bind(itemView)
-        var adapter = QatSpinnerItemAdapter(listener)
         var attachmentAdapter = QatAttachmentAdapter(listener)
+        var attachmentList = itemView.findViewById<RecyclerView>(R.id.list_item)
         var tag = false
         init {
-            binding.recyclerView?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-            binding.recyclerView?.adapter = adapter
-
-            binding.recyclerView?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-            binding.punchCountList?.adapter = QatPunchCountAdapter(listener)
-
-            binding.attachmentList?.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            binding.attachmentList?.adapter = attachmentAdapter
-
-            binding.editRemark.let { Utils.collapse(it) }
-
-            binding.attachment?.setOnClickListener {
-                attachmentAdapter.addItem("")
-            }
-            binding.punchPlush?.setOnClickListener {
-//                attachmentAdapter.addItem("")
-                listener.addPunchPoint()
-            }
-//            binding.punchPoint?.setOnClickListener {
-////                attachmentAdapter.addItem("")
-//                listener.addPunchPoint()
-//            }
+            attachmentList.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            attachmentList.adapter = attachmentAdapter
         }
-    }
-
-    fun expand(v: View) {
-        val matchParentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec((v.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-        v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
-        val targetHeight = 200
-
-        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
-        v.layoutParams.height = 1
-        val a: Animation = object : Animation() {
-            override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
-                v.visibility = View.VISIBLE
-                v.layoutParams.height =
-                    if (interpolatedTime == 1f) 250 else (targetHeight * interpolatedTime).toInt()
-                v.requestLayout()
-            }
-
-            override fun willChangeBounds(): Boolean {
-                return true
-            }
-        }
-
-        // Expansion speed of 1dp/ms
-        a.duration = (targetHeight / v.context.resources.displayMetrics.density).toInt().toLong()
-        v.startAnimation(a)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.qat_punch_point_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_punch_point_item,parent,false)
         return ViewHold(view,listener)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.titleText.text = list[position]
+        holder.binding.titleText.text = list[position].QATSubItem
+        holder.binding.punchCountList.adapter = QatPunchCountAdapter(listener, list = list[position].PunchPoint)
+        try {
+            val observations = list[position].QATObservation.split(",")
+            if (observations.isNotEmpty())
+                holder.binding.observations.setSpinnerData(observations)
+
+            val readings = list[position].FieldValue.split(",")
+            if (readings.isNotEmpty())
+                holder.binding.reading.setSpinnerData(readings)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("e : ${e.localizedMessage}")
+        }
+        holder.binding.editRemark.text = list[position].Remark.toEditable()
+        holder.binding.editRemarks.text = list[position].Remark
+        holder.binding.punchPlush.setOnClickListener {
+
+        }
         holder.binding.addRemark.setOnClickListener {
             holder.tag = !holder.tag
-            if (holder.tag) {
-                holder.binding.editRemark.let { expand(it) }
+            AppLogger.log("visibility:${holder.binding.editRemark.visibility}")
+            if (holder.binding.editRemark.visibility == View.VISIBLE) {
+                holder.binding.editRemark.visibility = View.INVISIBLE
             } else {
-                holder.binding.editRemark.let { Utils.collapse(it) }
+                holder.binding.editRemark.visibility = View.VISIBLE
             }
+        }
+        holder.binding.editRemark.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+//                holder.binding.editRemarks.text = holder.binding.editRemark.text.toString()
+            }
+
+        })
+        holder.binding.idTxtCircle.text = "${list[position].PunchPoint.size}"
+        holder.binding.date.text = Utils.getFormatedDateNew(list[position].modified_at,"yyyy-MM-dd HH:MM aa")
+        holder.binding.Save.setOnClickListener {
+
+        }
+        holder.binding.createPunchPoint.setOnClickListener {
+            listener.editPunchPoint(list[position],position)
         }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
+
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
 }

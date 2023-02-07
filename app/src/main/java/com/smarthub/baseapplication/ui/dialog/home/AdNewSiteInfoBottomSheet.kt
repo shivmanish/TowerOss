@@ -8,27 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AdNewSiteInfoBottomSheetBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoData
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
-import com.smarthub.baseapplication.ui.fragments.search.SearchFragmentDirections
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,var addNewSiteSheetListener: AdNewSiteSheetListener) : BaseBottomSheetDialogFragment(contentLayoutId) {
+class AdNewSiteInfoBottomSheet(contentLayoutId: Int, var viewModel: HomeViewModel,var addNewSiteSheetListener: AdNewSiteSheetListener) : BaseBottomSheetDialogFragment() {
     lateinit var addSiteHelper: AddSiteHelper
     lateinit var binding: AdNewSiteInfoBottomSheetBinding
     var tempGenerateSiteId = ""

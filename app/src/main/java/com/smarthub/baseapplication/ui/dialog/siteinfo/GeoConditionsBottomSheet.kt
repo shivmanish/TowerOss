@@ -5,21 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.GeoConditionsDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.GeoCondition
 import com.smarthub.baseapplication.network.pojo.site_info.GeoConditionModel
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.GeoConditionUpdateModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.OperationalInfoUploadModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class GeoConditionsBottomSheet(contentLayoutId: Int,var id : String, var dropdownData: GeoConditionModel, var geoCondition: GeoCondition,var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment(contentLayoutId) {
+class GeoConditionsBottomSheet(contentLayoutId: Int,var id : String, var dropdownData: GeoConditionModel, var geoCondition: GeoCondition,var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment() {
     var basicinfoModel: BasicinfoModel? = null
     var geoConditionUpdateModel: GeoConditionUpdateModel? = null
     lateinit var binding: GeoConditionsDetailsBottomSheetBinding

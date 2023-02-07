@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.dialog
+package com.smarthub.baseapplication.ui.dialog.qat
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener

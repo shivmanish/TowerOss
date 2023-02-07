@@ -301,6 +301,20 @@ object Utils {
         }
         return date
     }
+    fun getFormatedDateNew(d : String,format:String) : String{
+        var date=d
+        AppLogger.log("getformatedDate:$date")
+        try {
+            val sdf = SimpleDateFormat(format)
+            val secondDate: Date = sdf.parse(date)
+
+            date=secondDate.toString()
+            AppLogger.log("date :$date")
+        }catch (e:java.lang.Exception){
+            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return date
+    }
 
     fun isValid(value: String):Boolean {
         return !value.trim().equals("") && !value.equals("Na", ignoreCase = true) && !(value.length<3)

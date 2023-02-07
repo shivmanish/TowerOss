@@ -16,11 +16,11 @@ import com.smarthub.baseapplication.model.atp.HeaderList
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Item
 import com.smarthub.baseapplication.utils.Utils
 
-class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
+class QatTitleAdapter(var listener: QatSubTitleAdapter.QatSubTitleAdapterListener, val list: List<Item>) : RecyclerView.Adapter<QatTitleAdapter.ViewHold>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_title_view, parent, false)
-        return ViewHold(view,listener)
+        return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -32,7 +32,7 @@ class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : Rec
         return list.size
     }
 
-    open class ViewHold(itemView: View,listener: QatItemListener) : RecyclerView.ViewHolder(itemView){
+    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
         val binding = QatTitleViewBinding.bind(itemView)
         init {
             binding.collapsingLayout.tag = false
@@ -48,7 +48,6 @@ class QatTitleAdapter(var listener: QatItemListener, val list: List<Item>) : Rec
                 }
                 it.tag = !(it.tag as Boolean)
             }
-//            Utils
 
         }
     }

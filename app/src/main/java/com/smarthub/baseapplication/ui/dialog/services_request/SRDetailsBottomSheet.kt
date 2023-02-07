@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.model.serviceRequest.SRDetails
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequest
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -28,7 +28,7 @@ class SRDetailsBottomSheet(
     var id: String,
     var srDetailsData: SRDetails,
     var serviceRequestAllData: ServiceRequestAllDataItem
-) : BaseBottomSheetDialogFragment(contentLayoutId) {
+) : BaseBottomSheetDialogFragment() {
 
     var basicinfoModel: BasicinfoModel? = null
     lateinit var binding: SrDetailsBottomSheetDialogBinding

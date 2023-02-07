@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.ui.fragments.qat.QatNestedItemFragment
 
 
 class PageAdapterQat(fm:FragmentManager,var data: List<Category>) : FragmentPagerAdapter(fm) {
-//    private val pageTitles = arrayOf("Electrical/Civil Material","Category 2")
+
     override fun getCount(): Int {
         return data.size
     }
@@ -21,7 +21,7 @@ class PageAdapterQat(fm:FragmentManager,var data: List<Category>) : FragmentPage
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return data[0].QATCategory
+        return data[position].QATCategory
     }
 
 }

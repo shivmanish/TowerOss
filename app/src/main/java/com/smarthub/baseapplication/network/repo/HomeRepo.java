@@ -14,6 +14,8 @@ import com.smarthub.baseapplication.model.notification.newData.AddNotificationRe
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
 import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
+import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
+import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.search.SearchListItem;
@@ -958,6 +960,75 @@ public class HomeRepo {
         list.add("QATMainLaunch");
         SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         apiClient.fetchQatMainRequest(siteInfoParam).enqueue(new Callback<QatMainModel>() {
+            @Override
+            public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QatMainModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<QatMainModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    qatMainModelResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    qatMainModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    qatMainModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void qatMainRequestAll(QalLaunchModel data) {
+        apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
+            @Override
+            public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QatMainModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<QatMainModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    qatMainModelResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    qatMainModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    qatMainModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void qatMainRequestAll(QatPunchPointModel data) {
+        apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
             @Override
             public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
                 if (response.isSuccessful()){

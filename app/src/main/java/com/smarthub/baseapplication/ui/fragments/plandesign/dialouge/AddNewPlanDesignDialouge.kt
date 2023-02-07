@@ -9,12 +9,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PlandesignAddnewDialougeBinding
-import com.smarthub.baseapplication.databinding.TowerCivilAddEarthingBinding
-import com.smarthub.baseapplication.databinding.TowerCivilAddTowerBinding
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
-import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 
-class AddNewPlanDesignDialouge (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
+class AddNewPlanDesignDialouge (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : PlandesignAddnewDialougeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

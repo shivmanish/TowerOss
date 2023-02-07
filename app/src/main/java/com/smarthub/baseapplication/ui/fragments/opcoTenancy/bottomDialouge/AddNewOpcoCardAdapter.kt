@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddNewCardOpcoTenencyBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.DropDowns
 
-class AddNewOpcoCardAdapter (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
+class AddNewOpcoCardAdapter (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : AddNewCardOpcoTenencyBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignAcqTeamBottomSheetBinding
 import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeamTeam
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 
-class AsignAcqTeamBottomSheet(contentLayoutId: Int,var AssignAcqTeamDetailsData : AssignACQTeamTeam?) : BaseBottomSheetDialogFragment(contentLayoutId) {
+class AsignAcqTeamBottomSheet(contentLayoutId: Int,var AssignAcqTeamDetailsData : AssignACQTeamTeam?) : BaseBottomSheetDialogFragment() {
 
     lateinit var binding : AssignAcqTeamBottomSheetBinding
 

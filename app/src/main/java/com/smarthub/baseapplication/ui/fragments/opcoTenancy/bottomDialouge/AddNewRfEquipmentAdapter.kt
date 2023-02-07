@@ -9,14 +9,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddnewRfequipmentDialougeBinding
-import com.smarthub.baseapplication.databinding.TowerCivilAddEarthingBinding
-import com.smarthub.baseapplication.databinding.TowerCivilAddTowerBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class AddNewRfEquipmentAdapter (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
+class AddNewRfEquipmentAdapter (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : AddnewRfequipmentDialougeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

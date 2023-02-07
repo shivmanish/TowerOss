@@ -12,17 +12,15 @@ import com.smarthub.baseapplication.databinding.OpcoInfoSiteDialougeLayoutBindin
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.updateOpcoDataItem
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
-import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var id:String, var listner:OpcoInfoListener): BaseBottomSheetDialogFragment(contentLayoutId) {
+class OpcoSiteInfoEditDialouge (contentLayoutId: Int,var opcoInfo: Opcoinfo,var id:String, var listner:OpcoInfoListener): BaseBottomSheetDialogFragment() {
     lateinit var binding : OpcoInfoSiteDialougeLayoutBinding
     lateinit var viewModel:SiteInfoViewModel
     lateinit var homeViewModel: HomeViewModel

@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.model.siteInfo.qat.qat_main
 
 data class Checkpoint(
     val CheckPoint: String,
-    val Description: String,
+    var Description: String,
     val FieldValue: String,
     val PunchPoint: List<Any>,
     val QATCategory: String,
@@ -17,7 +17,7 @@ data class Checkpoint(
     val QATObservationValue: String,
     val QATSubItem: String,
     val QATSubItem_id: String,
-    val Remark: String,
+    var Remark: String,
     val created_at: String,
     val id: String,
     val isActive: String,

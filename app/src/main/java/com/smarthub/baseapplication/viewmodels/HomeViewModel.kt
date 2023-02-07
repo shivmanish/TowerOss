@@ -11,6 +11,8 @@ import com.smarthub.baseapplication.model.notification.newData.AddNotificationRe
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew
 import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
+import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
+import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData
@@ -21,12 +23,10 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
-import com.smarthub.baseapplication.model.siteInfo.qat.QatModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
@@ -195,6 +195,14 @@ class HomeViewModel : ViewModel() {
 
     fun qatMainRequestAll(id : String){
         homeRepo?.qatMainRequestAll(id)
+    }
+
+    fun qatLaunchMain(data : QalLaunchModel){
+        homeRepo?.qatMainRequestAll(data)
+    }
+
+    fun qatLaunchMain(data : QatPunchPointModel){
+        homeRepo?.qatMainRequestAll(data)
     }
 
     fun fetchSiteAgreementModelRequest(id : String){
