@@ -1,12 +1,8 @@
 package com.smarthub.baseapplication.utils
 
-import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Resources
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -25,6 +21,7 @@ import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
 import com.smarthub.baseapplication.model.taskModel.Processtemplatecallmanual
 import java.io.IOException
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -287,19 +284,31 @@ object Utils {
 
     fun getFormatedDate(d : String,format:String) : String{
         var date=d
-        if(date.contains(" "))
-            date=date.split(" ")[0]
         AppLogger.log("getformatedDate:$date")
         try {
-            val sdf = SimpleDateFormat(format)
-            val secondDate: Date = sdf.parse(date)
-
-            date=secondDate.toString()
-            AppLogger.log("date :$date")
+            val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val outputFormat: DateFormat = SimpleDateFormat(format)
+            val inputDateStr = date
+            val inputDate: Date = inputFormat.parse(inputDateStr)
+             date = outputFormat.format(inputDate)
         }catch (e:java.lang.Exception){
             AppLogger.log("compareDate error :${e.localizedMessage}")
         }
         return date
+    }
+
+    fun get12hrformate(time:String):String{
+        var s = time
+        AppLogger.log("getformatedtime:$s")
+        try {
+            val f1: DateFormat = SimpleDateFormat("HH:mm:ss") //HH for hour of the day (0 - 23)
+            val d = f1.parse(s)
+            val f2: DateFormat = SimpleDateFormat("h:mma")
+            s= f2.format(d).lowercase(Locale.getDefault())
+        }catch (e:java.lang.Exception){
+            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return s
     }
     fun getFormatedDateNew(d : String,format:String) : String{
         var date=d

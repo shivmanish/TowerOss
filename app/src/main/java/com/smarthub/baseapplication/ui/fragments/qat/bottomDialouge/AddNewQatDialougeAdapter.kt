@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.databinding.AddnewQatDialougeBinding
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.Utils
 
-class AddNewQatDialougeAdapter (contentLayoutId: Int): BaseBottomSheetDialogFragment(contentLayoutId) {
+class AddNewQatDialougeAdapter (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : AddnewQatDialougeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -559,6 +559,7 @@ public class HomeRepo {
     }
 
     public void addNotification(AddNotificationModel data) {
+        AppLogger.INSTANCE.log("add notification data===>"+data);
         apiClient.addNotification(data).enqueue(new Callback<AddNotificationResponse>() {
             @Override
             public void onResponse(@NonNull Call<AddNotificationResponse> call, Response<AddNotificationResponse> response) {
