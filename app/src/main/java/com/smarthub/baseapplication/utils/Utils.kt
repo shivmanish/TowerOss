@@ -303,7 +303,7 @@ object Utils {
         try {
             val f1: DateFormat = SimpleDateFormat("HH:mm:ss") //HH for hour of the day (0 - 23)
             val d = f1.parse(s)
-            val f2: DateFormat = SimpleDateFormat("h:mma")
+            val f2: DateFormat = SimpleDateFormat("hh:mm a")
             s= f2.format(d).lowercase(Locale.getDefault())
         }catch (e:java.lang.Exception){
             AppLogger.log("compareDate error :${e.localizedMessage}")
