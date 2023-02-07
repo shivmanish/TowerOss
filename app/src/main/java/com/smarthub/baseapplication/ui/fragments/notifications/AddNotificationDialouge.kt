@@ -10,16 +10,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddNotificationDialougeBinding
-import com.smarthub.baseapplication.databinding.TowerCivilAddEarthingBinding
-import com.smarthub.baseapplication.databinding.TowerCivilAddTowerBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel
 import com.smarthub.baseapplication.ui.alert.adapter.SelectCallBack
-import com.smarthub.baseapplication.ui.alert.adapter.UserListAdapter
-import com.smarthub.baseapplication.ui.alert.dialog.AlertUserListBottomSheet
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
-import com.smarthub.baseapplication.ui.dialog.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel

@@ -1,8 +1,9 @@
-package com.smarthub.baseapplication.ui.dialog
+package com.smarthub.baseapplication.ui.dialog.qat
 
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
@@ -13,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import java.util.*
 
-open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id) {
+open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
     var progressDialog : ProgressDialog?=null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -74,5 +75,10 @@ open class BaseBottomSheetDialogFragment(id : Int) :BottomSheetDialogFragment(id
         if (progressDialog!=null && progressDialog?.isShowing == true){
             progressDialog?.hide()
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        hideLoader()
+        super.onDismiss(dialog)
     }
 }
