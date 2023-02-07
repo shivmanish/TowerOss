@@ -44,8 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editTermLease"
-                    android:hint="Term Lease"
+                    android:id="@+id/agrementType"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -67,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinRegistrationNumber"
+                    android:id="@+id/registrationNumber"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -91,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinRegistrationDate"
+                    android:id="@+id/registrationDate"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -114,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinBookingCostCentre"
+                    android:id="@+id/bookingCostCentre"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -137,8 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editAgreemenPeriod"
-                    android:hint="5 Years"
+                    android:id="@+id/agreemenPeriod"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -160,7 +158,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editLockPeriod"
+                    android:id="@+id/lockPeriod"
                     android:hint="2 Years"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -183,8 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editAgreemenDate"
-                    android:hint="27-Jun-22"
+                    android:id="@+id/agreemenEffectiveDate"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -206,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editAgreementExpiryDate"
+                    android:id="@+id/agreementExpiryDate"
                     android:hint="27-Jun-22"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -229,7 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editRentStartDate"
+                    android:id="@+id/rentStartDate"
                     android:hint="27-Jun-22"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -252,7 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editInitialAnnualRentAmount"
+                    android:id="@+id/initialAnnualRentAmount"
                     android:hint="27-Jun-22"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -275,7 +272,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinRentPaymentFrequency"
+                    android:id="@+id/rentPaymentFrequency"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -298,9 +295,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editPeriodicRent"
-                    android:hint="75,000
-"
+                    android:id="@+id/periodicRentPaybleAmount"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -322,8 +317,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editRentEscalation"
-                    android:hint="10"
+                    android:id="@+id/rentEscalation"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -345,8 +339,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editRentEscalationPeriod"
-                    android:hint="2 year"
+                    android:id="@+id/rentEscalationPeriod"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -368,7 +361,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editLastEscalationDate"
+                    android:id="@+id/lastEscalationDate"
                     android:hint="27-Jun-22"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -391,8 +384,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editLastRevisedRentAmount"
-                    android:hint="3,00,000"
+                    android:id="@+id/lastRevisedRentAmount"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -414,11 +406,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinEBInclusiveRental"
+                    android:id="@+id/eBInclusiveRental"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    />
                 <View
                     android:alpha="0.37"
                     android:background="#263238"
@@ -437,7 +429,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinEBBillLimit"
+                    android:id="@+id/eBBillLimit"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -460,7 +452,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinEBBillingBasis"
+                    android:id="@+id/eBBillingBasis"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -483,9 +475,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editEBperunitRate"
-                    android:hint="75,000
-"
+                    android:id="@+id/eBperunitRate"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -507,7 +497,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinPropertyOwnership"
+                    android:id="@+id/propertyOwnership"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -530,7 +520,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.smarthub.baseapplication.widgets.CustomSpinner
-                    android:id="@+id/spinPropertyAcquired"
+                    android:id="@+id/propertyAcquired"
                     style="@style/SpinnerTheme"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
@@ -553,7 +543,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editOnetimeAmount"
+                    android:id="@+id/onetimeAmount"
                     android:hint="75,000
 "
                     style="@style/RowTestItemEdit"
@@ -577,9 +567,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editAmount"
-                    android:hint="75,000
-"
+                    android:id="@+id/securityDepositeAmount"
+                    android:hint="75,000"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -601,9 +590,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editArea"
-                    android:hint="75,000
-"
+                    android:id="@+id/rooftopAcquiredArea"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -625,9 +612,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/editUsableArea"
-                    android:hint="75,000
-"
+                    android:id="@+id/groundAcquiredArea"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -640,7 +625,10 @@
             </LinearLayout>
 
         </GridLayout>
-        <include layout="@layout/cancel_save_layout"/>
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/cancel_save_layout"/>
 
     </LinearLayout>
 

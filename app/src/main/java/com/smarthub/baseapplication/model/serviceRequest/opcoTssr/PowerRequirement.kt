@@ -1,12 +1,12 @@
 package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class PowerRequirement(
-    val BatteryBackupRequired: String,
-    val InputType: String,
-    val InputVoltage: String,
-    val MaxTotalPower: String,
-    val created_at: String,
-    val id: String,
-    val isActive: String,
-    val modified_at: String
+    var BatteryBackupRequired: String,
+    var InputType: String,
+    var InputVoltage: String,
+    var MaxTotalPower: String,
+    var created_at: String,
+    var id: String,
+    var isActive: String,
+    var modified_at: String
 )

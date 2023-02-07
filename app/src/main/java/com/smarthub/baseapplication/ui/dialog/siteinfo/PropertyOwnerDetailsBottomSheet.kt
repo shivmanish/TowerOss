@@ -7,62 +7,39 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AgreementDetailsBotomSheetBinding
-import com.smarthub.baseapplication.model.serviceRequest.FeasibilityPlanning
+import com.smarthub.baseapplication.databinding.PropertyDetailsListItemBinding
+import com.smarthub.baseapplication.databinding.PropertyOwnerBotomSheetBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.model.serviceRequest.softAqusition.AgreementTerm
+import com.smarthub.baseapplication.model.serviceRequest.softAqusition.PropertyOwnerAndPaymentDetail
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcquisition
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AgrementsDetailsBottomSheet(
+class PropertyOwnerDetailsBottomSheet(
     contentLayoutId: Int,
-    var agrement: AgreementTerm,
+    var agrement: ArrayList<PropertyOwnerAndPaymentDetail>,
     var id: String?,
     var viewmodel: HomeViewModel,
     var serviceRequestAllData: ServiceRequestAllDataItem
 ) : BottomSheetDialogFragment(contentLayoutId) {
     var basicinfoModel: BasicinfoModel? = null
-    lateinit var binding : AgreementDetailsBotomSheetBinding
+    lateinit var binding : PropertyOwnerBotomSheetBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         basicinfoModel = BasicinfoModel()
-        binding = AgreementDetailsBotomSheetBinding.bind(view)
+        binding = PropertyOwnerBotomSheetBinding.bind(view)
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
         try{
-        agrement!!.let {
-            binding.agrementType.setText(it.AgreementPeriod)
-//            binding.registrationNumber.setText("")
-//            binding.registrationDate.setText("")
-//            binding.bookingCostCentre.setText("")
-            binding.agreemenPeriod.setText(it.AgreementPeriod)
-            binding.lockPeriod.setText(it.LockInPeriod)
-            binding.agreemenEffectiveDate.setText("")
-            binding.agreementExpiryDate.setText("")
-            binding.rentStartDate.setText("")
-            binding.initialAnnualRentAmount.setText("")
-
-//            binding.rentPaymentFrequency.setText("")
-            binding.periodicRentPaybleAmount.setText(it.PeriodicRentPayableAmount)
-            binding.rentEscalation.setText("")
-            binding.rentEscalationPeriod.setText(it.RentEscalationPeriod)
-            binding.lastEscalationDate.setText("")
-            binding.lastRevisedRentAmount.setText("")
-//            binding.eBInclusiveRental.setText("")
-//            binding.eBBillLimit.setText("")
-//            binding.eBBillingBasis.setText(it.EBBillingBasis)
-//            binding.eBperunitRate.setText(it.EBPerUnitRate)
-//            binding.propertyOwnership.setText(it.PropertyOwnership)
-//            binding.propertyAcquired.setText("")
-
-            binding.onetimeAmount.setText(it.OnetimeAmount)
-            binding.securityDepositeAmount.setText(it.SecurityDepositAmount)
-            binding.rooftopAcquiredArea.setText("")
-            binding.groundAcquiredArea.setText("")
+        agrement!!.get(0).let {
+          binding.Seq.setText(it.Seq)
+            binding.Status.setText(it.PayeeStatus)
+            binding.pannno.setText(it.PanNumber)
+            binding.Share.setText(it.Share)
         }
 
         }catch (e:Exception){
@@ -78,8 +55,7 @@ class AgrementsDetailsBottomSheet(
                 mServiceRequestAllDataItem.SoftAcquisition = ArrayList()
 
                 val softAcquisition = SoftAcquisition()
-                softAcquisition.AgreementTerms = ArrayList()
-                softAcquisition.AgreementTerms!!.add(it)
+                softAcquisition.PropertyOwnerAndPaymentDetails = agrement
                 softAcquisition.id = serviceRequestAllData?.SoftAcquisition!![0].id
                 mServiceRequestAllDataItem.SoftAcquisition?.add(softAcquisition)
 
@@ -91,15 +67,13 @@ class AgrementsDetailsBottomSheet(
                 viewmodel?.updateBasicInfo(basicinfoModel!!)
             }
         }
-
-
     }
 
     override fun getTheme() = R.style.NewDialogTask
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = AgreementDetailsBotomSheetBinding.inflate(inflater)
+        binding = PropertyOwnerBotomSheetBinding.inflate(inflater)
         return binding.root
     }
 

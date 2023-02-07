@@ -367,11 +367,12 @@
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
-                    <include
-                        layout="@layout/layout_img_attachment"/>
 
                 </LinearLayout>
 
+                <include
+                    android:id="@+id/include"
+                    layout="@layout/cancel_update_layout"/>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

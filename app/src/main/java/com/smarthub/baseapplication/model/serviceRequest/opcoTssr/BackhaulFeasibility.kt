@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class BackhaulFeasibility(
-    val BackHaulFeasibilityRemark: String,
-    val BackHaulNodeType: String,
-    val Fiber: List<Fiber>,
-    val MicrowaveOrUBR: List<MicrowaveOrUBR>,
-    val OffSetPoleRequired: String,
-    val created_at: String,
-    val id: String,
-    val isActive: String,
-    val modified_at: String
+    var BackHaulFeasibilityRemark: String?=null,
+    var BackHaulNodeType: String?=null,
+    var Fiber: ArrayList<Fiber>?=null,
+    var MicrowaveOrUBR: ArrayList<MicrowaveOrUBR>?=null,
+    var OffSetPoleRequired: String?=null,
+    var created_at: String?=null,
+    var id: String?=null,
+    var isActive: String?=null,
+    var modified_at: String?=null
 )

@@ -61,7 +61,7 @@
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -142,6 +142,31 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TOCO UID" />
+                            <EditText
+                                android:id="@+id/editTOCOUID"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
                         <LinearLayout
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
@@ -153,37 +178,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="TOCO Site Name" />
                             <EditText
-                                android:id="@+id/editTOCOUID"
+                                android:id="@+id/editTocositename"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="SP Approval Date" />
-                            <EditText
-                                android:id="@+id/editSPApprovalDate"
-                                style="@style/RowTestItemEdit"
-                                android:drawableRight="@drawable/icon_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -201,10 +200,10 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="SR Type" />
+                                android:text="TOCO Site type" />
 
                             <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinEquipmentName"
+                                android:id="@+id/spinTocositetype"
                                 style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
@@ -227,64 +226,61 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Request Date" />
-
-                            <EditText
-                                android:id="@+id/editSerialNumber"
-                                style="@style/RowTestItemEdit"
-                                android:drawableRight="@drawable/icon_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:hint="S3058940" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="SR Status" />
-
-                            <EditText
-                                android:id="@+id/editStatus"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Requester Company" />
+                                android:text="TOCO Site Status" />
 
                             <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spinRequesterCompany"
+                                android:id="@+id/spinTocositestatus"
+                                style="@style/SpinnerTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Project Name" />
+
+                            <EditText
+                                android:id="@+id/editprojectName"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:hint="" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Building Type" />
+
+                            <com.smarthub.baseapplication.widgets.CustomSpinner
+                                android:id="@+id/spinBuildingtype"
                                 style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
@@ -306,10 +302,83 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="RF Technology" />
+                                android:text="Acquisition Type" />
 
+                            <EditText
+                                android:id="@+id/editAccucationmode"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Nominal Lat-Long" />
+                            <EditText
+                                android:id="@+id/editnominalLatlong"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Site Lat-Long" />
+                            <EditText
+                                android:id="@+id/editSiteLatlong"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Towe/Pole Type" />
                             <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/spin_rf_technology"
+                                android:id="@+id/spinTowerPoleHeight"
                                 style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
@@ -323,6 +392,7 @@
                                 android:background="#263238" />
                         </LinearLayout>
 
+
                         <LinearLayout
                             style="@style/ColumnItemInfo"
                             android:layout_width="0dp"
@@ -332,13 +402,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Hub Site" />
+                                android:text="Existing Tenants" />
                             <EditText
-                                android:id="@+id/editHubSite"
+                                android:id="@+id/editExisitngTenants"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -357,13 +427,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="OPCO SIte Type" />
+                                android:text="Address" />
                             <EditText
-                                android:id="@+id/editSiteType"
+                                android:id="@+id/editAddress"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -372,32 +442,6 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
-                        <LinearLayout
-                            style="@style/ColumnItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                style="@style/RowTextItemInfo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Priority" />
-                            <EditText
-                                android:id="@+id/editPriority"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="xxxx" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="@dimen/dp8"
-                                android:alpha="0.37"
-                                android:background="#263238" />
-                        </LinearLayout>
-
-
 
 
 
@@ -407,7 +451,9 @@
 
 
                     </GridLayout>
-                    <include layout="@layout/cancel_update_layout"/>
+                    <include
+                        android:id="@+id/include"
+                        layout="@layout/cancel_update_layout"/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

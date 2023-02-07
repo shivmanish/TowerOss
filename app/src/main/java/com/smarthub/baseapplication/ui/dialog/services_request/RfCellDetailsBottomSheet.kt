@@ -68,7 +68,7 @@ class RfCellDetailsBottomSheet(
 
             val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
             mServiceRequestAllDataItem.id = serviceRequestAllData!!.id
-            mServiceRequestAllDataItem.AssignACQTeam = ArrayList()
+            mServiceRequestAllDataItem.OpcoTSSR = ArrayList()
 
             val opcoTSSR = OpcoTSSR()
             opcoTSSR.RFFeasibility = ArrayList()

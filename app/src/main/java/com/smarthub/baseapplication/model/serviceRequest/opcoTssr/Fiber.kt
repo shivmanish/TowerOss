@@ -1,16 +1,16 @@
 package com.smarthub.baseapplication.model.serviceRequest.opcoTssr
 
 data class Fiber(
-    val CableLength: String,
-    val CableType: String,
-    val Feasibility: String,
-    val FiberCore: String,
-    val LayingType: String,
-    val LmLength: String,
-    val OpcoFarEndSite: String,
-    val SerialNo: String,
-    val created_at: String,
-    val id: String,
-    val isActive: String,
-    val modified_at: String
+    var CableLength: String,
+    var CableType: String,
+    var Feasibility: String,
+    var FiberCore: String,
+    var LayingType: String,
+    var LmLength: String,
+    var OpcoFarEndSite: String,
+    var SerialNo: String,
+    var created_at: String,
+    var id: String,
+    var isActive: String,
+    var modified_at: String
 )

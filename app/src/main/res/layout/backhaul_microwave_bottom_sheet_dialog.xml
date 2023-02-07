@@ -57,13 +57,12 @@
 
                             <TextView
                                 style="@style/RowTextItemInfo"
-                                android:maxLines="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Backhaul Node Type" />
+                                android:text="Technology" />
 
                             <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/backhaulnodetype"
+                                android:id="@+id/spinEquipmentName"
                                 style="@style/SpinnerTheme"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp20"
@@ -85,14 +84,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Off-Set Pole Required" />
+                                android:text="TRX Count" />
 
                             <EditText
                                 style="@style/RowTestItemEdit"
-                                android:id="@+id/ofsetpolerequired"
+                                android:id="@+id/trxcounter"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                />
+                                android:layout_height="@dimen/dp20" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -101,31 +99,46 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Antenna Heigh" />
+
+                            <EditText
+                                style="@style/RowTestItemEdit"
+                                android:id="@+id/anteenaheight"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                android:text="On-Air" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
                     </GridLayout>
 
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Backhaul Feasibility Remark" />
-                        <EditText
-                            android:id="@+id/editRemarks"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
                     <include
                         android:id="@+id/include"
                         layout="@layout/cancel_update_layout"/>

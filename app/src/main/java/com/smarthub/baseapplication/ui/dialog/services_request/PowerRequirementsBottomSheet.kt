@@ -7,68 +7,61 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.BackhaulFiberBottomSheetDialogBinding
+import com.smarthub.baseapplication.databinding.BackhaulMicrowaveBottomSheetDialogBinding
+import com.smarthub.baseapplication.databinding.PowerRequirementDialougeLayoutBinding
+import com.smarthub.baseapplication.databinding.RfFeasibilityBottomSheetDialogBinding
+import com.smarthub.baseapplication.databinding.RfSectorBottomSheetDialogBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.BackhaulFeasibility
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSR
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.PowerAndMcb
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class BackhaulFeasibilityBottomSheet(
+class PowerRequirementsBottomSheet(
     contentLayoutId: Int,
     var Id: String?,
     var viewmodel: HomeViewModel,
-    var backhaulFeasibility: BackhaulFeasibility?,
+    var powerandmcb: PowerAndMcb?,
     var serviceRequestAllData: ServiceRequestAllDataItem?
 ) : BottomSheetDialogFragment(contentLayoutId) {
-    lateinit var binding : BackhaulFeasibilityBottomSheetDialogBinding
     lateinit var basicinfoModel: BasicinfoModel
-
+    lateinit var binding : PowerRequirementDialougeLayoutBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = BackhaulFeasibilityBottomSheetDialogBinding.bind(view)
         basicinfoModel = BasicinfoModel()
+        binding = PowerRequirementDialougeLayoutBinding.bind(view)
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
+        if (powerandmcb != null && powerandmcb!!.PowerRequirements != null ) {
+            powerandmcb!!.PowerRequirements.get(0).let {
 
-        if (backhaulFeasibility != null) {
-//            AppPreferences.getInstance().setDropDown(
-//                binding.backhaulnodetype,
-//                DropDowns.Off.name,
-//                backhaulFeasibility!!.BackHaulNodeType
-//            )
-            binding.editRemarks.setText(backhaulFeasibility!!.BackHaulFeasibilityRemark)
-            binding.ofsetpolerequired.setText(backhaulFeasibility!!.OffSetPoleRequired)
-//            binding.spinRRUCount.setText(backhaulFeasibility!!.RRUCount)
-//            binding.spinOfSetPoleRead.setText(backhaulFeasibility!!.OffSetPoleReqd)
-        }
-        binding.backhaulnodetype.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-//                backhaulFeasibility!!.Technology = AppPreferences.getInstance().getDropDownList(DropDowns.Rftechnology.name).get(position).id
+//                AppPreferences.getInstance().setDropDown(
+//                    binding.inputtype,
+//                    DropDowns..name,
+//                    it.InputType
+//                )
+//                binding.trxcounter.setText(it.TRXCount)
+
+                binding.inputVoltage.setText(it.InputVoltage)
+                binding.maxtotalpower.setText(it.MaxTotalPower)
+                binding.batteryBackup.setText(it.BatteryBackupRequired)
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
         }
         binding.include.update.setOnClickListener {
-
-            backhaulFeasibility!!.let {
-
-                it.BackHaulFeasibilityRemark = binding.editRemarks.text.toString()
-                it.OffSetPoleRequired = binding.ofsetpolerequired.text.toString()
-//                it.RRUCount = binding.spinRRUCount.text.toString()
-//                it.OffSetPoleReqd = binding.spinOfSetPoleRead.text.toString()
+            powerandmcb!!.PowerRequirements!!.get(0).let {
+//                it.TRXCount = binding.trxcounter.text.toString()
+                it.InputType = binding.inputVoltage.text.toString()
+                it.MaxTotalPower = binding.maxtotalpower.text.toString()
+                it.BatteryBackupRequired = binding.batteryBackup.text.toString()
             }
 
             val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
@@ -76,8 +69,8 @@ class BackhaulFeasibilityBottomSheet(
             mServiceRequestAllDataItem.OpcoTSSR = ArrayList()
 
             val opcoTSSR = OpcoTSSR()
-            opcoTSSR.BackHaulFeasibility = ArrayList()
-            opcoTSSR.BackHaulFeasibility?.add(backhaulFeasibility!!)
+            opcoTSSR.PowerAndMCB = ArrayList()
+            opcoTSSR.PowerAndMCB?.add(powerandmcb!!)
             opcoTSSR.id = serviceRequestAllData!!.OpcoTSSR!![0].id
             mServiceRequestAllDataItem.OpcoTSSR?.add(opcoTSSR)
             val serviceRequestList = ServiceRequestAllData()
@@ -87,10 +80,18 @@ class BackhaulFeasibilityBottomSheet(
             basicinfoModel?.id = Id!!
             viewmodel.updateBasicInfo(basicinfoModel!!)
         }
+
+
     }
+
     override fun getTheme() = R.style.NewDialogTask
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = BackhaulFeasibilityBottomSheetDialogBinding.inflate(inflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = PowerRequirementDialougeLayoutBinding.inflate(inflater)
         return binding.root
     }
+
 }

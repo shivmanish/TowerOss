@@ -1,7 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters
 
 import android.content.Context
-import android.graphics.Path.Op
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -10,13 +9,19 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcotssrFiberTableItemBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.BackhaulFeasibility
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.Fiber
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
 
-class BackhaulFiberTableAdapter (var context : Context, var listener : OpcoTssrAdapter.OpcoTssrLisListener,fiberdata:List<Fiber>): RecyclerView.Adapter<BackhaulFiberTableAdapter.ViewHold>() {
+class BackhaulFiberTableAdapter(
+    var context: Context, var listener: OpcoTssrAdapter.OpcoTssrLisListener,
+    var backhaulFeasibility: BackhaulFeasibility,
+    var serviceRequestAllData: ServiceRequestAllDataItem?
+): RecyclerView.Adapter<BackhaulFiberTableAdapter.ViewHold>() {
     var list : ArrayList<Fiber>?
     init {
-        list=fiberdata as ArrayList<Fiber>
+        list=backhaulFeasibility.Fiber as ArrayList<Fiber>
     }
     fun addItem(item:String){
 //        list?.add(
@@ -63,7 +68,7 @@ class BackhaulFiberTableAdapter (var context : Context, var listener : OpcoTssrA
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editBackhaulFiberClicked(position)
+                        listener.editBackhaulFiberClicked(backhaulFeasibility,serviceRequestAllData)
                         return true
                     }
                     // in the same way you can implement others

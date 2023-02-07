@@ -57,17 +57,15 @@
 
                             <TextView
                                 style="@style/RowTextItemInfo"
-                                android:maxLines="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Backhaul Node Type" />
+                                android:text="OPCO for-end Site" />
 
-                            <com.smarthub.baseapplication.widgets.CustomSpinner
-                                android:id="@+id/backhaulnodetype"
-                                style="@style/SpinnerTheme"
+                            <EditText
+                                style="@style/RowTestItemEdit"
+                                android:id="@+id/opcoforendsite"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                android:text="On-Air" />
+                                android:layout_height="@dimen/dp20" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -85,14 +83,13 @@
                                 style="@style/RowTextItemInfo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Off-Set Pole Required" />
+                                android:text="LM Length" />
 
                             <EditText
                                 style="@style/RowTestItemEdit"
-                                android:id="@+id/ofsetpolerequired"
+                                android:id="@+id/lmlength"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp20"
-                                />
+                                android:layout_height="@dimen/dp20" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -101,31 +98,46 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
+                        <LinearLayout
+                            style="@style/ColumnItemInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RowTextItemInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cable Length" />
+
+                            <EditText
+                                style="@style/RowTestItemEdit"
+                                android:id="@+id/cableLenth"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp20"
+                                 />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:alpha="0.37"
+                                android:background="#263238" />
+                        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
                     </GridLayout>
 
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Backhaul Feasibility Remark" />
-                        <EditText
-                            android:id="@+id/editRemarks"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
                     <include
                         android:id="@+id/include"
                         layout="@layout/cancel_update_layout"/>
