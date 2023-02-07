@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.Logs
+package com.smarthub.baseapplication.ui.fragments.logs
 
 import android.content.Context
 import android.graphics.Color
@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.LogRecyclerItemViewBinding
-import com.smarthub.baseapplication.model.serviceRequest.log.ChangeLog
+import com.smarthub.baseapplication.model.logs.LogsDataInfo
 
-class LogAdapter(var context: Context, var list: ArrayList<ChangeLog>) : Adapter<LogViewHolder>() {
+class LogAdapter(var context: Context, var list: ArrayList<LogsDataInfo>) : Adapter<LogViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.log_recycler_item_view, parent, false)
@@ -22,7 +22,7 @@ class LogAdapter(var context: Context, var list: ArrayList<ChangeLog>) : Adapter
         list.clear()
         notifyDataSetChanged()
     }
-    fun addData(listdata: ArrayList<ChangeLog>){
+    fun addData(listdata: ArrayList<LogsDataInfo>){
         list.clear()
         list.addAll(listdata)
         notifyDataSetChanged()

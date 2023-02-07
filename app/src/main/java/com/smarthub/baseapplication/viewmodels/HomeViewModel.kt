@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
-import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData
+import com.smarthub.baseapplication.model.logs.LogsDataModel
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
@@ -53,7 +53,7 @@ class HomeViewModel : ViewModel() {
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
     var serviceRequestModelResponse : SingleLiveEvent<Resource<ServiceRequestModel?>>?=null
-    var loglivedata : SingleLiveEvent<Resource<LogSearchData?>>?=null
+    var loglivedata : SingleLiveEvent<Resource<LogsDataModel?>>?=null
     var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
     var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
     var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null

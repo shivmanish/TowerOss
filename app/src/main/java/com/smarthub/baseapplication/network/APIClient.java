@@ -24,7 +24,7 @@ import com.smarthub.baseapplication.model.search.SearchSiteIdItem;
 import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
-import com.smarthub.baseapplication.model.serviceRequest.log.LogSearchData;
+import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
@@ -138,7 +138,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<LogSearchData> fetchLogData(@Body SiteInfoParam data);
+    Call<LogsDataModel> fetchLogData(@Body SiteInfoParam data);
 
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
@@ -312,6 +312,7 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.NOTIFICATION_DATA)
     Call<AddNotificationResponse> addNotification(@Body AddNotificationModel data);
+
 
 }
 
