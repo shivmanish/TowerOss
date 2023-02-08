@@ -18,9 +18,8 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
     lateinit var data : PowerLoadData
 
 
-    open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View, listener: PowerLoadItemClickListener) : ViewHold(itemView) {
+    class ViewHold(itemView: View, listener: PowerLoadItemClickListener) : RecyclerView.ViewHolder(itemView) {
         var binding : PowerLoadListItemBinding = PowerLoadListItemBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -48,26 +47,26 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        return when (viewType) {
-            1-> {
+//        return when (viewType) {
+//            1-> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
-                return ViewHold1(view,listener)
-            }
-            2->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
-                return ViewHold(view)
-            }
-            else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
-                return ViewHold1(view,listener)
-            }
-        }
+                return ViewHold(view,listener)
+//            }
+//            2->{
+//                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data,parent,false)
+//                return ViewHold(view)
+//            }
+//            else -> {
+//                val view = LayoutInflater.from(parent.context).inflate(R.layout.power_load_list_item,parent,false)
+//                return ViewHold1(view,listener)
+//            }
+//        }
 
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        if (holder is ViewHold1) {
+//        if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
                 listener.EditItemDialouge()
             }
@@ -99,7 +98,8 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
                 holder.binding.LoadWattage.text=data.LoadWattage
                 holder.binding.TOCOExcutive.text="Api Data not avbl"
                 holder.binding.OPCOExcutive.text=data.operatorExecutiveName
-            }
+                holder.binding.Remark.text = data.remark
+
         }
     }
 

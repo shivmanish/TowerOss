@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment
 
+import SODetail
+import SPApproval
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,12 +30,18 @@ class SPApprovalTabFragment(var data: ServiceRequestAllDataItem?, var Id: String
     override fun attachmentItemClicked() {
 
     }
-    override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = SpApprovalBottomSheet(R.layout.sp_approval_dialog)
+    override fun detailsItemClicked(
+        spApproval: SPApproval,
+        serviceRequestAllData: ServiceRequestAllDataItem
+    ) {
+        val bottomSheetDialogFragment = SpApprovalBottomSheet(R.layout.sp_approval_dialog,viewmodel,Id,spApproval,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
-    override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = SoApprovalBottomSheet(R.layout.so_approval_dialog)
+    override fun requestinfoClicked(
+        soDetail: SODetail,
+        serviceRequestAllData: ServiceRequestAllDataItem
+    ) {
+        val bottomSheetDialogFragment = SoApprovalBottomSheet(R.layout.so_approval_dialog,Id,viewmodel,soDetail,serviceRequestAllData)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
     }
     override fun operationInfoDetailsItemClicked() {

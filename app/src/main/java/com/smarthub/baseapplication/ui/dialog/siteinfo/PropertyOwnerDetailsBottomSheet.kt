@@ -70,8 +70,6 @@ class PropertyOwnerDetailsBottomSheet(
     }
 
     override fun getTheme() = R.style.NewDialogTask
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = PropertyOwnerBotomSheetBinding.inflate(inflater)
         return binding.root

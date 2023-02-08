@@ -1,20 +1,24 @@
 package com.smarthub.baseapplication.ui.dialog.services_request
 
+import SPApproval
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.BackhaulLinkListItemDialougeBinding
-import com.smarthub.baseapplication.databinding.GenerateSiteProposalDialogBinding
-import com.smarthub.baseapplication.databinding.PowerMsbBottomSheetDialogBinding
 import com.smarthub.baseapplication.databinding.SpApprovalDialogBinding
-import com.smarthub.baseapplication.databinding.SpSubmissionDialogBinding
-import com.smarthub.baseapplication.databinding.TssrExecutiveBottomSheetDialogBinding
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SpApprovalBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId) {
+class SpApprovalBottomSheet(
+    contentLayoutId: Int,
+    viewmodel: HomeViewModel,
+    Id: String?,
+    var spApproval: SPApproval,
+    var serviceRequestAllData: ServiceRequestAllDataItem
+) : BottomSheetDialogFragment(contentLayoutId) {
     lateinit var binding : SpApprovalDialogBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,6 +27,18 @@ class SpApprovalBottomSheet(contentLayoutId: Int) : BottomSheetDialogFragment(co
 
         binding.icMenuClose.setOnClickListener {
             dismiss()
+        }
+        try{
+            if (spApproval != null) {
+                spApproval.let {
+                    binding.editSPSubmissionDate.setText(it!!.SPSubmissionDate)
+                    binding.editSPApprovalDate.setText(it!!.SPApprovalDate)
+                    binding.editApprovedBy!!.setText(it!!.ApprovedBy)
+                    binding.editApprovedEmail!!.setText( it!!.ApproverEmailID)
+                }
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
     override fun getTheme() = R.style.NewDialogTask

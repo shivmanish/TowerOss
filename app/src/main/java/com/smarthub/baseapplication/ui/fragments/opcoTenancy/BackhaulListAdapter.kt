@@ -28,6 +28,7 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
     var PO_DETAILS_VIEW_TYPE = 8
     var CONNEVCTED_EQUIPMENT_VIEW_TYPE = 9
 
+
     init {
         list.add("Link")
         list.add("IDU")
