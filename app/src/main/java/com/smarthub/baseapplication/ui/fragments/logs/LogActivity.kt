@@ -19,22 +19,21 @@ class LogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         viewmodel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        setContentView(binding.root)
         fetchChangeLogs()
     }
 
-    fun fetchChangeLogs() {
-        viewmodel.fetchChangeLog(id)
-        adapter = LogAdapter(
-            this@LogActivity,
-            ArrayList<LogsDataInfo>()
-        )
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        adapter = LogAdapter(this@LogActivity, ArrayList<LogsDataInfo>())
         binding.logList.adapter = adapter
+        if (viewmodel.loglivedata?.hasActiveObservers()==true)
+            viewmodel.loglivedata?.removeObservers(this)
         viewmodel.loglivedata!!.observe(this, Observer {
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("Log Data fetched successfully===>: ${it.data.item}")
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.item!!.get(0).ChangeLog.size}")
                 binding.logList.layoutManager = LinearLayoutManager(this)
                 try {
                     adapter.addData(
@@ -54,6 +53,13 @@ class LogActivity : AppCompatActivity() {
             }
         }
 
+        binding.back.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    fun fetchChangeLogs() {
+        viewmodel.fetchChangeLog(id)
     }
 
 }
