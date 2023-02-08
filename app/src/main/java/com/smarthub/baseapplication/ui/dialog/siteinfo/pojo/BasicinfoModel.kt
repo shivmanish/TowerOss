@@ -1,8 +1,8 @@
 package com.smarthub.baseapplication.ui.dialog.siteinfo.pojo
 
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
-import com.smarthub.baseapplication.model.siteInfo.SafetyAndAcces
-import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.utils.AppController
 

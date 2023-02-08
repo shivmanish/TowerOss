@@ -9,13 +9,14 @@ import androidx.lifecycle.Observer;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 
 import java.util.ArrayList;
 
 public class AppController extends Application {
 
     static AppController mInstance;
-    public SiteInfoModel siteInfoModel;
+    public SiteInfoDataModel siteInfoModel;
     public String ownerName = "SMRT";
     public String siteid = "448";
 

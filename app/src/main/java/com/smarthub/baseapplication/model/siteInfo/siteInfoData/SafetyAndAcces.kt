@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.siteInfo
+package com.smarthub.baseapplication.model.siteInfo.siteInfoData
 
 data class SafetyAndAcces(
     var CautionSignage: String?,

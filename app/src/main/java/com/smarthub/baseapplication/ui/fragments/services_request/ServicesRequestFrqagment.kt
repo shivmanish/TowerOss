@@ -52,7 +52,7 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                serviceFragAdapterAdapter.setData(it.data.item!![0].ServiceRequestMain)
+                serviceFragAdapterAdapter.setData(it.data.item!![0].ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>)
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true
             }else if (it!=null) {

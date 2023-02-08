@@ -2,6 +2,10 @@ package com.smarthub.baseapplication.model.siteInfo
 
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.GeoCondition
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 
 data class BasicInfoModelItem(
     val Basicinfo: List<SiteBasicinfo>,

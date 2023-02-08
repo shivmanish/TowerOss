@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OperationsInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.OperationalInfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
 import com.smarthub.baseapplication.network.pojo.site_info.OperationalInfoModel
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment() {
+class OperationsInfoBottomSheet(contentLayoutId: Int, var id : String, var dropdowndata: OperationalInfoModel, var operationalInfo : OperationalInfo, var viewModel: HomeViewModel) : BaseBottomSheetDialogFragment() {
     var basicinfoModel: BasicinfoModel? = null
     var operationalInfoUploadModel: OperationalInfoUploadModel? = null
     lateinit var binding : OperationsInfoDetailsBottomSheetBinding
@@ -58,7 +58,7 @@ class OperationsInfoBottomSheet(contentLayoutId: Int,var id : String, var dropdo
             viewModel.updateBasicInfo(basicinfoModel!!)
         }
 
-        val operationalInfo:OperationalInfo = operationalInfo
+        val operationalInfo: OperationalInfo = operationalInfo
         binding.txtRFCDate.text = operationalInfo.RFCDate
         binding.txtRFIDate.text = operationalInfo.RFIDate
         binding.txtRFSDate.text = operationalInfo.RFSDate

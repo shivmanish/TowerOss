@@ -6,31 +6,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.basicInfo.Basicinfo
 import com.smarthub.baseapplication.model.logs.ChangeLog
-import com.smarthub.baseapplication.model.logs.LogsDataInfo
 import com.smarthub.baseapplication.model.logs.PostLogData
-import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class BasicInfoBottomSheet(contentLayoutId: Int, val basicinfodata: SiteBasicinfo,var id : String, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class BasicInfoBottomSheet(contentLayoutId: Int, val basicinfodata: SiteBasicinfo, var id : String, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: BasicInfoDetailsBottomSheetBinding
     var basicinfoModel: BasicinfoModel? = null

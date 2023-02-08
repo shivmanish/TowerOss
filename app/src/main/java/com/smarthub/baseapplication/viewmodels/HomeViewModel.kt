@@ -33,6 +33,7 @@ import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceReques
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -78,6 +79,7 @@ class HomeViewModel : ViewModel() {
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
     var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
+    var siteInfoDataResponse:SingleLiveEvent<Resource<SiteInfoDataModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -112,6 +114,7 @@ class HomeViewModel : ViewModel() {
         notificationNew = homeRepo?.notificationNew
         userDataListResponse=homeRepo?.userDataResponse
         addNotiResponse=homeRepo?.addNotificationResponse
+        siteInfoDataResponse=homeRepo?.siteInfoDataModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -177,6 +180,10 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSiteInfoData(id : String){
         homeRepo?.siteInfoById(id)
+    }
+
+    fun siteInfoRequestAll(id : String){
+        homeRepo?.SiteInfoRequestAll(id)
     }
 
     fun serviceRequestAll(id : String){

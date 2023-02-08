@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
 class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Adapter<SiteProposalAdapter.ViewHold>() {
