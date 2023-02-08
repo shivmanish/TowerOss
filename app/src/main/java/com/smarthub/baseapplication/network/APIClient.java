@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.logs.PostLogData;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
@@ -313,6 +314,8 @@ public interface APIClient {
     @POST(EndPoints.NOTIFICATION_DATA)
     Call<AddNotificationResponse> addNotification(@Body AddNotificationModel data);
 
-
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<LogsDataModel> postLogData(@Body PostLogData data);
 }
 

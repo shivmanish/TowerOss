@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointMode
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.logs.LogsDataModel
+import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
@@ -241,6 +242,10 @@ class HomeViewModel : ViewModel() {
     }
     fun fetchChangeLog(id:String) {
         homeRepo?.chamgeLogAll(id)
+    }
+
+    fun postChangeLog(data:PostLogData){
+        homeRepo?.UpdateLogData(data)
     }
 
     fun fetchDropDown() {

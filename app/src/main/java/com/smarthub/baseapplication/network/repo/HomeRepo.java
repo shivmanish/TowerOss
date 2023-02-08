@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.logs.PostLogData;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
@@ -1279,6 +1280,41 @@ public class HomeRepo {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse on get logs :"+response);
+                    loglivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    loglivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    loglivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void UpdateLogData(PostLogData data) {
+        apiClient.postLogData(data).enqueue(new Callback<LogsDataModel>() {
+            @Override
+            public void onResponse(Call<LogsDataModel> call, Response<LogsDataModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogsDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<LogsDataModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse on post logs :"+response);
                     loglivedata.postValue(Resource.success(response.body(), 200));
                 }
             }
