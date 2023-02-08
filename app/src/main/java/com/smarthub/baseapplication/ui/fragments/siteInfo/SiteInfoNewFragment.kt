@@ -10,7 +10,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.GeoCondition
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
@@ -31,7 +30,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     lateinit var homeViewModel: HomeViewModel
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         binding = SiteInfoNewFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -60,10 +59,10 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
 //                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
                 var currentOpened = -1
                 if (binding.listItem.adapter is SiteInfoListAdapter){
-                    var adapter = binding.listItem.adapter as SiteInfoListAdapter
+                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
                     currentOpened = adapter.currentOpened
                 }
-                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data?.item?.get(0)!!)
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data.item?.get(0)!!)
                 AppLogger.log("currentOpened:$currentOpened")
                 if (currentOpened>=0){
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
