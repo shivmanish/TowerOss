@@ -37,8 +37,10 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.titleText.text = list[position].QATSubItem
-        holder.binding.punchCountList.adapter = QatPunchCountAdapter(listener, list = list[position].PunchPoint)
+//        holder.binding.punchCountList.adapter = QatPunchCountAdapter(listener, list = list[position].PunchPoint)
         try {
+            holder.binding.closedPunchPoint.text=list[position].PunchPoint.size.toString()
+            holder.binding.openPunchPoint.text=list[position].PunchPoint.size.toString()
             val observations = list[position].QATObservation.split(",")
             if (observations.isNotEmpty())
                 holder.binding.observations.setSpinnerData(observations)
@@ -82,7 +84,7 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
         holder.binding.Save.setOnClickListener {
 
         }
-        holder.binding.createPunchPoint.setOnClickListener {
+        holder.binding.punchPlush.setOnClickListener {
             listener.editPunchPoint(list[position],position)
         }
     }

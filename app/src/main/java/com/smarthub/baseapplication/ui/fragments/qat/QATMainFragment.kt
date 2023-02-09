@@ -29,6 +29,7 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
     lateinit var  adapter:QATListAdapter
     lateinit var binding:FragmentOpenQatBinding
     var qatMainModel : QatMainModel?=null
+    var isDataLoaded = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding= FragmentOpenQatBinding.inflate(inflater, container, false)
@@ -38,7 +39,10 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
 
     override fun onViewPageSelected() {
         super.onViewPageSelected()
-        viewmodel.qatMainRequestAll(id)
+        if (viewmodel!=null && !isDataLoaded){
+            adapter.addLoading()
+            viewmodel.qatMainRequestAll(id)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,20 +56,23 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
         }
         viewmodel.QatModelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
+                adapter.addLoading()
                 return@observe
             }
             hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 qatMainModel = it.data
+                isDataLoaded=true
                 adapter.setData(it.data.item!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.item?.size}")
             }else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew!=null && it.data.itemNew?.isNotEmpty()==true){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
                 qatMainModel = it.data
+                isDataLoaded=true
                 adapter.setData(it.data.itemNew!![0].QATMainLaunch)
-                AppLogger.log("size :${it.data.itemNew?.size}")
+                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
@@ -85,8 +92,11 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
 
         binding.refreshLayout.setOnRefreshListener {
             binding.refreshLayout.isRefreshing = false
+            adapter.addLoading()
             viewmodel.qatMainRequestAll(id)
         }
+
+        viewmodel.qatMainRequestAll(id)
 
     }
 

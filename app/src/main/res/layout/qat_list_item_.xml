@@ -197,28 +197,16 @@
                         android:layout_height="wrap_content"
                         >
                         <TextView
-                            android:id="@+id/time_period"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color1"
-                            android:textSize="14sp"
-                            android:text="pm"
-                            android:fontFamily="@font/poppins_medium"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-                        <TextView
                             android:id="@+id/time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/color1"
                             android:textSize="14sp"
-                            android:text="12:56"
+                            android:text="12:56 PM"
                             android:fontFamily="@font/poppins_medium"
-                            android:layout_marginEnd="@dimen/dp1"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/time_period"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
                         <TextView
                             android:id="@+id/divider_bw_date_time"
                             android:layout_width="wrap_content"
@@ -238,7 +226,7 @@
                             android:textColor="@color/color1"
                             android:textSize="14sp"
                             android:text="2023-02-03"
-                            android:maxLength="10"
+                            android:maxLength="11"
                             android:fontFamily="@font/poppins_medium"
                             android:layout_marginEnd="@dimen/dp1"
                             app:layout_constraintTop_toTopOf="parent"

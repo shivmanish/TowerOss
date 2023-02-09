@@ -20,11 +20,11 @@ class QatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityQatBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        init()
         binding.back.setOnClickListener {
             onBackPressed()
         }
