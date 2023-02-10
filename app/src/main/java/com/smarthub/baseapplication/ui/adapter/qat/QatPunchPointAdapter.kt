@@ -59,8 +59,18 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
                     it.QATFieldType1=item.QATFieldType1
                     it.CheckPoint=item.CheckPoint
                     it.QATFieldType1Value=item.QATFieldType1Value
+                    it.QATFieldType2=item.QATFieldType2
+                    it.QATFieldType2Value=item.QATFieldType2Value
+                    it.Description=item.Description
+                    it.FieldValue=item.FieldValue
+                    it.isActive= item.isActive=="True"
+                    it.QATSubItem=item.QATSubItem
+                    it.Remark=holder.binding.editRemark.text.toString()
+                    it.QATObservation=holder.binding.observations.selectedValue
+                    it.QATObservationValue=item.QATObservationValue
                 }
 
+                listener.savePunchPointData(savePunchPointData)
             }
         }catch (e:java.lang.Exception){
             AppLogger.log("e : ${e.localizedMessage}")

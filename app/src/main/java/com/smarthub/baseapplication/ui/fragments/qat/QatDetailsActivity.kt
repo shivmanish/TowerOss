@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.qat
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.activities.BaseActivity
@@ -10,6 +11,8 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.listeners.PunchPointListener
 import com.smarthub.baseapplication.model.qatcheck.punch_point.PunchPointUpdate
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointData
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
@@ -104,6 +107,17 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
     override fun closedPunchPointClicked() {
         val bmSheet = ClosedPunchPointDialouge()
         bmSheet.show(supportFragmentManager,"openPunchPoint")
+    }
+
+    override fun savePunchPointData(data: SaveCheckpointData) {
+        var item = SaveCheckpointModel()
+        var dataList:ArrayList<SaveCheckpointData> = ArrayList()
+        dataList.clear()
+        dataList.add(data)
+        item.QAT=dataList
+        item.id=AppController.getInstance().siteid
+        item.ownername=AppController.getInstance().ownerName
+        viewmodel.saveQatPunchPoint(item)
     }
 
 }
