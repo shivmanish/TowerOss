@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointMode
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.logs.LogsDataModel
+import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
@@ -32,6 +33,7 @@ import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceReques
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -77,6 +79,7 @@ class HomeViewModel : ViewModel() {
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
     var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
+    var siteInfoDataResponse:SingleLiveEvent<Resource<SiteInfoDataModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -111,6 +114,7 @@ class HomeViewModel : ViewModel() {
         notificationNew = homeRepo?.notificationNew
         userDataListResponse=homeRepo?.userDataResponse
         addNotiResponse=homeRepo?.addNotificationResponse
+        siteInfoDataResponse=homeRepo?.siteInfoDataModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -178,6 +182,10 @@ class HomeViewModel : ViewModel() {
         homeRepo?.siteInfoById(id)
     }
 
+    fun siteInfoRequestAll(id : String){
+        homeRepo?.SiteInfoRequestAll(id)
+    }
+
     fun serviceRequestAll(id : String){
         homeRepo?.serviceRequestAll(id)
     }
@@ -241,6 +249,10 @@ class HomeViewModel : ViewModel() {
     }
     fun fetchChangeLog(id:String) {
         homeRepo?.chamgeLogAll(id)
+    }
+
+    fun postChangeLog(data:PostLogData){
+        homeRepo?.UpdateLogData(data)
     }
 
     fun fetchDropDown() {

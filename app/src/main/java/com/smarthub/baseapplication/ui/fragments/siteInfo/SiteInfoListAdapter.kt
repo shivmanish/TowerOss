@@ -10,11 +10,12 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
-class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:BasicInfoModelItem) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
+class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:SiteInfoAllData) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
@@ -192,7 +193,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 holder.binding.itemTitle.text = list[position]
                 if(basicinfodata.Basicinfo.isNotEmpty()){
-                    val siteBasicinfo:SiteBasicinfo = basicinfodata.Basicinfo[0]
+                    val siteBasicinfo: SiteBasicinfo = basicinfodata.Basicinfo[0]
                     holder.binding.txSiteName.text = siteBasicinfo.siteName
                     holder.binding.txSiteID.text = siteBasicinfo.siteID
 
@@ -384,9 +385,9 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
 
     interface SiteInfoLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked(siteBasicinfo: SiteBasicinfo,id : String)
-        fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo,id : String)
-        fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition,id : String)
-        fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces,id : String)
+        fun detailsItemClicked(siteBasicinfo: SiteBasicinfo, id : String)
+        fun operationInfoDetailsItemClicked(operationalInfo: OperationalInfo, id : String)
+        fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition, id : String)
+        fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces, id : String)
     }
 }

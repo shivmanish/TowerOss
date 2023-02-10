@@ -1,7 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.services_request
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
@@ -9,11 +8,9 @@ import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTenancyActivity
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.utils.AppController
-import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 class ServicesRequestActivity : BaseActivity() {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
@@ -38,7 +35,7 @@ class ServicesRequestActivity : BaseActivity() {
         binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
         binding.rfiDate.text= "${data?.get(0)?.OperationalInfo?.get(0)?.RFIDate}"
         binding.back.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
         binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)

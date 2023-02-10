@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.databinding.PowerMsbPlanningItemViewBinding
 import com.smarthub.baseapplication.databinding.RpRadioAntineListItemBinding
 import com.smarthub.baseapplication.databinding.SiteDetailItemViewBinding
 import com.smarthub.baseapplication.model.serviceRequest.*
-import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.utils.AppLogger

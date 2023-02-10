@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.LogRecyclerItemViewBinding
 import com.smarthub.baseapplication.model.logs.LogsDataInfo
+import com.smarthub.baseapplication.utils.Utils
 
 class LogAdapter(var context: Context, var list: ArrayList<LogsDataInfo>) : Adapter<LogViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
@@ -32,7 +33,8 @@ class LogAdapter(var context: Context, var list: ArrayList<LogsDataInfo>) : Adap
         holder.binding.name.text = list.get(position).Username
         holder.binding.activiy.text = list.get(position).Activity
         holder.binding.message.text = list.get(position).Description
-        holder.binding.message.text = list.get(position).Description
+        holder.binding.date.text=Utils.getFormatedDate(list.get(position).created_at.substring(0,10),"dd MMM")
+        holder.binding.time.text=Utils.get12hrformate(list.get(position).created_at.substring(11,19)).uppercase()
         if(position%3==0)
         {
             holder.binding.titleLayout.setBackgroundColor(Color.parseColor("#FFF3CD"))

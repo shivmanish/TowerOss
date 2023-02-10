@@ -12,10 +12,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentServiceRequestBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.ui.dialog.services_request.RequestInfoBottomSheet
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -52,7 +51,7 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                serviceFragAdapterAdapter.setData(it.data.item!![0].ServiceRequestMain)
+                serviceFragAdapterAdapter.setData(it.data.item!![0].ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>)
                 AppLogger.log("size :${it.data.item?.size}")
                 isDataLoaded = true
             }else if (it!=null) {

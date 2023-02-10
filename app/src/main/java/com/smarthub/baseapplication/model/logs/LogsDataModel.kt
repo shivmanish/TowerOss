@@ -7,5 +7,8 @@ data class LogsDataModel(
     val item: List<LogsDataList>,
 
     @SerializedName("error")
-    val error: Error
+    val error: Error,
+
+    @SerializedName("Status")
+    val Status: ArrayList<PostLogDataResponse>
 )

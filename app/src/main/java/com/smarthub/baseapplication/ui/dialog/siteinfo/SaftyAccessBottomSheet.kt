@@ -11,18 +11,16 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SaftyAccessDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.SafetyAndAcces
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
 import com.smarthub.baseapplication.network.pojo.site_info.SafetyAndAccessModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.GeoConditionUpdateModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.SafetyAndAccessUpdateModel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SaftyAccessBottomSheet(contentLayoutId:Int,var id : String, var dropdown: SafetyAndAccessModel, var safetyAndAccess: SafetyAndAcces, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class SaftyAccessBottomSheet(contentLayoutId:Int, var id : String, var dropdown: SafetyAndAccessModel, var safetyAndAccess: SafetyAndAcces, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     var basicinfoModel: BasicinfoModel? = null
     lateinit var binding : SaftyAccessDetailsBottomSheetBinding

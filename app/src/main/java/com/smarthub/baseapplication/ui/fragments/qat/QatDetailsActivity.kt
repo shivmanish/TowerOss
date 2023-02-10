@@ -25,8 +25,10 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
     companion object{
         var data : Subitem?=null
     }
+    lateinit var adapter : QatPunchPointAdapter
     lateinit var viewmodel: HomeViewModel
     lateinit var binding: ActivityQatDetailsBinding
+    var punchPointUpdate : PunchPointUpdate?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
@@ -34,10 +36,16 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
         setContentView(binding.root)
 
         binding.subTitle.text = data?.QATSubItem
-        init()
     }
 
-    fun init() {
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        adapter = data?.checkpoint?.let { QatPunchPointAdapter(this, ArrayList(it)) }!!
+        binding.recyclerViewOpen.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerViewOpen.adapter = adapter
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
         if (viewmodel.QatModelResponse?.hasActiveObservers() == true){
             viewmodel.QatModelResponse?.removeObservers(this)
         }
@@ -65,19 +73,9 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
                 Toast.makeText(this@QatDetailsActivity,"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
-        setRecyclerView()
-    }
-    lateinit var adapter : QatPunchPointAdapter
-    private fun setRecyclerView() {
-        adapter = data?.checkpoint?.let { QatPunchPointAdapter(this, ArrayList(it)) }!!
-        binding.recyclerViewOpen.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerViewOpen.adapter = adapter
-        binding.back.setOnClickListener {
-           onBackPressed()
-        }
     }
 
-    var punchPointUpdate : PunchPointUpdate?=null
+
 
     override fun addPunchPoint(punchPointUpdate : PunchPointUpdate) {
         this.punchPointUpdate = punchPointUpdate

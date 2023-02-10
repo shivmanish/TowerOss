@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.logs.PostLogData;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
@@ -41,6 +42,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
@@ -55,6 +57,8 @@ import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -96,6 +100,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
     private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
+    private SingleLiveEvent<Resource<SiteInfoDataModel>> siteInfoDataModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -208,6 +213,7 @@ public class HomeRepo {
         qatMainModelResponse = new SingleLiveEvent<>();
         userDataResponse=new SingleLiveEvent<>();
         addNotificationResponse=new SingleLiveEvent<>();
+        siteInfoDataModel=new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -215,6 +221,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<AddNotificationResponse>> getAddNotificationResponse() {
         return addNotificationResponse;
+    }
+    public SingleLiveEvent<Resource<SiteInfoDataModel>> getSiteInfoDataModel() {
+        return siteInfoDataModel;
     }
     public SingleLiveEvent<Resource<TaskDataList>> getTaskDataList() {
         return taskDataList;
@@ -782,7 +791,7 @@ public class HomeRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
                     SiteInfoModel data = response.body();
-                    AppController.getInstance().siteInfoModel = data;
+//                    AppController.getInstance().siteInfoModel = data;
                     siteInfoResponse.postValue(Resource.success(response.body(), 200));
 //                   data update
                     if (data.getItem()!=null && !data.getItem().isEmpty()) {
@@ -799,6 +808,48 @@ public class HomeRepo {
                     siteInfoResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteInfoResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void SiteInfoRequestAll(String id) {
+        ArrayList<String> list = new ArrayList<>();
+        Collections.addAll(list, "Basicinfo","OperationalInfo","GeoCondition","SafetyAndAccess");
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        SiteInfoDataModel siteModel = (siteInfoDataModel!=null && siteInfoDataModel.getValue()!=null)?siteInfoDataModel.getValue().data:null;
+        siteInfoDataModel.postValue(Resource.loading(siteModel, 200));
+        apiClient.fetchSiteInfo(siteInfoParam).enqueue(new Callback<SiteInfoDataModel>() {
+            @Override
+            public void onResponse(Call<SiteInfoDataModel> call, Response<SiteInfoDataModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SiteInfoDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<SiteInfoDataModel> response) {
+
+                if (response.body() != null) {
+                    SiteInfoDataModel data =response.body();
+                    AppController.getInstance().siteInfoModel = data;
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    siteInfoDataModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    siteInfoDataModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteInfoDataModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
@@ -1279,6 +1330,41 @@ public class HomeRepo {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse on get logs :"+response);
+                    loglivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    loglivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    loglivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void UpdateLogData(PostLogData data) {
+        apiClient.postLogData(data).enqueue(new Callback<LogsDataModel>() {
+            @Override
+            public void onResponse(Call<LogsDataModel> call, Response<LogsDataModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogsDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<LogsDataModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse on post logs :"+response);
                     loglivedata.postValue(Resource.success(response.body(), 200));
                 }
             }

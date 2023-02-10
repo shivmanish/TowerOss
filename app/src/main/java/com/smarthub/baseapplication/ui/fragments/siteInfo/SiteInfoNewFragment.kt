@@ -10,7 +10,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.GeoCondition
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
@@ -27,7 +30,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     lateinit var homeViewModel: HomeViewModel
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         binding = SiteInfoNewFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,9 +45,9 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
         dropdowndata = AppPreferences.getInstance().dropDown
 
-        if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
-            homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
-        homeViewModel.siteInfoResponse?.observe(viewLifecycleOwner) {
+        if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
+            homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
             binding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
                showLoader()
@@ -52,14 +55,14 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             }
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
-                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully")
+                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data?.item?.get(0)!!}")
 //                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
                 var currentOpened = -1
                 if (binding.listItem.adapter is SiteInfoListAdapter){
-                    var adapter = binding.listItem.adapter as SiteInfoListAdapter
+                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
                     currentOpened = adapter.currentOpened
                 }
-                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data?.item?.get(0)!!)
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data.item?.get(0)!!)
                 AppLogger.log("currentOpened:$currentOpened")
                 if (currentOpened>=0){
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
@@ -75,20 +78,17 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            homeViewModel.fetchSiteInfoData(id)
+            homeViewModel.siteInfoRequestAll(id)
         }
-        homeViewModel.fetchSiteInfoData(id)
+        homeViewModel.siteInfoRequestAll(id)
     }
 
     override fun onDestroy() {
-        if (homeViewModel.siteInfoResponse?.hasActiveObservers() == true)
-            homeViewModel.siteInfoResponse?.removeObservers(viewLifecycleOwner)
+        if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
+            homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
         super.onDestroy()
     }
 
-    private fun mapUIData(data: SiteInfoModel) {
-//        (binding.listItem.adapter as SiteInfoListAdapter).setValueData(data)
-    }
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(), "Item Clicked", Toast.LENGTH_SHORT).show()
@@ -109,7 +109,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
     }
 
-    override fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition,id : String) {
+    override fun geoConditionsDetailsItemClicked(geoCondition: GeoCondition, id : String) {
         if (dropdowndata != null) {
             val bottomSheetDialogFragment = GeoConditionsBottomSheet(R.layout.geo_conditions_details_bottom_sheet,id, dropdowndata?.geoCondition!!, geoCondition,homeViewModel)
             bottomSheetDialogFragment.show(childFragmentManager, "category")
@@ -118,7 +118,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         }
     }
 
-    override fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces,id : String) {
+    override fun siteAccessDetailsItemClicked(safetyAndAccess: SafetyAndAcces, id : String) {
         if (dropdowndata != null) {
         val bottomSheetDialogFragment = SaftyAccessBottomSheet(R.layout.safty_access_details_bottom_sheet,id,dropdowndata?.safetyAndAccess!!,safetyAndAccess,homeViewModel)
         bottomSheetDialogFragment.show(childFragmentManager, "category")

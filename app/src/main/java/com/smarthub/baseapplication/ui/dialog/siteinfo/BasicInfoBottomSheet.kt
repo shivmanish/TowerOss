@@ -6,26 +6,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.BasicInfoDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.basicInfo.Basicinfo
-import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.model.logs.ChangeLog
+import com.smarthub.baseapplication.model.logs.PostLogData
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoServiceData
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class BasicInfoBottomSheet(contentLayoutId: Int,
-                           val basicinfodata: SiteBasicinfo,var id : String, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class BasicInfoBottomSheet(contentLayoutId: Int, val basicinfodata: SiteBasicinfo, var id : String, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: BasicInfoDetailsBottomSheetBinding
     var basicinfoModel: BasicinfoModel? = null
@@ -81,6 +79,7 @@ class BasicInfoBottomSheet(contentLayoutId: Int,
             basicinfoModel?.Basicinfo = basicinfodata
             basicinfoModel?.id = id
             viewModel.updateBasicInfo(basicinfoModel!!)
+            updateLog("Basic Info On SiteInfo")
         }
 
 
@@ -105,6 +104,25 @@ class BasicInfoBottomSheet(contentLayoutId: Int,
                 AppLogger.log("Something went wrong")
             }
         }
+
+        if (viewModel.loglivedata?.hasActiveObservers()==true)
+            viewModel.loglivedata?.removeObservers(this)
+        viewModel.loglivedata!!.observe(this, Observer {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS ) {
+                try {
+                    if (it?.data?.Status?.get(0)?.success!!){
+                        AppLogger.log("Log Data updated successfully===>: ${it.data.item}")
+                        AppLogger.log("size :${it.data.item!!.get(0).ChangeLog.size}")
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+            else{
+                AppLogger.log("Somthing went wrong in post log data")
+            }
+
+        })
     }
 
     override fun onDismiss(dialog: DialogInterface) {
@@ -134,6 +152,26 @@ class BasicInfoBottomSheet(contentLayoutId: Int,
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.behavior.skipCollapsed = false
         return dialog
+    }
+
+    fun updateLog(discription:String){
+        var logData=PostLogData()
+        var list =ArrayList<ChangeLog>()
+        var changeLogs=ChangeLog(
+            Activity = "Update",
+            Description = discription,
+            ChangesMade = "",
+            IPAddressAngular = "",
+            isActive = true
+        )
+        list.clear()
+        list.add(changeLogs)
+        logData.let {
+            it.id=AppController.getInstance().siteid
+            it.ChangeLog=list
+        }
+        AppLogger.log("log Data in Basic Info Bottom Sheet ====>$logData")
+        viewModel.postChangeLog(logData)
     }
 
 }

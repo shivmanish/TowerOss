@@ -1,21 +1,15 @@
 package com.smarthub.baseapplication.ui.fragments.task.adapter
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.SiteBasicinfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
 class TaskSiteInfoAdapter(var context : Context, var listener: TaskSiteInfoListener) : RecyclerView.Adapter<TaskSiteInfoAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()

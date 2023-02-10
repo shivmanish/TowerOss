@@ -7,15 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.databinding.OperationSiteInfoViewBinding
 import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 //import com.smarthub.baseapplication.ui.fragments.services_request.adapter.EquipmentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskEquipmentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.task.TaskItemAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerPoTableAdapter
+
 class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListener) : RecyclerView.Adapter<TaskEqupmentAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var type1 = "Equipment"
