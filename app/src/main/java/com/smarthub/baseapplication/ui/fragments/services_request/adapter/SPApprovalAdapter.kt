@@ -1,8 +1,8 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
-import SODetail
-import SPApproval
-import SPApprovalAndSO
+import com.smarthub.baseapplication.model.serviceRequest.SODetail
+import com.smarthub.baseapplication.model.serviceRequest.SPApproval
+import com.smarthub.baseapplication.model.serviceRequest.SPApprovalAndSO
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

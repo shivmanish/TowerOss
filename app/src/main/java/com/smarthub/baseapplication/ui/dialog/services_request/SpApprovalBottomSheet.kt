@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.ui.dialog.services_request
 
-import SPApproval
+import com.smarthub.baseapplication.model.serviceRequest.SPApproval
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

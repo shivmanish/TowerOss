@@ -99,7 +99,7 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
                 holder.binding.TOCOExcutive.text="Api Data not avbl"
                 holder.binding.OPCOExcutive.text=data.operatorExecutiveName
                 holder.binding.Remark.text = data.remark
-
+                
         }
     }
 

@@ -1,7 +1,5 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
-import SPApprovalAndSO
-import SiteProposal
 import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSR
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcquisition
