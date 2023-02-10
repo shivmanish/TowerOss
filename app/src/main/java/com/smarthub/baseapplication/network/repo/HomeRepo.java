@@ -38,6 +38,7 @@ import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationI
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
@@ -1081,6 +1082,41 @@ public class HomeRepo {
     }
     public void qatMainRequestAll(QatPunchPointModel data) {
         apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
+            @Override
+            public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QatMainModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<QatMainModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    qatMainModelResponse.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    qatMainModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    qatMainModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void saveQatPunchPointRequestAll(SaveCheckpointModel data) {
+        apiClient.saveQatPunchPointRequest(data).enqueue(new Callback<QatMainModel>() {
             @Override
             public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
                 if (response.isSuccessful()){

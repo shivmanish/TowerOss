@@ -28,6 +28,8 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewM
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointData
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
@@ -211,6 +213,10 @@ class HomeViewModel : ViewModel() {
 
     fun qatLaunchMain(data : QatPunchPointModel){
         homeRepo?.qatMainRequestAll(data)
+    }
+
+    fun saveQatPunchPoint(data : SaveCheckpointModel){
+        homeRepo?.saveQatPunchPointRequestAll(data)
     }
 
     fun fetchSiteAgreementModelRequest(id : String){

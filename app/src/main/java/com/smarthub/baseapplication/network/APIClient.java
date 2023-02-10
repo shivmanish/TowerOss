@@ -47,6 +47,7 @@ import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignMo
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
@@ -322,5 +323,9 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<LogsDataModel> postLogData(@Body PostLogData data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_INFO_DATA)
+    Call<QatMainModel> saveQatPunchPointRequest(@Body SaveCheckpointModel data);
 }
 

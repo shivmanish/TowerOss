@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.QatPunchPointItemBinding
 import com.smarthub.baseapplication.listeners.PunchPointListener
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointData
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
 class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<Checkpoint>) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
 
-
+    var savePunchPointData=SaveCheckpointData()
     class ViewHold(itemView: View,var listener: PunchPointListener) : RecyclerView.ViewHolder(itemView) {
         var binding : QatPunchPointItemBinding = QatPunchPointItemBinding.bind(itemView)
         var attachmentAdapter = QatAttachmentAdapter(listener)
@@ -36,6 +37,7 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
 //        holder.binding.punchCountList.adapter = QatPunchCountAdapter(listener, list = list[position].PunchPoint)
         try {
+            var item:Checkpoint=list[position]
             holder.binding.titleText.text = list[position].CheckPoint
             holder.binding.closedPunchPoint.text=list[position].PunchPoint.size.toString()
             holder.binding.openPunchPoint.text=list[position].PunchPoint.size.toString()
@@ -50,6 +52,16 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
             val readings = list[position].FieldValue.split(",")
             if (readings.isNotEmpty())
                 holder.binding.reading.setSpinnerData(readings)
+
+            holder.binding.Save.setOnClickListener {
+                savePunchPointData.let {
+                    it.id=item.id
+                    it.QATFieldType1=item.QATFieldType1
+                    it.CheckPoint=item.CheckPoint
+                    it.QATFieldType1Value=item.QATFieldType1Value
+                }
+
+            }
         }catch (e:java.lang.Exception){
             AppLogger.log("e : ${e.localizedMessage}")
         }
@@ -77,9 +89,7 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
 
         })
 
-        holder.binding.Save.setOnClickListener {
 
-        }
         holder.binding.punchPlush.setOnClickListener {
             listener.editPunchPoint(list[position],position)
         }

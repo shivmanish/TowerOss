@@ -4,7 +4,7 @@ data class Checkpoint(
     val CheckPoint: String,
     var Description: String,
     val FieldValue: String,
-    val PunchPoint: List<Any>,
+    val PunchPoint: List<PunchpointData>,
     val QATCategory: String,
     val QATCategory_id: String,
     val QATFieldType1: String,
