@@ -6,4 +6,5 @@ interface PunchPointListener {
     fun addPunchPoint(item : PunchPointUpdate)
     fun editPunchPoint(item : Checkpoint,pos : Int)
     fun punchPointClicked()
+    fun closedPunchPointClicked()
 }

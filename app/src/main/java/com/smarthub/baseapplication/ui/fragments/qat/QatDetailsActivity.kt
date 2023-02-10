@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.util.Util
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityQatDetailsBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -15,10 +14,10 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
 import com.smarthub.baseapplication.ui.dialog.qat.CreateQatPunchPointBottomSheet
-import com.smarthub.baseapplication.ui.dialog.qat.PunchPointResolveDialog
+import com.smarthub.baseapplication.ui.fragments.qat.bottomDialouge.ClosedPunchPointDialouge
+import com.smarthub.baseapplication.ui.fragments.qat.bottomDialouge.OpenPunchPointDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class QatDetailsActivity : BaseActivity(), PunchPointListener {
@@ -96,8 +95,15 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
     }
 
     override fun punchPointClicked() {
-        val dialog = PunchPointResolveDialog(this)
-        dialog.show()
+//        val dialog = PunchPointResolveDialog(this)
+//        dialog.show()
+        val bmSheet = OpenPunchPointDialouge()
+        bmSheet.show(supportFragmentManager,"openPunchPoint")
+    }
+
+    override fun closedPunchPointClicked() {
+        val bmSheet = ClosedPunchPointDialouge()
+        bmSheet.show(supportFragmentManager,"openPunchPoint")
     }
 
 }

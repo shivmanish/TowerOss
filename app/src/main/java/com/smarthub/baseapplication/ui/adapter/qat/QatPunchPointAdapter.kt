@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.QatPunchPointItemBinding
 import com.smarthub.baseapplication.listeners.PunchPointListener
-import com.smarthub.baseapplication.model.qatcheck.punch_point.AddPunchPoint
-import com.smarthub.baseapplication.model.qatcheck.punch_point.PunchPointUpdate
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -36,11 +34,15 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.titleText.text = list[position].QATSubItem
 //        holder.binding.punchCountList.adapter = QatPunchCountAdapter(listener, list = list[position].PunchPoint)
         try {
+            holder.binding.titleText.text = list[position].CheckPoint
             holder.binding.closedPunchPoint.text=list[position].PunchPoint.size.toString()
             holder.binding.openPunchPoint.text=list[position].PunchPoint.size.toString()
+            holder.binding.editRemark.text = list[position].Remark.toEditable()
+            holder.binding.idTxtCircle.text = list[position].PunchPoint.size.toString()
+            holder.binding.date.text = "${Utils.getFormatedDate(list[position].modified_at.substring(0,10),"dd MMM yyyy")} ; " +
+                    Utils.get12hrformate(list[position].modified_at.substring(11,19)).uppercase()
             val observations = list[position].QATObservation.split(",")
             if (observations.isNotEmpty())
                 holder.binding.observations.setSpinnerData(observations)
@@ -50,11 +52,6 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
                 holder.binding.reading.setSpinnerData(readings)
         }catch (e:java.lang.Exception){
             AppLogger.log("e : ${e.localizedMessage}")
-        }
-        holder.binding.editRemark.text = list[position].Remark.toEditable()
-        holder.binding.editRemarks.text = list[position].Remark
-        holder.binding.punchPlush.setOnClickListener {
-
         }
         holder.binding.addRemark.setOnClickListener {
             holder.tag = !holder.tag
@@ -79,13 +76,18 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
             }
 
         })
-        holder.binding.idTxtCircle.text = "${list[position].PunchPoint.size}"
-        holder.binding.date.text = Utils.getFormatedDateNew(list[position].modified_at,"yyyy-MM-dd HH:MM aa")
+
         holder.binding.Save.setOnClickListener {
 
         }
         holder.binding.punchPlush.setOnClickListener {
             listener.editPunchPoint(list[position],position)
+        }
+        holder.binding.openPunchPoint.setOnClickListener {
+           listener.punchPointClicked()
+        }
+        holder.binding.closedPunchPoint.setOnClickListener {
+            listener.closedPunchPointClicked()
         }
     }
 

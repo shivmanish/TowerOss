@@ -123,4 +123,8 @@ class QatPunchPointFragment : BaseFragment(), PunchPointListener {
         var dialog = PunchPointResolveDialog(requireContext())
         dialog.show()
     }
+
+    override fun closedPunchPointClicked() {
+
+    }
 }
