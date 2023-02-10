@@ -111,6 +111,7 @@ class RfAnteenaItemsEditDialouge (contentLayoutId: Int,var rfAntenadata : RfAnte
                     showProgressLayout()
                 }else{
                     hideProgressLayout()
+
                 }
                 if (it.status == Resource.Status.SUCCESS && it.data?.Status?.isNotEmpty() == true){
                     AppLogger.log("Successfully updated all fields")

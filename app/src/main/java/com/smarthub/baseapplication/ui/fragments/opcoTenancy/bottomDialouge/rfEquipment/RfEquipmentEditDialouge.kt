@@ -39,6 +39,7 @@ class RfEquipmentEditDialouge(contentLayoutId: Int,var rfData : rfEquipmentData,
         binding.Cancle.setOnClickListener {
             dismiss()
         }
+
         binding.equipmentName.setText(rfData.Equipementname)
         binding.model.setText(rfData.Model)
         binding.serialNumber.setText(rfData.SerialNumber)

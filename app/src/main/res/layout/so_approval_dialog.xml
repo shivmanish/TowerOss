@@ -61,11 +61,11 @@
                                 android:text="SO Number" />
 
                             <EditText
-                                android:id="@+id/editSONumber"
+                                android:id="@+id/sonumber"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -86,13 +86,13 @@
                                 android:text="SO Date" />
 
                             <EditText
-                                android:id="@+id/editSODate"
+                                android:id="@+id/txtSoDate"
                                 android:drawableRight="@drawable/icon_date"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
 
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -113,12 +113,12 @@
                                 android:text="SO Value" />
 
                             <EditText
-                                android:id="@+id/editSOValue"
+                                android:id="@+id/txtSOValue"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
 
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -139,12 +139,12 @@
                                 android:text="SO line item no." />
 
                             <EditText
-                                android:id="@+id/editSO"
+                                android:id="@+id/txtSOLine"
                                 style="@style/RowTestItemEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
 
-                                android:hint="xxxx" />
+                                android:hint="" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -153,25 +153,36 @@
                                 android:alpha="0.37"
                                 android:background="#263238" />
                         </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        
 
                     </GridLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Remark" />
+
+                        <EditText
+                            android:id="@+id/txtRemarks"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:hint="" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:alpha="0.37"
+                            android:background="#263238" />
+                    </LinearLayout>
+
 
                     <include layout="@layout/cancel_save_layout"/>
 

@@ -1,14 +1,18 @@
 package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
+import com.smarthub.baseapplication.model.serviceRequest.SODetail
+import com.smarthub.baseapplication.model.serviceRequest.SPApproval
+import com.smarthub.baseapplication.model.serviceRequest.SPApprovalAndSO
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.SpApprovalItemViewBinding
+import com.smarthub.baseapplication.databinding.SrApprovalItemViewBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
-import com.smarthub.baseapplication.model.siteInfo.*
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 
 class SPApprovalAdapter(
@@ -19,12 +23,9 @@ class SPApprovalAdapter(
     var list: ArrayList<String> = ArrayList()
     var type1 = "SP Approval"
     var type2 = "SO Details"
-
-    /*  var type2 = "Backhaul Feasibility"
-      var type3 = "Equipments"
-      var type4 = "Power & MCB"
-      var type5 = "Attachments"
-      var type6 = "TSSR Executive Info"*/
+    var spApprovalAndSO: SPApprovalAndSO? = null
+    var soDetail: SODetail? = null
+    var spApproval: SPApproval? = null
     private var data: BasicInfoModelDropDown? = null
     private var fieldData: SiteInfoModel? = null
 
@@ -45,6 +46,9 @@ class SPApprovalAdapter(
         list.add("Power & MCB")
         list.add("Attachments")
         list.add("TSSR Executive Info")
+        spApprovalAndSO = serviceRequestAllData.SPApprovarAndSO!!.get(0)
+        soDetail = spApprovalAndSO!!.SODetails.get(0)
+        spApproval = spApprovalAndSO!!.SPApproval.get(0)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -116,7 +120,7 @@ class SPApprovalAdapter(
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    listener.detailsItemClicked(spApproval!!,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -136,18 +140,23 @@ class SPApprovalAdapter(
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-
-                if (data != null) {
-
+               try{
+                if (spApproval != null) {
+                    spApproval.let {
+                        holder.binding.txtSPSubmissionDate.text = it!!.SPSubmissionDate
+                        holder.binding.txtSPApprovalDate.text = it!!.SPApprovalDate
+                        holder.binding.txtApprovedBy.text = it!!.ApprovedBy
+                        holder.binding.txtApproverEmailID.text = it!!.ApproverEmailID
+                    }
                 }
-                if (fieldData != null && fieldData?.item!!.size > 0 && fieldData?.item!![0].Basicinfo.isNotEmpty()) {
+               }catch (e:Exception){
+                   e.printStackTrace()
+               }
 
-
-                }
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                    listener.requestinfoClicked(soDetail!!,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -168,12 +177,18 @@ class SPApprovalAdapter(
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if (data != null) {
-
-                }
-                if (fieldData != null && fieldData?.item!!.size > 0 && fieldData?.item!![0].Basicinfo.isNotEmpty()) {
-
-
+                try{
+                    if (soDetail != null) {
+                        soDetail.let {
+                            holder.binding.sonumber.text = it!!.SONumber
+                            holder.binding.txtSoDate.text = it!!.SODate
+                            holder.binding.txtSOValue.text =it!!.SOValue
+                            holder.binding.txtSOLine.text = it!!.SOLineItemNo
+                            holder.binding.txtRemarks.text =it!!.Remark
+                        }
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
                 }
             }
 
@@ -197,8 +212,11 @@ class SPApprovalAdapter(
 
     interface SPSoftLisListener {
         fun attachmentItemClicked()
-        fun detailsItemClicked()
-        fun requestinfoClicked()
+        fun detailsItemClicked(
+            spApproval: SPApproval,
+            serviceRequestAllData: ServiceRequestAllDataItem
+        )
+        fun requestinfoClicked(soDetail: SODetail, serviceRequestAllData: ServiceRequestAllDataItem)
         fun operationInfoDetailsItemClicked()
         fun geoConditionsDetailsItemClicked()
         fun siteAccessDetailsItemClicked()

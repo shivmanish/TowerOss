@@ -73,7 +73,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -98,11 +98,11 @@
                     android:text="SO Number" />
 
                 <TextView
-                    android:id="@+id/txtSPSubmissionDate"
+                    android:id="@+id/sonumber"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    android:text="" />
 
 
             </LinearLayout>
@@ -122,51 +122,11 @@
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    />
 
 
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Approved By" />
-
-                <TextView
-                    android:id="@+id/txtApprovedBy"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                style="@style/ColumnItemInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="Approver Email ID" />
-
-                <TextView
-                    android:id="@+id/txtApproverEmailID"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
-
-            </LinearLayout>
             <LinearLayout
                 style="@style/ColumnItemInfo"
                 android:layout_width="0dp"
@@ -184,7 +144,7 @@
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    android:text="" />
 
             </LinearLayout>
             <LinearLayout
@@ -204,7 +164,7 @@
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp20"
-                    android:text="On-Air" />
+                    android:text="" />
 
             </LinearLayout>
 
