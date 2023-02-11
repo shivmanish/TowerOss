@@ -25,6 +25,7 @@ import com.smarthub.baseapplication.network.User
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -103,11 +104,20 @@ class LoginFragment : BaseFragment() {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
+                    val loginTime = AppPreferences.getInstance().getLong("loginTime")
+                    val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
+                    AppLogger.log("loginTimeDiff:$loginTimeDiff")
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
-                    showLoader()
-                    loginViewModel?.getProfileData()
+//                    showLoader()
+//                    loginViewModel?.getProfileData()
+
+                    AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
+                    val intent = Intent (requireContext(), DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    requireActivity().finish()
                     return@observe
                 }else{
                     Toast.makeText(requireContext(),"error:"+it.message,Toast.LENGTH_LONG).show()
