@@ -11,10 +11,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.QatPunchPointDialougeBinding
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.PunchpointData
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.Utils
 
-class ClosedPunchPointDialouge (): BaseBottomSheetDialogFragment(),ClosedPunchPointDialougeAdapter.PunchPointItemListner {
+class ClosedPunchPointDialouge (var data:ArrayList<PunchpointData>): BaseBottomSheetDialogFragment(),ClosedPunchPointDialougeAdapter.PunchPointItemListner {
     lateinit var binding : QatPunchPointDialougeBinding
     lateinit var adapter: ClosedPunchPointDialougeAdapter
 
@@ -28,7 +29,7 @@ class ClosedPunchPointDialouge (): BaseBottomSheetDialogFragment(),ClosedPunchPo
         super.onViewCreated(view, savedInstanceState)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.75).toInt()
         binding.listItem.layoutManager=LinearLayoutManager(requireContext())
-        adapter= ClosedPunchPointDialougeAdapter(this,requireContext())
+        adapter= ClosedPunchPointDialougeAdapter(this,requireContext(),data)
         binding.listItem.adapter=adapter
         binding.icMenuClose.setOnClickListener {
             dismiss()

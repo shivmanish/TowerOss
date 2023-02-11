@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointMode
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointData
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.PunchpointData
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
 import com.smarthub.baseapplication.ui.dialog.qat.CreateQatPunchPointBottomSheet
@@ -116,15 +117,15 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
         bottomSheetDialogFragment.show(supportFragmentManager, "category")
     }
 
-    override fun punchPointClicked() {
+    override fun punchPointClicked(data:ArrayList<PunchpointData>) {
 //        val dialog = PunchPointResolveDialog(this)
 //        dialog.show()
-        val bmSheet = OpenPunchPointDialouge()
+        val bmSheet = OpenPunchPointDialouge(data)
         bmSheet.show(supportFragmentManager,"openPunchPoint")
     }
 
-    override fun closedPunchPointClicked() {
-        val bmSheet = ClosedPunchPointDialouge()
+    override fun closedPunchPointClicked(data:ArrayList<PunchpointData>) {
+        val bmSheet = ClosedPunchPointDialouge(data)
         bmSheet.show(supportFragmentManager,"openPunchPoint")
     }
 

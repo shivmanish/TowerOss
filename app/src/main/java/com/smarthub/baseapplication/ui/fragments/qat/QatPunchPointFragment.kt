@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.qatcheck.punch_point.PunchPointUpdate
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointData
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.PunchpointData
 import com.smarthub.baseapplication.ui.dialog.qat.CreateQatPunchPointBottomSheet
 import com.smarthub.baseapplication.ui.dialog.qat.PunchPointResolveDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -120,12 +121,12 @@ class QatPunchPointFragment : BaseFragment(), PunchPointListener {
         bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 
-    override fun punchPointClicked() {
+    override fun punchPointClicked(data:ArrayList<PunchpointData>) {
         var dialog = PunchPointResolveDialog(requireContext())
         dialog.show()
     }
 
-    override fun closedPunchPointClicked() {
+    override fun closedPunchPointClicked(data:ArrayList<PunchpointData>) {
 
     }
 

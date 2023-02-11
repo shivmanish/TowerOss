@@ -29,7 +29,7 @@ class QatPunchCountAdapter(var listener: PunchPointListener,var list:List<Any>) 
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.root.setOnClickListener {
-            listener.punchPointClicked()
+
         }
 //        holder.binding.p1.text= list[position].
     }

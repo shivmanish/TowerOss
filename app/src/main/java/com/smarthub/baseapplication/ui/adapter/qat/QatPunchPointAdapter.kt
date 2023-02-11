@@ -91,16 +91,18 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
             }
         }
 
-
+            holder.binding.openPunchPoint.setOnClickListener {
+                if(list[position].PunchPoint!=null)
+                    listener.punchPointClicked(list[position].PunchPoint)
+            }
+            holder.binding.closedPunchPoint.setOnClickListener {
+                if(list[position].PunchPoint!=null)
+                    listener.closedPunchPointClicked(list[position].PunchPoint)
+            }
         holder.binding.punchPlush.setOnClickListener {
             listener.editPunchPoint(list[position],position)
         }
-        holder.binding.openPunchPoint.setOnClickListener {
-           listener.punchPointClicked()
-        }
-        holder.binding.closedPunchPoint.setOnClickListener {
-            listener.closedPunchPointClicked()
-        }
+
     }
 
     override fun getItemCount(): Int {

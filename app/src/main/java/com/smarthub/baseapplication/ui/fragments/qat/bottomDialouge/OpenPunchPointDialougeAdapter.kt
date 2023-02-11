@@ -10,23 +10,23 @@ import com.smarthub.baseapplication.databinding.PunchpointDialougeListItemBindin
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.PunchpointData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
-class OpenPunchPointDialougeAdapter(var listener: PunchPointItemListner, var context: Context) : RecyclerView.Adapter<OpenPunchPointDialougeAdapter.ViewHold>() {
+class OpenPunchPointDialougeAdapter(var listener: PunchPointItemListner, var context: Context, var data:ArrayList<PunchpointData>) : RecyclerView.Adapter<OpenPunchPointDialougeAdapter.ViewHold>() {
 
-    var list : ArrayList<Any> = ArrayList()
+    var list : ArrayList<PunchpointData> = ArrayList()
 
     init {
-        list.add("wetqergeg")
-        list.add("wetqergeg")
+        this.list=data
     }
 
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
 
-    fun updateItem(pos : Int,data :rfEquipmentData){
+    fun updateItem(pos : Int,data :PunchpointData){
         list[pos] = data
         notifyItemChanged(pos)
     }
