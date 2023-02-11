@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.PowerLoadData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 
-class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: OpcoDataItem?) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
+class PowerLoadAdapter (var listener: PowerLoadItemClickListener, var opcodata: OpcoDataItem?) : RecyclerView.Adapter<PowerLoadAdapter.ViewHold>() {
 
     var list : List<PowerLoadData> ? = opcodata?.PowerLoad
     var currentOpened = -1
@@ -68,7 +68,7 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
 //        if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditItemDialouge()
+                listener.EditItemDialouge(list!!.get(position),opcodata)
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -99,7 +99,7 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
                 holder.binding.TOCOExcutive.text="Api Data not avbl"
                 holder.binding.OPCOExcutive.text=data.operatorExecutiveName
                 holder.binding.Remark.text = data.remark
-                
+
         }
     }
 
@@ -124,7 +124,7 @@ class PowerLoadAdapter (var listener: PowerLoadItemClickListener, opcodata: Opco
 
     interface PowerLoadItemClickListener{
         fun attachmentItemClicked()
-        fun EditItemDialouge()
+        fun EditItemDialouge(get: PowerLoadData, opcodata: OpcoDataItem?)
     }
 
 }

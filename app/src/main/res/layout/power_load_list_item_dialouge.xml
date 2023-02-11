@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="DCDB Output"
+android:id="@+id/MeasuredPoint"
                     android:drawableEnd="@drawable/ic_arrow_down_black"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="10-Nov-22"
+                    android:id="@+id/MeasuredDate"
                     style="@style/RowTestItemEdit"
                     android:drawableEnd="@drawable/calender"
                     android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="DC"
+                    android:id="@+id/PowerType"
                     style="@style/RowTestItemEdit"
                     android:drawableEnd="@drawable/ic_arrow_down_black"
                     android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="20"
+                    android:id="@+id/LoadCurrent"
                     style="@style/RowTestItemEdit"
                     android:drawableEnd="@drawable/ic_arrow_down_black"
                     android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:text="100"
+                    android:id="@+id/LoadVoltage"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -161,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:text="100"
+                    android:id="@+id/LoadWattage"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -184,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:text="Ajay Dural"
+                    android:id="@+id/TOCOExcutive"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -206,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
-                    android:text="Ajay Dural"
+                    android:id="@+id/OPCOExcutive"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -230,7 +230,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
-            android:hint="Type Here"
+            android:id="@+id/Remark"
             android:textSize="15sp"
             android:layout_margin="@dimen/dp5"
             android:layout_width="match_parent"
