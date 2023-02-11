@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteInfo.opcoInfo.PowerLoadData
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.PowerLoad.PowerLoadEditDialouge
 
 class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(),
@@ -35,10 +36,10 @@ class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(),
         Toast.makeText(requireContext(),"Attachment Item clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun EditItemDialouge() {
-        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.power_load_list_item_dialouge)
+    override fun EditItemDialouge(powerloaddata: PowerLoadData, opcodata: OpcoDataItem?) {
+        val bottomSheetDialogFragment = PowerLoadEditDialouge(R.layout.power_load_list_item_dialouge,powerloaddata,opcodata)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
-        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Commercial Item clicked",Toast.LENGTH_SHORT).show()
     }
 
 }
