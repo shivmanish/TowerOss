@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.ui.adapter.qat.QatPunchPointAdapter
 import com.smarthub.baseapplication.listeners.PunchPointListener
 import com.smarthub.baseapplication.model.qatcheck.punch_point.PunchPointUpdate
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
+import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointData
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Checkpoint
 import com.smarthub.baseapplication.ui.dialog.qat.CreateQatPunchPointBottomSheet
 import com.smarthub.baseapplication.ui.dialog.qat.PunchPointResolveDialog
@@ -125,6 +126,10 @@ class QatPunchPointFragment : BaseFragment(), PunchPointListener {
     }
 
     override fun closedPunchPointClicked() {
+
+    }
+
+    override fun savePunchPointData(data: SaveCheckpointData) {
 
     }
 }
