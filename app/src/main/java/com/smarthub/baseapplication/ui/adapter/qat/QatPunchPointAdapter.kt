@@ -18,6 +18,12 @@ import com.smarthub.baseapplication.utils.Utils
 class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<Checkpoint>) : RecyclerView.Adapter<QatPunchPointAdapter.ViewHold>() {
 
     var savePunchPointData=SaveCheckpointData()
+
+    fun updateData(data:ArrayList<Checkpoint>){
+        this.list.clear()
+        this.list=data
+        notifyDataSetChanged()
+    }
     class ViewHold(itemView: View,var listener: PunchPointListener) : RecyclerView.ViewHolder(itemView) {
         var binding : QatPunchPointItemBinding = QatPunchPointItemBinding.bind(itemView)
         var attachmentAdapter = QatAttachmentAdapter(listener)
@@ -84,20 +90,6 @@ class QatPunchPointAdapter(var listener: PunchPointListener,var list:ArrayList<C
                 holder.binding.editRemark.visibility = View.VISIBLE
             }
         }
-        holder.binding.editRemark.addTextChangedListener(object :TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-//                holder.binding.editRemarks.text = holder.binding.editRemark.text.toString()
-            }
-
-        })
 
 
         holder.binding.punchPlush.setOnClickListener {

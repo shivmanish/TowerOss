@@ -25,7 +25,7 @@ class QatTitleAdapter(var listener: QatSubTitleAdapter.QatSubTitleAdapterListene
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.itemTitle.text = list[position].QATItem
-        holder.binding.listView.adapter = QatSubTitleAdapter(listener,list[position].subitem)
+        holder.binding.listView.adapter = QatSubTitleAdapter(listener,list[position].subitem,position)
     }
 
     override fun getItemCount(): Int {

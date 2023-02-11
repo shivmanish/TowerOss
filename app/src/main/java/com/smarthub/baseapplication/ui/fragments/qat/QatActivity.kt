@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
 class QatActivity : AppCompatActivity() {
     companion object{
         var data : List<Category>?=null
+        var mainindex:Int?=-1
     }
     lateinit var binding: ActivityQatBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,7 @@ class QatActivity : AppCompatActivity() {
 
     private fun init() {
         if (data!=null) {
-            binding.viewpager.adapter = PageAdapterQat(supportFragmentManager, data!!)
+            binding.viewpager.adapter = PageAdapterQat(supportFragmentManager, data!!, mainindex!!)
             binding.tabs.setupWithViewPager(binding.viewpager)
             val tabsCount = binding.tabs.tabCount
             for (j in 0 until tabsCount) {

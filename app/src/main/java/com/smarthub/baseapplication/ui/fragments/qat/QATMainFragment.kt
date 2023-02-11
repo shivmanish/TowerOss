@@ -102,6 +102,7 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
 
     override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
         QatActivity.data = data?.Category
+        QatActivity.mainindex=index
         Intent(requireContext(),QatActivity::class.java).apply { startActivity(this) }
     }
 

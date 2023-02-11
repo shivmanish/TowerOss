@@ -18,7 +18,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Item
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.utils.Utils
 
-class QatSubTitleAdapter(var listener: QatSubTitleAdapterListener,val list: List<Subitem>) : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
+class QatSubTitleAdapter(var listener: QatSubTitleAdapterListener,val list: List<Subitem>,var itemIndex:Int) : RecyclerView.Adapter<QatSubTitleAdapter.ViewHold>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.qat_sub_title_view, parent, false)
@@ -28,7 +28,7 @@ class QatSubTitleAdapter(var listener: QatSubTitleAdapterListener,val list: List
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
         hold.binding.titleText.text = list[pos].QATSubItem
         hold.binding.titleText.setOnClickListener {
-            listener.itemClicked(list[pos])
+            listener.itemClicked(list[pos],itemIndex,pos)
         }
     }
 
@@ -43,7 +43,7 @@ class QatSubTitleAdapter(var listener: QatSubTitleAdapterListener,val list: List
         }
     }
     interface QatSubTitleAdapterListener{
-        fun itemClicked(data : Subitem)
+        fun itemClicked(data : Subitem,itemIndex:Int,subItemIndex:Int)
     }
 
 }

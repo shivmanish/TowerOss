@@ -10,14 +10,14 @@ import com.smarthub.baseapplication.ui.fragments.customer_tab.faq.Fragment2_faq
 import com.smarthub.baseapplication.ui.fragments.qat.QatNestedItemFragment
 
 
-class PageAdapterQat(fm:FragmentManager,var data: List<Category>) : FragmentPagerAdapter(fm) {
+class PageAdapterQat(fm:FragmentManager,var data: List<Category>,var mainIndex:Int) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return data.size
     }
 
     override fun getItem(position: Int): Fragment {
-        return QatNestedItemFragment(data[position])
+        return QatNestedItemFragment(data[position],mainIndex,position)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

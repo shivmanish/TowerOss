@@ -18,7 +18,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Subitem
 import com.smarthub.baseapplication.ui.adapter.qat.QatSubTitleAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 
-class QatNestedItemFragment(var data: Category?) : BaseFragment(),
+class QatNestedItemFragment(var data: Category?, var mainIndex:Int,var categoryIndex:Int,) : BaseFragment(),
     QatSubTitleAdapter.QatSubTitleAdapterListener {
 
     var binding : QatNestedListFragmentBinding ?=null
@@ -34,8 +34,12 @@ class QatNestedItemFragment(var data: Category?) : BaseFragment(),
         if(data?.item!=null)
             binding?.list?.adapter = QatTitleAdapter(this@QatNestedItemFragment,data?.item!!)
     }
-    override fun itemClicked(item : Subitem) {
+    override fun itemClicked(item : Subitem,itemIndex:Int,subItemIndex:Int) {
         QatDetailsActivity.data = item
+        QatDetailsActivity.mainIndex=mainIndex
+        QatDetailsActivity.categoryIndex=categoryIndex
+        QatDetailsActivity.itemIndex=itemIndex
+        QatDetailsActivity.subItemIndex=subItemIndex
         Intent(requireContext(),QatDetailsActivity::class.java).apply {
             startActivity(this)
         }

@@ -26,6 +26,10 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class QatDetailsActivity : BaseActivity(), PunchPointListener {
     companion object{
         var data : Subitem?=null
+        var mainIndex:Int?=0
+        var categoryIndex:Int?=0
+        var itemIndex:Int?=0
+        var subItemIndex:Int?=0
     }
     lateinit var adapter : QatPunchPointAdapter
     lateinit var viewmodel: HomeViewModel
@@ -53,17 +57,32 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
         }
         viewmodel.QatModelResponse?.observe(this) {
             if (it!=null && it.status == Resource.Status.LOADING){
+                showLoader()
                 return@observe
             }
-            hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+                AppLogger.log("Punch Point Data In QatDetailsActivity Data fetched successfully")
+                hideLoader()
                 Toast.makeText(this@QatDetailsActivity,"Data updated successfully",Toast.LENGTH_SHORT).show()
-//                adapter.addItem(punchPointUpdate)
+                try {
+                    adapter.updateData(
+                        it.data.item!!.get(0).QATMainLaunch.get(mainIndex!!).Category.get(
+                            categoryIndex!!).item.get(itemIndex!!).subitem.get(subItemIndex!!).checkpoint)
+                }catch (e:Exception){
+                    AppLogger.log("")
+                }
 
             }else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew!=null && it.data.itemNew?.isNotEmpty()==true){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
+                hideLoader()
                 it.data.item = it.data.itemNew
+                try {
+                    adapter.updateData(
+                        it.data.item!!.get(0).QATMainLaunch.get(mainIndex!!).Category.get(
+                            categoryIndex!!).item.get(itemIndex!!).subitem.get(subItemIndex!!).checkpoint)
+                }catch (e:Exception){
+                    AppLogger.log("")
+                }
                 Toast.makeText(this@QatDetailsActivity,"Data updated successfully",Toast.LENGTH_SHORT).show()
                 AppLogger.log("size :${it.data.itemNew?.size}")
             }else if (it!=null) {
@@ -110,6 +129,8 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
     }
 
     override fun savePunchPointData(data: SaveCheckpointData) {
+        showLoader()
+        AppLogger.log("punch point data for update ====> : $data")
         var item = SaveCheckpointModel()
         var dataList:ArrayList<SaveCheckpointData> = ArrayList()
         dataList.clear()
@@ -117,6 +138,7 @@ class QatDetailsActivity : BaseActivity(), PunchPointListener {
         item.QAT=dataList
         item.id=AppController.getInstance().siteid
         item.ownername=AppController.getInstance().ownerName
+        AppLogger.log("punch point data Model for update ====> : $data")
         viewmodel.saveQatPunchPoint(item)
     }
 

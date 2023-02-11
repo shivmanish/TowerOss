@@ -153,6 +153,7 @@
                             android:id="@+id/edit_remark"
                             android:layout_width="0dp"
                             android:hint="Add remark"
+                            android:focusedByDefault="false"
                             android:layout_height="@dimen/dp80"
                             android:layout_margin="@dimen/dp5"
                             android:background="@drawable/atp_blank_border"
@@ -164,9 +165,7 @@
                             android:tag="false"
                             android:text=""
                             android:gravity="top"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp14"
-                            android:visibility="visible"
+                            style="@style/RowTestItemEdit"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/add_remark" />
