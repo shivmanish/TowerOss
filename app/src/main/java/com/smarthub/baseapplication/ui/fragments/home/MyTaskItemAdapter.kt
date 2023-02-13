@@ -1,12 +1,9 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
 import android.content.Intent
-import android.provider.Settings.Global.getString
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
@@ -18,7 +15,6 @@ import com.smarthub.baseapplication.ui.fragments.task.TaskActivity
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
-import java.util.*
 
 
 class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {

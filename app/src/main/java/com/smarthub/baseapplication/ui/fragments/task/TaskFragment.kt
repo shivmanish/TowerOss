@@ -1,11 +1,9 @@
 package com.smarthub.baseapplication.ui.fragments.task
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -19,7 +17,6 @@ import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.home.MyTaskFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTeamTaskFragment
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewOpcoCardAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAssignToDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
