@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.FragmentMyTaskHomeBinding
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
+import com.smarthub.baseapplication.ui.fragments.task.routes
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -25,7 +26,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter(listener,"task_navigation")
+        adapterList = MyTaskItemAdapter(listener,routes.MyTeamTaskNavigator.name)
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")

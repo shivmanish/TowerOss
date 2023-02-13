@@ -63,11 +63,14 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
         var binding = ProjectItemListBinding.bind(itemView)
 
         fun bindData(data : ProjectModelDataItem){
+            var rnds=(20..80).random()
             binding.name.text = data.Projectname
             binding.remark.text = data.Remarks
             binding.processStatus.text = data.Currentstatus
             binding.totalTask.text = String.format("%d/%d",data.Total_Closed,data.Total_Task)
             binding.totalSla.text=String.format("%d/%d",0,data.Total_SLA)
+            binding.progressbarPredict.progress=rnds
+            binding.progressStatus.text=rnds.toString()
             binding.siteName.text=data.sitename
             binding.processId.apply {
                 text = data.id
@@ -99,6 +102,7 @@ class ProjectListAdapter(var context : Context,var listener : ProjectsListAdapte
         if (holder is ViewHoldItem && list[position] is ProjectModelDataItem){
             var data=list[position] as ProjectModelDataItem
             holder.bindData(data)
+            holder.binding.processId.text=(position+1).toString()
             holder.binding.btnTask.setOnClickListener {
                 listener.showBottomDialog(data.Processname)
             }

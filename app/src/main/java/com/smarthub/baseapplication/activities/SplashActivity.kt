@@ -49,7 +49,7 @@ class SplashActivity : BaseActivity() {
                     showNetworkAlert()
                 }
             }else{
-                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                val intent = Intent(this@SplashActivity,DashboardActivity::class.java)
                 startActivity(intent)
                 finish()
 //                showLoader()

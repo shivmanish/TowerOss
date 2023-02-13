@@ -177,8 +177,8 @@ class HomeFragment : Fragment(),TaskListener {
         homeViewModel.fetchDropDownNew()
     }
 
-    override fun closeTask(task: MyTeamTask) {
-        val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel)
+    override fun closeTask(task: MyTeamTask,route:String) {
+        val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.basic_info_details_bottom_sheet, task,homeViewModel,route)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 

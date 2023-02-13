@@ -22,13 +22,14 @@ import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
+import com.smarthub.baseapplication.ui.fragments.task.routes
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 
-class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
+class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewModel: HomeViewModel, var route:String) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: CloseTaskBottomSheetBinding
     var AssignToList= ArrayList<UserDataResponseItem>()
@@ -45,6 +46,9 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
         super.onViewCreated(view, savedInstanceState)
         binding.icMenuClose.setOnClickListener {
             dismiss()
+        }
+        if(route==routes.MyTeamTaskNavigator.name){
+            binding.closeTaskBtn.visibility=View.GONE
         }
         observData()
         viewmodel.getUser(GetUserList(task.AssigneeDepartment, AppController.getInstance().ownerName))
@@ -75,10 +79,6 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
 
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-
-    }
 
     override fun getTheme() = R.style.NewDialogTask
 

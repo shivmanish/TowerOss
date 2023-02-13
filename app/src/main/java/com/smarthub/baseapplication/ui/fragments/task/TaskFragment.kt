@@ -16,8 +16,10 @@ import com.smarthub.baseapplication.databinding.FragmentTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.home.MyTaskFragment
 import com.smarthub.baseapplication.ui.fragments.home.MyTeamTaskFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewOpcoCardAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAssignToDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
@@ -39,13 +41,13 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.addItem.setOnClickListener {
-            val intent = Intent(requireActivity(),TaskActivity::class.java)
-            requireActivity().startActivity(intent)
-        }
+//        binding.addItem.setOnClickListener {
+//            val intent = Intent(requireActivity(),TaskActivity::class.java)
+//            requireActivity().startActivity(intent)
+//        }
         binding.addMore.setOnClickListener {
-            val intent = Intent(requireActivity(),TaskActivity::class.java)
-            requireActivity().startActivity(intent)
+            val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
+            dalouge.show(childFragmentManager,"")
         }
 
         binding.homePager.adapter = TaskViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,this@TaskFragment)
@@ -119,8 +121,8 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
 
     }
 
-    override fun closeTask(task: MyTeamTask) {
-        val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.close_task_bottom_sheet, task,homeViewModel)
+    override fun closeTask(task: MyTeamTask,route:String) {
+        val bottomSheetDialogFragment = ViewTaskBottomSheet(R.layout.close_task_bottom_sheet, task,homeViewModel,route)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
     }
 

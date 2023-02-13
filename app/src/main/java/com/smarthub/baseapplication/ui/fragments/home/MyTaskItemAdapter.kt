@@ -128,7 +128,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                 }
             }
             holder.itemView.setOnClickListener {
-                listener.closeTask(item)
+                listener.closeTask(item,token)
             }
 
                 holder.binding.taskClose.setOnClickListener {
