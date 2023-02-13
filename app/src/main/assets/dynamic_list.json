@@ -1,0 +1,68 @@
+{
+    "data": [
+        {
+            "title": "Basic Info",
+            "listData": [
+                {
+                    "id": "1",
+                    "type": "text",
+                    "value": "name"
+                },
+                {
+                    "id": "1",
+                    "type": "text",
+                    "value": "site name"
+                },
+                {
+                    "id": "3",
+                    "type": "date",
+                    "value": "20-2-2023"
+                },
+                {
+                    "id": "3",
+                    "type": "date",
+                    "value": "20-2-2023"
+                }
+            ]
+        },
+        {
+            "title": "Operational Info",
+            "listData": [
+
+                {
+                    "id": "1",
+                    "type": "spinner",
+                    "value": "Sitestatus"
+                },
+                {
+                    "id": "2",
+                    "type": "spinner",
+                    "value": "Sitestatus"
+                }
+
+            ]
+        },
+        {
+            "title": "Geo condition Info",
+            "listData": [
+
+                {
+                    "id": "1",
+                    "type": "spinner",
+                    "value": "Sitestatus"
+                },
+                {
+                    "id": "2",
+                    "type": "spinner",
+                    "value": "Sitestatus"
+                },
+                {
+                    "id": "1",
+                    "type": "text",
+                    "value": "name"
+                }
+
+            ]
+        }
+    ]
+}

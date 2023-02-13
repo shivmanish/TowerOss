@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitObjectInstance {
 
     private static Retrofit retrofit;
-    public static String BASE_URL = "http://49.50.77.81:8181/";
+    public static String BASE_URL = "http://49.50.77.81:8585/";
 
     public static Retrofit getInstance(){
         Gson g = new GsonBuilder().setLenient().create();
