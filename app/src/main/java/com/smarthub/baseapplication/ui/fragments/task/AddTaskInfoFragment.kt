@@ -93,7 +93,8 @@ class AddTaskInfoFragment : BaseFragment() {
             override fun afterTextChanged(s: Editable?) {
                 val cmp=Utils.dateDiffrence(binding.startDate.text.toString(),binding.endDate.text.toString())
                 if(cmp<0){
-                    Toast.makeText(context,"Invalid End date", Toast.LENGTH_SHORT).show()
+                    AppLogger.log("Invalid End date")
+//                    Toast.makeText(context,"Invalid End date", Toast.LENGTH_SHORT).show()
                     binding.sla.text="0"
                 }
                 else{
@@ -117,7 +118,7 @@ class AddTaskInfoFragment : BaseFragment() {
         binding.assigneeDepartment.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener{
             override fun itemSelected(departmentName: DropDownItem) {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
-                Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
                 viewmodel.getUser(GetUserList(departmentName.name,AppController.getInstance().ownerName))
                 observerData()
 
@@ -142,7 +143,9 @@ class AddTaskInfoFragment : BaseFragment() {
                     binding.assigneeDepartment.setSpinnerDataByName(departmentList,taskInfo?.AssigneeDepartment)
                 else
                   binding.assigneeDepartment.setSpinnerData(departmentList)
-            }else Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
+            }else
+                AppLogger.log("Department not fetched")
+//                Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         }
         viewmodel.getDepartments(DropdownParam("SMRT","department"))
         observerData()
