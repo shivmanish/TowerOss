@@ -132,7 +132,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
         when(holder){
             is TowerViewHold->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.editTower()
+                    listener.editTower(towerData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -155,12 +155,14 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
                 holder.binding.itemTitleStr.text = list[position]
 
                 try {
-                    holder.binding.towerHeight.text=towerData?.TowerHeight
-                    holder.binding.totalAnteenaWeight.text=towerData?.TotalAntennaWeight
-                    holder.binding.AntenaSpace.text=towerData?.AntennaSpace
-                    holder.binding.MaxAnteenaHeight.text=towerData?.MaxAntennaHeightAGL
-                    holder.binding.OffsetPoleCount.text=towerData?.OffsetPoleCount
-                    holder.binding.OffsetPoleLenth.text=towerData?.OffsetPoleLength
+                    towerData!!.let {
+                        holder.binding.towerHeight.text = it.TowerHeight
+                        holder.binding.totalAnteenaWeight.text = it.TotalAntennaWeight
+                        holder.binding.AntenaSpace.text = it.AntennaSpace
+                        holder.binding.MaxAnteenaHeight.text = it.MaxAntennaHeightAGL
+                        holder.binding.OffsetPoleCount.text = it.OffsetPoleCount
+                        holder.binding.OffsetPoleLenth.text = it.OffsetPoleLength
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
                  //   Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -190,7 +192,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                holder.poleTableList.adapter= PoleTableAdapter(context,listener)
+                holder.poleTableList.adapter= PoleTableAdapter(context,listener,poleData!!.Pole)
                 try {
                     holder.binding.towerOffsetPoleCount.text = poleData?.OffsetPoleCount
                     holder.binding.towerOffsetPoleLength.text = poleData?.OffsetPoleLength
@@ -236,7 +238,7 @@ class plandesignTowerCivilAdapter(var context: Context, var listener:TowrCivilLi
 
     interface TowrCivilListner{
         fun attachmentItemClicked()
-        fun editTower()
+        fun editTower(towerData: Tower?)
         fun editPole()
         fun editPoleTableItem(position: Int)
         fun viewPoleTableItem(position: Int)

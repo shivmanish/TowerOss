@@ -12,16 +12,11 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PoleTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.plandesignTowerCivilAdapter
 
-class PoleTableAdapter (var context : Context, var listener : plandesignTowerCivilAdapter.TowrCivilListner): RecyclerView.Adapter<PoleTableAdapter.ViewHold>() {
-
-    var list  = ArrayList<String>()
-
-    init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-    }
+class PoleTableAdapter(
+    var context: Context,
+    var listener: plandesignTowerCivilAdapter.TowrCivilListner,
+    var list: ArrayList<Any>
+): RecyclerView.Adapter<PoleTableAdapter.ViewHold>() {
 
     fun addItem(item:String){
         list.add(item)

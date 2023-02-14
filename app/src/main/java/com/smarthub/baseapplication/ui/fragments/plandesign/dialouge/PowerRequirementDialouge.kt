@@ -5,9 +5,11 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignPowerRequirement
+import com.smarthub.baseapplication.utils.AppLogger
 
 
-class PowerRequirementDialouge : DialogFragment() {
+class PowerRequirementDialouge(var data: PlanningAndDesignPowerRequirement?) : DialogFragment() {
 lateinit var binding: PdEditPowerDialogBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +45,16 @@ lateinit var binding: PdEditPowerDialogBinding
             dialog!!.dismiss()
             dialog!!.cancel()
         }
+        try {
+            binding.PowerType.setText(data?.PowerType)
+            binding.voltage.setText(data?.Voltage)
+            binding.maxTotalPower.setText(data?.MaxTotalPower)
+            binding.batteryBackup.setText(data?.BatteryBackup)
+            binding.remark.setText(data?.Remark)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
+        }
+
     }
 
 

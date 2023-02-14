@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SmpsRectifierTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
 
-class SmpsTableAdapter (var context : Context, var listener : TableCallback): RecyclerView.Adapter<SmpsTableAdapter.ViewHold>() {
+class SmpsTableAdapter(var context: Context, listener1: List<Any>, var listener: TableCallback): RecyclerView.Adapter<SmpsTableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 

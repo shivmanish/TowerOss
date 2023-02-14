@@ -69,22 +69,24 @@
                                     android:layout_height="wrap_content"
                                     android:text="Type" />
 
-                                <EditText
-                                    style="@style/RowTestItemEdit"
-                                    android:hint=""
+                                <com.smarthub.baseapplication.widgets.CustomSpinner
                                     android:id="@+id/type"
+                                    style="@style/SpinnerTheme"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
+                                    android:hint=""
 
                                     android:textColor="@color/black" />
+
                                 <View
-                                    android:alpha="0.37"
-                                    android:background="#263238"
-                                    android:layout_height="1dp"
                                     android:layout_width="match_parent"
-                                    android:layout_marginTop="@dimen/dp8" />
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
 
                             </LinearLayout>
+
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -108,9 +110,9 @@
                                         android:orientation="vertical">
 
                                         <EditText
-                                            style="@style/RowTestItemEdit"
-
                                             android:id="@+id/editroomSizeL"
+
+                                            style="@style/RowTestItemEdit"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text="L - "
@@ -125,9 +127,9 @@
                                         android:orientation="vertical">
 
                                         <EditText
-                                            style="@style/RowTestItemEdit"
-
                                             android:id="@+id/editroomSizeW"
+
+                                            style="@style/RowTestItemEdit"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text=" | W - "
@@ -142,9 +144,9 @@
                                         android:orientation="vertical">
 
                                         <EditText
-                                            style="@style/RowTestItemEdit"
-
                                             android:id="@+id/editRoomSizeH"
+
+                                            style="@style/RowTestItemEdit"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text=" | H - "
@@ -155,13 +157,14 @@
                                 </LinearLayout>
 
                                 <View
-                                    android:alpha="0.37"
-                                    android:background="#263238"
-                                    android:layout_height="1dp"
                                     android:layout_width="match_parent"
-                                    android:layout_marginTop="@dimen/dp8" />
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
 
                             </LinearLayout>
+
                             <LinearLayout
                                 style="@style/ColumnItemInfo"
                                 android:layout_width="0dp"
@@ -185,9 +188,9 @@
                                         android:orientation="vertical">
 
                                         <EditText
-                                            style="@style/RowTestItemEdit"
-
                                             android:id="@+id/editFoundationSizeL"
+
+                                            style="@style/RowTestItemEdit"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text="L - "
@@ -202,9 +205,9 @@
                                         android:orientation="vertical">
 
                                         <EditText
-                                            style="@style/RowTestItemEdit"
-
                                             android:id="@+id/editFoundationSizeW"
+
+                                            style="@style/RowTestItemEdit"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text=" | W - "
@@ -219,9 +222,9 @@
                                         android:orientation="vertical">
 
                                         <EditText
-                                            style="@style/RowTestItemEdit"
-
                                             android:id="@+id/editFoundationSizeH"
+
+                                            style="@style/RowTestItemEdit"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text=" | H - "
@@ -230,12 +233,13 @@
                                     </LinearLayout>
 
                                 </LinearLayout>
+
                                 <View
-                                    android:alpha="0.37"
-                                    android:background="#263238"
-                                    android:layout_height="1dp"
                                     android:layout_width="match_parent"
-                                    android:layout_marginTop="@dimen/dp8" />
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
 
 
                             </LinearLayout>
@@ -251,19 +255,19 @@
                                     android:layout_height="wrap_content"
                                     android:text="Foundation Type" />
 
-                                <EditText
-                                    style="@style/RowTestItemEdit"
-                                    android:hint=""
+                                <com.smarthub.baseapplication.widgets.CustomSpinner
                                     android:id="@+id/foundationType"
+                                    style="@style/SpinnerTheme"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
                                     android:textColor="@color/black" />
+
                                 <View
-                                    android:alpha="0.37"
-                                    android:background="#263238"
-                                    android:layout_height="1dp"
                                     android:layout_width="match_parent"
-                                    android:layout_marginTop="@dimen/dp8" />
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
 
                             </LinearLayout>
 
@@ -280,19 +284,20 @@
 
 
                                 <EditText
-                                    style="@style/RowTestItemEdit"
-                                    android:hint=""
                                     android:id="@+id/remark"
+                                    style="@style/RowTestItemEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp20"
+                                    android:hint=""
 
                                     android:textColor="@color/black" />
+
                                 <View
-                                    android:alpha="0.37"
-                                    android:background="#263238"
-                                    android:layout_height="1dp"
                                     android:layout_width="match_parent"
-                                    android:layout_marginTop="@dimen/dp8" />
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="@dimen/dp8"
+                                    android:alpha="0.37"
+                                    android:background="#263238" />
 
                             </LinearLayout>
 
