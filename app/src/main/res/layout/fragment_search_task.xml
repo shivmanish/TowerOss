@@ -531,7 +531,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@color/milky_white"
+        android:paddingTop="@dimen/dp5"
         app:layout_constraintBottom_toBottomOf="parent">
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -544,12 +545,13 @@
             android:outlineAmbientShadowColor="@color/light_gray"
             app:layout_constraintBottom_toBottomOf="parent">
             <ImageView
+                android:id="@+id/dropdown_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/down_arrow"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp5"
-                android:paddingVertical="@dimen/dp5"
+                android:src="@drawable/ic_arrow_up_faq"
+                android:layout_marginTop="@dimen/dp2"
+                android:paddingBottom="@dimen/dp9"
+                android:paddingTop="@dimen/dp1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -568,7 +570,7 @@
                     android:paddingHorizontal="@dimen/dp25"
                     android:paddingVertical="@dimen/dp6"
                     android:textSize="@dimen/dp15"
-                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginStart="@dimen/dp8"
                     android:layout_marginBottom="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
@@ -583,7 +585,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
                 <View
                     android:id="@+id/dot_connecter_line"
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="2dp"
                     android:background="@color/light_gray"
                     app:layout_constraintStart_toEndOf="@+id/dot_1"
@@ -618,7 +620,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:src="@drawable/ic_menu_map"
-                    android:layout_marginEnd="@dimen/dp5"
+                    android:layout_marginEnd="@dimen/dp7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/start_btn"
                     app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
@@ -632,7 +634,7 @@
                     app:layout_constraintTop_toTopOf="@+id/start_btn"
                     app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
                 <View
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/top_line"
                     android:alpha="0.5"
                     android:layout_width="match_parent"
@@ -646,6 +648,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:id="@+id/collapsing_layout"
+                    android:visibility="gone"
+                    android:layout_marginBottom="@dimen/dp7"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toTopOf="@+id/top_line">
                     <TextView

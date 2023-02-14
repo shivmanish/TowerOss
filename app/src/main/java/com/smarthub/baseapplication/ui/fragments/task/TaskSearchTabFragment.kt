@@ -71,11 +71,26 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
+        binding.collapsingLayout.tag= false
 
         var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
         binding.horizontalOnlyList.adapter = adapter
         binding.horizontalOnlyList.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         setDataObserver()
+
+        binding.dropdownImg.setOnClickListener {
+            binding.collapsingLayout.tag= !(binding.collapsingLayout.tag as Boolean)
+            if (binding.collapsingLayout.tag as Boolean){
+                binding.collapsingLayout.visibility=View.VISIBLE
+                binding.topLine.visibility=View.VISIBLE
+                binding.dropdownImg.setImageResource(R.drawable.down_arrow)
+            }
+            else{
+                binding.collapsingLayout.visibility=View.GONE
+                binding.topLine.visibility=View.GONE
+                binding.dropdownImg.setImageResource(R.drawable.ic_arrow_up_faq)
+            }
+        }
     }
     private fun setDataObserver() {
 
