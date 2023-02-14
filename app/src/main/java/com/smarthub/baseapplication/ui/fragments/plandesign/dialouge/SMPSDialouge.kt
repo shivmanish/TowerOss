@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.SmpsDialougeLayoutBinding
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.SMPS
 
 
-class SMPSDialouge : DialogFragment() {
-lateinit var binding: SmpsDialougeLayoutBinding
+class SMPSDialouge(var data: SMPS) : DialogFragment() {
+    lateinit var binding: SmpsDialougeLayoutBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         super.onCreateView(inflater, container, savedInstanceState)
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = SmpsDialougeLayoutBinding.inflate(inflater)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
@@ -35,13 +36,28 @@ lateinit var binding: SmpsDialougeLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.canecl.setOnClickListener{
+        binding.canecl.setOnClickListener {
             dialog!!.dismiss()
             dialog!!.cancel()
         }
-        binding.canecelText.setOnClickListener{
+        binding.canecelText.setOnClickListener {
             dialog!!.dismiss()
             dialog!!.cancel()
+        }
+        try {
+            data!!.let {
+                binding.make.setText(it.Make)
+                binding.modal.setText(it.Model)
+                binding.RatingCapacityKw.setText(it.RatingAndCapacity)
+                binding.cabinetsizel.setText(it.CabinetSizeL)
+                binding.cabinetsizeh.setText(it.CabinetSizeH)
+                binding.cabinetsizel.setText(it.CabinetSizeL)
+                binding.overallWeightKg.setText(it.OverallWeight)
+                binding.ownerCompany.setText("")
+                binding.userCompany.setText("")
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 

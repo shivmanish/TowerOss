@@ -5,9 +5,11 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.FireExtinguisher
+import com.smarthub.baseapplication.utils.AppLogger
 
 
-class FireDialouge : DialogFragment() {
+class FireDialouge(var data: FireExtinguisher) : DialogFragment() {
 lateinit var binding: FireDialougeLayoutBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +45,28 @@ lateinit var binding: FireDialougeLayoutBinding
             dialog!!.dismiss()
             dialog!!.cancel()
         }
+
+        try {
+            data!!.let {
+                binding.fireMake.setText(it.Make)
+                binding.fireModal.setText(it.Model)
+                binding.fireRatingCapacityKw.setText("")
+                binding.fireCabinetsizel.setText(it.CabinetSizeL)
+                binding.fireCabinetsizeh.setText(it.CabinetSizeH)
+                binding.fireCabinetsizeb.setText(it.CabinetSizeB)
+                binding.fireUnitSizeh.setText(it.UnitSizeH)
+                binding.fireUnitSizeb.setText(it.UnitSizeB)
+                binding.fireUnitSizel.setText(it.UnitSizeL)
+                binding.fireUnitWeight.setText("")
+                binding.fireExtinguisherType.setText("")
+                binding.fireFuelConsuptionHour.setText(it.FuelConsumptionPerHour)
+                binding.fireOwnerCompany.setText("")
+                binding.fireUserCompany.setText("")
+            }
+        }catch (e : Exception){
+            AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
+        }
+
     }
 
 

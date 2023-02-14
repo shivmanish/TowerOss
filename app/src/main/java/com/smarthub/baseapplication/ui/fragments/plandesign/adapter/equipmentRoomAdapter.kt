@@ -104,7 +104,7 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
          when(holder){
              is equipRoomViewHold->{
                  holder.binding.imgEdit.setOnClickListener {
-                     listener.editequipmentRoom()
+                     listener.editequipmentRoom(data)
                  }
                  if (currentOpened == position) {
                      holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -178,6 +178,6 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
 
     interface equipmentRoomListner{
         fun attachmentItemClicked()
-        fun editequipmentRoom()
+        fun editequipmentRoom(data: PlanningAndDesignEquipRoomEquipmentRoom?)
     }
  }

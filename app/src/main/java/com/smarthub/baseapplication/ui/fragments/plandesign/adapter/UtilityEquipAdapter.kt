@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.planAndDesign.UtilityEquip
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.*
 import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.SmpsTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
@@ -119,7 +119,7 @@ class UtilityEquipAdapter(
         when (holder) {
             is SmpsViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.smpsclicked()
+                    listener.smpsclicked(data!!.SMPS.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -152,7 +152,7 @@ class UtilityEquipAdapter(
                         holder.binding.userCompany.text = ""
 
                         holder.binding.smpsPlanLeadTable.adapter =
-                            SmpsTableAdapter(context, object : TableCallback {
+                            SmpsTableAdapter(context, data!!.SMPS.get(0).PlannedLoad,object : TableCallback {
                                 override fun editItem(obj: Any?) {
 //                            val dalouge= SmpsPlannedTableEditDialouge()
 //                            dalouge.show(childFragmentManager, "")
@@ -173,7 +173,7 @@ class UtilityEquipAdapter(
             }
             is BatteryBankViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.batterybankclicked()
+                    listener.batterybankclicked(data!!.BatteryBank.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -205,17 +205,22 @@ class UtilityEquipAdapter(
                         holder.binding.batteryBankUserCompany.text = ""
                         holder.binding.batteryBankOwnerCompany.text = ""
                     }
-                    holder.binding.bBankTable.adapter =SmpsTableAdapter(context, object : TableCallback {
-                        override fun editItem(obj: Any?) {
-//                        val dalouge= SmpsRectifierTableEditDialouge()
-//                        dalouge.show(childFragmentManager, "")
-                        }
+/*
+                    holder.binding.bBankTable.adapter =SmpsTableAdapter(
+                        context,
+                        data!!.SMPS.get(0).PlannedLoad,
+                        object : TableCallback {
+                            override fun editItem(obj: Any?) {
+    //                        val dalouge= SmpsRectifierTableEditDialouge()
+    //                        dalouge.show(childFragmentManager, "")
+                            }
 
-                        override fun viewItem(obj: Any?) {
-//                        val dalouge= SmpsRectifierTableEditDialouge ()
-//                        dalouge.show(childFragmentManager, "")
-                        }
-                    })
+                            override fun viewItem(obj: Any?) {
+    //                        val dalouge= SmpsRectifierTableEditDialouge ()
+    //                        dalouge.show(childFragmentManager, "")
+                            }
+                        })
+*/
                 }catch (e : Exception){
                     AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
                 }
@@ -224,7 +229,7 @@ class UtilityEquipAdapter(
             }
             is DgViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.dgClicked()
+                    listener.dgClicked(data!!.DG.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -257,18 +262,24 @@ class UtilityEquipAdapter(
                         holder.binding.dgFuelType.text = ""
                         holder.binding.dgFuelConsumptionPerHour.text = it.FuelConsumptionPerHour
                     }
+/*
                     holder.binding.dgAdditionalEditTable.adapter =
-                        SmpsTableAdapter(context, object : TableCallback {
+                        SmpsTableAdapter(context, data.SMPS.get(0).PlannedLoad, object : TableCallback {
                             override fun editItem(obj: Any?) {
-                                /*val dalouge= SmpsRectifierTableEditDialouge()
-                                dalouge.show(childFragmentManager, "")*/
+                                */
+/*val dalouge= SmpsRectifierTableEditDialouge()
+                                dalouge.show(childFragmentManager, "")*//*
+
                             }
 
                             override fun viewItem(obj: Any?) {
-                                /* val dalouge= SmpsRectifierTableEditDialouge ()
-                                 dalouge.show(childFragmentManager, "")*/
+                                */
+/* val dalouge= SmpsRectifierTableEditDialouge ()
+                                 dalouge.show(childFragmentManager, "")*//*
+
                             }
                         })
+*/
                 }catch (e : Exception){
                     AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
                 }
@@ -277,7 +288,7 @@ class UtilityEquipAdapter(
             }
             is AcViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.acClicked()
+                    listener.acClicked(data!!.AC.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -298,17 +309,17 @@ class UtilityEquipAdapter(
                 }
                 holder.binding.itemTitleSmps.text = list[position]
                 try {
-                    data!!.DG.get(0).let {
+                    data!!.AC.get(0).let {
                         holder.binding.acMake.text = it.Make
                         holder.binding.acModal.text = it.Model
                         holder.binding.acRatingCapacityKw.text = it.RatingAndCapacity
                         holder.binding.acCabinetsizel.text = it.CabinetSizeL
                         holder.binding.acCabinetsizeh.text = it.CabinetSizeH
                         holder.binding.acCabinetsizeb.text = it.CabinetSizeB
-                        holder.binding.acIndoreUnitSizeh.text = ""
-                        holder.binding.acIndoreUnitSizeb.text = ""
-                        holder.binding.acIndoreUnitSizel.text = ""
-                        holder.binding.acOutdoorUnitWeight.text = ""
+                        holder.binding.acIndoreUnitSizeh.text = it.IndoorUnitSizeH
+                        holder.binding.acIndoreUnitSizeb.text = it.IndoorUnitSizeB
+                        holder.binding.acIndoreUnitSizel.text = it.IndoorUnitSizeL
+                        holder.binding.acOutdoorUnitWeight.text = it.OutdoorUnitWeight
                         holder.binding.acOverallWeight.text = it.OverallWeight
                         holder.binding.acOwnerCompany.text = ""
                         holder.binding.acUserCompany.text = ""
@@ -320,7 +331,7 @@ class UtilityEquipAdapter(
             }
             is FireExiViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.fireExtinguisherClicked()
+                    listener.fireExtinguisherClicked( data!!.FireExtinguisher.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -364,7 +375,7 @@ class UtilityEquipAdapter(
             }
             is SpdViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.surgeProtectedClicked()
+                    listener.surgeProtectedClicked(data!!.SurgeProtectionDevice.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -400,7 +411,7 @@ class UtilityEquipAdapter(
             }
             is DcdbViewHolder -> {
                 holder.binding.smpsEdit.setOnClickListener {
-                    listener.dcdbClicked()
+                    listener.dcdbClicked(data!!.DCDB.get(0))
                 }
                 if (currentOpened == position) {
                     holder.binding.smpsArrow.setImageResource(R.drawable.ic_arrow_up)
@@ -456,13 +467,13 @@ class UtilityEquipAdapter(
     }
 
     interface ItemClicListiner {
-        fun smpsclicked()
-        fun batterybankclicked()
-        fun dgClicked()
-        fun acClicked()
-        fun fireExtinguisherClicked()
-        fun surgeProtectedClicked()
-        fun dcdbClicked()
+        fun smpsclicked(get: SMPS)
+        fun batterybankclicked(get: BatteryBank)
+        fun dgClicked(get: DG)
+        fun acClicked(get: AC)
+        fun fireExtinguisherClicked(get: FireExtinguisher)
+        fun surgeProtectedClicked(get: SurgeProtectionDevice)
+        fun dcdbClicked(data: DCDB)
         fun attachmentClicked()
 
     }

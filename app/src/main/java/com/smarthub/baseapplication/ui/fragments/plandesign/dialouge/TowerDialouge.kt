@@ -5,9 +5,10 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.Tower
 
 
-class TowerDialouge : DialogFragment() {
+class TowerDialouge(var towerData: Tower) : DialogFragment() {
 lateinit var binding: TowerDialougeLayoutBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +44,15 @@ lateinit var binding: TowerDialougeLayoutBinding
             dialog!!.dismiss()
             dialog!!.cancel()
         }
+        towerData!!.let {
+            binding.towerHeight.setText(it.TowerHeight)
+            binding.totalAnteenWeight.setText(it.TotalAntennaWeight)
+            binding.antennaSpace.setText(it.AntennaSpace)
+            binding.maxAnteenaHeight.setText(it.MaxAntennaHeightAGL)
+            binding.offsetPoleCount.setText(it.OffsetPoleCount)
+            binding.offsetPoleLenght.setText(it.OffsetPoleLength)
+        }
+
     }
 
 

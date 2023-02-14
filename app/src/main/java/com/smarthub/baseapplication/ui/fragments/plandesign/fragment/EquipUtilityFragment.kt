@@ -4,17 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.UtilityEquipFragmentBinding
-import com.smarthub.baseapplication.model.siteInfo.planAndDesign.UtilityEquip
-import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.SmpsTableAdapter
-import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TableCallback
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.*
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.UtilityEquipAdapter
-import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.equipmentRoomAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.*
-import com.smarthub.baseapplication.utils.Utils
 
 class EquipUtilityFragment(var data:List<UtilityEquip>?) : Fragment(),UtilityEquipAdapter.ItemClicListiner{
 
@@ -37,38 +32,38 @@ class EquipUtilityFragment(var data:List<UtilityEquip>?) : Fragment(),UtilityEqu
     }
 
 
-    override fun smpsclicked() {
-        val dalouge = SMPSDialouge()
+    override fun smpsclicked(data: SMPS) {
+        val dalouge = SMPSDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
-    override fun batterybankclicked() {
-        val dalouge = BatteryBankDialouge()
+    override fun batterybankclicked(data: BatteryBank) {
+        val dalouge = BatteryBankDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
-    override fun dgClicked() {
-        val dalouge = AcUtilityDialouge()
+    override fun dgClicked(data: DG) {
+        val dalouge = DgDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
-    override fun acClicked() {
-        val dalouge = AcUtilityDialouge()
+    override fun acClicked(data: AC) {
+        val dalouge = AcUtilityDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
-    override fun fireExtinguisherClicked() {
-        val dalouge = FireDialouge()
+    override fun fireExtinguisherClicked(data: FireExtinguisher) {
+        val dalouge = FireDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
-    override fun surgeProtectedClicked() {
-        val dalouge = SurgeProtectroDeviceDialouge()
+    override fun surgeProtectedClicked(data: SurgeProtectionDevice) {
+        val dalouge = SurgeProtectroDeviceDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
-    override fun dcdbClicked() {
-        val dalouge = DcdbDialouge()
+    override fun dcdbClicked(data: DCDB) {
+        val dalouge = DcdbDialouge(data)
         dalouge.show(childFragmentManager, "")
     }
 
