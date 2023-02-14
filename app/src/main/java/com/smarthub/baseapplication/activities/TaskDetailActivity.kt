@@ -97,15 +97,15 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     }
 
     override fun attachmentItemClicked() {
-//       
+
     }
 
     override fun detailsItemClicked() {
-//       
+
     }
 
     override fun requestinfoClicked() {
-//       
+
     }
 
     override fun operationInfoDetailsItemClicked() {

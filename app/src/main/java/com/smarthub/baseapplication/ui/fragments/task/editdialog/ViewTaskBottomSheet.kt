@@ -1,7 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.task.editdialog
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,23 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.TaskDetailActivity
 import com.smarthub.baseapplication.databinding.CloseTaskBottomSheetBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
-import com.smarthub.baseapplication.model.taskModel.TaskInfoItem
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.ui.fragments.task.routes
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 
