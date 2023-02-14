@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.utils.AppLogger
 
 class ServicesRequestActivity : BaseActivity() {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
@@ -30,10 +31,14 @@ class ServicesRequestActivity : BaseActivity() {
 
 
     private fun initViews(){
-        val data = AppController.getInstance().siteInfoModel.item
-        binding.siteId.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
-        binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
-        binding.rfiDate.text= "${data?.get(0)?.OperationalInfo?.get(0)?.RFIDate}"
+        try {
+            val data = AppController.getInstance().siteInfoModel.item
+            binding.siteId.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+            binding.subTitle.text="${data?.get(0)?.Basicinfo?.get(0)?.siteID}"
+            binding.rfiDate.text= "${data?.get(0)?.OperationalInfo?.get(0)?.RFIDate}"
+        }catch (e:java.lang.Exception){
+            AppLogger.log("e:${e.localizedMessage}")
+        }
         binding.back.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }

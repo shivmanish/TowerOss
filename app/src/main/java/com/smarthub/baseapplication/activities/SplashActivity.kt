@@ -40,7 +40,7 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
 //            || loginTimeDiff > (30*60*60)
-            if (AppPreferences.getInstance().token.isNullOrEmpty()){
+            if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*60)){
                 if (isNetworkConnected){
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
