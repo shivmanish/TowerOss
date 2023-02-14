@@ -42,6 +42,7 @@ import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBot
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskEqupmentFragment
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOEditTab
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
+import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -56,6 +57,9 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     var viewmodel: HomeViewModel?=null
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
+    var lat ="19.25382218490181"
+    var long="72.98213045018673"
+    var radius="2"
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
@@ -91,6 +95,13 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
                 binding.dropdownImg.setImageResource(R.drawable.ic_arrow_up_faq)
             }
         }
+
+        binding.mapView.setOnClickListener {
+            mapView()
+        }
+//        binding.back.setOnClickListener {
+//            requireActivity().onBackPressedDispatcher.onBackPressed()
+//        }
     }
     private fun setDataObserver() {
 
@@ -197,6 +208,14 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
             return tabNames[position]
         }
 
+    }
+
+    private fun mapView(){
+        val intent = Intent(requireContext(), MapActivity::class.java)
+        intent.putExtra("lat",lat)
+        intent.putExtra("long",long)
+        intent.putExtra("rad",radius)
+        startActivity(intent)
     }
 
     override fun attachmentItemClicked() {

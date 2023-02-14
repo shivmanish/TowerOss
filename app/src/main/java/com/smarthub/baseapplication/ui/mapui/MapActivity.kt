@@ -76,6 +76,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        binding.back.setOnClickListener {
+            this.onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
     fun setMap() {
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment!!.getMapAsync(this)
