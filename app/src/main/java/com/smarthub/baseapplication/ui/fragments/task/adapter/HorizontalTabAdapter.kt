@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CardLayoutBinding
-import com.smarthub.baseapplication.databinding.ImgCardViewBinding
 
-class HorizontalTabAdapter(var listener: ItemClickListener) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
+class HorizontalTabAdapter(var listener: TaskCardClickListner) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
 
@@ -30,13 +29,13 @@ class HorizontalTabAdapter(var listener: ItemClickListener) : RecyclerView.Adapt
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.binding.root.setOnClickListener {
-            listener.itemClicked()
+            listener.TaskCardItemClicked()
         }
     }
     override fun getItemCount(): Int {
         return list.size
     }
-    interface ItemClickListener{
-        fun itemClicked()
+    interface TaskCardClickListner{
+        fun TaskCardItemClicked()
     }
 }

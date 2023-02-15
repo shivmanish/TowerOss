@@ -90,6 +90,21 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel) : Ad
         notifyDataSetChanged()
     }
 
+    fun generateSelectedIds():ArrayList<String>{
+        var selectedIds=ArrayList<String>()
+        if (currentSelected!=-1)
+        {
+            selectedIds.add("$currentSelected")
+            for(i in 0..sublistCheckedPos.size.minus(1))
+            {
+                if (sublistCheckedPos[i])
+                    selectedIds.add("$i")
+            }
+        }
+
+        return selectedIds
+    }
+
 }
 
 class CaptureSiteViewholder(itemView: View) : ViewHolder(itemView) {

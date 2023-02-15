@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.ui.fragments.task
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CaptureSiteFragmentDataBinding
 import com.smarthub.baseapplication.databinding.PhotoDocumentFragmentBinding
 import com.smarthub.baseapplication.model.home.MyTeamTask
@@ -31,6 +34,9 @@ class PhotoDocumentFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
+        viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
+        viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
         if(requireActivity().intent.hasExtra("data")){
             var data = Gson().fromJson(requireActivity().intent.getStringExtra("data"),MyTeamTask::class.java)
             viewmodel.getTaskById(data.id1)
@@ -40,13 +46,27 @@ class PhotoDocumentFragment: BaseFragment() {
             binding.pictureBox.isChecked= taskInfo?.pictures=="True"
             binding.documentBox.isChecked= taskInfo?.documents=="True"
         }
-        binding.next.setOnClickListener {
-            viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
-            viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
-            viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
-            AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
-            nextClicked()
+        binding.pictureBox.setOnCheckedChangeListener{buttonView, isChecked ->
+            viewmodel.processTemplatemanual.pictures=isChecked
         }
+        binding.documentBox.setOnCheckedChangeListener{buttonView, isChecked ->
+            viewmodel.processTemplatemanual.pictures=isChecked
+        }
+        binding.Remark.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                var changedText=binding.Remark.text
+                viewmodel.processTemplatemanual.remark=changedText.toString()
+            }
+        })
+//        binding.next.setOnClickListener {
+//            viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
+//            viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
+//            viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
+//            AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
+//            nextClicked()
+//        }
         binding.cancel.setOnClickListener {
             requireActivity().finish()
         }

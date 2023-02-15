@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,14 +24,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
-import com.smarthub.baseapplication.ui.adapter.AddMoreCustomerListAdapter
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OperationsItemsEditDialouge
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
@@ -44,11 +37,10 @@ import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOEditTab
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppConstants
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
-class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.ItemClickListener,
+class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var mainViewModel:MainViewModel
@@ -171,7 +163,6 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
             v = TaskTabItemsBinding.inflate(layoutInflater)
             val texttab: AppCompatTextView = v.textTab
             val texttabchange: TextView = v.txtTab
-            //val imagetab: AppCompatImageView = v.tabImage
             texttab.text = tabNames?.get(i)
             texttabchange.text = tabNames?.get(i)
             texttab.textSize=12f
@@ -269,7 +260,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     override fun viewOffsetClicked(position: Int) {
 
     }
-    override fun itemClicked() {
+    override fun TaskCardItemClicked() {
     }
     override fun taskSiteInfoItemClicked() {
         val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)

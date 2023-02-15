@@ -12,7 +12,7 @@ data class Processtemplatecallmanual(
     var Taskinstruction: String,
     var Taskname: String,
     var Weightage: String,
-    var Where: String,
+    var Where: ArrayList<String>,
     var Workflow: String,
     var actorname: String,
     var documents: Boolean,
