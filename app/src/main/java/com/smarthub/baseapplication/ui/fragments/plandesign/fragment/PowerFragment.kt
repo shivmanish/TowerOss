@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.databinding.PowerFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignPowerRequirement
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignPowerAdapter
-import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.EquipmentRoomDialouge
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PowerRequirementDialouge
 
 class PowerFragment(var powerData:List<PlanningAndDesignPowerRequirement>?):Fragment(),PlanDesignPowerAdapter.PowerListner {
@@ -36,8 +35,8 @@ class PowerFragment(var powerData:List<PlanningAndDesignPowerRequirement>?):Frag
         Toast.makeText(requireContext(),"attachment item clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editPowerRequiements() {
-        val dalouge = PowerRequirementDialouge()
+    override fun editPowerRequiements(data: PlanningAndDesignPowerRequirement?) {
+        val dalouge = PowerRequirementDialouge(data)
         dalouge.show(childFragmentManager,"")
     }
 

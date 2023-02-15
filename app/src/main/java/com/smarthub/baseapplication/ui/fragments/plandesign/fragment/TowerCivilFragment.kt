@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerCivilFragmentBinding
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignTowerAndCivil
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.Tower
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.plandesignTowerCivilAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleEditView
 import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.PoleView
@@ -30,16 +31,14 @@ class TowerCivilFragment(var twrCivilData:List<PlanningAndDesignTowerAndCivil>?)
         binding.listItem.layoutManager = LinearLayoutManager(requireContext())
         adapter= plandesignTowerCivilAdapter(requireContext(),this@TowerCivilFragment,twrCivilData)
         binding.listItem.adapter=adapter
-
-
     }
 
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"attachment item clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun editTower() {
-        val dalouge = TowerDialouge()
+    override fun editTower(towerData: Tower?) {
+        val dalouge = TowerDialouge(towerData!!)
         dalouge.show(childFragmentManager,"")
     }
 

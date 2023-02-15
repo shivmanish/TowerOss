@@ -95,7 +95,7 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
         when(holder){
             is PowerViewHold->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.editPowerRequiements()
+                    listener.editPowerRequiements(data)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -117,18 +117,18 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                try {
-                    holder.binding.PowerType.text=data?.PowerType
-                    holder.binding.voltage.text=data?.Voltage
-                    holder.binding.maxTotalPower.text=data?.MaxTotalPower
-                    holder.binding.batteryBackup.text=data?.BatteryBackup
-                    holder.binding.remark.text=data?.Remark
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
-//                    Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",
-//                        Toast.LENGTH_LONG).show()
+                    try {
+                        holder.binding.PowerType.text=data?.PowerType
+                        holder.binding.voltage.text=data?.Voltage
+                        holder.binding.maxTotalPower.text=data?.MaxTotalPower
+                        holder.binding.batteryBackup.text=data?.BatteryBackup
+                        holder.binding.remark.text=data?.Remark
+                    }catch (e:java.lang.Exception){
+                        AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
+    //                    Toast.makeText(context,"PlanDesign twrCivil Adapter error :${e.localizedMessage}",
+    //                        Toast.LENGTH_LONG).show()
 
-                }
+                    }
             }
             is AttachmentsViewHold->{
                 if (currentOpened == position) {
@@ -165,7 +165,7 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
 
     interface PowerListner{
         fun attachmentItemClicked()
-        fun editPowerRequiements()
+        fun editPowerRequiements(data: PlanningAndDesignPowerRequirement?)
 
     }
 }
