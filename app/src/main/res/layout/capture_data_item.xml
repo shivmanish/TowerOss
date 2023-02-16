@@ -18,7 +18,8 @@
         android:text="Basic Info"
         android:textSize="@dimen/dp14" />
 
-    <CheckBox
+    <ImageView
+        android:padding="5dp"
         android:id="@+id/sub_title_checkbox"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"

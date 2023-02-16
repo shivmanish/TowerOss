@@ -42,8 +42,8 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
 
             }
         }
-        if (calculateCheckedCount()>0 && parentChecked)
-            listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+//        if (calculateCheckedCount()>0 && parentChecked)
+//            listener.onCheckedCountChanged(calculateCheckedCount(),checked)
     }
 
     class CaptureItemViewholder(itemView: View) : ViewHolder(itemView) {
@@ -66,13 +66,30 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
 
     override fun onBindViewHolder(holder: CaptureItemViewholder, position: Int) {
         holder.binding.subTitle.text=list[position].name
+//        if (parentChecked)
+//            holder.binding.subTitleCheckbox.isChecked=checked[position]
+
+//        holder.binding.subTitleCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//            checked[position] = isChecked
+//            listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+//        }
         if (parentChecked)
-            holder.binding.subTitleCheckbox.isChecked=checked[position]
-        holder.binding.subTitleCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            holder.binding.subTitleCheckbox.tag = checked[position]
+        holder.binding.subTitleCheckbox.setOnClickListener {
+            if (holder.binding.subTitleCheckbox.tag==null)
+                holder.binding.subTitleCheckbox.tag = false
+            val isChecked = !(holder.binding.subTitleCheckbox.tag as Boolean)
             checked[position] = isChecked
             listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+            if(checked[position]){
+                holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_selected)
+            }else
+                holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_unselected)
         }
-
+        if(checked[position]){
+            holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_selected)
+        }else
+            holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_unselected)
 
     }
 
