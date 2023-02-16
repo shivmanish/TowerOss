@@ -92,8 +92,11 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
     }
 
     override fun clickedItem(data : OpcoDataItem) {
-        OpcoTenancyActivity.Opcodata=data
-        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
+//        OpcoTenancyActivity.Opcodata=data
+//        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
+
+        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivityNew::class.java))
+
 
     }
 }

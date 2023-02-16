@@ -194,6 +194,12 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.fragments.opcoTenancy.OpcoTenancyActivityNew"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
