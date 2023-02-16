@@ -67,9 +67,6 @@ class PhotoDocumentFragment: BaseFragment() {
 //            AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
 //            nextClicked()
 //        }
-        binding.cancel.setOnClickListener {
-            requireActivity().finish()
-        }
     }
 
 

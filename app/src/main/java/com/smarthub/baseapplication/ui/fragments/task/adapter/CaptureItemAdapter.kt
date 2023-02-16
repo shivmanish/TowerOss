@@ -16,7 +16,7 @@ import com.smarthub.baseapplication.databinding.CaptureDataItemBinding
 import com.smarthub.baseapplication.model.taskModel.dropdown.Tab
 import com.smarthub.baseapplication.utils.AppLogger
 
-class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChecked:Boolean, var statusList:ArrayList<Boolean>,var listener :CaptureItemAdapterListener) : Adapter<CaptureItemViewholder>() {
+class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChecked:Boolean, var statusList:ArrayList<Boolean>,var listener :CaptureItemAdapterListener) : Adapter<CaptureItemAdapter.CaptureItemViewholder>() {
 
     var checked = ArrayList<Boolean>()
 
@@ -42,6 +42,12 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
 
             }
         }
+        if (calculateCheckedCount()>0 && parentChecked)
+            listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+    }
+
+    class CaptureItemViewholder(itemView: View) : ViewHolder(itemView) {
+        var binding : CaptureDataItemBinding=CaptureDataItemBinding.bind(itemView)
 
     }
 
@@ -66,6 +72,8 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
             checked[position] = isChecked
             listener.onCheckedCountChanged(calculateCheckedCount(),checked)
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -73,9 +81,7 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
     }
 }
 
-class CaptureItemViewholder(itemView: View) : ViewHolder(itemView) {
-    var binding : CaptureDataItemBinding=CaptureDataItemBinding.bind(itemView)
-}
+
 
 interface CaptureItemAdapterListener{
     fun onCheckedCountChanged(count : Int,sublistStatus:ArrayList<Boolean>)
