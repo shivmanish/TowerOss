@@ -64,13 +64,13 @@
                 "id": 93,
                 "name": "Acquisition Survery",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": ["Radio Antennas","Backhaul Links","SR Details"]
             },
             {
                 "id": 94,
                 "name": "OPCO TSSR",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": ["Equipments","Radio Antennas","Requester Info"]
             },
             {
                 "id": 95,

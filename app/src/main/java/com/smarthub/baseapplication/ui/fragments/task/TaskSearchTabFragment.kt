@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.task
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
@@ -43,7 +45,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     lateinit var TaskListmodel :TaskDropDownModel
-//    var taskAndCardList:ArrayList<String> = ArrayList()
+    var taskAndCardList:ArrayList<String> = ArrayList()
 //    var selectedTabIndex:Int=0
     var lat ="19.25382218490181"
     var long="72.98213045018673"
@@ -55,10 +57,8 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
         val json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         mainViewModel.isActionBarHide(false)
-//        tabNames.add("OPCO Info")
-//        tabNames.add("Equipment")
-//        tabNames.add("Operator & Equip")
-//        taskAndCardList.addAll(listOf("1","0","2","3"))
+
+        taskAndCardList.addAll(listOf("1","0","2","3"))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -94,8 +94,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
 //        }
     }
     private fun setDataObserver() {
-
-        val list = arrayListOf("Data","Data1","Data2")
+        val list = TaskListmodel[taskAndCardList[0].toInt()].tabs[taskAndCardList[1].toInt()].list
         setViewPager(list)
 
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
@@ -123,8 +122,17 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     }
 
     fun setViewPager(list:List<String>){
-        binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list)
+        binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list,taskAndCardList)
         binding.tabs.setupWithViewPager( binding.viewpager)
+
+        if(binding.tabs.tabCount==1) {
+            binding.tabs.setBackgroundColor(Color.parseColor("#E9EEF7"))
+            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#E9EEF7"))
+        }
+        if(binding.tabs.tabCount<=4)
+            binding.tabs.tabMode = TabLayout.MODE_FIXED
+        else
+            binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
     private fun mapView(){
@@ -136,8 +144,6 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     }
 
     private fun createHoriZentalList():ArrayList<CollectionItem>{
-        val taskAndCardList=ArrayList<String>()
-       taskAndCardList.addAll(listOf("1","0","2","3"))
         if (taskAndCardList.isEmpty()) {
             Toast.makeText(requireContext(),"Collection list is empty",Toast.LENGTH_SHORT).show()
             return ArrayList()
