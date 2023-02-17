@@ -509,6 +509,7 @@
                 android:layout_marginTop="@dimen/dp10"
                 app:tabIndicatorColor="@color/yellow"
                 app:tabGravity="fill"
+                app:tabMode="scrollable"
                 app:tabBackground="@drawable/tab_color_selector"
                 app:tabPaddingStart="@dimen/dp5"
                 app:layout_constraintTop_toTopOf="parent"

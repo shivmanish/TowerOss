@@ -92,9 +92,9 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
 //            }
 //        }
 
-        binding.swipeLayout.setOnRefreshListener {
-            homeViewModel.siteInfoRequestAll(id)
-        }
+//        binding.swipeLayout.setOnRefreshListener {
+//            homeViewModel.siteInfoRequestAll(id)
+//        }
         homeViewModel.siteInfoRequestAll(id)
     }
 

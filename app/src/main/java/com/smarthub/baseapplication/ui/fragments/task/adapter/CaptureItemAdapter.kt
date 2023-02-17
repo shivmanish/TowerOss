@@ -4,19 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CaptureDataItemBinding
-import com.smarthub.baseapplication.model.taskModel.dropdown.Tab
+import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.utils.AppLogger
 
-class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChecked:Boolean, var statusList:ArrayList<Boolean>,var listener :CaptureItemAdapterListener) : Adapter<CaptureItemAdapter.CaptureItemViewholder>() {
+class CaptureItemAdapter(val context: Context, var list : List<CollectionItem>, var parentChecked:Boolean, var statusList:ArrayList<Boolean>, var listener :CaptureItemAdapterListener) : Adapter<CaptureItemAdapter.CaptureItemViewholder>() {
 
     var checked = ArrayList<Boolean>()
 

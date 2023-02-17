@@ -1,17 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.task.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CaptureSiteDataItemLayoutBinding
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
-import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.utils.AppLogger
 
 class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var listner:CapturedSite) : Adapter<CaptureSiteViewholder>() {

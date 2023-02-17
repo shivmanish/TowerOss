@@ -3,23 +3,21 @@ package com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
+import com.smarthub.baseapplication.ui.fragments.siteInfo.DynamicSiteFragment
 
-class SrDetauilsPageAdapter (fm: FragmentManager, var id:String?) : FragmentPagerAdapter(fm) {
+class SrDetauilsPageAdapter (fm: FragmentManager,var list:List<String>) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
-        return 3
+        return list.size
     }
 
     override fun getItem(position: Int): Fragment {
-        return TaskOPCOTabFragment(id!!)
+        return DynamicSiteFragment()
     }
 
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return "Tower${position+1}"
-
-
+        return list[position]
     }
 
 }
