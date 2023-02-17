@@ -27,7 +27,6 @@ import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.Tab
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
-import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModelItem
 import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
@@ -40,10 +39,15 @@ import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskEqupmentFragm
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOEditTab
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
 import com.smarthub.baseapplication.ui.mapui.MapActivity
+import com.smarthub.baseapplication.ui.taskUi.serviceRequest.acquisitionSurvey.AcquisitionSurveyPageAdapter
+import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauilsPageAdapter
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
+import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 
 class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
@@ -54,6 +58,9 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     var viewmodel: HomeViewModel?=null
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
+    lateinit var TaskListmodel :TaskDropDownModel
+    var taskAndCardList:ArrayList<String> = ArrayList()
+    var selectedTabIndex:Int=0
     var lat ="19.25382218490181"
     var long="72.98213045018673"
     var radius="2"
@@ -61,10 +68,13 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        var json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
+        TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         mainViewModel.isActionBarHide(false)
         tabNames.add("OPCO Info")
         tabNames.add("Equipment")
         tabNames.add("Operator & Equip")
+        taskAndCardList.addAll(listOf("1","0","2","3"))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -128,7 +138,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     }
     fun setData(){
         val adapter = ViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-        binding.viewpager.adapter = adapter
+        binding.viewpager.adapter = getViewPagerAdapter(childFragmentManager,siteID!!)
         binding.tabs.setupWithViewPager( binding.viewpager)
         setCustomTab()
         binding.viewpager.currentItem = 0
@@ -213,13 +223,47 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
         startActivity(intent)
     }
 
+    fun getViewPagerAdapter(fm:FragmentManager,siteId:String): FragmentPagerAdapter {
+        var selectedAdapter=
+            when(taskAndCardList[0].toInt()){
+                0->{
+                    when(selectedTabIndex){
+                        0->{
+                            SrDetauilsPageAdapter(fm,siteId)
+                        }
+                        else->{
+                            SrDetauilsPageAdapter(fm,siteId)
+                        }
+                    }
+                }
+                1->{
+                    when(selectedTabIndex){
+                        0->{
+                            SrDetauilsPageAdapter(fm,siteId)
+                        }
+                        else->{
+                            AcquisitionSurveyPageAdapter(fm,siteId)
+                        }
+                    }
+                }
+                else->{
+                    when(selectedTabIndex){
+                        0->{
+                            SrDetauilsPageAdapter(fm,siteId)
+                        }
+                        else->{
+                            SrDetauilsPageAdapter(fm,siteId)
+                        }
+                    }
+                }
+            }
+        return selectedAdapter
+    }
+
+
     fun createHoriZentalList():ArrayList<Tab>{
-        var taskAndCardList:ArrayList<String> = ArrayList()
         var cardList:ArrayList<Tab> =ArrayList()
-        taskAndCardList.addAll(listOf("1","0","2","3"))
-        var json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
-        var model = Gson().fromJson(json, TaskDropDownModel::class.java)
-        var selectedTask=model[taskAndCardList[0].toInt()]
+        var selectedTask=TaskListmodel[taskAndCardList[0].toInt()]
         cardList.clear()
         for(i in 1..taskAndCardList.size.minus(1)){
             cardList.add(selectedTask.tabs[taskAndCardList[i].toInt()])
@@ -278,7 +322,9 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     override fun viewOffsetClicked(position: Int) {
 
     }
-    override fun TaskCardItemClicked() {
+    override fun TaskCardItemClicked(selectedTab:Tab) {
+        selectedTabIndex=TaskListmodel[taskAndCardList[0].toInt()].tabs.indexOf(selectedTab)
+        AppLogger.log("selectedTabIndex====> $selectedTabIndex")
     }
     override fun taskSiteInfoItemClicked() {
         val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)

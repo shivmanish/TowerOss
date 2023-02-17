@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
             android:layout_width="@dimen/dp120"
             android:layout_height="45dp"
             android:layout_margin="@dimen/dp5"
@@ -36,7 +37,7 @@
                     android:layout_width="0dp"
                     android:maxLines="2"
                     android:ellipsize="marquee"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Assign ASQ Team"
