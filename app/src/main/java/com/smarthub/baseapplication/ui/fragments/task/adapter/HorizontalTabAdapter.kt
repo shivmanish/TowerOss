@@ -6,20 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CardLayoutBinding
+import com.smarthub.baseapplication.model.taskModel.dropdown.Tab
 
-class HorizontalTabAdapter(var listener: TaskCardClickListner) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
+class HorizontalTabAdapter(var listener: TaskCardClickListner, var list:ArrayList<Tab>) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
 
-    var list : ArrayList<String> = ArrayList()
+//    var list : ArrayList<String> = ArrayList()
 
-    init {
-        list.add("item1")
-        list.add("item1")
 
-    }
-    fun addItem(){
-        list.add("item1")
-        notifyItemChanged(list.size.minus(1))
-    }
+//    fun addItem(){
+//        list.add("item1")
+//        notifyItemChanged(list.size.minus(1))
+//    }
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding : CardLayoutBinding = CardLayoutBinding.bind(itemView)
     }
@@ -28,6 +25,7 @@ class HorizontalTabAdapter(var listener: TaskCardClickListner) : RecyclerView.Ad
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        holder.binding.cardTitle.text=list[position].name
         holder.binding.root.setOnClickListener {
             listener.TaskCardItemClicked()
         }

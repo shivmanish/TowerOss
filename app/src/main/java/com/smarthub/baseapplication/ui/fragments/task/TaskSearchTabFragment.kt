@@ -20,10 +20,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.taskModel.dropdown.Tab
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModelItem
 import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
@@ -37,6 +41,7 @@ import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOEditTab
 import com.smarthub.baseapplication.ui.fragments.task.task_tab.TaskOPCOTabFragment
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
@@ -68,9 +73,8 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
         super.onViewCreated(view, savedInstanceState)
        // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
         binding.collapsingLayout.tag= false
-
-        var adapter =  HorizontalTabAdapter(this@TaskSearchTabFragment)
-        binding.horizontalOnlyList.adapter = adapter
+        horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
+        binding.horizontalOnlyList.adapter = horizontalTabAdapter
         binding.horizontalOnlyList.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         setDataObserver()
 
@@ -207,6 +211,20 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
         intent.putExtra("long",long)
         intent.putExtra("rad",radius)
         startActivity(intent)
+    }
+
+    fun createHoriZentalList():ArrayList<Tab>{
+        var taskAndCardList:ArrayList<String> = ArrayList()
+        var cardList:ArrayList<Tab> =ArrayList()
+        taskAndCardList.addAll(listOf("1","0","2","3"))
+        var json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
+        var model = Gson().fromJson(json, TaskDropDownModel::class.java)
+        var selectedTask=model[taskAndCardList[0].toInt()]
+        cardList.clear()
+        for(i in 1..taskAndCardList.size.minus(1)){
+            cardList.add(selectedTask.tabs[taskAndCardList[i].toInt()])
+        }
+        return cardList
     }
 
     override fun attachmentItemClicked() {
