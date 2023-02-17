@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
-import com.smarthub.baseapplication.databinding.TaskTabItemsBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
@@ -32,31 +31,22 @@ import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauil
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
-import com.smarthub.baseapplication.viewmodels.HomeViewModel
-import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
-    private lateinit var mainViewModel:MainViewModel
-    private lateinit var v: TaskTabItemsBinding
-//    private var tabNames: ArrayList<String> = ArrayList()
-    var viewmodel: HomeViewModel?=null
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     lateinit var TaskListmodel :TaskDropDownModel
     var taskAndCardList:ArrayList<String> = ArrayList()
-//    var selectedTabIndex:Int=0
     var lat ="19.25382218490181"
     var long="72.98213045018673"
     var radius="2"
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
-        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
-        mainViewModel.isActionBarHide(false)
+
 
         taskAndCardList.addAll(listOf("1","0","2","3"))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
@@ -65,7 +55,6 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
     var list : ArrayList<Any> = ArrayList()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // binding.listItem.adapter = TaskAdapter(requireContext(),this@TaskSearchTabFragment)
         binding.collapsingLayout.tag= false
         horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
         binding.horizontalOnlyList.adapter = horizontalTabAdapter
@@ -118,7 +107,6 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
             }
         }
         siteDetailViewModel.fetchDropDown()
-        viewmodel?.opcoTenancyRequestAll(siteID!!)
     }
 
     fun setViewPager(list:List<String>){
