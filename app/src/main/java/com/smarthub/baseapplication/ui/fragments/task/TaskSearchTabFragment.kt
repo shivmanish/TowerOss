@@ -18,13 +18,10 @@ import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
-import com.smarthub.baseapplication.ui.dialog.services_request.EquipmentDetailsBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
-import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
-import com.smarthub.baseapplication.ui.fragments.task.editdialog.OPCOSiteInfoEdit
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauilsPageAdapter
@@ -32,7 +29,7 @@ import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.TaskLisListener,HorizontalTabAdapter.TaskCardClickListner,
+class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
@@ -148,57 +145,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(), TaskAdapter.Ta
         return cardList
     }
 
-    override fun attachmentItemClicked() {
 
-    }
-    override fun detailsItemClicked() {
-        val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-
-
-    }
-    override fun requestinfoClicked() {
-        val bottomSheetDialogFragment = OPCOSiteInfoEdit(R.layout.opco_info_site_dialouge_layout)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun operationInfoDetailsItemClicked() {
-
-    }
-    override fun geoConditionsDetailsItemClicked() {
-
-    }
-    override fun siteAccessDetailsItemClicked() {
-        Toast.makeText(context,"site acces botton sheet clicked",Toast.LENGTH_SHORT).show()
-
-//        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge)
-//        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun EditInstallationAcceptence() {
-
-    }
-    override fun EditTowerItem() {
-        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_room_dialouge_layout)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun editPoClicked(position: Int) {
-
-    }
-    override fun viewPoClicked(position: Int) {
-        val bottomSheetDialogFragment = EquipmentDetailsBottomSheetDialog(R.layout.equipment_view_bottom_sheet)
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
-    }
-    override fun editConsumableClicked(position: Int) {
-
-    }
-    override fun viewConsumableClicked(position: Int) {
-
-    }
-    override fun editOffsetClicked(position: Int) {
-
-    }
-    override fun viewOffsetClicked(position: Int) {
-
-    }
     override fun taskCardItemClicked(selectedCollectionItem:CollectionItem) {
         setViewPager(selectedCollectionItem.list)
     }

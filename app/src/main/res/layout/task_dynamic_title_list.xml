@@ -76,5 +76,37 @@
         tools:listitem="@layout/text_item_view"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/item_line"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow"
+        android:background="@drawable/rounded_textblue"
+        android:text="Update"
+        android:textColor="@color/color1"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingHorizontal="@dimen/dp8"
+        android:paddingVertical="@dimen/dp5"
+        android:textSize="@dimen/dp14"
+        android:layout_marginTop="@dimen/dp10"
+       android:layout_marginEnd="@dimen/dp15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_collapse"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/color1"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingHorizontal="@dimen/dp11"
+        android:paddingVertical="@dimen/dp7"
+        android:textSize="@dimen/dp14"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp10"
+        app:layout_constraintEnd_toStartOf="@+id/update_btn"
+        app:layout_constraintTop_toBottomOf="@id/item_collapse"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

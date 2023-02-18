@@ -5,29 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
 import com.smarthub.baseapplication.databinding.TaskDynamicTitleListBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.GeoCondition
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
-import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.adapter.DynamicItemListAdapter
-import com.smarthub.baseapplication.ui.adapter.DynamicTitleListAdapter
-import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
-import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
-import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
-import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
-import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
+import com.smarthub.baseapplication.ui.dynamic.ItemData
+import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -35,6 +21,7 @@ class TaskDynamicSiteFragment(var slectedTabs:ArrayList<String>,var childIndex:I
 
     lateinit var binding: TaskDynamicTitleListBinding
     lateinit var homeViewModel: HomeViewModel
+    lateinit var listData:TitleItem
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -65,21 +52,42 @@ class TaskDynamicSiteFragment(var slectedTabs:ArrayList<String>,var childIndex:I
         }
         val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
         val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
-        var data=model.data[childIndex]
-        binding.itemTitleStr.text=data.title
-        binding.itemCollapse.adapter = DynamicItemListAdapter(data.listData,
-            object : DynamicItemListAdapter.DynamicItemListAdapterListener{
-            override fun onDateFieldFind(text: TextView) {
-                setDatePickerView(text)
-            }
+        listData =model.data[childIndex]
+        binding.itemTitleStr.text=listData.title
+        binding.imgEdit.setOnClickListener {
+            setEditItemAdapter(listData.listData)
+        }
+        binding.cancelBtn.setOnClickListener {
+            setViewItemAdapter(listData.listData)
+        }
+        binding.updateBtn.setOnClickListener {
+            setViewItemAdapter(listData.listData)
+        }
+        setViewItemAdapter(listData.listData)
 
-        })
 //            DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
 //            override fun onDateFieldFind(text: TextView) {
 //                setDatePickerView(text)
 //            }
 //
 //        })
+    }
+
+    fun setEditItemAdapter(data: List<ItemData>){
+        binding.cancelBtn.visibility=View.VISIBLE
+        binding.updateBtn.visibility=View.VISIBLE
+        binding.itemCollapse.adapter = DynamicItemListAdapter(data,
+            object : DynamicItemListAdapter.DynamicItemListAdapterListener{
+                override fun onDateFieldFind(text: TextView) {
+                    setDatePickerView(text)
+                }
+
+            })
+    }
+    fun setViewItemAdapter(data: List<ItemData>){
+        binding.cancelBtn.visibility=View.GONE
+        binding.updateBtn.visibility=View.GONE
+        binding.itemCollapse.adapter=DynamicViewItemListAdapter(data)
     }
 
     override fun onDestroy() {
