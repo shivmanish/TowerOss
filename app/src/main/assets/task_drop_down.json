@@ -9,25 +9,33 @@
                 "name": "Basic Info",
                 "checked": false,
                 "disabled": true,
-                "list": []
+                "list": [
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Site Info", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                ]
             },
             {
                 "id": 42,
                 "name": "Operational Info",
                 "checked": false,
-                "list": []
+                "list": [
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Operational Info", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                ]
             },
             {
                 "id": 43,
                 "name": "Geo Conditions",
                 "checked": false,
-                "list": []
+                "list": [
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Geo Conditions", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                ]
             },
             {
                 "id": 44,
                 "name": "Safety/Access",
                 "checked": false,
-                "list": []
+                "list": [
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Safety/Access", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                ]
             },
             {
                 "id": 45,
@@ -54,8 +62,8 @@
                 "checked": false,
                 "list": [
                     { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Equipments", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Radio Antennas", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
                 ]
             },
             {

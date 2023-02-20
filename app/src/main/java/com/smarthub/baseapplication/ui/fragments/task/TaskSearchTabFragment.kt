@@ -11,14 +11,13 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patrollerapp.homepage.HomePage
+//import com.example.patrollerapp.homepage.HomePage
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
-import com.smarthub.baseapplication.model.taskModel.dropdown.TabItemData
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -26,7 +25,6 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
-import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauilsPageAdapter
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
@@ -48,7 +46,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
 
 
-        taskAndCardList.addAll(listOf("1","0","2","3"))
+        taskAndCardList.addAll(listOf("1","0","1","2"))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -114,8 +112,9 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
         binding.tabs.setupWithViewPager( binding.viewpager)
 
         if(binding.tabs.tabCount==1) {
-            binding.tabs.setBackgroundColor(Color.parseColor("#E9EEF7"))
-            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#E9EEF7"))
+            binding.tabs.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
+            binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFFFF"))
+            binding.tabs.isTabIndicatorFullWidth=true
         }
         if(binding.tabs.tabCount<=4)
             binding.tabs.tabMode = TabLayout.MODE_FIXED
@@ -124,11 +123,11 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
     }
 
     private fun mapView(){
-        val intent = Intent(requireContext(), HomePage::class.java)
-        intent.putExtra("lat",lat)
-        intent.putExtra("long",long)
-        intent.putExtra("rad",radius)
-        startActivity(intent)
+//        val intent = Intent(requireContext(), HomePage::class.java)
+//        intent.putExtra("lat",lat)
+//        intent.putExtra("long",long)
+//        intent.putExtra("rad",radius)
+//        startActivity(intent)
     }
 
     private fun createHoriZentalList():ArrayList<CollectionItem>{
