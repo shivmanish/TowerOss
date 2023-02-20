@@ -2,16 +2,13 @@ package com.smarthub.baseapplication.ui.fragments.sitedetail
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -30,7 +27,6 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.basic_info.SiteImages
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
@@ -38,7 +34,6 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
-import com.smarthub.baseapplication.ui.fragments.qatNew.QatMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment

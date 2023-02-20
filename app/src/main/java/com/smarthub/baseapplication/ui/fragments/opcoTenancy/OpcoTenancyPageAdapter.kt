@@ -33,6 +33,7 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
             else -> {
                 return OpcoSiteInfoFramgment(opcodata!!)
             }
+
         }
     }
 
