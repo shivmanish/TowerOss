@@ -290,8 +290,8 @@ class HomePageViewModel : ViewModel() {
 
 
     fun fetchUserDetails(context: Context) {
-        var dialog = Util.getdialouge(context)
-        dialog.show()
+//        var dialog = Util.getdialouge(context)
+//        dialog.show()
         val retrofit: Retrofit = APIClientPatroller.getClient()
         val apiInference = retrofit.create(APIInterface::class.java)
         val call = apiInference.getUserDetails(
@@ -305,7 +305,7 @@ class HomePageViewModel : ViewModel() {
                 call: Call<UserDataResponse>,
                 response: Response<UserDataResponse>
             ) {
-                dialog.dismiss()
+//                dialog.dismiss()
                 if(response.isSuccessful){
                     val responseData = response.body()
                     println("response is " + response.body())
@@ -323,7 +323,7 @@ class HomePageViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {
-                dialog.dismiss()
+//                dialog.dismiss()
                 showAllert(context as Activity)
                 println("error is " + t.message)
 
