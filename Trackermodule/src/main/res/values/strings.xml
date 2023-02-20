@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PatrollerApp</string>
+    <string name="otp_error" translatable="false">Enter a 4 digit valid pin or enter a registered mobile  number below</string>
+    <string name="enable_now">Enable</string>
+    <string name="gps_gfg_enabled">Please Enable</string>
+    <string name="required_for_this_app">This is required for the app</string>
+
+
+    <string name="service_already_running">Service is already running</string>
+    <string name="service_start_successfully">Service start successfully</string>
+    <string name="gps_enable">GPS enable</string>
+    <string name="please_turn_on_gps">Please turn on GPS</string>
+    <string name="ok">Ok</string>
+    <string name="phone_error">Enter a registered mobile number or contact with   administrator</string>
+    <string name="set_otp_text">Please enter pass code for avoid mobile authentication evry time</string>
+    <string name="location_disclaimer">We need this permission</string>
+</resources>
