@@ -25,6 +25,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp30"
                 android:padding="5dp"

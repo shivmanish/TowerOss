@@ -8,32 +8,38 @@
                 "id": 41,
                 "name": "Basic Info",
                 "checked": false,
-                "disabled": true
+                "disabled": true,
+                "list": []
             },
             {
                 "id": 42,
                 "name": "Operational Info",
-                "checked": false
+                "checked": false,
+                "list": []
             },
             {
                 "id": 43,
                 "name": "Geo Conditions",
-                "checked": false
+                "checked": false,
+                "list": []
             },
             {
                 "id": 44,
                 "name": "Safety/Access",
-                "checked": false
+                "checked": false,
+                "list": []
             },
             {
                 "id": 45,
                 "name": "Picture/Layout",
-                "checked": false
+                "checked": false,
+                "list": []
             },
             {
                 "id": 46,
                 "name": "Map View",
-                "checked": false
+                "checked": false,
+                "list": []
             }
         ]
     },
@@ -44,43 +50,51 @@
         "tabs": [
             {
                 "id": 91,
-                "name": "SR Detail",
-                "checked": false
+                "name": "Site Request",
+                "checked": false,
+                "list": ["SR Details","Equipments","Radio Antennas"]
             },
             {
                 "id": 92,
                 "name": "Assign ACQ Team",
-                "checked": false
+                "checked": false,
+                "list": ["SR Details","Equipments","Radio Antennas"]
             },
             {
                 "id": 93,
                 "name": "Acquisition Survery",
-                "checked": false
+                "checked": false,
+                "list": ["Radio Antennas","Backhaul Links","SR Details"]
             },
             {
                 "id": 94,
                 "name": "OPCO TSSR",
-                "checked": false
+                "checked": false,
+                "list": ["Equipments","Radio Antennas","Requester Info"]
             },
             {
                 "id": 95,
                 "name": "Feasibility Planning",
-                "checked": false
+                "checked": false,
+                "list": ["SR Details","Equipments","Radio Antennas"]
             },
             {
                 "id": 96,
                 "name": "Soft Acquisition",
-                "checked": false
+                "checked": false,
+                "list": ["SR Details","Equipments","Radio Antennas"]
             },
             {
                 "id": 97,
                 "name": "Site Proposal",
-                "checked": false
+                "checked": false,
+                "list": ["SR Details","Equipments","Radio Antennas"]
             },
             {
                 "id": 98,
                 "name": "SP Approval/SO",
-                "checked": false
+                "checked": false,
+                "list": ["SR Details","Equipments","Radio Antennas"]
             }
         ]
     },

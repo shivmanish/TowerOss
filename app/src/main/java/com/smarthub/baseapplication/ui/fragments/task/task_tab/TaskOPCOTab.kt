@@ -34,9 +34,9 @@ class TaskOPCOTabFragment(var siteID: String) : BaseFragment(), TaskAdapter.Task
         super.onViewCreated(view, savedInstanceState)
         taskAdapter = TaskAdapter(requireActivity(),this@TaskOPCOTabFragment)
         fragmentSiteLeaseBinding.siteLeaseListItem.adapter = taskAdapter
-        if (viewmodel?.opcoTenencyModelResponse?.hasActiveObservers() == true)
-            viewmodel?.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
-        viewmodel?.opcoTenencyModelResponse?.observe(viewLifecycleOwner) {
+        if (viewmodel.opcoTenencyModelResponse?.hasActiveObservers() == true)
+            viewmodel.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
+        viewmodel.opcoTenencyModelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
@@ -64,8 +64,8 @@ class TaskOPCOTabFragment(var siteID: String) : BaseFragment(), TaskAdapter.Task
     }
 
     override fun onDestroy() {
-        if (viewmodel?.opcoTenencyModelResponse?.hasActiveObservers() == true)
-            viewmodel?.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.opcoTenencyModelResponse?.hasActiveObservers() == true)
+            viewmodel.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
         super.onDestroy()
     }
 

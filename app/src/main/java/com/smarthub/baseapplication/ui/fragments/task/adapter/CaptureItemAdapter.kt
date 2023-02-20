@@ -4,19 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CaptureDataItemBinding
-import com.smarthub.baseapplication.model.taskModel.dropdown.Tab
+import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.utils.AppLogger
 
-class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChecked:Boolean, var statusList:ArrayList<Boolean>,var listener :CaptureItemAdapterListener) : Adapter<CaptureItemViewholder>() {
+class CaptureItemAdapter(val context: Context, var list : List<CollectionItem>, var parentChecked:Boolean, var statusList:ArrayList<Boolean>, var listener :CaptureItemAdapterListener) : Adapter<CaptureItemAdapter.CaptureItemViewholder>() {
 
     var checked = ArrayList<Boolean>()
 
@@ -42,6 +37,12 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
 
             }
         }
+//        if (calculateCheckedCount()>0 && parentChecked)
+//            listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+    }
+
+    class CaptureItemViewholder(itemView: View) : ViewHolder(itemView) {
+        var binding : CaptureDataItemBinding=CaptureDataItemBinding.bind(itemView)
 
     }
 
@@ -60,12 +61,31 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
 
     override fun onBindViewHolder(holder: CaptureItemViewholder, position: Int) {
         holder.binding.subTitle.text=list[position].name
+//        if (parentChecked)
+//            holder.binding.subTitleCheckbox.isChecked=checked[position]
+
+//        holder.binding.subTitleCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//            checked[position] = isChecked
+//            listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+//        }
         if (parentChecked)
-            holder.binding.subTitleCheckbox.isChecked=checked[position]
-        holder.binding.subTitleCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            holder.binding.subTitleCheckbox.tag = checked[position]
+        holder.binding.subTitleCheckbox.setOnClickListener {
+            if (holder.binding.subTitleCheckbox.tag==null)
+                holder.binding.subTitleCheckbox.tag = false
+            val isChecked = !(holder.binding.subTitleCheckbox.tag as Boolean)
             checked[position] = isChecked
             listener.onCheckedCountChanged(calculateCheckedCount(),checked)
+            if(checked[position]){
+                holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_selected)
+            }else
+                holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_unselected)
         }
+        if(checked[position]){
+            holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_selected)
+        }else
+            holder.binding.subTitleCheckbox.setImageResource(R.drawable.check_unselected)
+
     }
 
     override fun getItemCount(): Int {
@@ -73,9 +93,7 @@ class CaptureItemAdapter(val context: Context,var list : List<Tab>,var parentChe
     }
 }
 
-class CaptureItemViewholder(itemView: View) : ViewHolder(itemView) {
-    var binding : CaptureDataItemBinding=CaptureDataItemBinding.bind(itemView)
-}
+
 
 interface CaptureItemAdapterListener{
     fun onCheckedCountChanged(count : Int,sublistStatus:ArrayList<Boolean>)

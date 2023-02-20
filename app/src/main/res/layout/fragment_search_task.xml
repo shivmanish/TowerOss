@@ -26,142 +26,126 @@
                 android:id="@id/top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingTop="@dimen/dp10"
-                android:paddingEnd="@dimen/dp15"
+                android:paddingEnd="@dimen/dp10"
                 android:paddingBottom="5dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:adjustViewBounds="true"
+                        android:paddingHorizontal="@dimen/dp7"
+                        android:paddingBottom="@dimen/dp8"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:src="@drawable/ic_back"
+                        app:tint="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_layout"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_layout"/>
 
-                <ImageView
-                    android:id="@+id/back"
-                    android:layout_width="@dimen/dp35"
-                    android:layout_height="@dimen/dp35"
-                    android:layout_marginLeft="@dimen/dp8"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:adjustViewBounds="true"
-                    android:padding="@dimen/dp7"
-                    android:src="@drawable/ic_back"
-                    app:tint="@color/white" />
 
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_weight="3"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/dp8">
-
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/title_layout"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/info_ico"
-                        android:fontFamily="@font/poppins"
-                        android:text="Load Nominals (Closed)"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/sp14" />
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dp8"
+                        app:layout_constraintStart_toEndOf="@+id/back"
+                        app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Load Nominals"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp14" />
+                            <TextView
+                                android:id="@+id/status"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="(Pending...)"
+                                android:textColor="@color/white"
+                                android:layout_marginLeft="@dimen/dp3"
+                                android:textSize="@dimen/sp14" />
+                            <ImageView
+                                android:src="@drawable/ic_sugggestion"
+                                android:layout_marginLeft="@dimen/dp3"
+                                android:layout_width="15dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="15dp"
+                                app:tint="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="SLA : "
+                                android:textColor="@color/milky_white"
+                                android:textSize="@dimen/sp12"
+                                android:textStyle="italic"/>
+
+                            <TextView
+                                android:id="@+id/sla"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="@dimen/dp2"
+                                android:text="02"
+                                android:fontFamily="@font/poppins"
+                                android:textColor="@color/milky_white"
+                                android:textSize="@dimen/dp12"
+                                android:textStyle="italic" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_layout">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/closedby"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentTop="true"
                             android:fontFamily="@font/poppins"
-                            android:gravity="center"
-                            android:text="Count :"
-                            android:textAppearance="@style/RowTextItemInfosmall"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dp12"
-                            android:textStyle="italic" />
+                            android:text="Closed by"
+                            android:textColor="@color/milky_white"
+                            android:textSize="@dimen/sp12" />
 
                         <TextView
-                            android:id="@+id/mark4"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:gravity="center"
-                            android:text="2"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dp12"
-                            android:textStyle="italic" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dp5"
-                            android:fontFamily="@font/poppins_light"
-                            android:gravity="center_vertical"
-                            android:lineSpacingExtra="1sp"
-                            android:text=" | "
-                            android:textAppearance="@style/RowTextItemInfosmall"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dp12" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginLeft="@dimen/dp5"
                             android:fontFamily="@font/poppins"
-                            android:gravity="center_vertical"
-                            android:lineSpacingExtra="2sp"
-                            android:text="Capacity : "
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dp12"
-                            android:textStyle="italic" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:gravity="center"
-                            android:lineSpacingExtra="2sp"
-                            android:text="5 kw"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dp12"
-                            android:textStyle="italic" />
+                            android:text="Umesh Salunke"
+                            android:textColor="@color/milky_white"
+                            android:textSize="@dimen/sp12" />
 
                     </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp25"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_weight="2"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/dp8">
-
-                    <TextView
-                        android:id="@+id/closedby"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="Closed by"
-                        android:textColor="@color/milky_white"
-                        android:textSize="@dimen/sp12" />
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="Umesh Salunke"
-                        android:textColor="@color/milky_white"
-                        android:textSize="@dimen/sp12" />
-
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -509,6 +493,8 @@
                 android:layout_marginTop="@dimen/dp10"
                 app:tabIndicatorColor="@color/yellow"
                 app:tabGravity="fill"
+                app:tabMode="scrollable"
+                app:tabIndicatorHeight="3dp"
                 app:tabBackground="@drawable/tab_color_selector"
                 app:tabPaddingStart="@dimen/dp5"
                 app:layout_constraintTop_toTopOf="parent"
@@ -560,14 +546,14 @@
                 android:layout_marginTop="@dimen/dp30"
                 android:layout_height="match_parent">
                 <TextView
-                    android:id="@+id/start_btn"
+                    android:id="@+id/submit_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_textblue"
-                    android:text="Start"
+                    android:text="Submit"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
-                    android:paddingHorizontal="@dimen/dp25"
+                    android:paddingHorizontal="@dimen/dp23"
                     android:paddingVertical="@dimen/dp6"
                     android:textSize="@dimen/dp15"
                     android:layout_marginStart="@dimen/dp8"
@@ -580,9 +566,9 @@
                     android:layout_height="8dp"
                     android:layout_marginStart="@dimen/dp2"
                     android:src="@drawable/circle_gray"
-                    app:layout_constraintStart_toEndOf="@+id/start_btn"
-                    app:layout_constraintTop_toTopOf="@+id/start_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
+                    app:layout_constraintStart_toEndOf="@+id/submit_btn"
+                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
+                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
                 <View
                     android:id="@+id/dot_connecter_line"
                     android:layout_width="50dp"
@@ -613,8 +599,8 @@
                     android:textSize="@dimen/dp13"
                     android:layout_marginStart="@dimen/dp2"
                     app:layout_constraintStart_toEndOf="@+id/dot_2"
-                    app:layout_constraintTop_toTopOf="@+id/start_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
+                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
+                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
                 <ImageView
                     android:id="@+id/map_view"
                     android:layout_width="wrap_content"
@@ -622,8 +608,8 @@
                     android:src="@drawable/ic_menu_map"
                     android:layout_marginEnd="@dimen/dp7"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/start_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
+                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
+                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
                 <ImageView
                     android:id="@+id/messages"
                     android:layout_width="wrap_content"
@@ -631,8 +617,8 @@
                     android:src="@drawable/chat_icon"
                     app:layout_constraintEnd_toStartOf="@+id/map_view"
                     app:layout_constraintStart_toEndOf="@+id/close_btn"
-                    app:layout_constraintTop_toTopOf="@+id/start_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/start_btn"/>
+                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
+                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
                 <View
                     android:visibility="gone"
                     android:id="@+id/top_line"
@@ -643,7 +629,7 @@
                     android:layout_marginBottom="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/start_btn"
+                    app:layout_constraintBottom_toTopOf="@+id/submit_btn"
                    />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -702,10 +688,10 @@
                         app:layout_constraintTop_toTopOf="@+id/task_start_time"
                         app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
                     <TextView
-                        android:id="@+id/cancel"
+                        android:id="@+id/start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cancle"
+                        android:text="Start"
                         android:textSize="14dp"
                         android:textColor="@color/yellow"
                         android:fontFamily="@font/poppins_semibold"
@@ -725,7 +711,7 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:layout_marginEnd="@dimen/dp8"
                         android:padding="@dimen/dp5"
-                        app:layout_constraintEnd_toStartOf="@+id/cancel"
+                        app:layout_constraintEnd_toStartOf="@+id/start"
                         app:layout_constraintTop_toTopOf="@+id/task_start_time"
                         app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>

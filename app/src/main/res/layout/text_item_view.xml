@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    style="@style/ColumnItemInfo"
-    android:layout_marginTop="@dimen/dp10">
+    style="@style/ColumnItemInfo">
     <TextView
         android:text="Site Name"
         style="@style/RowTextItemInfo"

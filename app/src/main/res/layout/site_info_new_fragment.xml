@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:id="@+id/swipe_layout"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:orientation="vertical"
-            tools:itemCount="3"
-            android:id="@+id/list_item"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp5"
-            tools:listitem="@layout/commercial_list_item1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+<androidx.recyclerview.widget.RecyclerView
+    android:orientation="vertical"
+    tools:itemCount="3"
+    android:id="@+id/list_item"
+    android:layout_marginTop="@dimen/dp10"
+    android:layout_marginBottom="@dimen/dp5"
+    tools:listitem="@layout/commercial_list_item1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-        <ImageView
-            android:id="@+id/add_more"
-            android:adjustViewBounds="true"
-            android:layout_width="@dimen/dp50"
-            android:layout_height="@dimen/dp50"
-            android:layout_marginEnd="@dimen/dp20"
-            android:layout_marginBottom="@dimen/dp20"
-            app:srcCompat="@drawable/ic_new_menu_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+<ImageView
+    android:id="@+id/add_more"
+    android:adjustViewBounds="true"
+    android:layout_width="@dimen/dp50"
+    android:layout_height="@dimen/dp50"
+    android:layout_marginEnd="@dimen/dp20"
+    android:layout_marginBottom="@dimen/dp20"
+    app:srcCompat="@drawable/ic_new_menu_icon"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
