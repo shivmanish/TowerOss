@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.patrollerapp.homepage.HomePage
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
@@ -123,7 +124,7 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
     }
 
     private fun mapView(){
-        val intent = Intent(requireContext(), MapActivity::class.java)
+        val intent = Intent(requireContext(), HomePage::class.java)
         intent.putExtra("lat",lat)
         intent.putExtra("long",long)
         intent.putExtra("rad",radius)
