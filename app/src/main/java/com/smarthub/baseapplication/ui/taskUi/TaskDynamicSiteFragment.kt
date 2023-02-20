@@ -17,11 +17,11 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TaskDynamicSiteFragment(var slectedTabs:ArrayList<String>,var childIndex:Int): BaseFragment() {
+class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int): BaseFragment() {
 
     lateinit var binding: TaskDynamicTitleListBinding
     lateinit var homeViewModel: HomeViewModel
-    lateinit var listData:TitleItem
+//    lateinit var listData:TitleItem
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -50,9 +50,9 @@ class TaskDynamicSiteFragment(var slectedTabs:ArrayList<String>,var childIndex:I
                 binding.imgEdit.visibility=View.VISIBLE
             }
         }
-        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
-        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
-        listData =model.data[childIndex]
+//        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
+//        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
+//        listData =model.data[childIndex]
         binding.itemTitleStr.text=listData.title
         binding.imgEdit.setOnClickListener {
             setEditItemAdapter(listData.listData)

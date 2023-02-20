@@ -17,7 +17,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
+import com.smarthub.baseapplication.model.taskModel.dropdown.TabItemData
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
+import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
@@ -106,8 +108,8 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
         siteDetailViewModel.fetchDropDown()
     }
 
-    fun setViewPager(list:List<String>){
-        binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list,taskAndCardList)
+    private fun setViewPager(list:List<TitleItem>){
+        binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list)
         binding.tabs.setupWithViewPager( binding.viewpager)
 
         if(binding.tabs.tabCount==1) {

@@ -52,49 +52,67 @@
                 "id": 91,
                 "name": "Site Request",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": [
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                ]
             },
             {
                 "id": 92,
                 "name": "Assign ACQ Team",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": [
+
+                ]
             },
             {
                 "id": 93,
                 "name": "Acquisition Survery",
                 "checked": false,
-                "list": ["Radio Antennas","Backhaul Links","SR Details"]
+                "list": [
+
+                ]
             },
             {
                 "id": 94,
                 "name": "OPCO TSSR",
                 "checked": false,
-                "list": ["Equipments","Radio Antennas","Requester Info"]
+                "list": [
+
+                ]
             },
             {
                 "id": 95,
                 "name": "Feasibility Planning",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": [
+
+                ]
             },
             {
                 "id": 96,
                 "name": "Soft Acquisition",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": [
+
+                ]
             },
             {
                 "id": 97,
                 "name": "Site Proposal",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": [
+
+                ]
             },
             {
                 "id": 98,
                 "name": "SP Approval/SO",
                 "checked": false,
-                "list": ["SR Details","Equipments","Radio Antennas"]
+                "list": [
+
+                ]
             }
         ]
     },
