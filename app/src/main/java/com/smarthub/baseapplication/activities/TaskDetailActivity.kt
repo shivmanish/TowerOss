@@ -47,8 +47,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
                 if (it.data.isNotEmpty()){
                     mapUIData(it.data[0])
                 }
-                else
-                    setFragment(TaskSearchTabFragment(siteId))
+//                else
+//                    setFragment(TaskSearchTabFragment(siteId,))
                 Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
@@ -69,8 +69,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
     }
 
-    fun mapUIData(item : TaskDataListItem){
-        setFragment(TaskSearchTabFragment(siteId))
+    private fun mapUIData(item : TaskDataListItem){
+        setFragment(TaskSearchTabFragment(siteId,item.Taskid))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)

@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.task
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -11,14 +10,12 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patrollerapp.homepage.HomePage
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
-import com.smarthub.baseapplication.model.taskModel.dropdown.TabItemData
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -26,13 +23,12 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
-import com.smarthub.baseapplication.ui.mapui.MapActivity
 import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauilsPageAdapter
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAdapter.TaskCardClickListner,
+class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragment(),HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
@@ -47,6 +43,21 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
         val json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
 
+        if (siteDetailViewModel.taskUiModelResoonse?.hasActiveObservers() == true)
+            siteDetailViewModel.taskUiModelResoonse?.removeObservers(viewLifecycleOwner)
+        siteDetailViewModel.taskUiModelResoonse?.observe(viewLifecycleOwner){
+            if (it!=null && it.status == Resource.Status.SUCCESS && it.data!=null){
+                TaskListmodel = it.data
+                AppLogger.log("data:${Gson().toJson(it.data)}")
+                val list = TaskListmodel[taskAndCardList[0].toInt()].tabs[taskAndCardList[1].toInt()].list
+                setViewPager(list)
+                Toast.makeText(requireContext(),"ui data fetched",Toast.LENGTH_SHORT).show()
+            }else Toast.makeText(requireContext(),"something went wrong",Toast.LENGTH_SHORT).show()
+        }
+
+        siteDetailViewModel.siteTaskUiModel(taskId)
+
+//        siteDetailViewModel.siteTaskUiUpdateModel(TaskListmodel)
 
         taskAndCardList.addAll(listOf("1","0","2","3"))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
@@ -124,11 +135,11 @@ class TaskSearchTabFragment(var siteID:String?) : BaseFragment(),HorizontalTabAd
     }
 
     private fun mapView(){
-        val intent = Intent(requireContext(), HomePage::class.java)
-        intent.putExtra("lat",lat)
-        intent.putExtra("long",long)
-        intent.putExtra("rad",radius)
-        startActivity(intent)
+//        val intent = Intent(requireContext(), HomePage::class.java)
+//        intent.putExtra("lat",lat)
+//        intent.putExtra("long",long)
+//        intent.putExtra("rad",radius)
+//        startActivity(intent)
     }
 
     private fun createHoriZentalList():ArrayList<CollectionItem>{

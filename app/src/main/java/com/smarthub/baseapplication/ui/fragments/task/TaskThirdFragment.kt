@@ -33,7 +33,7 @@ class TaskThirdFragment:Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
         if(requireActivity().intent.hasExtra("data")){
-            var data = Gson().fromJson(requireActivity().intent.getStringExtra("data"), MyTeamTask::class.java)
+            val data = Gson().fromJson(requireActivity().intent.getStringExtra("data"), MyTeamTask::class.java)
             viewmodel.getTaskById(data.id1)
             taskInfoObserver()
         }
@@ -60,6 +60,7 @@ class TaskThirdFragment:Fragment() {
                     progressDialog.dismiss()
                 }
                 if (it!=null && it.Message == "Data updated"){
+//                    call UI update api for task
                     Toast.makeText(context,"Task Created SuccessFully",Toast.LENGTH_LONG).show()
                     requireActivity().finish()
                 }
