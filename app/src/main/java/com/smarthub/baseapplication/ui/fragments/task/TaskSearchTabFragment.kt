@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.fragments.task
-
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,7 @@ import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModelItem
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
@@ -33,6 +33,7 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
+    var TaskAlltabsData: TaskDropDownModelItem ?=null
     lateinit var TaskListmodel :TaskDropDownModel
     var taskAndCardList:ArrayList<String> = ArrayList()
     var lat ="19.25382218490181"
@@ -42,12 +43,12 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
-
+        taskAndCardList.addAll(listOf("1","0","2","3"))
         if (siteDetailViewModel.taskUiModelResoonse?.hasActiveObservers() == true)
             siteDetailViewModel.taskUiModelResoonse?.removeObservers(viewLifecycleOwner)
         siteDetailViewModel.taskUiModelResoonse?.observe(viewLifecycleOwner){
             if (it!=null && it.status == Resource.Status.SUCCESS && it.data!=null){
-                TaskListmodel = it.data
+                TaskAlltabsData = it.data.get(0).data.get(taskAndCardList[0].toInt())
                 AppLogger.log("data:${Gson().toJson(it.data)}")
                 val list = TaskListmodel[taskAndCardList[0].toInt()].tabs[taskAndCardList[1].toInt()].list
                 setViewPager(list)
@@ -59,7 +60,6 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
 
 //        siteDetailViewModel.siteTaskUiUpdateModel(TaskListmodel)
 
-        taskAndCardList.addAll(listOf("1","0","2","3"))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -67,9 +67,13 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.collapsingLayout.tag= false
-        horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
-        binding.horizontalOnlyList.adapter = horizontalTabAdapter
         binding.horizontalOnlyList.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+        try {
+            horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList(),TaskAlltabsData?.tabs!!)
+            binding.horizontalOnlyList.adapter = horizontalTabAdapter
+        }catch (e:Exception){
+            AppLogger.log("Somthing went wrong in TaskSearchTabFragment during set HorizontalTabAdapter ")
+        }
         setDataObserver()
 
         binding.dropdownImg.setOnClickListener {

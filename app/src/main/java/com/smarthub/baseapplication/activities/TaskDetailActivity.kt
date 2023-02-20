@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.ActivityTaskDetailBinding
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
@@ -44,6 +45,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         viewModel.taskDataList?.observe(this){
             hideLoader()
             if (it?.data != null){
+                AppLogger.log("task data in mapUIData===> ${it.data}")
+                AppLogger.log("task data in mapUIData size===> ${it.data.size}")
                 if (it.data.isNotEmpty()){
                     mapUIData(it.data[0])
                 }
@@ -70,7 +73,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     }
 
     private fun mapUIData(item : TaskDataListItem){
-        setFragment(TaskSearchTabFragment(siteId,item.Taskid))
+        AppLogger.log("task data in mapUIData===> $item")
+        setFragment(TaskSearchTabFragment(siteId,item.id))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)

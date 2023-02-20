@@ -63,6 +63,7 @@ import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData;
 import com.smarthub.baseapplication.model.taskModel.GetTaskInfoPostData;
 import com.smarthub.baseapplication.model.taskModel.TaskAssignModel;
 import com.smarthub.baseapplication.model.taskModel.TaskInfo;
+import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
@@ -127,7 +128,7 @@ public interface APIClient {
     Call<SiteInfoDropDownData> siteInfoDropDown();
 
     @GET(EndPoints.MONGO_TASK_API_GET)
-    Call<TaskDropDownModel> dynamicTaskUiModel(
+    Call<GetTaskDataModel> dynamicTaskUiModel(
             @Body JsonObject data
     );
 

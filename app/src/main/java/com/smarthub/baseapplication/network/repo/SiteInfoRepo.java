@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
+import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -22,7 +23,8 @@ public class SiteInfoRepo {
     private static SiteInfoRepo sInstance;
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
-    private SingleLiveEvent<Resource<TaskDropDownModel>> taskUiModelResoonse;
+    private SingleLiveEvent<Resource<GetTaskDataModel>> taskUiModelResoonse;
+    private SingleLiveEvent<Resource<TaskDropDownModel>> updateTaskUiModelResoonse;
     private SingleLiveEvent<Resource<SiteInfoModel>> siteIndoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
 
@@ -41,14 +43,19 @@ public class SiteInfoRepo {
         siteIndoResponse = new SingleLiveEvent<>();
         siteSearchResponse = new SingleLiveEvent<>();
         taskUiModelResoonse = new SingleLiveEvent<>();
+        updateTaskUiModelResoonse=new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<SiteInfoDropDownData>> getDropDownResoonse() {
         return dropDownResoonse;
     }
 
-    public SingleLiveEvent<Resource<TaskDropDownModel>> getTaskUiModelResoonse() {
+    public SingleLiveEvent<Resource<GetTaskDataModel>> getTaskUiModelResoonse() {
         return taskUiModelResoonse;
+    }
+
+    public SingleLiveEvent<Resource<TaskDropDownModel>> getUpdateTaskUiModelResoonse() {
+        return updateTaskUiModelResoonse;
     }
 
     public SingleLiveEvent<Resource<SiteInfoModel>> getSiteInfoResponseData() {
@@ -102,9 +109,9 @@ public class SiteInfoRepo {
     public void siteTaskUiModel(String taskId) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id","");
-        apiClient.dynamicTaskUiModel(jsonObject).enqueue(new Callback<TaskDropDownModel>() {
+        apiClient.dynamicTaskUiModel(jsonObject).enqueue(new Callback<GetTaskDataModel>() {
             @Override
-            public void onResponse(Call<TaskDropDownModel> call, Response<TaskDropDownModel> response) {
+            public void onResponse(Call<GetTaskDataModel> call, Response<GetTaskDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -115,11 +122,11 @@ public class SiteInfoRepo {
             }
 
             @Override
-            public void onFailure(Call<TaskDropDownModel> call, Throwable t) {
+            public void onFailure(Call<GetTaskDataModel> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<TaskDropDownModel> response) {
+            private void reportSuccessResponse(Response<GetTaskDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
@@ -162,7 +169,7 @@ public class SiteInfoRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
 //                    Logger.getLogger("ProfileRepo").warning(response.toString());
-                    taskUiModelResoonse.postValue(Resource.success(response.body(), 200));
+                    updateTaskUiModelResoonse.postValue(Resource.success(response.body(), 200));
 
                 }
             }
