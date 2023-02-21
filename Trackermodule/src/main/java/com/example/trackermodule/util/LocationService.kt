@@ -363,7 +363,6 @@ class LocationService : Service() {
         val apiInference = retrofit.create(APIInterface::class.java)
         val call = apiInference.updateLatlong(
             UploadLatLong(
-                user = PatrollerPriference(context).getUserId(),
                 starttime = Util.getCurrentTimeString(context),
                 startlat = latlongData.end_lattitiude.toString(),
                 startlong = latlongData.end_longitude.toString(),
@@ -383,7 +382,6 @@ class LocationService : Service() {
 //                    Toast.makeText(context,"data upload NOT ok",Toast.LENGTH_SHORT).show()
                     Util.addToPreference(
                         this@LocationService, uploadLatLong = UploadLatLong(
-                            user = PatrollerPriference(context).getUserId(),
                             starttime = Util.getCurrentTimeString(context),
                             startlat = latlongData.end_lattitiude.toString(),
                             startlong = latlongData.end_longitude.toString(),
@@ -396,7 +394,6 @@ class LocationService : Service() {
             override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {
                 Util.addToPreference(
                     this@LocationService, uploadLatLong = UploadLatLong(
-                        user = PatrollerPriference(context).getUserId(),
                         starttime = Util.getCurrentTimeString(context),
                         startlat = latlongData.end_lattitiude.toString(),
                         startlong = latlongData.end_longitude.toString(),
