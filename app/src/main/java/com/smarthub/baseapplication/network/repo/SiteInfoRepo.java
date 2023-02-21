@@ -108,7 +108,8 @@ public class SiteInfoRepo {
 
     public void siteTaskUiModel(String taskId) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id","");
+//        jsonObject.addProperty("id","");
+        AppLogger.INSTANCE.log("json data of siteTaskUiModel=====>: "+jsonObject);
         apiClient.dynamicTaskUiModel(jsonObject).enqueue(new Callback<GetTaskDataModel>() {
             @Override
             public void onResponse(Call<GetTaskDataModel> call, Response<GetTaskDataModel> response) {

@@ -33,7 +33,7 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var horizontalTabAdapter:HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
-    var TaskAlltabsData: TaskDropDownModelItem ?=null
+//    var TaskAlltabsData: TaskDropDownModelItem ?=null
     lateinit var TaskListmodel :TaskDropDownModel
     var taskAndCardList:ArrayList<String> = ArrayList()
     var lat ="19.25382218490181"
@@ -48,7 +48,8 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
             siteDetailViewModel.taskUiModelResoonse?.removeObservers(viewLifecycleOwner)
         siteDetailViewModel.taskUiModelResoonse?.observe(viewLifecycleOwner){
             if (it!=null && it.status == Resource.Status.SUCCESS && it.data!=null){
-                TaskAlltabsData = it.data.get(0).data.get(taskAndCardList[0].toInt())
+                AppLogger.log("data===> ${it.data}")
+                TaskListmodel = it.data.get(0).data
                 AppLogger.log("data:${Gson().toJson(it.data)}")
                 val list = TaskListmodel[taskAndCardList[0].toInt()].tabs[taskAndCardList[1].toInt()].list
                 setViewPager(list)
@@ -69,7 +70,7 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
         binding.collapsingLayout.tag= false
         binding.horizontalOnlyList.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         try {
-            horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList(),TaskAlltabsData?.tabs!!)
+            horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
             binding.horizontalOnlyList.adapter = horizontalTabAdapter
         }catch (e:Exception){
             AppLogger.log("Somthing went wrong in TaskSearchTabFragment during set HorizontalTabAdapter ")

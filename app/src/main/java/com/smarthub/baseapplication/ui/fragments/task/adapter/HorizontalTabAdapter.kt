@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CardLayoutBinding
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 
-class HorizontalTabAdapter(var listener: TaskCardClickListner, var list:ArrayList<CollectionItem>,var dataList:ArrayList<CollectionItem>) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
+class HorizontalTabAdapter(var listener: TaskCardClickListner, var list:ArrayList<CollectionItem>) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
 
 
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,8 +34,7 @@ class HorizontalTabAdapter(var listener: TaskCardClickListner, var list:ArrayLis
         }
         holder.itemView.setOnClickListener {
             updateList(position)
-            if (currentOpened<dataList.size)
-              listener.taskCardItemClicked(dataList[currentOpened])
+            listener.taskCardItemClicked(list[currentOpened])
         }
     }
     override fun getItemCount(): Int {

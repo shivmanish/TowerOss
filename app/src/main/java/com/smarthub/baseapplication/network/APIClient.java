@@ -127,10 +127,9 @@ public interface APIClient {
     @GET(EndPoints.SITE_INFO_DROP_DOWN)
     Call<SiteInfoDropDownData> siteInfoDropDown();
 
-    @GET(EndPoints.MONGO_TASK_API_GET)
-    Call<GetTaskDataModel> dynamicTaskUiModel(
-            @Body JsonObject data
-    );
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.MONGO_TASK_API_GET)
+    Call<GetTaskDataModel> dynamicTaskUiModel(@Body JsonObject data);
 
     @GET(EndPoints.MONGO_TASK_API_UPDATE)
     Call<TaskDropDownModel> dynamicTaskUiModelUpdate(
