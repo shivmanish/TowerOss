@@ -18,6 +18,7 @@ import com.example.patrollerapp.db.LatlongData
 import com.example.patrollerapp.db.LatlongInternData
 import com.example.patrollerapp.homepage.pojo.UploadLatLong
 import com.example.patrollerapp.homepage.pojo.response.UserDataResponse
+import com.example.trackermodule.homepage.pojo.UpDateLatlongRequest
 import com.example.trackermodule.server.APIClientPatroller
 import com.example.trackermodule.server.APIInterface
 import com.google.android.gms.location.*
@@ -361,13 +362,15 @@ class LocationService : Service() {
     fun updateLocation(context: Context, latlongData: LatlongData) {
         val retrofit: Retrofit = APIClientPatroller.getClient()
         val apiInference = retrofit.create(APIInterface::class.java)
+        var data = UploadLatLong(
+            starttime = Util.getCurrentTimeString(context),
+            startlat = latlongData.end_lattitiude.toString(),
+            startlong = latlongData.end_longitude.toString(),
+            distance = latlongData.root_distance
+        )
+
         val call = apiInference.updateLatlong(
-            UploadLatLong(
-                starttime = Util.getCurrentTimeString(context),
-                startlat = latlongData.end_lattitiude.toString(),
-                startlong = latlongData.end_longitude.toString(),
-                distance = latlongData.root_distance
-            )
+            UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = arrayListOf(data))
         )
         call.enqueue(object : Callback<UserDataResponse> {
             override fun onResponse(

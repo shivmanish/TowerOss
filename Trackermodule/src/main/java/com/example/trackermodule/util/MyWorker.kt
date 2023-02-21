@@ -132,6 +132,7 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
     fun updateLocation(context: Context, latlongData: LatlongData) {
         val retrofit: Retrofit = APIClientPatroller.getClient()
         val apiInference = retrofit.create(APIInterface::class.java)
+/*
         val call = apiInference.updateLatlong(
             UploadLatLong(
                 starttime = Util.getCurrentTimeString(context),
@@ -140,6 +141,8 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
                 distance = latlongData.root_distance
             )
         )
+*/
+/*
         call.enqueue(object : Callback<UserDataResponse> {
             override fun onResponse(
                 call: Call<UserDataResponse>,
@@ -176,6 +179,7 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
 
             }
         })
+*/
     }
 
     fun getDistanceFromLatlongmanually(fromPosition: LatLng, toPosition: LatLng): Double {
