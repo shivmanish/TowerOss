@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.SiteInfoRepo
@@ -30,10 +31,12 @@ class SiteDetailViewModel: ViewModel() {
 
     var siteInfoRepo: SiteInfoRepo?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
+    var taskUiModelResoonse : SingleLiveEvent<Resource<TaskDropDownModel>>?=null
 
     init {
         siteInfoRepo = SiteInfoRepo(APIInterceptor.get())
         dropDownResponse = siteInfoRepo?.dropDownResoonse
+        taskUiModelResoonse = siteInfoRepo?.taskUiModelResoonse
     }
 
     fun  getStrings(ctx:Context): Array<String> {
@@ -109,8 +112,15 @@ class SiteDetailViewModel: ViewModel() {
         var offset:Int
     )
 
-
     fun fetchDropDown() {
         siteInfoRepo?.siteInfoDropDown()
+    }
+
+    fun siteTaskUiModel(id:String) {
+        siteInfoRepo?.siteTaskUiModel(id)
+    }
+
+    fun siteTaskUiUpdateModel(taskDropDownModel:TaskDropDownModel) {
+        siteInfoRepo?.siteTaskUiUpdateModel(taskDropDownModel)
     }
 }

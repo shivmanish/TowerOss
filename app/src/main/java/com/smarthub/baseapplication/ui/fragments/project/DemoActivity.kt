@@ -15,7 +15,7 @@ open class DemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
       //  setFragment(TaskThirdFragment())
-        setFragment(TaskSearchTabFragment("448"))
+//        setFragment(TaskSearchTabFragment("448"))
     }
 
     private fun setFragment(fragment: Fragment) {
