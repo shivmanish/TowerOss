@@ -1,18 +1,23 @@
 package com.smarthub.baseapplication.activities
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import com.example.patrollerapp.login.MainActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityTaskDetailBinding
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
@@ -29,6 +34,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 //        binding.btnBack.setOnClickListener {
 //            onBackPressed()
 //        }
+        checkLocationPermission()
         if (intent.hasExtra("url")){
             val id = intent.getStringExtra("url")
 //            binding.titleText.text = id
@@ -45,13 +51,11 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         viewModel.taskDataList?.observe(this){
             hideLoader()
             if (it?.data != null){
-                AppLogger.log("task data in mapUIData===> ${it.data}")
-                AppLogger.log("task data in mapUIData size===> ${it.data.size}")
                 if (it.data.isNotEmpty()){
                     mapUIData(it.data[0])
                 }
-//                else
-//                    setFragment(TaskSearchTabFragment(siteId,))
+                else
+                    setFragment(TaskSearchTabFragment(siteId,"474"))
                 Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
@@ -72,9 +76,67 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
     }
 
-    private fun mapUIData(item : TaskDataListItem){
-        AppLogger.log("task data in mapUIData===> $item")
-        setFragment(TaskSearchTabFragment(siteId,item.id))
+    private fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                AlertDialog.Builder(this).setTitle("Location Permission Needed")
+                    .setMessage("This app needs the Location permission, please accept to use location functionality")
+                    .setPositiveButton(
+                        "OK"
+                    ) { _, _ ->
+                        requestLocationPermission()
+                    }.create().show()
+            } else {
+                requestLocationPermission()
+            }
+        } else {
+            checkBackgroundLocation()
+        }
+    }
+    private fun checkBackgroundLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestBackgroundLocationPermission()
+        }
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+            ), MY_PERMISSIONS_REQUEST_LOCATION
+        )
+    }
+
+    private fun requestBackgroundLocationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                ), MY_PERMISSIONS_REQUEST_BACKGROUND_LOCATION
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                MY_PERMISSIONS_REQUEST_LOCATION
+            )
+        }
+    }
+
+
+
+    fun mapUIData(item : TaskDataListItem){
+        setFragment(TaskSearchTabFragment(siteId,"474"))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)
@@ -155,4 +217,19 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     override fun viewOffsetClicked(position: Int) {
        
     }
+
+    companion object {
+        private const val MY_PERMISSIONS_REQUEST_LOCATION = 99
+        private const val PHONE_STATE_READ = 23
+        private const val MY_PERMISSIONS_REQUEST_BACKGROUND_LOCATION = 66
+        var perms = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            )
+        } else {
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
 }

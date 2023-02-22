@@ -132,15 +132,17 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
     fun updateLocation(context: Context, latlongData: LatlongData) {
         val retrofit: Retrofit = APIClientPatroller.getClient()
         val apiInference = retrofit.create(APIInterface::class.java)
+/*
         val call = apiInference.updateLatlong(
             UploadLatLong(
-                user = PatrollerPriference(context).getUserId(),
                 starttime = Util.getCurrentTimeString(context),
                 startlat = latlongData.end_lattitiude.toString(),
                 startlong = latlongData.end_longitude.toString(),
                 distance = latlongData.root_distance
             )
         )
+*/
+/*
         call.enqueue(object : Callback<UserDataResponse> {
             override fun onResponse(
                 call: Call<UserDataResponse>,
@@ -154,7 +156,6 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
 //                    Toast.makeText(context,"data upload NOT ok",Toast.LENGTH_SHORT).show()
                     Util.addToPreference(
                         mContext, uploadLatLong = UploadLatLong(
-                            user = PatrollerPriference(context).getUserId(),
                             starttime = Util.getCurrentTimeString(context),
                             startlat = latlongData.end_lattitiude.toString(),
                             startlong = latlongData.end_longitude.toString(),
@@ -167,7 +168,6 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
             override fun onFailure(call: Call<UserDataResponse>, t: Throwable) {
                 Util.addToPreference(
                     mContext, uploadLatLong = UploadLatLong(
-                        user = PatrollerPriference(context).getUserId(),
                         starttime = Util.getCurrentTimeString(context),
                         startlat = latlongData.end_lattitiude.toString(),
                         startlong = latlongData.end_longitude.toString(),
@@ -179,6 +179,7 @@ class MyWorker(val mContext: Context, workerParams: WorkerParameters) : Worker(
 
             }
         })
+*/
     }
 
     fun getDistanceFromLatlongmanually(fromPosition: LatLng, toPosition: LatLng): Double {

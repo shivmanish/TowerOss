@@ -9,11 +9,13 @@ import com.example.patrollerapp.login.pojo.NormalResponse;
 import com.example.patrollerapp.login.pojo.OptSendService;
 import com.example.patrollerapp.login.pojo.OtpVerifyService;
 import com.example.patrollerapp.login.pojo.SetPinService;
+import com.example.trackermodule.homepage.pojo.UpDateLatlongRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -41,10 +43,11 @@ public interface APIInterface {
     public Call<UserDataResponse> getUserDetails(@Body UserDetailsService userDetailsService);
 
 
-    @POST("/Patrollerlatlng/")
-    public Call<UserDataResponse> updateLatlong(@Body UploadLatLong userDetailsService);
-
     @POST("/Patrollerlatlngall/")
     public Call<UserDataResponse> updatePendingLatlong(@Body PendingLatlong pendingLatlong);
+
+    @POST("/toweross/workflow/")
+    public Call<UserDataResponse> updateLatlong(@Body UpDateLatlongRequest userDetailsService);
+
 
 }

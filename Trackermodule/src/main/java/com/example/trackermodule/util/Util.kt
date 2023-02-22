@@ -23,6 +23,7 @@ import com.example.patrollerapp.db.PendingLatlong
 import com.example.patrollerapp.homepage.pojo.UploadLatLong
 import com.example.patrollerapp.homepage.pojo.response.UserDataResponse
 import com.example.trackermodule.R
+import com.example.trackermodule.homepage.pojo.UpDateLatlongRequest
 import com.example.trackermodule.server.APIClientPatroller
 import com.example.trackermodule.server.APIInterface
 import com.google.android.gms.maps.model.BitmapDescriptor
@@ -170,8 +171,8 @@ object Util {
             if (pendingLatlong != null) {
                 val retrofit: Retrofit = APIClientPatroller.getClient()
                 val apiInference = retrofit.create(APIInterface::class.java)
-                val call = apiInference.updatePendingLatlong(
-                   pendingLatlong
+                val call = apiInference.updateLatlong(
+                    UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = pendingLatlong.latlnglist)
                 )
                 call.enqueue(object : Callback<UserDataResponse> {
                     override fun onResponse(
