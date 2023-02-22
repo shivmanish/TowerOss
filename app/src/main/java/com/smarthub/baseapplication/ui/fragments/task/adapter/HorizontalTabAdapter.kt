@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CardLayoutBinding
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
+import com.smarthub.baseapplication.utils.AppLogger
 
 class HorizontalTabAdapter(var listener: TaskCardClickListner, var list:ArrayList<CollectionItem>) : RecyclerView.Adapter<HorizontalTabAdapter.ViewHold>() {
 
@@ -34,6 +36,9 @@ class HorizontalTabAdapter(var listener: TaskCardClickListner, var list:ArrayLis
         }
         holder.itemView.setOnClickListener {
             updateList(position)
+            AppLogger.log("current selected card data start====>: ")
+            AppLogger.log("current selected card data : ${Gson().toJson(list[currentOpened])}")
+            AppLogger.log("<======current selected card data end ")
             listener.taskCardItemClicked(list[currentOpened])
         }
     }

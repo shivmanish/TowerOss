@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.taskUi
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -64,13 +63,6 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int): BaseFr
             setViewItemAdapter(listData.listData)
         }
         setViewItemAdapter(listData.listData)
-
-//            DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
-//            override fun onDateFieldFind(text: TextView) {
-//                setDatePickerView(text)
-//            }
-//
-//        })
     }
 
     fun setEditItemAdapter(data: List<ItemData>){
