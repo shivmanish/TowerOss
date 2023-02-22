@@ -6,6 +6,7 @@ import android.net.Uri;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.Observer;
 
+import com.example.trackermodule.util.MyApplication;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
@@ -13,7 +14,7 @@ import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataMode
 
 import java.util.ArrayList;
 
-public class AppController extends Application {
+public class AppController extends MyApplication {
 
     static AppController mInstance;
     public SiteInfoDataModel siteInfoModel;

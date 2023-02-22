@@ -1,4 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.task
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.patrollerapp.homepage.HomePage
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
@@ -140,11 +142,11 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
     }
 
     private fun mapView(){
-//        val intent = Intent(requireContext(), HomePage::class.java)
-//        intent.putExtra("lat",lat)
-//        intent.putExtra("long",long)
-//        intent.putExtra("rad",radius)
-//        startActivity(intent)
+        val intent = Intent(requireContext(), HomePage::class.java)
+        intent.putExtra("lat",lat)
+        intent.putExtra("long",long)
+        intent.putExtra("rad",radius)
+        startActivity(intent)
     }
 
     private fun createHoriZentalList():ArrayList<CollectionItem>{
