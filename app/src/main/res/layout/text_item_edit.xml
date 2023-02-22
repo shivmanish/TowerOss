@@ -3,19 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    style="@style/ColumnItemInfo"
-    >
+    style="@style/ColumnItemInfo">
     <TextView
         android:id="@+id/label"
         android:text="Site Name"
         style="@style/RowTextItemInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <TextView
+    <EditText
         android:id="@+id/name"
         android:text="Mangolpuri"
-        style="@style/RowTextviewItem"
-        android:drawableEnd="@drawable/icon_date"
+        style="@style/RowTestItemEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <View

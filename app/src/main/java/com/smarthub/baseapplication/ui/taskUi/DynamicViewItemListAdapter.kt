@@ -27,10 +27,12 @@ class DynamicViewItemListAdapter(var data: List<ItemData>) : RecyclerView.Adapte
         val item : ItemData = data[pos]
         when (hold) {
             is TextViewHold -> {
+                hold.binding.label.text=item.label
                 hold.binding.name.text = "${item.value}"
             }
             is SpinnerViewHold -> {
-                AppPreferences.getInstance().setDropDown(hold.binding.name,item.value,"1")
+                hold.binding.label.text=item.label
+                AppPreferences.getInstance().setDropDown(hold.binding.name,item.dropDownName,item.value)
             }
         }
     }

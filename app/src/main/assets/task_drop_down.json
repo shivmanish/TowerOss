@@ -10,7 +10,28 @@
                 "checked": false,
                 "disabled": true,
                 "list": [
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Site Info", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                    {
+                        "remark": "dfxghjbkknbhjcvhj hjchg",
+                        "isRemark": true,
+                        "title": "Site Info",
+                        "listData": [
+                            { "id": "1", "type": "text", "value": "Mangolpuri","label":"Site Name","dropDownName":"" },
+                            { "id": "2", "type": "text", "value": "CE-MHMUMB-SC-A0123","label":"Site ID","dropDownName":"" },
+                            { "id": "3", "type": "spinner", "value": "0","label":"Site Status","dropDownName":"Sitestatus" },
+                            { "id": "4", "type": "spinner", "value": "0","label":"Site Category","dropDownName":"Sitecategory" },
+                            { "id": "5", "type": "spinner", "value": "0","label":"Site Type","dropDownName":"Sitetype" },
+                            { "id": "6", "type": "spinner", "value": "0","label":"Site Ownership","dropDownName":"PropertyOwnership" },
+                            { "id": "3", "type": "spinner", "value": "0","label":"Building Type","dropDownName":"Buildingtype" },
+                            { "id": "4", "type": "text", "value": "Urban","label":"Location Zone","dropDownName":"Sitecategory" },
+                            { "id": "5", "type": "text", "value": "Thane","label":"Maintenance Zone","dropDownName":"Sitetype" },
+                            { "id": "6", "type": "spinner", "value": "0","label":"Project Name","dropDownName":"Projectname" },
+                            { "id": "4", "type": "text", "value": "Ankit","label":"Site In-Charge Name","dropDownName":"" },
+                            { "id": "5", "type": "text", "value": "7269024641","label":"Site In-Charge Number","dropDownName":"" },
+                            { "id": "4", "type": "text", "value": "10","label":" Rent Escalation","dropDownName":"" },
+                            { "id": "5", "type": "text", "value": "2 year","label":" Rent Escalation Period","dropDownName":"" },
+                            { "id": "4", "type": "date", "value": "20-2-2023" ,"label":"Site Name","dropDownName":""}
+                        ]
+                    }
                 ]
             },
             {
@@ -18,7 +39,20 @@
                 "name": "Operational Info",
                 "checked": false,
                 "list": [
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Operational Info", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                    { "id": "1", "type": "text", "value": "Mangolpuri","label":"Site Name","dropDownName":"" },
+                    { "id": "2", "type": "text", "value": "CE-MHMUMB-SC-A0123","label":"Site ID","dropDownName":"" },
+                    { "id": "3", "type": "Spinner", "value": "0","label":"Site Status","dropDownName":"Sitestatus" },
+                    { "id": "4", "type": "spinner", "value": "0","label":"Site Category","dropDownName":"Sitecategory" },
+                    { "id": "5", "type": "spinner", "value": "0","label":"Site Type","dropDownName":"Sitetype" },
+                    { "id": "6", "type": "spinner", "value": "0","label":"Site Ownership","dropDownName":"PropertyOwnership" },
+                    { "id": "3", "type": "Spinner", "value": "0","label":"Building Type","dropDownName":"Buildingtype" },
+                    { "id": "4", "type": "text", "value": "Urban","label":"Location Zone","dropDownName":"Sitecategory" },
+                    { "id": "5", "type": "text", "value": "Thane","label":"Maintenance Zone","dropDownName":"Sitetype" },
+                    { "id": "6", "type": "spinner", "value": "0","label":"Project Name","dropDownName":"Projectname" },
+                    { "id": "4", "type": "text", "value": "Ankit","label":"Site In-Charge Name","dropDownName":"" },
+                    { "id": "5", "type": "text", "value": "7269024641","label":"Site In-Charge Number","dropDownName":"" },
+                    { "id": "4", "type": "text", "value": "10","label":" Rent Escalation","dropDownName":"" },
+                    { "id": "5", "type": "text", "value": "2 year","label":" Rent Escalation Period","dropDownName":"" }
                 ]
             },
             {
@@ -26,7 +60,20 @@
                 "name": "Geo Conditions",
                 "checked": false,
                 "list": [
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Geo Conditions", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                    { "id": "1", "type": "text", "value": "Mangolpuri","label":"Site Name","dropDownName":"" },
+                    { "id": "2", "type": "text", "value": "CE-MHMUMB-SC-A0123","label":"Site ID","dropDownName":"" },
+                    { "id": "3", "type": "Spinner", "value": "0","label":"Site Status","dropDownName":"Sitestatus" },
+                    { "id": "4", "type": "spinner", "value": "0","label":"Site Category","dropDownName":"Sitecategory" },
+                    { "id": "5", "type": "spinner", "value": "0","label":"Site Type","dropDownName":"Sitetype" },
+                    { "id": "6", "type": "spinner", "value": "0","label":"Site Ownership","dropDownName":"PropertyOwnership" },
+                    { "id": "3", "type": "Spinner", "value": "0","label":"Building Type","dropDownName":"Buildingtype" },
+                    { "id": "4", "type": "text", "value": "Urban","label":"Location Zone","dropDownName":"Sitecategory" },
+                    { "id": "5", "type": "text", "value": "Thane","label":"Maintenance Zone","dropDownName":"Sitetype" },
+                    { "id": "6", "type": "spinner", "value": "0","label":"Project Name","dropDownName":"Projectname" },
+                    { "id": "4", "type": "text", "value": "Ankit","label":"Site In-Charge Name","dropDownName":"" },
+                    { "id": "5", "type": "text", "value": "7269024641","label":"Site In-Charge Number","dropDownName":"" },
+                    { "id": "4", "type": "text", "value": "10","label":" Rent Escalation","dropDownName":"" },
+                    { "id": "5", "type": "text", "value": "2 year","label":" Rent Escalation Period","dropDownName":"" }
                 ]
             },
             {
@@ -34,7 +81,20 @@
                 "name": "Safety/Access",
                 "checked": false,
                 "list": [
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Safety/Access", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
+                    { "id": "1", "type": "text", "value": "Mangolpuri","label":"Site Name","dropDownName":"" },
+                    { "id": "2", "type": "text", "value": "CE-MHMUMB-SC-A0123","label":"Site ID","dropDownName":"" },
+                    { "id": "3", "type": "Spinner", "value": "0","label":"Site Status","dropDownName":"Sitestatus" },
+                    { "id": "4", "type": "spinner", "value": "0","label":"Site Category","dropDownName":"Sitecategory" },
+                    { "id": "5", "type": "spinner", "value": "0","label":"Site Type","dropDownName":"Sitetype" },
+                    { "id": "6", "type": "spinner", "value": "0","label":"Site Ownership","dropDownName":"PropertyOwnership" },
+                    { "id": "3", "type": "Spinner", "value": "0","label":"Building Type","dropDownName":"Buildingtype" },
+                    { "id": "4", "type": "text", "value": "Urban","label":"Location Zone","dropDownName":"Sitecategory" },
+                    { "id": "5", "type": "text", "value": "Thane","label":"Maintenance Zone","dropDownName":"Sitetype" },
+                    { "id": "6", "type": "spinner", "value": "0","label":"Project Name","dropDownName":"Projectname" },
+                    { "id": "4", "type": "text", "value": "Ankit","label":"Site In-Charge Name","dropDownName":"" },
+                    { "id": "5", "type": "text", "value": "7269024641","label":"Site In-Charge Number","dropDownName":"" },
+                    { "id": "4", "type": "text", "value": "10","label":" Rent Escalation","dropDownName":"" },
+                    { "id": "5", "type": "text", "value": "2 year","label":" Rent Escalation Period","dropDownName":"" }
                 ]
             },
             {
@@ -60,18 +120,16 @@
                 "id": 91,
                 "name": "Site Request",
                 "checked": false,
-                "list": [
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Equipments", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
-                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Radio Antennas", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
-                ]
+                "list": []
             },
             {
                 "id": 92,
                 "name": "Assign ACQ Team",
                 "checked": false,
                 "list": [
-
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "SR Details", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Equipments", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]},
+                    { "remark": "dfxghjbkknbhjcvhj hjchg", "isRemark": true, "title": "Radio Antennas", "listData": [ { "id": "1", "type": "text", "value": "name" }, { "id": "1", "type": "text", "value": "site name" }, { "id": "3", "type": "date", "value": "20-2-2023" }, { "id": "3", "type": "date", "value": "20-2-2023" } ]}
                 ]
             },
             {

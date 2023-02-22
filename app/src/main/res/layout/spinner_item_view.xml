@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/dp10"
-    android:layout_marginHorizontal="@dimen/dp10"
+    style="@style/ColumnItemInfo"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
+        android:id="@+id/label"
         android:text="Site Status"
         style="@style/RowTextItemInfo"
         android:layout_width="match_parent"
@@ -21,5 +21,5 @@
         android:background="#263238"
         android:layout_height="1dp"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp8" />
+        android:layout_marginTop="@dimen/dp5" />
 </LinearLayout>
