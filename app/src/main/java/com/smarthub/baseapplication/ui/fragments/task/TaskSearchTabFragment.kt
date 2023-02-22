@@ -103,6 +103,9 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
         }
 
         binding.mapView.setOnClickListener {
+
+        }
+        binding.start.setOnClickListener{
             mapView()
         }
 //        binding.back.setOnClickListener {

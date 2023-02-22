@@ -21,6 +21,7 @@ import com.example.patrollerapp.homepage.pojo.response.UserDataResponse
 import com.example.trackermodule.homepage.pojo.UpDateLatlongRequest
 import com.example.trackermodule.server.APIClientPatroller
 import com.example.trackermodule.server.APIInterface
+import com.example.trackermodule.util.MyApplication
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
@@ -370,7 +371,8 @@ class LocationService : Service() {
         )
 
         val call = apiInference.updateLatlong(
-            UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = arrayListOf(data))
+            UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = arrayListOf(data)),
+            MyApplication().bearerToken
         )
         call.enqueue(object : Callback<UserDataResponse> {
             override fun onResponse(
