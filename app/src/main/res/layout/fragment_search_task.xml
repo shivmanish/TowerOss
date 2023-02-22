@@ -504,7 +504,6 @@
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/dp100"
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp2"
                 android:layout_marginRight="@dimen/dp10"

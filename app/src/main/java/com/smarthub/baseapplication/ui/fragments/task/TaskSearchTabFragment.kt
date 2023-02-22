@@ -136,7 +136,7 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
 
     private fun setViewPager(list:List<TitleItem>){
         AppLogger.log("view pager List Size : ${binding.tabs.tabCount}")
-        binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list)
+        binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list,siteDetailViewModel)
         binding.tabs.setupWithViewPager( binding.viewpager)
 
         if(binding.tabs.tabCount==1) {
