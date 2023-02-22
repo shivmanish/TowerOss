@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AtpHeaderTitleBinding
@@ -38,6 +39,9 @@ class DynamicItemListAdapter(var data: List<ItemData>,var listener:DynamicItemLi
             is TextViewHold -> {
                 hold.binding.label.text=item.label
                 hold.binding.name.setText(item.value)
+                hold.binding.name.addTextChangedListener {
+                    item.value = hold.binding.name.text.toString()
+                }
             }
             is SpinnerViewHold -> {
                 hold.binding.label.text=item.label

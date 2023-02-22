@@ -65,6 +65,7 @@ import com.smarthub.baseapplication.model.taskModel.TaskAssignModel;
 import com.smarthub.baseapplication.model.taskModel.TaskInfo;
 import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
+import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 
@@ -132,9 +133,7 @@ public interface APIClient {
     Call<GetTaskDataModel> dynamicTaskUiModel(@Body JsonObject data);
 
     @GET(EndPoints.MONGO_TASK_API_UPDATE)
-    Call<TaskDropDownModel> dynamicTaskUiModelUpdate(
-            @Body TaskDropDownModel data
-    );
+    Call<UpdateTaskDataModel> dynamicTaskUiModelUpdate(@Body TaskDropDownModel data);
 
     @POST(EndPoints.SITE_INFO_DROP_DOWN_NEW)
     Call<DropDownNew> siteInfoDropDownNew();
