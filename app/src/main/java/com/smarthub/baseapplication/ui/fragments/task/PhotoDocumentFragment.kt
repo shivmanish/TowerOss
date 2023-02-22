@@ -34,9 +34,9 @@ class PhotoDocumentFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
-        viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
-        viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
+//        viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
+//        viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
+//        viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
         if(requireActivity().intent.hasExtra("data")){
             var data = Gson().fromJson(requireActivity().intent.getStringExtra("data"),MyTeamTask::class.java)
             viewmodel.getTaskById(data.id1)
@@ -45,28 +45,29 @@ class PhotoDocumentFragment: BaseFragment() {
         if(taskInfo!=null){
             binding.pictureBox.isChecked= taskInfo?.pictures=="True"
             binding.documentBox.isChecked= taskInfo?.documents=="True"
+//            binding.Remark.text=taskInfo?.re
         }
-        binding.pictureBox.setOnCheckedChangeListener{buttonView, isChecked ->
-            viewmodel.processTemplatemanual.pictures=isChecked
-        }
-        binding.documentBox.setOnCheckedChangeListener{buttonView, isChecked ->
-            viewmodel.processTemplatemanual.pictures=isChecked
-        }
-        binding.Remark.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                var changedText=binding.Remark.text
-                viewmodel.processTemplatemanual.remark=changedText.toString()
-            }
-        })
-//        binding.next.setOnClickListener {
-//            viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
-//            viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
-//            viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
-//            AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
-//            nextClicked()
+//        binding.pictureBox.setOnCheckedChangeListener{buttonView, isChecked ->
+//            viewmodel.processTemplatemanual.pictures=isChecked
 //        }
+//        binding.documentBox.setOnCheckedChangeListener{buttonView, isChecked ->
+//            viewmodel.processTemplatemanual.pictures=isChecked
+//        }
+//        binding.Remark.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+//            override fun afterTextChanged(s: Editable) {
+//                var changedText=binding.Remark.text
+//                viewmodel.processTemplatemanual.remark=changedText.toString()
+//            }
+//        })
+        binding.next.setOnClickListener {
+            viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
+            viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
+            viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
+            AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
+            nextClicked()
+        }
     }
 
 

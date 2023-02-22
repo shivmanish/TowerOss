@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.taskUi
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,11 @@ import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
 import com.smarthub.baseapplication.ui.dynamic.ItemData
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int): BaseFragment() {
+class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var siteDetailViewModel: SiteDetailViewModel): BaseFragment() {
 
     lateinit var binding: TaskDynamicTitleListBinding
     lateinit var homeViewModel: HomeViewModel
@@ -61,16 +61,10 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int): BaseFr
             setViewItemAdapter(listData.listData)
         }
         binding.updateBtn.setOnClickListener {
+            siteDetailViewModel.updateTaskUiModelResoonse
             setViewItemAdapter(listData.listData)
         }
         setViewItemAdapter(listData.listData)
-
-//            DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
-//            override fun onDateFieldFind(text: TextView) {
-//                setDatePickerView(text)
-//            }
-//
-//        })
     }
 
     fun setEditItemAdapter(data: List<ItemData>){

@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
+import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppConstants;
@@ -24,7 +25,7 @@ public class SiteInfoRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
     private SingleLiveEvent<Resource<GetTaskDataModel>> taskUiModelResoonse;
-    private SingleLiveEvent<Resource<TaskDropDownModel>> updateTaskUiModelResoonse;
+    private SingleLiveEvent<Resource<UpdateTaskDataModel>> updateTaskUiModelResoonse;
     private SingleLiveEvent<Resource<SiteInfoModel>> siteIndoResponse;
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
 
@@ -54,7 +55,7 @@ public class SiteInfoRepo {
         return taskUiModelResoonse;
     }
 
-    public SingleLiveEvent<Resource<TaskDropDownModel>> getUpdateTaskUiModelResoonse() {
+    public SingleLiveEvent<Resource<UpdateTaskDataModel>> getUpdateTaskUiModelResoonse() {
         return updateTaskUiModelResoonse;
     }
 
@@ -148,9 +149,9 @@ public class SiteInfoRepo {
         });
     }
     public void siteTaskUiUpdateModel(TaskDropDownModel taskDropDownModel) {
-        apiClient.dynamicTaskUiModelUpdate(taskDropDownModel).enqueue(new Callback<TaskDropDownModel>() {
+        apiClient.dynamicTaskUiModelUpdate(taskDropDownModel).enqueue(new Callback<UpdateTaskDataModel>() {
             @Override
-            public void onResponse(Call<TaskDropDownModel> call, Response<TaskDropDownModel> response) {
+            public void onResponse(Call<UpdateTaskDataModel> call, Response<UpdateTaskDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -161,11 +162,11 @@ public class SiteInfoRepo {
             }
 
             @Override
-            public void onFailure(Call<TaskDropDownModel> call, Throwable t) {
+            public void onFailure(Call<UpdateTaskDataModel> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<TaskDropDownModel> response) {
+            private void reportSuccessResponse(Response<UpdateTaskDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());

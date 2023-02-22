@@ -4,12 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AtpHeaderTitleBinding
 import com.smarthub.baseapplication.databinding.DateItemViewBinding
 import com.smarthub.baseapplication.databinding.DynamicTitleListBinding
 import com.smarthub.baseapplication.databinding.SpinnerItemViewBinding
+import com.smarthub.baseapplication.databinding.TextItemEditBinding
 import com.smarthub.baseapplication.databinding.TextItemViewBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
@@ -24,10 +26,10 @@ class DynamicItemListAdapter(var data: List<ItemData>,var listener:DynamicItemLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
-            ITEM_TEXT -> TextViewHold(LayoutInflater.from(parent.context).inflate(R.layout.text_item_view, parent, false))
+            ITEM_TEXT -> TextViewHold(LayoutInflater.from(parent.context).inflate(R.layout.text_item_edit, parent, false))
             ITEM_SPINNER -> SpinnerViewHold(LayoutInflater.from(parent.context).inflate(R.layout.spinner_item_view, parent, false))
             ITEM_DATE -> DateViewHold(LayoutInflater.from(parent.context).inflate(R.layout.date_item_view, parent, false))
-            else -> TextViewHold(LayoutInflater.from(parent.context).inflate(R.layout.text_item_view, parent, false))
+            else -> TextViewHold(LayoutInflater.from(parent.context).inflate(R.layout.text_item_edit, parent, false))
         }
     }
 
@@ -35,12 +37,18 @@ class DynamicItemListAdapter(var data: List<ItemData>,var listener:DynamicItemLi
         val item : ItemData = data[pos]
         when (hold) {
             is TextViewHold -> {
-                hold.binding.name.text = "${item.value}"
+                hold.binding.label.text=item.label
+                hold.binding.name.setText(item.value)
+                hold.binding.name.addTextChangedListener {
+                    item.value = hold.binding.name.text.toString()
+                }
             }
             is SpinnerViewHold -> {
-                AppPreferences.getInstance().setDropDown(hold.binding.name,item.value)
+                hold.binding.label.text=item.label
+                AppPreferences.getInstance().setDropDown(hold.binding.name,item.dropDownName,item.value)
             }
             is DateViewHold -> {
+                hold.binding.label.text=item.label
                 hold.binding.name.text = "${item.value}"
                 listener.onDateFieldFind(hold.binding.name)
             }
@@ -62,7 +70,7 @@ class DynamicItemListAdapter(var data: List<ItemData>,var listener:DynamicItemLi
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     open class TextViewHold(itemView: View) : ViewHold(itemView){
-        var binding : TextItemViewBinding = TextItemViewBinding.bind(itemView)
+        var binding : TextItemEditBinding = TextItemEditBinding.bind(itemView)
     }
     open class SpinnerViewHold(itemView: View) : ViewHold(itemView){
         var binding : SpinnerItemViewBinding = SpinnerItemViewBinding.bind(itemView)

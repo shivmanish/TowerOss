@@ -5,6 +5,7 @@
     android:orientation="vertical"
     style="@style/ColumnItemInfo">
     <TextView
+        android:id="@+id/label"
         android:text="Site Name"
         style="@style/RowTextItemInfo"
         android:layout_width="match_parent"

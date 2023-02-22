@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
+import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.SiteInfoRepo
@@ -33,7 +34,7 @@ class SiteDetailViewModel: ViewModel() {
     var siteInfoRepo: SiteInfoRepo?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var taskUiModelResoonse : SingleLiveEvent<Resource<GetTaskDataModel>>?=null
-    var updateTaskUiModelResoonse : SingleLiveEvent<Resource<TaskDropDownModel>>?=null
+    var updateTaskUiModelResoonse : SingleLiveEvent<Resource<UpdateTaskDataModel>>?=null
 
     init {
         siteInfoRepo = SiteInfoRepo(APIInterceptor.get())

@@ -31,10 +31,16 @@ class ActivityCaptureSiteFragment: Fragment(),CapturedSite {
         var json = Utils.getJsonDataFromAsset(requireContext(),"task_drop_down.json")
         var model = Gson().fromJson(json,TaskDropDownModel::class.java)
         binding.list.adapter = CaptureSiteAdapter(requireContext(),model,this)
+        binding.next.setOnClickListener {
+
+            nextClicked()
+        }
 
     }
 
-
+    private fun nextClicked() {
+        findNavController().navigate(TaskSecondFragmentDirections.actionToMoveThirdFrag())
+    }
     override fun selectedSites(selectedSites: ArrayList<String>) {
         viewmodel.processTemplatemanual.Where=selectedSites
         AppLogger.log("selected sites===> $selectedSites")
