@@ -1,5 +1,4 @@
 package com.smarthub.baseapplication.ui.fragments.task
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -7,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patrollerapp.homepage.HomePage
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
@@ -18,6 +17,7 @@ import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
+import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
@@ -49,21 +49,26 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
             siteDetailViewModel.taskUiModelResoonse?.removeObservers(viewLifecycleOwner)
         siteDetailViewModel.taskUiModelResoonse?.observe(viewLifecycleOwner){
             if (it!=null && it.status == Resource.Status.SUCCESS && it.data!=null){
-                AppLogger.log("all data from api start====>: ")
-                AppLogger.log("data===> ${Gson().toJson(it.data.get(it.data.size.minus(1)).data.get(0).tabs.get(0))}")
-                AppLogger.log("<======all data from api end ")
-                TaskListmodel = it.data.reversed().get(0).data
-                AppLogger.log("all data in TaskListmodel start====>: ")
-                AppLogger.log("TaskListmodel data====>:${Gson().toJson(TaskListmodel.get(0).tabs.get(1))}")
-                AppLogger.log("<======all data in TaskListmodel end ")
-                val list = TaskListmodel[taskAndCardList[0].toInt()].tabs[taskAndCardList[1].toInt()].list
-                setViewPager(list)
-                try {
-                    horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
-                    binding.horizontalOnlyList.adapter = horizontalTabAdapter
-                }catch (e:Exception){
-                    AppLogger.log("Somthing went wrong in TaskSearchTabFragment during set HorizontalTabAdapter ")
+                if(!it.data.isNullOrEmpty())
+                {
+                    AppLogger.log("all data from api start====>: ")
+                    AppLogger.log("data===> ${Gson().toJson(it.data.get(it.data.size.minus(1)).data.get(0).tabs.get(0))}")
+                    AppLogger.log("<======all data from api end ")
+                    TaskListmodel = it.data.reversed().get(0).data
+                    AppLogger.log("all data in TaskListmodel start====>: ")
+                    AppLogger.log("TaskListmodel data====>:${Gson().toJson(TaskListmodel.get(0).tabs.get(1))}")
+                    AppLogger.log("<======all data in TaskListmodel end ")
+                    val list = TaskListmodel[taskAndCardList[0].toInt()].tabs[taskAndCardList[1].toInt()].list
+                    setViewPager(list)
+                    try {
+                        horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
+                        binding.horizontalOnlyList.adapter = horizontalTabAdapter
+                    }catch (e:Exception){
+                        AppLogger.log("Somthing went wrong in TaskSearchTabFragment during set HorizontalTabAdapter ")
+                    }
                 }
+                else
+                    AppLogger.log("data is empty : ${it.data}")
                 Toast.makeText(requireContext(),"ui data fetched",Toast.LENGTH_SHORT).show()
             }else Toast.makeText(requireContext(),"something went wrong",Toast.LENGTH_SHORT).show()
         }
@@ -104,6 +109,14 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
 
         binding.mapView.setOnClickListener {
             mapView()
+        }
+        binding.messages.setOnClickListener {
+            val chatfragment=ChatFragment()
+            val bundle=Bundle()
+            bundle.putString("reportedBy","7269024641")
+            bundle.putString("id","93")
+            chatfragment.arguments=bundle
+            addFragment(chatfragment)
         }
 //        binding.back.setOnClickListener {
 //            requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -151,12 +164,30 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
             binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
+    fun addFragment(fragment: Fragment?) {
+        val backStateName: String = childFragmentManager.javaClass.name
+        val manager = childFragmentManager
+        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+        if (!fragmentPopped) {
+            val transaction = manager.beginTransaction()
+            transaction.setCustomAnimations(
+                R.anim.enter,
+                R.anim.exit,
+                R.anim.pop_enter,
+                R.anim.pop_exit
+            )
+            transaction.add(R.id.container, fragment!!)
+            transaction.addToBackStack(backStateName)
+            transaction.commit()
+        }
+    }
+
     private fun mapView(){
-        val intent = Intent(requireContext(), HomePage::class.java)
-        intent.putExtra("lat",lat)
-        intent.putExtra("long",long)
-        intent.putExtra("rad",radius)
-        startActivity(intent)
+//        val intent = Intent(requireContext(), HomePage::class.java)
+//        intent.putExtra("lat",lat)
+//        intent.putExtra("long",long)
+//        intent.putExtra("rad",radius)
+//        startActivity(intent)
     }
 
     private fun createHoriZentalList():ArrayList<CollectionItem>{
@@ -177,8 +208,8 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
     }
 
 
-    override fun taskCardItemClicked(selectedCollectionItem:CollectionItem) {
-        setViewPager(selectedCollectionItem.list)
+    override fun taskCardItemClicked(selectedCollectionItemData:CollectionItem) {
+        setViewPager(selectedCollectionItemData.list)
     }
     override fun taskSiteInfoItemClicked() {
         val bottomSheetDialogFragment = SiteInfoEditBottomSheet(R.layout.task_site_info_dialouge_layout)
