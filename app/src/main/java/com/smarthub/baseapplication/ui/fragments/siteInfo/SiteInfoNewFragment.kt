@@ -70,14 +70,14 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             }
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
-                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data?.item?.get(0)!!}")
+                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data}")
 //                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
                 var currentOpened = -1
                 if (binding.listItem.adapter is SiteInfoListAdapter){
                     val adapter = binding.listItem.adapter as SiteInfoListAdapter
                     currentOpened = adapter.currentOpened
                 }
-                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data.item?.get(0)!!)
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data!!)
                 AppLogger.log("currentOpened:$currentOpened")
                 if (currentOpened>=0){
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
