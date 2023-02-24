@@ -78,7 +78,7 @@
 
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -168,13 +168,13 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Cost Center"
+                    android:text="Feasible OPCO Sharing"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="ETIPL"
-                    android:id="@+id/cost_center"
+                    android:id="@+id/FeasibleOPCOSharing"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -188,13 +188,13 @@
 
                 <TextView
                     android:maxLines="1"
-                    android:text="Operator Sharing Feasibility"
+                    android:text="Available OPCO"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="Solo"
-                    android:id="@+id/operator_sharing"
+                    android:id="@+id/AvailableOPCO"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -207,13 +207,13 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Power Source"
+                    android:text="Available Power Source"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="SEB/ DG"
-                    android:id="@+id/power_source"
+                    android:id="@+id/AvailablePowerSource"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -283,14 +283,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Town Category"
+                    android:text="Tower/ Pole Height"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <TextView
                     android:text="ETIPL"
-                    android:id="@+id/town_category_spinner"
+                    android:id="@+id/TowerPoleHeight"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
