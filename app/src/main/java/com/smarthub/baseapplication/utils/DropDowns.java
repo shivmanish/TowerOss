@@ -23,6 +23,7 @@ public enum DropDowns {
     GateAndFence,
     Potentialthreat,
     NoOfFloors,
+    Acquisitiontype,
     PropertyOfferforAcquisition,
     ASAcquisitionOfferType,
     ASRequiredAreaAvailable,
