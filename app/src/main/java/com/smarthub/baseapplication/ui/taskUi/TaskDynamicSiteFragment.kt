@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TaskDynamicTitleListBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.adapter.DynamicItemListAdapter
 import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
 import com.smarthub.baseapplication.ui.dynamic.ItemData
@@ -17,7 +19,7 @@ import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var siteDetailViewModel: SiteDetailViewModel): BaseFragment() {
+class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var taskModel: TaskDropDownModel, var taskId:String): BaseFragment() {
 
     lateinit var binding: TaskDynamicTitleListBinding
     lateinit var homeViewModel: HomeViewModel
@@ -61,7 +63,7 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var site
             setViewItemAdapter(listData.listData)
         }
         binding.updateBtn.setOnClickListener {
-            siteDetailViewModel.updateTaskUiModelResoonse
+            AppPreferences.getInstance().saveTaskUiModel(taskModel,taskId)
             setViewItemAdapter(listData.listData)
         }
         setViewItemAdapter(listData.listData)
