@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.DynamicTitleListBinding
 import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
+import com.smarthub.baseapplication.ui.taskUi.DynamicViewItemListAdapter
 
 class DynamicTitleListAdapter(var data: DynamicTitleList,var listener : DynamicItemListAdapter.DynamicItemListAdapterListener) : RecyclerView.Adapter<DynamicTitleListAdapter.ViewHold>() {
 
@@ -33,8 +34,8 @@ class DynamicTitleListAdapter(var data: DynamicTitleList,var listener : DynamicI
 
     override fun onBindViewHolder(hold: ViewHold, pos: Int) {
         var item : TitleItem = data.data[pos]
-        hold.binding.itemTitle.text = item.title
-        hold.binding.itemCollapse.adapter = DynamicItemListAdapter(data.data[pos].listData,listener)
+        hold.binding.itemTitleStr.text = item.title
+        hold.binding.itemCollapse.adapter = DynamicViewItemListAdapter(data.data[pos].listData)
         hold.binding.collapsingLayout.setOnClickListener {
             updateList(pos)
         }
@@ -43,14 +44,27 @@ class DynamicTitleListAdapter(var data: DynamicTitleList,var listener : DynamicI
             hold.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             hold.binding.itemLine.visibility = View.GONE
             hold.binding.itemCollapse.visibility = View.VISIBLE
-            hold.binding.iconLayout.visibility = View.VISIBLE
+            hold.binding.imgEdit.visibility = View.VISIBLE
         } else {
-            hold.binding.itemTitle.tag = false
+            hold.binding.collapsingLayout.tag = false
             hold.binding.imgDropdown.setImageResource(R.drawable.down_arrow)
             hold.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             hold.binding.itemLine.visibility = View.VISIBLE
             hold.binding.itemCollapse.visibility = View.GONE
-            hold.binding.iconLayout.visibility = View.GONE
+            hold.binding.imgEdit.visibility = View.GONE
+            hold.binding.updateLayoutActions.visibility=View.GONE
+        }
+        hold.binding.imgEdit.setOnClickListener {
+            hold.binding.updateLayoutActions.visibility=View.VISIBLE
+            hold.binding.itemCollapse.adapter = DynamicItemListAdapter(data.data[pos].listData,listener)
+        }
+        hold.binding.updateBtn.setOnClickListener {
+            hold.binding.updateLayoutActions.visibility=View.GONE
+            hold.binding.itemCollapse.adapter = DynamicViewItemListAdapter(data.data[pos].listData)
+        }
+        hold.binding.cancelBtn.setOnClickListener {
+            hold.binding.updateLayoutActions.visibility=View.GONE
+            hold.binding.itemCollapse.adapter = DynamicViewItemListAdapter(data.data[pos].listData)
         }
     }
 
@@ -61,9 +75,9 @@ class DynamicTitleListAdapter(var data: DynamicTitleList,var listener : DynamicI
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
         var binding : DynamicTitleListBinding = DynamicTitleListBinding.bind(itemView)
         init {
-            binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
-            if ((binding.itemTitle.tag as Boolean)) {
+
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {

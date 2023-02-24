@@ -132,7 +132,7 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
         AppLogger.log("all data in TaskListmodel start====>: ")
         AppLogger.log("TaskListmodel data====>:${Gson().toJson(TaskListmodel.get(0).tabs.get(1))}")
         AppLogger.log("<======all data in TaskListmodel end ")
-        var parentIndex=fetchParentIndexById(TaskListmodel,taskAndCardList[0].substring(0,1))
+        val parentIndex=fetchParentIndexById(TaskListmodel,taskAndCardList[0].substring(0,1))
         val list = TaskListmodel[parentIndex].tabs[fetchChildIndexById(TaskListmodel[parentIndex].tabs,taskAndCardList[0])].list
         setViewPager(list)
         try {
