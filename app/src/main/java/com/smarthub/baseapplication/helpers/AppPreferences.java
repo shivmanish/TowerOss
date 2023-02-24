@@ -43,6 +43,8 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
 
     public void saveTaskUiModel(TaskDropDownModel model, String taskId){
         String modelJson= new Gson().toJson(model);
+        AppLogger.INSTANCE.log("saved Task json: "+model);
+        AppLogger.INSTANCE.log("saved Task json task Id: "+taskId);
         saveString("task_"+ taskId,modelJson);
         AppLogger.INSTANCE.log("saved Task json: "+modelJson);
     }
