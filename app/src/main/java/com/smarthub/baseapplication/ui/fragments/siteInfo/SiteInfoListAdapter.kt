@@ -210,7 +210,6 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.postalCode.text=siteAddress.pincode
                     holder.binding.siteLatitude.text=siteAddress.locLatitude
                     holder.binding.siteLongitude.text=siteAddress.locLongitude
-
                 }
             }
             is ViewHold2 -> {
@@ -276,7 +275,6 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 if(basicinfodata.GeoCondition?.isNotEmpty()==true){
                     val geoCondition: GeoConditionData = basicinfodata.GeoCondition!![0]
                     holder.binding.textAltitude.text = geoCondition.Altitude.toString()
-                    holder.binding.textTempZone.text = ""
                     AppPreferences.getInstance().setDropDown(holder.binding.potentioalThreatSpinner,DropDowns.Potentialthreat.name,geoCondition.Potentialthreat.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.windZoneSpinner,DropDowns.Windzone.name,geoCondition.Windzone.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.seismecZoneSpinner,DropDowns.Seismiczone.name,geoCondition.Seismiczone.get(0).toString())
