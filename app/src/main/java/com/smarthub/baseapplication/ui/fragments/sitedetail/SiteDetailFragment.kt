@@ -69,6 +69,7 @@ class SiteDetailFragment : BaseFragment() {
             siteName = arguments?.getString("siteName")!!
 
         AppController.getInstance().siteid=id
+        AppController.getInstance().siteName=siteName
         AppLogger.log(" id ---:$id")
     }
 

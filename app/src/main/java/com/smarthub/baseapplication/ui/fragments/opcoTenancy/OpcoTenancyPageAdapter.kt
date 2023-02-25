@@ -19,9 +19,9 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllDat
                 return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
             }
 
-//            1 -> {
-//                return RfEquipmentFragment(opcodata!!)
-//            }
+            1 -> {
+                return RfEquipmentViewPagerFragment(opcodata)
+            }
 //            2 -> {
 //                return BackhaulFragment(opcodata!!)
 //            }
@@ -47,7 +47,7 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllDat
 //                return "Commercials"
 //            }
             1 -> {
-                return "RF Equipment"
+                return "Equipment"
             }
             2 -> {
                 return "Backhaul"

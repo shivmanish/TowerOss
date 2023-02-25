@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.CableDetailsListItemBinding
 import com.smarthub.baseapplication.databinding.RfEquipmentListItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.CableDetailsData
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewRfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
@@ -18,7 +20,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayList<NewRfEquipmentData>?,var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
+class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayList<CableDetailsData>?, var context: Context) : RecyclerView.Adapter<CableDetailsAdapter.ViewHold>() {
 
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
@@ -30,14 +32,8 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View,listener: RfEquipmentItemListner) : ViewHold(itemView) {
-        var binding : RfEquipmentListItemsBinding = RfEquipmentListItemsBinding.bind(itemView)
-
-//        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-//            override fun itemClicked() {
-//                listener.attachmentItemClicked()
-//            }
-//        })
+    class ViewHold1(itemView: View,) : ViewHold(itemView) {
+        var binding : CableDetailsListItemBinding = CableDetailsListItemBinding.bind(itemView)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -47,29 +43,22 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-
-//            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-//            recyclerListener.adapter = adapter
-//
-//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-//                adapter.addItem()
-//            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_list_items, parent, false)
-                ViewHold1(view,listener)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.cable_details_list_item, parent, false)
+                ViewHold1(view,)
             }
             2 -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_no_data, parent, false)
                 ViewHold(view)
             }
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_equipment_list_items, parent, false)
-                ViewHold1(view,listener)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.cable_details_list_item, parent, false)
+                ViewHold1(view,)
             }
         }
     }
@@ -83,7 +72,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var data : NewRfEquipmentData = list!![position]
+        var data : CableDetailsData = list!![position]
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
 //                listener.EditDialouge(data,position)
@@ -109,25 +98,12 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
             try{
                 if (list !=null && list?.isNotEmpty()!!){
                     data= list!![position]
-                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.EquipmentName.name,"1"),data.SerialNumber,Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyyy"))
-                    AppPreferences.getInstance().setDropDown(holder.binding.EquipmentName,DropDowns.EquipmentName.name,"1")
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus,DropDowns.OperationalStatus.name,"1")
-                    holder.binding.Model.text=data.Model
-                    holder.binding.SerialNumber.text=data.SerialNumber
-                    holder.binding.Make.text=data.Make
-                    holder.binding.InstallationDate.text=data.InstallationDate
-                    holder.binding.MaxPowerRating.text=data.MaxPowerRating
-                    holder.binding.Weight.text=data.Weight
-                    holder.binding.RackNo.text=data.RackNo
-                    holder.binding.minOpratingTemp.text=data.OperatingTempMin
-                    holder.binding.maxOpratingTemp.text=data.OperatingTempMax
-                    holder.binding.sizeLenth.text=data.SizeL
-                    holder.binding.sizeBidth.text=data.SizeB
-                    holder.binding.sizeHeight.text=data.SizeH
-                    holder.binding.RackSpaceUsed.text=data.RackUSpaceUsed.toString()
-                    holder.binding.minVoltageRating.text=data.VoltageMin
-                    holder.binding.maxVoltageRating.text=data.VoltageMax
-                    holder.binding.Type.text=data.Type
+                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.CableName.name,"1"),data.CableType,data.Length)
+                    AppPreferences.getInstance().setDropDown(holder.binding.cableName,DropDowns.CableName.name,"1")
+                    holder.binding.Type.text=data.CableType
+                    holder.binding.usedFor.text=data.UsedFor
+                    holder.binding.lenth.text=data.Length
+                    holder.binding.remark.text=data.Remark
 
                 }
             }catch (e:Exception){
@@ -149,7 +125,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
     }
 
 
-    interface RfEquipmentItemListner {
+    interface CableDetailItemListner {
         fun EditDialouge(data : rfEquipmentData,pos:Int)
         fun attachmentItemClicked()
     }

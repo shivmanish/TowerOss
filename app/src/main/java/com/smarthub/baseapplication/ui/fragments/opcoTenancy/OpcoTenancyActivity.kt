@@ -42,7 +42,7 @@ class OpcoTenancyActivity : BaseActivity() {
         binding.back.setOnClickListener {
             onBackPressed()
         }
-        binding.siteId.text=AppController.getInstance().siteid
+        binding.siteId.text=AppController.getInstance().siteName
         binding.subTitle.text=Opcodata?.Opcoinfo?.get(0)?.OpcoSiteID
         binding.rfiDate.text= Opcodata?.Opcoinfo?.get(0)?.RfiAcceptanceDate
         binding.titel.text= Opcodata?.Opcoinfo?.get(0)?.OpcoName
