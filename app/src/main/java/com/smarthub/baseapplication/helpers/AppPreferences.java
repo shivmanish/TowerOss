@@ -12,10 +12,12 @@ import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
 import com.smarthub.baseapplication.model.search.SearchHistoryList;
 import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 import com.smarthub.baseapplication.utils.DropDowns;
+import com.smarthub.baseapplication.utils.Utils;
 import com.smarthub.baseapplication.widgets.CustomSpinner;
 
 import java.util.ArrayList;
@@ -37,6 +39,29 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             mInstance = new AppPreferences();
         }
         return mInstance;
+    }
+
+    public void saveTaskUiModel(TaskDropDownModel model, String taskId){
+        String modelJson= new Gson().toJson(model);
+        AppLogger.INSTANCE.log("saved Task json: "+model);
+        AppLogger.INSTANCE.log("saved Task json task Id: "+taskId);
+        saveString("task_"+ taskId,modelJson);
+        AppLogger.INSTANCE.log("saved Task json: "+modelJson);
+    }
+
+    public TaskDropDownModel getTaskUiModel(String taskId,Context context){
+        TaskDropDownModel taskModel=null;
+        String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"task_drop_down.json");
+        try{
+            if (!getString("task_"+ taskId).isEmpty())
+                modelJson=getString("task_"+ taskId);
+            else
+                saveString("task_"+taskId,modelJson);
+            taskModel= new Gson().fromJson(modelJson,TaskDropDownModel.class);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("error in fetching task ui model on appPrefrence"+e.getLocalizedMessage());
+        }
+        return taskModel;
     }
 
     public void saveBoolean(String iKey, boolean iValue) {

@@ -28,6 +28,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
+import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
@@ -146,8 +147,8 @@ public interface APIClient {
     Call<SiteInfoModel> fetchSiteInfoById(@Body IdData data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<SiteInfoDataModel> fetchSiteInfo(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<AllsiteInfoDataModel> fetchSiteInfo(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

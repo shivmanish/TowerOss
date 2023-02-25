@@ -10,6 +10,7 @@ import com.example.trackermodule.util.MyApplication;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
+import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class AppController extends MyApplication {
 
     static AppController mInstance;
     public SiteInfoDataModel siteInfoModel;
+    public AllsiteInfoDataModel newSiteInfoModel;
     public String ownerName = "SMRT";
     public String siteid = "448";
 

@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
+import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
@@ -81,7 +82,7 @@ class HomeViewModel : ViewModel() {
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
     var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
-    var siteInfoDataResponse:SingleLiveEvent<Resource<SiteInfoDataModel>>? = null
+    var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())

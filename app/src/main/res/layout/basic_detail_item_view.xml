@@ -79,6 +79,7 @@
         android:layout_margin="5dp"
         android:visibility="visible"
         android:id="@+id/item_collapse"
+        android:paddingBottom="@dimen/dp15"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -133,6 +134,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:text="Site Alternate Name"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/Site_Alternate_Name"
+                    android:text="Mangolpuri"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
                     android:text="Site Status"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
@@ -145,6 +164,7 @@
                     android:layout_height="wrap_content" />
               
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -163,7 +183,6 @@
                     android:layout_height="wrap_content" />
               
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -178,25 +197,6 @@
                     android:text="On-Air"
                     android:id="@+id/site_type"
                     style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-              
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Site Ownership"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="On-Air"
-                    android:id="@+id/site_ownership"
-                    style="@style/RowTextviewItem"
-                    android:gravity="left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
               
@@ -227,13 +227,32 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Location Zone"
+                    android:text="Site Ownership"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtLocationZone"
+                    android:id="@+id/Site_Ownership"
+                    android:text="Urban"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Cost Center"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/cost_center"
                     android:text="Urban"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -248,12 +267,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Maintenance Zone"
+                    android:text="Acquisition Type"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtMaintenanceZone"
+                    android:id="@+id/AcquisitionType"
                     android:hint="Thane"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -286,12 +305,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Site In-Charge Name"
+                    android:text="Maintenance Geography"
                     style="@style/RowTextItemInfo"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtSiteInChargeName"
+                    android:id="@+id/Maintenance_Geography"
                     android:text="Praful SIngh"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -304,12 +325,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Site In-Charge Number"
+                    android:text="Site Latitude"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtSiteInChargeNumber"
+                    android:id="@+id/site_latitude"
                     android:text="9890000009"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -324,12 +345,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Rent Escalation"
+                    android:text="Site Longitude"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtRentEscalation"
+                    android:id="@+id/site_longitude"
                     android:text="10"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -343,12 +364,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Rent Escalation Period"
+                    android:text="Postal Code"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/txtRentEscalationPeriod"
+                    android:id="@+id/postal_code"
                     android:text=""
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"

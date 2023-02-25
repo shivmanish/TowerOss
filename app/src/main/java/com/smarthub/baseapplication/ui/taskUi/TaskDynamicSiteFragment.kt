@@ -8,16 +8,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TaskDynamicTitleListBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.adapter.DynamicItemListAdapter
 import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
 import com.smarthub.baseapplication.ui.dynamic.ItemData
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var siteDetailViewModel: SiteDetailViewModel): BaseFragment() {
+class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var taskModel: TaskDropDownModel, var taskId:String): BaseFragment() {
 
     lateinit var binding: TaskDynamicTitleListBinding
     lateinit var homeViewModel: HomeViewModel
@@ -50,6 +53,9 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var site
                 binding.imgEdit.visibility=View.VISIBLE
             }
         }
+        AppLogger.log("all data for feilds on TaskDynamicSiteFragment====>: ")
+        AppLogger.log("TaskListmodel tabs data====>:${Gson().toJson(listData)}")
+        AppLogger.log("<======all data for feilds on TaskDynamicSiteFragment end ")
 //        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
 //        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
 //        listData =model.data[childIndex]
@@ -61,7 +67,7 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var site
             setViewItemAdapter(listData.listData)
         }
         binding.updateBtn.setOnClickListener {
-            siteDetailViewModel.updateTaskUiModelResoonse
+            AppPreferences.getInstance().saveTaskUiModel(taskModel,taskId)
             setViewItemAdapter(listData.listData)
         }
         setViewItemAdapter(listData.listData)
@@ -79,6 +85,9 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var site
             })
     }
     fun setViewItemAdapter(data: List<ItemData>){
+        AppLogger.log("all data for feilds on setViewItemAdapter====>: ")
+        AppLogger.log("TaskListmodel tabs data====>:${Gson().toJson(data)}")
+        AppLogger.log("<======all data for feilds on setViewItemAdapter end ")
         binding.cancelBtn.visibility=View.GONE
         binding.updateBtn.visibility=View.GONE
         binding.itemCollapse.adapter=DynamicViewItemListAdapter(data)

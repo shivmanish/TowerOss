@@ -92,11 +92,11 @@
             app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox" />
 
         <RelativeLayout
-            android:layout_marginBottom="@dimen/dp10"
             android:id="@+id/layout_gchat_chatbox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp60"
-            android:paddingBottom="@dimen/dp20"
+            android:layout_height="@dimen/dp65"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -105,61 +105,53 @@
                 android:paddingStart="16dp"
                 android:id="@+id/edit_chat_bx"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:gravity="top"
+                android:layout_height="60dp"
                 android:imeActionLabel="Send"
                 android:layout_toStartOf="@+id/button_gchat_send"
                 android:background="@android:color/transparent"
                 android:hint="Write your msg here...."
                 android:inputType="text"
                 android:maxLines="1"
-                tools:ignore="Autofill" />
+                tools:ignore="Autofill"
+                android:paddingBottom="@dimen/dp15"/>
 
             <LinearLayout
                 android:id="@+id/button_gchat_send"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="50dp"
+                android:paddingBottom="@dimen/dp10"
                 android:layout_alignParentEnd="true"
                 android:gravity="center_vertical"
                 android:background="?attr/selectableItemBackground"
                 >
 
                 <ImageView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:padding="@dimen/dp10"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="@dimen/dp5"
+                    android:layout_marginHorizontal="@dimen/dp5"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_attachment"
-
-                    android:background="?attr/selectableItemBackground"
-
-                    android:textColor="@color/grey" />
+                    android:background="?attr/selectableItemBackground" />
                 <ImageView
-
-                    android:paddingRight="@dimen/dp15"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:padding="@dimen/dp10"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="@dimen/dp5"
+                    android:layout_marginHorizontal="@dimen/dp5"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_menu_call"
-
-                    android:background="?attr/selectableItemBackground"
-
-                    android:textColor="@color/grey" />
+                    android:background="?attr/selectableItemBackground" />
                 <ImageView
 
-                    android:paddingRight="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp10"
                     android:id="@+id/send_msg"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="@dimen/dp48"
-                    android:layout_height="@dimen/dp48"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:padding="@dimen/dp5"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_enter_message"
-                    android:textColor="@color/grey" />
+                    android:src="@drawable/ic_enter_message" />
 
             </LinearLayout>
 

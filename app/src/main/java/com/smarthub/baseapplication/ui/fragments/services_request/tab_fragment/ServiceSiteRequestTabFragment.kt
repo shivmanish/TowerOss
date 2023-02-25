@@ -43,7 +43,7 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
             binding?.swipeLayout!!.isRefreshing = false
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 if (it.data.item?.isNotEmpty() == true) {
-                    adapter.updateData(it.data.item!![0].ServiceRequestMain[0])
+                    adapter.updateData(it.data.item!![0].ServiceRequestMain?.get(0))
                     Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
                     AppLogger.log("Service request Fragment card Data fetched successfully")
                     AppLogger.log("size :${it.data.item?.size}")
