@@ -123,7 +123,6 @@
                         android:text="" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     style="@style/ColumnItemInfo"
                     android:layout_width="0dp"
@@ -137,7 +136,6 @@
 
                     <TextView
                         android:id="@+id/textGate"
-
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -164,7 +162,6 @@
                         android:text="" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     style="@style/ColumnItemInfo"
                     android:layout_width="0dp"
@@ -174,7 +171,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Site Access Area" />
+                        android:text="Site Access Way" />
 
                     <TextView
                         android:id="@+id/site_access_area_spinner"
@@ -204,7 +201,6 @@
                         android:text="" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     style="@style/ColumnItemInfo"
                     android:layout_width="0dp"
@@ -233,40 +229,19 @@
                     <TextView
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Site Access" />
-
-                    <TextView
-                        android:id="@+id/site_access"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/ColumnItemInfo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:layout_height="wrap_content"
                         android:text="Site Access Methodology" />
 
                     <TextView
                         android:id="@+id/textSiteAccesseethodology"
-
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     style="@style/ColumnItemInfo"
                     android:layout_width="0dp"
@@ -280,7 +255,6 @@
 
                     <TextView
                         android:id="@+id/textPoliceStation"
-
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -302,14 +276,12 @@
 
                     <TextView
                         android:id="@+id/textPoliceNumber"
-
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     style="@style/ColumnItemInfo"
                     android:layout_width="0dp"
@@ -323,7 +295,6 @@
 
                     <TextView
                         android:id="@+id/textFireStation"
-
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -345,7 +316,6 @@
 
                     <TextView
                         android:id="@+id/textFireNumber"
-
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
