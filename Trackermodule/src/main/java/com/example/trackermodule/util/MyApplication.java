@@ -9,6 +9,8 @@ import com.facebook.stetho.Stetho;
 public class MyApplication extends Application {
 
     SharedPreferences mPrefs;
+    public String toketkey;
+
     public void onCreate() {
         super.onCreate();
         Stetho.initializeWithDefaults(this);
@@ -29,15 +31,15 @@ public class MyApplication extends Application {
         }
     }
 
-    public String getToken(){
+    public String getToken() {
         return getString("accessToken");
     }
 
-    public String getBearerToken(){
-        return "Bearer "+getString("accessToken");
+    public String getBearerToken() {
+        return toketkey;
     }
 
-    public String getRefresh(){
+    public String getRefresh() {
         return getString("refreshToken");
     }
 

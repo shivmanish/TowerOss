@@ -53,9 +53,9 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     lateinit var mServiceIntent: Intent
     var is_first_time: Boolean = true
     var t: Thread? = null
+    var mLocationService: LocationService = LocationService()
     var mapFragment: SupportMapFragment? = null
 
-    var mLocationService: LocationService = LocationService()
     var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -280,7 +280,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun startServiceBackground() {
-
+        mLocationService = LocationService()
         if (!Util.isMyServiceRunning(mLocationService.javaClass, mActivity)) {
             startService(mServiceIntent)
             Toast.makeText(
