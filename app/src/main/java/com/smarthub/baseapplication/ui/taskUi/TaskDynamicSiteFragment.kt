@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.ui.dynamic.ItemData
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -52,6 +53,9 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var task
                 binding.imgEdit.visibility=View.VISIBLE
             }
         }
+        AppLogger.log("all data for feilds on TaskDynamicSiteFragment====>: ")
+        AppLogger.log("TaskListmodel tabs data====>:${Gson().toJson(listData)}")
+        AppLogger.log("<======all data for feilds on TaskDynamicSiteFragment end ")
 //        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
 //        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
 //        listData =model.data[childIndex]
@@ -81,6 +85,9 @@ class TaskDynamicSiteFragment(var listData:TitleItem,var childIndex:Int,var task
             })
     }
     fun setViewItemAdapter(data: List<ItemData>){
+        AppLogger.log("all data for feilds on setViewItemAdapter====>: ")
+        AppLogger.log("TaskListmodel tabs data====>:${Gson().toJson(data)}")
+        AppLogger.log("<======all data for feilds on setViewItemAdapter end ")
         binding.cancelBtn.visibility=View.GONE
         binding.updateBtn.visibility=View.GONE
         binding.itemCollapse.adapter=DynamicViewItemListAdapter(data)

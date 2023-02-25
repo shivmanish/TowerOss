@@ -32,6 +32,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
+import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
@@ -101,7 +102,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
     private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
-    private SingleLiveEvent<Resource<SiteInfoDataModel>> siteInfoDataModel;
+    private SingleLiveEvent<Resource<AllsiteInfoDataModel>> siteInfoDataModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -223,7 +224,7 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<AddNotificationResponse>> getAddNotificationResponse() {
         return addNotificationResponse;
     }
-    public SingleLiveEvent<Resource<SiteInfoDataModel>> getSiteInfoDataModel() {
+    public SingleLiveEvent<Resource<AllsiteInfoDataModel>> getSiteInfoDataModel() {
         return siteInfoDataModel;
     }
     public SingleLiveEvent<Resource<TaskDataList>> getTaskDataList() {
@@ -814,14 +815,19 @@ public class HomeRepo {
     }
 
     public void SiteInfoRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        Collections.addAll(list, "Basicinfo","OperationalInfo","GeoCondition","SafetyAndAccess");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        SiteInfoDataModel siteModel = (siteInfoDataModel!=null && siteInfoDataModel.getValue()!=null)?siteInfoDataModel.getValue().data:null;
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("Basicinfo",new JsonObject());
+        jsonObject.add("OperationalInfo",new JsonObject());
+        jsonObject.add("GeoCondition",new JsonObject());
+        jsonObject.add("SafetyAndAccess",new JsonObject());
+        jsonObject.add("Siteaddress",new JsonObject());
+        AllsiteInfoDataModel siteModel = (siteInfoDataModel!=null && siteInfoDataModel.getValue()!=null)?siteInfoDataModel.getValue().data:null;
         siteInfoDataModel.postValue(Resource.loading(siteModel, 200));
-        apiClient.fetchSiteInfo(siteInfoParam).enqueue(new Callback<SiteInfoDataModel>() {
+        apiClient.fetchSiteInfo(jsonObject).enqueue(new Callback<AllsiteInfoDataModel>() {
             @Override
-            public void onResponse(Call<SiteInfoDataModel> call, Response<SiteInfoDataModel> response) {
+            public void onResponse(Call<AllsiteInfoDataModel> call, Response<AllsiteInfoDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -832,15 +838,15 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<SiteInfoDataModel> call, Throwable t) {
+            public void onFailure(Call<AllsiteInfoDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<SiteInfoDataModel> response) {
+            private void reportSuccessResponse(Response<AllsiteInfoDataModel> response) {
 
                 if (response.body() != null) {
-                    SiteInfoDataModel data =response.body();
-                    AppController.getInstance().siteInfoModel = data;
+                    AllsiteInfoDataModel data =response.body();
+                    AppController.getInstance().newSiteInfoModel = data;
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
                     siteInfoDataModel.postValue(Resource.success(response.body(), 200));
                 }

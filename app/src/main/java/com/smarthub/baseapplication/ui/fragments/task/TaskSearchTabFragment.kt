@@ -172,6 +172,9 @@ class TaskSearchTabFragment(var siteID:String?,var taskId :String) : BaseFragmen
 
     private fun setViewPager(list:List<TitleItem>){
         AppLogger.log("view pager List Size : ${binding.tabs.tabCount}")
+        AppLogger.log("all data in tabs start for ${list[0].title}====>: ")
+        AppLogger.log("TaskListmodel tabs data====>:${Gson().toJson(list)}")
+        AppLogger.log("<======all data in TaskListmodel end ")
         binding.viewpager.adapter = SrDetauilsPageAdapter(childFragmentManager,list,TaskListmodel,taskId)
         binding.tabs.setupWithViewPager( binding.viewpager)
 
