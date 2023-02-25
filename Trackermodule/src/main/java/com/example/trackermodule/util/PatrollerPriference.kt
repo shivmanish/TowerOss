@@ -26,6 +26,7 @@ class PatrollerPriference(context: Context) {
         private const val TOTAL_PAUSE_TIME_STAMP = "total_pause_time_stamp"
 
         private const val PENDING_LATLONG = "pending_latlong"
+        private const val TOKEN_KEY = "tokenkey11"
         public const val APP_VERSION = "app_version"
 
         public const val PATROLING_STATUS_STOP = "patroling_status_stop"
@@ -203,6 +204,20 @@ class PatrollerPriference(context: Context) {
         val editor: SharedPreferences.Editor =
             context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
         editor.putString(PENDING_LATLONG , latlongjson);
+        editor.apply()
+    }
+
+
+    fun gettokekey(): String {
+        val prefs: SharedPreferences = context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE)
+        val token = prefs.getString(TOKEN_KEY ,"")
+        return token!!
+    }
+
+    fun settokekey( token : String) {
+        val editor: SharedPreferences.Editor =
+            context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
+        editor.putString(TOKEN_KEY , token);
         editor.apply()
     }
 

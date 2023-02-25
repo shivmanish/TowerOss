@@ -66,7 +66,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
         homePageViewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
         homePageViewModel.init(mActivity)
         initVariable()
-        homePageViewModel.fetchUserDetails(this)
+//        homePageViewModel.fetchUserDetails(this)
         if (!Util.isLocationEnabledOrNot(mActivity)) {
             Util.showAlertLocation(
                 mActivity,

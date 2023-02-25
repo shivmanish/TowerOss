@@ -130,19 +130,52 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String) : BaseFragm
             }
         }
 
+        if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                PatrollerPriference.PATROLING_STATUS_PAUSE, ignoreCase = true
+            )
+        ) {
+            binding.start.text = "Stop"
+//            homePageBinding.pause.visibility = View.VISIBLE
+//            homePageBinding.stop.visibility = View.VISIBLE
+//            homePageBinding.pause.text = "Resume"
+
+        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                PatrollerPriference.PATROLING_STATUS_running, ignoreCase = true
+            )
+        ) {
+
+            startServiceBackground()
+            binding.start.text = "Stop"
+//            homePageBinding.pause.visibility = View.VISIBLE
+//            homePageBinding.stop.visibility = View.VISIBLE
+//            homePageBinding.pause.text = "Pause"
+
+        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                PatrollerPriference.PATROLING_STATUS_STOP, ignoreCase = true
+            )
+        ) {
+            binding.start.text = "Start"
+//            binding.pause.visibility = View.GONE
+        }
+
+
         binding.mapView.setOnClickListener {
             mapView()
         }
         binding.start.setOnClickListener {
-            PatrollerPriference(requireContext()).setstartTime(System.currentTimeMillis())
-            PatrollerPriference(requireContext()).setPauseTimestamp(0)
-            PatrollerPriference(requireContext()).setTotalPauseTime(0)
-            binding.start.text = "Stop"
-            PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
-            PatrollerPriference(requireContext()).settime("")
-            PatrollerPriference(requireContext()).setStartLattitude("Na")
-            PatrollerPriference(requireContext()).setStartLongitude("Na")
-            startServiceBackground()
+            if (binding.start.text.toString().equals("Start", true)) {
+                PatrollerPriference(requireContext()).setstartTime(System.currentTimeMillis())
+                PatrollerPriference(requireContext()).setPauseTimestamp(0)
+                PatrollerPriference(requireContext()).setTotalPauseTime(0)
+                binding.start.text = "Stop"
+                PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
+                PatrollerPriference(requireContext()).settime("")
+                PatrollerPriference(requireContext()).setStartLattitude("Na")
+                PatrollerPriference(requireContext()).setStartLongitude("Na")
+                startServiceBackground()
+            } else {
+                mapView()
+            }
         }
         binding.messages.setOnClickListener {
             val chatfragment = ChatFragment()

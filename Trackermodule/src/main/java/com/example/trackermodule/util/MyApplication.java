@@ -9,7 +9,7 @@ import com.facebook.stetho.Stetho;
 public class MyApplication extends Application {
 
     SharedPreferences mPrefs;
-    public String toketkey;
+    public String toketkey = "";
 
     public void onCreate() {
         super.onCreate();

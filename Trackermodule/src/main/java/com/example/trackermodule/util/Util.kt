@@ -174,7 +174,7 @@ object Util {
                 val apiInference = retrofit.create(APIInterface::class.java)
                 val call = apiInference.updateLatlong(
                     UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = pendingLatlong.latlnglist)
-                            , MyApplication().bearerToken
+                            , PatrollerPriference(context).gettokekey()
                 )
                 call.enqueue(object : Callback<UserDataResponse> {
                     override fun onResponse(

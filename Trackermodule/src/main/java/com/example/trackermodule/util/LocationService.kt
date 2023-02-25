@@ -87,6 +87,7 @@ class LocationService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         requestLocationUpdates()
+        println("this is called "+PatrollerPriference(this).gettokekey())
         startTimer()
         return START_STICKY
     }
@@ -372,7 +373,7 @@ class LocationService : Service() {
 
         val call = apiInference.updateLatlong(
             UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = arrayListOf(data)),
-            MyApplication().bearerToken
+            PatrollerPriference(this).gettokekey()
         )
         call.enqueue(object : Callback<UserDataResponse> {
             override fun onResponse(
