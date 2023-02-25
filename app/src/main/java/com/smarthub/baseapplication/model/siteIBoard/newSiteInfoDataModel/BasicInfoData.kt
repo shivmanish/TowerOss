@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel
+package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel
 
 data class BasicInfoData(
     val Acquisitiontype: List<Int>,
