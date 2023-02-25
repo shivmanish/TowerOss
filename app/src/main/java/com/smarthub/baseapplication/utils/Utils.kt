@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.utils
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Resources
+import android.net.ConnectivityManager
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -145,6 +146,18 @@ object Utils {
         val inputMethodManager =
             context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun isNetworkConnected(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        val isConnected = activeNetwork != null && activeNetwork.isConnected
+        return if (isConnected) {
+            true
+        } else {
+            Log.d("Network", "Not Connected")
+            false
+        }
     }
 
     fun validatePass(password: String): Boolean {

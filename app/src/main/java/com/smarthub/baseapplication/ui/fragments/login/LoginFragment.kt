@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.ui.fragments.login
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,7 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
@@ -24,7 +25,6 @@ import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.network.User
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppConstants
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -50,6 +50,14 @@ class LoginFragment : BaseFragment() {
         binding?.login?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             loginValidation()
+        }
+
+        if (!Utils.isNetworkConnected(requireContext())){
+            binding?.login?.isEnabled = false
+            binding?.login?.backgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.grey)))
+        }else{
+            binding?.login?.isEnabled = true
+            binding?.login?.backgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.yellow)))
         }
         binding?.textRegister?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)

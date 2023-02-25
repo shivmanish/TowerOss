@@ -49,48 +49,48 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
-        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
-        binding.listItem.adapter = DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
-            override fun onDateFieldFind(text: TextView) {
-                setDatePickerView(text)
-            }
-
-        })
+//        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
+//        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
+//        binding.listItem.adapter = DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
+//            override fun onDateFieldFind(text: TextView) {
+//                setDatePickerView(text)
+//            }
+//
+//        })
 
         dropdowndata = AppPreferences.getInstance().dropDown
 
-//        if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
-//            homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
-//        homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
+        if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
+            homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
 //            binding.swipeLayout.isRefreshing = false
-//            if (it!=null && it.status == Resource.Status.LOADING){
-//               showLoader()
-//                return@observe
-//            }
-//            if (it!=null && it.status == Resource.Status.SUCCESS){
-//                hideLoader()
-//                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data?.item?.get(0)!!}")
-////                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
-//                var currentOpened = -1
-//                if (binding.listItem.adapter is SiteInfoListAdapter){
-//                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
-//                    currentOpened = adapter.currentOpened
-//                }
-//                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data.item?.get(0)!!)
-//                AppLogger.log("currentOpened:$currentOpened")
-//                if (currentOpened>=0){
-//                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
-//                }
-//            }else if (it!=null) {
-//                AppLogger.log("SiteInfoNewFragment error :${it.message}")
-//
-//                Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
-//            }else{
-//                AppLogger.log("SiteInfoNewFragment Something went wrong")
-//                Toast.makeText(requireContext(),"SiteInfoNewFragment Something went wrong",Toast.LENGTH_SHORT).show()
-//            }
-//        }
+            if (it!=null && it.status == Resource.Status.LOADING){
+               showLoader()
+                return@observe
+            }
+            if (it!=null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data?.item?.get(0)!!}")
+//                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
+                var currentOpened = -1
+                if (binding.listItem.adapter is SiteInfoListAdapter){
+                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
+                    currentOpened = adapter.currentOpened
+                }
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data.item?.get(0)!!)
+                AppLogger.log("currentOpened:$currentOpened")
+                if (currentOpened>=0){
+                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
+                }
+            }else if (it!=null) {
+                AppLogger.log("SiteInfoNewFragment error :${it.message}")
+
+                Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
+            }else{
+                AppLogger.log("SiteInfoNewFragment Something went wrong")
+                Toast.makeText(requireContext(),"SiteInfoNewFragment Something went wrong",Toast.LENGTH_SHORT).show()
+            }
+        }
 
 //        binding.swipeLayout.setOnRefreshListener {
 //            homeViewModel.siteInfoRequestAll(id)
