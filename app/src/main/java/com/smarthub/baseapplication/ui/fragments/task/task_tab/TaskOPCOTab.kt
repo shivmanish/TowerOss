@@ -43,7 +43,7 @@ class TaskOPCOTabFragment(var siteID: String) : BaseFragment(), TaskAdapter.Task
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("TaskOPCoTab Fragment Data fetched successfully")
                 try {
-                    taskAdapter.setValueData(it.data?.item?.get(0)?.Operator?.get(0)?.Opcoinfo?.get(0))
+//                    taskAdapter.setValueData(it.data?.item?.get(0)?.Operator?.get(0)?.Opcoinfo?.get(0))
                 }catch (e:Exception){
                     AppLogger.log("data fetched for opcoInfo")
                     Toast.makeText(requireContext(),"data fetched for opcoInfo",Toast.LENGTH_SHORT).show()

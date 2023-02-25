@@ -29,8 +29,7 @@ class DynamicTabFragment(var Id: String) : BaseFragment() {
     }
 
     fun setData(data: ArrayList<FragmentPojo>) {
-        binding.viewpager.adapter =
-            DynamicPageAdapter(childFragmentManager, data)
+        binding.viewpager.adapter = DynamicPageAdapter(childFragmentManager, data)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.addOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
     }

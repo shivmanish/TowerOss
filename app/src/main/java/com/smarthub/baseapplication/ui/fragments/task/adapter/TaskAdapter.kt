@@ -154,19 +154,19 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                         holder.binding.opcoSiteName.text=opcoInfoData?.OpcoSiteName
                         holder.binding.opcoSiteStatus.text=opcoInfoData?.Opcositestatus
                         holder.binding.opcoSiteType.text=opcoInfoData?.Opcositetype
-                        holder.binding.networkType.text=opcoInfoData?.Operatornetworktype
+//                        holder.binding.networkType.text=opcoInfoData?.Operatornetworktype
                         holder.binding.rfiAcceptenceDate.text=opcoInfoData?.rfiAcceptanceDate
                         holder.binding.rfrDate.text=opcoInfoData?.rfrDate
                         holder.binding.OPCOSignOffDate.text=opcoInfoData?.Opcosignoffdate
                         holder.binding.CommittedNWA.text=opcoInfoData?.committedNWA
                         holder.binding.AlarmExtension.text=opcoInfoData?.Alarmsextension
-                        holder.binding.RFTechnology.text=opcoInfoData?.Rftechnology
-                        holder.binding.TelecomEquipmentType.text=opcoInfoData?.Telecomequipmenttype
-                        holder.binding.RRUCount.text=opcoInfoData?.Rrucount
-                        holder.binding.SectorCount.text=opcoInfoData?.Sectorcount
-                        holder.binding.RackCount.text=opcoInfoData?.Rackcount
-                        holder.binding.AntennaCount.text=opcoInfoData?.Antenacount
-                        holder.binding.AntennaSlotUsed.text=opcoInfoData?.Antenaslotused
+//                        holder.binding.RFTechnology.text=opcoInfoData?.Rftechnology
+//                        holder.binding.TelecomEquipmentType.text=opcoInfoData?.Telecomequipmenttype
+//                        holder.binding.RRUCount.text=opcoInfoData?.Rrucount
+//                        holder.binding.SectorCount.text=opcoInfoData?.Sectorcount
+//                        holder.binding.RackCount.text=opcoInfoData?.Rackcount
+//                        holder.binding.AntennaCount.text=opcoInfoData?.Antenacount
+//                        holder.binding.AntennaSlotUsed.text=opcoInfoData?.Antenaslotused
                     }catch (e:Exception){
                         Toast.makeText(context, "task tab adapter error", Toast.LENGTH_SHORT).show()
                         AppLogger.log("task tab adapter error ${e.localizedMessage}")
@@ -201,10 +201,10 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
                 try {
                     holder.binding.InstallationVendor.text=opcoInfoData?.InstallationVendor
                     holder.binding.MaintenanceVendor.text=opcoInfoData?.MaintenanceVendor
-                    holder.binding.BackhaulTechnology.text=opcoInfoData?.Backhaultechnology
-                    holder.binding.SiteInChargeName.text=opcoInfoData?.Siteinchargename
-                    holder.binding.SiteInChargeEmailID.text=opcoInfoData?.Siteinchargeemail
-                    holder.binding.SiteInChargeNumber.text=opcoInfoData?.Siteinchargenumber
+//                    holder.binding.BackhaulTechnology.text=opcoInfoData?.Backhaultechnology
+//                    holder.binding.SiteInChargeName.text=opcoInfoData?.Siteinchargename
+//                    holder.binding.SiteInChargeEmailID.text=opcoInfoData?.Siteinchargeemail
+//                    holder.binding.SiteInChargeNumber.text=opcoInfoData?.Siteinchargenumber
                     holder.binding.OperatorMaintenanceLocation.text=opcoInfoData?.Operatormaintenancelocation
                 }catch (e:Exception){
                     Toast.makeText(context, "task tab adapter error", Toast.LENGTH_SHORT).show()

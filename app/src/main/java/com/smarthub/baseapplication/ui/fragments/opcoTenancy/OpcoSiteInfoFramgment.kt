@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoInfoFregmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewOpcoInfoData
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -21,7 +23,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
-class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
+class OpcoSiteInfoFramgment(var opcodata: ArrayList<NewOpcoInfoData>?) :BaseFragment(), OpcoSiteInfoFragAdapter.OpcoInfoLisListener {
     var binding : OpcoInfoFregmentBinding?=null
     var viewmodel: HomeViewModel?=null
     lateinit var adapter: OpcoSiteInfoFragAdapter
@@ -61,13 +63,13 @@ class OpcoSiteInfoFramgment(var opcodata: OpcoDataItem?) :BaseFragment(), OpcoSi
     }
 
     override fun operationsItemClicked(data: Opcoinfo) {
-        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge,data,opcodata?.id.toString())
+        val bottomSheetDialogFragment = OperationsItemsEditDialouge(R.layout.opco_operations_team_dialouge,data,opcodata?.get(0)?.id.toString())
         bottomSheetDialogFragment.show(childFragmentManager,"category")
 
     }
 
     override fun opcoSiteInfoItemClicked(data: Opcoinfo) {
-        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout,data,opcodata?.id.toString(),
+        val bottomSheetDialogFragment = OpcoSiteInfoEditDialouge(R.layout.opco_info_site_dialouge_layout,data,opcodata?.get(0)?.id.toString(),
         object : OpcoSiteInfoEditDialouge.OpcoInfoListener{
             override fun updatedData(data: Opcoinfo) {
                 adapter.updateOpcoInfoData(data)

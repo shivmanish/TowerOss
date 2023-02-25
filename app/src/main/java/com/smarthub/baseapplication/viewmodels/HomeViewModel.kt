@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.logs.LogsDataModel
 import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
@@ -66,7 +67,7 @@ class HomeViewModel : ViewModel() {
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
-    var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoInfoNewModel?>>?=null
+    var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoTenencyAllDataModel?>>?=null
     var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null

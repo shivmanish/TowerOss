@@ -4,9 +4,10 @@ package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 
-class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : FragmentPagerAdapter(fm) {
+class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllData?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 5
 
@@ -15,23 +16,23 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return OpcoSiteInfoFramgment(opcodata!!)
+                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
             }
 
-            1 -> {
-                return RfEquipmentFragment(opcodata!!)
-            }
-            2 -> {
-                return BackhaulFragment(opcodata!!)
-            }
-            3 -> {
-                return RfAntinaFragment(opcodata!!)
-            }
-            4 -> {
-                return PowerLoadFragment(opcodata!!)
-            }
+//            1 -> {
+//                return RfEquipmentFragment(opcodata!!)
+//            }
+//            2 -> {
+//                return BackhaulFragment(opcodata!!)
+//            }
+//            3 -> {
+//                return RfAntinaFragment(opcodata!!)
+//            }
+//            4 -> {
+//                return PowerLoadFragment(opcodata!!)
+//            }
             else -> {
-                return OpcoSiteInfoFramgment(opcodata!!)
+                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
             }
 
         }

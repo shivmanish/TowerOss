@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcoTenencyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -59,7 +60,7 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
             if (it!=null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("OpcoTenencyFragment card Data fetched successfully")
                 isDataLoaded = true
-                opcoTanancyFragAdapter.setOpData(it.data?.item!![0].Operator)
+                it.data?.Operator?.let { it1 -> opcoTanancyFragAdapter.setOpData(it1) }
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"OpcoTenencyFragment error :${it.message}", Toast.LENGTH_SHORT).show()
             }else{
@@ -91,11 +92,11 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         super.onDestroy()
     }
 
-    override fun clickedItem(data : OpcoDataItem) {
-//        OpcoTenancyActivity.Opcodata=data
-//        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
+    override fun clickedItem(data : OpcoTenencyAllData) {
+        OpcoTenancyActivity.Opcodata=data
+        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
 
-        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivityNew::class.java))
+//        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivityNew::class.java))
 
 
     }
