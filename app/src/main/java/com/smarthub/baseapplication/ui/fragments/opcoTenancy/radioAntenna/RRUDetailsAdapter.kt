@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.opcoTenancy
+package com.smarthub.baseapplication.ui.fragments.opcoTenancy.radioAntenna
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,27 +7,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaListItemBinding
+import com.smarthub.baseapplication.databinding.RruDetailsItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.RRUDetails
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.RadioAnteenaDetails
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: OpcoDataItem?,var context: Context) : RecyclerView.Adapter<RfAntinaListAdapter.ViewHold>() {
+class RRUDetailsAdapter(var listener: RRUItemClickListener, antennaDetails: ArrayList<RRUDetails>?, var context: Context) : RecyclerView.Adapter<RRUDetailsAdapter.ViewHold>() {
 
-    var list : ArrayList<RfAnteenaData> = ArrayList(opcodata?.RfAntena)
+    var list : ArrayList<RRUDetails> = antennaDetails!!
     var currentOpened = -1
 
-    fun updateItem(pos : Int,data : RfAnteenaData){
+    fun updateItem(pos : Int,data : RRUDetails){
         list[pos] = data
         notifyItemChanged(pos)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View,listener: RfAnteenaItemClickListener) : ViewHold(itemView) {
-        var binding : RfAntinaListItemBinding = RfAntinaListItemBinding.bind(itemView)
+    class ViewHold1(itemView: View,listener: RRUItemClickListener) : ViewHold(itemView) {
+        var binding : RruDetailsItemsBinding = RruDetailsItemsBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
                 listener.attachmentItemClicked()
@@ -55,7 +58,7 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.rru_details_items,parent,false)
                 ViewHold1(view,listener)
             }
             2 ->{
@@ -64,7 +67,7 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
             }
 
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.rf_antina_list_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.rru_details_items,parent,false)
                 ViewHold1(view,listener)
             }
         }
@@ -73,9 +76,9 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            var data: RfAnteenaData=list[position]
+            var data: RRUDetails=list[position]
             holder.binding.imgEdit.setOnClickListener {
-                listener.editModeCliked(data,position)
+//                listener.editModeCliked(data,position)
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -95,38 +98,28 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                if (list !=null && list.isNotEmpty()) {
-                    data=list[position]
-                    AppLogger.log("data of $position is =======: $data")
-                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.Technology.name,data.Technology),data.AntenaSerialNumber,data.InstallationDate.substring(0,10))
-                    holder.binding.AntennaSerialNumber.text=data.AntenaSerialNumber
-                    holder.binding.AntennaMake.text=data.AntenaMake
-                    holder.binding.AntennaModel.text=data.AntenaModel
-                    holder.binding.InstalledHeight.text=data.InstalledHeight
-                    holder.binding.AntennaWeight.text=data.AntenaWeight
-                    holder.binding.AntennaType.text=data.AntenaType
-                    holder.binding.AntennaOrientation.text=data.AntenaOrentiation
-                    holder.binding.AntennaTilt.text=data.AntenaTilt
-                    holder.binding.TotalPowerRating.text=data.AntenaTotalPowerRating
-                    holder.binding.FeederCableLength.text=data.FeederCableLength
-                    holder.binding.PowerCableLength.text=data.PowerCableLength
-                    holder.binding.CPRICableLength.text=data.CPRICableLength
-                    holder.binding.GPSCableLength.text=data.GPSCableLength
-                    holder.binding.InstallationDate.text=data.InstallationDate
-                    holder.binding.remark.text=data.Remarks
-                    holder.binding.antennaLenth.text=data.AntenaSizeL
-                    holder.binding.antennaWidth.text=data.AntenaSizeB
-                    holder.binding.antennaHeight.text=data.AntenaSizeH
+                data=list[position]
+                AppLogger.log("data of $position is =======: $data")
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.SerialNo,data.Model,Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyy"))
+                holder.binding.serialNumber.text=data.SerialNo
+                holder.binding.Make.text=data.Make
+                holder.binding.Model.text=data.Model
+                holder.binding.Height.text=data.Height
+                holder.binding.weight.text=data.Weight
+                holder.binding.Type.text=data.Type
+                holder.binding.voltageMin.text=data.VoltageMin
+                holder.binding.voltageMax.text=data.VoltageMax
+                holder.binding.MaxPowerRating.text=data.MaxPowerRating
+                holder.binding.Frequency.text=data.Frequency
+                holder.binding.sizeB.text=data.SizeB
+                holder.binding.sizeH.text=data.SizeH
+                holder.binding.sizeL.text=data.SizeL
+                holder.binding.rruNumber.text=data.No.toString()
+                holder.binding.installationLocation.text=data.InstallationLocation
+                holder.binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.remark.text=data.Remark
 
-                    AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data.Technology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data.OwnerCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.BackhaulLinkUserCompany.name,data.UserCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.BackhaulLinkOperationalStatus.name,data.LinkOperationalStatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SpaceUsed, DropDowns.BackhaulSpaceUsed.name,data.SpaceUsed)
-                    AppPreferences.getInstance().setDropDown(holder.binding.PoleID, DropDowns.BackhaulAntenaTowerPoleId.name,data.TowerPoleId)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SectorNumber, DropDowns.RFSectornumber.name,data.SectorNumber)
-                    AppPreferences.getInstance().setDropDown(holder.binding.AntennaShape, DropDowns.AntenaShape.name,data.AntenaShape)
-                }
+                AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data.OperationStatus.get(0).toString())
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -155,7 +148,7 @@ class RfAntinaListAdapter(var listener: RfAnteenaItemClickListener,opcodata: Opc
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface RfAnteenaItemClickListener{
+    interface RRUItemClickListener{
         fun attachmentItemClicked()
         fun editModeCliked(data :RfAnteenaData,pos:Int)
     }

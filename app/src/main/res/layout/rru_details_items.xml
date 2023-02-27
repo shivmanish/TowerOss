@@ -102,14 +102,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Serial Number"
+                    android:text="RRU Number"
                     style="@style/RowTextItemInfo"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Serial_Number"
+                    android:id="@+id/rru_Number"
                     android:text=""
                     android:maxLines="1"
                     android:ellipsize="marquee"
@@ -124,14 +124,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Sector Number"
+                    android:text="Serial Number"
                     style="@style/RowTextItemInfo"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/sector_Number"
+                    android:id="@+id/serial_Number"
                     android:text=""
                     android:maxLines="1"
                     android:ellipsize="marquee"
@@ -202,12 +202,49 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="TRX Count"
+                    android:text="Sector(s)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/TRXCount"
+                    android:id="@+id/sectors"
+                    android:text=""
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Frequency(mhz)"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/Frequency"
+                    android:text=""
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Installation Location"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/installation_location"
                     android:text=""
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -238,12 +275,67 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Shape"
+                    android:text="Voltage Rating (V)"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Min:"
+                        android:paddingRight="@dimen/dp2"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:id="@+id/voltage_min"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:layout_marginTop="@dimen/dp3"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginBottom="@dimen/dp4"
+                        android:layout_gravity="center_vertical"
+                        android:alpha="1"
+                        android:background="@color/background_login"
+                        android:layout_height="match_parent"
+                        android:layout_width="1dp"/>
+                    <TextView
+                        android:text="Max:"
+                        android:paddingRight="@dimen/dp2"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:id="@+id/voltage_max"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Max Power Rating (KW)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Shape"
+                    android:id="@+id/MaxPowerRating"
                     android:text=""
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
@@ -328,6 +420,7 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -347,23 +440,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Azimuth/ Orientation"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/AzimuthOrientation"
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"

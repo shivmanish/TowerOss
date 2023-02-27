@@ -98,7 +98,7 @@ class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayL
             try{
                 if (list !=null && list?.isNotEmpty()!!){
                     data= list!![position]
-                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.CableName.name,"1"),data.CableType,data.Length)
+                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.CableName.name,data.CableName.get(0).toString()),data.CableType,data.Length)
                     AppPreferences.getInstance().setDropDown(holder.binding.cableName,DropDowns.CableName.name,"1")
                     holder.binding.Type.text=data.CableType
                     holder.binding.usedFor.text=data.UsedFor
