@@ -8,11 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerLoadFregmentBinding
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.PowerLoadData
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.PowerLoad.PowerLoadEditDialouge
 
-class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(),
+class PowerLoadFragment(var opcodata: OpcoTenencyAllData?): Fragment(),
     PowerLoadAdapter.PowerLoadItemClickListener {
 
     var adapter : PowerLoadAdapter?=null
@@ -26,7 +27,7 @@ class PowerLoadFragment(var opcodata: OpcoDataItem?): Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PowerLoadAdapter(this@PowerLoadFragment,opcodata)
+        adapter = PowerLoadAdapter(this@PowerLoadFragment,opcodata?.Loadmeasurement!!,requireContext())
         binding?.listItem?.adapter = adapter
 
     }
