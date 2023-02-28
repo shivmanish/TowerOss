@@ -28,7 +28,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class APIInterceptor {
-    private static final String BASE_URL = "http://49.50.77.81:8585/";
+    private static final String BASE_URL = "http://49.50.77.81:8686/";
     private static final Retrofit.Builder builder = createInstance();
     public static Retrofit retrofit = builder.build();
 
