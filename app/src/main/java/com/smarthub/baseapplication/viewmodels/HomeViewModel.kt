@@ -6,6 +6,8 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.logs.LogsDataModel
+import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew
@@ -15,27 +17,24 @@ import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
-import com.smarthub.baseapplication.model.logs.LogsDataModel
-import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
-import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
-import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel
-import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
+import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
+import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -68,7 +67,7 @@ class HomeViewModel : ViewModel() {
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoTenencyAllDataModel?>>?=null
-    var NocAndCompModelResponse : SingleLiveEvent<Resource<NocAndCompModel?>>?=null
+    var NocAndCompModelResponse : SingleLiveEvent<Resource<NocCompAllDataModel?>>?=null
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilInfraModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
     var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
