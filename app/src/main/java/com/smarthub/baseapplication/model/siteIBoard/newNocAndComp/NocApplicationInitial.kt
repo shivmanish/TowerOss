@@ -8,7 +8,7 @@ data class NocApplicationInitial(
     val DocumentNo: String,
     val ExpiryDate: String,
     val IssueDate: String,
-    val PaymentStatus: List<Any>,
+    val ApplicationStatus: List<Int>,
     val SrNumber: Int,
     val StatusDate: String,
     val created_at: String,

@@ -9,14 +9,13 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
-import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.RadioAnteenaAndRRUData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAnteena.RfAnteenaItemsEditDialouge
 
-class NocCompFragment(var nocdata: NocCompAllData?) :Fragment(), NocApplicationDetailsAdapter.NocApplicationClickListener {
+class NocPoDetailsFragment(var nocdata: NocCompAllData?) :Fragment(), NocPoDetailsAdapter.NocPoClickListener {
 
     var binding : RfAntinaFragmentBinding?=null
-    lateinit var adapter: NocApplicationDetailsAdapter
+    lateinit var adapter: NocPoDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -26,7 +25,7 @@ class NocCompFragment(var nocdata: NocCompAllData?) :Fragment(), NocApplicationD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = NocApplicationDetailsAdapter(this@NocCompFragment,nocdata?.ApplicationInitial,requireContext())
+        adapter = NocPoDetailsAdapter(this@NocPoDetailsFragment,nocdata?.PODetail,requireContext())
         binding?.listItem?.adapter=adapter
 
 //        binding?.addItemsLayout?.setOnClickListener {

@@ -7,27 +7,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocApplicationDetailsItemBinding
+import com.smarthub.baseapplication.databinding.NocAuthorityItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityDetail
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, cableDetails: ArrayList<NocApplicationInitial>?, var context: Context) : RecyclerView.Adapter<NocApplicationDetailsAdapter.ViewHold>() {
+class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, authorityDetails: ArrayList<NocAuthorityDetail>?, var context: Context) : RecyclerView.Adapter<NocAuthorityDetailsAdapter.ViewHold>() {
 
-    var list : ArrayList<NocApplicationInitial> = cableDetails!!
+    var list : ArrayList<NocAuthorityDetail> = authorityDetails!!
     var currentOpened = -1
 
-    fun updateItem(pos : Int,data : NocApplicationInitial){
+    fun updateItem(pos : Int,data : NocAuthorityDetail){
         list[pos] = data
         notifyItemChanged(pos)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View,listener: NocApplicationClickListener) : ViewHold(itemView) {
-        var binding : NocApplicationDetailsItemBinding = NocApplicationDetailsItemBinding.bind(itemView)
+    class ViewHold1(itemView: View,listener: NocauthorityClickListener) : ViewHold(itemView) {
+        var binding : NocAuthorityItemsBinding = NocAuthorityItemsBinding.bind(itemView)
 //        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
 //            override fun itemClicked() {
 //                listener.attachmentItemClicked()
@@ -55,7 +57,7 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_application_details_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_authority_items,parent,false)
                 ViewHold1(view,listener)
             }
             2 ->{
@@ -64,7 +66,7 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
             }
 
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_application_details_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_authority_items,parent,false)
                 ViewHold1(view,listener)
             }
         }
@@ -73,7 +75,7 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: NocApplicationInitial=list[position]
+            val data: NocAuthorityDetail=list[position]
             holder.binding.imgEdit.setOnClickListener {
 //                listener.editModeCliked(data,position)
             }
@@ -95,16 +97,12 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.SrNumber,data.ApplicationNumber,Utils.getFormatedDate(data.IssueDate.substring(0,10),"ddMMMyyyy"))
-                if(data.ApplicationStatus.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.appliStatus,
-                    DropDowns.ApplicationInitialApplicationStatus.name,data.ApplicationStatus.get(0).toString())
-                holder.binding.issueDate.text=Utils.getFormatedDate(data.IssueDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.applicationDate.text=Utils.getFormatedDate(data.ApplicationDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.applicationNumber.text=data.ApplicationNumber
-                holder.binding.ExiparyDate.text=Utils.getFormatedDate(data.ExpiryDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.DocumentNo.text=data.DocumentNo
-                holder.binding.statusDate.text=Utils.getFormatedDate(data.StatusDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.two_string_format),data.Name,data.ContactNumber)
+                holder.binding.Name.text=data.Name
+                holder.binding.EmailID.text=data.EmailId
+                holder.binding.ContactNumber.text=data.ContactNumber
+                holder.binding.PreferredLaungauge.text=data.PreferredLangauage
+                holder.binding.Address.text=data.Address
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -132,7 +130,7 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface NocApplicationClickListener{
+    interface NocauthorityClickListener{
         fun attachmentItemClicked()
         fun editModeCliked(data :RfAnteenaData,pos:Int)
     }

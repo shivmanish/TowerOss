@@ -40,6 +40,7 @@ public enum DropDowns {
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,
     ApplicationInitialApplicationStatus,
+    AuthorityApplicationType,
     ApplicationInitialPreferredLaungauge,
     SRType,
     SRDetailRequesterCompany,

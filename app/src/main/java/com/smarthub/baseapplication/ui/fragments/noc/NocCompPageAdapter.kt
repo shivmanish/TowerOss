@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
-import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.radioAntenna.NewRfAntinaFragment
 
 class NocCompPageAdapter(fm:FragmentManager, var nocdata: NocCompAllData?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
@@ -17,21 +15,21 @@ class NocCompPageAdapter(fm:FragmentManager, var nocdata: NocCompAllData?) : Fra
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return NocCompFragment(nocdata)
+                return NocDetailsFragment(nocdata)
             }
 
             1 -> {
-                return NocCompFragment(nocdata)
+                return NocAuthorityDetailsFragment(nocdata)
             }
 
             2 -> {
-                return NocCompFragment(nocdata)
+                return NocPoDetailsFragment(nocdata)
             }
             3 -> {
-                return NocCompFragment(nocdata)
+                return NocDetailsFragment(nocdata)
             }
             else -> {
-                return NocCompFragment(nocdata)
+                return NocDetailsFragment(nocdata)
             }
 
         }
