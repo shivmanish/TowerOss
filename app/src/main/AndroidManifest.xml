@@ -295,6 +295,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA63vJ-nkqFKCz5xnc6wR4iGqWtnvi_V40" />
-    </application>
+        <service
+            android:name="com.example.patrollerapp.util.LocationService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback" />
 
+    </application>
 </manifest>

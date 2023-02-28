@@ -53,9 +53,9 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     lateinit var mServiceIntent: Intent
     var is_first_time: Boolean = true
     var t: Thread? = null
+    var mLocationService: LocationService = LocationService()
     var mapFragment: SupportMapFragment? = null
 
-    var mLocationService: LocationService = LocationService()
     var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +66,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
         homePageViewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
         homePageViewModel.init(mActivity)
         initVariable()
-        homePageViewModel.fetchUserDetails(this)
+//        homePageViewModel.fetchUserDetails(this)
         if (!Util.isLocationEnabledOrNot(mActivity)) {
             Util.showAlertLocation(
                 mActivity,
@@ -280,7 +280,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun startServiceBackground() {
-
+        mLocationService = LocationService()
         if (!Util.isMyServiceRunning(mLocationService.javaClass, mActivity)) {
             startService(mServiceIntent)
             Toast.makeText(

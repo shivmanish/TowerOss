@@ -239,6 +239,7 @@
                         android:textColor="@color/textColorSoft"
                         android:textSize="@dimen/_9sdp" />
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/logout"
                         android:layout_width="0dp"
                         android:layout_weight="1"

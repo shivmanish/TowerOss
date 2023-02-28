@@ -9,10 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.patrollerapp.util.PatrollerPriference
+import com.example.trackermodule.util.MyApplication
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.fragments.search.SearchFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.utils.AppController
@@ -53,6 +56,10 @@ class  DashboardActivity : BaseActivity() {
                    false
                )
            }
+           println("this is calle first "+AppPreferences.getInstance().getBearerToken())
+           PatrollerPriference(this).settokekey(AppPreferences.getInstance().getBearerToken())
+           println("this is calle second "+PatrollerPriference(this).gettokekey())
+
 //           Toast.makeText(this,"owner${AppController.getInstance().ownerName}",Toast.LENGTH_SHORT).show()
        }
 
