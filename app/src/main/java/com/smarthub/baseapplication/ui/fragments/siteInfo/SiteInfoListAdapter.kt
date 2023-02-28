@@ -4,19 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteInfo.*
-import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.*
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.*
 import com.smarthub.baseapplication.network.pojo.site_info.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
-class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata:AllsiteInfoDataModel) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
+class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata: AllsiteInfoDataModel) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
@@ -201,7 +199,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.SiteAlternateName.text=siteBasicinfo.aliasName
                     AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo.Sitestatus.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo.Sitecategory.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Sitetype.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Opcositetype.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.txBuildingType,DropDowns.Buildingtype.name,siteBasicinfo.Buildingtype.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo.Projectname.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,siteBasicinfo.Acquisitiontype.get(0).toString())
@@ -210,7 +208,6 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.postalCode.text=siteAddress.pincode
                     holder.binding.siteLatitude.text=siteAddress.locLatitude
                     holder.binding.siteLongitude.text=siteAddress.locLongitude
-
                 }
             }
             is ViewHold2 -> {
@@ -276,7 +273,6 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 if(basicinfodata.GeoCondition?.isNotEmpty()==true){
                     val geoCondition: GeoConditionData = basicinfodata.GeoCondition!![0]
                     holder.binding.textAltitude.text = geoCondition.Altitude.toString()
-                    holder.binding.textTempZone.text = ""
                     AppPreferences.getInstance().setDropDown(holder.binding.potentioalThreatSpinner,DropDowns.Potentialthreat.name,geoCondition.Potentialthreat.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.windZoneSpinner,DropDowns.Windzone.name,geoCondition.Windzone.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.seismecZoneSpinner,DropDowns.Seismiczone.name,geoCondition.Seismiczone.get(0).toString())

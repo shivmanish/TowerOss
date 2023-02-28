@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.BasicInfoModelItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -28,14 +29,14 @@ class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapt
         notifyDataSetChanged()
     }
 
-    fun setOpData(data: ArrayList<OpcoDataItem>) {
+    fun setOpData(data: ArrayList<OpcoTenencyAllData>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (data[position] is OpcoDataItem) 0 else 1
+        return if (data[position] is OpcoTenencyAllData) 0 else 1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OpcoDataViewHolder {
@@ -51,12 +52,12 @@ class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapt
     override fun onBindViewHolder(holder: OpcoDataViewHolder, position: Int) {
         if(holder is OpcoDataItemViewHolder) {
             try {
-                var item = data[position] as OpcoDataItem
+                var item = data[position] as OpcoTenencyAllData
                 holder.binding.SiteId.text = "#${item.Opcoinfo[0].OpcoSiteID}"
                 holder.binding.titel.text=item.Opcoinfo[0].OpcoName
-                holder.binding.textRfiDate.text = item.Opcoinfo[0].rfiAcceptanceDate
-                holder.binding.textRfsDate.text = item.Opcoinfo[0].rfrDate
-                AppPreferences.getInstance().setDropDown(holder.binding.text7,DropDowns.Opcositetype.name,item.Opcoinfo[0].Opcositetype)
+                holder.binding.textRfiDate.text = item.Opcoinfo[0].RfiAcceptanceDate
+                holder.binding.textRfsDate.text = item.Opcoinfo[0].RfrDate
+                AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,item.Opcoinfo[0].Opcositetype.get(0).toString())
                 holder.itemview.setOnClickListener {
                     listener.clickedItem(item)
                 }
@@ -80,5 +81,5 @@ class OpcoDataItemViewHolder(itemview: View) : OpcoDataViewHolder(itemview) {
 }
 
 interface CustomerDataAdapterListener{
-    fun clickedItem(data : OpcoDataItem)
+    fun clickedItem(data : OpcoTenencyAllData)
 }

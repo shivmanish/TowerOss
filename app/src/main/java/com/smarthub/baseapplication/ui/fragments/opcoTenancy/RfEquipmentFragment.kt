@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfEquipmentFregmentTempBinding
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.AddNewRfEquipmentAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfEquipment.RfEquipmentEditDialouge
 
-class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentAdapter.RfEquipmentItemListner {
+class RfEquipmentFragment(var opcodata: OpcoTenencyAllData?) :Fragment(), RfEquipmentAdapter.RfEquipmentItemListner {
 
     var adapter : RfEquipmentAdapter?=null
     var binding : RfEquipmentFregmentTempBinding?=null
@@ -25,12 +26,12 @@ class RfEquipmentFragment(var opcodata: OpcoDataItem?) :Fragment(), RfEquipmentA
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RfEquipmentAdapter(this@RfEquipmentFragment,opcodata!!,requireContext())
+        adapter = RfEquipmentAdapter(this@RfEquipmentFragment,opcodata?.RfEquipment,requireContext())
         binding?.listItem?.adapter = adapter
 
         binding?.addItemsLayout?.setOnClickListener {
-            val dalouge = AddNewRfEquipmentAdapter(R.layout.addnew_rfequipment_dialouge)
-            dalouge.show(childFragmentManager,"")
+//            val dalouge = AddNewRfEquipmentAdapter(R.layout.addnew_rfequipment_dialouge)
+//            dalouge.show(childFragmentManager,"")
         }
     }
 

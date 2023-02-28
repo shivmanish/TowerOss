@@ -27,8 +27,9 @@ import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
-import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
@@ -52,7 +53,6 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
@@ -160,8 +160,8 @@ public interface APIClient {
 
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<OpcoInfoNewModel> fetchOpcoInfoRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<OpcoTenencyAllDataModel> fetchOpcoInfoRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

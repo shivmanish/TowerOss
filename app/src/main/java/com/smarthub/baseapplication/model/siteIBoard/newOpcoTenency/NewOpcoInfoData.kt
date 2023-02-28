@@ -1,0 +1,30 @@
+package com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency
+
+data class NewOpcoInfoData(
+    val AlarmExtension: Int,
+    val AntennaSpaceUsed: Int,
+    val CommittedNWA: String,
+    val InstallationVendor: String,
+    val MaintenanceVendor: String,
+    val OpcoName: String,
+    val OpcoSignOffDate: String,
+    val OpcoSiteID: String,
+    val OpcoSiteName: String,
+    val OpcoSiteSAPId: String,
+    val OpcoSiteStatus: Int,
+    val Opcositetype: List<Int>,
+    val Operatornetworktype: List<Int>,
+    val RackUSpaceUsed: Int,
+    val RfiAcceptanceDate: String,
+    val RfrDate: String,
+    val SRNumber: String,
+    val SRType: String,
+    val SiteInchargeEmail: String,
+    val SiteInchargeName: String,
+    val SiteInchargeNumber: String,
+    val Technology: List<Int>,
+    val created_at: String,
+    val id: Int,
+    val isActive: Boolean,
+    val modified_at: String
+)

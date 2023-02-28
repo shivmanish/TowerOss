@@ -1,16 +1,11 @@
 package com.smarthub.baseapplication.utils;
 
-import android.app.Application;
 import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.lifecycle.Observer;
 
 import com.example.trackermodule.util.MyApplication;
-import com.smarthub.baseapplication.helpers.Resource;
-import com.smarthub.baseapplication.model.otp.GetOtpResponse;
-import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
-import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 
 import java.util.ArrayList;
@@ -22,6 +17,7 @@ public class AppController extends MyApplication {
     public AllsiteInfoDataModel newSiteInfoModel;
     public String ownerName = "SMRT";
     public String siteid = "448";
+    public String siteName = "448";
 
     @Override
     public void onCreate() {

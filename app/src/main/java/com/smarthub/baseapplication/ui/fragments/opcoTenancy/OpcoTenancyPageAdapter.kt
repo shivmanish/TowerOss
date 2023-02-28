@@ -4,9 +4,10 @@ package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.radioAntenna.NewRfAntinaFragment
 
-class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : FragmentPagerAdapter(fm) {
+class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllData?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 5
 
@@ -15,23 +16,23 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return OpcoSiteInfoFramgment(opcodata!!)
+                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
             }
 
             1 -> {
-                return RfEquipmentFragment(opcodata!!)
+                return RfEquipmentViewPagerFragment(opcodata)
             }
-            2 -> {
-                return BackhaulFragment(opcodata!!)
-            }
+//            2 -> {
+//                return BackhaulFragment(opcodata!!)
+//            }
             3 -> {
-                return RfAntinaFragment(opcodata!!)
+                return NewRfAntinaFragment(opcodata)
             }
             4 -> {
-                return PowerLoadFragment(opcodata!!)
+                return PowerLoadFragment(opcodata)
             }
             else -> {
-                return OpcoSiteInfoFramgment(opcodata!!)
+                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
             }
 
         }
@@ -46,13 +47,13 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoDataItem?) : 
 //                return "Commercials"
 //            }
             1 -> {
-                return "RF Equipment"
+                return "Equipment"
             }
             2 -> {
-                return "Backhaul"
+                return "Backhaul Link"
             }
             3 -> {
-                return "RF Anteena"
+                return "Radio Antenna & RRU"
             }
             4 -> {
                 return "Power Load"

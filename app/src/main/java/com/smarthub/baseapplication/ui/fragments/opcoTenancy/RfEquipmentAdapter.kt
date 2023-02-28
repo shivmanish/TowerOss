@@ -9,22 +9,23 @@ import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfEquipmentListItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewRfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoDataItem?,var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
-
-    var list : ArrayList<rfEquipmentData> = ArrayList(opcodata?.RfEquipment)
+class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayList<NewRfEquipmentData>?,var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
 
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
 
     fun updateItem(pos : Int,data :rfEquipmentData){
-        list[pos] = data
-        notifyItemChanged(pos)
+//        list[pos] = data
+//        notifyItemChanged(pos)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -32,11 +33,11 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     class ViewHold1(itemView: View,listener: RfEquipmentItemListner) : ViewHold(itemView) {
         var binding : RfEquipmentListItemsBinding = RfEquipmentListItemsBinding.bind(itemView)
 
-        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-            override fun itemClicked() {
-                listener.attachmentItemClicked()
-            }
-        })
+//        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
+//            override fun itemClicked() {
+//                listener.attachmentItemClicked()
+//            }
+//        })
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -47,12 +48,12 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
-
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
+//            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
+//            recyclerListener.adapter = adapter
+//
+//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+//                adapter.addItem()
+//            }
         }
     }
 
@@ -82,10 +83,10 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var data : rfEquipmentData = list[position]
+        var data : NewRfEquipmentData = list!![position]
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditDialouge(data,position)
+//                listener.EditDialouge(data,position)
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -108,26 +109,25 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
             try{
                 if (list !=null && list?.isNotEmpty()!!){
                     data= list!![position]
-                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.Technology.name,data.Technology),data.Equipementname,data.SerialNumber,data.InstallationDate.substring(0,10))
-                    holder.binding.EquipmentName.text=data.Equipementname
+                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.EquipmentName.name,"1"),data.SerialNumber,Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyyy"))
+                    AppPreferences.getInstance().setDropDown(holder.binding.EquipmentName,DropDowns.EquipmentName.name,"1")
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus,DropDowns.OperationalStatus.name,"1")
                     holder.binding.Model.text=data.Model
                     holder.binding.SerialNumber.text=data.SerialNumber
                     holder.binding.Make.text=data.Make
-                    holder.binding.Band.text=data.Band
                     holder.binding.InstallationDate.text=data.InstallationDate
-                    holder.binding.MaxPowerRating.text=data.PowerRating
+                    holder.binding.MaxPowerRating.text=data.MaxPowerRating
                     holder.binding.Weight.text=data.Weight
-                    holder.binding.RackNumber.text=data.RackNumber
-                    holder.binding.remark.text=data.Remarks
+                    holder.binding.RackNo.text=data.RackNo
                     holder.binding.minOpratingTemp.text=data.OperatingTempMin
                     holder.binding.maxOpratingTemp.text=data.OperatingTempMax
-                    AppPreferences.getInstance().setDropDown(holder.binding.Technology, DropDowns.Technology.name,data?.Technology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OwnerCompany, DropDowns.OwnerCompany.name,data?.OwnerCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.UserCompany, DropDowns.OemCompany.name,data?.OemCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data?.OperationStatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RackSpaceUsed, DropDowns.RackSpaceUsed.name,data?.RackSpaceUsed)
-
-                    AppLogger.log("data : ${Gson().toJson(data)}")
+                    holder.binding.sizeLenth.text=data.SizeL
+                    holder.binding.sizeBidth.text=data.SizeB
+                    holder.binding.sizeHeight.text=data.SizeH
+                    holder.binding.RackSpaceUsed.text=data.RackUSpaceUsed.toString()
+                    holder.binding.minVoltageRating.text=data.VoltageMin
+                    holder.binding.maxVoltageRating.text=data.VoltageMax
+                    holder.binding.Type.text=data.Type
 
                 }
             }catch (e:Exception){
@@ -138,7 +138,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,opcodata: OpcoData
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     fun updateList(position: Int){

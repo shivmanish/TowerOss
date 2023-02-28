@@ -78,7 +78,7 @@
 
     <LinearLayout
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                 <TextView
                     android:id="@+id/txtRFCDate"
                     android:maxLength="10"
-                    android:text="12-Nov-22"
+                    android:text=""
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/txtRFIDate"
-                    android:text="12-Nov-22"
+                    android:text=""
                     android:maxLength="10"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -139,10 +139,29 @@
                     android:id="@+id/txtRFSDate"
                     style="@style/RowTextviewItem"
                     android:maxLength="10"
-                    android:text="12-Nov-22"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Site Agreement Date"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text=""
+                    android:id="@+id/SiteAgreementDate"
+                    style="@style/RowTextviewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -154,32 +173,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Billable"
+                    android:text=""
                     android:id="@+id/site_billing_status"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Cost Center"
+                    android:text="Feasible OPCO Sharing"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="ETIPL"
-                    android:id="@+id/cost_center"
+                    android:text=""
+                    android:id="@+id/FeasibleOPCOSharing"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
             <LinearLayout
 
                 android:layout_width="0dp"
@@ -188,38 +207,38 @@
 
                 <TextView
                     android:maxLines="1"
-                    android:text="Operator Sharing Feasibility"
+                    android:text="Available OPCO"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="Solo"
-                    android:id="@+id/operator_sharing"
+                    android:text=""
+                    android:id="@+id/AvailableOPCO"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Power Source"
+                    android:text="Available Power Source"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="SEB/ DG"
-                    android:id="@+id/power_source"
+                    android:text=""
+                    android:id="@+id/AvailablePowerSource"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -231,7 +250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="5KW"
+                    android:text=""
                     android:id="@+id/design_dc_load"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
@@ -239,7 +258,6 @@
                     />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -252,12 +270,13 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/installed_dc_load"
-                    android:text="3KW"
+                    android:text=""
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -268,9 +287,71 @@
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView
+                            android:text="Min : "
+                            style="@style/RowTextviewItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/min_operation_temp"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_marginVertical="@dimen/dp3"
+                        android:layout_marginHorizontal="@dimen/dp1"
+                        android:background="@color/light_gray"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView
+                            android:text="Max : "
+                            style="@style/RowTextviewItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/max_operation_temp"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTextviewItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
                 <TextView
-                    android:id="@+id/operation_temp"
-                    android:text="24 Ded"
+                    android:text="Tower/ Pole Height"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text=""
+                    android:id="@+id/TowerPoleHeight"
                     style="@style/RowTextviewItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -283,76 +364,23 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Town Category"
+                    android:text="Backhaul Node Category"
                     style="@style/RowTextItemInfo"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:text="ETIPL"
-                    android:id="@+id/town_category_spinner"
+                    android:text=""
+                    android:id="@+id/BackhaulNodeCategory"
                     style="@style/RowTextviewItem"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Hub Site"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="ETIPL"
-                    android:id="@+id/hub_city_spinner"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="LDCA"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="ETIPL"
-                    android:id="@+id/ldca_spinner"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="SCDA"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="ETIPL"
-                    android:id="@+id/scda_spinner"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"
@@ -367,7 +395,7 @@
                     style="@style/RowTextviewItem"
                     android:id="@+id/dismanting"
                     android:maxLength="10"
-                    android:text="18-Nov-2022"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

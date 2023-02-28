@@ -329,7 +329,6 @@ object Utils {
         try {
             val sdf = SimpleDateFormat(format)
             val secondDate: Date = sdf.parse(date)
-
             date=secondDate.toString()
             AppLogger.log("date :$date")
         }catch (e:java.lang.Exception){

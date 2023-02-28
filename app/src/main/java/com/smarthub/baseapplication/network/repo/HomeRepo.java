@@ -28,12 +28,13 @@ import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
-import com.smarthub.baseapplication.model.siteInfo.newSiteInfoDataModel.AllsiteInfoDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
@@ -45,7 +46,6 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
@@ -60,8 +60,6 @@ import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -90,7 +88,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<DropDownNew>> dropDownResponseNew;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
-    private SingleLiveEvent<Resource<OpcoInfoNewModel>> opcoTenencyModel;
+    private SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
@@ -144,7 +142,7 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
         return serviceRequestModel;
     }
-    public SingleLiveEvent<Resource<OpcoInfoNewModel>> getOpcoTenencyModel() {
+    public SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> getOpcoTenencyModel() {
         return opcoTenencyModel;
     }
     public SingleLiveEvent<Resource<NocAndCompModel>> getNOCandCompModel() {
@@ -908,12 +906,13 @@ public class HomeRepo {
     }
 
     public void opcoRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Operator");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchOpcoInfoRequest(siteInfoParam).enqueue(new Callback<OpcoInfoNewModel>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("Operator",new JsonObject());
+        apiClient.fetchOpcoInfoRequest(jsonObject).enqueue(new Callback<OpcoTenencyAllDataModel>() {
             @Override
-            public void onResponse(Call<OpcoInfoNewModel> call, Response<OpcoInfoNewModel> response) {
+            public void onResponse(Call<OpcoTenencyAllDataModel> call, Response<OpcoTenencyAllDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -924,11 +923,11 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<OpcoInfoNewModel> call, Throwable t) {
+            public void onFailure(Call<OpcoTenencyAllDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<OpcoInfoNewModel> response) {
+            private void reportSuccessResponse(Response<OpcoTenencyAllDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);

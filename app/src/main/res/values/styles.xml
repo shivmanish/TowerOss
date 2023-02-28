@@ -151,7 +151,7 @@
         <item name="fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/color1</item>
         <item name="fontWeight">400</item>
-        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textSize">@dimen/sp13</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:gravity">center_vertical</item>

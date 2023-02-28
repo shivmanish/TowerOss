@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"/>
             <ImageView
                 android:id="@+id/img_edit"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:paddingStart="@dimen/dp16"
                 android:paddingEnd="@dimen/dp16"
                 android:paddingTop="@dimen/dp17"
@@ -52,7 +52,7 @@
                 android:padding="@dimen/dp12"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
-                />
+                app:tint="@color/light_gray" />
             <ImageView
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
@@ -89,6 +89,7 @@
             <GridLayout
                 android:visibility="visible"
                 android:columnCount="2"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
@@ -109,6 +110,43 @@
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Type"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Location Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/InstallationLocationType"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -172,16 +210,114 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Technology"
+                        android:text="Size"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="0.9"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="L : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                            <TextView
+                                android:id="@+id/size_lenth"
+                                android:text=""
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.5"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginRight="@dimen/dp4"
+                            android:layout_marginLeft="@dimen/dp4"
+                            android:layout_width="2dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="B : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                            <TextView
+                                android:id="@+id/size_Bidth"
+                                android:text=""
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.5"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginRight="@dimen/dp4"
+                            android:layout_marginLeft="@dimen/dp4"
+                            android:layout_width="2dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="H : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                            <TextView
+                                android:id="@+id/size_Height"
+                                android:text=""
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Power Type"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/Technology"
+                        android:id="@+id/PowerType"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -189,12 +325,80 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Band"
+                        android:text="Voltage Rating (V)"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="0.9"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="Min- "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                            <TextView
+                                android:id="@+id/min_VoltageRating"
+                                android:text=""
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.5"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginRight="@dimen/dp4"
+                            android:layout_marginLeft="@dimen/dp4"
+                            android:layout_width="2dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="MAx- "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                            <TextView
+                                android:id="@+id/max_VoltageRating"
+                                android:text=""
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Max Power Rating (KW)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/Band"
+                        android:id="@+id/MaxPowerRating"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -207,42 +411,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Owner Company"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Owner_Company"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="User Company"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/User_Company"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Operating Temp"
+                        android:text="Operating Temp (°C)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -347,12 +516,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Max Power Rating"
+                        android:text="Rack No."
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/Max_Power_Rating"
+                        android:id="@+id/RackNo"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -365,7 +534,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Weight"
+                        android:text="Weight (Kg)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -382,7 +551,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Rack Space Used"
+                        android:text="Rack U-Space Used"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -393,62 +562,8 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Rack Number"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Rack_Number"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
             </GridLayout>
 
-            <TextView
-                android:text="Remark"
-                android:layout_marginStart="@dimen/dp10"
-                style="@style/RowTextItemInfo"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/remark"
-                android:hint="Type Here"
-                android:textSize="15sp"
-                style="@style/RowTestItemEdit"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:layout_margin="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        <View
-            android:id="@+id/remark_item_line"
-            android:alpha="2"
-            android:background="@color/view_color"
-            android:layout_marginRight="@dimen/dp10"
-            android:layout_marginLeft="@dimen/dp7"
-            android:layout_marginBottom="@dimen/dp10"
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
-            />
-        <TextView
-            android:text="Attachments"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
-            style="@style/RowTextItemInfo"
-            android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-            <include
-                layout="@layout/layout_img_attachment"/>
 
     </LinearLayout>
 

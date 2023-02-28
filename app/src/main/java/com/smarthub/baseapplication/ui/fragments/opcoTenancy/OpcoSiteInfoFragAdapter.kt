@@ -8,28 +8,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewOpcoInfoData
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
 import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: OpcoDataItem?) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
+class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener, var opcodata: ArrayList<NewOpcoInfoData>?) : RecyclerView.Adapter<OpcoSiteInfoFragAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-    var type1 = "OPCO/Site Info"
+    var type1 = "Site Details"
     var type2 = "Operations Team"
     var type3 = "Attachments"
-    private var data : Opcoinfo? = opcodata?.Opcoinfo?.get(0)
+    private var AllData : ArrayList<NewOpcoInfoData>? = opcodata
 
     fun updateOpcoInfoData(updateddata:Opcoinfo){
-        opcodata?.Opcoinfo?.set(0, updateddata)
-        this.data=updateddata
-        notifyDataSetChanged()
+//        opcodata?.Opcoinfo?.set(0, updateddata)
+//        this.data=updateddata
+//        notifyDataSetChanged()
     }
     init {
-        list.add("OPCO/Site Info")
+        list.add("Site Details")
         list.add("Operations Team")
         list.add("Attachments")
     }
@@ -128,7 +131,7 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.opcoSiteInfoItemClicked(data!!)
+//                    listener.opcoSiteInfoItemClicked(data!!)
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -150,32 +153,32 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if (data!=null && opcodata?.Opcoinfo?.isNotEmpty()!!) {
+                if (AllData!=null && AllData?.isNotEmpty()==true) {
+                    var data : NewOpcoInfoData ? = AllData?.get(0)
                     holder.binding.opcoSiteId.text=data?.OpcoSiteID
                     holder.binding.opcoSiteName.text=data?.OpcoSiteName
-                    holder.binding.rfiAcceptenceDate.text=data?.rfiAcceptanceDate
-                    holder.binding.rfrDate.text=data?.rfrDate
-                    holder.binding.OPCOSignOffDate.text=data?.Opcosignoffdate
-                    holder.binding.CommittedNWA.text=data?.committedNWA
+                    holder.binding.rfiAcceptenceDate.text=data?.RfiAcceptanceDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
+                    holder.binding.rfrDate.text=data?.RfrDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
+                    holder.binding.OPCOSignOffDate.text= data?.OpcoSignOffDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
+                    holder.binding.CommittedNWA.text=data?.CommittedNWA
                     holder.binding.OpcoName.text=data?.OpcoName
-                    AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteStatus,DropDowns.Opcositestatus.name,data?.Opcositestatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,data?.Opcositetype)
-                    AppPreferences.getInstance().setDropDown(holder.binding.networkType,DropDowns.Operatornetworktype.name,data?.Operatornetworktype)
-                    AppPreferences.getInstance().setDropDown(holder.binding.AlarmExtension,DropDowns.Alarmsextension.name,data?.Alarmsextension)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.Rftechnology.name,data?.Rftechnology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.TelecomEquipmentType,DropDowns.Telecomequipmenttype.name,data?.Telecomequipmenttype)
-                    AppPreferences.getInstance().setDropDown(holder.binding.networkType,DropDowns.Operatornetworktype.name,data?.Operatornetworktype)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RRUCount,DropDowns.Rrucount.name,data?.Rrucount)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SectorCount,DropDowns.Sectorcount.name,data?.Sectorcount)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RackCount,DropDowns.Rackcount.name,data?.Rackcount)
-                    AppPreferences.getInstance().setDropDown(holder.binding.AntennaCount,DropDowns.Antenacount.name,data?.Antenacount)
-                    AppPreferences.getInstance().setDropDown(holder.binding.AntennaSlotUsed,DropDowns.Antenaslotused.name,data?.Antenaslotused)
+                    holder.binding.srNumber.text=data?.SRNumber
+                    holder.binding.srType.text=data?.SRType
+                    holder.binding.rackUSpaceUsed.text=data?.RackUSpaceUsed.toString()
+                    holder.binding.AntennaSpaceUsed.text=data?.AntennaSpaceUsed.toString()
+                    holder.binding.opcoSiteSapId.text=data?.OpcoSiteSAPId
+
+                    AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteStatus,DropDowns.Opcositestatus.name,data?.OpcoSiteStatus.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,data?.Opcositetype?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.AlarmExtension,DropDowns.Alarmsextension.name,data?.AlarmExtension.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.Technology,DropDowns.Rftechnology.name,data?.Technology?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.opcoNetworkType,DropDowns.Operatornetworktype.name,data?.Operatornetworktype?.get(0).toString())
 
                 }
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.operationsItemClicked(data!!)
+//                    listener.operationsItemClicked(data!!)
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -197,14 +200,14 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener,var opcodata: Op
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                if (data!=null && opcodata?.Opcoinfo?.isNotEmpty()!!) {
-                    holder.binding.SiteInChargeName.text=data?.Siteinchargename
-                    holder.binding.SiteInChargeEmailID.text=data?.Siteinchargeemail
-                    holder.binding.SiteInChargeNumber.text=data?.Siteinchargenumber
-                    holder.binding.OperatorMaintenanceLocation.text=data?.Operatormaintenancelocation
-                    AppPreferences.getInstance().setDropDown(holder.binding.MaintenanceVendor,DropDowns.MaintenanceVendor.name,data?.MaintenanceVendor)
-                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationVendor,DropDowns.InstallationVendor.name,data?.InstallationVendor)
-                    AppPreferences.getInstance().setDropDown(holder.binding.BackhaulTechnology,DropDowns.Backhaultechnology.name,data?.Backhaultechnology)
+                if (AllData!=null && AllData?.isNotEmpty()==true) {
+                    val data : NewOpcoInfoData ? = AllData?.get(0)
+                    holder.binding.SiteEngineerName.text=data?.SiteInchargeName
+                    holder.binding.SiteEngineerEmailID.text=data?.SiteInchargeEmail
+                    holder.binding.SiteEngineerNumber.text=data?.SiteInchargeNumber
+                    holder.binding.InstallationVendor.text=data?.InstallationVendor
+                    holder.binding.MaintenanceVendor.text=data?.MaintenanceVendor
+
                 }
             }
             is ViewHold3 -> {
