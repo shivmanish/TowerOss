@@ -197,12 +197,19 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.txSiteName.text = siteBasicinfo.siteName
                     holder.binding.txSiteID.text = siteBasicinfo.siteID
                     holder.binding.SiteAlternateName.text=siteBasicinfo.aliasName
-                    AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo.Sitestatus.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo.Sitecategory.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Opcositetype.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.txBuildingType,DropDowns.Buildingtype.name,siteBasicinfo.Buildingtype.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo.Projectname.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,siteBasicinfo.Acquisitiontype.get(0).toString())
+                    if (siteBasicinfo.Sitestatus.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo.Sitestatus.get(0).toString())
+                    if (siteBasicinfo.Sitecategory.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo.Sitecategory.get(0).toString())
+                    if (siteBasicinfo.Opcositetype.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Opcositetype.get(0).toString())
+                    if (siteBasicinfo.Buildingtype.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.txBuildingType,DropDowns.Buildingtype.name,siteBasicinfo.Buildingtype.get(0).toString())
+                    if (siteBasicinfo.Projectname.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo.Projectname.get(0).toString())
+                    if (siteBasicinfo.Acquisitiontype.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,siteBasicinfo.Acquisitiontype.get(0).toString())
+
                     holder.binding.MaintenanceGeography.text = siteBasicinfo.MaintenancePoint.get(0).toString()
                     holder.binding.address.text = "${siteAddress.address1}  ${siteAddress.address2}"
                     holder.binding.postalCode.text=siteAddress.pincode

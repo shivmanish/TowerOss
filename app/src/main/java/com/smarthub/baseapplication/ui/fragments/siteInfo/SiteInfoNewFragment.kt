@@ -63,21 +63,19 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
         homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
-//            binding.swipeLayout.isRefreshing = false
             if (it!=null && it.status == Resource.Status.LOADING){
                showLoader()
                 return@observe
             }
-            if (it!=null && it.status == Resource.Status.SUCCESS){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data}")
-//                Toast.makeText(requireContext(),"SiteInfoNewFragment error :Site Data fetched successfully",Toast.LENGTH_SHORT).show()
                 var currentOpened = -1
                 if (binding.listItem.adapter is SiteInfoListAdapter){
                     val adapter = binding.listItem.adapter as SiteInfoListAdapter
                     currentOpened = adapter.currentOpened
                 }
-                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data!!)
+                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data)
                 AppLogger.log("currentOpened:$currentOpened")
                 if (currentOpened>=0){
                     (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
@@ -92,9 +90,6 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             }
         }
 
-//        binding.swipeLayout.setOnRefreshListener {
-//            homeViewModel.siteInfoRequestAll(id)
-//        }
         homeViewModel.siteInfoRequestAll(id)
     }
 
