@@ -100,11 +100,16 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
             }
             try {
                 holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.two_string_format),data.PONumber,data.VendorCompany)
-//                holder.binding.vendorName.text=data.VendorCompany
-//                holder.binding.vendorCode.text=data.VendorCode
-//                holder.binding.ContactNumber.text=data.ContactNumber
-//                holder.binding.PreferredLaungauge.text=data.PreferredLangauage
-//                holder.binding.Address.text=data.Address
+                if (data.VendorCompany.isNotEmpty())
+                    AppPreferences.getInstance().setDropDown(holder.binding.vendorName,DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
+                holder.binding.poNumber.text=data.PONumber
+                holder.binding.poDate.text=Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.vendorCode.text=data.VendorCode
+                holder.binding.poAmount.text=data.POAmount
+                holder.binding.poItems.text=data.POItem
+                holder.binding.remark.text=data.Remark
+                holder.binding.poLineNumber.text=data.POLineNo.toString()
+//
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }

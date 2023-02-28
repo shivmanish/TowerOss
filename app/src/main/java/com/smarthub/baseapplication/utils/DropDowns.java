@@ -60,6 +60,7 @@ public enum DropDowns {
     Hubsite,
     Ldca,
     Scda,
+    VendorCompany,
     // Site Info --> Geo Conditions Dropdowns
     Windzone,
     Seismiczone,
