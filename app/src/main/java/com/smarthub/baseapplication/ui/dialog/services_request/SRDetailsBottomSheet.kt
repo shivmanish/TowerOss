@@ -46,21 +46,21 @@ class SRDetailsBottomSheet(
 
         srDetailsData.let {
             AppPreferences.getInstance()
-                .setDropDown(binding.srType, DropDowns.SRType.name, it.SRType)
+                .setDropDown(binding.srType, DropDowns.SRType.name, it.SRType[0].toString())
             AppPreferences.getInstance().setDropDown(
                 binding.editTechnology,
                 DropDowns.SRDetailTechnology.name,
-                it.Technology
+                it.Technology[0].toString()
             )
             AppPreferences.getInstance()
-                .setDropDown(binding.editSrStatus, DropDowns.SRStatus.name, it.SRStatus)
+                .setDropDown(binding.editSrStatus, DropDowns.SRStatus.name, it.SRStatus[0].toString())
             AppPreferences.getInstance().setDropDown(
                 binding.editRequesterCompany,
                 DropDowns.SRDetailRequesterCompany.name,
                 it.RequesterCompany
             )
             AppPreferences.getInstance()
-                .setDropDown(binding.editPriority, DropDowns.Priority.name, it.Priority)
+                .setDropDown(binding.editPriority, DropDowns.Priority.name, it.Priority[0].toString())
 
 
             binding.expectedDate.text = it.ExpectedDate

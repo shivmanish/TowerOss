@@ -49,14 +49,13 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.ServiceRequestMain!=null && it.data.ServiceRequestMain.isNotEmpty()){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                if (it.data.item!![0].ServiceRequestMain!=null){
-                    serviceFragAdapterAdapter.setData(it.data.item!![0].ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>)
-                    AppLogger.log("size :${it.data.item?.size}")
-                }
+                serviceFragAdapterAdapter.setData(it.data.ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>)
+                AppLogger.log("size :${it.data.ServiceRequestMain.size}")
                 isDataLoaded = true
-            }else if (it!=null) {
+            }
+            else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }

@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.network.repo;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
@@ -862,12 +863,17 @@ public class HomeRepo {
     }
 
     public void serviceRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("ServiceRequestMain");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
-        serviceRequestModel.postValue(Resource.loading(srModel, 200));
-        apiClient.fetchServiceRequest(siteInfoParam).enqueue(new Callback<ServiceRequestModel>() {
+        JsonObject jsonObject = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("ServiceRequestMain",jsonArray);
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add("ServiceRequestMain");
+//        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+//        ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
+//        serviceRequestModel.postValue(Resource.loading(srModel, 200));
+        apiClient.fetchServiceRequest(jsonObject).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
                 if (response.isSuccessful()){

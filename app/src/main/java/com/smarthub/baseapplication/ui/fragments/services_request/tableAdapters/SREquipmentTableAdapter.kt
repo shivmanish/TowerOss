@@ -54,22 +54,23 @@ class SREquipmentTableAdapter(
             performOptionsMenuClick(position, it)
         }
 //        holder.binding.Technology.text = list?.get(position)?.Technology
-        AppPreferences.getInstance().getDropDown(DropDowns.Technology.name)
-            .get(list?.get(position)?.Technology!!.toInt())
+        list[position].Technology?.get(0)?.let {
+            AppPreferences.getInstance().getDropDown(DropDowns.Technology.name)[it]
+        }
 
-        holder.binding.EquipmentInfo.text = list?.get(position)?.EquipmentWeight
+        holder.binding.EquipmentInfo.text = list.get(position)?.EquipmentWeight
 //        holder.binding.EquipmentType.text = list?.get(position)?.Type
         try {
-            list?.get(position)?.Type?.toInt()?.let {
+            list.get(position).Type?.toInt()?.let {
                 AppPreferences.getInstance().getDropDown(DropDowns.SREquipmentsType.name)
                     .get(it)
             }
         }catch (e:Exception){
-            AppLogger.log("${e.localizedMessage}")
+            AppLogger.log(e.localizedMessage)
         }
 
 
-        holder.binding.EquipmentSize.text = list?.get(position)?.CabinetSize
+        holder.binding.EquipmentSize.text = list[position]?.CabinetSize
     }
 
     override fun getItemCount(): Int {

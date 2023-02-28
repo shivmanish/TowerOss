@@ -48,7 +48,7 @@ class FeasibilityPlanningTabFragment(var data: ServiceRequestAllDataItem?, var I
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.ServiceRequestMain?.size}")
             } else if (it != null) {
                 Toast.makeText(
                     requireContext(),

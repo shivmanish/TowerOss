@@ -6,7 +6,7 @@ data class Equipment(
     var InputPower: String? = null,
     var MaxPowerRating: String? = null,
     var OperatingTemp: String? = null,
-    var Technology: String? = null,
+    var Technology: List<Int>?=null,
     var Voltage: String? = null,
     var created_at: String? = null,
     var id: Int? = null,

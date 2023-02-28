@@ -45,7 +45,7 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.ServiceRequestMain?.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")

@@ -151,8 +151,8 @@ public interface APIClient {
     Call<AllsiteInfoDataModel> fetchSiteInfo(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<ServiceRequestModel> fetchServiceRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<ServiceRequestModel> fetchServiceRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

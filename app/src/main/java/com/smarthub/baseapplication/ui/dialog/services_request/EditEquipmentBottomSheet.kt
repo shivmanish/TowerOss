@@ -29,7 +29,7 @@ class EditEquipmentBottomSheet(contentLayoutId: Int, var equipmant: Equipment?, 
         AppPreferences.getInstance().setDropDown(binding.equipment,DropDowns.SREquipmentsEquipment.name,"1")
         AppPreferences.getInstance().setDropDown(binding.type,DropDowns.SREquipmentsType.name,"1")
         equipmant?.let {
-            AppPreferences.getInstance().setDropDown(binding.technology,DropDowns.SREquipmentsTechnology.name,it.Technology)
+            AppPreferences.getInstance().setDropDown(binding.technology,DropDowns.SREquipmentsTechnology.name,it.Technology?.get(0).toString())
 
             binding.cabinetsize.setText("NA")
             binding.equipmentWeight.setText(it.EquipmentWeight)
@@ -41,7 +41,7 @@ class EditEquipmentBottomSheet(contentLayoutId: Int, var equipmant: Equipment?, 
 
         binding.update.setOnClickListener {
             equipmant?.let {
-                it.Technology = binding.technology.selectedValue.id
+                it.Technology = ArrayList(arrayOf(binding.technology.selectedValue.id.toInt()).asList())
 
                 it.EquipmentWeight = binding.equipmentWeight.text.toString()
                 it.InputPower = binding.inputPower.text.toString()

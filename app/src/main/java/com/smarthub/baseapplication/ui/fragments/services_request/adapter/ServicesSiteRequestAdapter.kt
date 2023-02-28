@@ -20,9 +20,9 @@ import com.smarthub.baseapplication.utils.DropDowns
 
 class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestLisListener,var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<ServicesRequestAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
-    var type1 = "SR Details"
+    var type1 = "SR Info"
     var type2 = "Equipments"
-    var type3 = "Radio Antennas"
+    var type3 = "Radio Antennas & RRU"
     var type4 = "Backhaul Links"
     var type5 = "Requester Info"
     var type6 = "Attachments"
@@ -44,7 +44,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
 
     init {
-        list.add("SR Details")
+        list.add("SR Info")
         list.add("Equipments")
         list.add("Radio Antennas")
         list.add("Backhaul Links")
@@ -266,13 +266,15 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                             listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
                         else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
                     }
-                    AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,SrDetailsData?.SRType)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SRStatus,DropDowns.SRType.name,SrDetailsData?.SRStatus)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RequesterCompany,DropDowns.SRDetailRequesterCompany.name,SrDetailsData?.RequesterCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.SRDetailTechnology.name,SrDetailsData?.Technology)
-                    AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,
+                        SrDetailsData?.SRType?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.SRStatus,DropDowns.SRType.name,SrDetailsData?.SRStatus?.get(0).toString())
+//                    AppPreferences.getInstance().setDropDown(holder.binding.RequesterCompany,DropDowns.SRDetailRequesterCompany.name,SrDetailsData?.RequesterCompany)
+                    AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.SRDetailTechnology.name,SrDetailsData?.Technology?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority?.get(0).toString())
 
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
+                    holder.binding.OPCOName.text=SrDetailsData?.OpcoSiteName
                     holder.binding.HubSite.text=SrDetailsData?.HubSite.toString()
                     holder.binding.OPCOSIteName.text=SrDetailsData?.OpcoSiteName
                     holder.binding.OPCOSIteID.text=""
@@ -280,7 +282,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     holder.binding.ExpectedDate.text=SrDetailsData?.ExpectedDate
                     holder.binding.nominalsLatLong.text="${SrDetailsData?.locLatitude},${SrDetailsData?.locLongitude}"
                     holder.binding.SearchRadius.text=SrDetailsData?.SearchRadius
-                    holder.binding.Circle.text=SrDetailsData?.Circle
+                    holder.binding.SectorCount.text=SrDetailsData?.SectorCount.toString()
                     holder.binding.CityTown.text=SrDetailsData?.CityOrTown
                     holder.binding.Area.text=SrDetailsData?.Area
                     holder.binding.PinCode.text=SrDetailsData?.Pincode

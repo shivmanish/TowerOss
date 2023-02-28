@@ -146,12 +146,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Requester Company"
+                        android:text="OPCO Name"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/RequesterCompany"
+                        android:id="@+id/OPCOName"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -327,12 +327,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Circle"
+                        android:text="Sector Count"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/Circle"
+                        android:id="@+id/SectorCount"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
