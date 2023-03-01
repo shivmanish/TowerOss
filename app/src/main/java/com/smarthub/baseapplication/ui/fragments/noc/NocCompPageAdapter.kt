@@ -26,7 +26,7 @@ class NocCompPageAdapter(fm:FragmentManager, var nocdata: NocCompAllData?) : Fra
                 return NocPoDetailsFragment(nocdata)
             }
             3 -> {
-                return NocDetailsFragment(nocdata)
+                return NocFeePaymentFragment(nocdata)
             }
             else -> {
                 return NocDetailsFragment(nocdata)

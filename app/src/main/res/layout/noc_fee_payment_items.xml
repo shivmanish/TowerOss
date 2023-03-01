@@ -101,12 +101,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="PO Item"
+                    android:text="Application Number"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/po_items"
+                    android:id="@+id/ApplicationNo"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -118,12 +118,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Vendor Name"
+                    android:text="Payment Type"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/vendor_name"
+                    android:id="@+id/PaymentType"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,12 +137,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Vendor Code"
+                    android:text="Amount"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/vendor_code"
+                    android:id="@+id/Amount"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -155,49 +155,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="PO Number"
+                    android:text="Payment Mode"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/po_number"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="PO Date"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/po_date"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="PO Line Number"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/po_line_number"
+                    android:id="@+id/payment_mode"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -211,20 +174,40 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="PO Amount"
+                    android:text="Payment Status"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/po_amount"
+                    android:id="@+id/payment_status"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:paddingTop="0dp"
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Status Date"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/status_date"
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
 
         </GridLayout>
         <TextView
+            android:visibility="gone"
             android:text="Remark"
             style="@style/RowTextItemInfo"
             android:layout_marginHorizontal="@dimen/dp10"
@@ -232,6 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
+            android:visibility="gone"
             android:id="@+id/remark"
             android:layout_marginHorizontal="@dimen/dp10"
             style="@style/RowTestItemEdit"

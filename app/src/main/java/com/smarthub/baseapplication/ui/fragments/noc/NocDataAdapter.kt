@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.RfAntennaFragAdapterBinding
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 
 
 class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener,  var Id: String?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
@@ -50,6 +51,7 @@ class NocDataAdapter(var context:Context,var listener: NocDataAdapterListener,  
         if (holder is NocDataViewHolder){
             try {
                 var item = list[position] as NocCompAllData
+                holder.binding.itemTitleStr.text=String.format(context.resources.getString(R.string.two_string_format),item.id,Utils.getFormatedDate(item.modified_at.substring(0,10),"ddMMMyyyy"))
                 holder.itemview.setOnClickListener {
                     listener.clickedItem(item, Id!!,position)
                 }

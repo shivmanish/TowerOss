@@ -8,30 +8,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocApplicationDetailsItemBinding
 import com.smarthub.baseapplication.databinding.NocAuthorityItemsBinding
+import com.smarthub.baseapplication.databinding.NocFeePaymentItemsBinding
 import com.smarthub.baseapplication.databinding.NocPoDetailsItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityDetail
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityFeePaymentDetail
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocPODetail
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList<NocPODetail>?, var context: Context) : RecyclerView.Adapter<NocPoDetailsAdapter.ViewHold>() {
+class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, feePayDetails: ArrayList<NocAuthorityFeePaymentDetail>?, var context: Context) : RecyclerView.Adapter<NocFeePayDetailsAdapter.ViewHold>() {
 
-    var list : ArrayList<NocPODetail> = poDetails!!
+    var list : ArrayList<NocAuthorityFeePaymentDetail> = feePayDetails!!
     var currentOpened = -1
 
-    fun updateItem(pos : Int,data : NocPODetail){
+    fun updateItem(pos : Int,data : NocAuthorityFeePaymentDetail){
         list[pos] = data
         notifyItemChanged(pos)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View,listener: NocPoClickListener) : ViewHold(itemView) {
-        var binding : NocPoDetailsItemsBinding = NocPoDetailsItemsBinding.bind(itemView)
+    class ViewHold1(itemView: View,listener: NocFeePayClickListener) : ViewHold(itemView) {
+        var binding : NocFeePaymentItemsBinding = NocFeePaymentItemsBinding.bind(itemView)
 //        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
 //            override fun itemClicked() {
 //                listener.attachmentItemClicked()
@@ -59,7 +61,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_po_details_items,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_fee_payment_items,parent,false)
                 ViewHold1(view,listener)
             }
             2 ->{
@@ -68,7 +70,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
             }
 
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_po_details_items,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.noc_fee_payment_items,parent,false)
                 ViewHold1(view,listener)
             }
         }
@@ -77,7 +79,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: NocPODetail=list[position]
+            val data: NocAuthorityFeePaymentDetail=list[position]
             holder.binding.imgEdit.setOnClickListener {
 //                listener.editModeCliked(data,position)
             }
@@ -99,17 +101,14 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.two_string_format),data.PONumber,AppPreferences.getInstance().getDropDownValue(DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString()))
-                if (data.VendorCompany.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.vendorName,DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
-                holder.binding.poNumber.text=data.PONumber
-                holder.binding.poDate.text=Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.vendorCode.text=data.VendorCode
-                holder.binding.poAmount.text=data.POAmount
-                holder.binding.poItems.text=data.POItem
-                holder.binding.remark.text=data.Remark
-                holder.binding.poLineNumber.text=data.POLineNo.toString()
-//
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.ApplicationNo,data.Type,AppPreferences.getInstance().getDropDownValue(DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString()))
+                if (data.PaymentStatus.isNotEmpty())
+                    AppPreferences.getInstance().setDropDown(holder.binding.paymentStatus,DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString())
+                holder.binding.ApplicationNo.text=data.ApplicationNo
+                holder.binding.statusDate.text=Utils.getFormatedDate(data.StatusDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.PaymentType.text=data.Type
+                holder.binding.Amount.text=data.Amount
+                holder.binding.paymentMode.text=data.PaymentMode.toString()
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -137,7 +136,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface NocPoClickListener{
+    interface NocFeePayClickListener{
         fun attachmentItemClicked()
         fun editModeCliked(data :RfAnteenaData,pos:Int)
     }

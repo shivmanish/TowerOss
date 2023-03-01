@@ -7,6 +7,7 @@ data class NocAuthorityFeePaymentDetail(
     val PaymentStatus: List<Int>,
     val Type: String,
     val created_at: String,
+    val StatusDate: String,
     val id: Int,
     val isActive: Boolean,
     val modified_at: String
