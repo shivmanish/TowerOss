@@ -7,6 +7,7 @@ public enum DropDowns {
     Siteownership,
     Buildingtype,
     Sitebillingstatus,
+    AcceptanceStatus,
     EquipmentName,
     Towncategory,
     CableName,
@@ -51,6 +52,8 @@ public enum DropDowns {
     SREquipmentsType,
     SRStatus,
     Technology,
+    TowerPoleType,
+    FoundationType,
     Costcentre,
 //    Sitebillingstatus,
 //    Towncategory,
@@ -112,6 +115,5 @@ public enum DropDowns {
     BackhaulLinkOperationalStatus,
     BackhaulSpaceUsed,
     // plan design
-    FoundationType,
     EquipmentType
 }

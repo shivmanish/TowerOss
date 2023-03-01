@@ -97,8 +97,7 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
             try {
                 holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.SrNumber,data.ApplicationNumber,Utils.getFormatedDate(data.IssueDate.substring(0,10),"ddMMMyyyy"))
                 if(data.ApplicationStatus.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.appliStatus,
-                    DropDowns.ApplicationInitialApplicationStatus.name,data.ApplicationStatus.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.appliStatus, DropDowns.ApplicationInitialApplicationStatus.name,data.ApplicationStatus.get(0).toString())
                 holder.binding.issueDate.text=Utils.getFormatedDate(data.IssueDate.substring(0,10),"dd-MMM-yyyy")
                 holder.binding.applicationDate.text=Utils.getFormatedDate(data.ApplicationDate.substring(0,10),"dd-MMM-yyyy")
                 holder.binding.applicationNumber.text=data.ApplicationNumber

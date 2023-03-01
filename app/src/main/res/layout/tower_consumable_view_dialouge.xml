@@ -32,6 +32,7 @@
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/dp5"
+                android:paddingBottom="25dp"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -54,83 +55,143 @@
                     android:layout_marginTop="@dimen/dp8" />
 
                 <GridLayout
+                    android:visibility="visible"
                     android:columnCount="2"
+                    android:layout_marginTop="@dimen/dp15"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/dp15"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <LinearLayout
+                        android:paddingTop="0dp"
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Item Code"
+                            android:text="Item Name"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="1st"
+                        <TextView
+                            android:id="@+id/ItemName"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:paddingTop="0dp"
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Description"
+                            android:text="Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="sdfgerghr"
+                        <TextView
+                            android:id="@+id/Type"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:paddingTop="0dp"
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Qty"
+                            android:text="Make"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="5"
+                        <TextView
+                            android:id="@+id/Make"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            />
                     </LinearLayout>
                     <LinearLayout
+                        android:paddingTop="0dp"
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Date"
+                            android:text="Model"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="12-Dec-22"
+                        <TextView
+                            android:id="@+id/Model"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Used Qty."
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/UsedQty"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="UoM"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/UoM"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installation Date"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Installation_Date"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
 
                 </GridLayout>
-
-                <include layout="@layout/layout_img_attachment"/>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

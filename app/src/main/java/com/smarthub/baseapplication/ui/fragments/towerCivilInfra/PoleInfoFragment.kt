@@ -41,13 +41,13 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
                 binding.swipeLayout.isRefreshing=false
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraPoleModel.get(index))
+//                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraPoleModel.get(index))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",
                         Toast.LENGTH_LONG).show()
                 }
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
@@ -91,8 +91,8 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
     }
 
     override fun viewPoClicked(position: Int) {
-        var bm = TowerPoViewAdapter(R.layout.tower_po_view_dialouge)
-        bm.show(childFragmentManager, "category")
+//        var bm = TowerPoViewAdapter(R.layout.tower_po_view_dialouge)
+//        bm.show(childFragmentManager, "category")
     }
 
     override fun editConsumableClicked(position: Int) {
@@ -102,9 +102,9 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
     }
 
     override fun viewConsumableClicked(position: Int) {
-        var bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge)
-        bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+//        var bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge)
+//        bm.show(childFragmentManager, "category")
+//        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
     override fun editOffsetClicked(position: Int) {

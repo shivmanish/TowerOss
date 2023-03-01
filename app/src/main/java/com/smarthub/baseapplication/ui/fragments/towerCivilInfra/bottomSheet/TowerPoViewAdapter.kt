@@ -10,9 +10,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.EquipmentRoomPoViewDialougeBinding
 import com.smarthub.baseapplication.databinding.TowerPoViewDialougeBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class TowerPoViewAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId),
+class TowerPoViewAdapter (contentLayoutId: Int,var data: TwrCivilPODetail) : BottomSheetDialogFragment(contentLayoutId),
     ImageAttachmentAdapter.ItemClickListener {
 
     lateinit var binding: TowerPoViewDialougeBinding
@@ -22,12 +26,18 @@ class TowerPoViewAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(cont
         binding.canecl.setOnClickListener {
             dismiss()
         }
-        var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
-        var adapter = ImageAttachmentAdapter(this@TowerPoViewAdapter)
-        attacmentsItem.adapter=adapter
-        view.findViewById<View>(R.id.attach_card).setOnClickListener{
-            adapter.addItem()
-        }
+        binding.poAmount.text=data.POAmount
+        binding.poItems.text=data.POItem
+        binding.vendorCode.text=data.VendorCode
+        binding.poNumber.text=data.PONumber
+        binding.poAmount.text=data.POAmount
+        binding.poLineNumber.text=data.POLineNo.toString()
+        binding.remark.text=data.Remark
+        if (data.VendorCompany.isNotEmpty())
+            AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
+
+        binding.poDate.text=Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
+
     }
 
     override fun getTheme() = R.style.NewDialogTask

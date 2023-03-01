@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
@@ -56,12 +57,12 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
                 binding.swipeLayout.isRefreshing=false
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0))
+                    adapter.setData(it.data.TowerAndCivilInfra)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("Tower civil Infra data size :${it.data.TowerAndCivilInfra}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
@@ -100,28 +101,28 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         AppLogger.log("onViewPageSelected TowerAndCivil")
     }
 
-    override fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>) {
+    override fun clickedTowerItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
         TwrInfraDetails.Id=id
-        TwrInfraDetails.TowerModelData=data as ArrayList<TowerAndCivilInfraTowerModel>
+        TwrInfraDetails.TowerModelData=data
         requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
     }
 
-    override fun clickedPoleItem(id:String,data: List<TowerAndCivilInfraPoleModel>) {
-        PoleFragment.Id=id
-        PoleFragment.TowerModelData=data as ArrayList<TowerAndCivilInfraPoleModel>
-        requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
+    override fun clickedPoleItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+//        PoleFragment.Id=id
+//        PoleFragment.TowerModelData=data as ArrayList<TowerAndCivilInfraPoleModel>
+//        requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
     }
 
-    override fun clickedEquipmentRoomItem(id:String,data:List<TowerAndCivilInfraEquipmentModel>) {
-        TowerEquipmentFragemnt.EquipmentModelData = ArrayList(data)
-        TowerEquipmentFragemnt.Id=id
-        requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
+    override fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+//        TowerEquipmentFragemnt.EquipmentModelData = data
+//        TowerEquipmentFragemnt.Id=id
+//        requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }
 
-    override fun clickedEarthingItem(id:String,data:List<TowerAndCivilInfraEarthingModel>) {
-        TowerEarthingFragment.Id=id
-        TowerEarthingFragment.EarthingModelData=data as ArrayList<TowerAndCivilInfraEarthingModel>
-        requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
+    override fun clickedEarthingItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+//        TowerEarthingFragment.Id=id
+//        TowerEarthingFragment.EarthingModelData=data as ArrayList<TowerAndCivilInfraEarthingModel>
+//        requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
     }
 
     override fun addTower() {
