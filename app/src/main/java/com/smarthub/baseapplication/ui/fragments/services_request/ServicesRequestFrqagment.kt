@@ -71,9 +71,10 @@ class ServicesRequestFrqagment(var id : String) : BaseFragment(), ServicesDataAd
             viewmodel?.serviceRequestAll(id)
         }
 
+        customerBinding.addItemsLayout.visibility = View.GONE
         customerBinding.addItemsLayout.setOnClickListener {
-            val bmSheet = ServiceRequestAddNew(R.layout.service_request_add_new_dialouge)
-            bmSheet.show(childFragmentManager,"category")
+//            val bmSheet = ServiceRequestAddNew(R.layout.service_request_add_new_dialouge)
+//            bmSheet.show(childFragmentManager,"category")
         }
     }
 

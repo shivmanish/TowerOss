@@ -26,17 +26,11 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     var type4 = "Backhaul Links"
     var type5 = "Requester Info"
     var type6 = "Attachments"
-//    private var data : BasicInfoModelDropDown?=null
     private var servicerequestData : ServiceRequest?=null
     private var SrDetailsData: SRDetails ?=null
     private var BackhaulLinksData: BackHaulLink?=null
     private var RequesterInfoData: RequesterInfo ?=null
     var currentOpened = -1
-
-//    fun setData(data : BasicInfoModelDropDown){
-//        this.data = data
-//        notifyDataSetChanged()
-//    }
 
     fun updateData(serviceRequestAllData: ServiceRequestAllDataItem?){
         this.serviceRequestAllData = serviceRequestAllData
@@ -44,12 +38,12 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
     }
 
     init {
-        list.add("SR Info")
-        list.add("Equipments")
-        list.add("Radio Antennas")
-        list.add("Backhaul Links")
-        list.add("Requester Info")
-        list.add("Attachments")
+        list.add(type1)
+        list.add(type2)
+        list.add(type3)
+        list.add(type4)
+        list.add(type5)
+        list.add(type6)
         try {
             servicerequestData=serviceRequestAllData?.ServiceRequest?.get(0)
             SrDetailsData=servicerequestData?.SRDetails?.get(0)
@@ -107,12 +101,12 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (equipmentTableList.adapter!=null && equipmentTableList.adapter is SREquipmentTableAdapter){
-                var adapter = equipmentTableList.adapter as SREquipmentTableAdapter
+                val adapter = equipmentTableList.adapter as SREquipmentTableAdapter
                 adapter.addItem()
             }
         }
@@ -262,9 +256,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 
                 if (SrDetailsData!=null) {
                     holder.binding.imgEdit.setOnClickListener {
-                        if (SrDetailsData!=null && serviceRequestAllData!=null)
-                            listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
-                        else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
+//                        if (SrDetailsData!=null && serviceRequestAllData!=null)
+//                            listener.editSrDetailsItemClicked(SrDetailsData!!,serviceRequestAllData!!)
+//                        else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
                     }
                     AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,
                         SrDetailsData?.SRType?.get(0).toString())
@@ -324,7 +318,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     AppLogger.log("e:${e.localizedMessage}")
                 }
                 holder.binding.imgAdd.setOnClickListener {
-                    listener.editEquipmentClicked(null,null,null)
+//                    listener.editEquipmentClicked(null,null,null)
                 }
             }
             is ViewHold3 -> {
@@ -387,9 +381,9 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    if (SrDetailsData!=null) {
-                        listener.editRequestInfoClicked(RequesterInfoData!!,serviceRequestAllData!!)
-                    }
+//                    if (SrDetailsData!=null) {
+//                        listener.editRequestInfoClicked(RequesterInfoData!!,serviceRequestAllData!!)
+//                    }
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

@@ -39,6 +39,7 @@
                 android:id="@+id/img_add"
                 android:visibility="gone"
                 android:src="@drawable/add_ico"
+                app:tint="@color/grey"
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="@dimen/dp12"
