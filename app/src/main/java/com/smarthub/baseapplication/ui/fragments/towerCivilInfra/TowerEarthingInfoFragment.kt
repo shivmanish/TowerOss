@@ -10,13 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingInfoFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilInfraEarthingDetail
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingModel?, var id:String?, var index:Int): Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
+class TowerEarthingInfoFragment(var earthingData: FilterdTwrData?): Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
     lateinit var binding : TowerEarthingInfoFragmentBinding
     var viewmodel: HomeViewModel?=null
     lateinit var adapter:EarthingInfoFragmentAdapter
@@ -28,7 +33,7 @@ class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingMode
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData)
+        adapter=EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData?.TowerDetails?.TowerAndCivilInfraEarthing?.get(0))
         binding?.listItem?.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
@@ -45,21 +50,18 @@ class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingMode
 //                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEarthingModel.get(index))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TwrCivil earth Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"TwrCivil earth  error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
                 AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"TwrCivil earth  error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TwrCivil earth  error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("TwrCivil earth  Fragment Something went wrong")
-                Toast.makeText(requireContext(),"TwrCivil earth fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            viewmodel?.TowerAndCivilRequestAll(id!!)
+            viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
         }
     }
 
@@ -93,21 +95,24 @@ class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingMode
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewPoClicked(position: Int) {
-        var bm = EarthingPoTableViewDialougeAdapter(R.layout.earthing_po_item_dialouge)
+    override fun viewPoClicked(position: Int,data:TwrCivilPODetail) {
+        var bm = EarthingPoTableViewDialougeAdapter(R.layout.earthing_po_item_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
     override fun editConsumableClicked(position: Int) {
         var bm = EarthingConsumableEditDialougeAdapter(R.layout.earthing_consumable_table_edit_dialouge)
         bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewConsumableClicked(position: Int) {
-        var bm = EarthingConsumableTableViewDialougeAdapter(R.layout.earthing_consumable_table_view_dialouge)
+    override fun viewConsumableClicked(position: Int, data:TwrCivilConsumableMaterial) {
+        var bm = EarthingConsumableTableViewDialougeAdapter(R.layout.earthing_consumable_table_view_dialouge,data)
         bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewEarthingDetails(position: Int, data: TwrCivilInfraEarthingDetail) {
+        val bm = EarthingDetailsViewDialouge(R.layout.earthing_details_view_dialouge,data)
+        bm.show(childFragmentManager, "category")
     }
 
 

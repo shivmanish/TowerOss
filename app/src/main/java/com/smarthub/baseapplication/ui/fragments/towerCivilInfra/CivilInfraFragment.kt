@@ -120,9 +120,9 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun clickedEarthingItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
-//        TowerEarthingFragment.Id=id
-//        TowerEarthingFragment.EarthingModelData=data as ArrayList<TowerAndCivilInfraEarthingModel>
-//        requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
+        TowerEarthingFragment.Id=id
+        TowerEarthingFragment.EarthingModelData=data
+        requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
     }
 
     override fun addTower() {

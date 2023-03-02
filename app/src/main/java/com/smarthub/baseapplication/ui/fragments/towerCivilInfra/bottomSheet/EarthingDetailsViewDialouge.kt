@@ -8,35 +8,38 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingConsumableTableViewDialougeBinding
+import com.smarthub.baseapplication.databinding.EarthingDetailsViewDialougeBinding
 import com.smarthub.baseapplication.databinding.TowerConsumableViewDialougeBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilInfraEarthingDetail
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.Utils
 
-class EarthingConsumableTableViewDialougeAdapter (contentLayoutId: Int,var data: TwrCivilConsumableMaterial) : BottomSheetDialogFragment(contentLayoutId),
+class EarthingDetailsViewDialouge (contentLayoutId: Int, var data: TwrCivilInfraEarthingDetail) : BottomSheetDialogFragment(contentLayoutId),
     ImageAttachmentAdapter.ItemClickListener {
 
-    lateinit var binding: TowerConsumableViewDialougeBinding
+    lateinit var binding: EarthingDetailsViewDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.canecl.setOnClickListener {
             dismiss()
         }
-        binding.ItemName.text=data.ItemName
-        binding.Type.text=data.ItemType
-        binding.Make.text=data.Make
-        binding.Model.text=data.Model
-        binding.UsedQty.text=data.UsedQty
-        binding.UoM.text=data.UOM
-        binding.InstallationDate.text= Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
 
+        binding.PitSizeL.text=data.SizeL
+        binding.PitSizeB.text=data.SizeB
+        binding.PitSizeH.text=data.SizeH
+        binding.PitDepth.text=data.Height
+        binding.PitRodMaterial.text=data.PitRodMaterial.toString()
+        binding.EarthingCableType.text=data.EarthingCableType.toString()
+        binding.EarthingCableLength.text=data.EarthingCableLength
+        binding.locationMark.text=data.LocationMark
+        binding.remark.text=data.Remark
     }
 
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = TowerConsumableViewDialougeBinding.inflate(inflater)
+        binding = EarthingDetailsViewDialougeBinding.inflate(inflater)
         return binding.root
     }
 
