@@ -108,9 +108,9 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun clickedPoleItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
-//        PoleFragment.Id=id
-//        PoleFragment.TowerModelData=data as ArrayList<TowerAndCivilInfraPoleModel>
-//        requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
+        PoleFragment.Id=id
+        PoleFragment.TowerModelData=data
+        requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
     }
 
     override fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {

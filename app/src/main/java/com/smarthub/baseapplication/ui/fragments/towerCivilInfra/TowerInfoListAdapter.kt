@@ -40,7 +40,7 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-    var type1 = "Tower"
+    var type1 = "Tower Detail"
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
     var type4 = "Consumables"
@@ -48,7 +48,7 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
     var type5 = "Preventive Maintenance"
 
     init {
-        list.add("Tower")
+        list.add("Tower Detail")
         list.add("Installation & Acceptence")
         list.add("PO")
         list.add("Consumables")

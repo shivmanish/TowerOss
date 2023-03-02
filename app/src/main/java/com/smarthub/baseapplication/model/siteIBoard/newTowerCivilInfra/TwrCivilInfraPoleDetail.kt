@@ -15,7 +15,7 @@ data class TwrCivilInfraPoleDetail(
     val Height: String,
     val InstalledType: Int,
     val LightningArrester: Int,
-    val LocationMark: Any,
+    val LocationMark: String,
     val MakeType: Any,
     val MaterialUsed: Any,
     val OffsetPoleCount: Int,
