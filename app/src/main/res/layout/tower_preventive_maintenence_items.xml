@@ -30,7 +30,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
-                android:text="Installation &amp; Acceptence"
+                android:text="Preventive Maintenance"
                 android:textColor="@color/color1"
                 android:textSize="@dimen/dp14"
                 android:textStyle="bold"
@@ -107,20 +107,7 @@
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp13"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="0dp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:text="Po No."
-                style="@style/RowTextItemInfo"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_weight="1.2"
+                android:layout_weight="1.1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp13"
                 android:textStyle="bold"
@@ -133,6 +120,19 @@
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="Vendor Code"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
                 android:layout_marginEnd="@dimen/dp10"
                 android:layout_weight="1.1"
                 android:textColor="@color/black"
@@ -142,16 +142,16 @@
                 android:layout_width="0dp"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Po Date"
+                android:text="PM Date"
                 android:gravity="center"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tower_po_Table_Item"
+            android:id="@+id/preventive_maintenence_Table_Item"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp8"
-            tools:listitem="@layout/tower_po_table_item"
+            tools:listitem="@layout/tower_pre_mainte_table_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">

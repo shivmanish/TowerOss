@@ -44,12 +44,15 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
     var type2 = "Installation & Acceptence"
     var type3 = "PO"
     var type4 = "Consumables"
-    var type5 = "Attachment"
+    var type6 = "Attachment"
+    var type5 = "Preventive Maintenance"
+
     init {
         list.add("Tower")
         list.add("Installation & Acceptence")
         list.add("PO")
         list.add("Consumables")
+        list.add("Preventive Maintenance")
         list.add("Attachment")
     }
 
@@ -141,7 +144,31 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerInfoListListener) : ViewHold(itemView) {
+    class ViewHold5(itemView: View) : ViewHold(itemView) {
+        var binding: TowerPreventiveMaintenenceItemsBinding = TowerPreventiveMaintenenceItemsBinding.bind(itemView)
+        var towerPreMaintenenceTableList : RecyclerView = binding.preventiveMaintenenceTableItem
+        init {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (towerPreMaintenenceTableList.adapter!=null && towerPreMaintenenceTableList.adapter is PreveMaintenenceTableAdapter){
+                var adapter = towerPreMaintenenceTableList.adapter as PreveMaintenenceTableAdapter
+                adapter.addItem(item)
+            }
+        }
+    }
+    class ViewHold6(itemView: View,listener: TowerInfoListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -170,16 +197,18 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if (list[position]==type1)
             return 1
-        else if (list[position] is String && list[position]==type2)
+        else if (list[position]==type2)
             return 2
-        else if (list[position] is String && list[position]==type3)
+        else if (list[position]==type3)
             return 3
-        else if (list[position] is String && list[position]==type4)
+        else if (list[position]==type4)
             return 4
-        else if (list[position] is String && list[position]==type5)
+        else if (list[position]==type5)
             return 5
+        else if (list[position]==type6)
+            return 6
         return 0
     }
 
@@ -203,8 +232,12 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                 return ViewHold4(view)
             }
             5 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_preventive_maintenence_items, parent, false)
+                return ViewHold5(view)
+            }
+            6 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.tower_attachment_info, parent, false)
-                return ViewHold5(view,listener)
+                return ViewHold6(view,listener)
             }
 
         }
@@ -369,6 +402,34 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
+
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.towerPreMaintenenceTableList.adapter=PreveMaintenenceTableAdapter(context,listener,datalist?.PreventiveMaintenance)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+            }
+            is ViewHold6 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -406,6 +467,7 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
         fun viewPoClicked(position:Int,data:TwrCivilPODetail)
         fun editConsumableClicked(position:Int)
         fun viewConsumableClicked(position:Int,data:TwrCivilConsumableMaterial)
+        fun viewMaintenenceClicked(position:Int,data:PreventiveMaintenance)
         fun editOffsetClicked(position:Int)
         fun viewOffsetClicked(position:Int)
     }

@@ -41,8 +41,8 @@
             <ImageView
                 android:id="@+id/img_add"
                 android:visibility="gone"
-                android:paddingStart="@dimen/dp16"
-                android:paddingEnd="@dimen/dp16"
+                android:paddingStart="@dimen/dp15"
+                android:paddingEnd="@dimen/dp15"
                 android:paddingTop="@dimen/dp17"
                 android:paddingBottom="@dimen/dp17"
                 android:layout_gravity="center_vertical"
@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="@dimen/dp12"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
+                android:layout_width="@dimen/dp46"
                 app:tint="@color/light_gray" />
             <ImageView
                 android:id="@+id/img_dropdown"

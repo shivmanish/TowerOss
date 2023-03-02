@@ -11,15 +11,17 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerInfoFragment(var towerdata:FilterdTwrData?): Fragment(), TowerInfoListAdapter.TowerInfoListListener {
+class TowerInfoFragment(var towerdata:FilterdTwrData?): BaseFragment(), TowerInfoListAdapter.TowerInfoListListener {
     var viewmodel: HomeViewModel?=null
     lateinit var binding : TowerFragmentBinding
     lateinit var adapter:TowerInfoListAdapter
@@ -43,6 +45,7 @@ class TowerInfoFragment(var towerdata:FilterdTwrData?): Fragment(), TowerInfoLis
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
                 try {
                     adapter.setData(it.data.TowerAndCivilInfra?.get(towerdata?.index!!)?.TowerAndCivilInfraTower?.get(0))
@@ -62,6 +65,7 @@ class TowerInfoFragment(var towerdata:FilterdTwrData?): Fragment(), TowerInfoLis
         }
 
         binding.swipeLayout.setOnRefreshListener {
+            showLoader()
             viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
         }
     }
@@ -104,6 +108,11 @@ class TowerInfoFragment(var towerdata:FilterdTwrData?): Fragment(), TowerInfoLis
 
     override fun viewConsumableClicked(position: Int,data: TwrCivilConsumableMaterial) {
         var bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge,data)
+        bm.show(childFragmentManager, "category")
+    }
+
+    override fun viewMaintenenceClicked(position: Int, data: PreventiveMaintenance) {
+        val bm= TowerMaintenenceViewAdapter(R.layout.tower_maintenence_view_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
