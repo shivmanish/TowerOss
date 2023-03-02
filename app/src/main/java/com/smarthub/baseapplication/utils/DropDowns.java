@@ -110,5 +110,8 @@ public enum DropDowns {
     BackhaulSpaceUsed,
     // plan design
     FoundationType,
-    EquipmentType
+    EquipmentType,
+    TowerPoleType,
+    BatterybankInstalledLocationType,
+
 }

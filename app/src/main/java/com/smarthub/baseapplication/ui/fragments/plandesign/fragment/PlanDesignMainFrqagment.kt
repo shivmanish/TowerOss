@@ -53,10 +53,13 @@ class PlanDesignMainFrqagment(var id:String) : BaseFragment(), PlanDesignAdapter
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                AppLogger.log("Service request Fragment card Data fetched successfully")
-                adapter.setData(it.data.item!![0].PlanningAndDesign)
-                AppLogger.log("size :${it.data.item?.size}")
-                isDataLoaded = true
+               try {
+                   AppLogger.log("Service request Fragment card Data fetched successfully")
+                   adapter.setData(it.data.PlanningAndDesign!!)
+                   isDataLoaded = true
+               }catch (e:Exception){
+                   e.printStackTrace()
+               }
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")

@@ -93,9 +93,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:alpha="0.37"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/dp5"
                     android:background="@color/view_color" />
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp5"
@@ -157,6 +159,7 @@
                         android:textStyle="bold" />
                 </LinearLayout>
                 <View
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:alpha="0.37"
@@ -164,6 +167,7 @@
                     android:background="@color/view_color" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/pole_table"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp5"
@@ -177,6 +181,249 @@
                     android:columnCount="2"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pole Type" />
+
+                        <TextView
+                            android:id="@+id/pole_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pole Count" />
+
+                        <TextView
+                            android:id="@+id/tower_offset_pole_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Installed Type" />
+
+                        <TextView
+                            android:id="@+id/installed_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Camouflage" />
+
+                        <TextView
+                            android:id="@+id/camouflage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Height (m)" />
+
+                        <TextView
+                            android:id="@+id/height"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Weight" />
+
+                        <TextView
+                            android:id="@+id/weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Designd Load (kg)" />
+
+                        <TextView
+                            android:id="@+id/designload"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Anteena Slot" />
+
+                        <TextView
+                            android:id="@+id/anteena_slot"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lighting Arrester" />
+
+                        <TextView
+                            android:id="@+id/lighting_arrester"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Foundation Type" />
+
+                        <TextView
+                            android:id="@+id/foundation_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Foundation size" />
+
+                        <TextView
+                            android:id="@+id/foundation_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/RowTestItemEdit"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -192,7 +439,7 @@
                             android:text="Offset Pole Count" />
 
                         <TextView
-                            android:id="@+id/tower_offset_pole_count"
+                            android:id="@+id/offset_pole_count"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/RowTestItemEdit"
@@ -224,24 +471,7 @@
                     </LinearLayout>
 
                 </GridLayout>
-                <TextView
-                    android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginRight="@dimen/dp5"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Remark" />
 
-                <TextView
-                    android:id="@+id/remarks"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginRight="@dimen/dp5"
-                    style="@style/RowTestItemEdit"
-                    android:text=""
-                    />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

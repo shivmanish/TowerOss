@@ -56,8 +56,7 @@ class PowerDesignDetailsActivity : AppCompatActivity() {
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
-                adapter.updateData(it.data.item!![0].PlanningAndDesign.get(index!!))
-                AppLogger.log("size :${it.data.item?.size}")
+                adapter.updateData(it.data.PlanningAndDesign!!.get(index!!))
             }else if (it!=null) {
                 Toast.makeText(this,"planDesign Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
