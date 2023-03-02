@@ -58,7 +58,7 @@ class SREquipmentTableAdapter(
             AppPreferences.getInstance().getDropDown(DropDowns.Technology.name)[it]
         }
 
-        holder.binding.EquipmentInfo.text = list.get(position)?.EquipmentWeight
+//        holder.binding.EquipmentInfo.text = list.get(position)?.EquipmentWeight
 //        holder.binding.EquipmentType.text = list?.get(position)?.Type
         try {
             list.get(position).Type?.toInt()?.let {
@@ -70,7 +70,7 @@ class SREquipmentTableAdapter(
         }
 
 
-        holder.binding.EquipmentSize.text = list[position]?.CabinetSize
+//        holder.binding.EquipmentSize.text = list[position]?.CabinetSize
     }
 
     override fun getItemCount(): Int {

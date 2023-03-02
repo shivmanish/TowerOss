@@ -1,11 +1,11 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
 data class TowerAndCivilInfraEquipmentRoom(
-    val ConsumableMaterial: List<TwrCivilConsumableMaterial>,
-    val InstallationAndAcceptence: List<TwrInstallationAndAcceptence>,
-    val PODetail: List<TwrCivilPODetail>,
-    val PreventiveMaintenance: List<PreventiveMaintenance>,
-    val TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail: List<TwrCivilEquipmentRoomDetail>,
+    val ConsumableMaterial: ArrayList<TwrCivilConsumableMaterial>,
+    val InstallationAndAcceptence: ArrayList<TwrInstallationAndAcceptence>,
+    val PODetail: ArrayList<TwrCivilPODetail>,
+    val PreventiveMaintenance: ArrayList<PreventiveMaintenance>,
+    val TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail: ArrayList<TwrCivilEquipmentRoomDetail>,
     val created_at: String,
     val id: Int,
     val isActive: Boolean,

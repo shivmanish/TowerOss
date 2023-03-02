@@ -114,9 +114,9 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
-//        TowerEquipmentFragemnt.EquipmentModelData = data
-//        TowerEquipmentFragemnt.Id=id
-//        requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
+        TowerEquipmentFragemnt.EquipmentModelData = data
+        TowerEquipmentFragemnt.Id=id
+        requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }
 
     override fun clickedEarthingItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {

@@ -39,7 +39,7 @@ class TowerConsumableTableAdapter (var context : Context, var listener : TowerIn
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var item:TwrCivilConsumableMaterial=list?.get(position)!!
+        val item:TwrCivilConsumableMaterial=list?.get(position)!!
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it,item)
         }

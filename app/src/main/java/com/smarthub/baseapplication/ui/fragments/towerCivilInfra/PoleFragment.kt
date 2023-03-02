@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTower
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.utils.AppController
 
 class PoleFragment : BaseActivity() {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
@@ -36,6 +37,8 @@ class PoleFragment : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
+        binding.titel.text="Pole"
+        binding.subTitle.text=AppController.getInstance().siteName
         binding.viewpager.adapter = PoleFragPageAdapter(supportFragmentManager,filterTowerList(TowerModelData!!),Id)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
