@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp42">
+            android:layout_height="@dimen/dp45">
             <TextView
                 android:id="@+id/item_title_str"
                 android:text="Attachments"
@@ -40,11 +40,13 @@
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp16"
-                android:paddingEnd="@dimen/dp16"
+                android:paddingStart="@dimen/dp17"
+                android:paddingEnd="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp17"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
+                android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
     <View

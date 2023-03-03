@@ -29,6 +29,7 @@ import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
@@ -202,8 +203,8 @@ public interface APIClient {
     Call<TowerCivilAllDataModel> fetchTowerCivilInfraRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<PowerAndFuelModel> fetchPowerFuelRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<PowerFuelAllDataModel> fetchPowerFuelRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)

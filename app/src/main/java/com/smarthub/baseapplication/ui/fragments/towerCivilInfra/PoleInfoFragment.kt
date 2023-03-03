@@ -116,16 +116,7 @@ class PoleInfoFragment (var towerdata: FilterdTwrData): BaseFragment(), PoleInfo
         bm.show(childFragmentManager, "category")
     }
 
-    override fun editOffsetClicked(position: Int) {
-        var bm = TowerOffsetEditAdapter(R.layout.tower_offset_edit_dialouge)
-        bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
-    }
 
-    override fun viewOffsetClicked(position: Int) {
-        var bm = TowerOffsetViewAdapter(R.layout.tower_offset_view_dialouge)
-        bm.show(childFragmentManager, "category")
-    }
 
 
 }

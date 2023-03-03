@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp5"
+    android:background="#F0F0F0"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:elevation="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/tab_deselected"
+        app:tabPaddingEnd="@dimen/dp5"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabPaddingStart="@dimen/dp5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabTextAppearance="@style/TabTextView"
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardElevation="2dp"
+        android:id="@+id/viewPagerCard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/add_more"
+        android:adjustViewBounds="true"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        app:srcCompat="@drawable/ic_new_menu_icon"
+        app:layout_constraintEnd_toEndOf="@+id/viewPagerCard"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPagerCard"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

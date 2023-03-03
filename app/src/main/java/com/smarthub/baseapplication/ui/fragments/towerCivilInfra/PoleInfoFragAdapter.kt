@@ -465,8 +465,6 @@ class PoleInfoFragAdapter (var context: Context, var listener: PoleInfoListListe
         fun viewMaintenenceClicked(position:Int,data:PreventiveMaintenance)
         fun editConsumableClicked(position:Int)
         fun viewConsumableClicked(position:Int,data:TwrCivilConsumableMaterial)
-        fun editOffsetClicked(position:Int)
-        fun viewOffsetClicked(position:Int)
     }
 
 }

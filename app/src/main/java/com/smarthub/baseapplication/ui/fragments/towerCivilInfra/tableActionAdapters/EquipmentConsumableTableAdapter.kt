@@ -9,25 +9,17 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EquipmentConsumableTableItemBinding
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EquipmentModelConsumable
+import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 
-class EquipmentConsumableTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.TowerPoleListListener,consumdata:List<EquipmentModelConsumable>?): RecyclerView.Adapter<EquipmentConsumableTableAdapter.ViewHold>() {
+class EquipmentConsumableTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.EquipmentItemListener, var list:ArrayList<TwrCivilConsumableMaterial>?): RecyclerView.Adapter<EquipmentConsumableTableAdapter.ViewHold>() {
 
-    var list : ArrayList<EquipmentModelConsumable>?
-
-    init {
-        list=consumdata as ArrayList<EquipmentModelConsumable>
-    }
 
     fun addItem(item:String){
-        list?.add(
-            EquipmentModelConsumable(Date = "22-12-2022", Description = "dsfg", ItemCode = "53", Qty = "654d2",
-                created_at = "22-10-2022", id ="56", isActive = "true", modified_at = "22-12-2022")
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -36,23 +28,25 @@ class EquipmentConsumableTableAdapter (var context : Context, var listener : Tow
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= EquipmentConsumableTableItemBinding.bind(view)
+        var binding= TowerConsumableTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.equipment_consumable_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_consumable_table_item,parent,false)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        val item:TwrCivilConsumableMaterial=list?.get(position)!!
         holder.binding.menu.setOnClickListener {
-            performOptionsMenuClick(position,it)
+            performOptionsMenuClick(position,it,item)
         }
         try {
-            holder.binding.ItemName.text=""
-            holder.binding.ItemCode.text=list?.get(position)?.ItemCode
-            holder.binding.Description.text=list?.get(position)?.Description
-            holder.binding.Qty.text=list?.get(position)?.Qty
+            holder.binding.SrNo.text=position.plus(1).toString()
+            holder.binding.model.text=item.Model
+            holder.binding.installationDate.text=
+                Utils.getFormatedDate(item.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.ItemName.text=item.ItemName
         }catch (e:java.lang.Exception){
             AppLogger.log("Equip Consum Adapter error : ${e.localizedMessage}")
             Toast.makeText(context,"Equip Consum Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -63,7 +57,7 @@ class EquipmentConsumableTableAdapter (var context : Context, var listener : Tow
         return list?.size!!
     }
 
-    private fun performOptionsMenuClick(position: Int,view : View) {
+    private fun performOptionsMenuClick(position: Int,view : View,data:TwrCivilConsumableMaterial) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
         val popupMenu = PopupMenu(context , view)
@@ -90,7 +84,7 @@ class EquipmentConsumableTableAdapter (var context : Context, var listener : Tow
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewConsumableClicked(position)
+                        listener.viewConsumableClicked(position,data)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

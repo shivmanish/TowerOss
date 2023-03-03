@@ -37,6 +37,8 @@ public enum DropDowns {
     Equipementroom,
     RequiredAreaAvailable,
     OverallFeasibility,
+    PowerConnectionType,
+    PaymentStatus,
 
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,
@@ -64,7 +66,6 @@ public enum DropDowns {
     Ldca,
     Scda,
     VendorCompany,
-    PaymentStatus,
     // Site Info --> Geo Conditions Dropdowns
     Windzone,
     Seismiczone,

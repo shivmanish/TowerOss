@@ -66,7 +66,7 @@ class poleOffsetTableAdapter (var context : Context, var listener : PoleInfoFrag
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editOffsetClicked(position)
+//                        listener.editOffsetClicked(position)
 
                         return true
                     }
@@ -81,7 +81,7 @@ class poleOffsetTableAdapter (var context : Context, var listener : PoleInfoFrag
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewOffsetClicked(position)
+//                        listener.viewOffsetClicked(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

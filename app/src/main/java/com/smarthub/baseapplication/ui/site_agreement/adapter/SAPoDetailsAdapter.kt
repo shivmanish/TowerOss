@@ -53,7 +53,7 @@ class SAPoDetailsAdapter (var context : Context, var listener : ServicesRequestA
             performOptionsMenuClick(position,it)
         }
         holder.binding.Technology.text= list?.get(position)?.Technology?.get(0).toString()
-        holder.binding.EquipmentInfo.text=list?.get(position)?.Weight
+//        holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
         holder.binding.EquipmentType.text=""
         holder.binding.EquipmentSize.text=""
     }

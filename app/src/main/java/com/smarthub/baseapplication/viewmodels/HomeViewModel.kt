@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
@@ -74,7 +75,7 @@ class HomeViewModel : ViewModel() {
     var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
-    var powerAndFuelResponse:SingleLiveEvent<Resource<PowerAndFuelModel>>? = null
+    var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAgreementModel>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null

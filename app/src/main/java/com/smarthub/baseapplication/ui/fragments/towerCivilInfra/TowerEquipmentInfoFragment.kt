@@ -10,12 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEquipmentInfoFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentModel?, var id:String?, var index:Int): Fragment(), TowerEquipmentInfoAdapter.TowerPoleListListener {
+class TowerEquipmentInfoFragment(var equipmentData: FilterdTwrData): Fragment(), TowerEquipmentInfoAdapter.EquipmentItemListener {
     var viewmodel: HomeViewModel?=null
     lateinit var binding : TowerEquipmentInfoFragmentBinding
     lateinit var adapter:TowerEquipmentInfoAdapter
@@ -27,7 +31,7 @@ class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=TowerEquipmentInfoAdapter(requireContext(),this@TowerEquipmentInfoFragment,equipmentData)
+        adapter=TowerEquipmentInfoAdapter(requireContext(),this@TowerEquipmentInfoFragment,equipmentData.TowerDetails?.TowerAndCivilInfraEquipmentRoom?.get(0))
         binding?.listItem?.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
@@ -41,24 +45,21 @@ class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentM
                 binding.swipeLayout.isRefreshing=false
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
                 try {
-//                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEquipmentModel.get(index))
+                    adapter.setData(it.data.TowerAndCivilInfra?.get(equipmentData?.index!!)?.TowerAndCivilInfraEquipmentRoom?.get(0))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
                 AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("TowerCivil Fragment Something went wrong")
-                Toast.makeText(requireContext(),"TowerCivil Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            viewmodel?.TowerAndCivilRequestAll(id!!)
+            viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
         }
     }
 
@@ -83,8 +84,8 @@ class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentM
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewPoClicked(position: Int) {
-        var bm = EquipmentPoViewDialougeAdapter(R.layout.equipment_room_po_view_dialouge)
+    override fun viewPoClicked(position: Int,data:TwrCivilPODetail) {
+        var bm = EquipmentPoViewDialougeAdapter(R.layout.equipment_room_po_view_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
@@ -94,10 +95,15 @@ class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentM
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewConsumableClicked(position: Int) {
-        var bm = EquipmentConsumViewAdapter(R.layout.equipment_consumable_table_view_dialouge)
+    override fun viewConsumableClicked(position: Int,data:TwrCivilConsumableMaterial) {
+        var bm = EquipmentConsumViewAdapter(R.layout.equipment_consumable_table_view_dialouge,data)
         bm.show(childFragmentManager, "category")
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewMaintenenceClicked(position: Int, data: PreventiveMaintenance) {
+        val bm= TowerMaintenenceViewAdapter(R.layout.tower_maintenence_view_dialouge,data)
+        bm.show(childFragmentManager, "category")
     }
 
 
