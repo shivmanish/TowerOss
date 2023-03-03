@@ -23,15 +23,15 @@ class SAPoDetailsAdapter (var context : Context, var listener : ServicesRequestA
     }
 
     fun addItem(){
-        list?.add(
-            Equipment(CabinetSize = "4", EquipmentWeight = "8",
-            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723", Technology = ArrayList(
-                    arrayOf(0).asList()
-                ),
-            Voltage ="43", created_at = "22-10-2022", id = 448,
-            isActive = true, modified_at = "22-12-2022" )
-        )
-        notifyItemInserted(list?.size!!.plus(1))
+//        list?.add(
+//            Equipment(CabinetSize = "4", EquipmentWeight = "8",
+//            InputPower = "5", MaxPowerRating = "76", OperatingTemp = "723", Technology = ArrayList(
+//                    arrayOf(0).asList()
+//                ),
+//            Voltage ="43", created_at = "22-10-2022", id = 448,
+//            isActive = true, modified_at = "22-12-2022" )
+//        )
+//        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -53,7 +53,7 @@ class SAPoDetailsAdapter (var context : Context, var listener : ServicesRequestA
             performOptionsMenuClick(position,it)
         }
         holder.binding.Technology.text= list?.get(position)?.Technology?.get(0).toString()
-        holder.binding.EquipmentInfo.text=list?.get(position)?.EquipmentWeight
+        holder.binding.EquipmentInfo.text=list?.get(position)?.Weight
         holder.binding.EquipmentType.text=""
         holder.binding.EquipmentSize.text=""
     }
