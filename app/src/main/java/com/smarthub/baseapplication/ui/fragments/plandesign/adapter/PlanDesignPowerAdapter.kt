@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PlandesignPowerAttachmetsBinding
 import com.smarthub.baseapplication.databinding.PlandesignPowerRequirementsBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignPowerRequirement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, allData:List<PlanningAndDesignPowerRequirement>?):
     RecyclerView.Adapter<PlanDesignPowerAdapter.ViewHold>() {
@@ -118,10 +120,13 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
                 holder.binding.itemTitleStr.text = list[position]
 
                     try {
-                        holder.binding.PowerType.text=data?.PowerType
-                        holder.binding.voltage.text=data?.Voltage
-                        holder.binding.maxTotalPower.text=data?.MaxTotalPower
-                        holder.binding.batteryBackup.text=data?.BatteryBackup
+                        holder.binding.PowerType.text=data?.PowerType.toString()
+                        holder.binding.voltage.text=data?.VoltageMax
+                        holder.binding.maxTotalPower.text=data?.VoltageMax
+                        AppPreferences.getInstance().setDropDown(
+                            holder.binding.PowerConnectionType,
+                            DropDowns.PowerConnectionType.name, "${data?.PowerConnectionType}"
+                        )
                         holder.binding.remark.text=data?.Remark
                     }catch (e:java.lang.Exception){
                         AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")

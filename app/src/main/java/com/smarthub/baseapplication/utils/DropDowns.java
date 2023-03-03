@@ -113,5 +113,6 @@ public enum DropDowns {
     EquipmentType,
     TowerPoleType,
     BatterybankInstalledLocationType,
+    PowerConnectionType,
 
 }
