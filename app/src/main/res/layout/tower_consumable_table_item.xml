@@ -10,8 +10,8 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/Item_name"
-            android:layout_weight="1"
+            android:id="@+id/Sr_no"
+            android:layout_weight=".5"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"
@@ -22,7 +22,7 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/Item_code"
+            android:id="@+id/Item_name"
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
@@ -35,7 +35,7 @@
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/Description"
+            android:id="@+id/model"
             android:layout_weight="1"
             android:textSize="@dimen/dp14"
             android:textStyle="bold"
@@ -44,39 +44,42 @@
             android:maxLines="1"
             android:ellipsize="marquee"
             android:text=" "
-            android:layout_marginLeft="@dimen/dp10"
             android:gravity="center"
             style="@style/RowTextItemInfo"
             android:layout_height="wrap_content"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/Qty"
+                android:width="0dp"
+                android:id="@+id/installation_date"
+                android:layout_weight="1.1"
                 android:textSize="@dimen/dp14"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="3"
-                style="@style/RowTextItemInfo"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="0dp"
+                android:text=" "
                 android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"/>
+                />
 
             <ImageView
-                android:layout_width="@dimen/dp24"
+                android:layout_width="@dimen/dp17"
                 android:id="@+id/menu"
-                android:paddingLeft="10dp"
-                android:paddingBottom="@dimen/dp7"
+                android:layout_marginTop="@dimen/dp5"
+                android:paddingVertical="@dimen/dp5"
+                android:paddingHorizontal="@dimen/dp1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:src="@drawable/menu"
                 android:rotation="90"
                 android:layout_height="wrap_content"/>

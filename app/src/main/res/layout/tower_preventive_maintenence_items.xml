@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp5"
+    android:layout_marginLeft="@dimen/dp5"
+    android:elevation="@dimen/dp30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_layout"
+        android:background="@color/collapse_card_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsing_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45">
+
+            <TextView
+                android:id="@+id/item_title_str"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:text="Preventive Maintenance"
+                android:textColor="@color/color1"
+                android:textSize="@dimen/dp14"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".7" />
+
+            <ImageView
+                android:id="@+id/img_add"
+                android:visibility="gone"
+                android:paddingStart="@dimen/dp15"
+                android:paddingEnd="@dimen/dp15"
+                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp17"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/add_12"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp46"
+                app:tint="@color/light_gray" />
+            <ImageView
+                android:id="@+id/img_dropdown"
+                android:src="@drawable/ic_arrow_down_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingStart="@dimen/dp17"
+                android:paddingEnd="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp17"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/item_collapse"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp2"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight=".5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:textStyle="bold"
+                android:text="Sr No."
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="1.1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="Vendor Name"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="Vendor Code"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_weight="1.1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="PM Date"
+                android:gravity="center"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/preventive_maintenence_Table_Item"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp8"
+            tools:listitem="@layout/tower_pre_mainte_table_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

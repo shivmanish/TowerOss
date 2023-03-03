@@ -201,7 +201,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                         AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo.Sitestatus.get(0).toString())
                     if (siteBasicinfo.Sitecategory.isNotEmpty())
                         AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo.Sitecategory.get(0).toString())
-                    if (siteBasicinfo.Opcositetype.isNotEmpty())
+                    if (siteBasicinfo.Opcositetype?.isNotEmpty() == true)
                         AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo.Opcositetype.get(0).toString())
                     if (siteBasicinfo.Buildingtype.isNotEmpty())
                         AppPreferences.getInstance().setDropDown(holder.binding.txBuildingType,DropDowns.Buildingtype.name,siteBasicinfo.Buildingtype.get(0).toString())

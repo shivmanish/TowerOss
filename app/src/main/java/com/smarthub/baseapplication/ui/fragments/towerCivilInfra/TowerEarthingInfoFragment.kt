@@ -42,12 +42,12 @@ class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingMode
                 binding.swipeLayout.isRefreshing=false
                 AppLogger.log("TwrCivil Fragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEarthingModel.get(index))
+//                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEarthingModel.get(index))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TwrCivil earth Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"TwrCivil earth  error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"TwrCivil earth  error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TwrCivil earth  error :${it.message}, data : ${it.data}")

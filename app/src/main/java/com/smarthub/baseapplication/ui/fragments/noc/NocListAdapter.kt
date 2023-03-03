@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAda
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
-class NocListAdapter(var context: Context, var listner: NocDetailsActivity,NocAndCompAllData: NocAndCompAllDataItem?) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
+class NocListAdapter(var context: Context, var listner: NOCListListener,NocAndCompAllData: NocAndCompAllDataItem?) : RecyclerView.Adapter<NocListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1

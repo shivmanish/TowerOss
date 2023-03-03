@@ -7,6 +7,7 @@ public enum DropDowns {
     Siteownership,
     Buildingtype,
     Sitebillingstatus,
+    AcceptanceStatus,
     EquipmentName,
     Towncategory,
     CableName,
@@ -40,6 +41,7 @@ public enum DropDowns {
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,
     ApplicationInitialApplicationStatus,
+    AuthorityApplicationType,
     ApplicationInitialPreferredLaungauge,
     SRType,
     SRDetailRequesterCompany,
@@ -50,6 +52,8 @@ public enum DropDowns {
     SREquipmentsType,
     SRStatus,
     Technology,
+    TowerPoleType,
+    FoundationType,
     Costcentre,
 //    Sitebillingstatus,
 //    Towncategory,
@@ -59,6 +63,8 @@ public enum DropDowns {
     Hubsite,
     Ldca,
     Scda,
+    VendorCompany,
+    PaymentStatus,
     // Site Info --> Geo Conditions Dropdowns
     Windzone,
     Seismiczone,
@@ -109,9 +115,7 @@ public enum DropDowns {
     BackhaulLinkOperationalStatus,
     BackhaulSpaceUsed,
     // plan design
-    FoundationType,
     EquipmentType,
-    TowerPoleType,
     BatterybankInstalledLocationType,
     PowerConnectionType,
 

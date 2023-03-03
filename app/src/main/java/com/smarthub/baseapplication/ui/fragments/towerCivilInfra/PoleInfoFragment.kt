@@ -10,12 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TwrcivilPoleInfoFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:String?, var index:Int): Fragment(), PoleInfoFragAdapter.PoleInfoListListener {
+class PoleInfoFragment (var towerdata: FilterdTwrData): BaseFragment(), PoleInfoFragAdapter.PoleInfoListListener {
     var viewmodel: HomeViewModel?=null
     lateinit var binding : TwrcivilPoleInfoFragmentBinding
     lateinit var adapter:PoleInfoFragAdapter
@@ -27,7 +33,7 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=PoleInfoFragAdapter(requireContext(),this@PoleInfoFragment,towerdata)
+        adapter=PoleInfoFragAdapter(requireContext(),this@PoleInfoFragment,towerdata?.TowerDetails?.TowerAndCivilInfraPole?.get(0))
         binding.listItem.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
@@ -39,27 +45,26 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraPoleModel.get(index))
+                    adapter.setData(it.data.TowerAndCivilInfra?.get(towerdata?.index!!)?.TowerAndCivilInfraPole?.get(0))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",
-                        Toast.LENGTH_LONG).show()
+
                 }
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("TowerCivil Fragment Something went wrong")
-                Toast.makeText(requireContext(),"TowerCivil Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            viewmodel?.TowerAndCivilRequestAll(id!!)
+            showLoader()
+            viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
         }
     }
 
@@ -90,8 +95,13 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewPoClicked(position: Int) {
-        var bm = TowerPoViewAdapter(R.layout.tower_po_view_dialouge)
+    override fun viewPoClicked(position: Int,data:TwrCivilPODetail) {
+        var bm = TowerPoViewAdapter(R.layout.tower_po_view_dialouge,data)
+        bm.show(childFragmentManager, "category")
+    }
+
+    override fun viewMaintenenceClicked(position: Int, data: PreventiveMaintenance) {
+        val bm= TowerMaintenenceViewAdapter(R.layout.tower_maintenence_view_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
@@ -101,10 +111,9 @@ class PoleInfoFragment (var towerdata: TowerAndCivilInfraPoleModel?, var id:Stri
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewConsumableClicked(position: Int) {
-        var bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge)
+    override fun viewConsumableClicked(position: Int,data:TwrCivilConsumableMaterial) {
+        var bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge,data)
         bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
     override fun editOffsetClicked(position: Int) {

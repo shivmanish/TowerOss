@@ -9,13 +9,14 @@ import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.databinding.CivilInfraListItemBinding
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.utils.AppLogger
 
 class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterListner, var id:String): Adapter<CivilInfraAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
-    var datalist:TowerCivilInfraAllDataItem?=null
+    var datalist:ArrayList<NewTowerCivilAllData>?=null
 
     var type1 = "Tower"
     var type2 = "Pole"
@@ -27,7 +28,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         list.add("Equipment Room")
         list.add("Earthing")
     }
-    fun setData(data: TowerCivilInfraAllDataItem?) {
+    fun setData(data: ArrayList<NewTowerCivilAllData>?) {
         this.datalist=data
         notifyDataSetChanged()
     }
@@ -44,17 +45,13 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (list[position]==type1) {
             try {
-                holder.binding.textInstallationDateDate.text=
-                    datalist?.TowerAndCivilInfraTowerModel?.get(0)?.
-                    TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    if (datalist?.TowerAndCivilInfraTowerModel!=null)
-                        listner.clickedTowerItem(id,datalist?.TowerAndCivilInfraTowerModel!!)
-                    else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
+                    if (datalist!=null)
+                        listner.clickedTowerItem(id,datalist)
+                    else AppLogger.log("data Null : $datalist")
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
-                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.addItem.setOnClickListener {
                 listner.addTower()
@@ -63,17 +60,13 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         }
         else if (list[position]==type2) {
             try {
-                holder.binding.textInstallationDateDate.text=
-                    datalist?.TowerAndCivilInfraEquipmentModel?.get(0)?.
-                    TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    if (datalist?.TowerAndCivilInfraPoleModel!=null)
-                        listner.clickedPoleItem(id,datalist?.TowerAndCivilInfraPoleModel!!)
+                    if (datalist!=null)
+                        listner.clickedPoleItem(id,datalist)
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
-                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
             holder.binding.addItem.setOnClickListener {
@@ -82,17 +75,13 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         }
         else if (list[position]==type3) {
             try {
-                holder.binding.textInstallationDateDate.text=
-                    datalist?.TowerAndCivilInfraEquipmentModel?.get(0)?.
-                    TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    if (datalist?.TowerAndCivilInfraEquipmentModel!=null)
-                        listner.clickedEquipmentRoomItem(id,datalist?.TowerAndCivilInfraEquipmentModel!!)
+                    if (datalist!=null)
+                        listner.clickedEquipmentRoomItem(id,datalist)
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
-                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
             holder.binding.addItem.setOnClickListener {
@@ -101,15 +90,14 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         }
         else if (list[position]==type4) {
             try {
-                holder.binding.textInstallationDateDate.text=
-                    datalist?.TowerAndCivilInfraEarthingModel?.get(0)?.
-                    TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
-                holder.itemView.setOnClickListener {
-                    listner.clickedEarthingItem(id,datalist?.TowerAndCivilInfraEarthingModel!!)
-                }
+
+                 holder.itemView.setOnClickListener {
+                     if (datalist!=null)
+                         listner.clickedEarthingItem(id,datalist)
+                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
+                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
-                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
             holder.binding.addItem.setOnClickListener {
@@ -118,17 +106,13 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         }
         else{
             try {
-                holder.binding.textInstallationDateDate.text=
-                    datalist?.TowerAndCivilInfraTowerModel?.get(0)?.
-                    TowerAndCivilInfraTowerInstallationAndAcceptance?.get(0)?.InstallationDate
                 holder.itemView.setOnClickListener {
-                    if (datalist?.TowerAndCivilInfraTowerModel!=null)
-                        listner.clickedTowerItem(id,datalist?.TowerAndCivilInfraTowerModel!!)
-                    else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
+                    if (datalist!=null)
+                        listner.clickedTowerItem(id,datalist)
+                    else AppLogger.log("data null:===> $datalist")
                 }
             }catch (e:java.lang.Exception){
                 AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
-                Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
             holder.binding.titalStr.text = list[position]
         }
@@ -140,10 +124,10 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     }
 
     interface CivilInfraAdapterListner{
-        fun clickedTowerItem(id:String,data: List<TowerAndCivilInfraTowerModel>)
-        fun clickedPoleItem(id:String,data: List<TowerAndCivilInfraPoleModel>)
-        fun clickedEquipmentRoomItem(id:String,data: List<TowerAndCivilInfraEquipmentModel>)
-        fun clickedEarthingItem(id:String,data: List<TowerAndCivilInfraEarthingModel>)
+        fun clickedTowerItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
+        fun clickedPoleItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
+        fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?)
+        fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
         fun addTower()
         fun addPole()
         fun addEquipmentRoom()

@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerConsumableViewDialougeBinding
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.Utils
 
-class TowerConsumableViewAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(contentLayoutId),
+class TowerConsumableViewAdapter (contentLayoutId: Int,var data: TwrCivilConsumableMaterial) : BottomSheetDialogFragment(contentLayoutId),
     ImageAttachmentAdapter.ItemClickListener {
 
     lateinit var binding: TowerConsumableViewDialougeBinding
@@ -21,12 +23,14 @@ class TowerConsumableViewAdapter (contentLayoutId: Int) : BottomSheetDialogFragm
         binding.canecl.setOnClickListener {
             dismiss()
         }
-        var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
-        var adapter = ImageAttachmentAdapter(this@TowerConsumableViewAdapter)
-        attacmentsItem.adapter=adapter
-        view.findViewById<View>(R.id.attach_card).setOnClickListener{
-            adapter.addItem()
-        }
+
+        binding.ItemName.text=data.ItemName
+        binding.Type.text=data.ItemType
+        binding.Make.text=data.Make
+        binding.Model.text=data.Model
+        binding.UsedQty.text=data.UsedQty
+        binding.UoM.text=data.UOM
+        binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
     }
 
     override fun getTheme() = R.style.NewDialogTask

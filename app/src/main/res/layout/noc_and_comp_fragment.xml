@@ -35,7 +35,7 @@
           tools:itemCount="3"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          tools:listitem="@layout/noc_list_item"
+          tools:listitem="@layout/rf_antenna_frag_adapter"
           android:orientation="vertical"
           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
           android:id="@+id/customer_list"/>

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
@@ -55,12 +56,12 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 NocCompBinding.swipeLayout.isRefreshing=false
                 AppLogger.log("NocAndComp Fragment card Data fetched successfully")
                 try {
-                    nocDataAdapter.setData(it.data.item!![0].NOCCompliance)
+                    nocDataAdapter.setData(it.data.NOCCompliance!!)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
                     Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
-                AppLogger.log("size :${it.data.item?.size}")
+                AppLogger.log("size :${it.data.NOCCompliance?.size}")
                 isDataLoaded = true
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
@@ -72,6 +73,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
             }
         }
         NocCompBinding.swipeLayout.setOnRefreshListener {
+            nocDataAdapter.addLoading()
             viewmodel.NocAndCompRequestAll(id)
         }
         NocCompBinding.addNew.setOnClickListener(){
@@ -97,7 +99,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
         super.onDestroy()
     }
 
-    override fun clickedItem(data:NocAndCompAllDataItem,id:String) {
+    override fun clickedItem(data:NocCompAllData,id:String,parentIndex:Int) {
         NocDetailsActivity.NocAndCompAlldata=data
         NocDetailsActivity.Id=id
         requireActivity().startActivity(Intent(requireContext(), NocDetailsActivity::class.java))

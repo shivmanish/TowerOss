@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding
 import com.smarthub.baseapplication.databinding.BackhaulFragmentBinding.*
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.Backhaul.*
 
-class BackhaulFragment(var opcodata: OpcoDataItem?) :Fragment(), BackhaulListAdapter.BackhaulListListener{
+class BackhaulFragment(var opcodata: OpcoTenencyAllData?) :Fragment(), BackhaulListAdapter.BackhaulListListener{
 
     var binding : BackhaulFragmentBinding?=null
 
@@ -24,7 +25,7 @@ class BackhaulFragment(var opcodata: OpcoDataItem?) :Fragment(), BackhaulListAda
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.listItem?.adapter = BackhaulListAdapter(requireContext(),this@BackhaulFragment,opcodata)
+//        binding?.listItem?.adapter = BackhaulListAdapter(requireContext(),this@BackhaulFragment,opcodata)
     }
 
     override fun attachmentItemClicked() {

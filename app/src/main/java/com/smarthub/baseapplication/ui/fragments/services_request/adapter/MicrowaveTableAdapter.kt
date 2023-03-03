@@ -73,7 +73,7 @@ class MicrowaveTableAdapter (var context : Context, var listener : TowerInfoList
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position)
+//                        listener.viewPoClicked(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.logs.PostLogData;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
@@ -26,17 +27,16 @@ import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
-import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
-import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
-import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
@@ -89,8 +89,8 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
     private SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> opcoTenencyModel;
-    private SingleLiveEvent<Resource<NocAndCompModel>> noCandCompModel;
-    private SingleLiveEvent<Resource<TowerCivilInfraModel>> towerAndCivilInfraModel;
+    private SingleLiveEvent<Resource<NocCompAllDataModel>> noCandCompModel;
+    private SingleLiveEvent<Resource<TowerCivilAllDataModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
@@ -145,13 +145,13 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> getOpcoTenencyModel() {
         return opcoTenencyModel;
     }
-    public SingleLiveEvent<Resource<NocAndCompModel>> getNOCandCompModel() {
+    public SingleLiveEvent<Resource<NocCompAllDataModel>> getNOCandCompModel() {
         return noCandCompModel;
     }
     public SingleLiveEvent<Resource<UtilitiesEquipModel>> getUtilityEquipModel() {
         return utilityEquipModel;
     }
-    public SingleLiveEvent<Resource<TowerCivilInfraModel>> getTowerAndCivilInfraModel() {
+    public SingleLiveEvent<Resource<TowerCivilAllDataModel>> getTowerAndCivilInfraModel() {
         return towerAndCivilInfraModel;
     }
     public SingleLiveEvent<Resource<PlanAndDesignModel>> getPlanAndDesignModel() {
@@ -1245,12 +1245,13 @@ public class HomeRepo {
     }
 
     public void NocAndCompRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("NOCCompliance");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchNocAndCompRequest(siteInfoParam).enqueue(new Callback<NocAndCompModel>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("NOCCompliance",new JsonArray());
+        apiClient.fetchNocAndCompRequest(jsonObject).enqueue(new Callback<NocCompAllDataModel>() {
             @Override
-            public void onResponse(Call<NocAndCompModel> call, Response<NocAndCompModel> response) {
+            public void onResponse(Call<NocCompAllDataModel> call, Response<NocCompAllDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -1261,11 +1262,11 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<NocAndCompModel> call, Throwable t) {
+            public void onFailure(Call<NocCompAllDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<NocAndCompModel> response) {
+            private void reportSuccessResponse(Response<NocCompAllDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
@@ -1283,12 +1284,13 @@ public class HomeRepo {
     }
 
     public void TowerCivilInfraRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("TowerAndCivilInfra");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchTowerCivilInfraRequest(siteInfoParam).enqueue(new Callback<TowerCivilInfraModel>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("TowerAndCivilInfra",new JsonArray());
+        apiClient.fetchTowerCivilInfraRequest(jsonObject).enqueue(new Callback<TowerCivilAllDataModel>() {
             @Override
-            public void onResponse(Call<TowerCivilInfraModel> call, Response<TowerCivilInfraModel> response) {
+            public void onResponse(Call<TowerCivilAllDataModel> call, Response<TowerCivilAllDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -1299,11 +1301,11 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<TowerCivilInfraModel> call, Throwable t) {
+            public void onFailure(Call<TowerCivilAllDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<TowerCivilInfraModel> response) {
+            private void reportSuccessResponse(Response<TowerCivilAllDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
