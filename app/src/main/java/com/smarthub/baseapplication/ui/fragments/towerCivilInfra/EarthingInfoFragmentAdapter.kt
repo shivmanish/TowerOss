@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingConsumabletableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingDetailsTableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EarthingPoTableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -143,7 +142,32 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
             }
         }
     }
-    class ViewHold5(itemView: View,listener: TowerEarthingListListener) :
+    class ViewHold5(itemView: View) : ViewHold(itemView) {
+        var binding: TowerPreventiveMaintenenceItemsBinding = TowerPreventiveMaintenenceItemsBinding.bind(itemView)
+        var EarthingMaintenenceTable : RecyclerView = binding.preventiveMaintenenceTableItem
+        init {
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+            binding.imgAdd.setOnClickListener {
+                addTableItem("gsfbgksf")
+            }
+        }
+        private fun addTableItem(item:String){
+            if (EarthingMaintenenceTable.adapter!=null && EarthingMaintenenceTable.adapter is EarthingMaintenenceTableAdapter){
+                var adapter = EarthingMaintenenceTable.adapter as EarthingMaintenenceTableAdapter
+                adapter.addItem(item)
+            }
+        }
+    }
+
+    class ViewHold6(itemView: View,listener: TowerEarthingListListener) :
         ViewHold(itemView) {
         var binding: EarthingAttachmentsBinding = EarthingAttachmentsBinding.bind(itemView)
 
@@ -211,8 +235,12 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                 return ViewHold4(view)
             }
             5 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_preventive_maintenence_items, parent, false)
+                return ViewHold5(view)
+            }
+            6 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.earthing_attachments, parent, false)
-                return ViewHold5(view, listner)
+                return ViewHold6(view, listner)
             }
 
 
@@ -350,6 +378,7 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
+                    AppLogger.log("Earthing Consumable Table Data : ====>${Gson().toJson(datalist?.ConsumableMaterial)}")
                     holder.ConsumableTableList.adapter=EarthingConsumabletableAdapter(context,listner,datalist?.ConsumableMaterial)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Twrcivil earth adapter error : ${e.localizedMessage}")
@@ -358,6 +387,34 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
 
             }
             is ViewHold5 -> {
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
+
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+                try {
+                    holder.EarthingMaintenenceTable.adapter=EarthingMaintenenceTableAdapter(context,listner,datalist?.PreventiveMaintenance)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+            }
+            is ViewHold6 -> {
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -402,6 +459,7 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
         fun editConsumableClicked(position:Int)
         fun viewConsumableClicked(position:Int,data: TwrCivilConsumableMaterial)
         fun viewEarthingDetails(position:Int,data:TwrCivilInfraEarthingDetail)
+        fun viewMaintenenceClicked(position:Int,data:PreventiveMaintenance)
 
     }
 }
