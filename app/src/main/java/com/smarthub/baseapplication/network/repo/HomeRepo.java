@@ -30,6 +30,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
@@ -91,7 +92,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocCompAllDataModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilAllDataModel>> towerAndCivilInfraModel;
-    private SingleLiveEvent<Resource<PowerAndFuelModel>> powerFuelModel;
+    private SingleLiveEvent<Resource<PowerFuelAllDataModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAgreementModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
@@ -245,7 +246,7 @@ public class HomeRepo {
         return projectResponse;
     }
 
-    public SingleLiveEvent<Resource<PowerAndFuelModel>> getPowerFuelModel() {
+    public SingleLiveEvent<Resource<PowerFuelAllDataModel>> getPowerFuelModel() {
         return powerFuelModel;
     }
 
@@ -1317,12 +1318,14 @@ public class HomeRepo {
     }
 
     public void powerAndFuelRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("PowerAndFuel");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchPowerFuelRequest(siteInfoParam).enqueue(new Callback<PowerAndFuelModel>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("PowerAndFuel",new JsonArray());
+
+        apiClient.fetchPowerFuelRequest(jsonObject).enqueue(new Callback<PowerFuelAllDataModel>() {
             @Override
-            public void onResponse(Call<PowerAndFuelModel> call, Response<PowerAndFuelModel> response) {
+            public void onResponse(Call<PowerFuelAllDataModel> call, Response<PowerFuelAllDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -1333,11 +1336,11 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<PowerAndFuelModel> call, Throwable t) {
+            public void onFailure(Call<PowerFuelAllDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<PowerAndFuelModel> response) {
+            private void reportSuccessResponse(Response<PowerFuelAllDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);

@@ -30,7 +30,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/dp10"
                 android:paddingEnd="@dimen/dp10"
-                android:text="PO Details"
+                android:text="Authority Payments"
                 android:textColor="@color/color1"
                 android:textSize="@dimen/dp14"
                 android:textStyle="bold"
@@ -116,11 +116,11 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Po No."
+                android:text="Payment Type"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:layout_weight="1.2"
+                android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp13"
                 android:textStyle="bold"
@@ -129,7 +129,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Vendor Name"
+                android:text="Amount"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -142,16 +142,16 @@
                 android:layout_width="0dp"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:text="Po Date"
+                android:text="Due Date"
                 android:gravity="center"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tower_po_Table_Item"
+            android:id="@+id/power_payment_Table_Item"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp8"
-            tools:listitem="@layout/tower_po_table_item"
+            tools:listitem="@layout/power_authority_payment_table_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
