@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class PowerBills(
+data class PowerFuelBills(
     val Amount: String,
     val BillMonth: String,
     val BillNumber: String,

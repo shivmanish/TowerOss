@@ -66,7 +66,6 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
     
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : PowerConnectionsDetailsBinding = PowerConnectionsDetailsBinding.bind(itemView)
-        val offsetTableList: RecyclerView=binding.root.findViewById(R.id.tower_offset_table)
 
         init {
             binding.collapsingLayout.tag = false
@@ -77,16 +76,8 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-            binding.addItemsLayout.setOnClickListener {
-                addTableItem("dfsdh")
-            }
         }
-        private fun addTableItem(item:String){
-            if (offsetTableList.adapter!=null && offsetTableList.adapter is TowerOffsetTableAdapter){
-                var adapter = offsetTableList.adapter as TowerOffsetTableAdapter
-                adapter.addItem(item)
-            }
-        }
+
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : PowerInstallationAcceptenceBinding = PowerInstallationAcceptenceBinding.bind(itemView)

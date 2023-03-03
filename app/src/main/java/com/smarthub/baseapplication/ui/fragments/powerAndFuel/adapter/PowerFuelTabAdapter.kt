@@ -4,10 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbBillsFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbConnectionFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbPaymentFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerConnectionFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.*
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 
 class PowerFuelTabAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
@@ -29,7 +26,7 @@ class PowerFuelTabAdapter(manager: FragmentManager): FragmentPagerAdapter(manage
                 return PowerConnectionFragment(data)
             }
             1 -> {
-               return PowerConnectionFragment(data)
+               return PowerFuelBillsFragment(data)
             }
             2-> {
               return PowerConnectionFragment(data)

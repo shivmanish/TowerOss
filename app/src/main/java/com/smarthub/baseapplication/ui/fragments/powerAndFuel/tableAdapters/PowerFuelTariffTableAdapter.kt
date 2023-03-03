@@ -86,7 +86,6 @@ class PowerFuelTariffTableAdapter (var context : Context, var listener : PowerCo
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
                 }

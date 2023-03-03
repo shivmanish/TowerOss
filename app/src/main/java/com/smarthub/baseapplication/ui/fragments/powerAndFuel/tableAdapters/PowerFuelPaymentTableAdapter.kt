@@ -86,14 +86,12 @@ class PowerFuelPaymentTableAdapter (var context : Context, var listener : PowerC
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
                         listener.viewAuthorityPaymentClicked(position,data)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 
                 }
