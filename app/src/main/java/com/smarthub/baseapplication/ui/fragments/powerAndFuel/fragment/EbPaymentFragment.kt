@@ -14,11 +14,7 @@ class EbPaymentFragment:Fragment() {
 
     lateinit var binding:EbPaymentsFragmentBinding
     var data: PowerAndFuel?= null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = EbPaymentsFragmentBinding.inflate(inflater,container,false)
         setView()
         return binding.root

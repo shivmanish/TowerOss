@@ -4,13 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionListItemBinding
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelEBPayments
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 
 
 class PowerConnDataAdapter(var context: Context, var listener: PowerConnectionListListener) : RecyclerView.Adapter<PowerConnectionEmptyViewHolder>() {

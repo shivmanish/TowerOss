@@ -135,7 +135,7 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
         }
         private fun addTableItem(item:String){
             if (ConsumableTableList.adapter!=null && ConsumableTableList.adapter is PowerConsumableTableAdapter){
-                var adapter = ConsumableTableList.adapter as PowerConsumableTableAdapter
+                val adapter = ConsumableTableList.adapter as PowerConsumableTableAdapter
                 adapter.addItem(item)
             }
         }

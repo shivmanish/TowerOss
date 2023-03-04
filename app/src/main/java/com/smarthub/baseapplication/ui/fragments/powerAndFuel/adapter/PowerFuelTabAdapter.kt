@@ -4,8 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.*
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerConnectionFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerFuelBillPaymentsFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerFuelBillsFragment
 
 class PowerFuelTabAdapter(manager: FragmentManager,var data: NewPowerFuelAllData?,var parentIndex:Int): FragmentPagerAdapter(manager) {
 

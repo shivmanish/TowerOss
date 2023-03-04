@@ -6,17 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.NocApplicationDetailsItemBinding
 import com.smarthub.baseapplication.databinding.PowerFuelBillPaymentsItemsBinding
-import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelEBPayments
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
 class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener, var context: Context, paymentData:ArrayList<PowerFuelEBPayments>?) : RecyclerView.Adapter<PowerFuelBillPaymentsAdapter.ViewHold>() {
