@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.utils.Utils
 class AddNewPowerFuelDialouge (contentLayoutId: Int): BaseBottomSheetDialogFragment() {
     lateinit var binding : PowerFuelAddnewDialougeBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = PowerFuelAddnewDialougeBinding.inflate(inflater)
         return binding.root
     }

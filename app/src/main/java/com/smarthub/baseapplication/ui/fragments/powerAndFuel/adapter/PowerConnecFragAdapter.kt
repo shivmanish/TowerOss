@@ -16,7 +16,6 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.Powe
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPaymentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelTariffTableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerOffsetTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -66,7 +65,6 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
     
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : PowerConnectionsDetailsBinding = PowerConnectionsDetailsBinding.bind(itemView)
-        val offsetTableList: RecyclerView=binding.root.findViewById(R.id.tower_offset_table)
 
         init {
             binding.collapsingLayout.tag = false
@@ -77,16 +75,8 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
-            binding.addItemsLayout.setOnClickListener {
-                addTableItem("dfsdh")
-            }
         }
-        private fun addTableItem(item:String){
-            if (offsetTableList.adapter!=null && offsetTableList.adapter is TowerOffsetTableAdapter){
-                var adapter = offsetTableList.adapter as TowerOffsetTableAdapter
-                adapter.addItem(item)
-            }
-        }
+
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : PowerInstallationAcceptenceBinding = PowerInstallationAcceptenceBinding.bind(itemView)
@@ -145,7 +135,7 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
         }
         private fun addTableItem(item:String){
             if (ConsumableTableList.adapter!=null && ConsumableTableList.adapter is PowerConsumableTableAdapter){
-                var adapter = ConsumableTableList.adapter as PowerConsumableTableAdapter
+                val adapter = ConsumableTableList.adapter as PowerConsumableTableAdapter
                 adapter.addItem(item)
             }
         }

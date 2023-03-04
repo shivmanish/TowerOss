@@ -30,7 +30,7 @@ class TarifftableAdapter (var context : Context,var table_list :ArrayList<PowerA
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tariff_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tariff_table_item,parent,false)
         return ViewHold(view)
     }
 

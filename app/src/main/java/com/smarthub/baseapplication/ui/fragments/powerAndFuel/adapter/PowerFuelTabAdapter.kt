@@ -4,38 +4,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbBillsFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbConnectionFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.EbPaymentFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerConnectionFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerFuelBillPaymentsFragment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerFuelBillsFragment
 
-class PowerFuelTabAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
+class PowerFuelTabAdapter(manager: FragmentManager,var data: NewPowerFuelAllData?,var parentIndex:Int): FragmentPagerAdapter(manager) {
 
-    var data: NewPowerFuelAllData?=null
 
     override fun getCount(): Int {
         return 3
     }
 
-    fun setPowerFuelData(data: NewPowerFuelAllData?){
-        this.data=data
-        notifyDataSetChanged()
-    }
 
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return PowerConnectionFragment(data)
+                return PowerConnectionFragment(data, parentIndex)
             }
             1 -> {
-               return PowerConnectionFragment(data)
+               return PowerFuelBillsFragment(data,parentIndex)
             }
             2-> {
-              return PowerConnectionFragment(data)
+              return PowerFuelBillPaymentsFragment(data,parentIndex)
             }
             else -> {
-                return PowerConnectionFragment(data)
+                return PowerConnectionFragment(data,parentIndex)
             }
         }
     }
@@ -49,7 +42,7 @@ class PowerFuelTabAdapter(manager: FragmentManager): FragmentPagerAdapter(manage
                 return "Power Bills"
             }
             2 -> {
-                return "EB Payments"
+                return "Bill Payments"
             }
         }
         return super.getPageTitle(position)

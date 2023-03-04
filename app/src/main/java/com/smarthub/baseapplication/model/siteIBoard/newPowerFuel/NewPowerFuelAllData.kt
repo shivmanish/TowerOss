@@ -1,7 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
 data class NewPowerFuelAllData(
-    val PowerAndFuelEBBil: ArrayList<PowerBills>,
+    val PowerAndFuelEBBil: ArrayList<PowerFuelBills>,
     val PowerAndFuelEBConnection: ArrayList<PowerConnectionAllData>,
     val PowerAndFuelEBPayment: ArrayList<PowerFuelEBPayments>,
     val created_at: String,
