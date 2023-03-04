@@ -6,7 +6,7 @@ data class BasicInfoData(
     val Costcentre: List<Int>,
     val MaintenancePoint: List<Int>,
     val National: List<Int>,
-    val Opcositetype: List<Int>,
+    val Opcositetype: List<Int>?=null,
     val Projectname: List<Int>,
     val Region: List<Int>,
     val Sitecategory: List<Int>,
