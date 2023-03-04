@@ -39,6 +39,7 @@ public enum DropDowns {
     OverallFeasibility,
     PowerConnectionType,
     PaymentStatus,
+    Climatezone,
 
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,
