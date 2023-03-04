@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivil
 import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerFuelBillPaymentsAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerFuelBillsAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerConsumableViewDialouge
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelAuthPaymentViewDialouge
@@ -29,10 +30,10 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PowerFuelBillsFragment(var powerConnData:NewPowerFuelAllData?,var parentIndex:Int): BaseFragment(),PowerFuelBillsAdapter.PowerBillsClickListener{
+class PowerFuelBillPaymentsFragment(var powerConnData:NewPowerFuelAllData?,var parentIndex:Int): BaseFragment(),PowerFuelBillPaymentsAdapter.PowerBillPaymentsClickListener{
     var viewmodel: HomeViewModel?=null
     lateinit var binding : PowerConnectionFragBinding
-    lateinit var adapter:PowerFuelBillsAdapter
+    lateinit var adapter:PowerFuelBillPaymentsAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = PowerConnectionFragBinding.inflate(inflater, container, false)
@@ -41,8 +42,9 @@ class PowerFuelBillsFragment(var powerConnData:NewPowerFuelAllData?,var parentIn
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= PowerFuelBillsAdapter(this@PowerFuelBillsFragment,requireContext(),powerConnData?.PowerAndFuelEBBil)
+        adapter= PowerFuelBillPaymentsAdapter(this@PowerFuelBillPaymentsFragment,requireContext(),powerConnData?.PowerAndFuelEBPayment)
         binding.listItem.adapter = adapter
+
         if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){
             viewmodel?.powerAndFuelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -56,7 +58,7 @@ class PowerFuelBillsFragment(var powerConnData:NewPowerFuelAllData?,var parentIn
                 AppLogger.log("PowerFuel Fragment card Data fetched successfully")
                 try {
                     AppLogger.log("all data of power fuel : ====> ${Gson().toJson(it.data.PowerAndFuel?.get(0))}")
-                    adapter.setData(it.data.PowerAndFuel?.get(parentIndex)?.PowerAndFuelEBBil)
+                    adapter.setData(it.data.PowerAndFuel?.get(parentIndex)?.PowerAndFuelEBPayment)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PowerFuel Fragment error : ${e.localizedMessage}")
                 }
@@ -76,7 +78,7 @@ class PowerFuelBillsFragment(var powerConnData:NewPowerFuelAllData?,var parentIn
             adapter.addLoading()
             viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
         }
-        viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
+//        viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
     }
 
     override fun onDestroy() {

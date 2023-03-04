@@ -28,7 +28,7 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PowerConnectionFragment(var powerConnData:NewPowerFuelAllData?): BaseFragment(),PowerConnecFragAdapter.PowerConnectionListListener{
+class PowerConnectionFragment(var powerConnData:NewPowerFuelAllData?,var parentIndex:Int): BaseFragment(),PowerConnecFragAdapter.PowerConnectionListListener{
     var viewmodel: HomeViewModel?=null
     lateinit var binding : PowerConnectionFragBinding
     lateinit var adapter:PowerConnecFragAdapter
@@ -56,7 +56,7 @@ class PowerConnectionFragment(var powerConnData:NewPowerFuelAllData?): BaseFragm
                 AppLogger.log("PowerFuel Fragment card Data fetched successfully")
                 try {
                     AppLogger.log("all data of power fuel : ====> ${Gson().toJson(it.data.PowerAndFuel?.get(0))}")
-                    adapter.setData(it.data.PowerAndFuel?.get(0)?.PowerAndFuelEBConnection?.get(0))
+                    adapter.setData(it.data.PowerAndFuel?.get(parentIndex)?.PowerAndFuelEBConnection?.get(0))
                     hideLoader()
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PowerFuel Fragment error : ${e.localizedMessage}")
@@ -76,7 +76,7 @@ class PowerConnectionFragment(var powerConnData:NewPowerFuelAllData?): BaseFragm
             binding.swipeLayout.isRefreshing=false
             viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
         }
-        viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
+//        viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
     }
 
     override fun onDestroy() {

@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.utilites.BatteryBankDetailsActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,26 +23,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/dp15"
+                android:paddingTop="@dimen/dp20"
                 android:paddingEnd="@dimen/dp15"
-                android:paddingBottom="5dp">
+                android:paddingBottom="10dp">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/dp8"
-                    android:padding="@dimen/dp9"
+                    android:padding="7dp"
                     android:id="@+id/back"
+                    android:layout_marginLeft="@dimen/dp8"
                     app:tint="@color/white"
                     android:src="@drawable/ic_back"
                     android:adjustViewBounds="true"
                     android:layout_width="@dimen/dp35"
                     android:layout_height="@dimen/dp35"/>
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp10"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
@@ -53,27 +47,21 @@
                         android:id="@+id/titel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="MSEB PVT LTD"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Power &amp; Fuel"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp15" />
+                        android:textSize="@dimen/dp18" />
+
                     <TextView
-                        android:fontFamily="@font/poppins"
-                        android:layout_width="wrap_content"
+                        android:padding="2dp"
+                        android:id="@+id/sub_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:text="EB Connection"
-                        android:textSize="@dimen/dp12"
-                        android:textColor="#a5a5a5"
-                        android:textAppearance="@style/RowTextItemInfo"
-                        android:lineSpacingExtra="2sp"
-                        android:gravity="center_vertical"
-                        />
-
-
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/milky_white"
+                        android:text="#DEL-VIL-SC-0001"
+                        android:textSize="@dimen/dp12" />
                 </LinearLayout>
-
 
 
 
@@ -82,94 +70,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/light_gray"/>
-            <LinearLayout
-                android:paddingTop="@dimen/dp5"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp35">
-                <LinearLayout
-                    android:layout_marginStart="@dimen/dp15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:textSize="@dimen/dp12"
-                        android:text="RFI Date:"
-                        android:textColor="#CCCCCC"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:text="05-Oct-2018"
-                        android:textSize="@dimen/dp12"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_marginEnd="@dimen/dp15"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:textSize="@dimen/dp12"
-                        android:text="Installation Date:"
-                        android:textColor="#CCCCCC"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:text="10-Nov-2018"
-                        android:textSize="@dimen/dp12"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:elevation="@dimen/dp10"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/card"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
-        android:layout_marginBottom="@dimen/dp15">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp38"
-            android:background="@color/tab_deselected"
-            app:tabPaddingEnd="@dimen/dp5"
-            app:tabMaxWidth="0dp"
-            app:tabIndicatorColor="@color/yellow"
-            app:tabGravity="fill"
-            app:tabBackground="@drawable/tab_color_selector"
-            app:tabMode="fixed"
-            app:tabPaddingStart="@dimen/dp5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabTextAppearance="@style/TabTextView"
-            />
-
+        android:layout_height="@dimen/dp40"
+        android:background="@color/tab_deselected"
+        app:tabPaddingEnd="@dimen/dp5"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabPaddingStart="@dimen/dp5"
+        app:layout_constraintTop_toBottomOf="@id/card"
+        app:tabTextAppearance="@style/TabTextView"
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardElevation="2dp"
+        android:id="@+id/viewPagerCard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs">
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

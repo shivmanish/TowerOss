@@ -16,7 +16,6 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.Powe
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPaymentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelTariffTableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.TowerOffsetTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils

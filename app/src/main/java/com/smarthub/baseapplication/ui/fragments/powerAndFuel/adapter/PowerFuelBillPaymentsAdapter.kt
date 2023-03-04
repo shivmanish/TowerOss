@@ -7,21 +7,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocApplicationDetailsItemBinding
+import com.smarthub.baseapplication.databinding.PowerFuelBillPaymentsItemsBinding
 import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelEBPayments
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: Context, powerBillsData:ArrayList<PowerFuelBills>?) : RecyclerView.Adapter<PowerFuelBillsAdapter.ViewHold>() {
+class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener, var context: Context, paymentData:ArrayList<PowerFuelEBPayments>?) : RecyclerView.Adapter<PowerFuelBillPaymentsAdapter.ViewHold>() {
 
     var list = ArrayList<Any>()
 
-    fun setData(data: ArrayList<PowerFuelBills>?) {
+    fun setData(data: ArrayList<PowerFuelEBPayments>?) {
         this.list.clear()
         this.list.addAll(data!!)
         notifyDataSetChanged()
@@ -33,18 +35,18 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
     }
     init {
         this.list.clear()
-        this.list.addAll(powerBillsData!!)
+        this.list.addAll(paymentData!!)
     }
 
-    fun updateItem(pos : Int,data : PowerFuelBills){
+    fun updateItem(pos : Int,data : PowerFuelEBPayments){
         list[pos] = data
         notifyItemChanged(pos)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class ViewHold1(itemView: View,listener: PowerBillsClickListener) : ViewHold(itemView) {
-        var binding : PowerFuelBillsItemBinding = PowerFuelBillsItemBinding.bind(itemView)
+    class ViewHold1(itemView: View,listener: PowerBillPaymentsClickListener) : ViewHold(itemView) {
+        var binding : PowerFuelBillPaymentsItemsBinding = PowerFuelBillPaymentsItemsBinding.bind(itemView)
 //        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
 //            override fun itemClicked() {
 //                listener.attachmentItemClicked()
@@ -72,7 +74,7 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.power_fuel_bills_item,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.power_fuel_bill_payments_items,parent,false)
                 ViewHold1(view,listener)
             }
             2 ->{
@@ -90,7 +92,7 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: PowerFuelBills=list[position] as PowerFuelBills
+            val data: PowerFuelEBPayments=list[position] as PowerFuelEBPayments
             holder.binding.imgEdit.setOnClickListener {
 //                listener.editModeCliked(data,position)
             }
@@ -112,16 +114,13 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.DueDate.substring(0,10),"ddMMMyyyy"))
-                if(data.PaymentStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString())
-                holder.binding.BillDueDate.text=Utils.getFormatedDate(data.DueDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.PaymentDate.substring(0,10),"ddMMMyyyy"))
+                holder.binding.paymentDate.text=Utils.getFormatedDate(data.PaymentDate.substring(0,10),"dd-MMM-yyyy")
                 holder.binding.BillNo.text=data.BillNumber
-                holder.binding.BillMonth.text=data.BillNumber
-                holder.binding.BillAmount.text=data.Amount
+                holder.binding.PaymentMode.text=data.PaymentMode.toString()
+                holder.binding.Amount.text=data.Amount
                 holder.binding.SrNo.text=position.plus(1).toString()
-                holder.binding.UnitConsumed.text=data.UnitConsumed.toString()
+                holder.binding.PaymentRefNo.text=data.PaymentRefNo.toString()
 
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
@@ -134,7 +133,7 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
     override fun getItemViewType(position: Int): Int {
         return if (list.isEmpty() || list.get(position)==null)
             2
-        else if(list[position] is PowerFuelBills)
+        else if(list[position] is PowerFuelEBPayments)
             1
         else
             3
@@ -153,7 +152,7 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface PowerBillsClickListener{
+    interface PowerBillPaymentsClickListener{
         fun editModeCliked(data :PowerFuelBills,pos:Int)
     }
 }
