@@ -41,6 +41,10 @@ public enum DropDowns {
     PaymentStatus,
     Climatezone,
     AcquisitionMode,
+    Direction,
+    LandType,
+    SoilType,
+    ExternalStructureType,
 
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,

@@ -8,7 +8,9 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteA
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerConnectionFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerFuelBillPaymentsFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.fragment.PowerFuelBillsFragment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.AcquisitionSurveyFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.AssignACQTeamFragment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.SoftAcquisitionFragment
 
 class SiteAcquisitionTabAdapter(manager: FragmentManager, var data: NewSiteAcquiAllData?, var parentIndex:Int): FragmentPagerAdapter(manager) {
 
@@ -24,10 +26,10 @@ class SiteAcquisitionTabAdapter(manager: FragmentManager, var data: NewSiteAcqui
                 return AssignACQTeamFragment(data, parentIndex)
             }
             1 -> {
-               return AssignACQTeamFragment(data,parentIndex)
+               return AcquisitionSurveyFragment(data,parentIndex)
             }
             2-> {
-              return AssignACQTeamFragment(data,parentIndex)
+              return SoftAcquisitionFragment(data,parentIndex)
             }
             3-> {
               return AssignACQTeamFragment(data,parentIndex)

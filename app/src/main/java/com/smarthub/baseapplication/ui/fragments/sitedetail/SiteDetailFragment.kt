@@ -80,7 +80,7 @@ class SiteDetailFragment : BaseFragment() {
         var title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
         title.text = siteName
 
-        setDataObserver()
+        setData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -216,7 +216,7 @@ class SiteDetailFragment : BaseFragment() {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
-                    setData()
+//                    setData()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")

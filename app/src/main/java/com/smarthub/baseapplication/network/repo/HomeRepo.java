@@ -1638,7 +1638,7 @@ public class HomeRepo {
     }
 
     public void siteInfoDropDown() {
-
+        AppLogger.INSTANCE.log("Dropdown Api called");
         apiClient.siteInfoDropDown().enqueue(new Callback<SiteInfoDropDownData>() {
             @Override
             public void onResponse(Call<SiteInfoDropDownData> call, Response<SiteInfoDropDownData> response) {
