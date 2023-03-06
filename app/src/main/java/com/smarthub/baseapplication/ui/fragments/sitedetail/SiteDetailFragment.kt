@@ -77,10 +77,10 @@ class SiteDetailFragment : BaseFragment() {
     var siteName ="#ce-dlhi-sc-0179"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
+        val title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
         title.text = siteName
 
-        setDataObserver()
+        setData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
