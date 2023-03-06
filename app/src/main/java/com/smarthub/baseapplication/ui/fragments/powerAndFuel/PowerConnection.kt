@@ -50,7 +50,7 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
         }
         viewmodel?.powerAndFuelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
-                showLoader()
+                adapter.addLoading()
                 AppLogger.log("PowerFuel Fragment data loading in progress ")
                 return@observe
             }
@@ -58,7 +58,6 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
                 AppLogger.log("PowerFuel Fragment card Data fetched successfully")
                 try {
                     adapter.setData(it.data.PowerAndFuel)
-                    hideLoader()
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PowerFuel Fragment error : ${e.localizedMessage}")
                 }
@@ -76,7 +75,7 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
     override fun onViewPageSelected() {
         super.onViewPageSelected()
         if (viewmodel!=null || !isDataLoaded){
-            showLoader()
+            adapter.addLoading()
             viewmodel?.fetchPowerAndFuel(id)
         }
         AppLogger.log("onViewPageSelected PowerAndFuel")

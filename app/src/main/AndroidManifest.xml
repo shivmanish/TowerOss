@@ -86,6 +86,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.fragments.siteAcquisition.SiteAcqTabActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.fragments.towerCivilInfra.TowerEquipmentFragemnt"
             android:exported="false"
             android:screenOrientation="portrait">

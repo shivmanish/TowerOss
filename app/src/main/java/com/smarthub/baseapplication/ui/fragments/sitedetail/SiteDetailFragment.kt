@@ -36,7 +36,7 @@ import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignM
 import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
-import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController

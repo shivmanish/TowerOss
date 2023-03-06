@@ -2,12 +2,12 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel
 
 data class GeoConditionData(
     val Altitude: Int,
-    val Climatezone: List<Any>,
+    val Climatezone: List<Int>,
     val Floodzone: List<Int>,
     val Potentialthreat: List<Int>,
     val Seismiczone: List<Int>,
-    val TempRangeMax: Any,
-    val TempRangeMin: Any,
+    val TempRangeMax: String,
+    val TempRangeMin: String,
     val Terraintype: List<Int>,
     val Windzone: List<Int>,
     val created_at: String,

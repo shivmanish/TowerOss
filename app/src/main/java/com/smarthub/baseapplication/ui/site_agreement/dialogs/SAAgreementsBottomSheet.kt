@@ -83,7 +83,7 @@ class SAAgreementsBottomSheet(
                 } else {
                     hideProgressLayout()
                 }
-                if (it.status == Resource.Status.SUCCESS && it.data?.item?.isNotEmpty() == true) {
+                if (it.status == Resource.Status.SUCCESS && it.data?.SAcqSiteAcquisition?.isNotEmpty() == true) {
                     AppLogger.log("Successfully updated all fields")
                     dismiss()
                     //    viewModel.fetchSiteInfoData(id)

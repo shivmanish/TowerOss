@@ -38,7 +38,7 @@ class SiteLeaseDataAdapter(var listener: SiteLeaseDataAdapterListener, var id:St
        if(list[position] is Siteacquisition)
        {
            val item = list[position] as Siteacquisition
-           holder.binding?.parentRelative?.setOnClickListener {
+           holder.itemview.setOnClickListener {
                listener.clickedItem(item)
        }
 

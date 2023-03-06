@@ -135,7 +135,7 @@
                         android:text="Gate &amp; Fence" />
 
                     <TextView
-                        android:id="@+id/textGate"
+                        android:id="@+id/Gate_Fence"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                         android:text="Video Monitoring" />
 
                     <TextView
-                        android:id="@+id/video_monitoring_spinner"
+                        android:id="@+id/video_monitoring"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                         android:text="Site Access Way" />
 
                     <TextView
-                        android:id="@+id/site_access_area_spinner"
+                        android:id="@+id/site_access_way"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                         android:text="Danger Signage" />
 
                     <TextView
-                        android:id="@+id/danger_signage_spinner"
+                        android:id="@+id/danger_signage"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                         android:text="Caution Signage" />
 
                     <TextView
-                        android:id="@+id/textCautionSignage"
+                        android:id="@+id/CautionSignage"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
                         android:text="Site Access Methodology" />
 
                     <TextView
-                        android:id="@+id/textSiteAccesseethodology"
+                        android:id="@+id/SiteAccesseethodology"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -254,7 +254,7 @@
                         android:text="Nearby Police Station" />
 
                     <TextView
-                        android:id="@+id/textPoliceStation"
+                        android:id="@+id/near_by_PoliceStation"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -275,7 +275,7 @@
                         android:text="Police Station Number" />
 
                     <TextView
-                        android:id="@+id/textPoliceNumber"
+                        android:id="@+id/Police_station_Number"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -294,7 +294,7 @@
                         android:text="Nearby Fire Station" />
 
                     <TextView
-                        android:id="@+id/textFireStation"
+                        android:id="@+id/near_by_FireStation"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -315,7 +315,7 @@
                         android:text="Fire Station Number" />
 
                     <TextView
-                        android:id="@+id/textFireNumber"
+                        android:id="@+id/fire_station_number"
                         style="@style/RowTextviewItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

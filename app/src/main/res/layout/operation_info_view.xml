@@ -77,7 +77,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="@dimen/dp15"
+        android:paddingHorizontal="@dimen/dp5"
         android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
@@ -311,7 +313,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                     <View
-                        android:layout_width="3dp"
+                        android:layout_width="1dp"
                         android:layout_marginVertical="@dimen/dp3"
                         android:layout_marginHorizontal="@dimen/dp1"
                         android:background="@color/light_gray"
