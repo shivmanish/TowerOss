@@ -10,11 +10,12 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeam
 import com.smarthub.baseapplication.model.serviceRequest.AssignACQTeamTeam
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
-class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
+class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var serviceRequestAllData: AcquisitionSurveyModel?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
 
     var currentOpened = -1
     var list: ArrayList<String> = ArrayList()
@@ -27,7 +28,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var s
         list.add("Details")
         list.add("Attachments")
         try {
-            AssignAcqTeamData = serviceRequestAllData?.AssignACQTeam?.get(0)
+            AssignAcqTeamData = serviceRequestAllData?.SAcqAssignACQTeam?.get(0)
             AssignAcqTeamDetailsData = AssignAcqTeamData?.AssignACQTeamTeam?.get(0)
         } catch (e: Exception) {
             AppLogger.log("Error in Assign ACQ fragment ${e.localizedMessage}")
@@ -118,7 +119,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var s
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is DetailsViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditdetailsItemClicked(AssignAcqTeamData, serviceRequestAllData)
+//                listener.EditdetailsItemClicked(AssignAcqTeamData, serviceRequestAllData)
             }
             if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

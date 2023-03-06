@@ -9,7 +9,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyBoundryTableItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASBoundryStructureDetail
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASBoundryStructureDetail
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AcquisitionSurveyFragAdapter
 
 class BoundryDetailsTableAdapter (var context : Context, var listener : AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner,boundryData:List<ASBoundryStructureDetail>): RecyclerView.Adapter<BoundryDetailsTableAdapter.ViewHold>() {

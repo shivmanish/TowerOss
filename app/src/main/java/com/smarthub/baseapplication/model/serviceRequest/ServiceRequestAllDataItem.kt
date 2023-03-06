@@ -1,6 +1,6 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASAquisitionSurvey
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSR
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcquisition
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel

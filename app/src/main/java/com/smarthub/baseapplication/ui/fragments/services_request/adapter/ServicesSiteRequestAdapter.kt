@@ -261,7 +261,7 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
 //                        else Toast.makeText(context,"data not fetched",Toast.LENGTH_SHORT).show()
                     }
                     AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,
-                        SrDetailsData?.SRType?.get(0).toString())
+                        SrDetailsData?.SRType?.toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.SRStatus,DropDowns.SRType.name,SrDetailsData?.SRStatus?.get(0).toString())
 //                    AppPreferences.getInstance().setDropDown(holder.binding.RequesterCompany,DropDowns.SRDetailRequesterCompany.name,SrDetailsData?.RequesterCompany)
                     AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.SRDetailTechnology.name,SrDetailsData?.Technology?.get(0).toString())

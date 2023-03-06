@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.services_request.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,14 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.MicrowaveTableItemBinding
 import com.smarthub.baseapplication.databinding.PoItemListBinding
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.PropertyOwnerAndPaymentDetail
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.ui.site_agreement.adapter.AgrementLeaseListAdapter
 
-class PropertyOwnerTableAdapter (var context : Context, var listener : AgrementLeaseListAdapter.AgreementListItemlistner, var list :ArrayList<PropertyOwnerAndPaymentDetail>, var servicerequirement: ServiceRequestAllDataItem): RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {
+class PropertyOwnerTableAdapter (var context : Context, var listener : AgrementLeaseListAdapter.AgreementListItemlistner, var list :ArrayList<PropertyOwnerAndPaymentDetail>, var servicerequirement: AcquisitionSurveyModel): RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {
     init {
     }
     fun addItem(item:String){

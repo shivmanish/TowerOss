@@ -11,16 +11,17 @@ import com.smarthub.baseapplication.databinding.AcquisitionPropertyOwnerTableBin
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyBoundryDetailsItemBinding
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyBuildingDetalisItemBinding
 import com.smarthub.baseapplication.databinding.ServiceRequestTeamvendorAttachmentBinding
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurveyBuildingDetail
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASAquisitionSurvey
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASAquisitionSurveyBuildingDetail
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.BoundryDetailsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PoDetailsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.PropertyOwnerTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
-class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, var serviceRequestAllData: ServiceRequestAllDataItem?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
+class AcquisitionSurveyFragAdapter (var context : Context, var listener: AcquisitionSurveyListItemListner, var serviceRequestAllData: AcquisitionSurveyModel?) : RecyclerView.Adapter<AcquisitionSurveyFragAdapter.ViewHold>() {
 
     var currentOpened = -1
     private var AcquisitionSurveyData:ASAquisitionSurvey?=null
@@ -39,7 +40,7 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
         list.add("PO Details")
         list.add("Attachments")
         try {
-            AcquisitionSurveyData=serviceRequestAllData?.ASAcquitionSurvey?.get(0)
+            AcquisitionSurveyData=serviceRequestAllData?.SAcqASAcquitionSurvey?.get(0)
             BuildingDetailData=AcquisitionSurveyData?.ASAquisitionSurveyBuildingDetail?.get(0)
         }catch (e: Exception){
             AppLogger.log("Error in Acquisition Survey fragment ${e.localizedMessage}")
@@ -214,7 +215,7 @@ class AcquisitionSurveyFragAdapter (var context : Context, var listener: Acquisi
         when(holder){
             is BuildingDetailsViewHold->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.EditBuildingdetailsItemClicked(BuildingDetailData,serviceRequestAllData)
+//                    listener.EditBuildingdetailsItemClicked(BuildingDetailData,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
