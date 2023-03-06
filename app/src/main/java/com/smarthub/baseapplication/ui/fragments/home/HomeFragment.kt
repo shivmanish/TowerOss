@@ -24,6 +24,7 @@ import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialo
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment(),TaskListener {
@@ -78,34 +79,57 @@ class HomeFragment : Fragment(),TaskListener {
             }
         }
 
-        homeViewModel.fetchHomeData()
-        homeViewModel.fetchSiteDropDownData()
-
         binding.taskList.setHasFixedSize(true)
         adapterList = MyTaskItemAdapter(this@HomeFragment,"home_navigation")
         binding.taskList.adapter = adapterList
-        adapterList.addItem("loading")
+
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
 
         if (homeViewModel.myTask?.hasActiveObservers() == true)
             homeViewModel.myTask?.removeObservers(viewLifecycleOwner)
         homeViewModel.myTask?.observe(viewLifecycleOwner){
+            AppLogger.log("my Task data fetched")
             if (it!=null && it.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
-//                list.add("header")
                 list.addAll(it)
+                AppPreferences.getInstance().saveMyTeamTask(it)
                 if(list.size<3)
                     binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
                 adapterList.updateList(list)
                 binding.tastCount.text = it.size.toString()
             }else{
-                binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
-                binding.seeAllTask.visibility=View.GONE
-//                no data found
-                adapterList.addItem("no_data")
+                val data = AppPreferences.getInstance().myTeamTask
+                if (data.isNotEmpty()){
+                    val list :ArrayList<Any> = ArrayList()
+                    list.addAll(data)
+                    if(list.size<3)
+                        binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
+                    adapterList.updateList(list)
+                    binding.tastCount.text = data.size.toString()
+                }else {
+                    binding.taskList.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    binding.seeAllTask.visibility = View.GONE
+                    adapterList.addItem("no_data")
+                }
             }
         }
-
+        var b = Utils.isNetworkConnected(requireContext())
+        AppLogger.log("home screen network:$b")
+        if (b) {
+            homeViewModel.fetchHomeData()
+            homeViewModel.fetchSiteDropDownData()
+//            adapterList.addItem("loading")
+        }else{
+            val data = AppPreferences.getInstance().myTeamTask
+            if (data.isNotEmpty()){
+                val list :ArrayList<Any> = ArrayList()
+                list.addAll(data)
+                if(list.size<3)
+                    binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
+                adapterList.updateList(list)
+                binding.tastCount.text = data.size.toString()
+            }
+        }
     }
 
     private fun mapUIData(data: HomeResponse){

@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
+import com.smarthub.baseapplication.model.home.MyTeamTask;
+import com.smarthub.baseapplication.model.home.MyTeamTaskModel;
 import com.smarthub.baseapplication.model.search.SearchHistoryList;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
@@ -39,6 +41,36 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             mInstance = new AppPreferences();
         }
         return mInstance;
+    }
+
+    public List<MyTeamTask> getMyTeamTask(){
+        ArrayList<MyTeamTask> list = new ArrayList<>();
+        String string = getString("myTaskHome");
+        if (string!=null && !string.isEmpty()){
+            try {
+                MyTeamTaskModel model = new Gson().fromJson(string,MyTeamTaskModel.class);
+                if (model!=null && model.size()>0)
+                    list = model;
+            }catch (java.lang.Exception e){
+                AppLogger.INSTANCE.log("e:${e.localizedMessage}");
+            }
+        }
+        AppLogger.INSTANCE.log("my team task cache list found:"+list.size());
+        return list;
+    }
+
+    public void saveMyTeamTask(List<MyTeamTask> list){
+        try{
+            MyTeamTaskModel model = new MyTeamTaskModel();
+            model.addAll(list);
+            String json = new Gson().toJson(model);
+            saveString("myTaskHome",json);
+            String modelJson= new Gson().toJson(model);
+            AppLogger.INSTANCE.log("saved myTeamTask json: "+modelJson);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+        }
+
     }
 
     public void saveTaskUiModel(TaskDropDownModel model, String taskId){
