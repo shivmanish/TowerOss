@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.OpcoRadioAntenaCommonFragBinding
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.RadioAnteenaAndRRUData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
@@ -14,18 +15,18 @@ import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAn
 
 class CableDetailsFragment(var opcodata: RadioAnteenaAndRRUData?) :Fragment(), CableDetailsAdapter.CableDetailsItemClickListener {
 
-    var binding : RfAntinaFragmentBinding?=null
+    var binding : OpcoRadioAntenaCommonFragBinding?=null
     lateinit var adapter: CableDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = RfAntinaFragmentBinding.inflate(inflater, container, false)
+        binding = OpcoRadioAntenaCommonFragBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = CableDetailsAdapter(this@CableDetailsFragment,opcodata?.RadioAntennaAndRRUCableDetail,requireContext())
+        adapter = CableDetailsAdapter(this@CableDetailsFragment,opcodata?.CableDetail,requireContext())
         binding?.listItem?.adapter=adapter
 
 //        binding?.addItemsLayout?.setOnClickListener {

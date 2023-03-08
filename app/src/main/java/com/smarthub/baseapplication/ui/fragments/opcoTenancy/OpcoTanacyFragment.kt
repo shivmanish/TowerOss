@@ -92,8 +92,9 @@ class OpcoTanacyFragment (var id : String): BaseFragment(), CustomerDataAdapterL
         super.onDestroy()
     }
 
-    override fun clickedItem(data : OpcoTenencyAllData) {
+    override fun clickedItem(data : OpcoTenencyAllData,parentIndex:Int) {
         OpcoTenancyActivity.Opcodata=data
+        OpcoTenancyActivity.parentIndex=parentIndex
         requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivity::class.java))
 
 //        requireActivity().startActivity(Intent(requireContext(), OpcoTenancyActivityNew::class.java))

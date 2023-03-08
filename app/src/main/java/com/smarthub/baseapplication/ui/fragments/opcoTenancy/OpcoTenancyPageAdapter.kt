@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.radioAntenna.NewRfAntinaFragment
 
-class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllData?) : FragmentPagerAdapter(fm) {
+class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllData?,var parentIndex:Int) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 5
 
@@ -16,23 +16,23 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllDat
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
+                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo,parentIndex)
             }
 
             1 -> {
-                return RfEquipmentViewPagerFragment(opcodata)
+                return RfEquipmentViewPagerFragment(opcodata,parentIndex)
             }
 //            2 -> {
 //                return BackhaulFragment(opcodata!!)
 //            }
             3 -> {
-                return NewRfAntinaFragment(opcodata)
+                return NewRfAntinaFragment(opcodata,parentIndex)
             }
             4 -> {
                 return PowerLoadFragment(opcodata)
             }
             else -> {
-                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo)
+                return OpcoSiteInfoFramgment(opcodata?.Opcoinfo,parentIndex)
             }
 
         }

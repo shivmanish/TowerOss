@@ -98,8 +98,8 @@ class RadioAntennaDetailsAdapter(var listener: RfAnteenaItemClickListener, anten
             try {
                 data=list[position]
                 AppLogger.log("data of $position is =======: $data")
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.SerailNo,data.Model,Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyy"))
-                holder.binding.SerialNumber.text=data.SerailNo
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.SerialNo,data.Model,Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyy"))
+                holder.binding.SerialNumber.text=data.SerialNo
                 holder.binding.Make.text=data.Make
                 holder.binding.Model.text=data.Model
                 holder.binding.Height.text=data.Height

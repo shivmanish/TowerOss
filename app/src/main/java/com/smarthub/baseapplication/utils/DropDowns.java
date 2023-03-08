@@ -45,7 +45,7 @@ public enum DropDowns {
     LandType,
     SoilType,
     ExternalStructureType,
-
+    OpcoNetworkType,
     ApplicationInitialCategory,
     ApplicationInitialApplicationType,
     ApplicationInitialApplicationStatus,
