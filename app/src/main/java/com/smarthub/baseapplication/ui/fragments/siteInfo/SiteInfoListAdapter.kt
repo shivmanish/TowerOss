@@ -309,12 +309,24 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     holder.binding.textAltitude.text = geoCondition.Altitude.toString()
                     holder.binding.minTempRange.text = geoCondition.TempRangeMin
                     holder.binding.maxTempRange.text = geoCondition.TempRangeMax
-                    AppPreferences.getInstance().setDropDown(holder.binding.potentioalThreatSpinner,DropDowns.Potentialthreat.name,geoCondition.Potentialthreat.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.windZoneSpinner,DropDowns.Windzone.name,geoCondition.Windzone.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.seismecZoneSpinner,DropDowns.Seismiczone.name,geoCondition.Seismiczone.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.floodZoneSpinner,DropDowns.Floodzone.name,geoCondition.Floodzone.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.terrainTypeSpinner,DropDowns.Terraintype.name,geoCondition.Terraintype.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.ClimateZone,DropDowns.Climatezone.name,geoCondition.Climatezone.get(0).toString())
+                    if (geoCondition.Potentialthreat.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.potentioalThreatSpinner,DropDowns.Potentialthreat.name,
+                            geoCondition.Potentialthreat[0].toString())
+                    if (geoCondition.Windzone.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.windZoneSpinner,DropDowns.Windzone.name,
+                            geoCondition.Windzone[0].toString())
+                    if (geoCondition.Seismiczone.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.seismecZoneSpinner,DropDowns.Seismiczone.name,
+                            geoCondition.Seismiczone[0].toString())
+                    if (geoCondition.Floodzone.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.floodZoneSpinner,DropDowns.Floodzone.name,
+                        geoCondition.Floodzone[0].toString())
+                    if (geoCondition.Terraintype.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.terrainTypeSpinner,DropDowns.Terraintype.name,
+                            geoCondition.Terraintype[0].toString())
+                    if (geoCondition.Climatezone.isNotEmpty())
+                        AppPreferences.getInstance().setDropDown(holder.binding.ClimateZone,DropDowns.Climatezone.name,
+                            geoCondition.Climatezone[0].toString())
                 }
 
             }

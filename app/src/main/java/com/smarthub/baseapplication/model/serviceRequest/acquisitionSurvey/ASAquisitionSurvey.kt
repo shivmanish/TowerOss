@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey
+package com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey
 
 data class ASAquisitionSurvey(
     var ASAquisitionSurveyBuildingDetail: ArrayList<ASAquisitionSurveyBuildingDetail>? = null,

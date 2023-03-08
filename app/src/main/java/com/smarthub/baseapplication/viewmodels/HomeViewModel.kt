@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
@@ -30,13 +31,10 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
-import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
@@ -59,6 +57,7 @@ class HomeViewModel : ViewModel() {
     var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
     var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
     var serviceRequestModelResponse : SingleLiveEvent<Resource<ServiceRequestModel?>>?=null
+    var acquisitionSurveyAllDataItem : SingleLiveEvent<Resource<AcquisitionSurveyModel?>>?=null
     var loglivedata : SingleLiveEvent<Resource<LogsDataModel?>>?=null
     var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
     var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
@@ -119,6 +118,7 @@ class HomeViewModel : ViewModel() {
         userDataListResponse=homeRepo?.userDataResponse
         addNotiResponse=homeRepo?.addNotificationResponse
         siteInfoDataResponse=homeRepo?.siteInfoDataModel
+        acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -188,6 +188,10 @@ class HomeViewModel : ViewModel() {
 
     fun siteInfoRequestAll(id : String){
         homeRepo?.SiteInfoRequestAll(id)
+    }
+
+    fun siteAcquisitionSurveyById(id : String){
+        homeRepo?.siteAcquisitionSurveyById(id)
     }
 
     fun serviceRequestAll(id : String){

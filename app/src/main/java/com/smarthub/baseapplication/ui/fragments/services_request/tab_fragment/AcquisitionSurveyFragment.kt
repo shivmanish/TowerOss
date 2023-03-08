@@ -9,8 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcquisitionSurveyFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurveyBuildingDetail
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASAquisitionSurveyBuildingDetail
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.BuildingDetailsBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
@@ -18,7 +19,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.Acquis
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AcquisitionSurveyFragment (var data : ServiceRequestAllDataItem?, var Id: String?): BaseFragment(), AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner {
+class AcquisitionSurveyFragment (var data : AcquisitionSurveyModel?, var Id: String?): BaseFragment(), AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner {
     var binding : AcquisitionSurveyFragmentBinding?=null
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: AcquisitionSurveyFragAdapter

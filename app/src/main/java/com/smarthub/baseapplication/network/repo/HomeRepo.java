@@ -27,6 +27,8 @@ import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
@@ -41,14 +43,11 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
-import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
@@ -90,6 +89,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<DropDownNew>> dropDownResponseNew;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
+    private SingleLiveEvent<Resource<AcquisitionSurveyModel>> acquisitionSurveyAllDataItem;
     private SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> opcoTenencyModel;
     private SingleLiveEvent<Resource<NocCompAllDataModel>> noCandCompModel;
     private SingleLiveEvent<Resource<TowerCivilAllDataModel>> towerAndCivilInfraModel;
@@ -143,6 +143,9 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
         return serviceRequestModel;
+    }
+    public SingleLiveEvent<Resource<AcquisitionSurveyModel>> getAcquisitionSurveyAllDataItem() {
+        return acquisitionSurveyAllDataItem;
     }
     public SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> getOpcoTenencyModel() {
         return opcoTenencyModel;
@@ -217,6 +220,7 @@ public class HomeRepo {
         userDataResponse=new SingleLiveEvent<>();
         addNotificationResponse=new SingleLiveEvent<>();
         siteInfoDataModel=new SingleLiveEvent<>();
+        acquisitionSurveyAllDataItem=new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -862,17 +866,53 @@ public class HomeRepo {
         });
     }
 
+    public void siteAcquisitionSurveyById(String id) {
+        JsonObject jsonObject = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("SAcqSiteAcquisition",jsonArray);
+        apiClient.fetchAcquisitionSurveyAllDataItemRequest(jsonObject).enqueue(new Callback<AcquisitionSurveyAllDataItem>() {
+            @Override
+            public void onResponse(Call<AcquisitionSurveyAllDataItem> call, Response<AcquisitionSurveyAllDataItem> response) {
+                if (response.isSuccessful() && response.body()!=null && response.body().getSAcqSiteAcquisition()!=null &&
+                !response.body().getSAcqSiteAcquisition().isEmpty()){
+                    reportSuccessResponse(response.body().getSAcqSiteAcquisition().get(0));
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AcquisitionSurveyAllDataItem> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(AcquisitionSurveyModel response) {
+
+                if (response != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    acquisitionSurveyAllDataItem.postValue(Resource.success(response, 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    acquisitionSurveyAllDataItem.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    acquisitionSurveyAllDataItem.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
     public void serviceRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
         jsonObject.addProperty("id",id);
         jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
         jsonObject.add("ServiceRequestMain",jsonArray);
-//        ArrayList<String> list = new ArrayList<>();
-//        list.add("ServiceRequestMain");
-//        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-//        ServiceRequestModel srModel = (serviceRequestModel!=null && serviceRequestModel.getValue()!=null)?serviceRequestModel.getValue().data:null;
-//        serviceRequestModel.postValue(Resource.loading(srModel, 200));
         apiClient.fetchServiceRequest(jsonObject).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {

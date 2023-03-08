@@ -46,7 +46,7 @@ class ServicesRequestActivity : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, ServiceRequestdata!!,Id!!)
+        binding.viewpager.adapter = ServicePageAdapter(supportFragmentManager, ServiceRequestdata!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener())
         binding.viewpager.beginFakeDrag()

@@ -9,7 +9,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcquisitionPropertyOwnerTableItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASPropertyOwnerDetail
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASPropertyOwnerDetail
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.AcquisitionSurveyFragAdapter
 
 class PropertyOwnerTableAdapter (var context : Context, var listener : AcquisitionSurveyFragAdapter.AcquisitionSurveyListItemListner,propertyOwnerData:List<ASPropertyOwnerDetail>): RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {

@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AgreementDetailsBotomSheetBinding
-import com.smarthub.baseapplication.databinding.PropertyDetailsListItemBinding
 import com.smarthub.baseapplication.databinding.PropertyOwnerBotomSheetBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.PropertyOwnerAndPaymentDetail
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcquisition
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
@@ -22,7 +21,7 @@ class PropertyOwnerDetailsBottomSheet(
     var agrement: ArrayList<PropertyOwnerAndPaymentDetail>,
     var id: String?,
     var viewmodel: HomeViewModel,
-    var serviceRequestAllData: ServiceRequestAllDataItem
+    var serviceRequestAllData: AcquisitionSurveyModel
 ) : BottomSheetDialogFragment(contentLayoutId) {
     var basicinfoModel: BasicinfoModel? = null
     lateinit var binding : PropertyOwnerBotomSheetBinding
@@ -51,12 +50,12 @@ class PropertyOwnerDetailsBottomSheet(
 
 
                 val mServiceRequestAllDataItem = ServiceRequestAllDataItem()
-                mServiceRequestAllDataItem.id = serviceRequestAllData?.id
+                mServiceRequestAllDataItem.id = 448
                 mServiceRequestAllDataItem.SoftAcquisition = ArrayList()
 
                 val softAcquisition = SoftAcquisition()
                 softAcquisition.PropertyOwnerAndPaymentDetails = agrement
-                softAcquisition.id = serviceRequestAllData?.SoftAcquisition!![0].id
+                softAcquisition.id = serviceRequestAllData?.SAcqSoftAcquisition!![0].id
                 mServiceRequestAllDataItem.SoftAcquisition?.add(softAcquisition)
 
                 val serviceRequestList = ServiceRequestAllData()

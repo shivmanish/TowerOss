@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey
+package com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey
 
 data class ASPropertyOwnerDetail(
     val Action: String,

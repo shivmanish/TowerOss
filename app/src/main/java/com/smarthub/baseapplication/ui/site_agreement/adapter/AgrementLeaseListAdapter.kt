@@ -10,17 +10,17 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AgreementsListItemBinding
 import com.smarthub.baseapplication.databinding.AttachmentListItemBinding
 import com.smarthub.baseapplication.databinding.PropertyDetailsListItemBinding
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.AgreementTerm
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.PropertyOwnerAndPaymentDetail
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.SoftAcquisition
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.PropertyOwnerTableAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.PropertyOwnerTableAdapter
 
 class AgrementLeaseListAdapter(
     var context: Context,
     var listener: AgreementListItemlistner,
-    var servicerequirement: ServiceRequestAllDataItem
+    var servicerequirement: AcquisitionSurveyModel
 ) :
     RecyclerView.Adapter<AgrementLeaseListAdapter.ViewHold>() {
     var list: ArrayList<String> = ArrayList()
@@ -35,9 +35,9 @@ class AgrementLeaseListAdapter(
         list.add("Agreement")
         list.add("Property Owner & Payment..")
         list.add("Attachments")
-        softAcquisition = servicerequirement.SoftAcquisition!!.get(0)
-        agrement = softAcquisition!!.AgreementTerms!!.get(0)
-        propertyOwnerAndPaymentDetails = softAcquisition!!.PropertyOwnerAndPaymentDetails!!
+        softAcquisition = servicerequirement.SAcqSoftAcquisition?.get(0)
+        agrement = softAcquisition?.AgreementTerms?.get(0)
+        propertyOwnerAndPaymentDetails = softAcquisition?.PropertyOwnerAndPaymentDetails
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -159,17 +159,17 @@ class AgrementLeaseListAdapter(
                     if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                 holder.binding.iconLayout.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
-                holder.binding.imgEdit.setOnClickListener()
-                {
-                    listener.detailsItemClicked(agrement!!,servicerequirement)
-                }
+//                holder.binding.imgEdit.setOnClickListener() {
+//                    if (agrement!=null)
+//                        listener.detailsItemClicked(agrement!!,servicerequirement)
+//                }
                 holder.binding.itemCollapse.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
             }
             holder.binding.itemTitle.text = list[position]
 
-            if (servicerequirement.SoftAcquisition != null && servicerequirement.SoftAcquisition!!.isNotEmpty()) {
-                agrement!!.let {
+            if (servicerequirement.SAcqSoftAcquisition != null && servicerequirement.SAcqSoftAcquisition?.isNotEmpty() == true) {
+                agrement?.let {
                     holder.binding.agrementType.text = it.AgreementPeriod
                     holder.binding.registrationNumber.text = ""
                     holder.binding.registrationDate.text = ""
@@ -223,8 +223,9 @@ class AgrementLeaseListAdapter(
             }
             holder.binding.itemTitle.text = list[position]
             holder.binding.propertyDetailsTable.layoutManager = LinearLayoutManager(context)
+            if (propertyOwnerAndPaymentDetails!=null)
+                holder.binding.propertyDetailsTable.adapter = PropertyOwnerTableAdapter(context,listener,propertyOwnerAndPaymentDetails!!,servicerequirement)
 
-           holder.binding.propertyDetailsTable.adapter = PropertyOwnerTableAdapter(context,listener,propertyOwnerAndPaymentDetails!!,servicerequirement)
         } else if (holder is AttachmentViewHold) {
             holder.binding.collapsingLayout.setOnClickListener {
                 holder.binding.itemTitle.tag = !(holder.binding.itemTitle.tag as Boolean)
@@ -258,11 +259,11 @@ class AgrementLeaseListAdapter(
         fun attachmentItemClicked()
         fun detailsItemClicked(
             agrement: AgreementTerm,
-            servicerequirement: ServiceRequestAllDataItem
+            servicerequirement: AcquisitionSurveyModel
         )
         fun propertyOwonertemClicked(
             propertylist: ArrayList<PropertyOwnerAndPaymentDetail>,
-            servicerequirement: ServiceRequestAllDataItem
+            servicerequirement: AcquisitionSurveyModel
         )
     }
 }
