@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBindin
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
+import com.smarthub.baseapplication.utils.AppController
 
 class SiteAcqTabActivity : BaseActivity() {
     companion object {
@@ -29,6 +30,8 @@ class SiteAcqTabActivity : BaseActivity() {
         binding.back.setOnClickListener {
             onBackPressed()
         }
+        binding.titel.text="Site Acquisition #${parentIndex?.plus(1)}"
+        binding.subTitle.text=AppController.getInstance().siteName
         binding.addMore.setOnClickListener {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager, "")

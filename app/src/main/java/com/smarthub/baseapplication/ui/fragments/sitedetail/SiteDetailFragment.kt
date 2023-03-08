@@ -28,7 +28,6 @@ import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.acquisitionSurvey.AcquisitionSurveyFragmentNew
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
@@ -36,7 +35,6 @@ import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.AcquisitionSurveyFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
@@ -52,6 +50,7 @@ class SiteDetailFragment : BaseFragment() {
     private lateinit var ctx: Context
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     private lateinit var mainViewModel: MainViewModel
+    var fabVisible = false
     private lateinit var v: TabItemBinding
     private var tabNames: Array<String>? = null
 
@@ -78,7 +77,7 @@ class SiteDetailFragment : BaseFragment() {
     var siteName ="#ce-dlhi-sc-0179"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
+        var title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
         title.text = siteName
 
         setData()
@@ -111,6 +110,7 @@ class SiteDetailFragment : BaseFragment() {
                 texttabchange.setTextColor(resources.getColor(R.color.tab_selected_color))
                 Log.e("TAG", " $view  ${tab.position}")
                 AppLogger.log("onTabSelected:"+tab.position)
+//                adapter.getItemByPosition(tab.position).onViewPageSelected()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -130,6 +130,11 @@ class SiteDetailFragment : BaseFragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
+//        val addImage = binding.root.findViewById<ImageView>(R.id.add_image)
+//        addImage.setOnClickListener {
+//            val intent = Intent(activity, SiteImages::class.java)
+//            startActivity(intent)
+//        }
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -175,7 +180,6 @@ class SiteDetailFragment : BaseFragment() {
                 7-> CivilInfraFragment(id)
                 8-> PowerConnection(id)
                 9-> QATMainFragment(id)
-                10-> AcquisitionSurveyFragmentNew(id)
                 else -> SiteInfoNewFragment(id)
             }
             return f
@@ -199,6 +203,39 @@ class SiteDetailFragment : BaseFragment() {
         override fun getPageTitle(position: Int): CharSequence? {
             return tabNames?.get(position)
         }
+
+    }
+
+    private fun setDataObserver() {
+
+        showLoader()
+        if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
+            siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
+        siteDetailViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
+            hideLoader()
+            if (it != null) {
+                if (it.status == Resource.Status.SUCCESS && it.data != null) {
+                    saveDataToLocal(it.data)
+//                    setData()
+                    return@observe
+                } else {
+                    Log.d("status", "${it.message}")
+//                    Toast.makeText(context, "error:" + it.message, Toast.LENGTH_LONG).show()
+
+                }
+            } else {
+                Log.d("status", AppConstants.GENERIC_ERROR)
+//                Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+            }
+        }
+        siteDetailViewModel.fetchDropDown()
+    }
+
+    private fun saveDataToLocal(data: SiteInfoDropDownData) {
+
+        val gson = Gson()
+        val stringDatajson = gson.toJson(data)
+        AppPreferences.getInstance().saveString(DROPDOWNDATA, stringDatajson)
 
     }
 
