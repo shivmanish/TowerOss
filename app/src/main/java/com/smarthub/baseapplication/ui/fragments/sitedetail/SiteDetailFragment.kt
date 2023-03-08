@@ -28,17 +28,15 @@ import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.acquisitionSurvey.AcquisitionSurveyFragmentNew
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
-import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
-import com.smarthub.baseapplication.ui.fragments.services_request.tab_fragment.AcquisitionSurveyFragment
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
+import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController
@@ -182,7 +180,7 @@ class SiteDetailFragment : BaseFragment() {
                 7-> CivilInfraFragment(id)
                 8-> PowerConnection(id)
                 9-> QATMainFragment(id)
-                10-> AcquisitionSurveyFragmentNew(id)
+//                10-> AcquisitionSurveyFragmentNew(id)
                 else -> SiteInfoNewFragment(id)
             }
             return f

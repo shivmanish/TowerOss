@@ -7,31 +7,32 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AcqAgreementTermItemsBinding
-import com.smarthub.baseapplication.databinding.AcqPayeeAcountTableBinding
+import com.smarthub.baseapplication.databinding.SiteAcqAgreementDetailsItemsBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
+import com.smarthub.baseapplication.databinding.TowerPoItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqAgreementTerm
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqAgreementDetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PayeeAccountTableAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PropertyOwnerTableAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.SiteAgreePoTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<SoftAcquisitionFragAdapter.ViewHold>() {
-    private var datalist: SoftAcquisitionData?=null
+class AgreementFragAdapter(var context: Context, var listener: AgreementListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AgreementFragAdapter.ViewHold>() {
+    private var datalist: SiteAcqAgreement?=null
 
-    fun setData(data: SoftAcquisitionData?) {
+    fun setData(data: SiteAcqAgreement?) {
         this.datalist=data!!
         notifyDataSetChanged()
     }
     init {
         try {
             if (data!=null && data.SAcqAssignACQTeam.isNotEmpty()){
-                datalist=data.SAcqSoftAcquisition.get(0)
+                datalist=data.SAcqAgreement.get(0)
             }
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
@@ -42,20 +43,20 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-    var type1 = "Agreement Terms"
-    var type2 = "Payee Account Detail"
+    var type1 = "Agreement Details"
+    var type2 = "PO Details"
     var type3 = "Attachments"
 
     init {
-        list.add("Agreement Terms")
-        list.add("Payee Account Detail")
+        list.add("Agreement Details")
+        list.add("PO Details")
         list.add("Attachments")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : AcqAgreementTermItemsBinding = AcqAgreementTermItemsBinding.bind(itemView)
+        var binding : SiteAcqAgreementDetailsItemsBinding = SiteAcqAgreementDetailsItemsBinding.bind(itemView)
 
         init {
             binding.collapsingLayout.tag = false
@@ -73,8 +74,8 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
 
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : AcqPayeeAcountTableBinding = AcqPayeeAcountTableBinding.bind(itemView)
-        var payeeTableList: RecyclerView=binding.payeeAccountTableItem
+        var binding: TowerPoItemBinding = TowerPoItemBinding.bind(itemView)
+        var poTableList: RecyclerView=binding.towerPoTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -87,19 +88,19 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
             }
 
             binding.imgAdd.setOnClickListener {
-                addPayeeAccountTableItem("wqeeqs")
+                addPoTableItem("wqeeqs")
             }
         }
 
-        private fun addPayeeAccountTableItem(item:String){
-            if (payeeTableList.adapter!=null && payeeTableList.adapter is PropertyOwnerTableAdapter){
-                val adapter = payeeTableList.adapter as PropertyOwnerTableAdapter
+        private fun addPoTableItem(item:String){
+            if (poTableList.adapter!=null && poTableList.adapter is PowerFuelPoTableAdapter){
+                val adapter = poTableList.adapter as PowerFuelPoTableAdapter
                 adapter.addItem(item)
             }
         }
 
     }
-    class ViewHold3(itemView: View,listener: SoftAcqListListener) : ViewHold(itemView) {
+    class ViewHold3(itemView: View,listener: AgreementListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
@@ -141,11 +142,11 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.acq_agreement_term_items, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.site_acq_agreement_details_items, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.acq_payee_acount_table, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_item, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
@@ -182,32 +183,26 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    if (datalist!=null && datalist?.SAcqSoftAcquisitionAgreementTerm?.isNotEmpty()==true){
-                        val agreeData: SoftAcqAgreementTerm? = datalist?.SAcqSoftAcquisitionAgreementTerm?.get(0)
-                        if(agreeData?.Acquisitiontype?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.AgreementType,DropDowns.Acquisitiontype.name,agreeData.Acquisitiontype.get(0).toString())
-                        if(agreeData?.PropertyOwnership?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,agreeData.PropertyOwnership.get(0).toString())
-                        holder.binding.PropertyType.text=agreeData?.PropertyType.toString()
-                        holder.binding.RentAymentPeriod.text=agreeData?.Rentpaymentperiod.toString()
-                        holder.binding.EBBillingBasis.text=agreeData?.EBBillingBasis.toString()
-                        holder.binding.EBInclusiveInRental.text=agreeData?.EBInclusiveInRental.toString()
-                        holder.binding.RentEscalationPeriod.text=agreeData?.RentEscalationPeriod
-                        holder.binding.AcquisitionArea.text=agreeData?.AcquisitionArea
-                        holder.binding.AgreementPeriod.text=agreeData?.AgreementPeriod
-                        holder.binding.LockInPeriod.text=agreeData?.LockInPeriod
-                        holder.binding.AnnualRentAmount.text=agreeData?.AnnualRentAmount
-                        holder.binding.PeriodicRentAmount.text=agreeData?.PeriodicRentAmount
-                        holder.binding.RentEscalation.text=agreeData?.RentEscalation
-                        holder.binding.EBBillLimitMin.text=agreeData?.EBBillLimitmin
-                        holder.binding.EBBillLimitMax.text=agreeData?.EBBillLimitmax
-                        holder.binding.EBPerUnitRate.text=agreeData?.EBPUnitRate
-                        holder.binding.OnetimeAmount.text=agreeData?.OnetimeAmount
-                        holder.binding.SecurityDepositAmount.text=agreeData?.SecurityDepositAmount
-                        holder.binding.remarks.text=agreeData?.Remark
+                    if (datalist!=null && datalist?.SAcqAgreementDetail?.isNotEmpty()==true){
+                        val agreeDetailsData: SAcqAgreementDetail? = datalist?.SAcqAgreementDetail?.get(0)
+                        if(agreeDetailsData?.Costcentre?.isNotEmpty()==true)
+                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentre,DropDowns.Costcentre.name,agreeDetailsData.Costcentre.get(0).toString())
+
+                        holder.binding.RegistrationNumber.text=agreeDetailsData?.RegistrationNumber
+                        holder.binding.LastRevisedRentAmount.text=agreeDetailsData?.LastRevisedRentAmount
+                        holder.binding.AcquisitionArea.text=agreeDetailsData?.Acquisitionarea
+                        holder.binding.RooftopAcquiredArea.text=agreeDetailsData?.RooftopacquiredArea
+                        holder.binding.RooftopUsableArea.text=agreeDetailsData?.RooftopUsableArea
+                        holder.binding.GroundAcquiredArea.text=agreeDetailsData?.GroundAcquiredArea
+                        holder.binding.GroundUsableArea.text=agreeDetailsData?.GroundUsableArea
+                        holder.binding.remarks.text=agreeDetailsData?.Remark
+                        holder.binding.RegistrationDate.text=Utils.getFormatedDate(agreeDetailsData?.RegistrationDate?.substring(0,10)!!,"dd-MMM-yyyy")
+                        holder.binding.AgreementEffectiveDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.AgreementExpiryDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.RentStartDate.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate.substring(0,10),"dd-MMM-yyyy")
                     }
                     else
-                        AppLogger.log("error in soft Acquisition data or Agreement terms data")
+                        AppLogger.log("error in agreement data or Agreement details data")
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -236,10 +231,10 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null ){
-                        holder.payeeTableList.adapter=PayeeAccountTableAdapter(context,listener,datalist?.SAcqPayeeAccountDetail)
+                        holder.poTableList.adapter=SiteAgreePoTableAdapter(context,listener,datalist?.SAcqPODetail)
                     }
                     else
-                        AppLogger.log("error in Acquisition Survey data or Property details data")
+                        AppLogger.log("error in Agreement data or Agree Po details data")
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -280,9 +275,9 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
 
 
 
-    interface SoftAcqListListener {
+    interface AgreementListListener {
        fun attachmentItemClicked()
-       fun viewPayeeAccountClicked(position: Int,data:SAcqPayeeAccountDetail)
+       fun viewPoItemClicked(position: Int,data:SAcqPODetail)
     }
 
 }

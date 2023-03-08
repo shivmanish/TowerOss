@@ -21,7 +21,7 @@
             android:layout_height="@dimen/dp45">
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="Agreement Terms"
+                android:text="Agreement Details"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -97,12 +97,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Property Type"
+                    android:text="Registration Number"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Property_Type"
+                    android:id="@+id/Registration_Number"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -117,12 +117,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Agreement Type"
+                    android:text="Registration Date"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Agreement_Type"
+                    android:id="@+id/Registration_date"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -138,12 +138,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Acquisition Area (Sq m)"
+                    android:text="Cost Centre"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/AcquisitionArea"
+                    android:id="@+id/Cost_Centre"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -159,55 +159,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Agreement Period"
+                    android:text="Agreement effective Date"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Agreement_Period"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Lock-in Period"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Lock_in_Period"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Annual Rent Amount"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/AnnualRentAmount"
+                    android:id="@+id/Agreement_effective_date"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -224,12 +181,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Rent Payment Period"
+                    android:text="Agreement Expiry Date"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Rent_ayment_Period"
+                    android:id="@+id/Agreement_Expiry_Date"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -245,55 +202,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Periodic Rent Amount"
+                    android:text="Rent Start Date"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Periodic_Rent_Amount"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Rent Escalation Period"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/RentEscalationPeriod"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Rent Escalation (%)"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Rent_Escalation"
+                    android:id="@+id/Rent_Start_Date"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -310,12 +224,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="EB Inclusive in Rental"
+                    android:text="Last Revised Rent Amount"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/EB_Inclusive_in_Rental"
+                    android:id="@+id/Last_Revised_Rent_Amount"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -331,96 +245,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="EB Bill Limit "
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Min: "
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/EBBillLimitMin"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <View
-                        android:layout_marginVertical="@dimen/dp4"
-                        android:layout_marginHorizontal="@dimen/dp3"
-                        android:layout_width="1dp"
-                        android:background="@color/color1"
-                        android:layout_height="match_parent"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Max: "
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/EBBillLimitMax"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="EB Billing Basis"
+                    android:text="Acquisition Area (Sq.m)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/EB_Billing_Basis"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:text=""
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="EB per unit Rate"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/EB_per_unit_Rate"
+                    android:id="@+id/Acquisition_Area"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -437,12 +267,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Property Ownership"
+                    android:text="Rooftop acquired Area (Sq.m)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Property_Ownership"
+                    android:id="@+id/Rooftop_acquired_Area"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -458,12 +288,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Onetime Amount"
+                    android:text="Rooftop Usable Area (Sq.m)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Onetime_Amount"
+                    android:id="@+id/Rooftop_Usable_Area"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""
@@ -480,12 +310,33 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Security Deposit Amount"
+                    android:text="Ground acquired Area (Sq.m)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Security_Deposit_Amount"
+                    android:id="@+id/Ground_acquired_Area"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:text=""
+                    style="@style/RowTestItemEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="0dp"
+                android:layout_width="0dp"
+                style="@style/ColumnItemInfo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Ground Usable Area (Sq.m)"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/Ground_Usable_Area"
                     android:maxLines="1"
                     android:ellipsize="marquee"
                     android:text=""

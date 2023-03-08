@@ -9,18 +9,18 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SoftAcquisitionFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailsViewDialouge
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AgreementFragAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AgreementPoViewDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SoftAcquisitionFragment(var acqTeamData:NewSiteAcquiAllData?, var parentIndex:Int): BaseFragment(),SoftAcquisitionFragAdapter.SoftAcqListListener{
+class AgreementFragment(var acqTeamData:NewSiteAcquiAllData?, var parentIndex:Int): BaseFragment(),AgreementFragAdapter.AgreementListListener{
     lateinit var viewmodel: HomeViewModel
     lateinit var binding : PowerConnectionFragBinding
-    lateinit var adapter:SoftAcquisitionFragAdapter
+    lateinit var adapter:AgreementFragAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = PowerConnectionFragBinding.inflate(inflater, container, false)
@@ -29,7 +29,7 @@ class SoftAcquisitionFragment(var acqTeamData:NewSiteAcquiAllData?, var parentIn
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= SoftAcquisitionFragAdapter(requireContext(),this@SoftAcquisitionFragment,acqTeamData)
+        adapter= AgreementFragAdapter(requireContext(),this@AgreementFragment,acqTeamData)
         binding.listItem.adapter = adapter
 
         if (viewmodel.siteAgreementModel?.hasActiveObservers() == true) {
@@ -43,7 +43,7 @@ class SoftAcquisitionFragment(var acqTeamData:NewSiteAcquiAllData?, var parentIn
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("SiteAgreemnets AqcSurvey Data fetched successfully")
                 try {
-                    adapter.setData(it.data.SAcqSiteAcquisition?.get(parentIndex)?.SAcqSoftAcquisition?.get(0))
+                    adapter.setData(it.data.SAcqSiteAcquisition?.get(parentIndex)?.SAcqAgreement?.get(0))
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("SiteAgreemnets AqcSurvey Fragment error : ${e.localizedMessage}")
                 }
@@ -75,10 +75,12 @@ class SoftAcquisitionFragment(var acqTeamData:NewSiteAcquiAllData?, var parentIn
        AppLogger.log("Attachment clicked")
     }
 
-    override fun viewPayeeAccountClicked(position: Int, data: SAcqPayeeAccountDetail) {
-        val bm = PayeeAccDetailsViewDialouge(R.layout.acq_payee_acc_view_dialouge,data)
+    override fun viewPoItemClicked(position: Int, data: SAcqPODetail) {
+        val bm = AgreementPoViewDialouge(R.layout.tower_po_view_dialouge,data)
         bm.show(childFragmentManager,"sdg")
     }
+
+
 
 
 }
