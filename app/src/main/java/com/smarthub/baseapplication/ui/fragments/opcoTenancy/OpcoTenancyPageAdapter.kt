@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.backhaulLink.BackhaulLinkFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.radioAntenna.NewRfAntinaFragment
 
 class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllData?,var parentIndex:Int) : FragmentPagerAdapter(fm) {
@@ -22,9 +23,9 @@ class OpcoTenancyPageAdapter(fm:FragmentManager, var opcodata: OpcoTenencyAllDat
             1 -> {
                 return RfEquipmentViewPagerFragment(opcodata,parentIndex)
             }
-//            2 -> {
-//                return BackhaulFragment(opcodata!!)
-//            }
+            2 -> {
+                return BackhaulLinkFragment(opcodata,parentIndex)
+            }
             3 -> {
                 return NewRfAntinaFragment(opcodata,parentIndex)
             }
