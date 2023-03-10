@@ -6,22 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.FiberOpticsLinkInfoDetailsBinding
-import com.smarthub.baseapplication.databinding.MwUbrLinkInfoDetailsBinding
-import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkFiberLinkInfo
-import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkMWLinkInfo
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
+import com.smarthub.baseapplication.databinding.BackhaulOpticsEquipmentItemsBinding
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackBackhaulLinkFiberOpticEquipment
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener, var context: Context, LinkInfoData:ArrayList<BackhaulLinkFiberLinkInfo>?) : RecyclerView.Adapter<FiberOpticsLinkFragAdapter.ViewHold>() {
+class FiberOpticsEquipmentFragAdapter(var listener: BackhaulEquipmentClickListener, var context: Context, BackhaulEquipData:ArrayList<BackBackhaulLinkFiberOpticEquipment>?) : RecyclerView.Adapter<FiberOpticsEquipmentFragAdapter.ViewHold>() {
 
     var list = ArrayList<Any>()
 
-    fun setData(data: ArrayList<BackhaulLinkFiberLinkInfo>?) {
+    fun setData(data: ArrayList<BackBackhaulLinkFiberOpticEquipment>?) {
         this.list.clear()
         this.list.addAll(data!!)
         notifyDataSetChanged()
@@ -33,10 +27,10 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
 //    }
     init {
         this.list.clear()
-        this.list.addAll(LinkInfoData!!)
+        this.list.addAll(BackhaulEquipData!!)
     }
 
-    fun updateItem(pos : Int,data : BackhaulLinkFiberLinkInfo){
+    fun updateItem(pos : Int,data : BackBackhaulLinkFiberOpticEquipment){
         list[pos] = data
         notifyItemChanged(pos)
     }
@@ -44,7 +38,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : FiberOpticsLinkInfoDetailsBinding = FiberOpticsLinkInfoDetailsBinding.bind(itemView)
+        var binding : BackhaulOpticsEquipmentItemsBinding = BackhaulOpticsEquipmentItemsBinding.bind(itemView)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -61,7 +55,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.fiber_optics_link_info_details,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.backhaul_optics_equipment_items,parent,false)
                 ViewHold1(view)
             }
             2 ->{
@@ -79,7 +73,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: BackhaulLinkFiberLinkInfo=list[position] as BackhaulLinkFiberLinkInfo
+            val data: BackBackhaulLinkFiberOpticEquipment=list[position] as BackBackhaulLinkFiberOpticEquipment
             holder.binding.imgEdit.setOnClickListener {
 //                listener.editModeCliked(data,position)
             }
@@ -101,16 +95,25 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.LinkId,data.LinkName,Utils.getFormatedDate(data.OperationalDate.substring(0,10),"ddMMMyyyy"))
-                if(data.BackhaulType.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.BackhaulType, DropDowns.BackhaulType.name,data.BackhaulType.get(0).toString())
-                if(data.OperationStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus.get(0).toString())
-                holder.binding.LinkID.text=data.LinkId
-                holder.binding.LinkName.text=data.LinkName
-                holder.binding.LinkBandwidth.text=data.LinkBandwidth
-                holder.binding.FarEndSiteName.text=data.FarEndSiteName
-                holder.binding.OperationalDate.text=Utils.getFormatedDate(data.OperationalDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.SerialNumber,data.Model, Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyyy"))
+                holder.binding.Type.text=data.Type
+                holder.binding.Make.text=data.Make
+                holder.binding.Model.text=data.Model
+                holder.binding.SerialNumber.text=data.SerialNumber
+                holder.binding.sizeL.text=data.SizeL
+                holder.binding.sizeB.text=data.SizeB
+                holder.binding.sizeH.text=data.SizeH
+                holder.binding.Weight.text=data.Weight
+                holder.binding.VoltageMin.text=data.VoltageMin
+                holder.binding.VoltageMax.text=data.VoltageMax
+                holder.binding.MaxPowerRating.text=data.MaxPowerRating
+                holder.binding.RackUSpace.text=data.RackUSpaceUsed.toString()
+                holder.binding.RackNo.text=data.RackNo
+                holder.binding.MaxOperatingTemp.text=data.OperatingTempMax
+                holder.binding.minOperatingTemp.text=data.OperatingTempMin
+                holder.binding.InstallationLocationType.text=data.InstallationLocation.toString()
+                holder.binding.IntallationDate.text=Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in mw ubr linkInfo adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -122,7 +125,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
     override fun getItemViewType(position: Int): Int {
         return if (list.isEmpty())
             2
-        else if(list[position] is BackhaulLinkFiberLinkInfo)
+        else if(list[position] is BackBackhaulLinkFiberOpticEquipment)
             1
         else
             3
@@ -141,7 +144,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface FiberOpticsLinkInfoClickListener{
-        fun editModeCliked(data :BackhaulLinkFiberLinkInfo,pos:Int)
+    interface BackhaulEquipmentClickListener{
+        fun editModeCliked(data :BackBackhaulLinkFiberOpticEquipment,pos:Int)
     }
 }

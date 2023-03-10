@@ -19,16 +19,16 @@ class FiberOpticsTabAdapter(manager: FragmentManager, var data: BackhaulLinkData
                 return FiberOpticsLinkInfoFragment(data, parentIndex)
             }
             1 -> {
-               return MwUbrIDUFragment(data,parentIndex)
+               return FiberOpticsCableFragment(data,parentIndex)
             }
             2-> {
-              return MwUbrODUFragment(data,parentIndex)
+              return FiberOpticsEquipmentFragment(data,parentIndex)
             }
             3-> {
-              return MwUbrCablesFragment(data,parentIndex)
+              return FiberCableDetailsFragment(data,parentIndex)
             }
             else -> {
-                return MwUbrLinkInfoFragment(data,parentIndex)
+                return FiberOpticsLinkInfoFragment(data,parentIndex)
             }
         }
     }

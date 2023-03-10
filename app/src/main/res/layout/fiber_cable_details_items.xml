@@ -82,7 +82,7 @@
         android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/dp20"
+        android:paddingBottom="@dimen/dp25"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -101,12 +101,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Backhaul Type"
+                    android:text="Sr No."
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Backhaul_Type"
+                    android:id="@+id/Sr_No"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -118,18 +118,16 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Link ID"
+                    android:text="Cable Name"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Link_ID"
+                    android:id="@+id/cable_name"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
-
             <LinearLayout
                 android:paddingTop="0dp"
                 android:layout_width="0dp"
@@ -137,31 +135,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Link Name"
+                    android:text="Type"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Link_name"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/Frequency_layout"
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Frequency (Hz)"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Frequency"
+                    android:id="@+id/Type"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -175,12 +154,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Link Bandwidth"
+                    android:text="Used For"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Link_Bandwidth"
+                    android:id="@+id/used_for"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -193,49 +172,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Far-end Site name"
+                    android:text="Length (m)"
                     style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Far_end_Site_name"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Operational Date"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Operational_Date"
-                    style="@style/RowTestItemEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:paddingTop="0dp"
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Operational Status"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Operational_Status"
+                    android:id="@+id/lenth"
                     style="@style/RowTestItemEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -244,7 +186,6 @@
 
         </GridLayout>
         <TextView
-            android:visibility="gone"
             android:text="Remark"
             style="@style/RowTextItemInfo"
             android:layout_marginHorizontal="@dimen/dp10"
@@ -252,7 +193,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
-            android:visibility="gone"
             android:id="@+id/remark"
             android:layout_marginHorizontal="@dimen/dp10"
             style="@style/RowTestItemEdit"
