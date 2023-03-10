@@ -4,6 +4,7 @@ data class BackhaulLinkMWIDU(
     val InstallationDate: String,
     val InstalledLocationType: Int,
     val Make: String,
+    val LinkId: String,
     val MaxPowerRating: String,
     val Model: String,
     val OperatingTempMax: String,

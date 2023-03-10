@@ -5,23 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.RfEquipmentListItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.EquipmentData
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewRfEquipmentData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayList<NewRfEquipmentData>?,var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
+class RfEquipmentAdapter(var listener: RfEquipmentItemListner, allEquipData: ArrayList<NewRfEquipmentData>?, var context: Context) : RecyclerView.Adapter<RfEquipmentAdapter.ViewHold>() {
 
+    val list :ArrayList<EquipmentData> =ArrayList()
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
+
+    init {
+        try {
+            list.clear()
+            allEquipData?.get(0)?.Equipment01?.let { list.addAll(it) }
+            notifyDataSetChanged()
+        }catch (e:Exception){
+            AppLogger.log("Data error on Equipment Adapter: ${e.localizedMessage}")
+        }
+
+    }
 
     fun updateItem(pos : Int,data :rfEquipmentData){
 //        list[pos] = data
@@ -75,7 +84,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (list?.isEmpty()!! || list?.get(position)==null)
+        return if (list.isEmpty())
             2
         else
             1
@@ -83,7 +92,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var data : NewRfEquipmentData = list!![position]
+        var data : EquipmentData = list[position]
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
 //                listener.EditDialouge(data,position)
@@ -107,8 +116,8 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
                 holder.binding.imgEdit.visibility=View.GONE
             }
             try{
-                if (list !=null && list?.isNotEmpty()!!){
-                    data= list!![position]
+                if (list.isNotEmpty()){
+                    data= list[position]
                     holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.EquipmentName.name,"1"),data.SerialNumber,Utils.getFormatedDate(data.InstallationDate.substring(0,10),"ddMMMyyyy"))
                     AppPreferences.getInstance().setDropDown(holder.binding.EquipmentName,DropDowns.EquipmentName.name,"1")
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus,DropDowns.OperationalStatus.name,"1")
@@ -138,7 +147,7 @@ class RfEquipmentAdapter(var listener: RfEquipmentItemListner,var list: ArrayLis
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        return list.size
     }
 
     fun updateList(position: Int){

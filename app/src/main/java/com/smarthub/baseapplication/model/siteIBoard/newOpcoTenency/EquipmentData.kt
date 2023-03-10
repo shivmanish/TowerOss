@@ -1,0 +1,31 @@
+package com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency
+
+data class EquipmentData(
+    val EquipmentName: List<Int>,
+    val Feasibility: Int,
+    val InstallationDate: String,
+    val InstallationLocation: Int,
+    val Make: String,
+    val MaxPowerRating: String,
+    val Model: String,
+    val OperatingTempMax: String,
+    val OperatingTempMin: String,
+    val OperationStatus: List<Int>,
+    val PowerType: Int,
+    val RackNo: String,
+    val RackUSpaceUsed: Int,
+    val Remark: String,
+    val SerialNumber: String,
+    val SizeB: String,
+    val SizeH: String,
+    val SizeL: String,
+    val Timeline: String,
+    val Type: String,
+    val VoltageMax: String,
+    val VoltageMin: String,
+    val Weight: String,
+    val created_at: String,
+    val id: Int,
+    val isActive: Boolean,
+    val modified_at: String
+)

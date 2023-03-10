@@ -7,5 +7,5 @@ data class RadioAnteenaAndRRUData(
     val modified_at: String,
     val RadioAntennaAndRRURadioAntennaDetail: ArrayList<RadioAnteenaDetails>,
     val RadioAntennaAndRRURRUDetail: ArrayList<RRUDetails>,
-    val RadioAntennaAndRRUCableDetail: ArrayList<RadioAntennaAndRRUCableDetail>
+    val CableDetail: ArrayList<RadioAntennaAndRRUCableDetail>
 )

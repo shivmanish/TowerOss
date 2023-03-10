@@ -35,7 +35,7 @@ class AssignACQTeamFragAdapter(var context: Context, var listener: AssignACQTeam
                 datalist=data.SAcqAssignACQTeam.get(0)
             }
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
         }
     }
 

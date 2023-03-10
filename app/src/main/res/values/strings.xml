@@ -38,7 +38,7 @@
         <item>TWR &amp; Civil Infra</item>
         <item>Power &amp; fuel</item>
         <item>QA &amp; Inspection</item>
-        <item>Acquisition Survey</item>
+<!--        <item>Acquisition Survey</item>-->
     </string-array>
     <integer-array name="random_imgs">
         <item>@drawable/site_info</item>

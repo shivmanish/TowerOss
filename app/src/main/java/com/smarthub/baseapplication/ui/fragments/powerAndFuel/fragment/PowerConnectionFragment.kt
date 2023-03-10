@@ -90,12 +90,12 @@ class PowerConnectionFragment(var powerConnData:NewPowerFuelAllData?,var parentI
     }
 
     override fun viewConsumableClicked(position: Int, data: PowerConsumableMaterial) {
-        val bm = PowerConsumableViewDialouge(R.layout.tower_po_view_dialouge,data)
+        val bm = PowerConsumableViewDialouge(R.layout.tower_consumable_view_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
     override fun viewAuthorityPaymentClicked(position: Int, data: PowerFuelAuthorityPayments) {
-        val bm = PowerFuelAuthPaymentViewDialouge(R.layout.tower_po_view_dialouge,data)
+        val bm = PowerFuelAuthPaymentViewDialouge(R.layout.power_fuel_payment_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 

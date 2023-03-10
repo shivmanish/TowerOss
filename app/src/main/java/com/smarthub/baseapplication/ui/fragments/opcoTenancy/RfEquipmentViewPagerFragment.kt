@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.databinding.RfEquipmentViewPagerFragmentBind
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 
-class RfEquipmentViewPagerFragment(var opcoData:OpcoTenencyAllData?):BaseFragment() {
+class RfEquipmentViewPagerFragment(var opcoData:OpcoTenencyAllData?,var parentIndex:Int):BaseFragment() {
     lateinit var binding:RfEquipmentViewPagerFragmentBinding
     lateinit var adapter: EquipmentViewPagerAdapter
 
@@ -19,7 +19,7 @@ class RfEquipmentViewPagerFragment(var opcoData:OpcoTenencyAllData?):BaseFragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= EquipmentViewPagerAdapter(childFragmentManager,opcoData)
+        adapter= EquipmentViewPagerAdapter(childFragmentManager,opcoData,parentIndex)
         binding.viewpager.adapter=adapter
 
         binding.tabs.setupWithViewPager(binding.viewpager)

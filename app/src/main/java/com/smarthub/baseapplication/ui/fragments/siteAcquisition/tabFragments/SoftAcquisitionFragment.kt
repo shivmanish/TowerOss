@@ -5,29 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAuthorityPayments
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqInsidePremise
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqOutsidePremise
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPropertyOwnerDetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerConsumableViewDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelAuthPaymentViewDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelPoViewDialouge
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSurveyFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AssignACQTeamFragAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SoftAcquisitionFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.InsidePremisesViewDialouge
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.OutsidePremisesViewDialouge
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PropertyOwnerViewDialouge
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailsViewDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -90,7 +75,10 @@ class SoftAcquisitionFragment(var acqTeamData:NewSiteAcquiAllData?, var parentIn
        AppLogger.log("Attachment clicked")
     }
 
-
+    override fun viewPayeeAccountClicked(position: Int, data: SAcqPayeeAccountDetail) {
+        val bm = PayeeAccDetailsViewDialouge(R.layout.acq_payee_acc_view_dialouge,data)
+        bm.show(childFragmentManager,"sdg")
+    }
 
 
 }

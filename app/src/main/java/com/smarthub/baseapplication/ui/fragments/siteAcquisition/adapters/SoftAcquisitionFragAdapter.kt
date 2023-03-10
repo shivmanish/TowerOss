@@ -6,25 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.AcqAgreementTermItemsBinding
+import com.smarthub.baseapplication.databinding.AcqPayeeAcountTableBinding
+import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.*
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
-import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.SiteAddressData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqAgreementTerm
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerConsumableTableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPaymentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelTariffTableAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.InsidePremisesTableAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.OutsidePremisesTableAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PayeeAccountTableAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PropertyOwnerTableAdapter
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
-import com.smarthub.baseapplication.utils.Utils
 
 class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<SoftAcquisitionFragAdapter.ViewHold>() {
     private var datalist: SoftAcquisitionData?=null
@@ -77,9 +72,9 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
 
 
     }
-    class ViewHold4(itemView: View) : ViewHold(itemView) {
-        var binding : AcqPropertyOwnersDetailsItemsBinding = AcqPropertyOwnersDetailsItemsBinding.bind(itemView)
-        var ownerTableList: RecyclerView=binding.propertyOwnerTableItem
+    class ViewHold2(itemView: View) : ViewHold(itemView) {
+        var binding : AcqPayeeAcountTableBinding = AcqPayeeAcountTableBinding.bind(itemView)
+        var payeeTableList: RecyclerView=binding.payeeAccountTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -92,30 +87,14 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
             }
 
             binding.imgAdd.setOnClickListener {
-                addOwnerTableItem("wqeeqs")
+                addPayeeAccountTableItem("wqeeqs")
             }
         }
 
-        private fun addOwnerTableItem(item:String){
-            if (ownerTableList.adapter!=null && ownerTableList.adapter is PropertyOwnerTableAdapter){
-                val adapter = ownerTableList.adapter as PropertyOwnerTableAdapter
+        private fun addPayeeAccountTableItem(item:String){
+            if (payeeTableList.adapter!=null && payeeTableList.adapter is PropertyOwnerTableAdapter){
+                val adapter = payeeTableList.adapter as PropertyOwnerTableAdapter
                 adapter.addItem(item)
-            }
-        }
-
-
-    }
-    class ViewHold2(itemView: View) : ViewHold(itemView) {
-        var binding : AcqFeasibilityDetailsItemsBinding = AcqFeasibilityDetailsItemsBinding.bind(itemView)
-
-        init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
         }
 
@@ -166,7 +145,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.acq_feasibility_details_items, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.acq_payee_acount_table, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
@@ -205,7 +184,27 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                 try {
                     if (datalist!=null && datalist?.SAcqSoftAcquisitionAgreementTerm?.isNotEmpty()==true){
                         val agreeData: SoftAcqAgreementTerm? = datalist?.SAcqSoftAcquisitionAgreementTerm?.get(0)
-                        
+                        if(agreeData?.Acquisitiontype?.isNotEmpty()==true)
+                            AppPreferences.getInstance().setDropDown(holder.binding.AgreementType,DropDowns.Acquisitiontype.name,agreeData.Acquisitiontype.get(0).toString())
+                        if(agreeData?.PropertyOwnership?.isNotEmpty()==true)
+                            AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,agreeData.PropertyOwnership.get(0).toString())
+                        holder.binding.PropertyType.text=agreeData?.PropertyType.toString()
+                        holder.binding.RentAymentPeriod.text=agreeData?.Rentpaymentperiod.toString()
+                        holder.binding.EBBillingBasis.text=agreeData?.EBBillingBasis.toString()
+                        holder.binding.EBInclusiveInRental.text=agreeData?.EBInclusiveInRental.toString()
+                        holder.binding.RentEscalationPeriod.text=agreeData?.RentEscalationPeriod
+                        holder.binding.AcquisitionArea.text=agreeData?.AcquisitionArea
+                        holder.binding.AgreementPeriod.text=agreeData?.AgreementPeriod
+                        holder.binding.LockInPeriod.text=agreeData?.LockInPeriod
+                        holder.binding.AnnualRentAmount.text=agreeData?.AnnualRentAmount
+                        holder.binding.PeriodicRentAmount.text=agreeData?.PeriodicRentAmount
+                        holder.binding.RentEscalation.text=agreeData?.RentEscalation
+                        holder.binding.EBBillLimitMin.text=agreeData?.EBBillLimitmin
+                        holder.binding.EBBillLimitMax.text=agreeData?.EBBillLimitmax
+                        holder.binding.EBPerUnitRate.text=agreeData?.EBPUnitRate
+                        holder.binding.OnetimeAmount.text=agreeData?.OnetimeAmount
+                        holder.binding.SecurityDepositAmount.text=agreeData?.SecurityDepositAmount
+                        holder.binding.remarks.text=agreeData?.Remark
                     }
                     else
                         AppLogger.log("error in soft Acquisition data or Agreement terms data")
@@ -220,11 +219,8 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
 
-                    holder.binding.imgEdit.setOnClickListener {
-//                        listener.EditTowerItem()
-                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -232,7 +228,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -240,25 +236,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null ){
-//                        val feasibilityData: SAcqFeasibilityDetail? = datalist?.SAcqFeasibilityDetail?.get(0)
-//                        if (feasibilityData?.Acquisitiontype?.isNotEmpty() == true)
-//                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,feasibilityData.Acquisitiontype.get(0).toString())
-//                        if (feasibilityData?.TowerPoleType?.isNotEmpty() == true)
-//                            AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleType,DropDowns.TowerPoleType.name,feasibilityData.TowerPoleType.get(0).toString())
-//
-//                        holder.binding.AcquisitionArea.text=feasibilityData?.Area
-//                        holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
-//                        holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
-//                        holder.binding.FiberLMCLaying.text=feasibilityData?.FiberLMCLaying.toString()
-//                        holder.binding.EBSupplyThroOwnerMeter.text=feasibilityData?.OwnerMeter.toString()
-//                        holder.binding.EquipmentRoom.text=feasibilityData?.EquipmentRoom.toString()
-//                        holder.binding.RequiredAreaAvailable.text=feasibilityData?.RequiredAreaAvailable.toString()
-//                        holder.binding.StatutoryPermissions.text=feasibilityData?.StatutoryPermission.toString()
-//                        holder.binding.OverallFeasibility.text=feasibilityData?.OverallFeasibility.toString()
-//                        holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
-//                        holder.binding.SurveyDate.text=feasibilityData?.SurveyDate.toString()
-//                        holder.binding.remarks.text=feasibilityData?.Remark
-
+                        holder.payeeTableList.adapter=PayeeAccountTableAdapter(context,listener,datalist?.SAcqPayeeAccountDetail)
                     }
                     else
                         AppLogger.log("error in Acquisition Survey data or Property details data")
@@ -304,8 +282,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
 
     interface SoftAcqListListener {
        fun attachmentItemClicked()
-
-
+       fun viewPayeeAccountClicked(position: Int,data:SAcqPayeeAccountDetail)
     }
 
 }

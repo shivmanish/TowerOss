@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency
 
 data class BackBackhaulLinkMWAntenna(
     val Height: String,
+    val LinkId: String,
     val InstallationDate: String,
     val Make: String,
     val Model: String,
