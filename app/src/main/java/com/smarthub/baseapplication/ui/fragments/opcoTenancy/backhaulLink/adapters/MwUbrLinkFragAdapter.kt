@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.MwUbrLinkInfoDetailsBinding
-import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkMWLinkInfo
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills

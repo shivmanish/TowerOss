@@ -36,6 +36,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDa
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
@@ -48,7 +49,6 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -98,7 +98,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<QatMainModel>> qatMainModelResponse;
-    private SingleLiveEvent<Resource<UtilitiesEquipModel>> utilityEquipModel;
+    private SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogsDataModel>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
@@ -153,7 +153,7 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<NocCompAllDataModel>> getNOCandCompModel() {
         return noCandCompModel;
     }
-    public SingleLiveEvent<Resource<UtilitiesEquipModel>> getUtilityEquipModel() {
+    public SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>> getUtilityEquipModel() {
         return utilityEquipModel;
     }
     public SingleLiveEvent<Resource<TowerCivilAllDataModel>> getTowerAndCivilInfraModel() {
@@ -1244,13 +1244,14 @@ public class HomeRepo {
     }
 
     public void utilitiEquipRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("utilities");
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("UtilityEquipment",new JsonArray());
         AppLogger.INSTANCE.log("id :"+id);
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchUtilitiesEquipRequest(siteInfoParam).enqueue(new Callback<UtilitiesEquipModel>() {
+        apiClient.fetchUtilitiesEquipRequest(jsonObject).enqueue(new Callback<UtilityEquipmentAllDataModel>() {
             @Override
-            public void onResponse(Call<UtilitiesEquipModel> call, Response<UtilitiesEquipModel> response) {
+            public void onResponse(Call<UtilityEquipmentAllDataModel> call, Response<UtilityEquipmentAllDataModel> response) {
                 if (response.isSuccessful()){
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
@@ -1261,11 +1262,11 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<UtilitiesEquipModel> call, Throwable t) {
+            public void onFailure(Call<UtilityEquipmentAllDataModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<UtilitiesEquipModel> response) {
+            private void reportSuccessResponse(Response<UtilityEquipmentAllDataModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
