@@ -22,7 +22,9 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
-    lateinit var siteId:String
+    var siteId:String = "448"
+    var taskId:String = "474"
+    var tempWhere = "[41,42,43]"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,45 +36,36 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 //            onBackPressed()
 //        }
         checkLocationPermission()
-        if (intent.hasExtra("url")){
-            val id = intent.getStringExtra("url")
-//            binding.titleText.text = id
+        if (intent.hasExtra("url") && intent.getStringExtra("url")!=null){
+            taskId = intent.getStringExtra("url")!!
             showLoader()
-            viewModel.fetchTaskDetails(id!!)
+            viewModel.fetchTaskDetails(taskId)
         }
         if (intent.hasExtra("siteId")){
             siteId = intent.getStringExtra("siteId")!!
         }
-
-
-        if (viewModel.taskDataList?.hasActiveObservers() == true)
-            viewModel.taskDataList?.removeObservers(this)
-        viewModel.taskDataList?.observe(this){
-            hideLoader()
-            if (it?.data != null){
-                if (it.data.isNotEmpty()){
-                    mapUIData(it.data[0])
-                }
-                else
-                    setFragment(TaskSearchTabFragment(siteId,"474"))
-                Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
-            }
+        if (intent.hasExtra("where") && intent.getStringExtra("where")?.isNotEmpty() == true &&
+            intent.getStringExtra("where")!="[]"){
+            tempWhere = intent.getStringExtra("where")!!
         }
-//        binding.refreshLayout.setOnRefreshListener {
-//            binding.refreshLayout.isRefreshing = false
-//            if (intent.hasExtra("url")){
-//                val id = intent.getStringExtra("url")
-////                binding.titleText.text = id
-//                showLoader()
-//                viewModel.fetchTaskDetails(id!!)
+
+
+//        if (viewModel.taskDataList?.hasActiveObservers() == true)
+//            viewModel.taskDataList?.removeObservers(this)
+//        viewModel.taskDataList?.observe(this){
+//            hideLoader()
+//            if (it?.data != null){
+//                if (it.data.isNotEmpty()){
+//                    mapUIData()
+//                }
+//                else
+//                    setFragment(TaskSearchTabFragment(siteId,"474"))
+//                Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
 //            }else{
-//                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
 //            }
 //        }
-
-
+        mapUIData()
     }
 
     private fun checkLocationPermission() {
@@ -134,11 +127,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
 
-    fun mapUIData(item : TaskDataListItem){
-        setFragment(TaskSearchTabFragment(siteId,"474"))
-//        binding.titleText.text ="Task\n${item.Processname}"
-//
-//        binding.listItem.adapter = TaskAdapter(applicationContext,this)
+    fun mapUIData(){
+        setFragment(TaskSearchTabFragment(siteId,taskId,tempWhere))
     }
 
     override fun onStop() {

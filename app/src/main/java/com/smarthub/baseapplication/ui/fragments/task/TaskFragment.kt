@@ -38,10 +38,6 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.addItem.setOnClickListener {
-//            val intent = Intent(requireActivity(),TaskActivity::class.java)
-//            requireActivity().startActivity(intent)
-//        }
         binding.addMore.setOnClickListener {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")

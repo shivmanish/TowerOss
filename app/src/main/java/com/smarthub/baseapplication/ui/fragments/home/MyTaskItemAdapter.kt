@@ -126,17 +126,17 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             holder.itemView.setOnClickListener {
                 listener.closeTask(item,token)
             }
-
-                holder.binding.taskClose.setOnClickListener {
-                    if(item.Status!="Closed")
-                    {
-                        val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        intent.putExtra("url", "${item.id1}")
-                        intent.putExtra("siteId","${item.siteid}")
-                        holder.itemView.context.startActivity(intent)
-                    }
+            holder.binding.taskClose.setOnClickListener {
+                if(item.Status!="Closed") {
+                    val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.putExtra("url", item.id1)
+                    if (item.Where.isNotEmpty())
+                        intent.putExtra("where", item.Where)
+                    intent.putExtra("siteId", item.siteid)
+                    holder.itemView.context.startActivity(intent)
                 }
+            }
             if(item.Status=="Closed"){
                 holder.binding.taskClose.text="Task Closed"
                 holder.binding.taskClose.isEnabled=false

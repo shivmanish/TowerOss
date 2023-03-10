@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
@@ -24,6 +25,7 @@ import com.smarthub.baseapplication.widgets.CustomSpinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class AppPreferences {
@@ -41,6 +43,74 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             mInstance = new AppPreferences();
         }
         return mInstance;
+    }
+
+    public  HashMap<String, String> getTaskOfflineQueue(){
+        //get from shared prefs
+        String storedHashMapString = mPrefs.getString("hashString", "");
+        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        HashMap<String, String> testHashMap2 = new HashMap<>();
+        try {
+            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+        }
+        return testHashMap2;
+    }
+
+    public  String getNextTaskOfflineQueue(){
+        //get from shared prefs
+        String storedHashMapString = mPrefs.getString("hashString", "");
+        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        HashMap<String, String> testHashMap2 = new HashMap<>();
+        try {
+            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+        }
+        if (testHashMap2.size()>0){
+            return  (new ArrayList<>(testHashMap2.keySet())).get(0);
+        }
+        return "";
+    }
+
+    public void removeTaskOfflineQueue(String taskId){
+        String createdId = "getTaskOfflineQueue"+taskId;
+        //get from shared prefs
+        String storedHashMapString = mPrefs.getString("hashString", "");
+        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        HashMap<String, String> testHashMap2 = new HashMap<>();
+        try {
+            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+        }
+        if (testHashMap2.containsKey(createdId)){
+            testHashMap2.remove(createdId);
+            saveHashMapData(testHashMap2);
+        }
+    }
+
+    public void addTaskOfflineQueue(String taskId,Context context){
+        String createdId = "getTaskOfflineQueue"+taskId;
+        //get from shared prefs
+        String storedHashMapString = mPrefs.getString("hashString", "");
+        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        HashMap<String, String> testHashMap2 = new HashMap<>();
+        try {
+            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+        }
+        String uiJson = getTaskUiModelJson(taskId,context);
+        testHashMap2.put(createdId,uiJson);
+        saveHashMapData(testHashMap2);
+    }
+
+    void saveHashMapData(HashMap<String, String> testHashMap){
+        Gson gson = new Gson();
+        String hashMapString = gson.toJson(testHashMap);
+        saveString("hashString",hashMapString);
     }
 
     public List<MyTeamTask> getMyTeamTask(){
@@ -94,6 +164,19 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             AppLogger.INSTANCE.log("error in fetching task ui model on appPrefrence"+e.getLocalizedMessage());
         }
         return taskModel;
+    }
+
+    public String getTaskUiModelJson(String taskId,Context context){
+        String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"task_drop_down.json");
+        try{
+            if (!getString("task_"+ taskId).isEmpty())
+                modelJson=getString("task_"+ taskId);
+            else
+                saveString("task_"+taskId,modelJson);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("error in fetching task ui model on appPrefrence"+e.getLocalizedMessage());
+        }
+        return modelJson;
     }
 
     public void saveBoolean(String iKey, boolean iValue) {
