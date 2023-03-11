@@ -158,7 +158,15 @@ class TaskSearchTabFragment(
                 PatrollerPriference(requireContext()).setStartLongitude("Na")
                 startServiceBackground()
             } else {
-                mapView()
+//                mapView()
+                if (mServiceIntent != null) {
+                    PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
+                    LocationService.is_canceled_by_me = true
+                    requireContext().stopService(mServiceIntent)
+                    PatrollerPriference(requireContext()).settime("")
+                    binding.start.text = "Start"
+                }
+
             }
         }
         binding.messages.setOnClickListener {
@@ -223,14 +231,7 @@ class TaskSearchTabFragment(
                 PatrollerPriference.PATROLING_STATUS_STOP, ignoreCase = true
             )
         ) {
-
-            if (mServiceIntent != null) {
-                PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
-                LocationService.is_canceled_by_me = true
-                requireContext().stopService(mServiceIntent)
-                PatrollerPriference(requireContext()).settime("")
-                binding.start.text = "Start"
-            }
+            binding.start.text = "Start"
 
         }
     }

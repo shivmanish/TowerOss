@@ -124,6 +124,5 @@ public enum DropDowns {
     // plan design
     EquipmentType,
     BatterybankInstalledLocationType,
-    PowerConnectionType,
 
 }
