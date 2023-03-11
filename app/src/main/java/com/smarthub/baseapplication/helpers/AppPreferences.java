@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -288,6 +289,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
     public ArrayList<String> getAIImagesStringList(String key) {
         return new ArrayList<>(Arrays.asList(TextUtils.split(mPrefs.getString(key, ""), "‚‗‚")));
     }
+
 
     /**
      * Put ArrayList of String into SharedPreferences with 'key' and save

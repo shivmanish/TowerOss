@@ -309,6 +309,21 @@ object Utils {
         }
         return date
     }
+    fun getFullFormatedDate(d : String) : String{
+        var format="yyyy-MM-dd'T'HH:mm:ss.SSS"
+        var date=d
+        AppLogger.log("getFullFormatedDate:$date")
+        try {
+            val inputFormat: DateFormat = SimpleDateFormat("dd-MMM-yyyy")
+            val outputFormat: DateFormat = SimpleDateFormat(format)
+            val inputDateStr = date
+            val inputDate: Date = inputFormat.parse(inputDateStr)
+             date = outputFormat.format(inputDate)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("getFullFormatedDate error :${e.localizedMessage}")
+        }
+        return date
+    }
 
     fun get12hrformate(time:String):String{
         var s = time
@@ -322,19 +337,6 @@ object Utils {
             AppLogger.log("compareDate error :${e.localizedMessage}")
         }
         return s
-    }
-    fun getFormatedDateNew(d : String,format:String) : String{
-        var date=d
-        AppLogger.log("getformatedDate:$date")
-        try {
-            val sdf = SimpleDateFormat(format)
-            val secondDate: Date = sdf.parse(date)
-            date=secondDate.toString()
-            AppLogger.log("date :$date")
-        }catch (e:java.lang.Exception){
-            AppLogger.log("compareDate error :${e.localizedMessage}")
-        }
-        return date
     }
 
     fun isValid(value: String):Boolean {
@@ -378,4 +380,5 @@ object Utils {
         alert.setCancelable(false)
         alert.show()
     }
+
 }

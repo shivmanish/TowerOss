@@ -1,28 +1,22 @@
 package com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.databinding.AssignAcqTeamItemBinding
+import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerConsumableTableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPaymentTableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelTariffTableAdapter
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class AssignACQTeamFragAdapter(var context: Context, var listener: AssignACQTeamListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
+class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: AssignACQTeamListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
     private var datalist: AssignACQTeamDAta?=null
 
     fun setData(data: AssignACQTeamDAta?) {
@@ -129,9 +123,16 @@ class AssignACQTeamFragAdapter(var context: Context, var listener: AssignACQTeam
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-//                        listener.EditTowerItem()
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
+                    holder.binding.cancel.setOnClickListener {
+                        holder.binding.viewLayout.visibility = View.VISIBLE
+                        holder.binding.editLayout.visibility = View.GONE
                     }
                 }
                 else {
@@ -148,6 +149,7 @@ class AssignACQTeamFragAdapter(var context: Context, var listener: AssignACQTeam
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null){
+                        // view mode
                         if (datalist?.Acquisitiontype?.isNotEmpty() == true)
                             AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
                         if (datalist?.AcquisitionMode?.isNotEmpty() == true)
@@ -168,11 +170,72 @@ class AssignACQTeamFragAdapter(var context: Context, var listener: AssignACQTeam
                         holder.binding.PODate.text=Utils.getFormatedDate(datalist?.PODate?.substring(0,10)!!,"dd-MMM-yyyy")
                         holder.binding.remarks.text=datalist?.Remark
 
+                        // edit mode
+                        if (datalist?.Acquisitiontype?.isNotEmpty() == true)
+                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
+                        if (datalist?.AcquisitionMode?.isNotEmpty() == true)
+                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
+                        if (datalist?.VendorCompany?.isNotEmpty() == true)
+                            AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
+                        holder.binding.AcquisitionLeadNameEdit.setText(datalist?.LeadName)
+                        holder.binding.AcquisitionExecutiveNameEdit.setText(datalist?.ExecutiveName)
+                        holder.binding.AcquisitionBudgetEdit.setText(datalist?.AcquisitionBudget)
+                        holder.binding.VendorCodeEdit.setText(datalist?.VendorCode)
+                        holder.binding.PONumberEdit.setText(datalist?.PONumber)
+                        holder.binding.POLineNoEdit.setText(datalist?.POLineItemNo.toString())
+                        holder.binding.POAmountEdit.setText(datalist?.POAmount)
+                        holder.binding.VendorExecutiveNameEdit.setText(datalist?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailIDEdit.setText(datalist?.VendorExecutiveEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(datalist?.VendorExecutiveMobile)
+                        holder.binding.AcquisitionTargetDateEdit.text=Utils.getFormatedDate(datalist?.AcquisitionTargetDate?.substring(0,10)!!,"dd-MMM-yyyy")
+                        holder.binding.PODateEdit.text=Utils.getFormatedDate(datalist?.PODate?.substring(0,10)!!,"dd-MMM-yyyy")
+                        holder.binding.remarksEdit.setText(datalist?.Remark)
+
+                        baseFragment.setDatePickerView(holder.binding.AcquisitionTargetDateEdit)
+                        baseFragment.setDatePickerView(holder.binding.PODateEdit)
+
                     }
                     else
                         AppLogger.log("error in Power Connection details data")
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                }
+
+                holder.binding.update.setOnClickListener {
+                    datalist.let {
+                        it?.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
+                        it?.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
+                        it?.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
+                        it?.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
+                        it?.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                        it?.PONumber=holder.binding.PONumberEdit.text.toString()
+                        it?.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
+                        it?.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
+                        it?.POAmount=holder.binding.POAmountEdit.text.toString()
+                        it?.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                        it?.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
+                        it?.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                        it?.isActive=null
+                        it?.modified_at=null
+                        it?.created_at=null
+
+                        if (it?.AcquisitionMode?.isNotEmpty()==true)
+                            it.AcquisitionMode[0] = holder.binding.AcquisitionModeEdit.selectedValue.id.toInt()
+                        else
+                            it?.AcquisitionMode?.add(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
+
+                        if (it?.Acquisitiontype?.isNotEmpty()==true)
+                            it.Acquisitiontype[0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
+                        else
+                            it?.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+
+                        if (it?.VendorCompany?.isNotEmpty()==true)
+                            it.VendorCompany[0] = holder.binding.VendorNameEdit.selectedValue.id.toInt()
+                        else
+                            it?.VendorCompany?.add(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+
+                        listener.updateTeamClicked(it)
+                    }
                 }
 
             }
@@ -213,7 +276,7 @@ class AssignACQTeamFragAdapter(var context: Context, var listener: AssignACQTeam
 
     interface AssignACQTeamListListener {
        fun attachmentItemClicked()
-       fun editTeamClicked(position: Int,data:PowerFuelPODetail)
+       fun updateTeamClicked(data:AssignACQTeamDAta?)
     }
 
 }

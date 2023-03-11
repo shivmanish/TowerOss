@@ -1,53 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#F0F0F0"
+    android:orientation="vertical"
+    android:id="@+id/swiping_layout"
     android:padding="@dimen/dp5"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/add_new"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/dp5"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-        <include
-            layout="@layout/add_new_layout">
-
-        </include>
-    </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="@dimen/dp3"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/site_lease_list_item"
-        android:id="@+id/site_lease_list_item"
-        android:paddingBottom="@dimen/dp10"
-        app:layout_constraintTop_toBottomOf="@+id/add_new"/>
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/add_more"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
-        android:layout_marginEnd="@dimen/dp20"
-        android:layout_marginBottom="@dimen/dp20"
-        app:cardCornerRadius="@dimen/dp100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardBackgroundColor="#3D4E6D"
-        app:cardElevation="2dp"
-        app:strokeColor="@color/tab_deselected"
-        app:strokeWidth="1dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <ImageView
-            android:padding="@dimen/dp12"
-            android:adjustViewBounds="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_new_menu_icon"/>
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/add_new"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <include
+                layout="@layout/add_new_layout">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </include>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/site_lease_list_item"
+            android:id="@+id/site_lease_list_item"
+            android:paddingBottom="@dimen/dp10"
+            app:layout_constraintTop_toBottomOf="@+id/add_new"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/add_more"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginBottom="@dimen/dp20"
+            app:cardCornerRadius="@dimen/dp100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="#3D4E6D"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/tab_deselected"
+            app:strokeWidth="1dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:padding="@dimen/dp12"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_new_menu_icon"/>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

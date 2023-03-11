@@ -22,7 +22,11 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
@@ -40,6 +44,7 @@ import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
+import com.smarthub.baseapplication.network.repo.UpdateIBoardRepo
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
@@ -49,6 +54,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 class HomeViewModel : ViewModel() {
 
     var homeRepo: HomeRepo?=null
+    var updateIBoardRepo: UpdateIBoardRepo?=null
     var getHomeDataResponse : SingleLiveEvent<Resource<HomeResponse>>?=null
     var getProjectDataResponse : SingleLiveEvent<Resource<ProjectModelData>>?=null
     var getTaskDataResponse : SingleLiveEvent<Resource<TaskModelData>>?=null
@@ -83,9 +89,11 @@ class HomeViewModel : ViewModel() {
     var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
     var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
+    var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
+        updateIBoardRepo = UpdateIBoardRepo(APIInterceptor.get())
         getHomeDataResponse = homeRepo?.homeResponse
         getProjectDataResponse = homeRepo?.projectResponse
         getTaskDataResponse = homeRepo?.taskResponse
@@ -119,6 +127,7 @@ class HomeViewModel : ViewModel() {
         addNotiResponse=homeRepo?.addNotificationResponse
         siteInfoDataResponse=homeRepo?.siteInfoDataModel
         acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
+        updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -277,5 +286,13 @@ class HomeViewModel : ViewModel() {
 
     fun updateSiteInfo(siteAgreementsData: SiteacquisitionAgreement) {
         homeRepo?.updateAgreementSiteInfo(siteAgreementsData)
+    }
+    fun updateSiteAcq(data: UpdateSiteAcquiAllData) {
+        val dataModel= UpdateSiteAcqModel()
+        val tempList:ArrayList<UpdateSiteAcquiAllData> =ArrayList()
+        tempList.clear()
+        tempList.add(data)
+        dataModel.SAcqSiteAcquisition=tempList
+        updateIBoardRepo?.updateSiteAcqData(dataModel)
     }
 }

@@ -41,6 +41,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDat
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel;
@@ -138,9 +140,6 @@ public interface APIClient {
     @POST(EndPoints.SITE_INFO_DROP_DOWN_NEW)
     Call<DropDownNew> siteInfoDropDownNew();
 
-    @GET(EndPoints.SITE_INFO_MODEL)
-    Call<SiteInfoModel> fetchSiteInfoData();
-
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SiteInfoModel> fetchSiteInfoById(@Body IdData data);
@@ -193,6 +192,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
     Call<SiteAcquisitionAllDataModel> fetchSiteAgreementModelRequest(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<UpdateSiteAcqResponseModel> updateSiteAcqRequest(@Body UpdateSiteAcqModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
