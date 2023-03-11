@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityRadioAnteenaBinding
@@ -33,15 +34,17 @@ class RadioAnteenaActivity : BaseActivity() {
         }
         binding.subTitle.text=AppController.getInstance().siteName
 
-        AppLogger.log("status Opcodata","Opcodata size : "+ AntennaData)
+        AppLogger.log("RadioAntennaAndRRURadioAntennaDetail data : ${Gson().toJson(AntennaData?.RadioAntennaAndRRURadioAntennaDetail)}")
+        AppLogger.log("RadioAntennaAndRRUCableDetail data : ${Gson().toJson(AntennaData?.CableDetail)}")
+        AppLogger.log("RadioAntennaAndRRURRUDetail data : ${Gson().toJson(AntennaData?.RadioAntennaAndRRURRUDetail)}")
         binding.viewpager.adapter = RadioAntennaPageAdapter(supportFragmentManager, AntennaData!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
-        binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
-        for (i in 0..binding.tabs.tabCount.minus(1)){
-            if (i==0)
-                binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
-
-        }
+//        binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
+//        for (i in 0..binding.tabs.tabCount.minus(1)){
+//            if (i==0)
+//                binding.tabs.getTabAt(i)?.view?.setBackgroundResource(R.color.white)
+//
+//        }
 
 
     }

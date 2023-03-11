@@ -32,12 +32,13 @@
         <item>Service Request</item>
         <item>OPCO Tenancy</item>
         <item>Plan &amp; Design</item>
-        <item>Site Agreement</item>
+        <item>Site Acquisition</item>
         <item>Utilities Equip</item>
         <item>NOC &amp; Comp</item>
         <item>TWR &amp; Civil Infra</item>
         <item>Power &amp; fuel</item>
         <item>QA &amp; Inspection</item>
+<!--        <item>Acquisition Survey</item>-->
     </string-array>
     <integer-array name="random_imgs">
         <item>@drawable/site_info</item>

@@ -10,26 +10,26 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingInfoFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingModel?, var id:String?, var index:Int): Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
+class TowerEarthingInfoFragment(var earthingData: FilterdTwrData?): Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
     lateinit var binding : TowerEarthingInfoFragmentBinding
     var viewmodel: HomeViewModel?=null
     lateinit var adapter:EarthingInfoFragmentAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerEarthingInfoFragmentBinding.inflate(inflater, container, false)
-        return binding?.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData)
-        binding?.listItem?.adapter = adapter
+        adapter=EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData?.TowerDetails?.TowerAndCivilInfraEarthing?.get(0))
+        binding.listItem.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
             viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
@@ -42,24 +42,21 @@ class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingMode
                 binding.swipeLayout.isRefreshing=false
                 AppLogger.log("TwrCivil Fragment card Data fetched successfully")
                 try {
-//                    adapter.setData(it.data.item!![0].TowerAndCivilInfra.get(0).TowerAndCivilInfraEarthingModel.get(index))
+                    adapter.setData(it.data.TowerAndCivilInfra?.get(earthingData?.index!!)?.TowerAndCivilInfraEarthing?.get(0))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("TwrCivil earth Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"TwrCivil earth  error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
                 AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"TwrCivil earth  error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TwrCivil earth  error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("TwrCivil earth  Fragment Something went wrong")
-                Toast.makeText(requireContext(),"TwrCivil earth fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            viewmodel?.TowerAndCivilRequestAll(id!!)
+            viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
         }
     }
 
@@ -88,26 +85,34 @@ class TowerEarthingInfoFragment(var earthingData: TowerAndCivilInfraEarthingMode
     }
 
     override fun editPoClicked(position: Int) {
-        var bm = EditEarthingPOTableBottomSheet(R.layout.earthing_po_item_dialouge)
+        val bm = EditEarthingPOTableBottomSheet(R.layout.earthing_po_item_dialouge)
         bm.show(childFragmentManager, "category")
         Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewPoClicked(position: Int) {
-        var bm = EarthingPoTableViewDialougeAdapter(R.layout.earthing_po_item_dialouge)
+    override fun viewPoClicked(position: Int,data:TwrCivilPODetail) {
+        val bm = EarthingPoTableViewDialougeAdapter(R.layout.earthing_po_item_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
     override fun editConsumableClicked(position: Int) {
-        var bm = EarthingConsumableEditDialougeAdapter(R.layout.earthing_consumable_table_edit_dialouge)
+        val bm = EarthingConsumableEditDialougeAdapter(R.layout.earthing_consumable_table_edit_dialouge)
         bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
     }
 
-    override fun viewConsumableClicked(position: Int) {
-        var bm = EarthingConsumableTableViewDialougeAdapter(R.layout.earthing_consumable_table_view_dialouge)
+    override fun viewConsumableClicked(position: Int, data:TwrCivilConsumableMaterial) {
+        val bm = EarthingConsumableTableViewDialougeAdapter(R.layout.earthing_consumable_table_view_dialouge,data)
         bm.show(childFragmentManager, "category")
-        Toast.makeText(requireContext() , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+    }
+
+    override fun viewEarthingDetails(position: Int, data: TwrCivilInfraEarthingDetail) {
+        val bm = EarthingDetailsViewDialouge(R.layout.earthing_details_view_dialouge,data)
+        bm.show(childFragmentManager, "category")
+    }
+
+    override fun viewMaintenenceClicked(position: Int, data: PreventiveMaintenance) {
+        val bm= TowerMaintenenceViewAdapter(R.layout.tower_maintenence_view_dialouge,data)
+        bm.show(childFragmentManager, "category")
     }
 
 

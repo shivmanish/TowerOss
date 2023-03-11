@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PoleConsumableTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.PoleModelConsumable
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.PoleInfoFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -40,15 +38,14 @@ class PoleconsumableTableAdapter (var context : Context, var listener : PoleInfo
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var item:TwrCivilConsumableMaterial=list?.get(position)!!
+        val item:TwrCivilConsumableMaterial=list?.get(position)!!
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it,item)
         }
         try {
             holder.binding.SrNo.text=position.plus(1).toString()
             holder.binding.model.text=item.Model
-            holder.binding.installationDate.text=
-                Utils.getFormatedDate(item.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.installationDate.text= Utils.getFormatedDate(item.InstallationDate.substring(0,10),"dd-MMM-yyyy")
             holder.binding.ItemName.text=item.ItemName
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")

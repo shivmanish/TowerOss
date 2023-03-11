@@ -3,18 +3,17 @@ package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewOpcoInfoData
-import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoInfoOperationsTeam
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoInfoSiteDetails
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
-import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
@@ -24,7 +23,12 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener, var opcodata: A
     var type1 = "Site Details"
     var type2 = "Operations Team"
     var type3 = "Attachments"
-    private var AllData : ArrayList<NewOpcoInfoData>? = opcodata
+    private var OpcoInfoData : NewOpcoInfoData? = null
+
+    fun setData(data: NewOpcoInfoData?) {
+        this.OpcoInfoData=data!!
+        notifyDataSetChanged()
+    }
 
     fun updateOpcoInfoData(updateddata:Opcoinfo){
 //        opcodata?.Opcoinfo?.set(0, updateddata)
@@ -35,14 +39,19 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener, var opcodata: A
         list.add("Site Details")
         list.add("Operations Team")
         list.add("Attachments")
+        try {
+            OpcoInfoData=opcodata?.get(0)
+        }catch (e:Exception){
+            AppLogger.log("error in opci=o info adapter : ${e.localizedMessage}")
+        }
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if ( list[position]==type1)
             return 1
-        else if (list[position] is String && list[position]==type2)
+        else if ( list[position]==type2)
             return 2
-        else if (list[position] is String && list[position]==type3)
+        else if (list[position]==type3)
             return 3
         return 0
     }
@@ -153,26 +162,31 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener, var opcodata: A
                 }
                 holder.binding.itemTitle.text = list[position]
 
-                if (AllData!=null && AllData?.isNotEmpty()==true) {
-                    var data : NewOpcoInfoData ? = AllData?.get(0)
-                    holder.binding.opcoSiteId.text=data?.OpcoSiteID
-                    holder.binding.opcoSiteName.text=data?.OpcoSiteName
-                    holder.binding.rfiAcceptenceDate.text=data?.RfiAcceptanceDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
-                    holder.binding.rfrDate.text=data?.RfrDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
-                    holder.binding.OPCOSignOffDate.text= data?.OpcoSignOffDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
-                    holder.binding.CommittedNWA.text=data?.CommittedNWA
-                    holder.binding.OpcoName.text=data?.OpcoName
-                    holder.binding.srNumber.text=data?.SRNumber
-                    holder.binding.srType.text=data?.SRType
-                    holder.binding.rackUSpaceUsed.text=data?.RackUSpaceUsed.toString()
-                    holder.binding.AntennaSpaceUsed.text=data?.AntennaSpaceUsed.toString()
-                    holder.binding.opcoSiteSapId.text=data?.OpcoSiteSAPId
+                if (OpcoInfoData!=null && OpcoInfoData?.SRInfo01?.isNotEmpty()==true) {
+                    try {
+                        val data : OpcoInfoSiteDetails ? = OpcoInfoData?.SRInfo01?.get(0)
+                        holder.binding.opcoSiteId.text=data?.OpcoSiteId
+                        holder.binding.opcoSiteName.text=data?.OpcoSiteName
+                        holder.binding.rfiAcceptenceDate.text=data?.RFIAcceptanceDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
+                        holder.binding.rfrDate.text=data?.RFRDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
+                        holder.binding.OPCOSignOffDate.text= data?.OpcoSignOffDate?.substring(0,10)?.let { Utils.getFormatedDate(it,"dd-MMM-yyyy") }
+                        holder.binding.CommittedNWA.text=data?.CommittedNWA.toString()
+                        holder.binding.OpcoName.text=data?.OpcoName
+                        holder.binding.srNumber.text=data?.ServiceRequestNumber
+                        holder.binding.srType.text=data?.SRType.toString()
+                        holder.binding.rackUSpaceUsed.text=data?.RackUSpaceUsed.toString()
+                        holder.binding.AntennaSpaceUsed.text=data?.AntennaSpaceUsed.toString()
+                        holder.binding.opcoSiteSapId.text=data?.OpcoSiteSAPId
 
-                    AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteStatus,DropDowns.Opcositestatus.name,data?.OpcoSiteStatus.toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,data?.Opcositetype?.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.AlarmExtension,DropDowns.Alarmsextension.name,data?.AlarmExtension.toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.Technology,DropDowns.Rftechnology.name,data?.Technology?.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.opcoNetworkType,DropDowns.Operatornetworktype.name,data?.Operatornetworktype?.get(0).toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteStatus,DropDowns.Opcositestatus.name,data?.OpcoSiteStatus.toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,data?.Opcositetype?.get(0).toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.AlarmExtension,DropDowns.Alarmsextension.name,data?.Alarmsextension.toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.Technology,DropDowns.Rftechnology.name,data?.Technology?.get(0).toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.opcoNetworkType,DropDowns.OpcoNetworkType.name,data?.OpcoNetworkType?.get(0).toString())
+
+                    } catch (e:Exception){
+                        AppLogger.log("erro in opco info opration team data: ${e.localizedMessage}")
+                    }
 
                 }
             }
@@ -200,11 +214,11 @@ class OpcoSiteInfoFragAdapter(var listener: OpcoInfoLisListener, var opcodata: A
                 }
                 holder.binding.itemTitleStr.text = list[position]
 
-                if (AllData!=null && AllData?.isNotEmpty()==true) {
-                    val data : NewOpcoInfoData ? = AllData?.get(0)
-                    holder.binding.SiteEngineerName.text=data?.SiteInchargeName
-                    holder.binding.SiteEngineerEmailID.text=data?.SiteInchargeEmail
-                    holder.binding.SiteEngineerNumber.text=data?.SiteInchargeNumber
+                if (OpcoInfoData!=null && OpcoInfoData?.OperationsTeam?.isNotEmpty()==true) {
+                    val data : OpcoInfoOperationsTeam ? = OpcoInfoData?.OperationsTeam?.get(0)
+                    holder.binding.SiteEngineerName.text=data?.SiteEngineerName
+                    holder.binding.SiteEngineerEmailID.text=data?.EmailId
+                    holder.binding.SiteEngineerNumber.text=data?.ContactNumber
                     holder.binding.InstallationVendor.text=data?.InstallationVendor
                     holder.binding.MaintenanceVendor.text=data?.MaintenanceVendor
 

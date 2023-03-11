@@ -15,6 +15,7 @@ data class BackhaulLinkMWODU(
     val VoltageRatingMax: String,
     val VoltageRatingMin: String,
     val Weight: String,
+    val LinkId: String,
     val created_at: String,
     val id: Int,
     val isActive: Boolean,

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CustomerListItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -17,6 +18,7 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
 class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapterListener) : Adapter<OpcoDataViewHolder>() {
     var data = ArrayList<Any>()
@@ -51,20 +53,22 @@ class OpcoTanancyFragAdapter(var context:Context,var listener: CustomerDataAdapt
 
     override fun onBindViewHolder(holder: OpcoDataViewHolder, position: Int) {
         if(holder is OpcoDataItemViewHolder) {
+            val item = data[position] as OpcoTenencyAllData
+
             try {
-                var item = data[position] as OpcoTenencyAllData
-                holder.binding.SiteId.text = "#${item.Opcoinfo[0].OpcoSiteID}"
-                holder.binding.titel.text=item.Opcoinfo[0].OpcoName
-                holder.binding.textRfiDate.text = item.Opcoinfo[0].RfiAcceptanceDate
-                holder.binding.textRfsDate.text = item.Opcoinfo[0].RfrDate
-                AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,item.Opcoinfo[0].Opcositetype.get(0).toString())
-                holder.itemview.setOnClickListener {
-                    listener.clickedItem(item)
-                }
+                holder.binding.SiteId.text = "#${item.Opcoinfo[0].SRInfo01.get(0).OpcoSiteId}"
+                holder.binding.titel.text=item.Opcoinfo[0].SRInfo01.get(0).OpcoName
+                holder.binding.textRfiDate.text = Utils.getFormatedDate(item.Opcoinfo[0].SRInfo01.get(0).RFIAcceptanceDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.textRfsDate.text = Utils.getFormatedDate(item.Opcoinfo[0].SRInfo01.get(0).RFRDate.substring(0,10),"dd-MMM-yyyy")
+                AppPreferences.getInstance().setDropDown(holder.binding.opcoSiteType,DropDowns.Opcositetype.name,item.Opcoinfo[0].SRInfo01.get(0).Opcositetype.get(0).toString())
             }catch (e:java.lang.Exception){
                 AppLogger.log("opcotenency card error : ${e.localizedMessage}")
                 Toast.makeText(context,"opcotenency card error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
 
+            }
+            holder.itemview.setOnClickListener {
+                listener.clickedItem(item,position)
+                AppLogger.log("clicked card data : ===> ${Gson().toJson(item.Opcoinfo.get(0))}")
             }
         }
     }
@@ -81,5 +85,5 @@ class OpcoDataItemViewHolder(itemview: View) : OpcoDataViewHolder(itemview) {
 }
 
 interface CustomerDataAdapterListener{
-    fun clickedItem(data : OpcoTenencyAllData)
+    fun clickedItem(data : OpcoTenencyAllData,parentIndex:Int)
 }

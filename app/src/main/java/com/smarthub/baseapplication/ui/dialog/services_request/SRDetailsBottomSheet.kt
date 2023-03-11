@@ -46,7 +46,7 @@ class SRDetailsBottomSheet(
 
         srDetailsData.let {
             AppPreferences.getInstance()
-                .setDropDown(binding.srType, DropDowns.SRType.name, it.SRType[0].toString())
+                .setDropDown(binding.srType, DropDowns.SRType.name, it.SRType.toString())
             AppPreferences.getInstance().setDropDown(
                 binding.editTechnology,
                 DropDowns.SRDetailTechnology.name,

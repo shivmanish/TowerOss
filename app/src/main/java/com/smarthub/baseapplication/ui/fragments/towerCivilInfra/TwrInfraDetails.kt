@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdT
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.utils.AppController
 
 class TwrInfraDetails : BaseActivity() {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
@@ -32,6 +33,8 @@ class TwrInfraDetails : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
+        binding.titel.text="Tower"
+        binding.subTitle.text= AppController.getInstance().siteName
         binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager,filterTowerList(TowerModelData!!),Id)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {

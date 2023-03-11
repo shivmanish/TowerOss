@@ -27,7 +27,7 @@ class CableDetailFragment(var opcodata: OpcoTenencyAllData?) :Fragment(), CableD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = CableDetailsAdapter(this@CableDetailFragment,opcodata?.CableDetail,requireContext())
+        adapter = CableDetailsAdapter(this@CableDetailFragment,opcodata?.RfEquipment,requireContext())
         binding?.listItem?.adapter = adapter
 
         binding?.addItemsLayout?.setOnClickListener {

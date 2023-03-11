@@ -26,6 +26,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var lattitude:String = "0.545453"
     var longitude:String = "6.654564"
     var trackingId:String = "474"
+    var tempWhere = "[41,42,43]"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +57,10 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         if (intent.hasExtra("trackingId")){
             trackingId = intent.getStringExtra("trackingId")!!
         }
-
+        if (intent.hasExtra("where") && intent.getStringExtra("where")?.isNotEmpty() == true &&
+            intent.getStringExtra("where")!="[]"){
+            tempWhere = intent.getStringExtra("where")!!
+        }
 
         if (viewModel.taskDataList?.hasActiveObservers() == true)
             viewModel.taskDataList?.removeObservers(this)
@@ -84,8 +88,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 //                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
 //            }
 //        }
-
-
+        mapUIData()
     }
 
     private fun checkLocationPermission() {

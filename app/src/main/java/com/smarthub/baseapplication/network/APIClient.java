@@ -26,13 +26,16 @@ import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
 import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.logs.LogsDataModel;
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
-import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
@@ -49,14 +52,10 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.Op
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.UpdateOpcoTenencyModel;
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
-import com.smarthub.baseapplication.model.siteInfo.powerFuel.PowerAndFuelModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteAgreementModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerCivilInfraModel;
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.newData.OpcoInfoNewModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
 import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel;
@@ -157,6 +156,10 @@ public interface APIClient {
     Call<ServiceRequestModel> fetchServiceRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<AcquisitionSurveyAllDataItem> fetchAcquisitionSurveyAllDataItemRequest(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<LogsDataModel> fetchLogData(@Body SiteInfoParam data);
 
@@ -190,8 +193,8 @@ public interface APIClient {
     Call<UtilitiesEquipModel> fetchUtilitiesEquipRequest(@Body SiteInfoParam data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<SiteAgreementModel> fetchSiteAgreementModelRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<SiteAcquisitionAllDataModel> fetchSiteAgreementModelRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
@@ -202,8 +205,8 @@ public interface APIClient {
     Call<TowerCivilAllDataModel> fetchTowerCivilInfraRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<PowerAndFuelModel> fetchPowerFuelRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<PowerFuelAllDataModel> fetchPowerFuelRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)

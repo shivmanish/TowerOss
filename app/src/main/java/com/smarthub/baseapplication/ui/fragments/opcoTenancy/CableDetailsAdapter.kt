@@ -5,25 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CableDetailsListItemBinding
-import com.smarthub.baseapplication.databinding.RfEquipmentListItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.CableDetailsData
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.NewRfEquipmentData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
-import com.smarthub.baseapplication.utils.Utils
 
-class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayList<CableDetailsData>?, var context: Context) : RecyclerView.Adapter<CableDetailsAdapter.ViewHold>() {
+class CableDetailsAdapter(var listener: CableDetailItemListner, allEquipData: ArrayList<NewRfEquipmentData>?, var context: Context) : RecyclerView.Adapter<CableDetailsAdapter.ViewHold>() {
 
+    val list :ArrayList<CableDetailsData> = ArrayList()
     var currentOpened = -1
     var recyclerView: RecyclerView?=null
+
+    init {
+        try {
+            list.clear()
+            allEquipData?.get(0)?.CableDetail?.let { list.addAll(it) }
+            notifyDataSetChanged()
+        }catch (e:Exception){
+            AppLogger.log("Data error on cable details Adapter: ${e.localizedMessage}")
+        }
+    }
 
     fun updateItem(pos : Int,data :rfEquipmentData){
 //        list[pos] = data
@@ -64,7 +69,7 @@ class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayL
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (list?.isEmpty()!! || list?.get(position)==null)
+        return if (list.isEmpty())
             2
         else
             1
@@ -72,7 +77,7 @@ class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayL
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var data : CableDetailsData = list!![position]
+        var data : CableDetailsData = list[position]
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
 //                listener.EditDialouge(data,position)
@@ -96,8 +101,8 @@ class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayL
                 holder.binding.imgEdit.visibility=View.GONE
             }
             try{
-                if (list !=null && list?.isNotEmpty()!!){
-                    data= list!![position]
+                if (list.isNotEmpty()){
+                    data= list[position]
                     holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_equipment_title_str_formate),AppPreferences.getInstance().getDropDownValue(DropDowns.CableName.name,data.CableName.get(0).toString()),data.CableType,data.Length)
                     AppPreferences.getInstance().setDropDown(holder.binding.cableName,DropDowns.CableName.name,"1")
                     holder.binding.Type.text=data.CableType
@@ -114,7 +119,7 @@ class CableDetailsAdapter(var listener: CableDetailItemListner, var list: ArrayL
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        return list.size
     }
 
     fun updateList(position: Int){

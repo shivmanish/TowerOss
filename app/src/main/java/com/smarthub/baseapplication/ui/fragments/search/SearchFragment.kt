@@ -156,7 +156,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
                AppPreferences.getInstance().saveSearchList(searchHistoryList)
                searchChipAdapter.updateList(searchHistoryList)
                findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSiteDetailFragment("${item?.id}","${item?.name}"))
-
+               AppLogger.log("navigated to iboard")
            }else {
                Toast.makeText(requireContext(),"DropDown value not fetched",Toast.LENGTH_SHORT).show()
                homeViewModel.fetchDropDown()

@@ -5,19 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.plandesign.dialouge.AddNewPlanDesignDialouge
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnectionListListener
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.AddNewPowerFuelDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -36,17 +32,17 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.powerConnList.layoutManager = LinearLayoutManager(requireContext())
-        adapter=PowerConnDataAdapter(requireContext(),this@PowerConnection,id)
-        binding.powerConnList.adapter=adapter
         binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
         }
+        adapter=PowerConnDataAdapter(requireContext(),this)
+        binding.powerConnList.adapter=adapter
+
         binding.addNew.setOnClickListener {
-            val bmSheet = AddNewPowerFuelDialouge(R.layout.power_fuel_addnew_dialouge)
-            bmSheet.show(childFragmentManager,"category")
+//            val bmSheet = AddNewPowerFuelDialouge(R.layout.power_fuel_addnew_dialouge)
+//            bmSheet.show(childFragmentManager,"category")
         }
 
         if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){
@@ -54,26 +50,24 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
         }
         viewmodel?.powerAndFuelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
+                adapter.addLoading()
                 AppLogger.log("PowerFuel Fragment data loading in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("PowerFuel Fragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.item!![0].PowerAndFuel)
+                    adapter.setData(it.data.PowerAndFuel)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("PowerFuel Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"PowerFuel Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
-                AppLogger.log("PowerFuel size :${it.data.item!![0].PowerAndFuel.size}")
+                AppLogger.log("PowerFuel size :${it.data.PowerAndFuel?.size}")
                 isDataLoaded = true
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("PowerFuel Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("PowerFuel Fragment Something went wrong")
-                Toast.makeText(requireContext(),"PowerFuel Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -94,9 +88,9 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
         super.onDestroy()
     }
 
-    override fun clickedItem(data: PowerAndFuel) {
-        val intent = Intent(requireContext(), PowerConnectionDetailsActivity::class.java)
-        intent.putExtra("data", data)
-        requireActivity().startActivity(intent)
+    override fun clickedItem(data: NewPowerFuelAllData,parentIndex:Int) {
+        PowerConnectionDetailsActivity.powerFuelData=data
+        PowerConnectionDetailsActivity.parentIndex=parentIndex
+        requireActivity().startActivity(Intent(requireContext(), PowerConnectionDetailsActivity::class.java))
     }
 }

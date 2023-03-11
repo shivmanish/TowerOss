@@ -212,7 +212,7 @@ class TaskSearchTabFragment(
         }
     }
 
-    fun initVariable() {
+    private fun initVariable() {
         mServiceIntent = Intent(requireContext(), mLocationService.javaClass)
         mLocationService = LocationService()
         Util.updateLocation(requireContext())
@@ -315,8 +315,6 @@ class TaskSearchTabFragment(
         startActivity(intent)
     }
 
-
-
     private fun createHoriZentalList(): ArrayList<CollectionItem> {
         if (taskAndCardList.isEmpty()) {
             Toast.makeText(requireContext(), "Collection list is empty", Toast.LENGTH_SHORT).show()
@@ -338,7 +336,7 @@ class TaskSearchTabFragment(
         return cardList
     }
 
-    fun fetchParentIndexById(list: ArrayList<TaskDropDownModelItem>, currentId: String): Int {
+    private fun fetchParentIndexById(list: ArrayList<TaskDropDownModelItem>, currentId: String): Int {
         try {
             for (i in 0..list.size.minus(1)) {
                 if (list[i].id.toString() == currentId)
@@ -350,7 +348,7 @@ class TaskSearchTabFragment(
         return 0
     }
 
-    fun fetchChildIndexById(list: ArrayList<CollectionItem>, currentId: String): Int {
+    private fun fetchChildIndexById(list: ArrayList<CollectionItem>, currentId: String): Int {
         try {
             for (i in 0..list.size.minus(1)) {
                 if (list[i].id.toString() == currentId)

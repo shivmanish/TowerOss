@@ -23,7 +23,7 @@ public class ErrorUtils {
             }else {
                 error=null;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             return new APIError();
         }
 

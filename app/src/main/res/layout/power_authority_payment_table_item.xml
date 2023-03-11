@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/Sr_no"
+            android:layout_weight=".5"
+            android:textSize="@dimen/dp14"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:textStyle="bold"
+            android:text="1st"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/payment_type"
+            android:layout_weight="1"
+            android:textSize="@dimen/dp14"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:text=" "
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/Amount"
+            android:layout_weight="1"
+            android:textSize="@dimen/dp14"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="0dp"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:text=" "
+            android:gravity="center"
+            style="@style/RowTextItemInfo"
+            android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_weight="1.2"
+            android:layout_height="wrap_content">
+            <TextView
+                android:width="0dp"
+                android:id="@+id/due_date"
+                android:layout_weight="1.1"
+                android:textSize="@dimen/dp14"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text=" "
+                android:gravity="center"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/dp17"
+                android:id="@+id/menu"
+                android:layout_marginTop="@dimen/dp5"
+                android:paddingVertical="@dimen/dp5"
+                android:paddingHorizontal="@dimen/dp1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_vertical"
+                android:src="@drawable/menu"
+                android:rotation="90"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+    <View
+        android:alpha="2"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp5" />
+</LinearLayout>

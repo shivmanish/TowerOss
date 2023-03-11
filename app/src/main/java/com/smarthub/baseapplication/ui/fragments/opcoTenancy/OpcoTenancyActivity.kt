@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.SiteInfoViewModel
 
 
@@ -25,6 +26,7 @@ class OpcoTenancyActivity : BaseActivity() {
 
     companion object{
         var Opcodata : OpcoTenencyAllData?=null
+        var parentIndex:Int?=0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,16 +45,16 @@ class OpcoTenancyActivity : BaseActivity() {
             onBackPressed()
         }
         binding.siteId.text=AppController.getInstance().siteName
-        binding.subTitle.text=Opcodata?.Opcoinfo?.get(0)?.OpcoSiteID
-        binding.rfiDate.text= Opcodata?.Opcoinfo?.get(0)?.RfiAcceptanceDate
-        binding.titel.text= Opcodata?.Opcoinfo?.get(0)?.OpcoName
+        binding.subTitle.text=Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.OpcoSiteId
+        binding.rfiDate.text= Utils.getFormatedDate(Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.RFIAcceptanceDate?.substring(0,10)!!,"dd-MMM-yyyy")
+        binding.titel.text= Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.OpcoName
         binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
 
         AppLogger.log("status Opcodata","Opcodata size : "+Opcodata)
-        binding.viewpager.adapter = OpcoTenancyPageAdapter(supportFragmentManager, Opcodata!!)
+        binding.viewpager.adapter = OpcoTenancyPageAdapter(supportFragmentManager, Opcodata!!, parentIndex!!)
         binding.tabs.setupWithViewPager(binding.viewpager)
         binding.tabs.setOnTabSelectedListener(onTabSelectedListener(binding.viewpager))
         binding.viewpager.beginFakeDrag()

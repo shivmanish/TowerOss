@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.network.repo;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
@@ -12,7 +14,9 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.utils.AppConstants;
+import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.utils.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -109,8 +113,14 @@ public class SiteInfoRepo {
 
     public void siteTaskUiModel(String taskId) {
         JsonObject jsonObject = new JsonObject();
-//        jsonObject.addProperty("id","");
         AppLogger.INSTANCE.log("json data of siteTaskUiModel=====>: "+jsonObject);
+        if(!Utils.INSTANCE.isNetworkConnected(AppController.getInstance())){
+            String json = AppPreferences.getInstance().getString("siteTaskUiModel"+taskId);
+            GetTaskDataModel taskModel = new Gson().fromJson(json,GetTaskDataModel.class);
+            AppPreferences.getInstance().saveString("siteTaskUiModel"+taskId,json);
+            taskUiModelResoonse.postValue(Resource.success(taskModel, 200));
+              return;
+        }
         apiClient.dynamicTaskUiModel(jsonObject).enqueue(new Callback<GetTaskDataModel>() {
             @Override
             public void onResponse(Call<GetTaskDataModel> call, Response<GetTaskDataModel> response) {
@@ -118,9 +128,9 @@ public class SiteInfoRepo {
                     reportSuccessResponse(response);
                 } else if (response.errorBody()!=null){
                     AppLogger.INSTANCE.log("error :"+response);
-                }else if (response!=null){
+                }else {
                     AppLogger.INSTANCE.log("error :"+response);
-                }else AppLogger.INSTANCE.log("getProfileData response is null");
+                }
             }
 
             @Override
@@ -131,8 +141,9 @@ public class SiteInfoRepo {
             private void reportSuccessResponse(Response<GetTaskDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
-//                    Logger.getLogger("ProfileRepo").warning(response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    String json = new Gson().toJson(response.body());
+                    AppPreferences.getInstance().saveString("siteTaskUiModel"+taskId,json);
                     taskUiModelResoonse.postValue(Resource.success(response.body(), 200));
 
                 }

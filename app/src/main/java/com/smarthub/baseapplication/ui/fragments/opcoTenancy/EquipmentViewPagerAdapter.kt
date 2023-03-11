@@ -8,7 +8,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyA
 import com.smarthub.baseapplication.ui.fragments.task.ActivityCaptureSiteFragment
 import com.smarthub.baseapplication.ui.fragments.task.PhotoDocumentFragment
 
-class EquipmentViewPagerAdapter(fm: FragmentManager,var opcoData: OpcoTenencyAllData?) : FragmentPagerAdapter(fm) {
+class EquipmentViewPagerAdapter(fm: FragmentManager,var opcoData: OpcoTenencyAllData?,var parentIndex:Int) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return 2

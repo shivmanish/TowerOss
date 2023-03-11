@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -390,6 +391,7 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
+                    AppLogger.log("Tower Consumable Table Data : ====>${Gson().toJson(datalist?.ConsumableMaterial)}")
                     holder.towerConsumableTableList.adapter=TowerConsumableTableAdapter(context,listener,datalist?.ConsumableMaterial)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")

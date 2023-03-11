@@ -41,7 +41,7 @@ class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAd
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var item:TwrCivilPODetail=list!![position]
+        val item:TwrCivilPODetail=list!![position]
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it,item)
         }

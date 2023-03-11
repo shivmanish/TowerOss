@@ -24,8 +24,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:orientation="vertical"
-        android:paddingLeft="@dimen/dp5"
-        android:paddingRight="@dimen/dp5"
         android:paddingBottom="@dimen/dp10"
         android:id="@+id/power_conn_list"
         android:layout_width="match_parent"

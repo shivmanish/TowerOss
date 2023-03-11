@@ -28,15 +28,15 @@ import com.smarthub.baseapplication.helpers.AppPreferences.DROPDOWNDATA
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
-import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
+import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
-import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController
@@ -77,10 +77,10 @@ class SiteDetailFragment : BaseFragment() {
     var siteName ="#ce-dlhi-sc-0179"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
+        val title: TextView = binding.root.findViewById<View>(R.id.title) as TextView
         title.text = siteName
 
-        setDataObserver()
+        setData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -180,6 +180,7 @@ class SiteDetailFragment : BaseFragment() {
                 7-> CivilInfraFragment(id)
                 8-> PowerConnection(id)
                 9-> QATMainFragment(id)
+//                10-> AcquisitionSurveyFragmentNew(id)
                 else -> SiteInfoNewFragment(id)
             }
             return f
@@ -216,7 +217,7 @@ class SiteDetailFragment : BaseFragment() {
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
                     saveDataToLocal(it.data)
-                    setData()
+//                    setData()
                     return@observe
                 } else {
                     Log.d("status", "${it.message}")

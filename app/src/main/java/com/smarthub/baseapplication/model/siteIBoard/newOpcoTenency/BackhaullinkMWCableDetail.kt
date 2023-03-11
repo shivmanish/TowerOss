@@ -6,6 +6,7 @@ data class BackhaullinkMWCableDetail(
     val Length: String,
     val Remark: String,
     val SerialNumber: String,
+    val LinkId: String,
     val UsedFor: String,
     val created_at: String,
     val id: Int,

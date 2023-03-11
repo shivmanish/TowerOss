@@ -9,8 +9,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BuildingDetailsBotomSheetBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurvey
-import com.smarthub.baseapplication.model.serviceRequest.AcquisitionSurvey.ASAquisitionSurveyBuildingDetail
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASAquisitionSurvey
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.ASAquisitionSurveyBuildingDetail
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel

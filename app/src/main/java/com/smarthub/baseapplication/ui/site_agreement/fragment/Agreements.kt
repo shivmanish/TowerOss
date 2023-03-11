@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AgreementFragmentBinding
 import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.AgreementTerm
 import com.smarthub.baseapplication.model.serviceRequest.softAqusition.PropertyOwnerAndPaymentDetail
 import com.smarthub.baseapplication.ui.adapter.AtpCardListAdapter
@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.PropertyOwnerDetailsBotto
 import com.smarthub.baseapplication.ui.site_agreement.adapter.AgrementLeaseListAdapter
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class Agreements(val data: ServiceRequestAllDataItem? = null, var id: String? = null) :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner , QatListListener {
+class Agreements(val data: AcquisitionSurveyModel? = null, var id: String? = null) :Fragment(), AgrementLeaseListAdapter.AgreementListItemlistner , QatListListener {
 
     var binding : AgreementFragmentBinding?=null
     lateinit var viewmodel:HomeViewModel
@@ -44,7 +44,7 @@ class Agreements(val data: ServiceRequestAllDataItem? = null, var id: String? = 
     }
     override fun detailsItemClicked(
         agrement: AgreementTerm,
-        servicerequirement: ServiceRequestAllDataItem
+        servicerequirement: AcquisitionSurveyModel
     ) {
        var bottomSheetDialogFragment = AgrementsDetailsBottomSheet(R.layout.agreement_details_botom_sheet,agrement,id,viewmodel,servicerequirement)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")
@@ -52,7 +52,7 @@ class Agreements(val data: ServiceRequestAllDataItem? = null, var id: String? = 
 
     override fun propertyOwonertemClicked(
         propertylist: ArrayList<PropertyOwnerAndPaymentDetail>,
-        servicerequirement: ServiceRequestAllDataItem
+        servicerequirement: AcquisitionSurveyModel
     ) {
         var bottomSheetDialogFragment = PropertyOwnerDetailsBottomSheet(R.layout.property_owner_botom_sheet,propertylist,id,viewmodel,servicerequirement)
         bottomSheetDialogFragment?.show(childFragmentManager,"category")

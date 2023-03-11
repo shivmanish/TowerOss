@@ -10,7 +10,7 @@ data class RadioAnteenaDetails(
     val No: Int,
     val OperationStatus: List<Int>,
     val Remark: String,
-    val SerailNo: String,
+    val SerialNo: String,
     val Shape: Int,
     val SizeB: String,
     val SizeH: String,

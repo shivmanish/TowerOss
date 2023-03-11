@@ -13,5 +13,7 @@ data class BackhaulLinkData(
     val created_at: String,
     val id: Int,
     val isActive: Boolean,
+    val BackhaulNodeCategory: Int,
+    val Remark: String,
     val modified_at: String
 )

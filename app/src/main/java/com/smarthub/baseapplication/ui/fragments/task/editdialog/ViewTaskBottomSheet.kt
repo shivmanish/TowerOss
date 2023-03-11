@@ -47,8 +47,10 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
         binding.closeTaskBtn.setOnClickListener {
             val intent = Intent (requireActivity(), TaskDetailActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            intent.putExtra("url", "${task.id1}")
-            intent.putExtra("siteId","${task.siteid}")
+            intent.putExtra("url", task.id1)
+            if (task.Where.isNotEmpty())
+                intent.putExtra("where", task.Where)
+            intent.putExtra("siteId", task.siteid)
             requireActivity().startActivity(intent)
         }
 
