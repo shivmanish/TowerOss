@@ -21,7 +21,6 @@ import com.example.patrollerapp.homepage.pojo.response.UserDataResponse
 import com.example.trackermodule.homepage.pojo.UpDateLatlongRequest
 import com.example.trackermodule.server.APIClientPatroller
 import com.example.trackermodule.server.APIInterface
-import com.example.trackermodule.util.MyApplication
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
@@ -372,7 +371,7 @@ class LocationService : Service() {
         )
 
         val call = apiInference.updateLatlong(
-            UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = arrayListOf(data)),
+            UpDateLatlongRequest( ownername = PatrollerPriference(context).getOwnername(), tracking = PatrollerPriference(context).getTaskID(),data = arrayListOf(data)),
             PatrollerPriference(this).gettokekey()
         )
         call.enqueue(object : Callback<UserDataResponse> {
@@ -420,7 +419,14 @@ class LocationService : Service() {
     private fun initAlarm() {
         val alarmMgr = getSystemService(ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, LocationService::class.java)
-        val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        var alarmIntent:PendingIntent? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            alarmIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_MUTABLE)
+        } else {
+            alarmIntent =
+                PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        }
+//        val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, Fl)
         alarmMgr[AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() +
                 2000] = alarmIntent
     }

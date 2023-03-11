@@ -33,6 +33,8 @@ class PatrollerPriference(context: Context) {
         public const val PATROLING_STATUS_running = "patroling_status_running"
         public const val PATROLING_STATUS_PAUSE = "patroling_status_pause"
         public const val PATROLING_STATUS_RESTART = "patroling_status_restart"
+        public const val TASK_ID = "task_id"
+        public const val OWNER_NAME = "Owner_name"
     }
 
     fun setstartTime( start_mili: Long) {
@@ -218,6 +220,32 @@ class PatrollerPriference(context: Context) {
         val editor: SharedPreferences.Editor =
             context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
         editor.putString(TOKEN_KEY , token);
+        editor.apply()
+    }
+
+    fun getTaskID(): String {
+        val prefs: SharedPreferences = context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE)
+        val taskid = prefs.getString(TASK_ID ,"")
+        return taskid!!
+    }
+
+    fun setTaskID( taskid : String) {
+        val editor: SharedPreferences.Editor =
+            context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
+        editor.putString(TASK_ID , taskid);
+        editor.apply()
+    }
+
+    fun getOwnername(): String {
+        val prefs: SharedPreferences = context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE)
+        val ownername = prefs.getString(OWNER_NAME ,"")
+        return ownername!!
+    }
+
+    fun setOwnername( ownername : String) {
+        val editor: SharedPreferences.Editor =
+            context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
+        editor.putString(TASK_ID , ownername);
         editor.apply()
     }
 

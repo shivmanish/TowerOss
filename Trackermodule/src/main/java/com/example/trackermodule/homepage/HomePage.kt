@@ -29,6 +29,7 @@ import com.example.patrollerapp.util.LocationService
 import com.example.patrollerapp.util.LocationService.Companion.is_canceled_by_me
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.patrollerapp.util.Util
+import com.example.patrollerapp.util.Util.BitmapFromVector
 import com.example.trackermodule.R
 import com.example.trackermodule.databinding.ActivityHomePageBinding
 import com.example.trackermodule.util.EasyLocationProvider
@@ -53,6 +54,10 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     lateinit var mServiceIntent: Intent
     var is_first_time: Boolean = true
     var t: Thread? = null
+    lateinit var lattitude:String
+    lateinit var longitude:String
+    lateinit var taskid:String
+    lateinit var ownername:String
     var mLocationService: LocationService = LocationService()
     var mapFragment: SupportMapFragment? = null
     var dialog: Dialog? = null
@@ -126,6 +131,12 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
                  homePageBinding.expandArrow.rotation = 180f
              }*/
         }
+
+        lattitude = intent.getStringExtra("lat").toString()
+        longitude = intent.getStringExtra("long").toString()
+
+
+
 //        if (!Util.isMyServiceRunning(mLocationService.javaClass, mActivity)) {
 //            homePageBinding.start.visibility = View.VISIBLE
 //            homePageBinding.pause.visibility = View.GONE
@@ -209,6 +220,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
                 homePageBinding.stop.visibility = View.GONE
             }
         }
+
         homePageBinding.pause.setOnClickListener {
             if ((PatrollerPriference(this).getPtrollingStatus()).equals(
                     PatrollerPriference.PATROLING_STATUS_PAUSE, ignoreCase = true
@@ -303,7 +315,6 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
                 addmarker(list.get(list.size - 1)!!, "End Point", R.drawable.patroller_bike_blue)
             } else {
                 addmarker(list.get(list.size - 1)!!, "End Point", R.drawable.end_marker)
-
             }
             val polyOptions = PolylineOptions()
             polyOptions.color(Color.parseColor("#2978ED"))
@@ -324,7 +335,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
 
     fun addmarker(latLng: LatLng, titel: String, resources: Int) {
         mMap.addMarker(
-            MarkerOptions().position(latLng).title(titel)
+            MarkerOptions().position(latLng)
                 .icon(Util.BitmapFromVector(this, resources))
 
         )!!.showInfoWindow()
@@ -333,6 +344,8 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.clear()
+        addsitemarker()
+
         setMapComponent()
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
@@ -356,6 +369,13 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
         rlp.setMargins(0, 0, 30, 30);
         dialog!!.dismiss()
         setObserver()
+    }
+
+    fun addsitemarker(){
+        val sydney = LatLng(lattitude.toDouble(), longitude.toDouble())
+        addmarker(sydney,PatrollerPriference(this).getOwnername(),R.drawable.site_marker_or_map)
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
     }
 
     fun moveToMyLocation(latLng: LatLng) {

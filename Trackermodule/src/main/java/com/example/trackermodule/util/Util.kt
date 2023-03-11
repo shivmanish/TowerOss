@@ -173,7 +173,7 @@ object Util {
                 val retrofit: Retrofit = APIClientPatroller.getClient()
                 val apiInference = retrofit.create(APIInterface::class.java)
                 val call = apiInference.updateLatlong(
-                    UpDateLatlongRequest(ownername = "SMRT", tracking = "474",data = pendingLatlong.latlnglist)
+                    UpDateLatlongRequest(ownername = PatrollerPriference(context).getOwnername(), tracking = PatrollerPriference(context).getTaskID(),data = pendingLatlong.latlnglist)
                             , PatrollerPriference(context).gettokekey()
                 )
                 call.enqueue(object : Callback<UserDataResponse> {

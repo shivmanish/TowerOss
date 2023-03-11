@@ -140,33 +140,7 @@ class TaskSearchTabFragment(
             }
         }
 
-        if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
-                PatrollerPriference.PATROLING_STATUS_PAUSE, ignoreCase = true
-            )
-        ) {
-            binding.start.text = "Stop"
-//            homePageBinding.pause.visibility = View.VISIBLE
-//            homePageBinding.stop.visibility = View.VISIBLE
-//            homePageBinding.pause.text = "Resume"
 
-        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
-                PatrollerPriference.PATROLING_STATUS_running, ignoreCase = true
-            )
-        ) {
-
-            startServiceBackground()
-            binding.start.text = "Stop"
-//            homePageBinding.pause.visibility = View.VISIBLE
-//            homePageBinding.stop.visibility = View.VISIBLE
-//            homePageBinding.pause.text = "Pause"
-
-        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
-                PatrollerPriference.PATROLING_STATUS_STOP, ignoreCase = true
-            )
-        ) {
-            binding.start.text = "Start"
-//            binding.pause.visibility = View.GONE
-        }
 
 
         binding.mapView.setOnClickListener {
@@ -221,6 +195,44 @@ class TaskSearchTabFragment(
         mServiceIntent = Intent(requireContext(), mLocationService.javaClass)
         mLocationService = LocationService()
         Util.updateLocation(requireContext())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                PatrollerPriference.PATROLING_STATUS_PAUSE, ignoreCase = true
+            )
+        ) {
+            binding.start.text = "Stop"
+//            homePageBinding.pause.visibility = View.VISIBLE
+//            homePageBinding.stop.visibility = View.VISIBLE
+//            homePageBinding.pause.text = "Resume"
+
+        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                PatrollerPriference.PATROLING_STATUS_running, ignoreCase = true
+            )
+        ) {
+
+            startServiceBackground()
+            binding.start.text = "Stop"
+//            homePageBinding.pause.visibility = View.VISIBLE
+//            homePageBinding.stop.visibility = View.VISIBLE
+//            homePageBinding.pause.text = "Pause"
+
+        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                PatrollerPriference.PATROLING_STATUS_STOP, ignoreCase = true
+            )
+        ) {
+
+            if (mServiceIntent != null) {
+                PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
+                LocationService.is_canceled_by_me = true
+                requireContext().stopService(mServiceIntent)
+                PatrollerPriference(requireContext()).settime("")
+                binding.start.text = "Start"
+            }
+
+        }
     }
 
     private fun startServiceBackground() {
@@ -344,8 +356,10 @@ class TaskSearchTabFragment(
         val intent = Intent(requireContext(), HomePage::class.java)
         intent.putExtra("lat", lattitude)
         intent.putExtra("long", longitude)
-        intent.putExtra("ownername",siteID)
-        intent.putExtra("trackingId",taskId)
+        PatrollerPriference(requireContext()).setOwnername(siteID!!)
+        PatrollerPriference(requireContext()).setTaskID(taskId!!)
+//        intent.putExtra("ownername",siteID)
+//        intent.putExtra("trackingId",taskId)
         intent.putExtra("rad", radius)
         startActivity(intent)
     }
