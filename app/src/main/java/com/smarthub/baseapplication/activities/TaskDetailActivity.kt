@@ -69,7 +69,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
             hideLoader()
             if (it?.data != null){
                 if (it.data.isNotEmpty()){
-                    mapUIData()
+                    mapUIData(it.data[0])
                 }
                 else
                     setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
