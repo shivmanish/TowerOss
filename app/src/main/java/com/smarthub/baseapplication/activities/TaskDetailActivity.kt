@@ -23,8 +23,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
     lateinit var siteId:String
-    var lattitude:String = "0.545453"
-    var longitude:String = "6.654564"
+    var lattitude:String = "20.735566"
+    var longitude:String = "85.853400"
     var trackingId:String = "474"
     var tempWhere = "[41,42,43]"
 
