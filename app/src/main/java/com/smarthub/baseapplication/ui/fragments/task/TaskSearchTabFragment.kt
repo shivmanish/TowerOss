@@ -22,12 +22,14 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModelItem
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
@@ -36,6 +38,7 @@ import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauil
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class TaskSearchTabFragment(
     var siteID: String?,
@@ -48,6 +51,7 @@ class TaskSearchTabFragment(
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var horizontalTabAdapter: HorizontalTabAdapter
     private lateinit var siteDetailViewModel: SiteDetailViewModel
+    lateinit var homeViewModel: HomeViewModel
 
     //    var TaskAlltabsData: TaskDropDownModelItem ?=null
     lateinit var TaskListmodel: TaskDropDownModel
@@ -62,6 +66,7 @@ class TaskSearchTabFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "task_drop_down.json")
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
@@ -238,7 +243,7 @@ class TaskSearchTabFragment(
     }
 
     private fun setDataObserver() {
-        var parentIndex = fetchParentIndexById(TaskListmodel, taskAndCardList[0].substring(0, 1))
+        val parentIndex = fetchParentIndexById(TaskListmodel, taskAndCardList[0].substring(0, 1))
         val list = TaskListmodel[parentIndex].tabs[fetchChildIndexById(
             TaskListmodel[parentIndex].tabs,
             taskAndCardList[0]
@@ -248,7 +253,7 @@ class TaskSearchTabFragment(
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
             siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
         siteDetailViewModel.dropDownResponse?.observe(viewLifecycleOwner) {
-            hideLoader()
+//            hideLoader()
 
             if (it != null) {
                 if (it.status == Resource.Status.SUCCESS && it.data != null) {
@@ -265,6 +270,36 @@ class TaskSearchTabFragment(
                 Toast.makeText(context, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }
+
+        if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
+            homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
+        homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                showLoader()
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                val data : AllsiteInfoDataModel = it.data
+                if (data.Siteaddress!=null && data.Siteaddress?.isNotEmpty() == true) {
+                    val siteData = data.Siteaddress!![0]
+                    lattitude = siteData.locLatitude
+                    longitude = siteData.locLongitude
+                    AppLogger.log("fetched latitude:${lattitude},longitude:$longitude")
+                }else{
+                    AppLogger.log("Site address not fetched")
+                }
+            }else if (it!=null) {
+                AppLogger.log("SiteInfoNewFragment error :${it.message}")
+
+                Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
+            }else{
+                AppLogger.log("SiteInfoNewFragment Something went wrong")
+                Toast.makeText(requireContext(),"SiteInfoNewFragment Something went wrong",Toast.LENGTH_SHORT).show()
+            }
+        }
+        showLoader()
+        homeViewModel.siteInfoRequestAll(siteID!!)
         siteDetailViewModel.fetchDropDown()
     }
 
