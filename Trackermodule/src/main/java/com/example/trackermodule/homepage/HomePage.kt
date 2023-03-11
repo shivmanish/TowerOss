@@ -55,7 +55,6 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     var t: Thread? = null
     var mLocationService: LocationService = LocationService()
     var mapFragment: SupportMapFragment? = null
-
     var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

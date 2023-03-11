@@ -37,7 +37,12 @@ import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class TaskSearchTabFragment(var siteID: String?, var taskId: String) : BaseFragment(),
+class TaskSearchTabFragment(
+    var siteID: String?,
+    var taskId: String,
+    var lattitude: String,
+    var longitude: String
+) : BaseFragment(),
     HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
@@ -210,6 +215,7 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String) : BaseFragm
     fun initVariable() {
         mServiceIntent = Intent(requireContext(), mLocationService.javaClass)
         mLocationService = LocationService()
+        Util.updateLocation(requireContext())
     }
 
     private fun startServiceBackground() {
@@ -301,11 +307,15 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String) : BaseFragm
 
     private fun mapView() {
         val intent = Intent(requireContext(), HomePage::class.java)
-        intent.putExtra("lat", lat)
-        intent.putExtra("long", long)
+        intent.putExtra("lat", lattitude)
+        intent.putExtra("long", longitude)
+        intent.putExtra("ownername",siteID)
+        intent.putExtra("trackingId",taskId)
         intent.putExtra("rad", radius)
         startActivity(intent)
     }
+
+
 
     private fun createHoriZentalList(): ArrayList<CollectionItem> {
         if (taskAndCardList.isEmpty()) {

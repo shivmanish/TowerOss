@@ -23,6 +23,9 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
     lateinit var siteId:String
+    var lattitude:String = "0.545453"
+    var longitude:String = "6.654564"
+    var trackingId:String = "474"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +40,21 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         if (intent.hasExtra("url")){
             val id = intent.getStringExtra("url")
 //            binding.titleText.text = id
-            showLoader()
+//            showLoader()
             viewModel.fetchTaskDetails(id!!)
         }
         if (intent.hasExtra("siteId")){
             siteId = intent.getStringExtra("siteId")!!
+        }
+        if (intent.hasExtra("lattitude")){
+            lattitude = intent.getStringExtra("lattitude")!!
+        }
+        if (intent.hasExtra("longitude")){
+            longitude = intent.getStringExtra("longitude")!!
+        }
+
+        if (intent.hasExtra("trackingId")){
+            trackingId = intent.getStringExtra("trackingId")!!
         }
 
 
@@ -54,7 +67,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
                     mapUIData(it.data[0])
                 }
                 else
-                    setFragment(TaskSearchTabFragment(siteId,"474"))
+                    setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
                 Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
@@ -135,7 +148,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
     fun mapUIData(item : TaskDataListItem){
-        setFragment(TaskSearchTabFragment(siteId,"474"))
+        setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)

@@ -46,10 +46,10 @@ lateinit var binding: PdEditPowerDialogBinding
             dialog!!.cancel()
         }
         try {
-            binding.PowerType.setText(data?.PowerType)
-            binding.voltage.setText(data?.Voltage)
-            binding.maxTotalPower.setText(data?.MaxTotalPower)
-            binding.batteryBackup.setText(data?.BatteryBackup)
+//            binding.PowerType.setText(data?.PowerType)
+//            binding.voltage.setText(data?.Voltage)
+//            binding.maxTotalPower.setText(data?.MaxTotalPower)
+//            binding.batteryBackup.setText(data?.BatteryBackup)
             binding.remark.setText(data?.Remark)
         }catch (e:java.lang.Exception){
             AppLogger.log("PlanDesign twrCivil Adapter error : ${e.localizedMessage}")
