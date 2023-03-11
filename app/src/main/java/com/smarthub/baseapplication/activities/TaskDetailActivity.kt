@@ -64,11 +64,12 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
         if (viewModel.taskDataList?.hasActiveObservers() == true)
             viewModel.taskDataList?.removeObservers(this)
+/*
         viewModel.taskDataList?.observe(this){
             hideLoader()
             if (it?.data != null){
                 if (it.data.isNotEmpty()){
-                    mapUIData(it.data[0])
+                    mapUIData()
                 }
                 else
                     setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
@@ -77,17 +78,18 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
                 Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
             }
         }
-//        binding.refreshLayout.setOnRefreshListener {
-//            binding.refreshLayout.isRefreshing = false
-//            if (intent.hasExtra("url")){
-//                val id = intent.getStringExtra("url")
-////                binding.titleText.text = id
-//                showLoader()
-//                viewModel.fetchTaskDetails(id!!)
-//            }else{
-//                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
-//            }
-//        }
+*/
+        /*binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
+            if (intent.hasExtra("url")){
+                val id = intent.getStringExtra("url")
+//                binding.titleText.text = id
+                showLoader()
+                viewModel.fetchTaskDetails(id!!)
+            }else{
+                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
+            }
+        }*/
         mapUIData()
     }
 
@@ -150,7 +152,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
 
-    fun mapUIData(item : TaskDataListItem){
+    fun mapUIData(){
         setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
