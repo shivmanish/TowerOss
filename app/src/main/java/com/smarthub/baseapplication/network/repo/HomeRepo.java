@@ -987,10 +987,16 @@ public class HomeRepo {
     }
 
     public void planDesignRequestAll(String id) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("PlanningAndDesign");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
-        apiClient.fetchPlanDesignRequest(siteInfoParam).enqueue(new Callback<PlanAndDesignModel>() {
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add("PlanningAndDesign");
+//        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        JsonObject jsonObject = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+        jsonObject.addProperty("id",id);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.add("PlanningAndDesign",jsonArray);
+
+        apiClient.fetchPlanDesignRequest(jsonObject).enqueue(new Callback<PlanAndDesignModel>() {
             @Override
             public void onResponse(Call<PlanAndDesignModel> call, Response<PlanAndDesignModel> response) {
                 if (response.isSuccessful()){

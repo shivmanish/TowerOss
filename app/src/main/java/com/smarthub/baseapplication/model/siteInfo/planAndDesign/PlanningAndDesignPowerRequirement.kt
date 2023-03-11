@@ -1,13 +1,15 @@
 package com.smarthub.baseapplication.model.siteInfo.planAndDesign
 
 data class PlanningAndDesignPowerRequirement(
-    val BatteryBackup: String,
-    val MaxTotalPower: String,
-    val PowerType: String,
+    val PowerConnectionType: List<Int>,
+    val PowerRating: String,
+    val PowerSupplier: String,
+    val PowerType: Int,
     val Remark: String,
-    val Voltage: String,
+    val VoltageMax: String,
+    val VoltageMin: String,
     val created_at: String,
-    val id: String,
-    val isActive: String,
+    val id: Int,
+    val isActive: Boolean,
     val modified_at: String
 )

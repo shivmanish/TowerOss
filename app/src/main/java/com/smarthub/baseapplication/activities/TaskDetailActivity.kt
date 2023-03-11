@@ -22,9 +22,10 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
-    var siteId:String = "448"
-    var taskId:String = "474"
-    var tempWhere = "[41,42,43]"
+    lateinit var siteId:String
+    var lattitude:String = "0.545453"
+    var longitude:String = "6.654564"
+    var trackingId:String = "474"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,36 +37,55 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 //            onBackPressed()
 //        }
         checkLocationPermission()
-        if (intent.hasExtra("url") && intent.getStringExtra("url")!=null){
-            taskId = intent.getStringExtra("url")!!
-            showLoader()
-            viewModel.fetchTaskDetails(taskId)
+        if (intent.hasExtra("url")){
+            val id = intent.getStringExtra("url")
+//            binding.titleText.text = id
+//            showLoader()
+            viewModel.fetchTaskDetails(id!!)
         }
         if (intent.hasExtra("siteId")){
             siteId = intent.getStringExtra("siteId")!!
         }
-        if (intent.hasExtra("where") && intent.getStringExtra("where")?.isNotEmpty() == true &&
-            intent.getStringExtra("where")!="[]"){
-            tempWhere = intent.getStringExtra("where")!!
+        if (intent.hasExtra("lattitude")){
+            lattitude = intent.getStringExtra("lattitude")!!
+        }
+        if (intent.hasExtra("longitude")){
+            longitude = intent.getStringExtra("longitude")!!
+        }
+
+        if (intent.hasExtra("trackingId")){
+            trackingId = intent.getStringExtra("trackingId")!!
         }
 
 
-//        if (viewModel.taskDataList?.hasActiveObservers() == true)
-//            viewModel.taskDataList?.removeObservers(this)
-//        viewModel.taskDataList?.observe(this){
-//            hideLoader()
-//            if (it?.data != null){
-//                if (it.data.isNotEmpty()){
-//                    mapUIData()
-//                }
-//                else
-//                    setFragment(TaskSearchTabFragment(siteId,"474"))
-//                Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
+        if (viewModel.taskDataList?.hasActiveObservers() == true)
+            viewModel.taskDataList?.removeObservers(this)
+        viewModel.taskDataList?.observe(this){
+            hideLoader()
+            if (it?.data != null){
+                if (it.data.isNotEmpty()){
+                    mapUIData(it.data[0])
+                }
+                else
+                    setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
+                Toast.makeText(this@TaskDetailActivity,"task data fetched",Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
+            }
+        }
+//        binding.refreshLayout.setOnRefreshListener {
+//            binding.refreshLayout.isRefreshing = false
+//            if (intent.hasExtra("url")){
+//                val id = intent.getStringExtra("url")
+////                binding.titleText.text = id
+//                showLoader()
+//                viewModel.fetchTaskDetails(id!!)
 //            }else{
-//                Toast.makeText(this@TaskDetailActivity,"Something went wrong",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"Task id not found",Toast.LENGTH_SHORT).show()
 //            }
 //        }
-        mapUIData()
+
+
     }
 
     private fun checkLocationPermission() {
@@ -127,8 +147,11 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
 
-    fun mapUIData(){
-        setFragment(TaskSearchTabFragment(siteId,taskId,tempWhere))
+    fun mapUIData(item : TaskDataListItem){
+        setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
+//        binding.titleText.text ="Task\n${item.Processname}"
+//
+//        binding.listItem.adapter = TaskAdapter(applicationContext,this)
     }
 
     override fun onStop() {

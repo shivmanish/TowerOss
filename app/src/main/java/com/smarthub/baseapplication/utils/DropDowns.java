@@ -122,5 +122,8 @@ public enum DropDowns {
     BackhaulLinkOperationalStatus,
     BackhaulSpaceUsed,
     // plan design
-    EquipmentType
+    EquipmentType,
+    BatterybankInstalledLocationType,
+    PowerConnectionType,
+
 }

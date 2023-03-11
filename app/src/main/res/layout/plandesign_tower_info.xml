@@ -100,7 +100,50 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Tower Height (m)"
+                            android:text="Tower Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tower_type"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Installed Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/installed_type"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Height (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -120,7 +163,48 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Total Antenna Weight (kg)"
+                            android:text="Leg Count"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/leg_count"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Camouflage"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/camouflage"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Weight (Ton)"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTextItemInfo"
@@ -136,6 +220,27 @@
                             android:layout_height="wrap_content"/>
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Designed Load (Kg)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/designed_load"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -143,12 +248,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Antenna Space (U)"
+                            android:text="Antenna Slots "
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:id="@+id/Antena_space"
+                            android:id="@+id/Antena_slots"
                             android:text=""
                             android:maxLines="1"
                             android:ellipsize="marquee"
@@ -163,7 +268,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Max Antenna Height, AGL (m)"
+                            android:text="Lighting Arrester"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTextItemInfo"
@@ -171,7 +276,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text=""
-                            android:id="@+id/Max_anteena_height"
+                            android:id="@+id/Lighting_arrester"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -180,6 +285,48 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Foundataion Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/foundataion_type"
+                            android:text=""
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Foundataion Size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text=""
+                            android:id="@+id/Foundataion_size"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
@@ -187,26 +334,6 @@
 
                         <TextView
                             android:text="Offset Pole Count"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Offset_pole_count"
-                            android:text=""
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Offset Pole Length (cm)"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTextItemInfo"
@@ -214,7 +341,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text=""
-                            android:id="@+id/Offset_pole_lenth"
+                            android:id="@+id/OffsetPoleCount"
                             android:maxLines="1"
                             android:ellipsize="marquee"
                             style="@style/RowTestItemEdit"
@@ -222,6 +349,30 @@
                             android:layout_height="wrap_content" />
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Offset Pole Length (CM)"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text=""
+                            android:id="@+id/OffsetPoleLength"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
 
                 </GridLayout>
 

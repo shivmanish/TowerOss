@@ -169,8 +169,8 @@ public interface APIClient {
     Call<OpcoTenencyAllDataModel> fetchOpcoInfoRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<PlanAndDesignModel> fetchPlanDesignRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<PlanAndDesignModel> fetchPlanDesignRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

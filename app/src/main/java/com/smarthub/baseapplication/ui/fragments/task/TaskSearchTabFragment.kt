@@ -37,7 +37,12 @@ import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWhere:String) : BaseFragment(),
+class TaskSearchTabFragment(
+    var siteID: String?,
+    var taskId: String,
+    var lattitude: String,
+    var longitude: String
+) : BaseFragment(),
     HorizontalTabAdapter.TaskCardClickListner,
     TaskSiteInfoAdapter.TaskSiteInfoListener {
     private lateinit var binding: FragmentSearchTaskBinding
@@ -60,12 +65,44 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
         siteDetailViewModel = ViewModelProvider(requireActivity())[SiteDetailViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "task_drop_down.json")
         TaskListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
+        var tempWhere = "[41,42,43]"
         tempWhere = tempWhere.replace("[", "")
         tempWhere = tempWhere.replace("]", "")
         initVariable()
         taskAndCardList.addAll(tempWhere.split(","))
+//        if (siteDetailViewModel.taskUiModelResoonse?.hasActiveObservers() == true)
+//            siteDetailViewModel.taskUiModelResoonse?.removeObservers(viewLifecycleOwner)
+//        siteDetailViewModel.taskUiModelResoonse?.observe(viewLifecycleOwner){
+//            if (it!=null && it.status == Resource.Status.SUCCESS && it.data!=null){
+//                if(!it.data.isNullOrEmpty())
+//                {
+//                    AppLogger.log("all data from api start====>: ")
+//                    AppLogger.log("data===> ${Gson().toJson(it.data.get(it.data.size.minus(1)).data.get(0).tabs.get(0))}")
+//                    AppLogger.log("<======all data from api end ")
+//                    TaskListmodel = it.data.reversed().get(0).data
+//                    AppLogger.log("all data in TaskListmodel start====>: ")
+//                    AppLogger.log("TaskListmodel data====>:${Gson().toJson(TaskListmodel.get(0).tabs.get(1))}")
+//                    AppLogger.log("<======all data in TaskListmodel end ")
+//                    var parentIndex=fetchParentIndexById(TaskListmodel,taskAndCardList[0].substring(0,1))
+//                    val list = TaskListmodel[parentIndex].tabs[fetchChildIndexById(TaskListmodel[parentIndex].tabs,taskAndCardList[0])].list
+//                    setViewPager(list)
+//                    try {
+//                        horizontalTabAdapter =  HorizontalTabAdapter(this@TaskSearchTabFragment,createHoriZentalList())
+//                        binding.horizontalOnlyList.adapter = horizontalTabAdapter
+//                    }catch (e:Exception){
+//                        AppLogger.log("Somthing went wrong in TaskSearchTabFragment during set HorizontalTabAdapter ")
+//                    }
+//                }
+//                else
+//                    AppLogger.log("data is empty : ${it.data}")
+//                Toast.makeText(requireContext(),"ui data fetched",Toast.LENGTH_SHORT).show()
+//            }else Toast.makeText(requireContext(),"something went wrong",Toast.LENGTH_SHORT).show()
+//        }
 
         siteDetailViewModel.siteTaskUiModel(taskId)
+
+//        siteDetailViewModel.siteTaskUiUpdateModel(TaskListmodel)
+
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -103,6 +140,9 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
             )
         ) {
             binding.start.text = "Stop"
+//            homePageBinding.pause.visibility = View.VISIBLE
+//            homePageBinding.stop.visibility = View.VISIBLE
+//            homePageBinding.pause.text = "Resume"
 
         } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
                 PatrollerPriference.PATROLING_STATUS_running, ignoreCase = true
@@ -150,24 +190,32 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
             chatfragment.arguments = bundle
             addFragment(chatfragment)
         }
+//        binding.back.setOnClickListener {
+//            requireActivity().onBackPressedDispatcher.onBackPressed()
+//        }
         TaskListmodel = AppPreferences.getInstance().getTaskUiModel(taskId, requireContext())
         AppLogger.log("all data in TaskListmodel start====>: ")
-        AppLogger.log("TaskListmodel data====>:${Gson().toJson(TaskListmodel[0].tabs[1])}")
+        AppLogger.log("TaskListmodel data====>:${Gson().toJson(TaskListmodel.get(0).tabs.get(1))}")
         AppLogger.log("<======all data in TaskListmodel end ")
         val parentIndex = fetchParentIndexById(TaskListmodel, taskAndCardList[0].substring(0, 1))
-        val list = TaskListmodel[parentIndex].tabs[fetchChildIndexById(TaskListmodel[parentIndex].tabs, taskAndCardList[0])].list
+        val list = TaskListmodel[parentIndex].tabs[fetchChildIndexById(
+            TaskListmodel[parentIndex].tabs,
+            taskAndCardList[0]
+        )].list
         setViewPager(list)
         try {
-            horizontalTabAdapter = HorizontalTabAdapter(this@TaskSearchTabFragment, createHoriZentalList())
+            horizontalTabAdapter =
+                HorizontalTabAdapter(this@TaskSearchTabFragment, createHoriZentalList())
             binding.horizontalOnlyList.adapter = horizontalTabAdapter
         } catch (e: Exception) {
             AppLogger.log("Somthing went wrong in TaskSearchTabFragment during set HorizontalTabAdapter ")
         }
     }
 
-    private fun initVariable() {
+    fun initVariable() {
         mServiceIntent = Intent(requireContext(), mLocationService.javaClass)
         mLocationService = LocationService()
+        Util.updateLocation(requireContext())
     }
 
     private fun startServiceBackground() {
@@ -190,7 +238,7 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
     }
 
     private fun setDataObserver() {
-        val parentIndex = fetchParentIndexById(TaskListmodel, taskAndCardList[0].substring(0, 1))
+        var parentIndex = fetchParentIndexById(TaskListmodel, taskAndCardList[0].substring(0, 1))
         val list = TaskListmodel[parentIndex].tabs[fetchChildIndexById(
             TaskListmodel[parentIndex].tabs,
             taskAndCardList[0]
@@ -259,11 +307,15 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
 
     private fun mapView() {
         val intent = Intent(requireContext(), HomePage::class.java)
-        intent.putExtra("lat", lat)
-        intent.putExtra("long", long)
+        intent.putExtra("lat", lattitude)
+        intent.putExtra("long", longitude)
+        intent.putExtra("ownername",siteID)
+        intent.putExtra("trackingId",taskId)
         intent.putExtra("rad", radius)
         startActivity(intent)
     }
+
+
 
     private fun createHoriZentalList(): ArrayList<CollectionItem> {
         if (taskAndCardList.isEmpty()) {
@@ -271,6 +323,8 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
             return ArrayList()
         }
         val cardList: ArrayList<CollectionItem> = ArrayList()
+
+//        val selectedTask=TaskListmodel[taskAndCardList[0].toInt()]
         var fetchedId = taskAndCardList[0]
         if (fetchedId.length > 1)
             fetchedId = fetchedId.substring(0, 1)
@@ -284,7 +338,7 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
         return cardList
     }
 
-    private fun fetchParentIndexById(list: ArrayList<TaskDropDownModelItem>, currentId: String): Int {
+    fun fetchParentIndexById(list: ArrayList<TaskDropDownModelItem>, currentId: String): Int {
         try {
             for (i in 0..list.size.minus(1)) {
                 if (list[i].id.toString() == currentId)
@@ -296,7 +350,7 @@ class TaskSearchTabFragment(var siteID: String?, var taskId: String,var tempWher
         return 0
     }
 
-    private fun fetchChildIndexById(list: ArrayList<CollectionItem>, currentId: String): Int {
+    fun fetchChildIndexById(list: ArrayList<CollectionItem>, currentId: String): Int {
         try {
             for (i in 0..list.size.minus(1)) {
                 if (list[i].id.toString() == currentId)
