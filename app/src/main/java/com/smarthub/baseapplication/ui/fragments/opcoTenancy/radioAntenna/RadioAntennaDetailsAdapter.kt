@@ -113,8 +113,8 @@ class RadioAntennaDetailsAdapter(var listener: RfAnteenaItemClickListener, anten
                 holder.binding.sizeL.text=data.SizeL
                 holder.binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
                 holder.binding.remark.text=data.Remark
-
-                AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data.OperationStatus.get(0).toString())
+                if (data.OperationStatus.isNotEmpty())
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus.get(0).toString())
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -125,7 +125,7 @@ class RadioAntennaDetailsAdapter(var listener: RfAnteenaItemClickListener, anten
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list.isEmpty() || list.get(position)==null)
+        return if (list.isEmpty())
             2
         else
             1

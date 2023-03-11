@@ -6,19 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FiberCableDetailsItemsBinding
+import com.smarthub.baseapplication.databinding.FiberOpticsCableItemsBinding
+import com.smarthub.baseapplication.databinding.FiberOpticsLinkInfoDetailsBinding
 import com.smarthub.baseapplication.databinding.MwUbrLinkInfoDetailsBinding
+import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkFiberLinkInfo
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkFiberOpticCable
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkMWLinkInfo
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaullinkFiberCableDetail
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context: Context, LinkInfoData:ArrayList<BackhaulLinkMWLinkInfo>?) : RecyclerView.Adapter<MwUbrLinkFragAdapter.ViewHold>() {
+class FiberCableDetailsFragAdapter(var listener:FiberCableDetailsClickListener, var context: Context, fiberCableData:ArrayList<BackhaullinkFiberCableDetail>?) : RecyclerView.Adapter<FiberCableDetailsFragAdapter.ViewHold>() {
 
     var list = ArrayList<Any>()
 
-    fun setData(data: ArrayList<BackhaulLinkMWLinkInfo>?) {
+    fun setData(data: ArrayList<BackhaullinkFiberCableDetail>?) {
         this.list.clear()
         this.list.addAll(data!!)
         notifyDataSetChanged()
@@ -30,10 +37,10 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
 //    }
     init {
         this.list.clear()
-        this.list.addAll(LinkInfoData!!)
+        this.list.addAll(fiberCableData!!)
     }
 
-    fun updateItem(pos : Int,data : BackhaulLinkMWLinkInfo){
+    fun updateItem(pos : Int,data : BackhaulLinkFiberLinkInfo){
         list[pos] = data
         notifyItemChanged(pos)
     }
@@ -41,7 +48,7 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : MwUbrLinkInfoDetailsBinding = MwUbrLinkInfoDetailsBinding.bind(itemView)
+        var binding : FiberCableDetailsItemsBinding= FiberCableDetailsItemsBinding.bind(itemView)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -58,7 +65,7 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.mw_ubr_link_info_details,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.fiber_cable_details_items,parent,false)
                 ViewHold1(view)
             }
             2 ->{
@@ -76,7 +83,7 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: BackhaulLinkMWLinkInfo=list[position] as BackhaulLinkMWLinkInfo
+            val data: BackhaullinkFiberCableDetail=list[position] as BackhaullinkFiberCableDetail
             holder.binding.imgEdit.setOnClickListener {
 //                listener.editModeCliked(data,position)
             }
@@ -98,17 +105,15 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
                 holder.binding.imgEdit.visibility = View.GONE
             }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.LinkId,data.LinkName,Utils.getFormatedDate(data.OperationalDate.substring(0,10),"ddMMMyyyy"))
-                if(data.BackhaulType.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.BackhaulType, DropDowns.BackhaulType.name,data.BackhaulType.get(0).toString())
-                if(data.OperationStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus.get(0).toString())
-                holder.binding.LinkID.text=data.LinkId
-                holder.binding.LinkName.text=data.LinkName
-                holder.binding.LinkBandwidth.text=data.LinkBandwidth
-                holder.binding.Frequency.text=data.Frequency
-                holder.binding.FarEndSiteName.text=data.FarEndSiteName
-                holder.binding.OperationalDate.text=Utils.getFormatedDate(data.OperationalDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),position.plus(1).toString(),AppPreferences.getInstance().getDropDownValue(DropDowns.CableName.name,data.CableName.get(0).toString()),data.CableType)
+                if(data.CableName.isNotEmpty())
+                    AppPreferences.getInstance().setDropDown(holder.binding.cableName, DropDowns.CableName.name,data.CableName.get(0).toString())
+                holder.binding.Type.text=data.CableType
+                holder.binding.usedFor.text=data.UsedFor
+                holder.binding.SrNo.text=data.SerialNumber
+                holder.binding.lenth.text=data.Length
+                holder.binding.remark.text=data.Remark
+
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in mw ubr linkInfo adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -120,7 +125,7 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
     override fun getItemViewType(position: Int): Int {
         return if (list.isEmpty())
             2
-        else if(list[position] is BackhaulLinkMWLinkInfo)
+        else if(list[position] is BackhaullinkFiberCableDetail)
             1
         else
             3
@@ -139,7 +144,7 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
             this.recyclerView?.scrollToPosition(position)
     }
 
-    interface MwUbrLinkInfoClickListener{
-        fun editModeCliked(data :PowerFuelBills,pos:Int)
+    interface FiberCableDetailsClickListener{
+        fun editModeCliked(data :BackhaullinkFiberCableDetail,pos:Int)
     }
 }

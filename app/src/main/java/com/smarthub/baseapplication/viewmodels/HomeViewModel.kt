@@ -25,6 +25,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDa
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
@@ -35,7 +36,6 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
@@ -78,7 +78,7 @@ class HomeViewModel : ViewModel() {
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
-    var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null
+    var utilityEquipResponse:SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
     var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null

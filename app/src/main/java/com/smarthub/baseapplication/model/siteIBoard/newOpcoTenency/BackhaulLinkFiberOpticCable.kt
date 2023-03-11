@@ -12,6 +12,7 @@ data class BackhaulLinkFiberOpticCable(
     val LayingType: List<Int>,
     val Make: String,
     val OTDRLength: String,
+    val VendorCode: String,
     val UsedFiberPair: Int,
     val VendorCompany: List<Int>,
     val ZeroManHoleLatitude: String,
