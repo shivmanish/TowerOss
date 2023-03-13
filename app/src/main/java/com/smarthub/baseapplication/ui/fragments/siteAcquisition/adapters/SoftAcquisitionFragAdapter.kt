@@ -87,14 +87,14 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
             }
 
             binding.imgAdd.setOnClickListener {
-                addPayeeAccountTableItem("wqeeqs")
+                addPayeeAccountTableItem()
             }
         }
 
-        private fun addPayeeAccountTableItem(item:String){
-            if (payeeTableList.adapter!=null && payeeTableList.adapter is PropertyOwnerTableAdapter){
-                val adapter = payeeTableList.adapter as PropertyOwnerTableAdapter
-                adapter.addItem(item)
+        private fun addPayeeAccountTableItem(){
+            if (payeeTableList.adapter!=null && payeeTableList.adapter is PayeeAccountTableAdapter){
+                val adapter = payeeTableList.adapter as PayeeAccountTableAdapter
+                adapter.addItem()
             }
         }
 
@@ -358,6 +358,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
     interface SoftAcqListListener {
        fun attachmentItemClicked()
        fun viewPayeeAccountClicked(position: Int,data:SAcqPayeeAccountDetail)
+       fun editPayeeAccountClicked(position: Int,data:SAcqPayeeAccountDetail)
        fun updateAgreementTermClicked(data:SoftAcquisitionData)
     }
 

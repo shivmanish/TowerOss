@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqu
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SoftAcquisitionFragAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailsViewDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -85,6 +86,17 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
     override fun viewPayeeAccountClicked(position: Int, data: SAcqPayeeAccountDetail) {
         val bm = PayeeAccDetailsViewDialouge(R.layout.acq_payee_acc_view_dialouge,data)
         bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun editPayeeAccountClicked(position: Int, data: SAcqPayeeAccountDetail) {
+        val bm = PayeeAccDetailEditDialouge(data,softAcqData,
+            object : PayeeAccDetailEditDialouge.PayeeAccUpdateListener {
+                override fun updatedData() {
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"editPayeeAccountClicked class")
     }
 
     override fun updateAgreementTermClicked(data: SoftAcquisitionData) {
