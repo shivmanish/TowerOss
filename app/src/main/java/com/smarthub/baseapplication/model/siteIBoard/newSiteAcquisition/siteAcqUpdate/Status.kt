@@ -8,5 +8,7 @@ data class Status(
     val SAcqAgreementDetail: Int,
     val SAcqAgreement: Int,
     val SAcqPODetail: Int,
+    val SAcqPowerConnectionFeasibility: Int,
+    val SAcqAcquitionSurvey: Int,
     val SAcqSoftAcquisition: Int
 )

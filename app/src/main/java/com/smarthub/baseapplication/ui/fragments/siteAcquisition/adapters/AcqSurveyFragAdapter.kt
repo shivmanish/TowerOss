@@ -382,9 +382,16 @@ class AcqSurveyFragAdapter(var context: Context, var listener: AcqSurveyListList
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-//                        listener.EditTowerItem()
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
+                    holder.binding.cancel.setOnClickListener {
+                        holder.binding.viewLayout.visibility = View.VISIBLE
+                        holder.binding.editLayout.visibility = View.GONE
                     }
                 }
                 else {
@@ -402,10 +409,11 @@ class AcqSurveyFragAdapter(var context: Context, var listener: AcqSurveyListList
                 try {
                     if (datalist!=null && datalist?.SAcqPowerConnectionFeasibility?.isNotEmpty()==true){
                         val powerData: SAcqPowerConnectionFeasibility? =datalist?.SAcqPowerConnectionFeasibility?.get(0)
+
+                        // view mode
                         holder.binding.EBPowerAvailability.text= powerData?.EBAvailability.toString()
                         holder.binding.PowerSupplierName.text= powerData?.PowerSupplier
                         holder.binding.EBApplicationStatus.text= powerData?.EBApplicationStatus.toString()
-                        holder.binding.AvgAvailibillity.text= powerData?.AvgAvailability
                         holder.binding.AvgAvailibillity.text= powerData?.AvgAvailability
                         holder.binding.MeterType.text= powerData?.MeterType.toString()
                         holder.binding.ConsumerNo.text= powerData?.ConsumerNo
@@ -414,6 +422,40 @@ class AcqSurveyFragAdapter(var context: Context, var listener: AcqSurveyListList
                         holder.binding.PowerConnRating.text= powerData?.PowerRating
                         holder.binding.SolarFeability.text= powerData?.SolarFeasibility.toString()
                         holder.binding.remarks.text= powerData?.Remark
+
+                        //edit mode
+                        holder.binding.EBPowerAvailabilityEdit.text= powerData?.EBAvailability.toString()
+                        holder.binding.PowerSupplierNameEdit.setText(powerData?.PowerSupplier)
+                        holder.binding.EBApplicationStatusEdit.text= powerData?.EBApplicationStatus.toString()
+                        holder.binding.AvgAvailibillityEdit.setText(powerData?.AvgAvailability)
+                        holder.binding.MeterTypeEdit.text= powerData?.MeterType.toString()
+                        holder.binding.ConsumerNoEdit.setText(powerData?.ConsumerNo)
+                        holder.binding.MeterSerialNumberEdit.setText(powerData?.MeterSerialNo)
+                        holder.binding.NearestEBPoleEdit.setText(powerData?.NearestEBPole)
+                        holder.binding.PowerConnRatingEdit.setText(powerData?.PowerRating)
+                        holder.binding.SolarFeasibilityEdit.text= powerData?.SolarFeasibility.toString()
+                        holder.binding.remarksEdit.setText(powerData?.Remark)
+
+                       holder.binding.update.setOnClickListener {
+                           powerData?.let {
+                               it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
+                               it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
+                               it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
+                               it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
+                               it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
+                               it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
+                               it.Remark= holder.binding.remarksEdit.text.toString()
+
+                               val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
+                               tempList.clear()
+                               tempList.add(it)
+                               val tempData= AcquisitionSurveyData()
+                               tempData.SAcqPowerConnectionFeasibility=tempList
+                               tempData.id= datalist?.id
+                               listener.updatePowerConnFeasClicked(tempData)
+                           }
+                       }
+
                     }
                     else
                         AppLogger.log("error in Acquisition Survey data or Property details data")
@@ -548,6 +590,7 @@ class AcqSurveyFragAdapter(var context: Context, var listener: AcqSurveyListList
        fun viewInsidePremisesClicked(position: Int,data:SAcqInsidePremise)
        fun viewOutsidePremisesClicked(position: Int,data:SAcqOutsidePremise)
        fun viewPropertyOwnerClicked(position: Int,data:SAcqPropertyOwnerDetail)
+       fun updatePowerConnFeasClicked(data:AcquisitionSurveyData)
 
     }
 

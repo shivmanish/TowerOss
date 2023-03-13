@@ -1,19 +1,19 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqPowerConnectionFeasibility(
-    val AvgAvailability: String,
-    val ConsumerNo: String,
-    val EBApplicationStatus: Int,
-    val EBAvailability: Int,
-    val MeterSerialNo: String,
-    val MeterType: Int,
-    val NearestEBPole: String,
-    val PowerRating: String,
-    val PowerSupplier: String,
-    val Remark: String,
-    val SolarFeasibility: Int,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var AvgAvailability: String,
+    var ConsumerNo: String,
+    var EBApplicationStatus: Int,
+    var EBAvailability: Int,
+    var MeterSerialNo: String,
+    var MeterType: Int,
+    var NearestEBPole: String,
+    var PowerRating: String,
+    var PowerSupplier: String,
+    var Remark: String,
+    var SolarFeasibility: Int,
+//    var created_at: String,
+    var id: Int?=null,
+//    var isActive: Boolean,
+//    var modified_at: String
 )
