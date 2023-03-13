@@ -338,13 +338,12 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(latLng)
                 .icon(Util.BitmapFromVector(this, resources))
 
-        )!!.showInfoWindow()
+        )
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.clear()
-        addsitemarker()
 
         setMapComponent()
         if (ActivityCompat.checkSelfPermission(
@@ -374,7 +373,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
     fun addsitemarker(){
         val sydney = LatLng(lattitude.toDouble(), longitude.toDouble())
         addmarker(sydney,PatrollerPriference(this).getOwnername(),R.drawable.site_marker_or_map)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
     }
 
@@ -432,7 +431,9 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
         homePageViewModel.route_list!!.observe(this, Observer {
             println("list size id " + it.size)
             mMap.clear()
+            addsitemarker()
             drawPolyLineOnMap(it)
+
         })
 
         homePageViewModel.updatePendingLatlong(this)
