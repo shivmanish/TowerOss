@@ -8,6 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
+import okhttp3.internal.UTC
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,7 +36,7 @@ open class BaseFragment : Fragment(){
         }
     }
 
-    open fun openDatePicker(view : TextView) {
+    private fun openDatePicker(view : TextView) {
         var year = 0
         var month = 0
         var day = 0
@@ -56,10 +58,9 @@ open class BaseFragment : Fragment(){
     }
 
     open fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
-        val myFormat = "yyyy-MMM-dd" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        textView.text =
-            StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
+        textView.text = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"dd-MMM-yyyy")
+//        textView.text =
+//            StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
     }
 
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)

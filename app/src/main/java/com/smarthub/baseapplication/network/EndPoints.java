@@ -26,6 +26,7 @@ public class EndPoints {
     public static final String MONGO_TASK_API_GET = "/toweross/Mongotaskapiget/";
     public static final String MONGO_TASK_API_UPDATE = "/toweross/Mongotaskapi/";
     public static final String SITE_IBOARD_DATA_URL = "/toweross/SiteInfoGetApi/";
+    public static final String UPDATE_SITE_IBOARD_DATA_URL = "/toweross/SiteInfoPostApi/";
 
 
     public static final String BASIC_INFO_UPDATE = "/Basicinfoapi/";
