@@ -370,8 +370,7 @@ object Utils {
         listener: DialogInterface.OnClickListener
     ) {
         val builder = AlertDialog.Builder(context)
-        builder.setPositiveButton("Yes", listener
-        )
+        builder.setPositiveButton("Yes", listener)
         builder.setNegativeButton("No", listener)
         val alert = builder.create()
         alert.setTitle(title)

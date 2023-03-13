@@ -51,9 +51,9 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                 if (response != null) {
                     updateSiteAcqResponse?.postValue(Resource.error("${response.message}",null,201))
                 } else if (iThrowableLocalMessage != null) updateSiteAcqResponse?.postValue(
-                    Resource.error<UpdateSiteAcqResponseModel>(iThrowableLocalMessage, null, 500)
+                    Resource.error(iThrowableLocalMessage, null, 500)
                 ) else updateSiteAcqResponse?.postValue(
-                    Resource.error<UpdateSiteAcqResponseModel>(AppConstants.GENERIC_ERROR, null, 500))
+                    Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

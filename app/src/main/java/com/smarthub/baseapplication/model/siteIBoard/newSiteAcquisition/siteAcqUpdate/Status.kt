@@ -5,5 +5,8 @@ data class Status(
     val SAcqSiteAcquisition: Int,
     val SAcqSoftAcquisitionAgreementTerm: Int,
     val SAcqPayeeAccountDetail: Int,
+    val SAcqAgreementDetail: Int,
+    val SAcqAgreement: Int,
+    val SAcqPODetail: Int,
     val SAcqSoftAcquisition: Int
 )

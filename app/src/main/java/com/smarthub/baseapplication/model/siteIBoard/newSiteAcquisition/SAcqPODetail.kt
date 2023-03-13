@@ -1,16 +1,16 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqPODetail(
-    val POAmount: String,
-    val PODate: String,
-    val POItem: String,
-    val POLineNumber: Int,
-    val PONumber: String,
-    val Remark: String,
-    val VendorCode: String,
-    val VendorCompany: List<Int>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var POAmount: String,
+    var PODate: String,
+    var POItem: String,
+    var POLineNumber: Int,
+    var PONumber: String,
+    var Remark: String,
+    var VendorCode: String,
+    var VendorCompany: ArrayList<Int>,
+//    var created_at: String,
+    var id: Int?=null
+//    var isActive: Boolean,
+//    var modified_at: String
 )
