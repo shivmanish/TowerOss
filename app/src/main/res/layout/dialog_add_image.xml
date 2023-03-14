@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:paddingBottom="@dimen/_25sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:padding="@dimen/dp10"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:id="@+id/dialog"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Add Picture"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp20"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15"
+            android:drawablePadding="@dimen/_15sdp"
+            android:drawableEnd="@drawable/ic_baseline_camera_alt_24"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rectangle_8"
+            android:layout_marginBottom="@dimen/dp20"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:gravity="center"
+            android:id="@+id/open_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/bg_gray">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_15sdp">
+                <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/image_icon"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/camera_icon"
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:text="  Add Picture"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_medium"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/image_icon"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:text="Title"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp5"
+            style="@style/RowTextItemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="Tower Poll"
+            android:layout_marginLeft="@dimen/dp5"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:alpha="0.37"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp8" />
+        <TextView
+            android:text="File Category *"
+            android:layout_marginLeft="@dimen/dp5"
+            style="@style/RowTextItemInfo"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="Poll"
+            android:layout_marginLeft="@dimen/dp5"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:alpha="0.37"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp8" />
+        <TextView
+            android:text="File Detail *"
+            android:layout_marginLeft="@dimen/dp5"
+            style="@style/RowTextItemInfo"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="Poll"
+            android:layout_marginLeft="@dimen/dp5"
+            style="@style/RowTestItemEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:alpha="0.37"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp8" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color1"
+        android:text="Cancel"
+        android:id="@+id/cancel"
+        android:textSize="14sp"
+        android:layout_marginVertical="@dimen/dp10"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:paddingTop="@dimen/dp10"
+        android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toStartOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/dialog"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color1"
+        android:text="Submit"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:textSize="14sp"
+        android:layout_margin="@dimen/dp10"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp5"
+        android:id="@+id/submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/login_yellow_bg"
+        app:layout_constraintTop_toBottomOf="@+id/dialog"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

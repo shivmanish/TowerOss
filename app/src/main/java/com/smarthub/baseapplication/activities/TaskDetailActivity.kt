@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -14,15 +13,14 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityTaskDetailBinding
-import com.smarthub.baseapplication.model.workflow.TaskDataListItem
-import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabFragment
+import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabNewFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
-    lateinit var siteId:String
+    var siteId:String = "474"
     var lattitude:String = "20.735566"
     var longitude:String = "85.853400"
     var trackingId:String = "474"
@@ -152,8 +150,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
 
-    fun mapUIData(){
-        setFragment(TaskSearchTabFragment(siteId,trackingId,lattitude,longitude))
+    private fun mapUIData(){
+        setFragment(TaskSearchTabNewFragment(siteId,trackingId,lattitude,longitude,tempWhere))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)
