@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqOutsidePremise(
-    val Direction: List<Int>,
-    val DistanceFromBoundry: String,
-    val ExternalStructureType: List<Int>,
-    val Height: String,
-    val Remark: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var Direction: ArrayList<Int>,
+    var DistanceFromBoundry: String,
+    var ExternalStructureType: ArrayList<Int>,
+    var Height: String,
+    var Remark: String,
+//    var created_at: String,
+    var id: Int?=null,
+//    var isActive: Boolean,
+//    var modified_at: String
 )

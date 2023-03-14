@@ -6,26 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAuthorityPayments
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerConsumableViewDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelAuthPaymentViewDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelPoViewDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSurveyFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AssignACQTeamFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.InsidePremisesViewDialouge
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.OutsidePremisesViewDialouge
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PropertyOwnerViewDialouge
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -42,7 +30,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= AcqSurveyFragAdapter(requireContext(),this@AcquisitionSurveyFragment,acqSurveyData)
+        adapter= AcqSurveyFragAdapter(this@AcquisitionSurveyFragment,this@AcquisitionSurveyFragment,acqSurveyData)
         binding.listItem.adapter = adapter
 
         if (viewmodel.siteAgreementModel?.hasActiveObservers() == true) {
@@ -50,6 +38,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
         }
         viewmodel.siteAgreementModel?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
+                showLoader()
                 AppLogger.log("SiteAgreemnets AqcSurvey Fragment data loading in progress ")
                 return@observe
             }
@@ -95,9 +84,31 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
         bm.show(childFragmentManager, "category")
     }
 
+    override fun editInsidePremisesClicked(position: Int, data: SAcqInsidePremise) {
+        val bm = InsidePremisesEditDialouge(data,acqSurveyData,
+            object : InsidePremisesEditDialouge.AcqInsidePremisesUpdateListener {
+                override fun updatedData() {
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
     override fun viewOutsidePremisesClicked(position: Int, data: SAcqOutsidePremise) {
         val bm = OutsidePremisesViewDialouge(R.layout.outside_premises_view_dialouge,data)
         bm.show(childFragmentManager, "category")
+    }
+
+    override fun editOutsidePremisesClicked(position: Int, data: SAcqOutsidePremise) {
+        val bm = OutSidePremisesEditDialouge(data,acqSurveyData,
+            object : OutSidePremisesEditDialouge.AcqOutsidePremisesUpdateListener {
+                override fun updatedData() {
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
     override fun viewPropertyOwnerClicked(position: Int, data: SAcqPropertyOwnerDetail) {
@@ -105,7 +116,18 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
         bm.show(childFragmentManager, "category")
     }
 
-    override fun updatePowerConnFeasClicked(data: AcquisitionSurveyData) {
+    override fun editPropertyOwnerClicked(position: Int, data: SAcqPropertyOwnerDetail) {
+        val bm = PropertyOwnerEditDialouge(data,acqSurveyData,
+            object : PropertyOwnerEditDialouge.AcqPropertyOwnerUpdateListener {
+                override fun updatedData() {
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun updateItemClicked(data: AcquisitionSurveyData) {
         showLoader()
         val dataModel = UpdateSiteAcquiAllData()
         val tempList:ArrayList<AcquisitionSurveyData> =ArrayList()
@@ -122,7 +144,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                 AppLogger.log("SiteAgreemnets Fragment data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqPowerConnectionFeasibility==200) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status.SAcqPowerConnectionFeasibility==200 || it.data.status.SAcqFeasibilityDetail==200)) {
                 AppLogger.log("SiteAgreemnets Fragment card Data fetched successfully")
                 viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()

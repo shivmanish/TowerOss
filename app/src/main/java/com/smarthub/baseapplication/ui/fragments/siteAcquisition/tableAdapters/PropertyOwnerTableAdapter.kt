@@ -28,8 +28,9 @@ import com.smarthub.baseapplication.utils.Utils
 class PropertyOwnerTableAdapter (var context : Context, var listener : AcqSurveyFragAdapter.AcqSurveyListListener, var list:ArrayList<SAcqPropertyOwnerDetail>?): RecyclerView.Adapter<PropertyOwnerTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data=SAcqPropertyOwnerDetail("","","","",arrayListOf(0),"","")
+        this.list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -53,12 +54,12 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : AcqSurvey
             performOptionsMenuClick(position,it,item)
         }
         try {
+            holder.binding.SrNo.text=position.plus(1).toString()
+            holder.binding.OwnerName.text=item.OwnerName
+            holder.binding.share.text=item.Share
             if (item.PropertyOwnership.isNotEmpty())
                 AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,item.PropertyOwnership.get(0).toString())
 
-            holder.binding.OwnerName.text=item.OwnerName
-            holder.binding.share.text=item.Share
-            holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
             Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
@@ -82,7 +83,7 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : AcqSurvey
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
+                        listener.editPropertyOwnerClicked(position,data)
 
                         return true
                     }
