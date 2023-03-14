@@ -53,6 +53,7 @@ import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
@@ -60,9 +61,15 @@ import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,6 +108,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogsDataModel>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
+    private SingleLiveEvent<Resource<AddAttachmentModel>> addAttachmentModel;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
     private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
     private SingleLiveEvent<Resource<AllsiteInfoDataModel>> siteInfoDataModel;
@@ -221,6 +229,7 @@ public class HomeRepo {
         addNotificationResponse=new SingleLiveEvent<>();
         siteInfoDataModel=new SingleLiveEvent<>();
         acquisitionSurveyAllDataItem=new SingleLiveEvent<>();
+        addAttachmentModel=new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -231,6 +240,9 @@ public class HomeRepo {
     }
     public SingleLiveEvent<Resource<AllsiteInfoDataModel>> getSiteInfoDataModel() {
         return siteInfoDataModel;
+    }
+    public SingleLiveEvent<Resource<AddAttachmentModel>> getAddAttachmentModel() {
+        return addAttachmentModel;
     }
     public SingleLiveEvent<Resource<TaskDataList>> getTaskDataList() {
         return taskDataList;
@@ -291,6 +303,69 @@ public class HomeRepo {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
                     basicInfoUpdate.postValue(Resource.success(response.body(), 200));
 
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    basicInfoUpdate.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    basicInfoUpdate.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    basicInfoUpdate.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void addAttachmentData(AddAttachmentModel model) {
+
+//        MultipartBody.Builder builder = new MultipartBody.Builder()
+//                .addFormDataPart("sourceSchemaName",model.getSourceSchemaName())
+//                .addFormDataPart("detail",model.getDetail())
+//                .addFormDataPart("title",model.getTitle());
+//        if (model.getId()!=null) {
+//            builder.addFormDataPart("id",model.getId());
+//        }
+//        RequestBody filePart = RequestBody.create(MediaType.parse("image/*"), model.getFile());
+//        MultipartBody.Part file = MultipartBody.Part.createFormData("file", model.getFile().getName(), filePart);
+
+        File imageFile = new File(model.getFile());
+        final Map<String, RequestBody> map = new HashMap<>();
+        try {
+            RequestBody fileBody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
+            map.put("file\"; filename=\"" + imageFile.getName() + "\"", fileBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        map.put("sourceSchemaName", RequestBody.create(MediaType.parse("multipart/form-data"), model.getSourceSchemaName()));
+        map.put("sourceSchemaId", RequestBody.create(MediaType.parse("multipart/form-data"), model.getSourceSchemaId()));
+        map.put("detail", RequestBody.create(MediaType.parse("multipart/form-data"), model.getDetail()));
+        map.put("title", RequestBody.create(MediaType.parse("multipart/form-data"), model.getTitle()));
+
+        apiClient.addAttachmentData("http://49.50.77.81:8126/fms/create",map).enqueue(new Callback<List<AddAttachmentModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AddAttachmentModel>> call, Response<List<AddAttachmentModel>> response) {
+                if (response.isSuccessful() && response.body()!=null && !response.body().isEmpty()) {
+                    reportSuccessResponse(response.body().get(0));
+                    AppLogger.INSTANCE.log("addAttachmentData:"+response.body().size());
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<AddAttachmentModel>> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+                AppLogger.INSTANCE.log("addAttachmentData onFailure:"+t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(AddAttachmentModel response) {
+
+                if (response != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
+                    addAttachmentModel.postValue(Resource.success(response, 200));
                 }
             }
 

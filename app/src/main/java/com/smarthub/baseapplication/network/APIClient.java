@@ -78,19 +78,29 @@ import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
 import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
+import retrofit2.http.Url;
 
 public interface APIClient {
 
@@ -236,6 +246,12 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
+
+//    @Headers({ "Content-Type: multipart/form-data; charset=utf-8"})
+    @Multipart
+    @POST
+    Call<List<AddAttachmentModel>> addAttachmentData(@Url String url,
+                                               @PartMap Map<String, RequestBody> params);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)

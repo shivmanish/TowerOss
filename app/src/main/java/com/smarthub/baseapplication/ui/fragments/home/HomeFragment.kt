@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
+import com.smarthub.baseapplication.ui.dialog.utils.AttachmentDialogBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
@@ -52,10 +53,14 @@ class HomeFragment : Fragment(),TaskListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.notificationLayout.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
-            Log.d("notification Nvigate","navigated from home to navigation fragment")
+            val addImageTest  = AttachmentDialogBottomSheet("TowerAndCivilInfraTowerTowerDetail","68")
+            addImageTest.show(childFragmentManager,"add image")
+//            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
+//            Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
-        binding.addNewSite.setOnClickListener { clickNewSiteData() }
+        binding.addNewSite.setOnClickListener {
+            clickNewSiteData()
+        }
 
         binding.searchBoxLayout.setOnClickListener {
             (requireActivity() as DashboardActivity).openSearchMenu()

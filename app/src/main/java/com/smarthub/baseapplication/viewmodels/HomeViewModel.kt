@@ -46,6 +46,7 @@ import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
 import com.smarthub.baseapplication.network.repo.UpdateIBoardRepo
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
@@ -90,6 +91,7 @@ class HomeViewModel : ViewModel() {
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
     var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
     var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
+    var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -128,10 +130,15 @@ class HomeViewModel : ViewModel() {
         siteInfoDataResponse=homeRepo?.siteInfoDataModel
         acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
         updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
+        addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
         homeRepo?.updateData(basicinfoModel)
+    }
+
+    fun addAttachmentData(addAttachmentModel : AddAttachmentModel){
+        homeRepo?.addAttachmentData(addAttachmentModel)
     }
 
     fun updateOperationInfo(basicinfoModel: UpdateOperationInfo){
