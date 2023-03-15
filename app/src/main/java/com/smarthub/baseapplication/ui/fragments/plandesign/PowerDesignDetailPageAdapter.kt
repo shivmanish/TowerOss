@@ -23,28 +23,30 @@ class PowerDesignDetailPageAdapter (manager: FragmentManager, var data : PlanAnd
         return when(position) {
 //            0 -> EquipRoomFragment(data?.PlanningAndDesignEquipRoomEquipmentRoom)
             0 -> TowerCivilFragment(data?.PlanningAndDesignTowerAndCivil)
-            1-> PowerFragment(data?.PlanningAndDesignPowerRequirements)
-            2 -> EquipUtilityFragment(data?.UtilityEquip)
-            3 -> NocCompFragment(data?.NOCAndComp)
+            1 -> EquipRoomFragment(data?.PlanningAndDesignEquipRoomEquipmentRoom)
+            2-> PowerFragment(data?.PlanningAndDesignPowerRequirements)
+            3 -> EquipUtilityFragment(data?.UtilityEquip)
+            4 -> NocCompFragment(data?.NOCAndComp)
             else -> EquipRoomFragment(data?.PlanningAndDesignEquipRoomEquipmentRoom)
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
-//            0 -> {
-//                return "Equipment Room"
-//            }
+//
             0 -> {
                 return "Tower & Civil"
             }
             1 -> {
-                return "Power"
+                return "Equipment Room"
             }
             2 -> {
-                return "Utility Equip"
+                return "Power"
             }
             3 -> {
+                return "Utility Equip"
+            }
+            4 -> {
                 return "NOC & Comp"
             }
 

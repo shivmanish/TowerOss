@@ -126,7 +126,9 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
                  }
                  holder.binding.itemTitleStr.text = list[position]
 
-                 try {
+                 try
+                 {
+                     holder.binding.materialUsed.text=data?.MaterialUsed
                      holder.binding.sizeLenth.text=data?.SizeL
                      holder.binding.sizeWidth.text=data?.SizeB
                      holder.binding.sizeHeight.text=data?.SizeH
@@ -135,8 +137,9 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
                      holder.binding.FoundationHeight.text=data?.FoundationSizeH
                      holder.binding.Remarks.text=data?.Remark
 
-                     AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,data?.FoundationType)
-                     AppPreferences.getInstance().setDropDown(holder.binding.Type,DropDowns.EquipmentType.name,data?.Type)
+
+                     AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,data?.FoundationType.toString())
+                     AppPreferences.getInstance().setDropDown(holder.binding.type,DropDowns.EquipmentType.name,data?.Type.toString())
 
                  }catch (e:java.lang.Exception){
                      AppLogger.log("PlanDesign Equip Room Adapter error : ${e.localizedMessage}")
