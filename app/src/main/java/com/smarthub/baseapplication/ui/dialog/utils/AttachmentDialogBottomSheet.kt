@@ -1,12 +1,15 @@
 package com.smarthub.baseapplication.ui.dialog.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.*
 import android.widget.Toast
@@ -14,27 +17,22 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.DgEqipmentDialogLayoutBinding
 import com.smarthub.baseapplication.databinding.DialogAddImageBinding
-import com.smarthub.baseapplication.databinding.MaintanaceBottomSheetBinding
-import com.smarthub.baseapplication.databinding.PoDetailsBottomSheetBinding
-import com.smarthub.baseapplication.databinding.ServicesDetailsBottomSheetBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.imagePicker.BaseActivity
 import com.smarthub.baseapplication.imagePicker.FishBun
 import com.smarthub.baseapplication.imagePicker.adapter.image.impl.GlideAdapter
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
-import com.smarthub.baseapplication.ui.utilites.adapter.SMPSViewRecyclerAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.FileUtilities
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
 
 
 class AttachmentDialogBottomSheet(var sourceSchemaName:String,var sourceSchemaId:String) : BaseBottomSheetDialogFragment() {
@@ -120,25 +118,20 @@ class AttachmentDialogBottomSheet(var sourceSchemaName:String,var sourceSchemaId
     private fun openCamera() {
         val uri: Uri
         if (Utils.hasCamera(requireContext())) {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                val createImageFile = File(requireActivity().cacheDir,"temp.jpg")
-                uri = if (Build.VERSION.SDK_INT >= 24) {
-                    FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", createImageFile)
-                } else {
-                    Uri.fromFile(createImageFile)
+            if (Utils.verifyMediaImagesPermissions(requireActivity()) == true) {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                try {
+                    val createImageFile = File(requireActivity().cacheDir, "temp.jpg")
+                    uri = if (Build.VERSION.SDK_INT >= 24) FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", createImageFile)
+                    else Uri.fromFile(createImageFile)
+                    ORIGINAL_IMAGE_PATH = createImageFile.absolutePath
+                    intent.putExtra("output", uri)
+                    startForPIPCameraResult.launch(intent)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    AppLogger.log("openCamera Exception :" + e.localizedMessage)
+                    Toast.makeText(requireContext(), "Error occurred while trying to open camera, please try again", Toast.LENGTH_LONG).show()
                 }
-                ORIGINAL_IMAGE_PATH = createImageFile.absolutePath
-                intent.putExtra("output", uri)
-                startForPIPCameraResult.launch(intent)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                AppLogger.log("Exception :" + e.localizedMessage)
-                Toast.makeText(
-                    requireContext(),
-                    "Error occurred while trying to open camera, please try again",
-                    Toast.LENGTH_LONG
-                ).show()
             }
         } else {
             Toast.makeText(requireContext(), "Camera not found on this device", Toast.LENGTH_LONG).show()
@@ -156,10 +149,14 @@ class AttachmentDialogBottomSheet(var sourceSchemaName:String,var sourceSchemaId
                     } else {
                         Log.v("FILE_TEST", "file is null")
                     }
-                    val uriForFile = FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", file)
-                    intent2.data = uriForFile
+                    val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        FileProvider.getUriForFile(requireActivity(), requireActivity().applicationContext.packageName + ".provider", file)
+                    } else {
+                        Uri.fromFile(file)
+                    }
+                    intent2.data = uri
                     requireActivity().sendBroadcast(intent2)
-                    itemPath = FileUtilities.getRealPath(context, uriForFile)
+                    itemPath = file.absolutePath
                     AppLogger.log("itemPath${itemPath}")
                     Glide
                         .with(requireActivity())
@@ -167,7 +164,7 @@ class AttachmentDialogBottomSheet(var sourceSchemaName:String,var sourceSchemaId
                         .into(binding.imageIcon)
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    AppLogger.log("Exception :" + e.localizedMessage)
+                    AppLogger.log("startForPIPCameraResult Exception :" + e.localizedMessage)
                     Toast.makeText(
                         requireContext(),
                         "Error occurred while trying to take a picture, please try again",
@@ -203,6 +200,5 @@ class AttachmentDialogBottomSheet(var sourceSchemaName:String,var sourceSchemaId
             }
         }
     }
-
 
 }
