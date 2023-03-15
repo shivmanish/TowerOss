@@ -63,13 +63,21 @@ class AcqAttachmentDialogBottomSheet(var sourceSchemaName:String, var sourceSche
         }
 
         binding.submit.setOnClickListener {
-            showProgressLayout()
-            val model = AddAttachmentModel()
-            model.file = itemPath
-            model.sourceSchemaName = sourceSchemaName
-            model.sourceSchemaId = sourceSchemaId
-            showLoader()
-            homeViewModel.addAttachmentData(model)
+            if (itemPath.isNotEmpty() && binding.titleText.text.toString()!=""){
+                showProgressLayout()
+                val model = AddAttachmentModel()
+                model.file = itemPath
+                model.sourceSchemaName = sourceSchemaName
+                model.sourceSchemaId = sourceSchemaId
+                model.detail=binding.fileDetails.text.toString()
+                model.title=binding.titleText.text.toString()
+                homeViewModel.addAttachmentData(model)
+            }
+            else
+            {
+                AppLogger.log("attachment not selected or titled not set")
+               Toast.makeText(context,"Please Select an attachment and set Title",Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.camera.setOnClickListener {
@@ -115,25 +123,20 @@ class AcqAttachmentDialogBottomSheet(var sourceSchemaName:String, var sourceSche
     private fun openCamera() {
         val uri: Uri
         if (Utils.hasCamera(requireContext())) {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                val createImageFile = File(requireActivity().cacheDir,"temp.jpg")
-                uri = if (Build.VERSION.SDK_INT >= 24) {
-                    FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", createImageFile)
-                } else {
-                    Uri.fromFile(createImageFile)
+            if (Utils.verifyMediaImagesPermissions(requireActivity()) == true) {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                try {
+                    val createImageFile = File(requireActivity().cacheDir, "temp.jpg")
+                    uri = if (Build.VERSION.SDK_INT >= 24) FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", createImageFile)
+                    else Uri.fromFile(createImageFile)
+                    ORIGINAL_IMAGE_PATH = createImageFile.absolutePath
+                    intent.putExtra("output", uri)
+                    startForPIPCameraResult.launch(intent)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    AppLogger.log("openCamera Exception :" + e.localizedMessage)
+                    Toast.makeText(requireContext(), "Error occurred while trying to open camera, please try again", Toast.LENGTH_LONG).show()
                 }
-                ORIGINAL_IMAGE_PATH = createImageFile.absolutePath
-                intent.putExtra("output", uri)
-                startForPIPCameraResult.launch(intent)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                AppLogger.log("Exception :" + e.localizedMessage)
-                Toast.makeText(
-                    requireContext(),
-                    "Error occurred while trying to open camera, please try again",
-                    Toast.LENGTH_LONG
-                ).show()
             }
         } else {
             Toast.makeText(requireContext(), "Camera not found on this device", Toast.LENGTH_LONG).show()
@@ -151,10 +154,14 @@ class AcqAttachmentDialogBottomSheet(var sourceSchemaName:String, var sourceSche
                     } else {
                         Log.v("FILE_TEST", "file is null")
                     }
-                    val uriForFile = FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", file)
-//                    intent2.data = uriForFile
-//                    requireActivity().sendBroadcast(intent2)
-                    itemPath = FileUtilities.getRealPath(context, uriForFile)
+                    val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        FileProvider.getUriForFile(requireActivity(), requireActivity().applicationContext.packageName + ".provider", file)
+                    } else {
+                        Uri.fromFile(file)
+                    }
+                    intent2.data = uri
+                    requireActivity().sendBroadcast(intent2)
+                    itemPath = file.absolutePath
                     AppLogger.log("itemPath${itemPath}")
                     Glide
                         .with(requireActivity())
@@ -162,7 +169,7 @@ class AcqAttachmentDialogBottomSheet(var sourceSchemaName:String, var sourceSche
                         .into(binding.imageIcon)
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    AppLogger.log("Exception :" + e.localizedMessage)
+                    AppLogger.log("startForPIPCameraResult Exception :" + e.localizedMessage)
                     Toast.makeText(
                         requireContext(),
                         "Error occurred while trying to take a picture, please try again",

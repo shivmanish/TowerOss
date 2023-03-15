@@ -126,6 +126,15 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
             })
         bm.show(childFragmentManager,"sdg")
     }
+    override fun addAttachment() {
+        val bm = AcqAttachmentDialogBottomSheet("SAcqAcquitionSurvey",acqSurveyData?.SAcqAcquitionSurvey?.get(0)?.id.toString(),
+            object : AcqAttachmentDialogBottomSheet.AddAttachmentListner {
+                override fun attachmentAdded(){
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
 
     override fun updateItemClicked(data: AcquisitionSurveyData) {
         showLoader()

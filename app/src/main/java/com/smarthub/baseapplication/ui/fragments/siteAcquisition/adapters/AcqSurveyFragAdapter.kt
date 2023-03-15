@@ -170,11 +170,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
     }
     class ViewHold6(itemView: View,listener: AcqSurveyListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-            override fun itemClicked() {
-                listener.attachmentItemClicked()
-            }
-        })
+        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
 
         init {
             binding.collapsingLayout.tag = false
@@ -186,11 +182,10 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+//            recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
+                listener.addAttachment()
             }
 
         }
@@ -773,6 +768,19 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    if (datalist!=null){
+                        holder.recyclerListener.adapter=AcqImageAttachmentAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : AcqImageAttachmentAdapter.ItemClickListener{
+                            override fun itemClicked() {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
             }
         }
     }
@@ -792,6 +800,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
     interface AcqSurveyListListener {
        fun attachmentItemClicked()
+       fun addAttachment()
        fun viewInsidePremisesClicked(position: Int,data:SAcqInsidePremise)
        fun editInsidePremisesClicked(position: Int,data:SAcqInsidePremise)
        fun viewOutsidePremisesClicked(position: Int,data:SAcqOutsidePremise)

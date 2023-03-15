@@ -98,11 +98,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
     }
     class ViewHold3(itemView: View,listener: AgreementListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-            override fun itemClicked() {
-                listener.attachmentItemClicked()
-            }
-        })
+        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
 
         init {
             binding.collapsingLayout.tag = false
@@ -114,11 +110,10 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+//            recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
+                listener.addAttachment()
             }
 
         }
@@ -322,6 +317,19 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    if (datalist!=null){
+                        holder.recyclerListener.adapter=AcqImageAttachmentAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : AcqImageAttachmentAdapter.ItemClickListener{
+                            override fun itemClicked() {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
             }
         }
     }
@@ -341,6 +349,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
 
     interface AgreementListListener {
        fun attachmentItemClicked()
+       fun addAttachment()
        fun viewPoItemClicked(position: Int,data:SAcqPODetail)
        fun editPoItemClicked(position: Int,data:SAcqPODetail)
        fun updateAgreementDetailsClicked(data:SiteAcqAgreement)

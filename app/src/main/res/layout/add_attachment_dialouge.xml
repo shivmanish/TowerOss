@@ -167,6 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:id="@+id/titel_text"
                     android:layout_width="match_parent"
                     style="@style/RowTestItemEdit"
                     android:hint="Title"
@@ -184,6 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:id="@+id/file_details"
                     android:layout_width="match_parent"
                     style="@style/RowTestItemEdit"
                     android:textSize="15dp"
