@@ -37,6 +37,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
@@ -238,7 +239,7 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
         if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true){
             homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        val serviceFragAdapterAdapter = ServicesDataAdapter(this@TaskSearchTabNewFragment,siteID.toString())
+        val serviceFragAdapterAdapter = TaskServicesDataAdapter(this@TaskSearchTabNewFragment,siteID.toString())
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
 
         homeViewModel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
