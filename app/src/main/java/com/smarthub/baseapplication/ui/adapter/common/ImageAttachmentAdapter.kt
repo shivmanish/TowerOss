@@ -15,7 +15,7 @@ class ImageAttachmentAdapter(var listener: ItemClickListener) : RecyclerView.Ada
     }
     fun addItem(){
         list.add("item1")
-        notifyItemChanged(list.size.minus(1))
+        notifyItemChanged(list.size.plus(1))
     }
     class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding : ImgCardViewBinding = ImgCardViewBinding.bind(itemView)
@@ -25,7 +25,7 @@ class ImageAttachmentAdapter(var listener: ItemClickListener) : RecyclerView.Ada
         return ViewHold(view)
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        holder.binding.root.setOnClickListener {
+        holder.itemView.setOnClickListener {
             listener.itemClicked()
         }
     }

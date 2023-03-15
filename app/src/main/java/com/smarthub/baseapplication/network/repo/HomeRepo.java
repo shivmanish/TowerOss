@@ -341,6 +341,7 @@ public class HomeRepo {
         map.put("sourceSchemaId", RequestBody.create(MediaType.parse("multipart/form-data"), model.getSourceSchemaId()));
         map.put("detail", RequestBody.create(MediaType.parse("multipart/form-data"), model.getDetail()));
         map.put("title", RequestBody.create(MediaType.parse("multipart/form-data"), model.getTitle()));
+        map.put("type", RequestBody.create(MediaType.parse("multipart/form-data"), model.getType()));
 
         apiClient.addAttachmentData("http://49.50.77.81:8126/fms/create",map).enqueue(new Callback<List<AddAttachmentModel>>() {
             @Override

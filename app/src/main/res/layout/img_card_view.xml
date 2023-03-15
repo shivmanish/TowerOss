@@ -13,16 +13,19 @@
         <ImageView
             android:id="@+id/attachments"
             android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_image_24"
             android:layout_width="@dimen/dp65"
             android:layout_height="@dimen/dp60"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="14dp"
-            android:layout_marginTop="@dimen/dp3"
-            android:layout_marginEnd="@dimen/dp1"
+            android:layout_width="25dp"
+            android:layout_height="23dp"
+            android:paddingTop="@dimen/dp3"
+            android:paddingBottom="@dimen/dp5"
+            android:paddingRight="@dimen/dp1"
+            android:paddingLeft="@dimen/dp3"
             android:src="@drawable/ic_delete"
             app:layout_constraintTop_toTopOf="@+id/attachments"
             app:layout_constraintEnd_toEndOf="@+id/attachments"

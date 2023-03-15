@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
+
 data class AssignACQTeamDAta(
     var AcquisitionBudget: String,
     var AcquisitionMode: ArrayList<Int>,
@@ -17,8 +19,9 @@ data class AssignACQTeamDAta(
     var VendorExecutiveEmailId: String,
     var VendorExecutiveMobile: String,
     var VendorExecutiveName: String,
+    var attachment: ArrayList<Attachments>,
     var created_at: String?=null,
-    var id: Int,
+    var id: Int?=null,
     var isActive: Boolean?=null,
     var modified_at: String?=null
 )

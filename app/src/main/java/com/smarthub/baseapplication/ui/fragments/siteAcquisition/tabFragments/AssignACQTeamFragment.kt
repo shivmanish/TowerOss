@@ -25,6 +25,8 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerCons
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelAuthPaymentViewDialouge
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelPoViewDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AssignACQTeamFragAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AcqAttachmentDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.OutSidePremisesEditDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -88,6 +90,16 @@ class AssignACQTeamFragment(var acqTeamData:NewSiteAcquiAllData?, var parentInde
 
     override fun attachmentItemClicked() {
        AppLogger.log("Attachment clicked")
+    }
+
+    override fun addAttachment() {
+        val bm = AcqAttachmentDialogBottomSheet("SAcqAssignACQTeam",acqTeamData?.SAcqAssignACQTeam?.get(0)?.id.toString(),
+            object : AcqAttachmentDialogBottomSheet.AddAttachmentListner {
+                override fun attachmentAdded(){
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
     override fun updateTeamClicked(data: AssignACQTeamDAta?) {
