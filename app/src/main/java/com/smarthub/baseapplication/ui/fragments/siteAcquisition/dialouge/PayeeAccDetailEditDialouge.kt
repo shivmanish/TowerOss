@@ -50,33 +50,64 @@ class PayeeAccDetailEditDialouge (var data: SAcqPayeeAccountDetail, var fullData
 //
         binding.update.setOnClickListener {
             showProgressLayout()
-            data.let {
-                it.PayeeName=binding.PayeeNameEdit.text.toString()
-                it.Share=binding.ShareEdit.text.toString()
-                it.AccountNumber=binding.AccountNoEdit.text.toString()
-                it.PayeeBank=binding.PayeeBankEdit.text.toString()
-                it.BankBranch=binding.BranchNameEdit.text.toString()
-                it.BankIFSCode=binding.IfscCodeEdit.text.toString()
-                it.GSTIN=binding.GSTNumberEdit.text.toString()
-                it.GSTIN=binding.GSTNumberEdit.text.toString()
-                it.PAN=binding.PanNumberEdit.text.toString()
+            if (fullData?.SAcqSoftAcquisition==null || fullData?.SAcqSoftAcquisition?.isEmpty()==true){
+                data.let {
+                    it.PayeeName=binding.PayeeNameEdit.text.toString()
+                    it.Share=binding.ShareEdit.text.toString()
+                    it.AccountNumber=binding.AccountNoEdit.text.toString()
+                    it.PayeeBank=binding.PayeeBankEdit.text.toString()
+                    it.BankBranch=binding.BranchNameEdit.text.toString()
+                    it.BankIFSCode=binding.IfscCodeEdit.text.toString()
+                    it.GSTIN=binding.GSTNumberEdit.text.toString()
+                    it.GSTIN=binding.GSTNumberEdit.text.toString()
+                    it.PAN=binding.PanNumberEdit.text.toString()
 
 
-                // add po data to agreement model list
-                val tempList:ArrayList<SAcqPayeeAccountDetail> = ArrayList()
-                tempList.clear()
-                tempList.add(it)
-                val tempData= fullData?.SAcqSoftAcquisition?.get(0) as SoftAcquisitionData
-                tempData.SAcqSoftAcquisitionAgreementTerm=null
-                tempData.SAcqPayeeAccountDetail= tempList
-                //add add agreement model to update rootModel
-                val dataModel = UpdateSiteAcquiAllData()
-                val tempList2:ArrayList<SoftAcquisitionData> =ArrayList()
-                tempList2.clear()
-                tempList2.add(tempData)
-                dataModel.SAcqSoftAcquisition=tempList2
-                dataModel.id=fullData?.id
-                viewmodel.updateSiteAcq(dataModel)
+                    // add po data to agreement model list
+                    val tempList:ArrayList<SAcqPayeeAccountDetail> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    val tempData= SoftAcquisitionData()
+                    tempData.SAcqPayeeAccountDetail= tempList
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<SoftAcquisitionData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqSoftAcquisition=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
+            }
+            else{
+                data.let {
+                    it.PayeeName=binding.PayeeNameEdit.text.toString()
+                    it.Share=binding.ShareEdit.text.toString()
+                    it.AccountNumber=binding.AccountNoEdit.text.toString()
+                    it.PayeeBank=binding.PayeeBankEdit.text.toString()
+                    it.BankBranch=binding.BranchNameEdit.text.toString()
+                    it.BankIFSCode=binding.IfscCodeEdit.text.toString()
+                    it.GSTIN=binding.GSTNumberEdit.text.toString()
+                    it.GSTIN=binding.GSTNumberEdit.text.toString()
+                    it.PAN=binding.PanNumberEdit.text.toString()
+
+
+                    // add po data to agreement model list
+                    val tempList:ArrayList<SAcqPayeeAccountDetail> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    val tempData= fullData?.SAcqSoftAcquisition?.get(0) as SoftAcquisitionData
+                    tempData.SAcqSoftAcquisitionAgreementTerm=null
+                    tempData.SAcqPayeeAccountDetail= tempList
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<SoftAcquisitionData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqSoftAcquisition=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
             }
         }
 

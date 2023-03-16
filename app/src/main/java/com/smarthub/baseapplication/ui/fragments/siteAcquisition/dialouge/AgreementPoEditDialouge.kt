@@ -11,13 +11,10 @@ import com.smarthub.baseapplication.databinding.AcqPoEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqAgreementDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -38,21 +35,21 @@ class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcqui
         binding.Cancle.setOnClickListener {
             dismiss()
         }
-        binding.PoItemEdit.setText(data?.POItem)
-        binding.VendorCodeEdit.setText(data?.VendorCode)
-        binding.PoNumberEdit.setText(data?.PONumber)
-        binding.PoAmountEdit.setText(data?.POAmount)
-        binding.PoLineNumberEdit.setText(data?.POLineNumber.toString())
-        binding.remarksEdit.setText(data?.Remark)
-        if (data?.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name,data?.VendorCompany?.get(0).toString())
+        binding.PoItemEdit.setText(data.POItem)
+        binding.VendorCodeEdit.setText(data.VendorCode)
+        binding.PoNumberEdit.setText(data.PONumber)
+        binding.PoAmountEdit.setText(data.POAmount)
+        binding.PoLineNumberEdit.setText(data.POLineNumber.toString())
+        binding.remarksEdit.setText(data.Remark)
+        if (data.VendorCompany.isNotEmpty())
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany[0].toString())
         else
             AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name)
 
-        if (data?.PODate?.isNotEmpty()==true)
-            binding.PoDateEdit.text=Utils.getFormatedDate(data?.PODate!!.substring(0,10),"dd-MMM-yyyy")
+        if (data.PODate.isNotEmpty())
+            binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
         else
-            binding.PoDateEdit.text=data?.PODate
+            binding.PoDateEdit.text=data.PODate
         setDatePickerView( binding.PoDateEdit)
 
         binding.update.setOnClickListener {
@@ -66,10 +63,7 @@ class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcqui
                     it.Remark=binding.remarksEdit.text.toString()
                     it.POLineNumber=binding.PoLineNumberEdit.text.toString().toInt()
                     it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
-                    if (data?.VendorCompany?.isNotEmpty()==true)
-                        it.VendorCompany[0]=binding.VendorNameEdit.selectedValue.id.toInt()
-                    else
-                        it.VendorCompany.add(binding.VendorNameEdit.selectedValue.id.toInt())
+                    it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
 
                     // add po data to agreement model list
                     val tempList:ArrayList<SAcqPODetail> = ArrayList()
@@ -97,7 +91,7 @@ class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcqui
                     it.Remark=binding.remarksEdit.text.toString()
                     it.POLineNumber=binding.PoLineNumberEdit.text.toString().toInt()
                     it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
-                    if (data?.VendorCompany?.isNotEmpty()==true)
+                    if (data.VendorCompany.isNotEmpty())
                         it.VendorCompany[0]=binding.VendorNameEdit.selectedValue.id.toInt()
                     else
                         it.VendorCompany.add(binding.VendorNameEdit.selectedValue.id.toInt())

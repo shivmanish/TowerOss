@@ -7,7 +7,7 @@ data class SoftAcquisitionData(
     var SAcqSoftAcquisitionAgreementTerm: ArrayList<SoftAcqAgreementTerm>?=null,
     var attachment: ArrayList<Attachments>?=null,
     var created_at: String?=null,
-    var id: Int,
+    var id: Int?=null,
     var isActive: Boolean?=null,
     var modified_at: String?=null
 )

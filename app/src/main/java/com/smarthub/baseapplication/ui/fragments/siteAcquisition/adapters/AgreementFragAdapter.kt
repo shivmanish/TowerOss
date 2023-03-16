@@ -208,6 +208,20 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                         holder.binding.AgreementExpiryDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.RentStartDate.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate!!.substring(0,10),"dd-MMM-yyyy")
 
+                        // edit mode
+                        holder.binding.RegistrationNumberEdit.setText(agreeDetailsData.RegistrationNumber)
+                        holder.binding.LastRevisedRentAmountEdit.setText(agreeDetailsData.LastRevisedRentAmount)
+                        holder.binding.AcquisitionAreaEdit.setText(agreeDetailsData.Acquisitionarea)
+                        holder.binding.RooftopAcquiredAreaEdit.setText(agreeDetailsData.RooftopacquiredArea)
+                        holder.binding.RooftopUsableAreaEdit.setText(agreeDetailsData.RooftopUsableArea)
+                        holder.binding.GroundAcquiredAreaEdit.setText(agreeDetailsData.GroundAcquiredArea)
+                        holder.binding.GroundUsableAreaEdit.setText(agreeDetailsData.GroundUsableArea)
+                        holder.binding.remarksEdit.setText(agreeDetailsData.Remark)
+                        holder.binding.RegistrationDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RegistrationDate!!.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.AgreementEffectiveDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate!!.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.AgreementExpiryDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.RentStartDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate!!.substring(0,10),"dd-MMM-yyyy")
+
                     }
                     else
                         AppLogger.log("error in agreement data or Agreement details data")
@@ -217,19 +231,6 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                         AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name,agreeDetailsData?.Costcentre?.get(0).toString())
                     else
                         AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name)
-                    holder.binding.RegistrationNumberEdit.setText(agreeDetailsData?.RegistrationNumber)
-                    holder.binding.LastRevisedRentAmountEdit.setText(agreeDetailsData?.LastRevisedRentAmount)
-                    holder.binding.AcquisitionAreaEdit.setText(agreeDetailsData?.Acquisitionarea)
-                    holder.binding.RooftopAcquiredAreaEdit.setText(agreeDetailsData?.RooftopacquiredArea)
-                    holder.binding.RooftopUsableAreaEdit.setText(agreeDetailsData?.RooftopUsableArea)
-                    holder.binding.GroundAcquiredAreaEdit.setText(agreeDetailsData?.GroundAcquiredArea)
-                    holder.binding.GroundUsableAreaEdit.setText(agreeDetailsData?.GroundUsableArea)
-                    holder.binding.remarksEdit.setText(agreeDetailsData?.Remark)
-                    holder.binding.RegistrationDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.RegistrationDate!!.substring(0,10),"dd-MMM-yyyy")
-                    holder.binding.AgreementEffectiveDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.AgreementEffectiveDate!!.substring(0,10),"dd-MMM-yyyy")
-                    holder.binding.AgreementExpiryDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
-                    holder.binding.RentStartDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.RentStartDate!!.substring(0,10),"dd-MMM-yyyy")
-
 
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
