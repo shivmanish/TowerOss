@@ -165,12 +165,6 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         holder.binding.remarks.text=datalist?.Remark
 
                         // edit mode
-                        if (datalist?.Acquisitiontype?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
-                        if (datalist?.AcquisitionMode?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
-                        if (datalist?.VendorCompany?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
                         holder.binding.AcquisitionLeadNameEdit.setText(datalist?.LeadName)
                         holder.binding.AcquisitionExecutiveNameEdit.setText(datalist?.ExecutiveName)
                         holder.binding.AcquisitionBudgetEdit.setText(datalist?.AcquisitionBudget)
@@ -185,53 +179,93 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         holder.binding.PODateEdit.text=Utils.getFormatedDate(datalist?.PODate?.substring(0,10)!!,"dd-MMM-yyyy")
                         holder.binding.remarksEdit.setText(datalist?.Remark)
 
-                        baseFragment.setDatePickerView(holder.binding.AcquisitionTargetDateEdit)
-                        baseFragment.setDatePickerView(holder.binding.PODateEdit)
 
                     }
                     else
                         AppLogger.log("error in Power Connection details data")
+                    if (datalist!=null && datalist?.Acquisitiontype?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
+                    else
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
+                    if (datalist!=null && datalist?.AcquisitionMode?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
+                    else
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name)
+                    if (datalist!=null && datalist?.VendorCompany?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
+                    else
+                        AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
 
                 holder.binding.update.setOnClickListener {
-                    datalist.let {
-                        it?.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
-                        it?.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
-                        it?.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
-                        it?.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
-                        it?.VendorCode=holder.binding.VendorCodeEdit.text.toString()
-                        it?.PONumber=holder.binding.PONumberEdit.text.toString()
-                        it?.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
-                        it?.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
-                        it?.POAmount=holder.binding.POAmountEdit.text.toString()
-                        it?.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
-                        it?.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
-                        it?.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
-                        it?.isActive=null
-                        it?.modified_at=null
-                        it?.created_at=null
+                    if (datalist!=null){
+                        datalist.let {
+                            it?.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
+                            it?.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
+                            it?.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
+                            it?.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
+                            it?.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                            it?.PONumber=holder.binding.PONumberEdit.text.toString()
+                            it?.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
+                            it?.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
+                            it?.POAmount=holder.binding.POAmountEdit.text.toString()
+                            it?.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it?.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
+                            it?.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it?.Remark=holder.binding.remarksEdit.text.toString()
+                            it?.isActive=null
+                            it?.modified_at=null
+                            it?.created_at=null
 
-                        if (it?.AcquisitionMode?.isNotEmpty()==true)
-                            it.AcquisitionMode!![0] = holder.binding.AcquisitionModeEdit.selectedValue.id.toInt()
-                        else
-                            it?.AcquisitionMode?.add(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
+                            if (it?.AcquisitionMode?.isNotEmpty()==true)
+                                it.AcquisitionMode!![0] = holder.binding.AcquisitionModeEdit.selectedValue.id.toInt()
+                            else
+                                it?.AcquisitionMode?.add(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
 
-                        if (it?.Acquisitiontype?.isNotEmpty()==true)
-                            it.Acquisitiontype!![0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
-                        else
-                            it?.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                            if (it?.Acquisitiontype?.isNotEmpty()==true)
+                                it.Acquisitiontype!![0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
+                            else
+                                it?.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
 
-                        if (it?.VendorCompany?.isNotEmpty()==true)
-                            it.VendorCompany!![0] = holder.binding.VendorNameEdit.selectedValue.id.toInt()
-                        else
-                            it?.VendorCompany?.add(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                            if (it?.VendorCompany?.isNotEmpty()==true)
+                                it.VendorCompany!![0] = holder.binding.VendorNameEdit.selectedValue.id.toInt()
+                            else
+                                it?.VendorCompany?.add(holder.binding.VendorNameEdit.selectedValue.id.toInt())
 
-                        listener.updateTeamClicked(it)
+                            listener.updateTeamClicked(it)
+                        }
                     }
+                    else{
+                        val tempData=AssignACQTeamDAta()
+                        tempData.let {
+                            it.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
+                            it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
+                            it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
+                            it.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
+                            it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                            it.PONumber=holder.binding.PONumberEdit.text.toString()
+                            it.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
+                            it.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
+                            it.POAmount=holder.binding.POAmountEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
+                            it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.AcquisitionMode = arrayListOf(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
+                            it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                            it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+
+                            listener.updateTeamClicked(it)
+                        }
+                    }
+
                 }
 
+                baseFragment.setDatePickerView(holder.binding.AcquisitionTargetDateEdit)
+                baseFragment.setDatePickerView(holder.binding.PODateEdit)
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
