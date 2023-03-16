@@ -2,26 +2,26 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 import com.smarthub.baseapplication.model.siteIBoard.Attachments
 
-data class AssignACQTeamDAta(
-    var AcquisitionBudget: String,
-    var AcquisitionMode: ArrayList<Int>,
-    var AcquisitionTargetDate: String,
-    var Acquisitiontype: ArrayList<Int>,
-    var ExecutiveName: String,
-    var LeadName: String,
-    var POAmount: String,
-    var PODate: String,
-    var POLineItemNo: Int,
-    var PONumber: String,
-    var Remark: String,
-    var VendorCode: String,
-    var VendorCompany: ArrayList<Int>,
-    var VendorExecutiveEmailId: String,
-    var VendorExecutiveMobile: String,
-    var VendorExecutiveName: String,
-    var attachment: ArrayList<Attachments>,
-    var created_at: String?=null,
-    var id: Int?=null,
-    var isActive: Boolean?=null,
-    var modified_at: String?=null
-)
+ class AssignACQTeamDAta {
+    var AcquisitionBudget: String? = null
+    var AcquisitionMode: ArrayList<Int>? = null
+    var AcquisitionTargetDate: String? = null
+    var Acquisitiontype: ArrayList<Int>? = null
+    var ExecutiveName: String? = null
+    var LeadName: String? = null
+    var POAmount: String? = null
+    var PODate: String? = null
+    var POLineItemNo: Int? = null
+    var PONumber: String? = null
+    var Remark: String? = null
+    var VendorCode: String? = null
+    var VendorCompany: ArrayList<Int>? = null
+    var VendorExecutiveEmailId: String? = null
+    var VendorExecutiveMobile: String? = null
+    var VendorExecutiveName: String? = null
+    var attachment: ArrayList<Attachments>? = null
+    var created_at: String? = null
+    var id: Int? = null
+    var isActive: Boolean? = null
+    var modified_at: String? = null
+}

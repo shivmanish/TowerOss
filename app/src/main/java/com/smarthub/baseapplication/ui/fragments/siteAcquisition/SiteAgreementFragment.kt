@@ -14,9 +14,11 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteA
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AcqAttachmentDialogBottomSheet
 import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementCaredItemActivity
 import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseDataAdapter
 import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseDataAdapterListener
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -53,6 +55,7 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                hideLoader()
                 AppLogger.log("SiteAgreemnets Fragment card Data fetched successfully")
                 try {
                     adapter.setData(it.data.SAcqSiteAcquisition)
@@ -75,6 +78,17 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
             viewmodel.fetchSiteAgreementModelRequest(id)
         }
         viewmodel.fetchSiteAgreementModelRequest(id)
+
+        binding.addNew.setOnClickListener {
+            val bm = AddNewSiteAcqDialouge(
+                object : AddNewSiteAcqDialouge.AddSiteAcqDataListener {
+                    override fun addNewData(){
+                        showLoader()
+                        viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                    }
+                })
+            bm.show(childFragmentManager,"sdg")
+        }
     }
 
     override fun onViewPageSelected() {

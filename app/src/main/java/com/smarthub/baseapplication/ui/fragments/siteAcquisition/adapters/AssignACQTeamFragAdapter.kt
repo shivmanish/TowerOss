@@ -214,17 +214,17 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         it?.created_at=null
 
                         if (it?.AcquisitionMode?.isNotEmpty()==true)
-                            it.AcquisitionMode[0] = holder.binding.AcquisitionModeEdit.selectedValue.id.toInt()
+                            it.AcquisitionMode!![0] = holder.binding.AcquisitionModeEdit.selectedValue.id.toInt()
                         else
                             it?.AcquisitionMode?.add(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
 
                         if (it?.Acquisitiontype?.isNotEmpty()==true)
-                            it.Acquisitiontype[0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
+                            it.Acquisitiontype!![0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
                         else
                             it?.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
 
                         if (it?.VendorCompany?.isNotEmpty()==true)
-                            it.VendorCompany[0] = holder.binding.VendorNameEdit.selectedValue.id.toInt()
+                            it.VendorCompany!![0] = holder.binding.VendorNameEdit.selectedValue.id.toInt()
                         else
                             it?.VendorCompany?.add(holder.binding.VendorNameEdit.selectedValue.id.toInt())
 

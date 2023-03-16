@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.utils.Utils
 
 class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: AgreementListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AgreementFragAdapter.ViewHold>() {
     private var datalist: SiteAcqAgreement?=null
+    private var agreeDetailsData: SAcqAgreementDetail?=null
 
     fun setData(data: SiteAcqAgreement?) {
         this.datalist=data!!
@@ -27,8 +28,8 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
     }
     init {
         try {
-            if (data!=null && data.SAcqAssignACQTeam.isNotEmpty()){
-                datalist=data.SAcqAgreement.get(0)
+            if (data!=null && data.SAcqAgreement.isNotEmpty()){
+                datalist= data.SAcqAgreement[0]
             }
         }catch (e:java.lang.Exception){
             AppLogger.log("AgreementFragAdapter error :${e.localizedMessage}")
@@ -185,11 +186,14 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null && datalist?.SAcqAgreementDetail?.isNotEmpty()==true){
+                        agreeDetailsData= datalist?.SAcqAgreementDetail?.get(0)
+                    }
+                    if (agreeDetailsData!=null){
                         val agreeDetailsData: SAcqAgreementDetail? = datalist?.SAcqAgreementDetail?.get(0)
 
                         // view mode
                         if(agreeDetailsData?.Costcentre?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentre,DropDowns.Costcentre.name,agreeDetailsData.Costcentre.get(0).toString())
+                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentre,DropDowns.Costcentre.name,agreeDetailsData?.Costcentre?.get(0).toString())
 
                         holder.binding.RegistrationNumber.text=agreeDetailsData?.RegistrationNumber
                         holder.binding.LastRevisedRentAmount.text=agreeDetailsData?.LastRevisedRentAmount
@@ -200,70 +204,121 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                         holder.binding.GroundUsableArea.text=agreeDetailsData?.GroundUsableArea
                         holder.binding.remarks.text=agreeDetailsData?.Remark
                         holder.binding.RegistrationDate.text=Utils.getFormatedDate(agreeDetailsData?.RegistrationDate?.substring(0,10)!!,"dd-MMM-yyyy")
-                        holder.binding.AgreementEffectiveDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.AgreementExpiryDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.RentStartDate.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.AgreementEffectiveDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate!!.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.AgreementExpiryDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.RentStartDate.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate!!.substring(0,10),"dd-MMM-yyyy")
 
-                        // edit mode
-                        if(agreeDetailsData.Costcentre.isNotEmpty())
-                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name,agreeDetailsData.Costcentre.get(0).toString())
-                        else
-                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name)
-
-                        holder.binding.RegistrationNumberEdit.setText(agreeDetailsData.RegistrationNumber)
-                        holder.binding.LastRevisedRentAmountEdit.setText(agreeDetailsData.LastRevisedRentAmount)
-                        holder.binding.AcquisitionAreaEdit.setText(agreeDetailsData.Acquisitionarea)
-                        holder.binding.RooftopAcquiredAreaEdit.setText(agreeDetailsData.RooftopacquiredArea)
-                        holder.binding.RooftopUsableAreaEdit.setText(agreeDetailsData.RooftopUsableArea)
-                        holder.binding.GroundAcquiredAreaEdit.setText(agreeDetailsData.GroundAcquiredArea)
-                        holder.binding.GroundUsableAreaEdit.setText(agreeDetailsData.GroundUsableArea)
-                        holder.binding.remarksEdit.setText(agreeDetailsData.Remark)
-                        holder.binding.RegistrationDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RegistrationDate.substring(0,10)!!,"dd-MMM-yyyy")
-                        holder.binding.AgreementEffectiveDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.AgreementExpiryDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.RentStartDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate.substring(0,10),"dd-MMM-yyyy")
-
-                        baseFragment.setDatePickerView(holder.binding.RegistrationDateEdit)
-                        baseFragment.setDatePickerView(holder.binding.AgreementEffectiveDateEdit)
-                        baseFragment.setDatePickerView(holder.binding.AgreementExpiryDateEdit)
-                        baseFragment.setDatePickerView(holder.binding.RentStartDateEdit)
-
-                        holder.binding.update.setOnClickListener {
-                            agreeDetailsData.let {
-                                it.RegistrationNumber=holder.binding.RegistrationNumberEdit.text.toString()
-                                it.LastRevisedRentAmount=holder.binding.LastRevisedRentAmountEdit.text.toString()
-                                it.Acquisitionarea=holder.binding.AcquisitionAreaEdit.text.toString()
-                                it.RooftopacquiredArea=holder.binding.RooftopAcquiredAreaEdit.text.toString()
-                                it.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
-                                it.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
-                                it.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
-                                it.Remark=holder.binding.remarksEdit.text.toString()
-                                it.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
-                                it.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
-                                it.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
-                                it.RentStartDate=Utils.getFullFormatedDate(holder.binding.RentStartDateEdit.text.toString())
-                                it.isActive=null
-                                it.modified_at=null
-                                it.created_at=null
-
-                                if (it.Costcentre.isNotEmpty())
-                                    it.Costcentre[0] = holder.binding.CostCentreEdit.selectedValue.id.toInt()
-                                else
-                                    it.Costcentre.add(holder.binding.CostCentreEdit.selectedValue.id.toInt())
-                                val tempList:ArrayList<SAcqAgreementDetail> = ArrayList()
-                                tempList.clear()
-                                tempList.add(it)
-                                val tempData=datalist as SiteAcqAgreement
-                                tempData.SAcqAgreementDetail=tempList
-                                tempData.SAcqPODetail= null
-                                listener.updateAgreementDetailsClicked(tempData)
-                            }
-                        }
                     }
                     else
                         AppLogger.log("error in agreement data or Agreement details data")
+
+                    // edit mode
+                    if(agreeDetailsData!=null && agreeDetailsData?.Costcentre?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name,agreeDetailsData?.Costcentre?.get(0).toString())
+                    else
+                        AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name)
+                    holder.binding.RegistrationNumberEdit.setText(agreeDetailsData?.RegistrationNumber)
+                    holder.binding.LastRevisedRentAmountEdit.setText(agreeDetailsData?.LastRevisedRentAmount)
+                    holder.binding.AcquisitionAreaEdit.setText(agreeDetailsData?.Acquisitionarea)
+                    holder.binding.RooftopAcquiredAreaEdit.setText(agreeDetailsData?.RooftopacquiredArea)
+                    holder.binding.RooftopUsableAreaEdit.setText(agreeDetailsData?.RooftopUsableArea)
+                    holder.binding.GroundAcquiredAreaEdit.setText(agreeDetailsData?.GroundAcquiredArea)
+                    holder.binding.GroundUsableAreaEdit.setText(agreeDetailsData?.GroundUsableArea)
+                    holder.binding.remarksEdit.setText(agreeDetailsData?.Remark)
+                    holder.binding.RegistrationDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.RegistrationDate!!.substring(0,10),"dd-MMM-yyyy")
+                    holder.binding.AgreementEffectiveDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.AgreementEffectiveDate!!.substring(0,10),"dd-MMM-yyyy")
+                    holder.binding.AgreementExpiryDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
+                    holder.binding.RentStartDateEdit.text=Utils.getFormatedDate(agreeDetailsData?.RentStartDate!!.substring(0,10),"dd-MMM-yyyy")
+
+
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                }
+                baseFragment.setDatePickerView(holder.binding.RegistrationDateEdit)
+                baseFragment.setDatePickerView(holder.binding.AgreementEffectiveDateEdit)
+                baseFragment.setDatePickerView(holder.binding.AgreementExpiryDateEdit)
+                baseFragment.setDatePickerView(holder.binding.RentStartDateEdit)
+
+                holder.binding.update.setOnClickListener {
+                    if (agreeDetailsData!=null){
+                        agreeDetailsData.let {
+                            it?.RegistrationNumber=holder.binding.RegistrationNumberEdit.text.toString()
+                            it?.LastRevisedRentAmount=holder.binding.LastRevisedRentAmountEdit.text.toString()
+                            it?.Acquisitionarea=holder.binding.AcquisitionAreaEdit.text.toString()
+                            it?.RooftopacquiredArea=holder.binding.RooftopAcquiredAreaEdit.text.toString()
+                            it?.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
+                            it?.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
+                            it?.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
+                            it?.Remark=holder.binding.remarksEdit.text.toString()
+                            it?.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
+                            it?.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
+                            it?.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
+                            it?.RentStartDate=Utils.getFullFormatedDate(holder.binding.RentStartDateEdit.text.toString())
+                            it?.isActive=null
+                            it?.modified_at=null
+                            it?.created_at=null
+
+                            if (it?.Costcentre?.isNotEmpty()==true)
+                                it.Costcentre!![0] = holder.binding.CostCentreEdit.selectedValue.id.toInt()
+                            else
+                                it?.Costcentre?.add(holder.binding.CostCentreEdit.selectedValue.id.toInt())
+                            val tempList:ArrayList<SAcqAgreementDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it!!)
+                            val tempData=datalist as SiteAcqAgreement
+                            tempData.SAcqAgreementDetail=tempList
+                            listener.updateAgreementDetailsClicked(tempData)
+                        }
+                    }
+                    else if(datalist!=null && datalist?.SAcqAgreementDetail?.isEmpty()==true){
+                        val tempAgreeData= SAcqAgreementDetail()
+                        tempAgreeData.let {
+                            it.RegistrationNumber=holder.binding.RegistrationNumberEdit.text.toString()
+                            it.LastRevisedRentAmount=holder.binding.LastRevisedRentAmountEdit.text.toString()
+                            it.Acquisitionarea=holder.binding.AcquisitionAreaEdit.text.toString()
+                            it.RooftopacquiredArea=holder.binding.RooftopAcquiredAreaEdit.text.toString()
+                            it.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
+                            it.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
+                            it.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
+                            it.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
+                            it.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
+                            it.RentStartDate=Utils.getFullFormatedDate(holder.binding.RentStartDateEdit.text.toString())
+                            it.Costcentre = arrayListOf(holder.binding.CostCentreEdit.selectedValue.id.toInt())
+                            val tempList:ArrayList<SAcqAgreementDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData=datalist as SiteAcqAgreement
+                            tempData.SAcqAgreementDetail=tempList
+                            listener.updateAgreementDetailsClicked(tempData)
+                        }
+                    }
+                    else {
+                        val tempAgreeData= SAcqAgreementDetail()
+                        tempAgreeData.let {
+                            it.RegistrationNumber=holder.binding.RegistrationNumberEdit.text.toString()
+                            it.LastRevisedRentAmount=holder.binding.LastRevisedRentAmountEdit.text.toString()
+                            it.Acquisitionarea=holder.binding.AcquisitionAreaEdit.text.toString()
+                            it.RooftopacquiredArea=holder.binding.RooftopAcquiredAreaEdit.text.toString()
+                            it.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
+                            it.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
+                            it.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
+                            it.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
+                            it.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
+                            it.RentStartDate=Utils.getFullFormatedDate(holder.binding.RentStartDateEdit.text.toString())
+                            it.Costcentre = arrayListOf(holder.binding.CostCentreEdit.selectedValue.id.toInt())
+                            val tempList:ArrayList<SAcqAgreementDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= SiteAcqAgreement()
+                            tempData.SAcqAgreementDetail=tempList
+                            listener.updateAgreementDetailsClicked(tempData)
+                        }
+                    }
+
                 }
 
             }
@@ -292,8 +347,10 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                     if (datalist!=null ){
                         holder.poTableList.adapter=SiteAgreePoTableAdapter(baseFragment.requireContext(),listener,datalist?.SAcqPODetail)
                     }
-                    else
+                    else{
                         AppLogger.log("error in Agreement data or Agree Po details data")
+                        holder.poTableList.adapter=SiteAgreePoTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
