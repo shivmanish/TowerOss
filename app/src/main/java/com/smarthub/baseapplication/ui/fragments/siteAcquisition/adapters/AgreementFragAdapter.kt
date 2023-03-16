@@ -1,28 +1,24 @@
 package com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteAcqAgreementDetailsItemsBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.databinding.TowerPoItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqAgreementDetail
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.SiteAgreePoTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class AgreementFragAdapter(var context: Context, var listener: AgreementListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AgreementFragAdapter.ViewHold>() {
+class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: AgreementListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AgreementFragAdapter.ViewHold>() {
     private var datalist: SiteAcqAgreement?=null
 
     fun setData(data: SiteAcqAgreement?) {
@@ -35,7 +31,7 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
                 datalist=data.SAcqAgreement.get(0)
             }
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("AgreementFragAdapter error :${e.localizedMessage}")
         }
     }
 
@@ -88,14 +84,14 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
             }
 
             binding.imgAdd.setOnClickListener {
-                addPoTableItem("wqeeqs")
+                addPoTableItem()
             }
         }
 
-        private fun addPoTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is PowerFuelPoTableAdapter){
-                val adapter = poTableList.adapter as PowerFuelPoTableAdapter
-                adapter.addItem(item)
+        private fun addPoTableItem(){
+            if (poTableList.adapter!=null && poTableList.adapter is SiteAgreePoTableAdapter){
+                val adapter = poTableList.adapter as SiteAgreePoTableAdapter
+                adapter.addItem()
             }
         }
 
@@ -167,7 +163,17 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
+                    holder.binding.imgEdit.setOnClickListener {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
+                    holder.binding.cancel.setOnClickListener {
+                        holder.binding.viewLayout.visibility = View.VISIBLE
+                        holder.binding.editLayout.visibility = View.GONE
+                    }
 
                 }
                 else {
@@ -185,6 +191,8 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
                 try {
                     if (datalist!=null && datalist?.SAcqAgreementDetail?.isNotEmpty()==true){
                         val agreeDetailsData: SAcqAgreementDetail? = datalist?.SAcqAgreementDetail?.get(0)
+
+                        // view mode
                         if(agreeDetailsData?.Costcentre?.isNotEmpty()==true)
                             AppPreferences.getInstance().setDropDown(holder.binding.CostCentre,DropDowns.Costcentre.name,agreeDetailsData.Costcentre.get(0).toString())
 
@@ -200,6 +208,62 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
                         holder.binding.AgreementEffectiveDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.AgreementExpiryDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.RentStartDate.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate.substring(0,10),"dd-MMM-yyyy")
+
+                        // edit mode
+                        if(agreeDetailsData.Costcentre.isNotEmpty())
+                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name,agreeDetailsData.Costcentre.get(0).toString())
+                        else
+                            AppPreferences.getInstance().setDropDown(holder.binding.CostCentreEdit,DropDowns.Costcentre.name)
+
+                        holder.binding.RegistrationNumberEdit.setText(agreeDetailsData.RegistrationNumber)
+                        holder.binding.LastRevisedRentAmountEdit.setText(agreeDetailsData.LastRevisedRentAmount)
+                        holder.binding.AcquisitionAreaEdit.setText(agreeDetailsData.Acquisitionarea)
+                        holder.binding.RooftopAcquiredAreaEdit.setText(agreeDetailsData.RooftopacquiredArea)
+                        holder.binding.RooftopUsableAreaEdit.setText(agreeDetailsData.RooftopUsableArea)
+                        holder.binding.GroundAcquiredAreaEdit.setText(agreeDetailsData.GroundAcquiredArea)
+                        holder.binding.GroundUsableAreaEdit.setText(agreeDetailsData.GroundUsableArea)
+                        holder.binding.remarksEdit.setText(agreeDetailsData.Remark)
+                        holder.binding.RegistrationDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RegistrationDate.substring(0,10)!!,"dd-MMM-yyyy")
+                        holder.binding.AgreementEffectiveDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.AgreementExpiryDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.RentStartDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RentStartDate.substring(0,10),"dd-MMM-yyyy")
+
+                        baseFragment.setDatePickerView(holder.binding.RegistrationDateEdit)
+                        baseFragment.setDatePickerView(holder.binding.AgreementEffectiveDateEdit)
+                        baseFragment.setDatePickerView(holder.binding.AgreementExpiryDateEdit)
+                        baseFragment.setDatePickerView(holder.binding.RentStartDateEdit)
+
+                        holder.binding.update.setOnClickListener {
+                            agreeDetailsData.let {
+                                it.RegistrationNumber=holder.binding.RegistrationNumberEdit.text.toString()
+                                it.LastRevisedRentAmount=holder.binding.LastRevisedRentAmountEdit.text.toString()
+                                it.Acquisitionarea=holder.binding.AcquisitionAreaEdit.text.toString()
+                                it.RooftopacquiredArea=holder.binding.RooftopAcquiredAreaEdit.text.toString()
+                                it.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
+                                it.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
+                                it.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
+                                it.Remark=holder.binding.remarksEdit.text.toString()
+                                it.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
+                                it.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
+                                it.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
+                                it.RentStartDate=Utils.getFullFormatedDate(holder.binding.RentStartDateEdit.text.toString())
+                                it.isActive=null
+                                it.modified_at=null
+                                it.created_at=null
+
+                                if (it.Costcentre.isNotEmpty())
+                                    it.Costcentre[0] = holder.binding.CostCentreEdit.selectedValue.id.toInt()
+                                else
+                                    it.Costcentre.add(holder.binding.CostCentreEdit.selectedValue.id.toInt())
+                                val tempList:ArrayList<SAcqAgreementDetail> = ArrayList()
+                                tempList.clear()
+                                tempList.add(it)
+                                val tempData=datalist as SiteAcqAgreement
+                                tempData.SAcqAgreementDetail=tempList
+                                tempData.SAcqPODetail= null
+                                listener.updateAgreementDetailsClicked(tempData)
+                            }
+                        }
                     }
                     else
                         AppLogger.log("error in agreement data or Agreement details data")
@@ -231,7 +295,7 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null ){
-                        holder.poTableList.adapter=SiteAgreePoTableAdapter(context,listener,datalist?.SAcqPODetail)
+                        holder.poTableList.adapter=SiteAgreePoTableAdapter(baseFragment.requireContext(),listener,datalist?.SAcqPODetail)
                     }
                     else
                         AppLogger.log("error in Agreement data or Agree Po details data")
@@ -278,6 +342,9 @@ class AgreementFragAdapter(var context: Context, var listener: AgreementListList
     interface AgreementListListener {
        fun attachmentItemClicked()
        fun viewPoItemClicked(position: Int,data:SAcqPODetail)
+       fun editPoItemClicked(position: Int,data:SAcqPODetail)
+       fun updateAgreementDetailsClicked(data:SiteAcqAgreement)
+//       fun addPoData(data:SAcqPODetail)
     }
 
 }

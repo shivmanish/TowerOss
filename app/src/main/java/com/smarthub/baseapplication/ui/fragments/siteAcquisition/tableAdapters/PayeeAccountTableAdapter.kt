@@ -17,8 +17,13 @@ import com.smarthub.baseapplication.utils.AppLogger
 class PayeeAccountTableAdapter (var context : Context, var listener : SoftAcquisitionFragAdapter.SoftAcqListListener, var list:ArrayList<SAcqPayeeAccountDetail>?): RecyclerView.Adapter<PayeeAccountTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val modelList:ArrayList<Int> = ArrayList()
+        modelList.clear()
+        modelList.add(0)
+        val data = SAcqPayeeAccountDetail("","","","","",
+            "","",0,"")
+        list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -47,8 +52,7 @@ class PayeeAccountTableAdapter (var context : Context, var listener : SoftAcquis
             holder.binding.share.text=item.Share
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
-            AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+            AppLogger.log("PayeeAccountTableAdapter error : ${e.localizedMessage}")
         }
     }
 
@@ -69,7 +73,7 @@ class PayeeAccountTableAdapter (var context : Context, var listener : SoftAcquis
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
+                        listener.editPayeeAccountClicked(position,data)
 
                         return true
                     }

@@ -1,10 +1,10 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SiteAcqAgreement(
-    val SAcqAgreementDetail: ArrayList<SAcqAgreementDetail>,
-    val SAcqPODetail: ArrayList<SAcqPODetail>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var SAcqAgreementDetail: ArrayList<SAcqAgreementDetail>?=null,
+    var SAcqPODetail: ArrayList<SAcqPODetail>?=null,
+//    var created_at: String,
+    var id: Int,
+//    var isActive: Boolean,
+//    var modified_at: String
 )

@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class AcquisitionSurveyData(
-    val SAcqExternalStructure: ArrayList<SAcqExternalStructure>,
-    val SAcqFeasibilityDetail: ArrayList<SAcqFeasibilityDetail>,
-    val SAcqPowerConnectionFeasibility: ArrayList<SAcqPowerConnectionFeasibility>,
-    val SAcqPropertyDetail: ArrayList<SAcqPropertyDetail>,
-    val SAcqPropertyOwnerDetail: ArrayList<SAcqPropertyOwnerDetail>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var SAcqExternalStructure: ArrayList<SAcqExternalStructure>?=null,
+    var SAcqFeasibilityDetail: ArrayList<SAcqFeasibilityDetail>?=null,
+    var SAcqPowerConnectionFeasibility: ArrayList<SAcqPowerConnectionFeasibility>?=null,
+    var SAcqPropertyDetail: ArrayList<SAcqPropertyDetail>?=null,
+    var SAcqPropertyOwnerDetail: ArrayList<SAcqPropertyOwnerDetail>?=null,
+    var created_at: String?=null,
+    var id: Int?=null,
+    var isActive: Boolean?=null,
+    var modified_at: String?=null
 )

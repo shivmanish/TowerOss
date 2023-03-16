@@ -8,15 +8,14 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
-import com.smarthub.baseapplication.databinding.SiteAcqTeamNonSwitLayoutBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SoftAcquisitionFragAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailsViewDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -24,12 +23,12 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIndex:Int): BaseFragment(),SoftAcquisitionFragAdapter.SoftAcqListListener{
     lateinit var viewmodel: HomeViewModel
-//    lateinit var binding : PowerConnectionFragBinding
-    lateinit var binding : SiteAcqTeamNonSwitLayoutBinding
+    lateinit var binding : PowerConnectionFragBinding
+//    lateinit var binding : SiteAcqTeamNonSwitLayoutBinding
     lateinit var adapter:SoftAcquisitionFragAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
-        binding = SiteAcqTeamNonSwitLayoutBinding.inflate(inflater, container, false)
+        binding = PowerConnectionFragBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -67,10 +66,10 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
 
 
         viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
-//        binding.swipeLayout.setOnRefreshListener {
-//            binding.swipeLayout.isRefreshing=false
-//            viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
-//        }
+        binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing=false
+            viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+        }
     }
 
     override fun onDestroy() {
@@ -89,12 +88,20 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
         bm.show(childFragmentManager,"sdg")
     }
 
+    override fun editPayeeAccountClicked(position: Int, data: SAcqPayeeAccountDetail) {
+        val bm = PayeeAccDetailEditDialouge(data,softAcqData,
+            object : PayeeAccDetailEditDialouge.PayeeAccUpdateListener {
+                override fun updatedData() {
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"editPayeeAccountClicked class")
+    }
+
     override fun updateAgreementTermClicked(data: SoftAcquisitionData) {
         showLoader()
         val dataModel = UpdateSiteAcquiAllData()
-//        data.created_at=null
-//        data.modified_at=null
-//        data.isActive=null
         val tempList:ArrayList<SoftAcquisitionData> =ArrayList()
         tempList.clear()
         tempList.add(data)
@@ -117,6 +124,7 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
             }
             else if (it != null) {
                 AppLogger.log("SiteAgreemnets Fragment error :${it.message}, data : ${it.data}")

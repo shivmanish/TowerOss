@@ -28,8 +28,9 @@ import com.smarthub.baseapplication.utils.Utils
 class OutsidePremisesTableAdapter (var context : Context, var listener : AcqSurveyFragAdapter.AcqSurveyListListener, var list:ArrayList<SAcqOutsidePremise>?): RecyclerView.Adapter<OutsidePremisesTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data=SAcqOutsidePremise(arrayListOf(0),"",arrayListOf(0),"","")
+        this.list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -81,7 +82,7 @@ class OutsidePremisesTableAdapter (var context : Context, var listener : AcqSurv
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
+                        listener.editOutsidePremisesClicked(position,data)
 
                         return true
                     }

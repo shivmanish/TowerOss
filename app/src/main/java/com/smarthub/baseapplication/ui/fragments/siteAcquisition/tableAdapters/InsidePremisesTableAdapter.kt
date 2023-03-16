@@ -26,8 +26,9 @@ import com.smarthub.baseapplication.utils.Utils
 class InsidePremisesTableAdapter (var context : Context, var listener : AcqSurveyFragAdapter.AcqSurveyListListener, var list:ArrayList<SAcqInsidePremise>?): RecyclerView.Adapter<InsidePremisesTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data=SAcqInsidePremise(arrayListOf(0),"",arrayListOf(0),"",0,"")
+        this.list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -80,7 +81,7 @@ class InsidePremisesTableAdapter (var context : Context, var listener : AcqSurve
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
+                        listener.editInsidePremisesClicked(position,data)
 
                         return true
                     }
