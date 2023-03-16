@@ -49,34 +49,66 @@ class PropertyOwnerEditDialouge (var data: SAcqPropertyOwnerDetail, var fullData
 
         binding.update.setOnClickListener {
             showProgressLayout()
-            data.let {
-                it.Share=binding.ShareEdit.text.toString()
-                it.OwnerName=binding.OwnerNameEdit.text.toString()
-                it.PhoneNumber=binding.PhNumberEdit.text.toString()
-                it.EmailId=binding.EmailIdEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
-                it.Address=binding.AddressEdit.text.toString()
-                if (data.PropertyOwnership.isNotEmpty())
-                    it.PropertyOwnership[0]=binding.PropertyOwnershipEdit.selectedValue.id.toInt()
-                else
-                    it.PropertyOwnership.add(binding.PropertyOwnershipEdit.selectedValue.id.toInt())
+            if (fullData?.SAcqAcquitionSurvey==null || fullData?.SAcqAcquitionSurvey?.isEmpty()==true){
+                data.let {
+                    it.Share=binding.ShareEdit.text.toString()
+                    it.OwnerName=binding.OwnerNameEdit.text.toString()
+                    it.PhoneNumber=binding.PhNumberEdit.text.toString()
+                    it.EmailId=binding.EmailIdEdit.text.toString()
+                    it.Remark=binding.remarksEdit.text.toString()
+                    it.Address=binding.AddressEdit.text.toString()
+                    if (data.PropertyOwnership.isNotEmpty())
+                        it.PropertyOwnership[0]=binding.PropertyOwnershipEdit.selectedValue.id.toInt()
+                    else
+                        it.PropertyOwnership.add(binding.PropertyOwnershipEdit.selectedValue.id.toInt())
 
-                // add po data to agreement model list
-                val tempList:ArrayList<SAcqPropertyOwnerDetail> = ArrayList()
-                tempList.clear()
-                tempList.add(it)
-                val tempData= AcquisitionSurveyData()
-                tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
-                tempData.SAcqPropertyOwnerDetail= tempList
-                //add add agreement model to update rootModel
-                val dataModel = UpdateSiteAcquiAllData()
-                val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                tempList2.clear()
-                tempList2.add(tempData)
-                dataModel.SAcqAcquitionSurvey=tempList2
-                dataModel.id=fullData?.id
-                viewmodel.updateSiteAcq(dataModel)
+                    // add po data to agreement model list
+                    val tempList:ArrayList<SAcqPropertyOwnerDetail> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    val tempData= AcquisitionSurveyData()
+                    tempData.SAcqPropertyOwnerDetail= tempList
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqAcquitionSurvey=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
             }
+            else{
+                data.let {
+                    it.Share=binding.ShareEdit.text.toString()
+                    it.OwnerName=binding.OwnerNameEdit.text.toString()
+                    it.PhoneNumber=binding.PhNumberEdit.text.toString()
+                    it.EmailId=binding.EmailIdEdit.text.toString()
+                    it.Remark=binding.remarksEdit.text.toString()
+                    it.Address=binding.AddressEdit.text.toString()
+                    if (data.PropertyOwnership.isNotEmpty())
+                        it.PropertyOwnership[0]=binding.PropertyOwnershipEdit.selectedValue.id.toInt()
+                    else
+                        it.PropertyOwnership.add(binding.PropertyOwnershipEdit.selectedValue.id.toInt())
+
+                    // add po data to agreement model list
+                    val tempList:ArrayList<SAcqPropertyOwnerDetail> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    val tempData= AcquisitionSurveyData()
+                    tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
+                    tempData.SAcqPropertyOwnerDetail= tempList
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqAcquitionSurvey=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
+            }
+
         }
 
         if (viewmodel.updateSiteAcqDataResponse?.hasActiveObservers() == true) {

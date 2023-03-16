@@ -1,22 +1,22 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
-data class SAcqFeasibilityDetail(
-    var Acquisitiontype: ArrayList<Int>,
-    var Area: String,
-    var EquipmentRoom: Int,
-    var ExecutiveName: String,
-    var ExpectedPrice: String,
-    var FiberLMCLaying: Int,
-    var MarketPrice: String,
-    var OverallFeasibility: Int,
-    var OwnerMeter: Int,
-    var Remark: String,
-    var RequiredAreaAvailable: Int,
-    var StatutoryPermission: Int,
-    var SurveyDate: String,
-    var TowerPoleType: ArrayList<Int>,
-//    var created_at: String,
-    var id: Int,
-//    var isActive: Boolean,
+class SAcqFeasibilityDetail{
+    var Acquisitiontype: ArrayList<Int>?=null
+    var Area: String?=null
+    var EquipmentRoom: Int?=null
+    var ExecutiveName: String?=null
+    var ExpectedPrice: String?=null
+    var FiberLMCLaying: Int?=null
+    var MarketPrice: String?=null
+    var OverallFeasibility: Int?=null
+    var OwnerMeter: Int?=null
+    var Remark: String?=null
+    var RequiredAreaAvailable: Int?=null
+    var StatutoryPermission: Int?=null
+    var SurveyDate: String?=null
+    var TowerPoleType: ArrayList<Int>?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
 //    var modified_at: String
-)
+}

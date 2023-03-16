@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
@@ -21,6 +22,8 @@ import com.smarthub.baseapplication.utils.Utils
 
 class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurveyListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AcqSurveyFragAdapter.ViewHold>() {
     private var datalist: AcquisitionSurveyData?=null
+    private var feasibilityData: SAcqFeasibilityDetail?=null
+    private var powerData: SAcqPowerConnectionFeasibility?=null
 
     fun setData(data: AcquisitionSurveyData?) {
         this.datalist=data!!
@@ -184,9 +187,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
 //            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                listener.addAttachment()
-            }
+//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+//                listener.addAttachment()
+//            }
 
         }
     }
@@ -506,8 +509,10 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         holder.insidePremisesTableList.adapter=InsidePremisesTableAdapter(baseFragment.requireContext(),listener,ExtStrData?.SAcqInsidePremise)
                         holder.outsidePremisesTableList.adapter=OutsidePremisesTableAdapter(baseFragment.requireContext(),listener,ExtStrData?.SAcqOutsidePremise)
                     }
-                    else
-                        AppLogger.log("error in Acquisition Survey data or External Structure data")
+                    else{
+                        holder.insidePremisesTableList.adapter=InsidePremisesTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                        holder.outsidePremisesTableList.adapter=OutsidePremisesTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -546,8 +551,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null && datalist?.SAcqPowerConnectionFeasibility?.isNotEmpty()==true){
-                        val powerData: SAcqPowerConnectionFeasibility? =datalist?.SAcqPowerConnectionFeasibility?.get(0)
-
+                        powerData=datalist?.SAcqPowerConnectionFeasibility?.get(0)
+                    }
+                    if (powerData!=null){
                         // view mode
                         holder.binding.EBPowerAvailability.text= powerData?.EBAvailability.toString()
                         holder.binding.PowerSupplierName.text= powerData?.PowerSupplier
@@ -574,31 +580,72 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         holder.binding.SolarFeasibilityEdit.text= powerData?.SolarFeasibility.toString()
                         holder.binding.remarksEdit.setText(powerData?.Remark)
 
-                       holder.binding.update.setOnClickListener {
-                           powerData?.let {
-                               it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
-                               it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
-                               it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
-                               it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
-                               it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
-                               it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
-                               it.Remark= holder.binding.remarksEdit.text.toString()
-
-                               val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
-                               tempList.clear()
-                               tempList.add(it)
-                               val tempData= AcquisitionSurveyData()
-                               tempData.SAcqPowerConnectionFeasibility=tempList
-                               tempData.id= datalist?.id
-                               listener.updateItemClicked(tempData)
-                           }
-                       }
-
                     }
                     else
                         AppLogger.log("error in Acquisition Survey data or Property details data")
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                }
+                holder.binding.update.setOnClickListener {
+                    if (powerData!=null){
+                        powerData?.let {
+                            it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
+                            it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
+                            it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
+                            it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
+                            it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
+                            it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
+                            it.Remark= holder.binding.remarksEdit.text.toString()
+
+                            val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            tempData.SAcqPowerConnectionFeasibility=tempList
+                            tempData.id= datalist?.id
+                            listener.updateItemClicked(tempData)
+                        }
+                    }
+                    else if(datalist!=null && datalist?.SAcqPowerConnectionFeasibility?.isEmpty()==true){
+                        val tempPowerData=SAcqPowerConnectionFeasibility()
+                        tempPowerData.let {
+                            it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
+                            it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
+                            it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
+                            it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
+                            it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
+                            it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
+                            it.Remark= holder.binding.remarksEdit.text.toString()
+
+                            val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            tempData.SAcqPowerConnectionFeasibility=tempList
+                            tempData.id= datalist?.id
+                            listener.updateItemClicked(tempData)
+                        }
+                    }
+                    else{
+                        val tempPowerData=SAcqPowerConnectionFeasibility()
+                        tempPowerData.let {
+                            it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
+                            it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
+                            it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
+                            it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
+                            it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
+                            it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
+                            it.Remark= holder.binding.remarksEdit.text.toString()
+
+                            val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            tempData.SAcqPowerConnectionFeasibility=tempList
+                            listener.updateItemClicked(tempData)
+                        }
+                    }
+
                 }
 
             }
@@ -628,8 +675,11 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     if (datalist!=null){
                         holder.ownerTableList.adapter=PropertyOwnerTableAdapter(baseFragment.requireContext(),listener,datalist?.SAcqPropertyOwnerDetail)
                     }
-                    else
-                        AppLogger.log("error in Acquisition Survey data or property Owner data")
+                    else{
+                        holder.ownerTableList.adapter=PropertyOwnerTableAdapter(baseFragment.requireContext(),listener,
+                            ArrayList()
+                        )
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -668,14 +718,14 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null && datalist?.SAcqFeasibilityDetail?.isNotEmpty()==true){
-                        val feasibilityData: SAcqFeasibilityDetail? = datalist?.SAcqFeasibilityDetail?.get(0)
-
+                        feasibilityData=datalist?.SAcqFeasibilityDetail?.get(0)
+                    }
+                    if (feasibilityData!=null){
                         // view mode
                         if (feasibilityData?.Acquisitiontype?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,feasibilityData.Acquisitiontype.get(0).toString())
+                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,feasibilityData?.Acquisitiontype?.get(0).toString())
                         if (feasibilityData?.TowerPoleType?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleType,DropDowns.TowerPoleType.name,feasibilityData.TowerPoleType.get(0).toString())
-
+                            AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleType,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
                         holder.binding.AcquisitionArea.text=feasibilityData?.Area
                         holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
                         holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
@@ -687,66 +737,109 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         holder.binding.OverallFeasibility.text=feasibilityData?.OverallFeasibility.toString()
                         holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
                         holder.binding.SurveyDate.text=Utils.getFormatedDate(feasibilityData?.SurveyDate?.substring(0,10)!!,"dd-MMM-yyyy")
-                        holder.binding.remarks.text=feasibilityData.Remark
+                        holder.binding.remarks.text=feasibilityData?.Remark
 
                         // edit mode
-                        if (feasibilityData.Acquisitiontype.isNotEmpty())
-                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,feasibilityData.Acquisitiontype.get(0).toString())
-                        else
-                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
+                        holder.binding.AcquisitionAreaEdit.setText(feasibilityData?.Area)
+                        holder.binding.ExpectedPriceEdit.setText(feasibilityData?.ExpectedPrice)
+                        holder.binding.AverageMarketRateEdit.setText(feasibilityData?.MarketPrice)
+                        holder.binding.FiberLMCLayingEdit.text=feasibilityData?.FiberLMCLaying.toString()
+                        holder.binding.EBSupplyThroOwnerMeterEdit.text=feasibilityData?.OwnerMeter.toString()
+                        holder.binding.EquipmentRoomEdit.text=feasibilityData?.EquipmentRoom.toString()
+                        holder.binding.RequiredAreaAvailableEdit.text=feasibilityData?.RequiredAreaAvailable.toString()
+                        holder.binding.StatutoryPermissionsEdit.text=feasibilityData?.StatutoryPermission.toString()
+                        holder.binding.OverallFeasibilityEdit.text=feasibilityData?.OverallFeasibility.toString()
+                        holder.binding.SurveyExecutiveNameEdit.setText(feasibilityData?.ExecutiveName)
+                        holder.binding.SurveyDateEdit.text=Utils.getFormatedDate(feasibilityData?.SurveyDate!!.substring(0,10),"dd-MMM-yyyy")
+                        holder.binding.remarksEdit.setText(feasibilityData?.Remark)
 
-                        if (feasibilityData.TowerPoleType.isNotEmpty())
-                            AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name,feasibilityData.TowerPoleType.get(0).toString())
-                        else
-                            AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name)
-
-                        holder.binding.AcquisitionAreaEdit.setText(feasibilityData.Area)
-                        holder.binding.ExpectedPriceEdit.setText(feasibilityData.ExpectedPrice)
-                        holder.binding.AverageMarketRateEdit.setText(feasibilityData.MarketPrice)
-                        holder.binding.FiberLMCLayingEdit.text=feasibilityData.FiberLMCLaying.toString()
-                        holder.binding.EBSupplyThroOwnerMeterEdit.text=feasibilityData.OwnerMeter.toString()
-                        holder.binding.EquipmentRoomEdit.text=feasibilityData.EquipmentRoom.toString()
-                        holder.binding.RequiredAreaAvailableEdit.text=feasibilityData.RequiredAreaAvailable.toString()
-                        holder.binding.StatutoryPermissionsEdit.text=feasibilityData.StatutoryPermission.toString()
-                        holder.binding.OverallFeasibilityEdit.text=feasibilityData.OverallFeasibility.toString()
-                        holder.binding.SurveyExecutiveNameEdit.setText(feasibilityData.ExecutiveName)
-                        holder.binding.SurveyDateEdit.text=Utils.getFormatedDate(feasibilityData.SurveyDate.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.remarksEdit.setText(feasibilityData.Remark)
-                        baseFragment.setDatePickerView(holder.binding.SurveyDateEdit)
-
-                        holder.binding.update.setOnClickListener {
-                            feasibilityData.let {
-                                it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
-                                it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
-                                it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
-                                it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
-                                it.Remark=holder.binding.remarksEdit.text.toString()
-                                it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
-                                if (it.Acquisitiontype.isNotEmpty())
-                                    it.Acquisitiontype[0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
-                                else
-                                    it.Acquisitiontype.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-
-                                if (it.TowerPoleType.isNotEmpty())
-                                    it.TowerPoleType[0] = holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt()
-                                else
-                                    it.TowerPoleType.add(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
-
-                                val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
-                                tempList.clear()
-                                tempList.add(it)
-                                val tempData= AcquisitionSurveyData()
-                                tempData.SAcqFeasibilityDetail=tempList
-                                tempData.id= datalist?.id
-                                listener.updateItemClicked(tempData)
-                            }
-                        }
 
                     }
                     else
                         AppLogger.log("error in Acquisition Survey data or Property details data")
+                    if (feasibilityData!=null && feasibilityData?.Acquisitiontype?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,feasibilityData?.Acquisitiontype?.get(0).toString())
+                    else
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
+
+                    if (feasibilityData!=null &&feasibilityData?.TowerPoleType?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
+                    else
+                        AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name)
+
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                }
+                baseFragment.setDatePickerView(holder.binding.SurveyDateEdit)
+                holder.binding.update.setOnClickListener {
+                    if (feasibilityData!=null){
+                        feasibilityData?.let {
+                            it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
+                            it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
+                            it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
+                            it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
+                            if (it.Acquisitiontype?.isNotEmpty()==true)
+                                it.Acquisitiontype!![0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
+                            else
+                                it.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+
+                            if (it.TowerPoleType?.isNotEmpty()==true)
+                                it.TowerPoleType!![0] = holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt()
+                            else
+                                it.TowerPoleType?.add(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
+
+                            val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            tempData.SAcqFeasibilityDetail=tempList
+                            tempData.id= datalist?.id
+                            listener.updateItemClicked(tempData)
+                        }
+                    }
+                    else if (datalist!=null && datalist?.SAcqFeasibilityDetail?.isEmpty()==true){
+                        val tempfeasibilityData=SAcqFeasibilityDetail()
+                        tempfeasibilityData.let {
+                            it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
+                            it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
+                            it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
+                            it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
+                            it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                            it.TowerPoleType =  arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
+
+                            val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            tempData.SAcqFeasibilityDetail=tempList
+                            tempData.id= datalist?.id
+                            listener.updateItemClicked(tempData)
+                        }
+                    }
+                    else{
+                        val tempfeasibilityData=SAcqFeasibilityDetail()
+                        tempfeasibilityData.let {
+                            it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
+                            it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
+                            it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
+                            it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
+                            it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                            it.TowerPoleType =  arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
+
+                            val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            tempData.SAcqFeasibilityDetail=tempList
+                            listener.updateItemClicked(tempData)
+                        }
+                    }
                 }
 
             }
@@ -756,6 +849,14 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
+
+                    holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                        if (datalist!=null){
+                            listener.addAttachment()
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false

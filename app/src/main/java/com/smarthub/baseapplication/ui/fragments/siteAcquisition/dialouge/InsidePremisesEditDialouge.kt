@@ -52,40 +52,100 @@ class InsidePremisesEditDialouge (var data: SAcqInsidePremise, var fullData: New
 
         binding.update.setOnClickListener {
             showProgressLayout()
-            data.let {
-                it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
-                it.Height=binding.HeightAGlEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
-                it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
-                if (data.ExternalStructureType.isNotEmpty())
-                    it.ExternalStructureType[0]=binding.ExternalStructureTypeEdit.selectedValue.id.toInt()
-                else
-                    it.ExternalStructureType.add(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
-                if (data.Direction.isNotEmpty())
-                    it.Direction[0]=binding.DirectionFromCentreEdit.selectedValue.id.toInt()
-                else
-                    it.Direction.add(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
+            if (fullData?.SAcqAcquitionSurvey==null || fullData?.SAcqAcquitionSurvey?.isEmpty()==true){
+                data.let {
+                    it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
+                    it.Height=binding.HeightAGlEdit.text.toString()
+                    it.Remark=binding.remarksEdit.text.toString()
+                    it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
+                    it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
+                    it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
+                    // add insidePremises data to agreement model list
+                    val tempList:ArrayList<SAcqInsidePremise> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    // add data in External Structure
+                    val tempExternalStructure=SAcqExternalStructure()
+                    tempExternalStructure.SAcqInsidePremise=tempList
+                    // add data in AcqSurvey Data
+                    val tempData= AcquisitionSurveyData()
+                    tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqAcquitionSurvey=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
+            }
+            else if (fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure==null ||
+                fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.isEmpty()==true ){
+                data.let {
+                    it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
+                    it.Height=binding.HeightAGlEdit.text.toString()
+                    it.Remark=binding.remarksEdit.text.toString()
+                    it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
+                    it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
+                    it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
+                    // add insidePremises data to agreement model list
+                    val tempList:ArrayList<SAcqInsidePremise> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    // add data in External Structure
+                    val tempExternalStructure=SAcqExternalStructure()
+                    tempExternalStructure.SAcqInsidePremise=tempList
+                    // add data in AcqSurvey Data
+                    val tempData= AcquisitionSurveyData()
+                    tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
+                    tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqAcquitionSurvey=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
+            }
+            else{
+                data.let {
+                    it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
+                    it.Height=binding.HeightAGlEdit.text.toString()
+                    it.Remark=binding.remarksEdit.text.toString()
+                    it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
+                    if (data.ExternalStructureType.isNotEmpty())
+                        it.ExternalStructureType[0]=binding.ExternalStructureTypeEdit.selectedValue.id.toInt()
+                    else
+                        it.ExternalStructureType.add(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
+                    if (data.Direction.isNotEmpty())
+                        it.Direction[0]=binding.DirectionFromCentreEdit.selectedValue.id.toInt()
+                    else
+                        it.Direction.add(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
 
-                // add insidePremises data to agreement model list
-                val tempList:ArrayList<SAcqInsidePremise> = ArrayList()
-                tempList.clear()
-                tempList.add(it)
-                // add data in External Structure
-                val tempExternalStructure=SAcqExternalStructure()
-                tempExternalStructure.SAcqInsidePremise=tempList
-                tempExternalStructure.id=fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.get(0)?.id
-                // add data in AcqSurvey Data
-                val tempData= AcquisitionSurveyData()
-                tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
-                tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
-                //add add agreement model to update rootModel
-                val dataModel = UpdateSiteAcquiAllData()
-                val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                tempList2.clear()
-                tempList2.add(tempData)
-                dataModel.SAcqAcquitionSurvey=tempList2
-                dataModel.id=fullData?.id
-                viewmodel.updateSiteAcq(dataModel)
+                    // add insidePremises data to agreement model list
+                    val tempList:ArrayList<SAcqInsidePremise> = ArrayList()
+                    tempList.clear()
+                    tempList.add(it)
+                    // add data in External Structure
+                    val tempExternalStructure=SAcqExternalStructure()
+                    tempExternalStructure.SAcqInsidePremise=tempList
+                    tempExternalStructure.id=fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.get(0)?.id
+                    // add data in AcqSurvey Data
+                    val tempData= AcquisitionSurveyData()
+                    tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
+                    tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
+                    //add add agreement model to update rootModel
+                    val dataModel = UpdateSiteAcquiAllData()
+                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
+                    tempList2.clear()
+                    tempList2.add(tempData)
+                    dataModel.SAcqAcquitionSurvey=tempList2
+                    dataModel.id=fullData?.id
+                    viewmodel.updateSiteAcq(dataModel)
+                }
             }
         }
 
