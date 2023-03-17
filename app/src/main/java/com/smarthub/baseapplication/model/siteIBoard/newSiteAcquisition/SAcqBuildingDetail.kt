@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
-data class SAcqBuildingDetail(
-    val BuildingBuildType: Int,
-    val BuildingHeight: String,
-    val BuildingType: List<Int>,
-    val ConstructionYear: Int,
-    val NoOfFloors: Int,
-    val PropertyType: Int,
-    val TypicalFloorArea: String,
-//    val created_at: String,
-    val id: Int?=null,
-//    val isActive: Boolean,
-//    val modified_at: String
-)
+ class SAcqBuildingDetail{
+    var BuildingBuildType: Int?=null
+    var BuildingHeight: String?=null
+    var BuildingType: ArrayList<Int>?=null
+    var ConstructionYear: Int?=null
+    var NoOfFloors: Int?=null
+    var PropertyType: Int?=null
+    var TypicalFloorArea: String?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
+//    var modified_at: String
+}

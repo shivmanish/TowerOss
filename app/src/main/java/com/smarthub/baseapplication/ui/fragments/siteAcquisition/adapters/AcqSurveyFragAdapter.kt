@@ -27,6 +27,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
     private var propertyData: SAcqPropertyDetail?=null
     private var buildingData: SAcqBuildingDetail?=null
     private var landData: SAcqLandDetail ?=null
+    private var siteAdd:SiteAddressData ?=null
 
 
     fun setData(data: AcquisitionSurveyData?) {
@@ -280,6 +281,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
+                    if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
+                        siteAdd=AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
+                    }
                     if (datalist!=null && datalist?.SAcqPropertyDetail?.isNotEmpty()==true){
                         propertyData=datalist?.SAcqPropertyDetail?.get(0)
                         if (propertyData!=null && propertyData?.SAcqBuildingDetail?.isNotEmpty()==true){
@@ -289,8 +293,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             landData=propertyData?.SAcqLandDetail?.get(0)
                         }
                     }
-                    if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
-                        val siteAdd:SiteAddressData?= AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
+                    if (siteAdd!=null){
                         // view Mode
                         holder.binding.AddressLine1.text=siteAdd?.address1
                         holder.binding.AddressLine2.text=siteAdd?.address2
@@ -298,11 +301,11 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         holder.binding.SiteLAtitude.text=siteAdd?.locLatitude
                         holder.binding.SiteLongitude.text=siteAdd?.locLongitude
                         // edit mode
-                        holder.binding.AddressLine1Edit.setText(siteAdd?.address1)
-                        holder.binding.AddressLine2Edit.setText(siteAdd?.address2)
-                        holder.binding.PostalCodeEdit.setText(siteAdd?.pincode)
-                        holder.binding.SiteLAtitudeEdit.setText(siteAdd?.locLatitude)
-                        holder.binding.SiteLongitudeEdit.setText(siteAdd?.locLongitude)
+                        holder.binding.AddressLine1Edit.text=siteAdd?.address1
+                        holder.binding.AddressLine2Edit.text=siteAdd?.address2
+                        holder.binding.PostalCodeEdit.text=siteAdd?.pincode
+                        holder.binding.SiteLAtitudeEdit.text=siteAdd?.locLatitude
+                        holder.binding.SiteLongitudeEdit.text=siteAdd?.locLongitude
                     }
 
                     if (propertyData!=null){
@@ -348,7 +351,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             holder.binding.NoofFloors.text=buildingData?.NoOfFloors.toString()
 
                             // edit mode
-                            holder.binding.BuildingBuildTypeEdit.text=buildingData?.PropertyType.toString()
+                            holder.binding.PropertyTypeBuildingEdit.text=buildingData?.PropertyType.toString()
                             holder.binding.BuildingBuildTypeEdit.text=buildingData?.BuildingBuildType.toString()
                             holder.binding.BuildingHeightEdit.setText(buildingData?.BuildingHeight)
                             holder.binding.TypicalFloorAreaEdit.setText(buildingData?.TypicalFloorArea)
@@ -371,8 +374,6 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             holder.binding.SiteDemarcation.text=landData?.SiteDemarcation.toString()
 
                             //Edit Mode
-                              AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name)
-
                             holder.binding.PropertyTypeLandEdit.text=landData?.PropertyType.toString()
                             holder.binding.SiteDemarcationEdit.text=landData?.SiteDemarcation.toString()
                         }
@@ -383,91 +384,62 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     }
                     else
                         AppLogger.log("error in Acquisition Survey data or Property details data")
-                    if (propertyData!=null && propertyData?.Potentialthreat?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name,propertyData?.Potentialthreat?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name)
-                    if (propertyData!=null && propertyData?.Direction?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirectionEdit,DropDowns.Direction.name,propertyData?.Direction?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirectionEdit,DropDowns.Direction.name)
-                    if (buildingData!=null && buildingData?.BuildingType?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name,buildingData?.BuildingType?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name)
-                    if (landData!=null && landData?.LandType?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.LandTypeEdit,DropDowns.LandType.name,landData?.LandType?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.LandTypeEdit,DropDowns.LandType.name)
-                    if (landData!=null && landData?.SoilType?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.SoilTypeEdit,DropDowns.SoilType.name,landData?.SoilType?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.SoilTypeEdit,DropDowns.SoilType.name)
-                    if (landData!=null && landData?.Terraintype?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name,landData?.Terraintype?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name)
 
-                    holder.binding.update.setOnClickListener {
-                        val tempBuildingList=ArrayList<SAcqBuildingDetail>()
-                        val tempLandList=ArrayList<SAcqLandDetail>()
-                        if (datalist!=null && datalist?.SAcqPropertyDetail?.isNotEmpty()==true){
-                            tempBuildingList.clear()
-                            tempLandList.clear()
-                            val propertyData: SAcqPropertyDetail? = datalist?.SAcqPropertyDetail?.get(0)
-                            if (propertyData!=null && propertyData.SAcqBuildingDetail.isNotEmpty()){
-                                tempBuildingList.add(SAcqBuildingDetail(
-                                    BuildingHeight = holder.binding.BuildingHeightEdit.text.toString(),
-                                    NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt(),
-                                    TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString(),
-                                    ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt(),
-                                    PropertyType = holder.binding.PropertyTypeBuildingEdit.text.toString().toInt(),
-                                    BuildingBuildType = holder.binding.BuildingBuildTypeEdit.text.toString().toInt(),
-                                    BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt()),
-                                    id =propertyData.SAcqBuildingDetail[0].id
-                                ))
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("AcqSurvey Property Details error : ${e.localizedMessage}")
+                }
+                if (propertyData!=null && propertyData?.Potentialthreat?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name,propertyData?.Potentialthreat?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name)
+                if (propertyData!=null && propertyData?.Direction?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirectionEdit,DropDowns.Direction.name,propertyData?.Direction?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirectionEdit,DropDowns.Direction.name)
+                if (buildingData!=null && buildingData?.BuildingType?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name,buildingData?.BuildingType?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name)
+                if (landData!=null && landData?.LandType?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.LandTypeEdit,DropDowns.LandType.name,landData?.LandType?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.LandTypeEdit,DropDowns.LandType.name)
+                if (landData!=null && landData?.SoilType?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SoilTypeEdit,DropDowns.SoilType.name,landData?.SoilType?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SoilTypeEdit,DropDowns.SoilType.name)
+                if (landData!=null && landData?.Terraintype?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name,landData?.Terraintype?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name)
+                holder.binding.update.setOnClickListener {
+                    try {
+                        if (propertyData!=null){
+                            val tempBuildingData=SAcqBuildingDetail()
+                            val tempLandData=SAcqLandDetail()
+                            tempBuildingData.let {
+                                it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
+                                it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt()
+                                it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
+                                it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt()
+                                it.PropertyType = 0
+                                it.BuildingBuildType = 0
+                                it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
+                                if (propertyData?.SAcqBuildingDetail?.isNotEmpty()==true)
+                                    it.id=propertyData?.SAcqBuildingDetail?.get(0)?.id
                             }
-                            else{
-                                tempBuildingList.add(SAcqBuildingDetail(
-                                    BuildingHeight = holder.binding.BuildingHeightEdit.text.toString(),
-                                    NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt(),
-                                    TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString(),
-                                    ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt(),
-                                    PropertyType = 0,
-                                    BuildingBuildType = 0,
-                                    BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
-                                ))
+                            tempLandData.let {
+                                it.PropertyType = 0
+                                it.SiteDemarcation = 0
+                                it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
+                                it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
+                                it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
+                                if (propertyData?.SAcqLandDetail?.isNotEmpty()==true)
+                                    it.id=propertyData?.SAcqLandDetail?.get(0)?.id
                             }
-
-                            if (propertyData!=null && propertyData.SAcqLandDetail.isNotEmpty()){
-                                tempLandList.add(SAcqLandDetail(
-                                    PropertyType = holder.binding.PropertyTypeLandEdit.text.toString().toInt(),
-                                    SiteDemarcation = holder.binding.SiteDemarcationEdit.text.toString().toInt(),
-                                    LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt()),
-                                    Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt()),
-                                    SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt()),
-                                    id = propertyData.SAcqLandDetail[0].id
-                                ))
-                            }
-                            else{
-                                tempLandList.add(SAcqLandDetail(
-                                    PropertyType = holder.binding.PropertyTypeLandEdit.text.toString().toInt(),
-                                    SiteDemarcation = holder.binding.SiteDemarcationEdit.text.toString().toInt(),
-                                    LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt()),
-                                    Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt()),
-                                    SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt()),
-                                ))
-                            }
-
                             propertyData?.let {
-                                if (it.Potentialthreat.isNotEmpty())
-                                    it.Potentialthreat[0]=holder.binding.PotentialThreatEdit.selectedValue.id.toInt()
-                                else
-                                    it.Potentialthreat.add(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
-                                if (it.Direction.isNotEmpty())
-                                    it.Direction[0]=holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt()
-                                else
-                                    it.Direction.add(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                                it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                                it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
                                 it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
                                 it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
                                 it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
@@ -476,21 +448,121 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                                 it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
                                 it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
                                 it.Remark=holder.binding.remarksEdit.text.toString()
-                                it.SAcqBuildingDetail=tempBuildingList
-                                it.SAcqLandDetail=tempLandList
+                                it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
+                                it.SAcqLandDetail= arrayListOf(tempLandData)
+                                if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true)
+                                    it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
+                                else
+                                    it.Siteaddress= arrayListOf()
+                                val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
+                                tempList.clear()
+                                tempList.add(it)
+                                val tempData= AcquisitionSurveyData()
+                                tempData.SAcqPropertyDetail=tempList
+                                tempData.id= datalist?.id
+                                listener.updateItemClicked(tempData)
                             }
-                            val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
-                            tempList.clear()
-                            tempList.add(propertyData!!)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqPropertyDetail=tempList
-                            tempData.id= datalist?.id
-                            listener.updateItemClicked(tempData)
 
                         }
+                        else if(datalist!=null && datalist?.SAcqPropertyDetail?.isEmpty()==true){
+                            val tempBuildingData=SAcqBuildingDetail()
+                            val tempLandData=SAcqLandDetail()
+                            val tempPropertyData=SAcqPropertyDetail()
+                            tempBuildingData.let {
+                                it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
+                                it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt()
+                                it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
+                                it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt()
+                                it.PropertyType = 0
+                                it.BuildingBuildType = 0
+                                it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
+                            }
+                            tempLandData.let {
+                                it.PropertyType = 0
+                                it.SiteDemarcation = 0
+                                it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
+                                it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
+                                it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
+
+                            }
+                            tempPropertyData.let {
+
+                                it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                                it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
+                                it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
+                                it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
+                                it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
+                                it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
+                                it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
+                                it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
+                                it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
+                                it.Remark=holder.binding.remarksEdit.text.toString()
+                                it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
+                                it.SAcqLandDetail= arrayListOf(tempLandData)
+                                if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true)
+                                    it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
+                                else
+                                    it.Siteaddress= arrayListOf()
+                                val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
+                                tempList.clear()
+                                tempList.add(it)
+                                val tempData= AcquisitionSurveyData()
+                                tempData.SAcqPropertyDetail=tempList
+                                tempData.id= datalist?.id
+                                listener.updateItemClicked(tempData)
+                            }
+                        }
+                        else{
+                            val tempBuildingData=SAcqBuildingDetail()
+                            val tempLandData=SAcqLandDetail()
+                            val tempPropertyData=SAcqPropertyDetail()
+                            tempBuildingData.let {
+                                it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
+                                it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt()
+                                it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
+                                it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt()
+                                it.PropertyType = 0
+                                it.BuildingBuildType = 0
+                                it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
+                            }
+                            tempLandData.let {
+                                it.PropertyType = 0
+                                it.SiteDemarcation = 0
+                                it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
+                                it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
+                                it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
+
+                            }
+                            tempPropertyData.let {
+
+                                it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                                it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
+                                it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
+                                it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
+                                it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
+                                it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
+                                it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
+                                it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
+                                it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
+                                it.Remark=holder.binding.remarksEdit.text.toString()
+                                it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
+                                it.SAcqLandDetail= arrayListOf(tempLandData)
+                                if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true)
+                                    it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
+                                else
+                                    it.Siteaddress= arrayListOf()
+                                val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
+                                tempList.clear()
+                                tempList.add(it)
+                                val tempData= AcquisitionSurveyData()
+                                tempData.SAcqPropertyDetail=tempList
+                                listener.updateItemClicked(tempData)
+                            }
+                        }
+                    }catch (e:Exception){
+                        AppLogger.log("Somthing went wrong during update property details")
                     }
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("AcqSurvey Property Details error : ${e.localizedMessage}")
+
                 }
 
             }

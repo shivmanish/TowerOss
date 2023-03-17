@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignAcqTeamItemBinding
@@ -77,9 +78,9 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
 
 //            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                listener.addAttachment()
-            }
+//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+//                listener.addAttachment()
+//            }
 
         }
     }
@@ -273,6 +274,14 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
+
+                    holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                        if (datalist!=null){
+                            listener.addAttachment()
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false

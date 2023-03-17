@@ -153,7 +153,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                 AppLogger.log("SiteAgreemnets Fragment data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status.SAcqPowerConnectionFeasibility==200 || it.data.status.SAcqFeasibilityDetail==200)) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status.SAcqPowerConnectionFeasibility==200 || it.data.status.SAcqFeasibilityDetail==200 || it.data.status.SAcqPropertyDetail==200)) {
                 AppLogger.log("SiteAgreemnets Fragment card Data fetched successfully")
                 viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()

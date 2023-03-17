@@ -1,24 +1,25 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
-data class SAcqPropertyDetail(
-    var Direction: ArrayList<Int>,
-    var FsDistance: String,
-    var FsPhoneNo: String,
-    var GateAndFence: Int,
-    var NearbyFireStation: String,
-    var NearbyPoliceStation: String,
-    var OtherOperator: Int,
-    var OtherOperatorName: String,
-    var Potentialthreat: ArrayList<Int>,
-    var PsDistance: String,
-    var PsPhoneNo: String,
-    var Remark: String,
-    var SAcqBuildingDetail: ArrayList<SAcqBuildingDetail>,
-    var SAcqLandDetail: ArrayList<SAcqLandDetail>,
-    var SiteAccessWay: Int,
-    var Siteaddress: ArrayList<Int>,
-//    var created_at: String,
-    var id: Int?=null,
-//    var isActive: Boolean,
+ class SAcqPropertyDetail {
+    var Direction: ArrayList<Int>? = null
+    var FsDistance: String? = null
+    var FsPhoneNo: String? = null
+    var GateAndFence: Int? = null
+    var NearbyFireStation: String? = null
+    var NearbyPoliceStation: String? = null
+    var OtherOperator: Int? = null
+    var OtherOperatorName: String? = null
+    var Potentialthreat: ArrayList<Int>? = null
+    var PsDistance: String? = null
+    var PsPhoneNo: String? = null
+    var Remark: String? = null
+    var SAcqBuildingDetail: ArrayList<SAcqBuildingDetail>? = null
+    var SAcqLandDetail: ArrayList<SAcqLandDetail>? = null
+    var SiteAccessWay: Int? = null
+    var Siteaddress: ArrayList<Int>? = null
+
+    //    var created_at: String?=null
+    var id: Int? = null
+//    var isActive: Boolean?=null
 //    var modified_at: String
-)
+}

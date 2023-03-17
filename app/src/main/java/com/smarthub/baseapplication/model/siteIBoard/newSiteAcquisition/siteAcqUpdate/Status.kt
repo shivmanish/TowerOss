@@ -13,6 +13,7 @@ data class Status(
     val SAcqPropertyOwnerDetail: Int,
     val SAcqExternalStructure: Int,
     val SAcqInsidePremise: Int,
+    val SAcqPropertyDetail: Int,
     val SAcqOutsidePremise: Int,
     val SAcqAcquitionSurvey: Int,
     val SAcqSoftAcquisition: Int

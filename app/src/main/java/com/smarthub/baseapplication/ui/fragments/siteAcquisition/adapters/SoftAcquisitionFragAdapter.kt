@@ -115,10 +115,10 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
             }
 
 //            recyclerListener.adapter = adapter
-
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                listener.addAttachment()
-            }
+//
+//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+//                listener.addAttachment()
+//            }
 
         }
     }
@@ -397,6 +397,14 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
+
+                    holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                        if (datalist!=null){
+                            listener.addAttachment()
+                        }
+                        else
+                            Toast.makeText(context,"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false

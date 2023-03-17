@@ -824,6 +824,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -833,21 +834,17 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/AddressLine1_edit"
+                    <TextView
+                        android:id="@+id/AddressLine1Edit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:text=""
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -857,22 +854,18 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/AddressLine2_edit"
+                    <TextView
+                        android:id="@+id/AddressLine2Edit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:text=""
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -882,22 +875,18 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/SiteLAtitude_edit"
+                    <TextView
+                        android:id="@+id/SiteLAtitudeEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:text=""
-                        android:inputType="number"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -907,23 +896,19 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/SiteLongitude_edit"
+                    <TextView
+                        android:id="@+id/SiteLongitudeEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:text=""
-                        android:inputType="number"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -933,20 +918,15 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/PostalCode_edit"
+                    <TextView
+                        android:id="@+id/PostalCodeEdit"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:text=""
-                        android:inputType="number"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
 
             </GridLayout>
