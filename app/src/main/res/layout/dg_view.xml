@@ -72,6 +72,25 @@
                     android:columnCount="2"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Type" />
+
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="."
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -122,7 +141,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Rating/ Capacity (KW)" />
+                            android:text="Capacity Rating (KW)" />
 
                         <TextView
                             android:id="@+id/dg_Rating_capacity_kw"
@@ -132,6 +151,45 @@
                             android:textColor="@color/black" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Canopy" />
+
+                        <TextView
+                            android:id="@+id/canopy"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="22"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Installation Location Type" />
+
+                        <TextView
+                            android:id="@+id/installationlocationType"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="22"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -142,7 +200,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Cabinet Size" />
+                            android:text="Size" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -208,7 +266,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Overall Weight (KG)" />
+                            android:text="Weight (KG)" />
 
                         <TextView
                             android:id="@+id/dg_overall_weight_kg"
@@ -237,6 +295,25 @@
                             android:text="Cloudextel"
                             android:textColor="@color/black" />
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Installation Type" />
+
+                        <TextView
+                            android:id="@+id/installationtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="Cloudextel"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -267,7 +344,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Fuel Consumption per hour" />
+                            android:text="Hourly Consumption (L)" />
 
                         <TextView
                             android:id="@+id/dg_fuel_consumption_per_hour"
@@ -294,7 +371,7 @@
                         android:ellipsize="marquee"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
-                        android:text="Additional Accesorries"
+                        android:text="Accesorries"
                         android:textColor="#3F4E69"
                         android:textSize="@dimen/dp15"
                         android:textStyle="bold" />
@@ -361,7 +438,7 @@
                         android:ellipsize="marquee"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
-                        android:text="Slot no"
+                        android:text="Sr no"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp11"
                         android:textStyle="bold" />
@@ -375,22 +452,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Rating"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp11"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp10"
-                        android:layout_weight="1"
-                        android:ellipsize="marquee"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="item description"
+                        android:text="Item name"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp11"
                         android:textStyle="bold" />
@@ -418,6 +480,25 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/smps_rectifier_table_item"/>
 
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Remark" />
+
+                    <TextView
+                        android:id="@+id/remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:text="Airtel"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

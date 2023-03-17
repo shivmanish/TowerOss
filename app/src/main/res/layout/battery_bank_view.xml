@@ -72,6 +72,25 @@
                     android:columnCount="2"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Type" />
+
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="."
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -112,6 +131,26 @@
                             android:textColor="@color/black" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Voltage Rating (V)" />
+
+                        <TextView
+                            android:id="@+id/voltagerating"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="0"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -132,6 +171,47 @@
                             android:textColor="@color/black" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Battery Cell Count" />
+
+                        <TextView
+                            android:id="@+id/batterycellcount"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="0"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Instalation Location Type" />
+
+                        <TextView
+                            android:id="@+id/locationtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="Mumbai"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+
+
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -142,7 +222,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Cabinet Size" />
+                            android:text="Size" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -208,7 +288,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Overall Weight (KG)" />
+                            android:text="Weight (KG)" />
 
                         <TextView
                             android:id="@+id/battery_bank_overall_weight_kg"
@@ -228,40 +308,22 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Owner Company" />
+                            android:text="Remarks" />
 
                         <TextView
-                            android:id="@+id/battery_bank_owner_company"
+                            android:id="@+id/remarks"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp20"
                             android:text="Cloudextel"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="User Company" />
-
-                        <TextView
-                            android:id="@+id/battery_bank_user_company"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
-                            android:text="Airtel"
-                            android:textColor="@color/black" />
-
-                    </LinearLayout>
 
 
                 </GridLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -328,6 +390,7 @@
 
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp10"
@@ -392,6 +455,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/b_bank_table"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

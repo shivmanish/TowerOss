@@ -72,6 +72,25 @@
                     android:columnCount="2"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Type" />
+
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="."
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -112,6 +131,25 @@
                             android:textColor="@color/black" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Voltage Rating (V)" />
+
+                        <TextView
+                            android:id="@+id/voltage_rating"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="22"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -122,7 +160,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Rating/ Capacity (KW)" />
+                            android:text="Capacity Rating (KW)" />
 
                         <TextView
                             android:id="@+id/Rating_capacity_kw"
@@ -132,6 +170,25 @@
                             android:textColor="@color/black" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        style="@style/ColumnItemInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Installation Location Type" />
+
+                        <TextView
+                            android:id="@+id/locationtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp20"
+                            android:text="Cloudextel"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
 
                     <LinearLayout
                         style="@style/ColumnItemInfo"
@@ -208,7 +265,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Overall Weight (KG)" />
+                            android:text="Weight (KG)" />
 
                         <TextView
                             android:id="@+id/overall_weight_kg"
@@ -219,44 +276,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Owner Company" />
-
-                        <TextView
-                            android:id="@+id/owner_company"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
-                            android:text="Cloudextel"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="User Company" />
-
-                        <TextView
-                            android:id="@+id/user_company"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20"
-                            android:text="Airtel"
-                            android:textColor="@color/black" />
-
-                    </LinearLayout>
 
 
                 </GridLayout>
@@ -377,20 +397,6 @@
                             android:gravity="center"
                             android:maxLines="1"
                             android:text="Model no."
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/dp11"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.3"
-                            android:ellipsize="marquee"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:text="item code"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dp11"
                             android:textStyle="bold" />
@@ -535,6 +541,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Remarks" />
+
+                    <TextView
+                        android:id="@+id/remarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp20"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 

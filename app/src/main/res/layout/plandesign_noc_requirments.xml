@@ -103,7 +103,7 @@
                         android:ellipsize="marquee"
                         android:fontFamily="@font/poppins_bold"
                         android:maxLines="1"
-                        android:text="Category"
+                        android:text="Sr no."
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp11"
                         android:textStyle="bold" />
@@ -117,7 +117,7 @@
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Type"
+                        android:text="Application Type"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp11"
                         android:textStyle="bold" />
