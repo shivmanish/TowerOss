@@ -1,20 +1,27 @@
-package com.smarthub.baseapplication.widgets;
+package com.smarthub.baseapplication.widgets
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.text.Editable
+import android.util.AttributeSet
+import com.google.android.material.textfield.TextInputEditText
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class CustomEditField : TextInputEditText {
+    constructor(context: Context) : super(context) {}
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {}
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
-import com.google.android.material.textfield.TextInputEditText;
-
-public class CustomEditField extends TextInputEditText {
-
-    public CustomEditField(@NonNull Context context) {
-        super(context);
+    override fun getText(): Editable? {
+        var text= super.getText()
+        if (text==null || text.toString().isEmpty())
+            text="0".toEditable()
+        return text
     }
 
-    public CustomEditField(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    override fun setText(t: CharSequence?, type: BufferType?) {
+        var setTextData=t
+        if (setTextData==null || setTextData.isEmpty())
+            setTextData="0"
+        super.setText(setTextData, type)
     }
+
 }
