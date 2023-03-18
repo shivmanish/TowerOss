@@ -2,8 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <layer-list>
-            <item android:drawable="@drawable/ic_arrow_down_faq"
+            <item android:drawable="@drawable/down_arrow"
                 android:gravity="center_vertical|right"
+                android:height="@dimen/dp8"
                 android:right="5dp"/>
         </layer-list>
     </item>

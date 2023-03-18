@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.MwUbrLinkInfoDetailsBinding
-import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkMWLinkInfo
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
@@ -103,7 +102,7 @@ class MwUbrLinkFragAdapter(var listener: MwUbrLinkInfoClickListener, var context
                 if(data.BackhaulType.isNotEmpty())
                     AppPreferences.getInstance().setDropDown(holder.binding.BackhaulType, DropDowns.BackhaulType.name,data.BackhaulType.get(0).toString())
                 if(data.OperationStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data.OperationStatus.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus.get(0).toString())
                 holder.binding.LinkID.text=data.LinkId
                 holder.binding.LinkName.text=data.LinkName
                 holder.binding.LinkBandwidth.text=data.LinkBandwidth

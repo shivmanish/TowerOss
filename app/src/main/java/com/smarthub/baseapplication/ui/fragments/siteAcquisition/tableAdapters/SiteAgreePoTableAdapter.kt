@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AgreementFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -20,8 +21,15 @@ import com.smarthub.baseapplication.utils.Utils
 class SiteAgreePoTableAdapter (var context : Context, var listener : AgreementFragAdapter.AgreementListListener, var list:ArrayList<SAcqPODetail>?): RecyclerView.Adapter<SiteAgreePoTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
 
+    fun addItem(){
+        val modelList:ArrayList<Int> = ArrayList()
+        modelList.clear()
+        modelList.add(0)
+        val data=SAcqPODetail("","","",0,"","",
+            "",modelList,)
+//        listener.addPoData(data)
+        list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -48,11 +56,10 @@ class SiteAgreePoTableAdapter (var context : Context, var listener : AgreementFr
             if (item.VendorCompany.isNotEmpty())
                 AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
             holder.binding.PoNo.text=item.PONumber
-            holder.binding.poDate.text=Utils.getFormatedDate(item.PODate.substring(0,10),"dd-MMM-yyyy")
             holder.binding.SrNo.text=position.plus(1).toString()
+            holder.binding.poDate.text=Utils.getFormatedDate(item.PODate.substring(0,10),"dd-MMM-yyyy")
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -62,18 +69,14 @@ class SiteAgreePoTableAdapter (var context : Context, var listener : AgreementFr
 
     // this method will handle the onclick options click
     private fun performOptionsMenuClick(position: Int,view : View,data:SAcqPODetail) {
-        // create object of PopupMenu and pass context and view where we want
-        // to show the popup menu
         val popupMenu = PopupMenu(context , view)
-        // add the menu
         popupMenu.inflate(R.menu.options_menu)
-        // implement on menu item click Listener
         popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
             override fun onMenuItemClick(item: MenuItem?): Boolean {
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
+                        listener.editPoItemClicked(position,data)
 
                         return true
                     }

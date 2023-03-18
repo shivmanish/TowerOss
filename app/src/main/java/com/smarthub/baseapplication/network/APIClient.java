@@ -6,58 +6,59 @@ import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
 import com.smarthub.baseapplication.model.home.HomeResponse;
+import com.smarthub.baseapplication.model.login.UserLoginPost;
+import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.logs.PostLogData;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel;
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationResponse;
 import com.smarthub.baseapplication.model.notification.newData.NotificationNew;
-import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
-import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
-import com.smarthub.baseapplication.model.project.ProjectModelData;
-import com.smarthub.baseapplication.model.project.TaskModelData;
-import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
-import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
-import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
-import com.smarthub.baseapplication.model.register.dropdown.DropdownParam;
-import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
-import com.smarthub.baseapplication.model.search.SearchListItem;
-import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
-import com.smarthub.baseapplication.model.search.SearchSiteIdItem;
-import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
-import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
-import com.smarthub.baseapplication.model.logs.LogsDataModel;
-import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
-import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel;
-import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
-import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel;
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
-import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
-import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
-import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
-import com.smarthub.baseapplication.model.login.UserLoginPost;
 import com.smarthub.baseapplication.model.otp.GetOtpResponse;
+import com.smarthub.baseapplication.model.otp.GetRegisterOtpResponse;
 import com.smarthub.baseapplication.model.otp.GetSuccessResponse;
 import com.smarthub.baseapplication.model.otp.UserOTPGet;
 import com.smarthub.baseapplication.model.otp.UserOTPVerify;
 import com.smarthub.baseapplication.model.otp.UserPasswordGet;
 import com.smarthub.baseapplication.model.profile.UserProfileUpdate;
+import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData;
+import com.smarthub.baseapplication.model.project.ProjectModelData;
+import com.smarthub.baseapplication.model.project.TaskModelData;
+import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
+import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
 import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
+import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
+import com.smarthub.baseapplication.model.register.dropdown.DropdownParam;
+import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
+import com.smarthub.baseapplication.model.search.SearchListItem;
+import com.smarthub.baseapplication.model.search.SearchSiteIdItem;
+import com.smarthub.baseapplication.model.search.SearchSiteNameItem;
+import com.smarthub.baseapplication.model.search.SearchSiteOpcoName;
+import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
+import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
+import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
+import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel;
+import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
+import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.OpcoInfoUpdateResponse;
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.updateOpcoTenency.UpdateOpcoTenencyModel;
-import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo;
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.QatModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel;
+import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel;
 import com.smarthub.baseapplication.model.taskModel.CreateNewTaskResponse;
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelData;
@@ -70,7 +71,6 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
-
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.alert.model.UpdateAlertData;
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList;
@@ -78,19 +78,29 @@ import com.smarthub.baseapplication.ui.alert.model.request.SendAlertModel;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse;
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
 import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
+import retrofit2.http.Url;
 
 public interface APIClient {
 
@@ -140,9 +150,6 @@ public interface APIClient {
     @POST(EndPoints.SITE_INFO_DROP_DOWN_NEW)
     Call<DropDownNew> siteInfoDropDownNew();
 
-    @GET(EndPoints.SITE_INFO_MODEL)
-    Call<SiteInfoModel> fetchSiteInfoData();
-
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)
     Call<SiteInfoModel> fetchSiteInfoById(@Body IdData data);
@@ -189,12 +196,16 @@ public interface APIClient {
     Call<QatMainModel> fetchQatMainRequest(@Body QatPunchPointModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST(EndPoints.SITE_INFO_SEARCH_DATA)
-    Call<UtilitiesEquipModel> fetchUtilitiesEquipRequest(@Body SiteInfoParam data);
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<UtilityEquipmentAllDataModel> fetchUtilitiesEquipRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
     Call<SiteAcquisitionAllDataModel> fetchSiteAgreementModelRequest(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<UpdateSiteAcqResponseModel> updateSiteAcqRequest(@Body UpdateSiteAcqModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
@@ -235,6 +246,12 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_DATA_URL)
     Call<BasicInfoDialougeResponse> updateBasicInfo(@Body BasicinfoModel basicinfoModel);
+
+//    @Headers({ "Content-Type: multipart/form-data; charset=utf-8"})
+    @Multipart
+    @POST
+    Call<List<AddAttachmentModel>> addAttachmentData(@Url String url,
+                                               @PartMap Map<String, RequestBody> params);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.FiberOpticsLinkInfoDetailsBinding
 import com.smarthub.baseapplication.databinding.MwUbrLinkInfoDetailsBinding
 import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -43,7 +44,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     class ViewHold1(itemView: View) : ViewHold(itemView) {
-        var binding : MwUbrLinkInfoDetailsBinding = MwUbrLinkInfoDetailsBinding.bind(itemView)
+        var binding : FiberOpticsLinkInfoDetailsBinding = FiberOpticsLinkInfoDetailsBinding.bind(itemView)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -60,7 +61,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return when (viewType) {
             1 ->{
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.mw_ubr_link_info_details,parent,false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.fiber_optics_link_info_details,parent,false)
                 ViewHold1(view)
             }
             2 ->{
@@ -91,7 +92,6 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
                 holder.binding.itemLine.visibility = View.GONE
                 holder.binding.itemCollapse.visibility = View.VISIBLE
                 holder.binding.imgEdit.visibility = View.VISIBLE
-                holder.binding.Frequency.visibility=View.GONE
             } else {
                 holder.binding.collapsingLayout.tag = false
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
@@ -105,7 +105,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
                 if(data.BackhaulType.isNotEmpty())
                     AppPreferences.getInstance().setDropDown(holder.binding.BackhaulType, DropDowns.BackhaulType.name,data.BackhaulType.get(0).toString())
                 if(data.OperationStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationalStatus.name,data.OperationStatus.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,data.OperationStatus.get(0).toString())
                 holder.binding.LinkID.text=data.LinkId
                 holder.binding.LinkName.text=data.LinkName
                 holder.binding.LinkBandwidth.text=data.LinkBandwidth
@@ -122,7 +122,7 @@ class FiberOpticsLinkFragAdapter(var listener: FiberOpticsLinkInfoClickListener,
     override fun getItemViewType(position: Int): Int {
         return if (list.isEmpty())
             2
-        else if(list[position] is BackhaulLinkMWLinkInfo)
+        else if(list[position] is BackhaulLinkFiberLinkInfo)
             1
         else
             3

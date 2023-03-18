@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import java.util.*
 
 open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
@@ -62,7 +63,8 @@ open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
     }
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
-        textView.text = StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
+        textView.text = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"dd-MMM-yyyy")
+//        textView.text = StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
     }
 
     fun showLoader(){

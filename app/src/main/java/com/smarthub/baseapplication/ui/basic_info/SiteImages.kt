@@ -8,14 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ActivityAddImageBinding
+import com.smarthub.baseapplication.databinding.DialogAddImageBinding
 import com.smarthub.baseapplication.databinding.FragmentGalleryBinding
 import com.smarthub.baseapplication.imagePicker.FishBun
 import com.smarthub.baseapplication.imagePicker.adapter.image.impl.GlideAdapter
@@ -25,7 +24,7 @@ import com.smarthub.baseapplication.utils.FileUtilities
 
 class SiteImages : AppCompatActivity() {
     lateinit var binding : FragmentGalleryBinding
-    lateinit var dialogBinding : ActivityAddImageBinding
+    lateinit var dialogBinding : DialogAddImageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +47,12 @@ class SiteImages : AppCompatActivity() {
     private fun showExitDialog() {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this,R.style.FullDialog)
         val inflater = layoutInflater
-        val dialogView: View = inflater.inflate(R.layout.activity_add_image, null)
-        dialogBinding = ActivityAddImageBinding.bind(dialogView)
+        val dialogView: View = inflater.inflate(R.layout.dialog_add_image, null)
+        dialogBinding = DialogAddImageBinding.bind(dialogView)
         dialogBuilder.setView(dialogView)
         val exitDialog: AlertDialog = dialogBuilder.create()
-        dialogBinding.crossDialog.setOnClickListener{
-            exitDialog.dismiss();
+        dialogBinding.cancel.setOnClickListener{
+            exitDialog.dismiss()
         }
         dialogBinding.openGallery.setOnClickListener{
             Log.d("status", "Opening gallery")
@@ -66,14 +65,14 @@ class SiteImages : AppCompatActivity() {
     private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result: ActivityResult -> when (result.resultCode) {
             Activity.RESULT_OK -> {
-            var fileUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val fileUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 result.data?.getParcelableExtra(FishBun.INTENT_PATH,Uri::class.java)
             } else {
                 result.data?.getParcelableExtra(FishBun.INTENT_PATH)
             }
             if (fileUri!=null){
                 try {
-                    val path = FileUtilities().getRealPath(this@SiteImages,fileUri)
+                    val path = FileUtilities.getRealPath(this@SiteImages,fileUri)
                     if (binding.imageGrid.adapter is GridItemAdapter){
                         (binding.imageGrid.adapter as GridItemAdapter).addItem(path)
                     }

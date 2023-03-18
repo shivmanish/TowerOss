@@ -149,6 +149,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/Frequency_layout"
                 android:paddingTop="0dp"
                 android:layout_width="0dp"
                 style="@style/ColumnItemInfo"

@@ -1,10 +1,10 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SoftAcquisitionData(
-    val SAcqPayeeAccountDetail: ArrayList<SAcqPayeeAccountDetail>,
-    val SAcqSoftAcquisitionAgreementTerm: ArrayList<SoftAcqAgreementTerm>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var SAcqPayeeAccountDetail: ArrayList<SAcqPayeeAccountDetail>?=null,
+    var SAcqSoftAcquisitionAgreementTerm: ArrayList<SoftAcqAgreementTerm>?=null,
+    var created_at: String?=null,
+    var id: Int,
+    var isActive: Boolean?=null,
+    var modified_at: String?=null
 )

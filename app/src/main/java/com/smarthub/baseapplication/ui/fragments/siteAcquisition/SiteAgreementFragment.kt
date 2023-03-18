@@ -27,20 +27,20 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
     lateinit var viewmodel: HomeViewModel
 //    lateinit var siteLeaseDataAdapter:
     lateinit var adapter:SiteAcqsitionFragAdapter
-    lateinit var fragmentSiteLeaseBinding: FragmentSiteLeaseAcquitionBinding
+    lateinit var binding: FragmentSiteLeaseAcquitionBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragmentSiteLeaseBinding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
+        binding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        return fragmentSiteLeaseBinding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragmentSiteLeaseBinding.siteLeaseListItem.layoutManager = LinearLayoutManager(requireContext())
+        binding.siteLeaseListItem.layoutManager = LinearLayoutManager(requireContext())
         adapter = SiteAcqsitionFragAdapter(requireContext(),this@SiteAgreementFragment)
-        fragmentSiteLeaseBinding.siteLeaseListItem.adapter = adapter
-        fragmentSiteLeaseBinding.addMore.setOnClickListener {
+        binding.siteLeaseListItem.adapter = adapter
+        binding.addMore.setOnClickListener {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager, "")
         }
@@ -68,6 +68,13 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
 
             }
         }
+        
+        binding.swipingLayout.setOnRefreshListener {
+            binding.swipingLayout.isRefreshing=false
+            adapter.addLoading()
+            viewmodel.fetchSiteAgreementModelRequest(id)
+        }
+        viewmodel.fetchSiteAgreementModelRequest(id)
     }
 
     override fun onViewPageSelected() {

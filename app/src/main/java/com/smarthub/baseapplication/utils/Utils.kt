@@ -1,9 +1,13 @@
 package com.smarthub.baseapplication.utils
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
+import android.os.Build
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -14,6 +18,7 @@ import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -35,6 +40,53 @@ object Utils {
 
     fun getScreenHeight(): Int {
         return Resources.getSystem().displayMetrics.heightPixels
+    }
+
+    fun hasCamera(context: Context): Boolean {
+        return context.packageManager.hasSystemFeature("android.hardware.camera")
+    }
+
+    fun verifyMediaImagesPermissions(activity: Activity?): Boolean? {
+        val permissionExternalMemory =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) Manifest.permission.READ_MEDIA_IMAGES else Manifest.permission.WRITE_EXTERNAL_STORAGE
+        if (ActivityCompat.checkSelfPermission(
+                activity!!,
+                permissionExternalMemory
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            val STORAGE_PERMISSIONS =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) arrayOf(
+                    permissionExternalMemory,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_AUDIO
+                ) else arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+            ActivityCompat.requestPermissions(activity, STORAGE_PERMISSIONS, 1)
+            return false
+        }
+        return true
+    }
+    fun verifyCameraPermissions(activity: Activity?): Boolean? {
+        val permissionExternalMemory = Manifest.permission.CAMERA
+        if (ActivityCompat.checkSelfPermission(
+                activity!!,
+                permissionExternalMemory
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            val STORAGE_PERMISSIONS =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) arrayOf(
+                    permissionExternalMemory,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.CAMERA
+                ) else arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA
+                )
+            ActivityCompat.requestPermissions(activity, STORAGE_PERMISSIONS, 1)
+            return false
+        }
+        return true
     }
 
     fun getScreenWidth(): Int {
@@ -309,6 +361,21 @@ object Utils {
         }
         return date
     }
+    fun getFullFormatedDate(d : String) : String{
+        var format="yyyy-MM-dd'T'HH:mm:ss.SSS"
+        var date=d
+        AppLogger.log("getFullFormatedDate:$date")
+        try {
+            val inputFormat: DateFormat = SimpleDateFormat("dd-MMM-yyyy")
+            val outputFormat: DateFormat = SimpleDateFormat(format)
+            val inputDateStr = date
+            val inputDate: Date = inputFormat.parse(inputDateStr)
+             date = outputFormat.format(inputDate)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("getFullFormatedDate error :${e.localizedMessage}")
+        }
+        return date
+    }
 
     fun get12hrformate(time:String):String{
         var s = time
@@ -322,19 +389,6 @@ object Utils {
             AppLogger.log("compareDate error :${e.localizedMessage}")
         }
         return s
-    }
-    fun getFormatedDateNew(d : String,format:String) : String{
-        var date=d
-        AppLogger.log("getformatedDate:$date")
-        try {
-            val sdf = SimpleDateFormat(format)
-            val secondDate: Date = sdf.parse(date)
-            date=secondDate.toString()
-            AppLogger.log("date :$date")
-        }catch (e:java.lang.Exception){
-            AppLogger.log("compareDate error :${e.localizedMessage}")
-        }
-        return date
     }
 
     fun isValid(value: String):Boolean {
@@ -368,8 +422,7 @@ object Utils {
         listener: DialogInterface.OnClickListener
     ) {
         val builder = AlertDialog.Builder(context)
-        builder.setPositiveButton("Yes", listener
-        )
+        builder.setPositiveButton("Yes", listener)
         builder.setNegativeButton("No", listener)
         val alert = builder.create()
         alert.setTitle(title)
@@ -378,4 +431,5 @@ object Utils {
         alert.setCancelable(false)
         alert.show()
     }
+
 }

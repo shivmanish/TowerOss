@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqLandDetail(
-    val LandType: List<Int>,
-    val PropertyType: Int,
-    val SiteDemarcation: Int,
-    val SoilType: List<Int>,
-    val Terraintype: List<Int>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var LandType: ArrayList<Int>,
+    var PropertyType: Int,
+    var SiteDemarcation: Int,
+    var SoilType: ArrayList<Int>,
+    var Terraintype: ArrayList<Int>,
+//    var created_at: String,
+    var id: Int?=null,
+//    var isActive: Boolean,
+//    var modified_at: String
 )

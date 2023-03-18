@@ -1,21 +1,21 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqAgreementDetail(
-    val Acquisitionarea: String,
-    val AgreementEffectiveDate: String,
-    val AgreementExpiryDate: String,
-    val Costcentre: List<Int>,
-    val GroundAcquiredArea: String,
-    val GroundUsableArea: String,
-    val LastRevisedRentAmount: String,
-    val RegistrationDate: String,
-    val RegistrationNumber: String,
-    val Remark: String,
-    val RentStartDate: String,
-    val RooftopUsableArea: String,
-    val RooftopacquiredArea: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var Acquisitionarea: String,
+    var AgreementEffectiveDate: String,
+    var AgreementExpiryDate: String,
+    var Costcentre: ArrayList<Int>,
+    var GroundAcquiredArea: String,
+    var GroundUsableArea: String,
+    var LastRevisedRentAmount: String,
+    var RegistrationDate: String,
+    var RegistrationNumber: String,
+    var Remark: String,
+    var RentStartDate: String,
+    var RooftopUsableArea: String,
+    var RooftopacquiredArea: String,
+    var created_at: String?=null,
+    var id: Int,
+    var isActive: Boolean?=null,
+    var modified_at: String?=null
 )

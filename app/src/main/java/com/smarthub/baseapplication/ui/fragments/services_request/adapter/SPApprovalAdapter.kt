@@ -46,9 +46,9 @@ class SPApprovalAdapter(
         list.add("Power & MCB")
         list.add("Attachments")
         list.add("TSSR Executive Info")
-        spApprovalAndSO = serviceRequestAllData.SPApprovarAndSO!!.get(0)
-        soDetail = spApprovalAndSO!!.SODetails.get(0)
-        spApproval = spApprovalAndSO!!.SPApproval.get(0)
+        spApprovalAndSO = serviceRequestAllData.SPApprovarAndSO?.get(0)
+        soDetail = spApprovalAndSO?.SODetails?.get(0)
+        spApproval = spApprovalAndSO?.SPApproval?.get(0)
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)

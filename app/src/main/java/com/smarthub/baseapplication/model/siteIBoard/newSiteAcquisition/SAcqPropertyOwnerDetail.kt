@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqPropertyOwnerDetail(
-    val Address: String,
-    val EmailId: String,
-    val OwnerName: String,
-    val PhoneNumber: String,
-    val PropertyOwnership: List<Int>,
-    val Remark: String,
-    val Share: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var Address: String,
+    var EmailId: String,
+    var OwnerName: String,
+    var PhoneNumber: String,
+    var PropertyOwnership: ArrayList<Int>,
+    var Remark: String,
+    var Share: String,
+//    var created_at: String,
+    var id: Int?=null,
+//    var isActive: Boolean,
+//    var modified_at: String
 )

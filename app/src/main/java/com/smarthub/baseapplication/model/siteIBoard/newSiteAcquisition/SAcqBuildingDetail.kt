@@ -8,8 +8,8 @@ data class SAcqBuildingDetail(
     val NoOfFloors: Int,
     val PropertyType: Int,
     val TypicalFloorArea: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+//    val created_at: String,
+    val id: Int?=null,
+//    val isActive: Boolean,
+//    val modified_at: String
 )

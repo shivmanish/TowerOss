@@ -36,22 +36,6 @@
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
             <ImageView
-                android:id="@+id/img_edit"
-                android:visibility="visible"
-                android:paddingStart="@dimen/dp16"
-                android:paddingEnd="@dimen/dp16"
-                android:paddingTop="@dimen/dp17"
-                android:paddingBottom="@dimen/dp17"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/edit_ico_black"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toStartOf="@id/img_dropdown"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="@dimen/dp12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
-                app:tint="@color/light_gray" />
-            <ImageView
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"

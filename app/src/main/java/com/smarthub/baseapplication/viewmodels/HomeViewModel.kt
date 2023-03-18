@@ -22,9 +22,14 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
@@ -35,12 +40,13 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitiesEquipModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
+import com.smarthub.baseapplication.network.repo.UpdateIBoardRepo
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
+import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
@@ -49,6 +55,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 class HomeViewModel : ViewModel() {
 
     var homeRepo: HomeRepo?=null
+    var updateIBoardRepo: UpdateIBoardRepo?=null
     var getHomeDataResponse : SingleLiveEvent<Resource<HomeResponse>>?=null
     var getProjectDataResponse : SingleLiveEvent<Resource<ProjectModelData>>?=null
     var getTaskDataResponse : SingleLiveEvent<Resource<TaskModelData>>?=null
@@ -78,14 +85,17 @@ class HomeViewModel : ViewModel() {
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
-    var utilityEquipResponse:SingleLiveEvent<Resource<UtilitiesEquipModel>>? = null
+    var utilityEquipResponse:SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
     var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
     var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
+    var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
+    var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
+        updateIBoardRepo = UpdateIBoardRepo(APIInterceptor.get())
         getHomeDataResponse = homeRepo?.homeResponse
         getProjectDataResponse = homeRepo?.projectResponse
         getTaskDataResponse = homeRepo?.taskResponse
@@ -119,10 +129,16 @@ class HomeViewModel : ViewModel() {
         addNotiResponse=homeRepo?.addNotificationResponse
         siteInfoDataResponse=homeRepo?.siteInfoDataModel
         acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
+        updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
+        addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
         homeRepo?.updateData(basicinfoModel)
+    }
+
+    fun addAttachmentData(addAttachmentModel : AddAttachmentModel){
+        homeRepo?.addAttachmentData(addAttachmentModel)
     }
 
     fun updateOperationInfo(basicinfoModel: UpdateOperationInfo){
@@ -277,5 +293,13 @@ class HomeViewModel : ViewModel() {
 
     fun updateSiteInfo(siteAgreementsData: SiteacquisitionAgreement) {
         homeRepo?.updateAgreementSiteInfo(siteAgreementsData)
+    }
+    fun updateSiteAcq(data: UpdateSiteAcquiAllData) {
+        val dataModel= UpdateSiteAcqModel()
+        val tempList:ArrayList<UpdateSiteAcquiAllData> =ArrayList()
+        tempList.clear()
+        tempList.add(data)
+        dataModel.SAcqSiteAcquisition=tempList
+        updateIBoardRepo?.updateSiteAcqData(dataModel)
     }
 }
