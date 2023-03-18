@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.utilites.fragment
+package com.smarthub.baseapplication.ui.fragments.utilites.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,15 +11,15 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.AcUtility
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtililitiesEquipAllDadaItem
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.AddNewSiteAcqDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.utilites.addNewDialouge.AddNewSMPSDialouge
 import com.smarthub.baseapplication.ui.utilites.*
-import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapter
-import com.smarthub.baseapplication.ui.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -29,7 +29,7 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     var viewmodel: HomeViewModel?=null
     lateinit var adapter: UtilitesNocDataAdapter
     var isDataLoaded = false
-    var utilitydatalist: ArrayList<UtililitiesEquipAllDadaItem>? = ArrayList()
+    var utilitydatalist: ArrayList<UtilityEquipmentAllData>? = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentUtilitesNocBinding.inflate(inflater, container, false)
@@ -53,17 +53,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
         }
         viewmodel?.utilityEquipResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
-                adapter.addLoading()
                 AppLogger.log("UtilityEquip Fragment data loading in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 AppLogger.log("UtilityEquip Fragment card Data fetched successfully")
                 try {
                     adapter.setData(it.data.UtilityEquipment)
                     utilitydatalist?.clear()
-//                    utilitydatalist?.addAll(it.data.item!![0].utilities)
+                    it.data.UtilityEquipment?.let { it1 -> utilitydatalist?.addAll(it1) }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("UtilityEquip Fragment error : ${e.localizedMessage}")
                 }
@@ -79,8 +79,8 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
 
        binding.swipeLayout.setOnRefreshListener {
            binding.swipeLayout.isRefreshing=false
+           showLoader()
            viewmodel?. utilityRequestAll(AppController.getInstance().siteid)
-           adapter.addLoading()
        }
     }
 
@@ -98,6 +98,7 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
 
 
     override fun SMPSItemClicked(data: UtilityEquipmentAllData?) {
+        SMPSDetailsActivity.utilitySmpsData=data
         requireActivity().startActivity(Intent(requireContext(), SMPSDetailsActivity::class.java))
     }
 
@@ -125,6 +126,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     }
 
     override fun CableItemClicked(data: UtilityEquipmentAllData?) {
+    }
+
+    override fun addNewSMPS() {
+        val bm = AddNewSMPSDialouge(utilitydatalist,
+            object : AddNewSMPSDialouge.AddSMPSDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
 }

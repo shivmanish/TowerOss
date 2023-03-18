@@ -34,7 +34,7 @@
             android:layout_marginStart="@dimen/dp15"/>
 
         <ImageView
-            android:id="@+id/text7"
+            android:id="@+id/add_new_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitEnd"
@@ -56,10 +56,10 @@
             android:shape="ring"
             android:layout_marginStart="@dimen/dp7"
             android:layout_marginBottom="@dimen/dp7"
-            app:layout_constraintTop_toTopOf="@id/text7"
-            app:layout_constraintBottom_toBottomOf="@id/text7"
-            app:layout_constraintEnd_toEndOf="@id/text7"
-            app:layout_constraintStart_toStartOf="@id/text7"
+            app:layout_constraintTop_toTopOf="@id/add_new_item"
+            app:layout_constraintBottom_toBottomOf="@id/add_new_item"
+            app:layout_constraintEnd_toEndOf="@id/add_new_item"
+            app:layout_constraintStart_toStartOf="@id/add_new_item"
             android:thicknessRatio="1.9"
             app:cardCornerRadius="@dimen/dp40">
 
@@ -102,7 +102,7 @@
                 android:textSize="@dimen/dp13"
                 android:textColor="#3D4E6D"
                 android:gravity="center"
-                android:id="@+id/mark4" />
+                android:id="@+id/count_item" />
             <TextView
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_width="wrap_content"

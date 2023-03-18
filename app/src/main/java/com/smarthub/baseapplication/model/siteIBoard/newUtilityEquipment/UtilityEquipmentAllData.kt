@@ -7,7 +7,7 @@ data class UtilityEquipmentAllData(
     val UtilityEquipmentDG: ArrayList<UtilityEquipmentDG>,
     val UtilityEquipmentFireExtinguisher: ArrayList<UtilityEquipmentFireExtinguisher>,
     val UtilityEquipmentPowerDistributionBox: ArrayList<UtilityEquipmentPowerDistributionBox>,
-    val UtilityEquipmentSmps: ArrayList<UtilityEquipmentSmp>,
+    val UtilityEquipmentSmps: ArrayList<UtilityEquipmentSmp>?=null,
     val UtilityEquipmentSurgeProtectionDevice: ArrayList<UtilityEquipmentSurgeProtectionDevice>,
     val created_at: String,
     val id: Int,

@@ -73,16 +73,17 @@
                             android:textAppearance="@style/RowTextItemInfo"
                             android:gravity="center"
                             />
+
                         <TextView
-                            android:layout_centerVertical="true"
+                            android:id="@+id/Count"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2"
-                            android:textStyle="italic"
-                            android:textSize="@dimen/dp13"
-                            android:textColor="@color/white"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
                             android:gravity="center"
-                            android:id="@+id/mark4" />
+                            android:text="2"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp13"
+                            android:textStyle="italic" />
                         <TextView
                             android:layout_marginStart="@dimen/dp5"
                             android:layout_width="wrap_content"

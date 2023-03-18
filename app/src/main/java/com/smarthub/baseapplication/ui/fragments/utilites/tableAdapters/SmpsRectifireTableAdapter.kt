@@ -1,30 +1,26 @@
-package com.smarthub.baseapplication.ui.utilites.tableAdapters
+package com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsRectifireTableItemBinding
-import com.smarthub.baseapplication.ui.utilites.adapter.SmpsUtilityFragAdapter
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqOutsidePremise
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityRectifierModule
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SmpsUtilityFragAdapter
+import com.smarthub.baseapplication.utils.Utils
 
-class smpsRectifireTableAdapter (var context : Context, var listener : SmpsUtilityFragAdapter.SmpsInfoListListener): RecyclerView.Adapter<smpsRectifireTableAdapter.ViewHold>() {
+class SmpsRectifireTableAdapter (var context : Context, var listener : SmpsUtilityFragAdapter.SmpsInfoListListener, var list:ArrayList<UtilityRectifierModule>): RecyclerView.Adapter<SmpsRectifireTableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
 
-    init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-    }
 
-    fun addItem(item:String){
-        list.add(item)
+    fun addItem(){
+        val data=UtilityRectifierModule()
+        list.add(data)
         notifyItemInserted(list.size.plus(1))
     }
 
@@ -38,15 +34,23 @@ class smpsRectifireTableAdapter (var context : Context, var listener : SmpsUtili
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_rectifire_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_rectifire_table_item,parent,false)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        val item: UtilityRectifierModule =list[position]
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
-            performOptionsMenuClick(position,it)
+            performOptionsMenuClick(position,it,item)
         }
+        holder.binding.SlotNumber.text=item.SlotNo.toString()
+        holder.binding.SerialNo.text=item.SerialNumber
+        holder.binding.RatingAmp.text=item.RatingAmp
+        if (item.InstallationDate?.length!! >=10)
+            holder.binding.InstallationDate.text=Utils.getFormatedDate(item.InstallationDate!!.substring(0,10),"dd-MMM-yyyy")
+        else
+            holder.binding.InstallationDate.text= item.InstallationDate
+
     }
 
     override fun getItemCount(): Int {
@@ -54,7 +58,7 @@ class smpsRectifireTableAdapter (var context : Context, var listener : SmpsUtili
     }
 
     // this method will handle the onclick options click
-    private fun performOptionsMenuClick(position: Int,view : View) {
+    private fun performOptionsMenuClick(position: Int,view : View,data:UtilityRectifierModule) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
         val popupMenu = PopupMenu(context , view)
@@ -66,7 +70,7 @@ class smpsRectifireTableAdapter (var context : Context, var listener : SmpsUtili
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editRectifireTableItem(position)
+                        listener.editRectifireTableItem(position,data)
 
                         return true
                     }
@@ -75,14 +79,12 @@ class smpsRectifireTableAdapter (var context : Context, var listener : SmpsUtili
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewRectifireTableItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                        listener.viewRectifireTableItem(position,data)
                     }
 
                 }

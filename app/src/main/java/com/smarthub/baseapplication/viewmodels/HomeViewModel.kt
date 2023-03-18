@@ -30,6 +30,9 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqU
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityResponseModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
@@ -91,6 +94,7 @@ class HomeViewModel : ViewModel() {
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
     var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
     var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
+    var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -130,6 +134,7 @@ class HomeViewModel : ViewModel() {
         siteInfoDataResponse=homeRepo?.siteInfoDataModel
         acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
         updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
+        updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -301,5 +306,13 @@ class HomeViewModel : ViewModel() {
         tempList.add(data)
         dataModel.SAcqSiteAcquisition=tempList
         updateIBoardRepo?.updateSiteAcqData(dataModel)
+    }
+    fun updateUtilityEquip(data: UpdateUtilityEquipmentAllData) {
+        val dataModel= UpdateUtilityEquipmentModel()
+        val tempList:ArrayList<UpdateUtilityEquipmentAllData> =ArrayList()
+        tempList.clear()
+        tempList.add(data)
+        dataModel.UtilityEquipment=tempList
+        updateIBoardRepo?.updateUtilityEquipData(dataModel)
     }
 }

@@ -1,21 +1,21 @@
-package com.smarthub.baseapplication.ui.utilites
+package com.smarthub.baseapplication.ui.fragments.utilites
 
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivitySmpsdetailsBinding
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSmp
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.utilites.adapter.SMPSViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SMPSViewpagerAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 
 class SMPSDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivitySmpsdetailsBinding
     companion object{
-        var utilitySmpsData:ArrayList<UtilitieSmp>?=null
+        var utilitySmpsData: UtilityEquipmentAllData?=null
         var id:String?="448"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +36,17 @@ class SMPSDetailsActivity : AppCompatActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
+        if (utilitySmpsData!=null )
+            binding.Count.text= utilitySmpsData?.UtilityEquipmentSmps?.size.toString()
+        else
+            binding.Count.text="0"
     }
 
     fun initview(){
-        if (utilitySmpsData !=null){
-            AppLogger.log("utilitySmpsData : ${utilitySmpsData!!}")
-        binding.viewpager.adapter = SMPSViewpagerAdapter(supportFragmentManager, utilitySmpsData!!, id!!)
+        if (utilitySmpsData!=null )
+            binding.viewpager.adapter = SMPSViewpagerAdapter(supportFragmentManager, utilitySmpsData?.UtilityEquipmentSmps,utilitySmpsData?.id)
+        else
+            binding.viewpager.adapter = SMPSViewpagerAdapter(supportFragmentManager, ArrayList(),utilitySmpsData?.id)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
             binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -51,8 +56,7 @@ class SMPSDetailsActivity : AppCompatActivity() {
             binding.tabs.tabMode = TabLayout.MODE_FIXED
         else
             binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
-        }
-        else AppLogger.log("Something Went Wrong in SMPSDetailsActivity code line 54")
+
            // Toast.makeText(binding.tabs.context,"Something Went Wrong",Toast.LENGTH_SHORT).show()
     }
 }

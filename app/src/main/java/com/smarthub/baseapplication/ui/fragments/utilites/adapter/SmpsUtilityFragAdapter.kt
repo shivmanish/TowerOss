@@ -1,6 +1,5 @@
-package com.smarthub.baseapplication.ui.utilites.adapter
+package com.smarthub.baseapplication.ui.fragments.utilites.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,18 +7,23 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInfo
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInstallationAndAcceptance
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSmp
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityRectifierModule
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilitySMPSEquipment
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters.SmpsRectifireTableAdapter
 import com.smarthub.baseapplication.ui.utilites.tableAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListListener,smpsData:UtilitieSmp?) : RecyclerView.Adapter<SmpsUtilityFragAdapter.ViewHold>() {
-    private var datalist: UtilitieSmp?=null
-    fun setData(data: UtilitieSmp?) {
+class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsInfoListListener,smpsData: UtilityEquipmentSmp?) : RecyclerView.Adapter<SmpsUtilityFragAdapter.ViewHold>() {
+    private var datalist: UtilityEquipmentSmp?=null
+    private var equipmentData: UtilitySMPSEquipment?=null
+
+    fun setData(data: UtilityEquipmentSmp?) {
         this.datalist=data!!
         notifyDataSetChanged()
     }
@@ -27,7 +31,7 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
         try {
             datalist=smpsData
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            Toast.makeText(baseFragment.requireContext(),"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -56,7 +60,7 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-    
+
     class EquipViewHold(itemView: View) : ViewHold(itemView) {
         var binding : UtilitySmpsEquipmentsBinding = UtilitySmpsEquipmentsBinding.bind(itemView)
 
@@ -85,13 +89,13 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
-            if (RectifireTableList.adapter!=null && RectifireTableList.adapter is smpsRectifireTableAdapter){
-                var adapter = RectifireTableList.adapter as smpsRectifireTableAdapter
-                adapter.addItem(item)
+        private fun addTableItem(){
+            if (RectifireTableList.adapter!=null && RectifireTableList.adapter is SmpsRectifireTableAdapter){
+                var adapter = RectifireTableList.adapter as SmpsRectifireTableAdapter
+                adapter.addItem()
             }
         }
     }
@@ -249,23 +253,23 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (list[position] is String && list[position]==type1)
+        if ( list[position]==type1)
             return 1
-        else if (list[position] is String && list[position]==type2)
+        else if (list[position]==type2)
             return 2
-        else if (list[position] is String && list[position]==type3)
+        else if ( list[position]==type3)
             return 3
-        else if (list[position] is String && list[position]==type4)
+        else if ( list[position]==type4)
             return 4
-        else if (list[position] is String && list[position]==type5)
+        else if (list[position]==type5)
             return 5
-        else if (list[position] is String && list[position]==type6)
+        else if (list[position]==type6)
             return 6
-        else if (list[position] is String && list[position]==type7)
+        else if (list[position]==type7)
             return 7
-        else if (list[position] is String && list[position]==type8)
+        else if (list[position]==type8)
             return 8
-        else if (list[position] is String && list[position]==type9)
+        else if (list[position]==type9)
             return 9
         return 0
     }
@@ -323,9 +327,16 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.EditEquipmentItem()
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
+                    holder.binding.cancel.setOnClickListener {
+                        holder.binding.viewLayout.visibility = View.VISIBLE
+                        holder.binding.editLayout.visibility = View.GONE
                     }
                 }
                 else {
@@ -340,11 +351,96 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
+                if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true){
+                    equipmentData=datalist?.Equipment?.get(0)
+                }
+                if (equipmentData!=null){
+                    // view mode
+                    holder.binding.Type.text=equipmentData?.Type
+                    holder.binding.SerialNumber.text=equipmentData?.SerialNumber
+                    holder.binding.Make.text=equipmentData?.Make
+                    holder.binding.Model.text=equipmentData?.Model
+                    holder.binding.minVoltageRating.text=equipmentData?.VoltageMin
+                    holder.binding.maxVoltageRating.text=equipmentData?.VoltageMax
+                    holder.binding.CapacityRating.text=equipmentData?.CapacityRating
+                    holder.binding.InstallationLocationType.text=equipmentData?.InstalledLocationType.toString()
+                    holder.binding.CabinetSizeL.text=equipmentData?.SizeL
+                    holder.binding.CabinetSizeB.text=equipmentData?.SizeB
+                    holder.binding.CabinetSizeH.text=equipmentData?.SizeH
+                    holder.binding.Weight.text=equipmentData?.Weight
+                    holder.binding.ManufacturingMonthYear.text=Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn?.substring(0,7)!!,"MMM-yyyy")
+                    holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
+                    if (equipmentData?.WarrantyExpiryDate?.length!! >=10)
+                        holder.binding.WarrantyExpiryDate.text=Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate?.substring(0,10)!!,"dd-MMM-yyyy")
+                    else
+                        holder.binding.WarrantyExpiryDate.text=equipmentData?.WarrantyExpiryDate
+                    holder.binding.RackNo.text=equipmentData?.RackNo
+                    holder.binding.remarks.text=equipmentData?.Remark
+                    holder.binding.RackUSpaceUsed.text=equipmentData?.RackUSpaceUsed.toString()
+                    if (equipmentData?.OperationStatus?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus,DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
 
+                    // edit mode
+                    holder.binding.TypeEdit.setText(equipmentData?.Type)
+                    holder.binding.SerialNumberEdit.setText(equipmentData?.SerialNumber)
+                    holder.binding.MakeEdit.setText(equipmentData?.Make)
+                    holder.binding.ModelEdit.setText(equipmentData?.Model)
+                    holder.binding.minVoltageRatingEdit.setText(equipmentData?.VoltageMin)
+                    holder.binding.maxVoltageRatingEdit.setText(equipmentData?.VoltageMax)
+                    holder.binding.CapacityRatingEdit.setText(equipmentData?.CapacityRating)
+                    holder.binding.InstallationLocationTypeEdit.text=equipmentData?.InstalledLocationType.toString()
+                    holder.binding.CabinetSizeLEdit.setText(equipmentData?.SizeL)
+                    holder.binding.CabinetSizeBEdit.setText(equipmentData?.SizeB)
+                    holder.binding.CabinetSizeHEdit.setText(equipmentData?.SizeH)
+                    holder.binding.WeightEdit.setText(equipmentData?.Weight)
+                    holder.binding.ManufacturingMonthYearEdit.text=Utils.getFormatedDate(equipmentData?.ManufacturedOn?.substring(0,10)!!,"dd-MMM-yyyy")
+                    holder.binding.WarrantyPeriodEdit.setText(equipmentData?.WarrantyPeriod)
+                    if (equipmentData?.WarrantyExpiryDate?.length!! >=10)
+                        holder.binding.WarrantyExpiryDateEdit.text=Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate?.substring(0,10)!!,"dd-MMM-yyyy")
+                    else
+                        holder.binding.WarrantyExpiryDateEdit.text=equipmentData?.WarrantyExpiryDate
+                    holder.binding.RackNoEdit.setText(equipmentData?.RackNo)
+                    holder.binding.remarksEdit.setText(equipmentData?.Remark)
+                    holder.binding.RackUSpaceUsedEdit.setText(equipmentData?.RackUSpaceUsed.toString())
+                }
+                if (equipmentData!=null && equipmentData?.OperationStatus?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,DropDowns.OperationStatus.name)
+
+                try {
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+                holder.binding.update.setOnClickListener {
+                    val tempEquipData=UtilitySMPSEquipment()
+                    tempEquipData.let {
+                        it.Type=holder.binding.TypeEdit.text.toString()
+                        it.SerialNumber=holder.binding.SerialNumberEdit.text.toString()
+                        it.Make=holder.binding.MakeEdit.text.toString()
+                        it.Model=holder.binding.ModelEdit.text.toString()
+                        it.VoltageMax=holder.binding.maxVoltageRatingEdit.text.toString()
+                        it.VoltageMin=holder.binding.minVoltageRatingEdit.text.toString()
+                        it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
+                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                        it.SizeL=holder.binding.CabinetSizeLEdit.text.toString()
+                        it.SizeB=holder.binding.CabinetSizeHEdit.text.toString()
+                        it.SizeH=holder.binding.CabinetSizeHEdit.text.toString()
+                        it.ManufacturedOn=Utils.getFullFormatedDate(holder.binding.ManufacturingMonthYearEdit.text.toString())
+                        it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
+                        it.WarrantyExpiryDate=Utils.getFullFormatedDate(holder.binding.WarrantyExpiryDateEdit.text.toString())
+                        it.RackNo=holder.binding.RackNoEdit.text.toString()
+                        it.RackUSpaceUsed=holder.binding.RackUSpaceUsedEdit.text.toString().toIntOrNull()
+                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
+                        if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)
+                            it.id=datalist?.Equipment?.get(0)?.id
+                        val utilitySMPSData=UtilityEquipmentSmp()
+                        utilitySMPSData.Equipment= arrayListOf(it)
+                        if (datalist!=null)
+                            utilitySMPSData.id=datalist?.id
+                        listener.updateSMPSData(utilitySMPSData)
+                    }
                 }
 
             }
@@ -369,12 +465,12 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    holder.RectifireTableList.adapter=smpsRectifireTableAdapter(context,listener)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
-                }
+                if (datalist!=null)
+                    holder.RectifireTableList.adapter=SmpsRectifireTableAdapter(baseFragment.requireContext(),listener,datalist?.RectifierModule!!)
+                else
+                    holder.RectifireTableList.adapter=SmpsRectifireTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+
+
             }
             is ConnectedLoadsViewHold -> {
                 if (currentOpened == position) {
@@ -398,10 +494,9 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.ConnLoadTableList.adapter=smpsConnLoadsTableAdapter(context,listener)
+                    holder.ConnLoadTableList.adapter=smpsConnLoadsTableAdapter(baseFragment.requireContext(),listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is InstAccepViewHold -> {
@@ -432,7 +527,6 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
 
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -458,10 +552,9 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                   holder.ConsumTableList.adapter=smpsConsumeTableAdapter(context,listener)
+                   holder.ConsumTableList.adapter=smpsConsumeTableAdapter(baseFragment.requireContext(),listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is PoDetailsViewHold -> {
@@ -486,10 +579,9 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.poTableList.adapter=smpsPoTableAdapter(context,listener)
+                    holder.poTableList.adapter=smpsPoTableAdapter(baseFragment.requireContext(),listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is MaintenanceViewHold -> {
@@ -520,7 +612,6 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
 
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -546,10 +637,9 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    holder.serviceTableList.adapter=smpsServiceTableAdapter(context,listener)
+                    holder.serviceTableList.adapter=smpsServiceTableAdapter(baseFragment.requireContext(),listener)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is Attachments -> {
@@ -594,14 +684,15 @@ class SmpsUtilityFragAdapter(var context: Context, var listener: SmpsInfoListLis
         fun EditMaintenance()
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int)
-        fun editRectifireTableItem(position: Int)
-        fun viewRectifireTableItem(position: Int)
+        fun editRectifireTableItem(position: Int,data:UtilityRectifierModule)
+        fun viewRectifireTableItem(position: Int,data: UtilityRectifierModule)
         fun editConnLoadsTableItem(position: Int)
         fun viewConnLoadsTableItem(position: Int)
         fun editConsumMaterialTableItem(position: Int)
         fun viewConsumMaterialTableItem(position: Int)
         fun editServiceTableItem(position: Int)
         fun viewServiceTableItem(position: Int)
+        fun updateSMPSData(updatedData: UtilityEquipmentSmp)
     }
 
 }

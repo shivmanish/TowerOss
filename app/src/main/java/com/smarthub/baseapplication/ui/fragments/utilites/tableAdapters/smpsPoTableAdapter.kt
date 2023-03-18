@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsPoTableItemBinding
-import com.smarthub.baseapplication.ui.utilites.adapter.SmpsUtilityFragAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SmpsUtilityFragAdapter
 
 class smpsPoTableAdapter (var context : Context, var listener : SmpsUtilityFragAdapter.SmpsInfoListListener): RecyclerView.Adapter<smpsPoTableAdapter.ViewHold>() {
 

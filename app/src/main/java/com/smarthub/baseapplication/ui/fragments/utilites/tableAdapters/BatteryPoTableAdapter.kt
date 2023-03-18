@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsPoTableItemBinding
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryFragAdapter
-import com.smarthub.baseapplication.ui.utilites.adapter.SmpsUtilityFragAdapter
 
 class BatteryPoTableAdapter (var context : Context, var listener : BatteryFragAdapter.BatterryBankListListener): RecyclerView.Adapter<BatteryPoTableAdapter.ViewHold>() {
 

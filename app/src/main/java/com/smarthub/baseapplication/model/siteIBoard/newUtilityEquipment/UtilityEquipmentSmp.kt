@@ -1,15 +1,14 @@
 package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
-
-data class UtilityEquipmentSmp(
-    val ConnectedLoad: ArrayList<UtilityConnectedLoad>,
-    val ConsumableMaterial: ArrayList<UtilityConsumableMaterial>,
-    val Equipment: ArrayList<UtilitySMPSEquipment>,
-    val InstallationAndAcceptence: ArrayList<UtiltyInstallationAcceptence>,
-    val PODetail: ArrayList<UtilityPoDetails>,
-    val PreventiveMaintenance: ArrayList<UtilityPreventiveMaintenance>,
-    val RectifierModule: ArrayList<UtilityRectifierModule>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+ class UtilityEquipmentSmp{
+    var ConnectedLoad: ArrayList<UtilityConnectedLoad>?=null
+    var ConsumableMaterial: ArrayList<UtilityConsumableMaterial>?=null
+    var Equipment: ArrayList<UtilitySMPSEquipment>?=null
+    var InstallationAndAcceptence: ArrayList<UtiltyInstallationAcceptence>?=null
+    var PODetail: ArrayList<UtilityPoDetails>?=null
+    var PreventiveMaintenance: ArrayList<UtilityPreventiveMaintenance>?=null
+    var RectifierModule: ArrayList<UtilityRectifierModule>?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
+//    var modified_at: String
+}

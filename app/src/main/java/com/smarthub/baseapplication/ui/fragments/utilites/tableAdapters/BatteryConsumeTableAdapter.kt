@@ -9,11 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.UtilitySmpsConnLoadsTableItemBinding
 import com.smarthub.baseapplication.databinding.UtilitySmpsConsumTableItemBinding
-import com.smarthub.baseapplication.databinding.UtilitySmpsRectifireTableItemBinding
 import com.smarthub.baseapplication.ui.utilites.adapter.BatteryFragAdapter
-import com.smarthub.baseapplication.ui.utilites.adapter.SmpsUtilityFragAdapter
 
 class BatteryConsumeTableAdapter (var context : Context, var listener : BatteryFragAdapter.BatterryBankListListener): RecyclerView.Adapter<BatteryConsumeTableAdapter.ViewHold>() {
 

@@ -3,8 +3,6 @@ package com.smarthub.baseapplication.ui.fragments.task.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
-import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.NocFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
@@ -15,8 +13,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
-import com.smarthub.baseapplication.ui.taskUi.TaskDynamicSiteFragment
-import com.smarthub.baseapplication.ui.utilites.fragment.UtilitiesNocMainTabFragment
+import com.smarthub.baseapplication.ui.fragments.utilites.fragment.UtilitiesNocMainTabFragment
 
 class TaskSearchViewPagerAdapter(fm: FragmentManager, var tabNames:List<String>,var id:String) : FragmentPagerAdapter(fm) {
 

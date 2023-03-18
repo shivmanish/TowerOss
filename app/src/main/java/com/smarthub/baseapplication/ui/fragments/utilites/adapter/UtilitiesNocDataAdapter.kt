@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.utilites.adapter
+package com.smarthub.baseapplication.ui.fragments.utilites.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -27,30 +27,33 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
     val type10 = "Empty"
 
     init {
-        list.add("loading")
+        list.add("SMPS")
+        list.add("Battery Bank")
+        list.add("DG")
+        list.add("AC")
+        list.add("Fire Extinguisher")
+        list.add("Surge Protection Device")
+        list.add("Power Distribution Box")
+        list.add("Cables")
     }
     fun setData(data: ArrayList<UtilityEquipmentAllData>?) {
         AppLogger.log("utility dataSize: ${data?.size}")
         try {
+            list.clear()
             if (data?.isNotEmpty()==true ){
-                utilitydata=data.get(0)
-                list.clear()
-                list.add("SMPS")
-                list.add("Battery Bank")
-                list.add("DG")
-                list.add("AC")
-                list.add("Fire Extinguisher")
-                list.add("Surge Protection Device")
-                list.add("Power Distribution Box")
-                list.add("Cables")
-                notifyDataSetChanged()
+                utilitydata= data[0]
             }
             else
-            {
-                list.clear()
-                list.add("Empty")
-                notifyDataSetChanged()
-            }
+                AppLogger.log("smps all data: $data")
+            list.add("SMPS")
+            list.add("Battery Bank")
+            list.add("DG")
+            list.add("AC")
+            list.add("Fire Extinguisher")
+            list.add("Surge Protection Device")
+            list.add("Power Distribution Box")
+            list.add("Cables")
+            notifyDataSetChanged()
         }
         catch (e:Exception){
             AppLogger.log("utility Data Is Empty: ${e.localizedMessage}")
@@ -106,8 +109,16 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
                 if (list[position]==type1){
                     holder.binding.titel.text=list[position]
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.SMPSItemClicked(utilitydata)
+                        listener.SMPSItemClicked(utilitydata)
                     }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewSMPS()
+                    }
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentSmps!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentSmps?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
+
                 }
                 else if (list[position]==type2){
                     holder.binding.titel.text=list[position]
@@ -170,4 +181,5 @@ interface UtilitesNocDataAdapterListener {
     fun SuregeProtectionDeviceItemClicked(data:UtilityEquipmentAllData?)
     fun PowerDistributionBoxItemClicked(data:UtilityEquipmentAllData?)
     fun CableItemClicked(data:UtilityEquipmentAllData?)
+    fun addNewSMPS()
 }

@@ -156,7 +156,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.utilites.SMPSDetailsActivity"
+            android:name=".ui.fragments.utilites.SMPSDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

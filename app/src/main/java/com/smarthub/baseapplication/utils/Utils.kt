@@ -361,6 +361,20 @@ object Utils {
         }
         return date
     }
+    fun getFormatedDateMonthYear(d : String,format:String) : String{
+        var date=d
+        AppLogger.log("getFormatedDateMonthYear:$date")
+        try {
+            val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM")
+            val outputFormat: DateFormat = SimpleDateFormat(format)
+            val inputDateStr = date
+            val inputDate: Date = inputFormat.parse(inputDateStr)
+             date = outputFormat.format(inputDate)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("getFormatedDateMonthYear error :${e.localizedMessage}")
+        }
+        return date
+    }
     fun getFullFormatedDate(d : String) : String{
         var format="yyyy-MM-dd'T'HH:mm:ss.SSS"
         var date=d
