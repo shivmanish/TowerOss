@@ -32,6 +32,7 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
+        AppPreferences.getInstance().saveStaticDropDownData(this)
         AppLogger.log("token:${AppPreferences.getInstance().token}")
         AppLogger.log("refresh:${AppPreferences.getInstance().refresh}")
         AppLogger.log("refresh:${AppPreferences.getInstance().bearerToken}")

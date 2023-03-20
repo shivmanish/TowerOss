@@ -194,6 +194,19 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
         }
     }
+    public void saveStaticDropDownData(Context context) {
+        String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"dropdown.json");
+        try{
+            DropDownNew data= new Gson().fromJson(modelJson,DropDownNew.class);
+            for (DropDownNewItem item : data.getDropdown()){
+                Gson gson = new Gson();
+                String stringDatajson = gson.toJson(item);
+                AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
+            }
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("error in fetching task ui model on appPrefrence"+e.getLocalizedMessage());
+        }
+    }
 
     public boolean isSavedDropDown(){
         String jsonString = getString(DROPDOWNDATANEW);
