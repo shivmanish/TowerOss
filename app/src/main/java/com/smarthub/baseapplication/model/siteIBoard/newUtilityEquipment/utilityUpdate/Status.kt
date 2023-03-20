@@ -3,5 +3,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilit
 data class Status(
     val UtilityEquipment: Int,
     val UtilityEquipmentSmps: Int,
+    val RectifierModule: Int,
     val Equipment: Int,
+    val InstallationAndAcceptence: Int,
 )

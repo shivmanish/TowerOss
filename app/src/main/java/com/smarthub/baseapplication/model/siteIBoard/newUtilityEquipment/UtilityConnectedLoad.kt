@@ -1,14 +1,14 @@
 package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
 
-data class UtilityConnectedLoad(
-    val ActualReading: String,
-    val ConnectedEquipment: String,
-    val InstallationDate: String,
-    val MCBNumber: Int,
-    val RatingAmp: String,
-    val Remark: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+ class UtilityConnectedLoad{
+    var ActualReading: String?=null
+    var ConnectedEquipment: String?=null
+    var InstallationDate: String?=null
+    var MCBNumber: Int?=null
+    var RatingAmp: String?=null
+    var Remark: String?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
+//    var modified_at: String
+}

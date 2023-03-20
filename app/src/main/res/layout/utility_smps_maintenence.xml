@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/dp5"
-    android:layout_marginLeft="@dimen/dp5"
+    xmlns:tools="http://schemas.android.com/tools"
     android:elevation="@dimen/dp30"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,10 +16,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp42">
+            android:layout_height="@dimen/dp45">
             <TextView
                 android:id="@+id/item_title_str"
-                android:text="Maintenance"
+                android:text="Property Owner’s Detail"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/dp14"
@@ -36,25 +34,33 @@
                 app:layout_constraintWidth_percent=".7"
                 android:layout_height="match_parent"/>
             <ImageView
-                android:id="@+id/img_edit"
-                android:visibility="gone"
-                android:src="@drawable/edit_ico_black"
+                android:id="@+id/img_add"
+                android:visibility="visible"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp17"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/add_12"
+                android:layout_height="match_parent"
                 app:layout_constraintEnd_toStartOf="@id/img_dropdown"
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="@dimen/dp12"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
+                app:tint="@color/light_gray" />
             <ImageView
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingStart="@dimen/dp16"
-                android:paddingEnd="@dimen/dp16"
+                android:paddingStart="@dimen/dp17"
+                android:paddingEnd="@dimen/dp17"
+                android:paddingTop="@dimen/dp17"
+                android:paddingBottom="@dimen/dp17"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/dp50"
-                android:layout_height="40dp"/>
+                android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
@@ -65,143 +71,87 @@
         android:background="@color/view_color"
         android:layout_height="1dp"
         android:layout_width="match_parent"/>
-
     <LinearLayout
         android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="@dimen/dp10"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.core.widget.NestedScrollView
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp7"
+            android:layout_marginRight="@dimen/dp2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:scrollbars="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <GridLayout
-                    android:visibility="visible"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight=".4"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:textStyle="bold"
+                android:text="Sr No."
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="Service Type"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="1.2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="Vendor Name"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_weight=".9"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:text="PM Date"
+                android:gravity="center"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/smps_po_table"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp7"
+            tools:listitem="@layout/preventive_mentinance_table_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        </androidx.recyclerview.widget.RecyclerView>
 
-                        <TextView
-                            android:text="Installation Vendor"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Installation_Vendor"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text="Yes"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Installation Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Installation_date"
-                            android:maxLength="10"
-                            android:text="27-Dec-22"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Installation Excutive Name"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Installation_Excutive_Name"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text="Umesh"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Installation Executive No."
-                            style="@style/RowTextItemInfo"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Installation_Executive_No"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text="9172125253"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                </GridLayout>
-                <TextView
-                    android:text="Remark"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Remark"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:hint="Left Corner of Roof "
-                    android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
-                    android:text="xwerhtjyg"
-                    android:layout_marginTop="@dimen/dp1"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

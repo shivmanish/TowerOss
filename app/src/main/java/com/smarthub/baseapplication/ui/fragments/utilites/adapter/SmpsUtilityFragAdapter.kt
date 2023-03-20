@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSmp
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityRectifierModule
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilitySMPSEquipment
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters.SmpsConnLoadsTableAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters.SmpsRectifireTableAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters.SmpsConsumeTableAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters.SmpsPoTableAdapter
 import com.smarthub.baseapplication.ui.utilites.tableAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -22,6 +23,7 @@ import com.smarthub.baseapplication.utils.Utils
 class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsInfoListListener,smpsData: UtilityEquipmentSmp?) : RecyclerView.Adapter<SmpsUtilityFragAdapter.ViewHold>() {
     private var datalist: UtilityEquipmentSmp?=null
     private var equipmentData: UtilitySMPSEquipment?=null
+    private var InsAccepData: UtiltyInstallationAcceptence?=null
 
     fun setData(data: UtilityEquipmentSmp?) {
         this.datalist=data!!
@@ -44,7 +46,7 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
     var type4 = "Installation & Acceptance"
     var type5 = "Consumable Materials"
     var type6= "PO Details"
-    var type7="Maintenance"
+    var type7="Preventive Maintenance"
     var type8="Service Details"
     var type9="Attachments"
     init {
@@ -54,7 +56,7 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
         list.add("Installation & Acceptance")
         list.add("Consumable Materials")
         list.add("PO Details")
-        list.add("Maintenance")
+        list.add("Preventive Maintenance")
         list.add("Service Details")
         list.add("Attachments")
     }
@@ -117,8 +119,8 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
             }
         }
         private fun addTableItem(item:String){
-            if (ConnLoadTableList.adapter!=null && ConnLoadTableList.adapter is smpsConnLoadsTableAdapter){
-                var adapter = ConnLoadTableList.adapter as smpsConnLoadsTableAdapter
+            if (ConnLoadTableList.adapter!=null && ConnLoadTableList.adapter is SmpsConnLoadsTableAdapter){
+                var adapter = ConnLoadTableList.adapter as SmpsConnLoadsTableAdapter
                 adapter.addItem(item)
             }
         }
@@ -151,13 +153,13 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
-            if (ConsumTableList.adapter!=null && ConsumTableList.adapter is smpsConsumeTableAdapter){
-                var adapter = ConsumTableList.adapter as smpsConsumeTableAdapter
-                adapter.addItem(item)
+        private fun addTableItem(){
+            if (ConsumTableList.adapter!=null && ConsumTableList.adapter is SmpsConsumeTableAdapter){
+                var adapter = ConsumTableList.adapter as SmpsConsumeTableAdapter
+                adapter.addItem()
             }
         }
     }
@@ -175,13 +177,13 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
-            if (poTableList.adapter!=null && poTableList.adapter is smpsPoTableAdapter){
-                var adapter = poTableList.adapter as smpsPoTableAdapter
-                adapter.addItem(item)
+        private fun addTableItem(){
+            if (poTableList.adapter!=null && poTableList.adapter is SmpsPoTableAdapter){
+                var adapter = poTableList.adapter as SmpsPoTableAdapter
+                adapter.addItem()
             }
         }
     }
@@ -408,10 +410,6 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,DropDowns.OperationStatus.name)
 
-                try {
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                }
                 holder.binding.update.setOnClickListener {
                     val tempEquipData=UtilitySMPSEquipment()
                     tempEquipData.let {
@@ -442,6 +440,8 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                         listener.updateSMPSData(utilitySMPSData)
                     }
                 }
+                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
+                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
 
             }
             is RectifierViewHold -> {
@@ -493,11 +493,12 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    holder.ConnLoadTableList.adapter=smpsConnLoadsTableAdapter(baseFragment.requireContext(),listener)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                }
+                if (datalist!=null)
+                    holder.ConnLoadTableList.adapter=SmpsConnLoadsTableAdapter(baseFragment.requireContext(),listener,datalist?.ConnectedLoad)
+                else
+                    holder.ConnLoadTableList.adapter=SmpsConnLoadsTableAdapter(baseFragment.requireContext(),listener,
+                        ArrayList()
+                    )
             }
             is InstAccepViewHold -> {
                 if (currentOpened == position) {
@@ -506,9 +507,16 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.EditInstallationAcceptence()
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
+                    holder.binding.cancel.setOnClickListener {
+                        holder.binding.viewLayout.visibility = View.VISIBLE
+                        holder.binding.editLayout.visibility = View.GONE
                     }
                 }
                 else {
@@ -523,12 +531,79 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                if (datalist!=null && datalist?.InstallationAndAcceptence?.isNotEmpty()==true){
+                    InsAccepData=datalist?.InstallationAndAcceptence?.get(0)
                 }
+                if (InsAccepData!=null){
+                    // view mode
+                    if (InsAccepData?.VendorCompany?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,InsAccepData?.VendorCompany?.get(0).toString())
+                    if (InsAccepData?.AcceptanceStatus?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcceptanceStatus,DropDowns.AcceptanceStatus.name,InsAccepData?.AcceptanceStatus?.get(0).toString())
+                    holder.binding.VendorCode.text=InsAccepData?.VendorCode
+                    holder.binding.VendorExecutiveName.text=InsAccepData?.VendorExecutiveName
+                    holder.binding.VendorExecutiveEmailId.text=InsAccepData?.VendorEmailId
+                    holder.binding.VendorExecutiveNumber.text=InsAccepData?.VendorExecutiveNumber
+                    holder.binding.IPVoltage.text=InsAccepData?.InputVoltage
+                    holder.binding.IPCurrent.text=InsAccepData?.InputCurrent
+                    holder.binding.OPVoltage.text=InsAccepData?.OutputVoltage
+                    holder.binding.OPCurrent.text=InsAccepData?.OutputCurrent
+                    holder.binding.remarks.text=InsAccepData?.Remark
+                    holder.binding.nstallationDate.text=Utils.getFormatedDate(InsAccepData?.InstallationDate,"dd-MMM-yyyy")
+                    holder.binding.AcceptenceDate.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
+                    // edit mode
+                    holder.binding.VendorCodeEdit.setText(InsAccepData?.VendorCode)
+                    holder.binding.VendorExcutiveNameEdit.setText(InsAccepData?.VendorExecutiveName)
+                    holder.binding.VendorExecutiveEmailEdit.setText(InsAccepData?.VendorEmailId)
+                    holder.binding.VendorExecutiveNumberEdit.setText(InsAccepData?.VendorExecutiveNumber)
+                    holder.binding.IPVoltageEdit.setText(InsAccepData?.InputVoltage)
+                    holder.binding.IPCurrentEdit.setText(InsAccepData?.InputCurrent)
+                    holder.binding.OPVoltageEdit.setText(InsAccepData?.OutputVoltage)
+                    holder.binding.OPCurrentEdit.setText(InsAccepData?.OutputCurrent)
+                    holder.binding.remarksEdit.setText(InsAccepData?.Remark)
+                    holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(InsAccepData?.InstallationDate,"dd-MMM-yyyy")
+                    holder.binding.AcceptenceDateEdit.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
+
+                }
+                if (InsAccepData!=null && InsAccepData?.VendorCompany?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,InsAccepData?.VendorCompany?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                if (InsAccepData!=null && InsAccepData?.AcceptanceStatus?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name,InsAccepData?.AcceptanceStatus?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name)
+
+                baseFragment.setDatePickerView(holder.binding.AcceptenceDateEdit)
+                baseFragment.setDatePickerView(holder.binding.InstallationDateEdit)
+
+                holder.binding.update.setOnClickListener {
+                    val tempInsData=UtiltyInstallationAcceptence()
+                    tempInsData.let {
+                        it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                        it.VendorExecutiveName=holder.binding.VendorExcutiveNameEdit.text.toString()
+                        it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                        it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                        it.InputVoltage=holder.binding.IPVoltageEdit.text.toString()
+                        it.OutputVoltage=holder.binding.OPVoltageEdit.text.toString()
+                        it.InputCurrent=holder.binding.IPCurrentEdit.text.toString()
+                        it.OutputCurrent=holder.binding.OPCurrentEdit.text.toString()
+                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.InstallationDate=Utils.getFullFormatedDate(holder.binding.InstallationDateEdit.text.toString())
+                        it.AcceptanceDate=Utils.getFullFormatedDate(holder.binding.AcceptenceDateEdit.text.toString())
+                        it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                        it.AcceptanceStatus= arrayListOf(holder.binding.AcceptenceStatusEdit.selectedValue.id.toInt())
+
+                        if (datalist!=null && datalist?.InstallationAndAcceptence?.isNotEmpty()==true)
+                            it.id=datalist?.InstallationAndAcceptence?.get(0)?.id
+                        val utilitySMPSData=UtilityEquipmentSmp()
+                        utilitySMPSData.InstallationAndAcceptence= arrayListOf(it)
+                        if (datalist!=null)
+                            utilitySMPSData.id=datalist?.id
+                        listener.updateSMPSData(utilitySMPSData)
+                    }
+                }
             }
             is ConsumMaterilViewHold -> {
                 if (currentOpened == position) {
@@ -551,11 +626,12 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                   holder.ConsumTableList.adapter=smpsConsumeTableAdapter(baseFragment.requireContext(),listener)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                }
+                if (datalist!=null)
+                    holder.ConsumTableList.adapter= SmpsConsumeTableAdapter(baseFragment.requireContext(),listener,datalist?.ConsumableMaterial)
+                else
+                    holder.ConsumTableList.adapter= SmpsConsumeTableAdapter(baseFragment.requireContext(),listener,
+                        ArrayList()
+                    )
             }
             is PoDetailsViewHold -> {
                 if (currentOpened == position) {
@@ -578,11 +654,13 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    holder.poTableList.adapter=smpsPoTableAdapter(baseFragment.requireContext(),listener)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                }
+                if (datalist!=null)
+                    holder.poTableList.adapter= SmpsPoTableAdapter(baseFragment.requireContext(),listener,datalist?.PODetail)
+                else
+                    holder.poTableList.adapter= SmpsPoTableAdapter(baseFragment.requireContext(),listener,
+                        ArrayList()
+                    )
+
             }
             is MaintenanceViewHold -> {
                 if (currentOpened == position) {
@@ -682,14 +760,14 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
         fun EditInstallationAcceptence()
         fun EditEquipmentItem()
         fun EditMaintenance()
-        fun editPoClicked(position:Int)
-        fun viewPoClicked(position:Int)
+        fun editPoClicked(position:Int,data:UtilityPoDetails)
+        fun viewPoClicked(position:Int,data:UtilityPoDetails)
         fun editRectifireTableItem(position: Int,data:UtilityRectifierModule)
         fun viewRectifireTableItem(position: Int,data: UtilityRectifierModule)
-        fun editConnLoadsTableItem(position: Int)
-        fun viewConnLoadsTableItem(position: Int)
-        fun editConsumMaterialTableItem(position: Int)
-        fun viewConsumMaterialTableItem(position: Int)
+        fun editConnLoadsTableItem(position: Int,data: UtilityConnectedLoad)
+        fun viewConnLoadsTableItem(position: Int,data:UtilityConnectedLoad)
+        fun editConsumMaterialTableItem(position: Int,data:UtilityConsumableMaterial)
+        fun viewConsumMaterialTableItem(position: Int,data:UtilityConsumableMaterial)
         fun editServiceTableItem(position: Int)
         fun viewServiceTableItem(position: Int)
         fun updateSMPSData(updatedData: UtilityEquipmentSmp)

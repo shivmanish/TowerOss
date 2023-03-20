@@ -90,7 +90,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_weight="0.9"
+                android:layout_weight="0.8"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp13"
                 android:fontFamily="@font/poppins_regular"

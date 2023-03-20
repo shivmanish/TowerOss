@@ -46,10 +46,7 @@ class SmpsRectifireTableAdapter (var context : Context, var listener : SmpsUtili
         holder.binding.SlotNumber.text=item.SlotNo.toString()
         holder.binding.SerialNo.text=item.SerialNumber
         holder.binding.RatingAmp.text=item.RatingAmp
-        if (item.InstallationDate?.length!! >=10)
-            holder.binding.InstallationDate.text=Utils.getFormatedDate(item.InstallationDate!!.substring(0,10),"dd-MMM-yyyy")
-        else
-            holder.binding.InstallationDate.text= item.InstallationDate
+        holder.binding.InstallationDate.text=Utils.getFormatedDate(item.InstallationDate,"dd-MMM-yyyy")
 
     }
 

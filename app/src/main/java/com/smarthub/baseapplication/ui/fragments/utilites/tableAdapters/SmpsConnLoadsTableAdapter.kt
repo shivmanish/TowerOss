@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.utilites.tableAdapters
+package com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,26 +10,22 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsConnLoadsTableItemBinding
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityConnectedLoad
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityRectifierModule
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SmpsUtilityFragAdapter
+import com.smarthub.baseapplication.utils.Utils
 
-class smpsConnLoadsTableAdapter (var context : Context, var listener : SmpsUtilityFragAdapter.SmpsInfoListListener): RecyclerView.Adapter<smpsConnLoadsTableAdapter.ViewHold>() {
+class SmpsConnLoadsTableAdapter (var context : Context, var listener : SmpsUtilityFragAdapter.SmpsInfoListListener, var list:ArrayList<UtilityConnectedLoad>?): RecyclerView.Adapter<SmpsConnLoadsTableAdapter.ViewHold>() {
 
-    var list  = ArrayList<String>()
-
-    init {
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-        list.add("item1")
-    }
 
     fun addItem(item:String){
-        list.add(item)
-        notifyItemInserted(list.size.plus(1))
+        val data=UtilityConnectedLoad()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
-        list.removeAt(position)
+        list!!.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -38,23 +34,27 @@ class smpsConnLoadsTableAdapter (var context : Context, var listener : SmpsUtili
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_conn_loads_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_conn_loads_table_item,parent,false)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
+        val item: UtilityConnectedLoad =list!![position]
         holder.binding.menu.setOnClickListener {
-//            show pop up menu
-            performOptionsMenuClick(position,it)
+            performOptionsMenuClick(position,it,item)
         }
+        holder.binding.McbNo.text=item.MCBNumber.toString()
+        holder.binding.ConnectedEquipment.text=item.ConnectedEquipment
+        holder.binding.ActualReading.text=item.ActualReading
+        holder.binding.InstallationDate.text= Utils.getFormatedDate(item.InstallationDate,"dd-MMM-yyyy")
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list!!.size
     }
 
     // this method will handle the onclick options click
-    private fun performOptionsMenuClick(position: Int,view : View) {
+    private fun performOptionsMenuClick(position: Int,view : View,data:UtilityConnectedLoad) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
         val popupMenu = PopupMenu(context , view)
@@ -66,23 +66,19 @@ class smpsConnLoadsTableAdapter (var context : Context, var listener : SmpsUtili
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editConnLoadsTableItem(position)
-
+                        listener.editConnLoadsTableItem(position,data)
                         return true
                     }
                     // in the same way you can implement others
                     R.id.action_delete -> {
                         popupMenu.dismiss()
-                        // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewConnLoadsTableItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                        listener.viewConnLoadsTableItem(position,data)
                     }
 
                 }

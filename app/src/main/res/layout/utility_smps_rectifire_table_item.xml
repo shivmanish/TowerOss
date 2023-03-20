@@ -11,7 +11,7 @@
 
         <TextView
             android:id="@+id/Serial_no"
-            android:layout_weight="1"
+            android:layout_weight=".8"
             android:textSize="@dimen/dp14"
             android:fontFamily="@font/poppins_regular"
             android:layout_width="0dp"

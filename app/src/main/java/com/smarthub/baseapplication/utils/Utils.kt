@@ -347,8 +347,12 @@ object Utils {
         return ""
     }
 
-    fun getFormatedDate(d : String,format:String) : String{
-        var date=d
+    fun getFormatedDate(d : String?,format:String) : String{
+        var date: String? ="2023-03-08"
+        if (d!=null && d.length>=10){
+            date=d.substring(0,10)
+        }
+
         AppLogger.log("getformatedDate:$date")
         try {
             val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -359,10 +363,13 @@ object Utils {
         }catch (e:java.lang.Exception){
             AppLogger.log("compareDate error :${e.localizedMessage}")
         }
-        return date
+        return date!!
     }
-    fun getFormatedDateMonthYear(d : String,format:String) : String{
-        var date=d
+    fun getFormatedDateMonthYear(d : String?,format:String) : String{
+        var date: String? ="2023-03-08"
+        if (d!=null && d.length>=7){
+            date=d.substring(0,7)
+        }
         AppLogger.log("getFormatedDateMonthYear:$date")
         try {
             val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM")
@@ -373,14 +380,17 @@ object Utils {
         }catch (e:java.lang.Exception){
             AppLogger.log("getFormatedDateMonthYear error :${e.localizedMessage}")
         }
-        return date
+        return date!!
     }
     fun getFullFormatedDate(d : String) : String{
-        var format="yyyy-MM-dd'T'HH:mm:ss.SSS"
+        val format="yyyy-MM-dd'T'HH:mm:ss.SSS"
+        var currentFormate:String?="dd-MMM-yyyy"
+        if (d.length<10)
+            currentFormate="MMM-yyyy"
         var date=d
         AppLogger.log("getFullFormatedDate:$date")
         try {
-            val inputFormat: DateFormat = SimpleDateFormat("dd-MMM-yyyy")
+            val inputFormat: DateFormat = SimpleDateFormat(currentFormate)
             val outputFormat: DateFormat = SimpleDateFormat(format)
             val inputDateStr = date
             val inputDate: Date = inputFormat.parse(inputDateStr)
