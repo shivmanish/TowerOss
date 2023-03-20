@@ -12,9 +12,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocAndCompFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
-import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAllDataItem
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.CreateNocBottomSheet
@@ -63,7 +60,8 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 }
                 AppLogger.log("size :${it.data.NOCCompliance?.size}")
                 isDataLoaded = true
-            }else if (it!=null) {
+            }
+            else if (it!=null) {
                 Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("NocAndComp Fragment error :${it.message}, data : ${it.data}")
             }
