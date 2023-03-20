@@ -504,7 +504,6 @@ class UtilityEquipAdapter(
                 binding.smpsArrow.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.smpsRoot.setBackgroundResource(R.color.collapse_card_bg)
             }
-
         }
     }
 
