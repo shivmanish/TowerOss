@@ -1,0 +1,566 @@
+{
+  "dropdown": [
+    {
+      "name": "hubSite",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "installationType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Fixed)"
+        },
+        {
+          "id": 2,
+          "name": "Movable"
+        }
+      ]
+    },
+    {
+      "name": "powerType",
+      "data": [
+        {
+          "id": 1,
+          "name": "AC)"
+        },
+        {
+          "id": 2,
+          "name": "DC"
+        }
+      ]
+    },
+    {
+      "name": "Shape",
+      "data": [
+        {
+          "id": 1,
+          "name": "Circular"
+        },
+        {
+          "id": 2,
+          "name": "Rectangular"
+        }
+      ]
+    },
+    {
+      "name": "buildingBuildType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Framed Structure)"
+        },
+        {
+          "id": 2,
+          "name": "Load bearing"
+        }
+      ]
+    },
+    {
+      "name": "siteAccessWay",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes)"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes with Rework"
+        }
+      ]
+    },
+    {
+      "name": "gateAndFence",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes)"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Not required"
+        }
+      ]
+    },
+    {
+      "name": "otherOperatorsonRoof",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes)"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "fiberLMCLaying",
+      "data": [
+        {
+          "id": 1,
+          "name": "Feasible"
+        },
+        {
+          "id": 2,
+          "name": "Not Feasible"
+        },
+        {
+          "id": 3,
+          "name": "Feasible with Rework"
+        },
+        {
+          "id": 4,
+          "name": "NA"
+        }
+      ]
+    },
+    {
+      "name": "eBSuepplythroghBuildingMeter",
+      "data": [
+        {
+          "id": 1,
+          "name": "Feasible"
+        },
+        {
+          "id": 2,
+          "name": "Not Feasible"
+        },
+        {
+          "id": 3,
+          "name": "Feasible with Rework"
+        },
+        {
+          "id": 4,
+          "name": "NA"
+        }
+      ]
+    },
+    {
+      "name": "equipmentRoom",
+      "data": [
+        {
+          "id": 1,
+          "name": "Feasible"
+        },
+        {
+          "id": 2,
+          "name": "Not Feasible"
+        },
+        {
+          "id": 3,
+          "name": "Feasible with Rework"
+        },
+        {
+          "id": 4,
+          "name": "NA"
+        }
+      ]
+    },
+    {
+      "name": "requiredAreaAvailable",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes with Rework"
+        }
+      ]
+    },
+    {
+      "name": "availabilityofstatutorypermissions",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes with Rework"
+        }
+      ]
+    },
+    {
+      "name": "overallFeasibility",
+      "data": [
+        {
+          "id": 1,
+          "name": "Feasible"
+        },
+        {
+          "id": 2,
+          "name": "Not Feasible"
+        },
+        {
+          "id": 3,
+          "name": "Feasible with Rework"
+        }
+      ]
+    },
+    {
+      "name": "rentPaymentPeriod",
+      "data": [
+        {
+          "id": 1,
+          "name": "Monthly"
+        },
+        {
+          "id": 2,
+          "name": "Quarterly"
+        },
+        {
+          "id": 3,
+          "name": "Half-Yearly"
+        },
+        {
+          "id": 4,
+          "name": "Yearly"
+        }
+      ]
+    },
+    {
+      "name": "eBInclusiveinRental",
+      "data": [
+        {
+          "id": 1,
+          "name": "Full"
+        },
+        {
+          "id": 2,
+          "name": "Partial"
+        },
+        {
+          "id": 3,
+          "name": "Excluded)"
+        },
+        {
+          "id": 4,
+          "name": "Not Applicable"
+        }
+      ]
+    },
+    {
+      "name": "OffSetPoleReqd",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "feasibility",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "backhaulNodeCategory",
+      "data": [
+        {
+          "id": 1,
+          "name": "Tail end"
+        },
+        {
+          "id": 2,
+          "name": "Hub"
+        },
+        {
+          "id": 3,
+          "name": "Ring"
+        }
+      ]
+    },
+    {
+      "name": "Type",
+      "data": [
+        {
+          "id": 1,
+          "name": "Indoor"
+        },
+        {
+          "id": 2,
+          "name": "Outdoor"
+        }
+      ]
+    },
+    {
+      "name": "premiumApplicable",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes)"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "discountType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Percentage "
+        },
+        {
+          "id": 2,
+          "name": "lumpsum"
+        }
+      ]
+    },
+    {
+      "name": "eBChargingMethod",
+      "data": [
+        {
+          "id": 1,
+          "name": "Landlord Bill"
+        },
+        {
+          "id": 2,
+          "name": "SubMeter Reading"
+        }
+      ]
+    },
+    {
+      "name": "meterType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Own"
+        },
+        {
+          "id": 2,
+          "name": "Sub-Meter"
+        }
+      ]
+    },
+    {
+      "name": "siteOwnership",
+      "data": [
+        {
+          "id": 1,
+          "name": "Own"
+        },
+        {
+          "id": 2,
+          "name": "IP Colo"
+        }
+      ]
+    },
+    {
+      "name": "PaymentMode",
+      "data": [
+        {
+          "id": 1,
+          "name": "Online"
+        },
+        {
+          "id": 2,
+          "name": "Cheque"
+        },
+        {
+          "id": 3,
+          "name": "Cash"
+        }
+      ]
+    },
+    {
+      "name": "InstalledType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Ground-based"
+        },
+        {
+          "id": 2,
+          "name": "Roof-top"
+        },
+        {
+          "id": 3,
+          "name": " Wall-mount"
+        }
+      ]
+    },
+    {
+      "name": "EquipmentType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Shelter"
+        },
+        {
+          "id": 2,
+          "name": "Civil Room"
+        },
+        {
+          "id": 3,
+          "name": " Oudoor Cabinet"
+        }
+      ]
+    },
+    {
+      "name": "PitRodMaterial",
+      "data": [
+        {
+          "id": 1,
+          "name": "GI"
+        },
+        {
+          "id": 2,
+          "name": "Copper"
+        }
+      ]
+    },
+    {
+      "name": "EarthingCableType",
+      "data": [
+        {
+          "id": 1,
+          "name": "GI Strip"
+        },
+        {
+          "id": 2,
+          "name": "Aluminium Core Cable"
+        },
+        {
+          "id": 3,
+          "name": " Copper Core Cable"
+        }
+      ]
+    },
+    {
+      "name": "FuelType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Diesel "
+        },
+        {
+          "id": 2,
+          "name": "Petrol "
+        }
+      ]
+    },
+    {
+      "name": "ExtinguisherEquipmentType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Water "
+        },
+        {
+          "id": 2,
+          "name": "foam "
+        },
+        {
+          "id": 3,
+          "name": "CO2 "
+        },
+        {
+          "id": 4,
+          "name": "powder "
+        },
+        {
+          "id": 5,
+          "name": "Water mist "
+        },
+        {
+          "id": 6,
+          "name": "Wet chemical "
+        }
+      ]
+    },
+    {
+      "name": "Class",
+      "data": [
+        {
+          "id": 1,
+          "name": "Class A"
+        },
+        {
+          "id": 2,
+          "name": "Class B "
+        },
+        {
+          "id": 3,
+          "name": "Class C "
+        },
+        {
+          "id": 4,
+          "name": "Class D "
+        },
+        {
+          "id": 5,
+          "name": "Class E "
+        },
+        {
+          "id": 6,
+          "name": "Class E"
+        }
+      ]
+    },
+    {
+      "name": "FireType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Water"
+        },
+        {
+          "id": 2,
+          "name": "foam"
+        },
+        {
+          "id": 3,
+          "name": "CO2"
+        },
+        {
+          "id": 4,
+          "name": "Powder"
+        }
+      ]
+    }
+  ]
+}

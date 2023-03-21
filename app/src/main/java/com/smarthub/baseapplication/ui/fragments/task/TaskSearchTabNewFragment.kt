@@ -3,51 +3,35 @@ package com.smarthub.baseapplication.ui.fragments.task
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import com.example.patrollerapp.homepage.HomePage
 import com.example.patrollerapp.util.LocationService
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.patrollerapp.util.Util
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
-import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
-import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
-import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModelItem
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
-import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.noc.*
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapter
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
-import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskServicesDataAdapter
-import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.*
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
-import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
-import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSearchViewPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
-import com.smarthub.baseapplication.ui.taskUi.serviceRequest.srDetails.SrDetauilsPageAdapter
-import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
@@ -131,17 +115,25 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
     }
 
     fun setParentData(){
-        var splittedData = tempWhere.split(",")
+        val splittedData = tempWhere.split(",")
         if (splittedData.isNotEmpty()){
             val firstIdx = splittedData[0]
             if (firstIdx.length>1){
                 val parentId = firstIdx[0].toInt()
                 AppLogger.log("parentId${parentId}")
-                if (parentId == 2){
-                    setUpServiceRequestData()
-                }else{
-                    setUpServiceRequestData()
-                }
+
+                setUpNocComplianceData()       // test mode
+//                when (parentId) {
+//                    9 -> {
+//                        setUpServiceRequestData()
+//                    }
+//                    1 -> {
+//                        setUpNocComplianceData()
+//                    }
+//                    else -> {
+//                        setUpServiceRequestData()
+//                    }
+//                }
             }
         }
     }
@@ -235,7 +227,7 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
         siteDetailViewModel.fetchDropDown()
     }
 
-    fun setUpServiceRequestData(){
+    private fun setUpServiceRequestData(){
         if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true){
             homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -268,6 +260,52 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
         }
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.serviceRequestAll("1526")
+    }
+    private fun setUpNocComplianceData(){
+
+        val nocDataAdapterListener = TaskNocDataAdapter(requireContext(),object :
+            NocDataAdapterListener {
+            override fun clickedItem(data: NocCompAllData, id: String, parentIndex: Int) {
+                NocDetailsActivity.NocAndCompAlldata=data
+                NocDetailsActivity.Id=id
+                binding.viewpager.adapter = NocCompPageAdapter(childFragmentManager, NocDetailsActivity.NocAndCompAlldata)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+        },siteID.toString())
+        binding.horizontalOnlyList.adapter = nocDataAdapterListener
+
+        if (homeViewModel.NocAndCompModelResponse?.hasActiveObservers() == true){
+            homeViewModel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        homeViewModel.NocAndCompModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            (requireActivity() as BaseActivity).hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("NocAndComp Fragment card Data fetched successfully")
+                try {
+                    nocDataAdapterListener.setData(it.data.NOCCompliance!!)
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+                    Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                }
+                AppLogger.log("size :${it.data.NOCCompliance?.size}")
+                isDataLoaded = true
+            }
+            else if (it!=null) {
+                Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("NocAndComp Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("NocAndComp Fragment Something went wrong")
+                Toast.makeText(requireContext(),"NocAndComp Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.NocAndCompRequestAll("1526")
     }
     var isDataLoaded = false
 
