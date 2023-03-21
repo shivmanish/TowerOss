@@ -668,11 +668,7 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
-
-                    holder.binding.imgEdit.setOnClickListener {
-                        listener.EditMaintenance()
-                    }
+                    holder.binding.imgAdd.visibility = View.VISIBLE
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -680,12 +676,13 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                if (datalist!=null)
                 try {
 
                 }catch (e:java.lang.Exception){
@@ -759,7 +756,8 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
         fun EditEquipmentItem()
-        fun EditMaintenance()
+        fun EditMaintenance(data:UtilityPreventiveMaintenance,SmpsIndex:Int?)
+        fun ViewMaintenance(data:UtilityPreventiveMaintenance,SmpsIndex:Int?)
         fun editPoClicked(position:Int,data:UtilityPoDetails)
         fun viewPoClicked(position:Int,data:UtilityPoDetails)
         fun editRectifireTableItem(position: Int,data:UtilityRectifierModule)
