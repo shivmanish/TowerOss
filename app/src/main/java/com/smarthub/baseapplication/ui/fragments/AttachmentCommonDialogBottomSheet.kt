@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge
+package com.smarthub.baseapplication.ui.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -30,7 +30,7 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import java.io.File
 
 
-class AcqAttachmentDialogBottomSheet(var sourceSchemaName:String, var sourceSchemaId:String,var listner:AddAttachmentListner) : BaseBottomSheetDialogFragment() {
+class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceSchemaId:String, var listner: AddAttachmentListner) : BaseBottomSheetDialogFragment() {
 
     lateinit var binding: AddAttachmentDialougeBinding
     lateinit var homeViewModel : HomeViewModel
@@ -63,7 +63,7 @@ class AcqAttachmentDialogBottomSheet(var sourceSchemaName:String, var sourceSche
         }
 
         binding.submit.setOnClickListener {
-            if (itemPath.isNotEmpty() && binding.titleText.text.toString()!=""){
+            if (itemPath.isNotEmpty() && binding.titleText.text.toString().isNotEmpty()){
                 showProgressLayout()
                 val model = AddAttachmentModel()
                 model.file = itemPath

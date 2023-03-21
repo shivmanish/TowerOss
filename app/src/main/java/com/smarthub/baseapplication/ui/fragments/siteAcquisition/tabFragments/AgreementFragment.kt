@@ -12,13 +12,10 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.opcoInfo.OpcoSiteInfoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AgreementFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AcqAttachmentDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AgreementPoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AgreementPoViewDialouge
 import com.smarthub.baseapplication.utils.AppController
@@ -103,8 +100,8 @@ class AgreementFragment(var acqAgree:NewSiteAcquiAllData?, var parentIndex:Int):
     }
 
     override fun addAttachment() {
-        val bm = AcqAttachmentDialogBottomSheet("SAcqAgreement",acqAgree?.SAcqAgreement?.get(0)?.id.toString(),
-            object : AcqAttachmentDialogBottomSheet.AddAttachmentListner {
+        val bm = AttachmentCommonDialogBottomSheet("SAcqAgreement",acqAgree?.SAcqAgreement?.get(0)?.id.toString(),
+            object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }

@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
+import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -296,7 +297,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null){
-                        holder.recyclerListener.adapter=AcqImageAttachmentAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : AcqImageAttachmentAdapter.ItemClickListener{
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked() {
                                 listener.attachmentItemClicked()
                             }

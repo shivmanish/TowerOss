@@ -12,16 +12,11 @@ import com.smarthub.baseapplication.databinding.Smps1TabUtilitiesFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
+import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SmpsUtilityFragAdapter
-import com.smarthub.baseapplication.ui.fragments.utilites.editdialouge.SmpsConnLoadEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.editdialouge.SmpsConsumMaterialEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.editdialouge.SmpsRectifierEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.editdialouge.UtilityPoEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.SmpsConnectedLoadViewDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.SmpsConsuMaterialViewDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.SmpsRectifireViewDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilitySmpsPoViewDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.editdialouge.*
+import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.*
 import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
 import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.AppController
@@ -74,24 +69,35 @@ class SMPS1UitilitiesFrag(var smpsAllData: UtilityEquipmentSmp?,var smpsIndex:In
 
 
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"attechments item clicked",Toast.LENGTH_SHORT).show()
     }
 
-    override fun EditInstallationAcceptence() {
-        val dalouge = InstalationAcceptanceDialouge()
-        dalouge.show(childFragmentManager,"")
-        Toast.makeText(requireContext(),"Edit Installation item clicked",Toast.LENGTH_SHORT).show()
+    override fun addAttachment(childIndex:Int?) {
+        val bm = AttachmentCommonDialogBottomSheet("UtilityEquipmentSmps",childIndex.toString(),
+            object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
+                override fun attachmentAdded(){
+                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
-    override fun EditEquipmentItem() {
-        Toast.makeText(requireContext(),"Edit Equipment item clicked",Toast.LENGTH_SHORT).show()
-        val dalouge = BatteryEquipmentDialouge()
-        dalouge.show(childFragmentManager,"")
+
+    override fun EditMaintenance(data: UtilityPreventiveMaintenance, SmpsIndex: Int?) {
+        val bm = UtilityMaintenanceEditDialouge(data,SmpsIndex,smpsAllDataId,
+            object : UtilityMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
+                override fun updatedData() {
+                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
-    override fun EditMaintenance() {
-        Toast.makeText(requireContext(),"Edit maintenance  item clicked",Toast.LENGTH_SHORT).show()
+    override fun ViewMaintenance(data: UtilityPreventiveMaintenance, SmpsIndex: Int?) {
+        val bm=UtilityMaintenanceViewDialouge(R.layout.tower_po_view_dialouge,data)
+        bm.show(childFragmentManager,"smpsRectifierView")
     }
+
 
     override fun editPoClicked(position: Int,data: UtilityPoDetails) {
         val bm = UtilityPoEditDialouge(data,smpsAllData,smpsAllDataId,
@@ -106,7 +112,8 @@ class SMPS1UitilitiesFrag(var smpsAllData: UtilityEquipmentSmp?,var smpsIndex:In
 
     override fun viewPoClicked(position: Int,data:UtilityPoDetails) {
         val bm=UtilitySmpsPoViewDialouge(R.layout.tower_po_view_dialouge,data)
-        bm.show(childFragmentManager,"smpsRectifierView")    }
+        bm.show(childFragmentManager,"smpsRectifierView")
+    }
 
     override fun editRectifireTableItem(position: Int,data: UtilityRectifierModule) {
         val bm = SmpsRectifierEditDialouge(data,smpsAllData,smpsAllDataId,
@@ -153,14 +160,6 @@ class SMPS1UitilitiesFrag(var smpsAllData: UtilityEquipmentSmp?,var smpsIndex:In
     override fun viewConsumMaterialTableItem(position: Int,data:UtilityConsumableMaterial) {
         val bm=SmpsConsuMaterialViewDialouge(R.layout.utility_smpsconsu_material_view_dialouge,data)
         bm.show(childFragmentManager,"smpsRectifierView")    }
-
-    override fun editServiceTableItem(position: Int) {
-        Toast.makeText(requireContext(),"Edit Service table  item clicked",Toast.LENGTH_SHORT).show()
-    }
-
-    override fun viewServiceTableItem(position: Int) {
-        Toast.makeText(requireContext(),"View Service table  item clicked",Toast.LENGTH_SHORT).show()
-    }
 
     override fun updateSMPSData(updatedData: UtilityEquipmentSmp) {
         showLoader()

@@ -15,9 +15,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteA
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqAgreementTerm
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PayeeAccountTableAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PropertyOwnerTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -419,7 +418,8 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null){
-                        holder.recyclerListener.adapter=AcqImageAttachmentAdapter(context,datalist?.attachment!!,object : AcqImageAttachmentAdapter.ItemClickListener{
+                        holder.recyclerListener.adapter=
+                            ImageAttachmentCommonAdapter(context,datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked() {
                                 listener.attachmentItemClicked()
                             }

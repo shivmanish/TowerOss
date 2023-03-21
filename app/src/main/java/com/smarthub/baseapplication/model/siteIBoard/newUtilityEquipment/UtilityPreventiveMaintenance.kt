@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
 
 class UtilityPreventiveMaintenance{
-    val NextPMInterval: String?=null
-    val PMDate: String?=null
-    val Remark: String?=null
-    val ServiceType: String?=null
-    val VendorCode: String?=null
-    val VendorCompany: ArrayList<Int>?=null
-    val VendorExecutiveName: String?=null
-//    val created_at: String?=null
-    val id: Int?=null
-//    val isActive: Boolean?=null
-//    val modified_at: String
+    var NextPMInterval: String?=null
+    var PMDate: String?=null
+    var Remark: String?=null
+    var ServiceType: String?=null
+    var VendorCode: String?=null
+    var VendorCompany: ArrayList<Int>?=null
+    var VendorExecutiveName: String?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
+//    var modified_at: String
 }

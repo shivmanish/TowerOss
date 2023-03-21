@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqu
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SoftAcquisitionFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AcqAttachmentDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailsViewDialouge
 import com.smarthub.baseapplication.utils.AppController
@@ -101,8 +101,8 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
     }
 
     override fun addAttachment() {
-        val bm = AcqAttachmentDialogBottomSheet("SAcqSoftAcquisition",softAcqData?.SAcqSoftAcquisition?.get(0)?.id.toString(),
-            object : AcqAttachmentDialogBottomSheet.AddAttachmentListner {
+        val bm = AttachmentCommonDialogBottomSheet("SAcqSoftAcquisition",softAcqData?.SAcqSoftAcquisition?.get(0)?.id.toString(),
+            object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }

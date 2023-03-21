@@ -54,7 +54,7 @@ class SmpsMaintenanceTableAdapter (var context : Context,
         holder.binding.ServiceType.text=item.ServiceType
         holder.binding.PmDate.text= Utils.getFormatedDate(item.PMDate,"dd-MMM-yyyy")
         if (item.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name, item.VendorCompany[0].toString())
+            AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name, item.VendorCompany?.get(0).toString())
     }
 
     override fun getItemCount(): Int {

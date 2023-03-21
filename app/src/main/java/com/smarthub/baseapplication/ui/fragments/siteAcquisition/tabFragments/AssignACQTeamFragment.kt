@@ -6,27 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
-import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.databinding.SiteAcqTeamNonSwitLayoutBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAuthorityPayments
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerConsumableViewDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelAuthPaymentViewDialouge
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.PowerFuelPoViewDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AssignACQTeamFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AcqAttachmentDialogBottomSheet
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.OutSidePremisesEditDialouge
+import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -93,8 +80,8 @@ class AssignACQTeamFragment(var acqTeamData:NewSiteAcquiAllData?, var parentInde
     }
 
     override fun addAttachment() {
-        val bm = AcqAttachmentDialogBottomSheet("SAcqAssignACQTeam",acqTeamData?.SAcqAssignACQTeam?.get(0)?.id.toString(),
-            object : AcqAttachmentDialogBottomSheet.AddAttachmentListner {
+        val bm = AttachmentCommonDialogBottomSheet("SAcqAssignACQTeam",acqTeamData?.SAcqAssignACQTeam?.get(0)?.id.toString(),
+            object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }

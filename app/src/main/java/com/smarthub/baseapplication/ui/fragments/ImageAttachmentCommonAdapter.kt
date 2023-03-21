@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters
+package com.smarthub.baseapplication.ui.fragments
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.databinding.ImgCardViewBinding
 import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.utils.AppLogger
 
-class AcqImageAttachmentAdapter(var context:Context,var list:ArrayList<Attachments>,var listener: ItemClickListener) : RecyclerView.Adapter<AcqImageAttachmentAdapter.ViewHold>() {
+class ImageAttachmentCommonAdapter(var context:Context, var list:ArrayList<Attachments>, var listener: ItemClickListener) : RecyclerView.Adapter<ImageAttachmentCommonAdapter.ViewHold>() {
 
     fun addItem(){
 //        list.add("item1")

@@ -11,13 +11,8 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AcqAttachmentDialogBottomSheet
-import com.smarthub.baseapplication.ui.site_agreement.SiteAgreementCaredItemActivity
-import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseDataAdapter
-import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteLeaseDataAdapterListener
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel

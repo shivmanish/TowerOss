@@ -1,5 +1,8 @@
 package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
- class UtilityEquipmentSmp{
+
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
+
+class UtilityEquipmentSmp{
     var ConnectedLoad: ArrayList<UtilityConnectedLoad>?=null
     var ConsumableMaterial: ArrayList<UtilityConsumableMaterial>?=null
     var Equipment: ArrayList<UtilitySMPSEquipment>?=null
@@ -7,6 +10,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
     var PODetail: ArrayList<UtilityPoDetails>?=null
     var PreventiveMaintenance: ArrayList<UtilityPreventiveMaintenance>?=null
     var RectifierModule: ArrayList<UtilityRectifierModule>?=null
+    var attachment: ArrayList<Attachments>?=null
 //    var created_at: String?=null
     var id: Int?=null
 //    var isActive: Boolean?=null
