@@ -125,7 +125,7 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
                     holder.binding.cardItem.setOnClickListener {
                         listener.BateeryItemClicked(utilitydata)
                     }
-                    if (utilitydata!=null && utilitydata?.UtilityEquipmentSmps!=null)
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentBatteryBank!=null)
                         holder.binding.countItem.text= utilitydata?.UtilityEquipmentBatteryBank?.size.toString()
                     else
                         holder.binding.countItem.text= "0"
@@ -135,8 +135,15 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
                 }
                 else if (list[position]==type3){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentDG!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentDG?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.DGItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewDG()
                     }
                 }
                 else if (list[position]==type4){
@@ -182,7 +189,7 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
 interface UtilitesNocDataAdapterListener {
     fun SMPSItemClicked(data:UtilityEquipmentAllData?)
     fun BateeryItemClicked(data:UtilityEquipmentAllData?)
-    fun DGItemClickedItemClicked(data:UtilityEquipmentAllData?)
+    fun DGItemClicked(data:UtilityEquipmentAllData?)
     fun ACItemClickedItemClicked(data:UtilityEquipmentAllData?)
     fun FireExtinguisherItemClicked(data:UtilityEquipmentAllData?)
     fun SuregeProtectionDeviceItemClicked(data:UtilityEquipmentAllData?)
@@ -190,4 +197,5 @@ interface UtilitesNocDataAdapterListener {
     fun CableItemClicked(data:UtilityEquipmentAllData?)
     fun addNewSMPS()
     fun addNewBatterryBank()
+    fun addNewDG()
 }

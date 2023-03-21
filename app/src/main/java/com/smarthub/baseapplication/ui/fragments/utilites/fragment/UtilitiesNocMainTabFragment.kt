@@ -11,16 +11,16 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentUtilitesNocBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtililitiesEquipAllDadaItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.AddNewSiteAcqDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.utilites.addNewDialouge.AddNewSMPSDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.AddNewBatteryBankDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.AddNewDGDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
 import com.smarthub.baseapplication.ui.utilites.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -109,8 +109,9 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
         requireActivity().startActivity(Intent(requireContext(), BatteryBankDetailsActivity::class.java))
     }
 
-    override fun DGItemClickedItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), AcDetailsActivity::class.java))
+    override fun DGItemClicked(data: UtilityEquipmentAllData?) {
+        DGDetailsActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), DGDetailsActivity::class.java))
     }
 
     override fun ACItemClickedItemClicked(data: UtilityEquipmentAllData?) {
@@ -145,6 +146,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewBatterryBank() {
         val bm = AddNewBatteryBankDialouge(utilitydatalist,
             object : AddNewBatteryBankDialouge.AddBatteryBankDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewDG() {
+        val bm = AddNewDGDialouge(utilitydatalist,
+            object : AddNewDGDialouge.AddDGDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
