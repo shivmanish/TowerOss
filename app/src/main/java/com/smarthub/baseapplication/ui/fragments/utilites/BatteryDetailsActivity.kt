@@ -8,11 +8,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityBatteryBankDetailsBinding
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.AcUtility
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 
-class BatteryBankDetailsActivity : AppCompatActivity() {
+class BatteryDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivityBatteryBankDetailsBinding
     companion object{
         var utilityBatteryBankData:ArrayList<BatteryBank>?=null
@@ -45,8 +43,8 @@ fun initview(){
     if(position==1) {
         binding.title.text = "Battery Bank"
         if(utilityBatteryBankData!=null) {
-            binding.viewpager.adapter =
-                BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
+//            binding.viewpager.adapter =
+//               BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
             binding.tabs.setupWithViewPager(binding.viewpager)
             binding.tabs.setupWithViewPager(binding.viewpager)
             if (binding.tabs.tabCount == 1) {
@@ -64,8 +62,8 @@ fun initview(){
     else if(position==3){
         binding.title.text = "DG"
         if(utilityBatteryBankData!=null) {
-            binding.viewpager.adapter =
-                BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
+//            binding.viewpager.adapter =
+//                BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
             binding.tabs.setupWithViewPager(binding.viewpager)
             binding.tabs.setupWithViewPager(binding.viewpager)
             if (binding.tabs.tabCount == 1) {

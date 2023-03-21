@@ -66,7 +66,7 @@ class smpsServiceTableAdapter (var context : Context, var listener : SmpsUtility
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editServiceTableItem(position)
+//                        listener.editServiceTableItem(position)
 
                         return true
                     }
@@ -81,7 +81,7 @@ class smpsServiceTableAdapter (var context : Context, var listener : SmpsUtility
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewServiceTableItem(position)
+//                        listener.viewServiceTableItem(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

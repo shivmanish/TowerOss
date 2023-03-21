@@ -5,5 +5,6 @@ data class Status(
     val UtilityEquipmentSmps: Int,
     val RectifierModule: Int,
     val Equipment: Int,
+    val UtilityEquipmentBatteryBank: Int,
     val InstallationAndAcceptence: Int,
 )

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.editdialouge
+package com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.editDialouge
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.UtilityMaitenanceEditDialougeBinding
+import com.smarthub.baseapplication.databinding.AcqPoEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSmp
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPreventiveMaintenance
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentBatteryBank
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPoDetails
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
@@ -19,57 +19,59 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class UtilityMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, var childId: Int?, var smpsAllDataId: Int?, var listner:UtilityMaintenanceUpdateListener) : BaseBottomSheetDialogFragment(){
+class UtilityBatteryPoEditDialouge (var data: UtilityPoDetails, var fullData: UtilityEquipmentBatteryBank?, var smpsAllDataId: Int?, var listner: UtilityPoUpdateListener) : BaseBottomSheetDialogFragment(){
 
-    lateinit var binding: UtilityMaitenanceEditDialougeBinding
+    lateinit var binding: AcqPoEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = UtilityMaitenanceEditDialougeBinding.inflate(inflater)
+        binding = AcqPoEditDialougeBinding.inflate(inflater)
         viewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.60).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }
-        binding.ServiceTypeEdit.setText(data.ServiceType.toString())
+        binding.PoItemEdit.setText(data.POItem)
         binding.VendorCodeEdit.setText(data.VendorCode)
-        binding.NextPMIntervalEdit.setText(data.NextPMInterval)
-        binding.VendorExecutiveNameEdit.setText(data.VendorExecutiveName)
+        binding.PoNumberEdit.setText(data.PONumber)
+        binding.PoAmountEdit.setText(data.POAmount)
+        binding.PoLineNumberEdit.setText(data.POLineNo.toString())
         binding.remarksEdit.setText(data.Remark)
-        binding.PMDateEdit.text=Utils.getFormatedDate(data.PMDate,"dd-MMM-yyyy")
         if (data.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString())
         else
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
-        setDatePickerView( binding.PMDateEdit)
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name)
+
+        binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
+
+        setDatePickerView( binding.PoDateEdit)
 
         binding.update.setOnClickListener {
             showProgressLayout()
+
             data.let {
-                it.ServiceType=binding.ServiceTypeEdit.text.toString()
+                it.POAmount=binding.PoAmountEdit.text.toString()
+                it.POItem=binding.PoItemEdit.text.toString()
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
-                it.NextPMInterval=binding.NextPMIntervalEdit.text.toString()
-                it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
+                it.PONumber=binding.PoNumberEdit.text.toString()
                 it.Remark=binding.remarksEdit.text.toString()
-                it.PMDate=Utils.getFullFormatedDate(binding.PMDateEdit.text.toString())
+                it.POLineNo=binding.PoLineNumberEdit.text.toString().toIntOrNull()
+                it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
 
-                val tempSmpsData= UtilityEquipmentSmp()
-                tempSmpsData.PreventiveMaintenance= arrayListOf(it)
-                if (childId!=null)
-                    tempSmpsData.id=childId
+                val tempBatteryData= UtilityEquipmentBatteryBank()
+                tempBatteryData.PODetail= arrayListOf(it)
+                if (fullData!=null)
+                    tempBatteryData.id=fullData?.id
                 val utilityAllDataModel = UpdateUtilityEquipmentAllData()
-                utilityAllDataModel.UtilityEquipmentSmps= arrayListOf(tempSmpsData)
+                utilityAllDataModel.UtilityEquipmentBatteryBank= arrayListOf(tempBatteryData)
                 if (smpsAllDataId!=null)
                     utilityAllDataModel.id=smpsAllDataId
                 viewmodel.updateUtilityEquip(utilityAllDataModel)
-
             }
-
-
         }
 
         if (viewmodel.updateUtilityDataResponse?.hasActiveObservers() == true) {
@@ -80,7 +82,7 @@ class UtilityMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, va
                 AppLogger.log("SmpsRectifierEditDialouge data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentSmps==200) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentBatteryBank==200) {
                 AppLogger.log("SmpsRectifierEditDialouge card Data fetched successfully")
                 listner.updatedData()
                 hideProgressLayout()
@@ -115,7 +117,7 @@ class UtilityMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, va
     }
 
 
-    interface UtilityMaintenanceUpdateListener{
+    interface UtilityPoUpdateListener{
         fun updatedData()
     }
 

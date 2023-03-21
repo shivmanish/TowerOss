@@ -76,6 +76,7 @@
         android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
+        android:paddingVertical="@dimen/dp5"
         android:paddingBottom="@dimen/dp10"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
@@ -272,12 +273,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Installation Location Type"
+                        android:text="Battery Cell Count"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/Installation_Location_Type"
+                        android:id="@+id/Battery_Cell_Count"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         android:text=""
@@ -293,7 +294,29 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Cabinet Size (Cm)"
+                        android:text="Installation Location Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Installation_Location_Type"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Size (Cm)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -312,7 +335,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:id="@+id/CabinetSizeL"
+                                android:id="@+id/SizeL"
                                 android:text=""
                                 android:maxLines="1"
                                 android:ellipsize="marquee"
@@ -338,7 +361,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:id="@+id/CabinetSizeB"
+                                android:id="@+id/SizeB"
                                 android:text=""
                                 android:maxLines="1"
                                 android:ellipsize="marquee"
@@ -364,7 +387,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:id="@+id/CabinetSizeH"
+                                android:id="@+id/SizeH"
                                 android:text="0"
                                 android:maxLines="1"
                                 android:ellipsize="marquee"
@@ -376,7 +399,6 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -398,6 +420,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -419,7 +442,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -441,6 +463,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -462,50 +485,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Rack No."
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Rack_No"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Rack U-Space Used"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Rack_U_Space_Used"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -764,6 +743,32 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:text="Battery Cell Count"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Battery_Cell_Count_edit"
+                        android:text="0"
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
                         android:text="Installation Location Type"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
@@ -784,13 +789,14 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Cabinet Size (Cm)"
+                        android:text="Size (Cm)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -809,7 +815,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <EditText
-                                android:id="@+id/CabinetSizeL_edit"
+                                android:id="@+id/SizeL_edit"
                                 android:text="0"
                                 android:inputType="number"
                                 style="@style/RowTestItemEdit"
@@ -834,7 +840,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <EditText
-                                android:id="@+id/CabinetSizeB_edit"
+                                android:id="@+id/SizeB_edit"
                                 android:text="0"
                                 android:inputType="numberDecimal"
                                 style="@style/RowTestItemEdit"
@@ -859,7 +865,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <EditText
-                                android:id="@+id/CabinetSizeH_edit"
+                                android:id="@+id/SizeH_edit"
                                 android:text="0"
                                 android:inputType="numberDecimal"
                                 style="@style/RowTestItemEdit"
@@ -876,7 +882,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -902,6 +907,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -928,7 +934,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -954,6 +959,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -980,57 +986,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Rack No."
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/Rack_No_edit"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Rack U-Space Used"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/Rack_U_Space_Used_edit"
-                        android:text="0"
-                        android:inputType="numberDecimal"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"

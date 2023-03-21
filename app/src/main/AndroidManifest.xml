@@ -164,7 +164,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.utilites.BatteryBankDetailsActivity"
+            android:name=".ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

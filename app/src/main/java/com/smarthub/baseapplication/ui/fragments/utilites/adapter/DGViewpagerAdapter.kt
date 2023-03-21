@@ -2,7 +2,6 @@ package com.smarthub.baseapplication.ui.utilites.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
 
 class DGViewpagerAdapter(fm: FragmentManager, val fragmentlist:ArrayList<Fragment>, val titels:ArrayList<String> ) : FragmentPagerAdapter(fm) {
 

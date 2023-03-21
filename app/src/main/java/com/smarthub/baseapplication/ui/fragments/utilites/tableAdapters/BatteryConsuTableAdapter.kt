@@ -10,9 +10,9 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsConsumTableItemBinding
-import com.smarthub.baseapplication.ui.utilites.adapter.BatteryFragAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.adapters.BatteryFragAdapter
 
-class BatteryConsumeTableAdapter (var context : Context, var listener : BatteryFragAdapter.BatterryBankListListener): RecyclerView.Adapter<BatteryConsumeTableAdapter.ViewHold>() {
+class BatteryConsuTableAdapter (var context : Context, var listener : BatteryFragAdapter.BatterryBankListListener): RecyclerView.Adapter<BatteryConsuTableAdapter.ViewHold>() {
 
     var list  = ArrayList<String>()
 
@@ -66,7 +66,7 @@ class BatteryConsumeTableAdapter (var context : Context, var listener : BatteryF
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editConsumMaterialTableItem(position)
+//                        listener.editConsumMaterialTableItem(position)
 
                         return true
                     }
@@ -81,7 +81,7 @@ class BatteryConsumeTableAdapter (var context : Context, var listener : BatteryF
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewConsumMaterialTableItem(position)
+//                        listener.viewConsumMaterialTableItem(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

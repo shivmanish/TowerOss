@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.editdialouge
+package com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.editDialouge
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilityMaitenanceEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSmp
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentBatteryBank
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPreventiveMaintenance
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
@@ -19,7 +19,7 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class UtilityMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, var childId: Int?, var smpsAllDataId: Int?, var listner:UtilityMaintenanceUpdateListener) : BaseBottomSheetDialogFragment(){
+class UtilityBatteryMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, var fullData: UtilityEquipmentBatteryBank?, var smpsAllDataId: Int?, var listner:UtilityMaintenanceUpdateListener) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: UtilityMaitenanceEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
@@ -57,12 +57,12 @@ class UtilityMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, va
                 it.PMDate=Utils.getFullFormatedDate(binding.PMDateEdit.text.toString())
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
 
-                val tempSmpsData= UtilityEquipmentSmp()
-                tempSmpsData.PreventiveMaintenance= arrayListOf(it)
-                if (childId!=null)
-                    tempSmpsData.id=childId
+                val tempBatteryData= UtilityEquipmentBatteryBank()
+                tempBatteryData.PreventiveMaintenance= arrayListOf(it)
+                if (fullData!=null)
+                    tempBatteryData.id=fullData?.id
                 val utilityAllDataModel = UpdateUtilityEquipmentAllData()
-                utilityAllDataModel.UtilityEquipmentSmps= arrayListOf(tempSmpsData)
+                utilityAllDataModel.UtilityEquipmentBatteryBank= arrayListOf(tempBatteryData)
                 if (smpsAllDataId!=null)
                     utilityAllDataModel.id=smpsAllDataId
                 viewmodel.updateUtilityEquip(utilityAllDataModel)
@@ -80,7 +80,7 @@ class UtilityMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, va
                 AppLogger.log("SmpsRectifierEditDialouge data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentSmps==200) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentBatteryBank==200) {
                 AppLogger.log("SmpsRectifierEditDialouge card Data fetched successfully")
                 listner.updatedData()
                 hideProgressLayout()

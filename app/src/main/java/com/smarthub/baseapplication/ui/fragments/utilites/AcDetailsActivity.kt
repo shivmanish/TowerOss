@@ -5,12 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.databinding.ActivityAcDetailsBinding
-import com.smarthub.baseapplication.databinding.ActivityBatteryBankDetailsBinding
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
-import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.UtilitieSmp
-import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 import com.smarthub.baseapplication.ui.utilites.fragment.AcFragment
-import com.smarthub.baseapplication.ui.utilites.fragment.BatteryFragment
 
 class AcDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivityAcDetailsBinding
@@ -33,7 +29,7 @@ class AcDetailsActivity : AppCompatActivity() {
         titels.add("AC #1")
         titels.add("AC #1")
         if (utilityAcData!=null){
-        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager, utilityAcData!!,id!!)
+//        binding.viewpager.adapter = BatteryViewpagerAdapter(supportFragmentManager, utilityAcData!!,id!!)
         binding.tabs.setupWithViewPager(binding.viewpager)}
         else Toast.makeText(binding.tabs.context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
 

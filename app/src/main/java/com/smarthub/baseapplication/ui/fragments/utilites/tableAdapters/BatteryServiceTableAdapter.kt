@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsServiceTableItemBinding
-import com.smarthub.baseapplication.ui.utilites.adapter.BatteryFragAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.adapters.BatteryFragAdapter
 
 class BatteryServiceTableAdapter (var context : Context, var listener : BatteryFragAdapter.BatterryBankListListener): RecyclerView.Adapter<BatteryServiceTableAdapter.ViewHold>() {
 
@@ -66,7 +66,7 @@ class BatteryServiceTableAdapter (var context : Context, var listener : BatteryF
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editServiceTableItem(position)
+//                        listener.editServiceTableItem(position)
 
                         return true
                     }
@@ -81,7 +81,7 @@ class BatteryServiceTableAdapter (var context : Context, var listener : BatteryF
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewServiceTableItem(position)
+//                        listener.viewServiceTableItem(position)
                         Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 

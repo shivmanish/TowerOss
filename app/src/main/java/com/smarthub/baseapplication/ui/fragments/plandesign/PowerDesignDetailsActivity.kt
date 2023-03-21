@@ -1,21 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.plandesign
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityPlanDesignDetailsBinding
-import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.*
-import com.smarthub.baseapplication.ui.utilites.adapter.BatteryViewpagerAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 

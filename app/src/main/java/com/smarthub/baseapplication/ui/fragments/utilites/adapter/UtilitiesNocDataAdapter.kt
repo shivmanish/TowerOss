@@ -123,7 +123,14 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
                 else if (list[position]==type2){
                     holder.binding.titel.text=list[position]
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.BateeryItemClicked(utilitydata)
+                    }
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentSmps!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentBatteryBank?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewBatterryBank()
                     }
                 }
                 else if (list[position]==type3){
@@ -182,4 +189,5 @@ interface UtilitesNocDataAdapterListener {
     fun PowerDistributionBoxItemClicked(data:UtilityEquipmentAllData?)
     fun CableItemClicked(data:UtilityEquipmentAllData?)
     fun addNewSMPS()
+    fun addNewBatterryBank()
 }
