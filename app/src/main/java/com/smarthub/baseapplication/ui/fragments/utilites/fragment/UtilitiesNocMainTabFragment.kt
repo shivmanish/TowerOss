@@ -23,6 +23,8 @@ import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.AddNewBatt
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.AddNewDGDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.AddNewUtilitySurgDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.UtilitySurgeProtectionActivity
 import com.smarthub.baseapplication.ui.utilites.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -126,7 +128,8 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     }
 
     override fun SuregeProtectionDeviceItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), SurgeProtectionDeviceDetailsActivity::class.java))
+        UtilitySurgeProtectionActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), UtilitySurgeProtectionActivity::class.java))
     }
 
     override fun PowerDistributionBoxItemClicked(data: UtilityEquipmentAllData?) {
@@ -171,6 +174,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewAC() {
         val bm = AddNewACDialouge(utilitydatalist,
             object : AddNewACDialouge.AddACDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewSurgeProtectionDevice(data: UtilityEquipmentAllData?) {
+        val bm = AddNewUtilitySurgDialouge(data,
+            object : AddNewUtilitySurgDialouge.AddUtilitySurgeDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)

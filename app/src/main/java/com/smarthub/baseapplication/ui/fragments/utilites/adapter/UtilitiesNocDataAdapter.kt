@@ -167,8 +167,15 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
                 }
                 else if (list[position]==type6){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentSurgeProtectionDevice!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentSurgeProtectionDevice?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.SuregeProtectionDeviceItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewSurgeProtectionDevice(utilitydata)
                     }
                 }
                 else if (list[position]==type7){
@@ -206,4 +213,5 @@ interface UtilitesNocDataAdapterListener {
     fun addNewBatterryBank()
     fun addNewDG()
     fun addNewAC()
+    fun addNewSurgeProtectionDevice(data:UtilityEquipmentAllData?)
 }
