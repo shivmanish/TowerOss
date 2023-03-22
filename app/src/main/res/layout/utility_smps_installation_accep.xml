@@ -223,6 +223,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/I_P_Voltage_layout"
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -244,6 +245,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/I_P_Current_layout"
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -542,6 +544,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/I_P_Voltage_layout_Edit"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -567,6 +570,7 @@
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/I_P_Current_layout_Edit"
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
