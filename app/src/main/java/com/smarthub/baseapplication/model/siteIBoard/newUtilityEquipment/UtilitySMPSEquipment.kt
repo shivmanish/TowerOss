@@ -12,7 +12,7 @@ class UtilitySMPSEquipment{
     var FuelType: Int?=null
     var InstallationType: Int?=null
     var InstalledLocationType: Int?=null
-    var LocationMark: Any?=null
+    var LocationMark: String?=null
     var Make: String?=null
     var ManufacturedOn: String?=null
     var MaxPowerRating: String?=null

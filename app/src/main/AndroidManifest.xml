@@ -180,6 +180,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.fragments.utilites.ac.ACDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.fragments.project.DemoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

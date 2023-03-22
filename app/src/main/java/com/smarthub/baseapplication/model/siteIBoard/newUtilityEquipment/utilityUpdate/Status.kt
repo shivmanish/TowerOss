@@ -7,5 +7,6 @@ data class Status(
     val Equipment: Int,
     val UtilityEquipmentBatteryBank: Int,
     val InstallationAndAcceptence: Int,
+    val UtilityEquipmentAC: Int,
     val UtilityEquipmentDG: Int,
 )

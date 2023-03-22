@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
 
 data class UtilityEquipmentAllData(
     val CableDetail: ArrayList<UtilityCableDetail>,
-    val UtilityEquipmentAC: ArrayList<UtilityEquipmentAC>,
+    val UtilityEquipmentAC: ArrayList<UtilityEquipmentAC>?=null,
     val UtilityEquipmentBatteryBank: ArrayList<UtilityEquipmentBatteryBank>?=null,
     val UtilityEquipmentDG: ArrayList<UtilityEquipmentDG>?=null,
     val UtilityEquipmentFireExtinguisher: ArrayList<UtilityEquipmentFireExtinguisher>,

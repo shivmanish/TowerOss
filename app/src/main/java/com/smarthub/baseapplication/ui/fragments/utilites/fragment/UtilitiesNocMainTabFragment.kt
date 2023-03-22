@@ -14,6 +14,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.Utility
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.AddNewACDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.utilites.addNewDialouge.AddNewSMPSDialouge
@@ -114,8 +116,9 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
         requireActivity().startActivity(Intent(requireContext(), DGDetailsActivity::class.java))
     }
 
-    override fun ACItemClickedItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), DGDetailsActivity::class.java))
+    override fun ACItemClicked(data: UtilityEquipmentAllData?) {
+        ACDetailsActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), ACDetailsActivity::class.java))
     }
 
     override fun FireExtinguisherItemClicked(data: UtilityEquipmentAllData?) {
@@ -157,6 +160,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewDG() {
         val bm = AddNewDGDialouge(utilitydatalist,
             object : AddNewDGDialouge.AddDGDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewAC() {
+        val bm = AddNewACDialouge(utilitydatalist,
+            object : AddNewACDialouge.AddACDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
