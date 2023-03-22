@@ -9,6 +9,7 @@ data class DCDB(
     val UnitSizeL: String,
     val UnitWeight: String,
     val created_at: String,
+
     val id: String,
     val isActive: String,
     val modified_at: String

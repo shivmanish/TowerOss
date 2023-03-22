@@ -11,6 +11,7 @@ data class FireExtinguisher(
     val RatingAndCapacity: String,
     val UnitSizeB: String,
     val UnitSizeH: String,
+
     val UnitSizeL: String,
     val created_at: String,
     val id: String,

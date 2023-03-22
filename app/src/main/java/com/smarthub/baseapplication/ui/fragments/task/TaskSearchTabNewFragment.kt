@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,20 +24,30 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.*
+import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailPageAdapter
+import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
+import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TaskPlanDesignAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.*
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
-                               var lattitude: String, var longitude: String,var tempWhere:String) : BaseFragment(),
-    TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener {
+class TaskSearchTabNewFragment(
+    var siteID: String?, var taskId: String,
+    var lattitude: String, var longitude: String, var tempWhere: String
+) : BaseFragment(),
+    TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener{
     private lateinit var binding: FragmentSearchTaskBinding
     private lateinit var siteDetailViewModel: SiteDetailViewModel
     lateinit var homeViewModel: HomeViewModel
@@ -47,7 +58,11 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
     var long = "72.98213045018673"
     var radius = "2"
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         siteDetailViewModel = ViewModelProvider(this)[SiteDetailViewModel::class.java]
         tempWhere = tempWhere.replace("[", "")
@@ -63,7 +78,8 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.collapsingLayout.tag = false
-        binding.horizontalOnlyList.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        binding.horizontalOnlyList.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         setDataObserver()
         binding.dropdownImg.setOnClickListener {
             binding.collapsingLayout.tag = !(binding.collapsingLayout.tag as Boolean)
@@ -114,26 +130,22 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
         setParentData()
     }
 
-    fun setParentData(){
-        val splittedData = tempWhere.split(",")
-        if (splittedData.isNotEmpty()){
+    fun setParentData() {
+        var splittedData = tempWhere.split(",")
+        if (splittedData.isNotEmpty()) {
             val firstIdx = splittedData[0]
-            if (firstIdx.length>1){
+            if (firstIdx.length > 1) {
                 val parentId = firstIdx[0].toInt()
                 AppLogger.log("parentId${parentId}")
-
-                setUpNocComplianceData()       // test mode
-//                when (parentId) {
-//                    9 -> {
-//                        setUpServiceRequestData()
-//                    }
-//                    1 -> {
-//                        setUpNocComplianceData()
-//                    }
-//                    else -> {
-//                        setUpServiceRequestData()
-//                    }
+//                if (parentId == 2) {
+//                    setUpServiceRequestData()
+//                } else if(parentId == 3) {
+//                    setUpPnanigAndDesignData()
+//                }else{
+//                    setUpServiceRequestData()
 //                }
+//                setUpNocComplianceData()
+                setUpPnanigAndDesignData()
             }
         }
     }
@@ -199,41 +211,119 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
         if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
         homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
-            if (it!=null && it.status == Resource.Status.LOADING){
+            if (it != null && it.status == Resource.Status.LOADING) {
 //                showLoader()
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 (requireActivity() as BaseActivity).hideLoader()
-                val data : AllsiteInfoDataModel = it.data
-                if (data.Siteaddress!=null && data.Siteaddress?.isNotEmpty() == true) {
+                val data: AllsiteInfoDataModel = it.data
+                if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
                     lattitude = siteData.locLatitude
                     longitude = siteData.locLongitude
                     AppLogger.log("fetched latitude:${lattitude},longitude:$longitude")
-                }else{
+                } else {
                     AppLogger.log("Site address not fetched")
                 }
-            }else if (it!=null) {
+            } else if (it != null) {
                 AppLogger.log("SiteInfoNewFragment error :${it.message}")
 
-                Toast.makeText(requireContext(),"SiteInfoNewFragment error :${it.message}",Toast.LENGTH_SHORT).show()
-            }else{
+                Toast.makeText(
+                    requireContext(),
+                    "SiteInfoNewFragment error :${it.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 AppLogger.log("SiteInfoNewFragment Something went wrong")
-                Toast.makeText(requireContext(),"SiteInfoNewFragment Something went wrong",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "SiteInfoNewFragment Something went wrong",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         homeViewModel.siteInfoRequestAll(siteID!!)
         siteDetailViewModel.fetchDropDown()
     }
 
-    private fun setUpServiceRequestData(){
-        if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true){
+    fun setUpServiceRequestData() {
+        if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true) {
             homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        val serviceFragAdapterAdapter = TaskServicesDataAdapter(this@TaskSearchTabNewFragment,siteID.toString())
+        val serviceFragAdapterAdapter =
+            TaskServicesDataAdapter(this@TaskSearchTabNewFragment, siteID.toString())
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
 
+        homeViewModel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                return@observe
+            }
+            (requireActivity() as BaseActivity).hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.ServiceRequestMain != null && it.data.ServiceRequestMain.isNotEmpty()) {
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                val listData = it.data.ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>
+                serviceFragAdapterAdapter.setData(listData)
+                AppLogger.log("size :${it.data.ServiceRequestMain.size}")
+
+                if (listData.isNotEmpty())
+                    clickedItem(listData[0], siteID.toString())
+                isDataLoaded = true
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Service request Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(
+                    requireContext(),
+                    "Service Request Fragment Something went wrong",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.serviceRequestAll("1526")
+    }
+
+    fun setUpPnanigAndDesignData() {
+        if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskPlanDesignAdapter(object : PlanDesignAdapterListener {
+            override fun clickedItem(data: PlanAndDesignDataItem?, Id: String, index: Int) {
+                //this is for the listiner
+
+                PowerDesignDetailsActivity.Id=Id
+                PowerDesignDetailsActivity.planDesigndata=data
+                binding.viewpager.adapter =PowerDesignDetailPageAdapter(childFragmentManager, data,Id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+        }, siteID.toString())
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.PlanDesignModelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.PlanningAndDesign!!)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(), "planDesign Fragment Something went wrong", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+/*
         homeViewModel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
@@ -258,8 +348,9 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
                 Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
+*/
         (requireActivity() as BaseActivity).showLoader()
-        homeViewModel.serviceRequestAll("1526")
+        homeViewModel.planAndDesignRequestAll("1526")
     }
     private fun setUpNocComplianceData(){
 
@@ -307,6 +398,7 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.NocAndCompRequestAll("1526")
     }
+
     var isDataLoaded = false
 
     private fun setViewPager() {
@@ -356,11 +448,13 @@ class TaskSearchTabNewFragment(var siteID: String?, var taskId: String,
 
     }
 
-    override fun clickedItem(data : ServiceRequestAllDataItem, Id : String) {
+    override fun clickedItem(data: ServiceRequestAllDataItem, Id: String) {
         ServicesRequestActivity.ServiceRequestdata = data
         ServicesRequestActivity.Id = Id
-        binding.viewpager.adapter = ServicePageAdapter(childFragmentManager,data)
+        binding.viewpager.adapter = ServicePageAdapter(childFragmentManager, data)
         binding.tabs.setupWithViewPager(binding.viewpager)
         setViewPager()
     }
+
+
 }

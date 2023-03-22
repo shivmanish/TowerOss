@@ -10,6 +10,7 @@ data class SMPS(
     val PlannedLoad: List<Any>,
     val RatingAndCapacity: String,
     val RectifierModule: List<Any>,
+
     val created_at: String,
     val id: String,
     val isActive: String,

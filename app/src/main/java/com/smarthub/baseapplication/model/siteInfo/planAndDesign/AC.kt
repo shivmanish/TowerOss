@@ -12,6 +12,7 @@ data class AC(
     val Model: String,
     val OutdoorUnitSizeB: String,
     val OutdoorUnitSizeH: String,
+
     val OutdoorUnitSizeL: String,
     val OutdoorUnitWeight: String,
     val OverallWeight: String,

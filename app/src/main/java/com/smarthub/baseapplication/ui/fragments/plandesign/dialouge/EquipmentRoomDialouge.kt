@@ -59,9 +59,9 @@ lateinit var binding: EquipmentRoomDialougeLayoutBinding
             binding.remark.setText(data?.Remark)
 
             AppPreferences.getInstance().setDropDown(binding.foundationType,
-                DropDowns.FoundationType.name,data?.FoundationType)
+                DropDowns.FoundationType.name,data?.FoundationType.toString())
             AppPreferences.getInstance().setDropDown(binding.type,
-                DropDowns.EquipmentType.name,data?.Type)
+                DropDowns.EquipmentType.name,data?.Type.toString())
 
         }catch (e:java.lang.Exception){
             AppLogger.log("PlanDesign Equip Room Adapter error : ${e.localizedMessage}")

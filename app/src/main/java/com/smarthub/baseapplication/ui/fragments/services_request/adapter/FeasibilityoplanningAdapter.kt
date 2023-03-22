@@ -51,11 +51,15 @@ class FeasibilityoplanningAdapter(
         list.add("Radio Antenna")
         list.add("Backhaul")
         list.add("Power & MCB")
-        feasibilityPlanning = serviceRequestAllData.FeasibilityPlanning?.get(0)
-        siteDetails = feasibilityPlanning?.SiteDetails?.get(0)
-        radioAntena = feasibilityPlanning?.RadioAntenna?.get(0)
-        powerAndMcb = feasibilityPlanning?.PowerAndMCB?.get(0)
-    }
+       try {
+           feasibilityPlanning = serviceRequestAllData.FeasibilityPlanning?.get(0)
+           siteDetails = feasibilityPlanning?.SiteDetails?.get(0)
+           radioAntena = feasibilityPlanning?.RadioAntenna?.get(0)
+           powerAndMcb = feasibilityPlanning?.PowerAndMCB?.get(0)
+       }catch (e:Exception){
+           e.printStackTrace()
+       }
+       }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
 

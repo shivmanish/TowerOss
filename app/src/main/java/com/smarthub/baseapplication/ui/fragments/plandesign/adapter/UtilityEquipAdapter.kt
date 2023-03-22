@@ -148,8 +148,8 @@ class UtilityEquipAdapter(
                         holder.binding.cabinetsizeh.text = it.CabinetSizeH
                         holder.binding.cabinetsizel.text = it.CabinetSizeL
                         holder.binding.overallWeightKg.text = it.OverallWeight
-                        holder.binding.ownerCompany.text = ""
-                        holder.binding.userCompany.text = ""
+//                        holder.binding.ownerCompany.text = ""
+//                        holder.binding.userCompany.text = ""
 
                         holder.binding.smpsPlanLeadTable.adapter =
                             SmpsTableAdapter(context, data!!.SMPS.get(0).PlannedLoad,object : TableCallback {
@@ -202,8 +202,8 @@ class UtilityEquipAdapter(
                         holder.binding.batteryBankCabinetsizeh.text = it.CabinetSizeH
                         holder.binding.batteryBankCabinetsizeb.text = it.CabinetSizeB
                         holder.binding.batteryBankOverallWeightKg.text = it.OverallWeight
-                        holder.binding.batteryBankUserCompany.text = ""
-                        holder.binding.batteryBankOwnerCompany.text = ""
+                        holder.binding.remarks.text = ""
+//                        holder.binding.batteryBankOwnerCompany.text = ""
                     }
 /*
                     holder.binding.bBankTable.adapter =SmpsTableAdapter(
@@ -260,6 +260,9 @@ class UtilityEquipAdapter(
                         holder.binding.dgOverallWeightKg.text = it.OverallWeight
                         holder.binding.dgPlatformSize.text = it.PlatformSize
                         holder.binding.dgFuelType.text = ""
+                        holder.binding.remark.text = ""
+                        holder.binding.installationtype.text = ""
+                        holder.binding.installationlocationType.text = ""
                         holder.binding.dgFuelConsumptionPerHour.text = it.FuelConsumptionPerHour
                     }
 /*
@@ -310,19 +313,14 @@ class UtilityEquipAdapter(
                 holder.binding.itemTitleSmps.text = list[position]
                 try {
                     data!!.AC.get(0).let {
-                        holder.binding.acMake.text = it.Make
+                        holder.binding.type.text = ""
+                            holder.binding.acMake.text = it.Make
                         holder.binding.acModal.text = it.Model
                         holder.binding.acRatingCapacityKw.text = it.RatingAndCapacity
-                        holder.binding.acCabinetsizel.text = it.CabinetSizeL
-                        holder.binding.acCabinetsizeh.text = it.CabinetSizeH
-                        holder.binding.acCabinetsizeb.text = it.CabinetSizeB
                         holder.binding.acIndoreUnitSizeh.text = it.IndoorUnitSizeH
                         holder.binding.acIndoreUnitSizeb.text = it.IndoorUnitSizeB
                         holder.binding.acIndoreUnitSizel.text = it.IndoorUnitSizeL
                         holder.binding.acOutdoorUnitWeight.text = it.OutdoorUnitWeight
-                        holder.binding.acOverallWeight.text = it.OverallWeight
-                        holder.binding.acOwnerCompany.text = ""
-                        holder.binding.acUserCompany.text = ""
                     }
                 }
                 catch (e : Exception){
@@ -359,14 +357,7 @@ class UtilityEquipAdapter(
                         holder.binding.fireCabinetsizel.text = it.CabinetSizeL
                         holder.binding.fireCabinetsizeh.text = it.CabinetSizeH
                         holder.binding.fireCabinetsizeb.text = it.CabinetSizeB
-                        holder.binding.fireUnitSizeh.text = it.UnitSizeH
-                        holder.binding.fireUnitSizeb.text = it.UnitSizeB
-                        holder.binding.fireUnitSizel.text = it.UnitSizeL
                         holder.binding.fireUnitWeight.text = ""
-                        holder.binding.fireExtinguisherType.text = ""
-                        holder.binding.fireFuelConsuptionHour.text = it.FuelConsumptionPerHour
-                        holder.binding.fireOwnerCompany.text = ""
-                        holder.binding.fireUserCompany.text = ""
                     }
                 }catch (e : Exception){
                     AppLogger.log(" plan and design utility adapter${e.localizedMessage}")
@@ -513,7 +504,6 @@ class UtilityEquipAdapter(
                 binding.smpsArrow.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.smpsRoot.setBackgroundResource(R.color.collapse_card_bg)
             }
-
         }
     }
 
