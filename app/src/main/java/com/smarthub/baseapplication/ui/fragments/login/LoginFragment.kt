@@ -112,15 +112,13 @@ class LoginFragment : BaseFragment() {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
+                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
+                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
+
                     val loginTime = AppPreferences.getInstance().getLong("loginTime")
                     val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
                     AppLogger.log("loginTimeDiff:$loginTimeDiff")
-                    AppPreferences.getInstance().saveString("accessToken", it.data.access)
-                    AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
-//                    showLoader()
-//                    loginViewModel?.getProfileData()
-
                     AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
                     val intent = Intent (requireContext(), DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -158,8 +156,29 @@ class LoginFragment : BaseFragment() {
         }
 
         user?.username = binding?.userMail?.text.toString()
-        (requireActivity() as BaseActivity).showLoader()
-        loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
+        if (Utils.isNetworkConnected(requireContext())){
+            (requireActivity() as BaseActivity).showLoader()
+            AppPreferences.getInstance().saveString("loggedUser",binding?.userMail?.text.toString())
+            AppPreferences.getInstance().saveString("loggedPass",binding?.password?.text.toString())
+            loginViewModel?.getLoginToken(UserLoginPost(binding?.userMail?.text.toString(),binding?.password?.text.toString()))
+
+        }else{
+            val lastUserName = AppPreferences.getInstance().getString("loggedUser")
+            val lastUserPass = AppPreferences.getInstance().getString("loggedPass")
+            if (lastUserName == binding?.userMail?.text.toString() && lastUserPass == binding?.password?.text.toString()){
+                val loginTime = AppPreferences.getInstance().getLong("loginTime")
+                val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
+                AppLogger.log("loginTimeDiff:$loginTimeDiff")
+                Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
+                AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
+                val intent = Intent (requireContext(), DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                requireActivity().finish()
+            }else{
+                Toast.makeText(requireContext(),"Enter valid credential", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun enableErrorMsg(){
