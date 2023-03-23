@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.ac
+package com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,10 +14,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACFragAdapter
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.ACConsumMaterialEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.UtilityFireExtMaintenanceEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.UtilityFireExtPoEditDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters.FireExtinguisherFragAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.SmpsConsuMaterialViewDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilityMaintenanceViewDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilitySmpsPoViewDialouge
@@ -25,11 +22,11 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var utilityAllDataId: Int?):BaseFragment(),
-    ACFragAdapter.ACListListener {
+class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?, var fireExtIndex:Int, var utilityAllDataId: Int?):BaseFragment(),
+    FireExtinguisherFragAdapter.FireExtListListener {
 
     lateinit var binding:BatteryFragmentBinding
-    lateinit var adapter: ACFragAdapter
+    lateinit var adapter: FireExtinguisherFragAdapter
     lateinit var viewmodel: HomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -41,7 +38,7 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listItem.layoutManager = LinearLayoutManager(requireContext())
-        adapter= ACFragAdapter(this@ACFragment,this@ACFragment,ACAllData)
+        adapter= FireExtinguisherFragAdapter(this@FireExtinguisherFragment,this@FireExtinguisherFragment,ACAllData)
         binding.listItem.adapter=adapter
 
         if (viewmodel.utilityEquipResponse?.hasActiveObservers() == true){
@@ -49,24 +46,24 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
         }
         viewmodel.utilityEquipResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
-                AppLogger.log("ACFragment Fragment data loading in progress ")
+                AppLogger.log("FireExtinguisherFragment Fragment data loading in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
-                AppLogger.log("ACFragment card Data fetched successfully")
+                AppLogger.log("FireExtinguisherFragment card Data fetched successfully")
                 try {
-                    ACAllData=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentAC?.get(smpsIndex)
-                    adapter.setData(it.data.UtilityEquipment?.get(0)?.UtilityEquipmentAC?.get(smpsIndex))
+                    ACAllData=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentFireExtinguisher?.get(fireExtIndex)
+                    adapter.setData(it.data.UtilityEquipment?.get(0)?.UtilityEquipmentFireExtinguisher?.get(fireExtIndex))
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("ACFragment error : ${e.localizedMessage}")
+                    AppLogger.log("FireExtinguisherFragment error : ${e.localizedMessage}")
                 }
-                AppLogger.log("ACFragment size :${it.data.UtilityEquipment?.get(0)?.UtilityEquipmentSmps?.size}")
+                AppLogger.log("FireExtinguisherFragment size :${it.data.UtilityEquipment?.get(0)?.UtilityEquipmentSmps?.size}")
             }else if (it!=null) {
-                AppLogger.log("ACFragment error :${it.message}, it.data : ${it.data}, in line 71")
+                AppLogger.log("FireExtinguisherFragment error :${it.message}, it.data : ${it.data}, in line 71")
             }
             else {
-                AppLogger.log("ACFragment Something went wrong")
+                AppLogger.log("FireExtinguisherFragment Something went wrong")
             }
         }
     }
@@ -88,14 +85,14 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
     }
 
     override fun editPoClicked(position: Int,data: UtilityPoDetails) {
-        val bm = UtilityFireExtPoEditDialouge(data,ACAllData,utilityAllDataId,
-            object : UtilityFireExtPoEditDialouge.UtilityPoUpdateListener {
-                override fun updatedData() {
-                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
-                }
-
-            })
-        bm.show(childFragmentManager,"sdg")
+//        val bm = UtilityACPoEditDialouge(data,ACAllData,utilityAllDataId,
+//            object : UtilityACPoEditDialouge.UtilityPoUpdateListener {
+//                override fun updatedData() {
+//                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+//                }
+//
+//            })
+//        bm.show(childFragmentManager,"sdg")
     }
 
 
@@ -106,14 +103,14 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
     }
 
     override fun editConsumMaterialTableItem(position: Int,data: UtilityConsumableMaterial) {
-        val bm = ACConsumMaterialEditDialouge(data,ACAllData,utilityAllDataId,
-            object : ACConsumMaterialEditDialouge.ACConsumMaterialUpdateListener {
-                override fun updatedData() {
-                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
-                }
-
-            })
-        bm.show(childFragmentManager,"sdg")
+//        val bm = ACConsumMaterialEditDialouge(data,ACAllData,utilityAllDataId,
+//            object : ACConsumMaterialEditDialouge.ACConsumMaterialUpdateListener {
+//                override fun updatedData() {
+//                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+//                }
+//
+//            })
+//        bm.show(childFragmentManager,"sdg")
     }
 
     override fun viewConsumMaterialTableItem(position: Int,data: UtilityConsumableMaterial) {
@@ -121,14 +118,14 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
         bm.show(childFragmentManager,"smpsRectifierView")      }
 
     override fun editMaintenamceTableItem(position: Int, data: UtilityPreventiveMaintenance) {
-        val bm = UtilityFireExtMaintenanceEditDialouge(data,ACAllData,utilityAllDataId,
-            object : UtilityFireExtMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
-                override fun updatedData() {
-                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
-                }
-
-            })
-        bm.show(childFragmentManager,"sdg")
+//        val bm = UtilityACMaintenanceEditDialouge(data,ACAllData,utilityAllDataId,
+//            object : UtilityACMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
+//                override fun updatedData() {
+//                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+//                }
+//
+//            })
+//        bm.show(childFragmentManager,"sdg")
     }
 
     override fun viewMaintenanceTableItem(position: Int, data: UtilityPreventiveMaintenance) {
@@ -136,10 +133,10 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
         bm.show(childFragmentManager,"smpsRectifierView")
     }
 
-    override fun updateACData(updatedData: UtilityEquipmentAC) {
+    override fun updateFireExtData(updatedData: UtilityEquipmentFireExtinguisher) {
         showLoader()
         val utilityAllDataModel = UpdateUtilityEquipmentAllData()
-        utilityAllDataModel.UtilityEquipmentAC= arrayListOf(updatedData)
+        utilityAllDataModel.UtilityEquipmentFireExtinguisher= arrayListOf(updatedData)
         if (utilityAllDataId!=null)
             utilityAllDataModel.id=utilityAllDataId
         viewmodel.updateUtilityEquip(utilityAllDataModel)
@@ -148,23 +145,23 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
         }
         viewmodel.updateUtilityDataResponse?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
-                AppLogger.log("ACFragment data updating in progress ")
+                AppLogger.log("FireExtinguisherFragment data updating in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status.Equipment==200 || it.data.status.InstallationAndAcceptence==200)) {
-                AppLogger.log("ACFragment Data Updated successfully")
+                AppLogger.log("FireExtinguisherFragment Data Updated successfully")
                 viewmodel.utilityRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
-                AppLogger.log("ACFragment Something went wrong in data update")
+                AppLogger.log("FireExtinguisherFragment Something went wrong in data update")
             }
             else if (it != null) {
-                AppLogger.log("ACFragment in updateData error :${it.message}, data : ${it.data}")
+                AppLogger.log("FireExtinguisherFragment in updateData error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("ACFragment Something went wrong in data update")
+                AppLogger.log("FireExtinguisherFragment Something went wrong in data update")
 
             }
         }

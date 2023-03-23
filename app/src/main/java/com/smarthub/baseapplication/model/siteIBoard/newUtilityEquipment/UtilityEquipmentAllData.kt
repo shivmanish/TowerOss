@@ -5,7 +5,7 @@ data class UtilityEquipmentAllData(
     val UtilityEquipmentAC: ArrayList<UtilityEquipmentAC>?=null,
     val UtilityEquipmentBatteryBank: ArrayList<UtilityEquipmentBatteryBank>?=null,
     val UtilityEquipmentDG: ArrayList<UtilityEquipmentDG>?=null,
-    val UtilityEquipmentFireExtinguisher: ArrayList<UtilityEquipmentFireExtinguisher>,
+    val UtilityEquipmentFireExtinguisher: ArrayList<UtilityEquipmentFireExtinguisher>?=null,
     val UtilityEquipmentPowerDistributionBox: ArrayList<UtilityEquipmentPowerDistributionBox>?=null,
     val UtilityEquipmentSmps: ArrayList<UtilityEquipmentSmp>?=null,
     val UtilityEquipmentSurgeProtectionDevice: ArrayList<UtilityEquipmentSurgeProtectionDevice>?=null,

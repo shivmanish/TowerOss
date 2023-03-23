@@ -23,6 +23,8 @@ import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.AddNewBatt
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.AddNewDGDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.AddNewFireExtDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.FireExtinguisherActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.AddNewUtilityPowerBoxDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.UtilityPowerDisBoxActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.AddNewUtilitySurgDialouge
@@ -128,7 +130,8 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     }
 
     override fun FireExtinguisherItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), FireExtinguisherDetailsActivity::class.java))
+        FireExtinguisherActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), FireExtinguisherActivity::class.java))
     }
 
     override fun SuregeProtectionDeviceItemClicked(data: UtilityEquipmentAllData?) {
@@ -182,6 +185,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewAC() {
         val bm = AddNewACDialouge(utilitydatalist,
             object : AddNewACDialouge.AddACDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewFireExt() {
+        val bm = AddNewFireExtDialouge(utilitydatalist,
+            object : AddNewFireExtDialouge.AddFireExtDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
