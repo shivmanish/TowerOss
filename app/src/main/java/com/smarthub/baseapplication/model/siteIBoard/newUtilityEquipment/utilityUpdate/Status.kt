@@ -9,4 +9,5 @@ data class Status(
     val InstallationAndAcceptence: Int,
     val UtilityEquipmentAC: Int,
     val UtilityEquipmentDG: Int,
+    val UtilityEquipmentSurgeProtectionDevice: Int,
 )

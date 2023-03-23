@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice
+package com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.UtilitySurgeProtectionDataDialougeBinding
+import com.smarthub.baseapplication.databinding.UtilityAddNewPowerDistributionboxBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSurgeProtectionDevice
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentPowerDistributionBox
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilitySMPSEquipment
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtiltyInstallationAcceptence
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
@@ -21,12 +21,12 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var listner:AddUtilitySurgeDataListener) : BaseBottomSheetDialogFragment(){
+class AddNewUtilityPowerBoxDialouge (var fullData:UtilityEquipmentAllData?, var listner:AddUtilityPowerBoxDataListener) : BaseBottomSheetDialogFragment(){
 
-    lateinit var binding: UtilitySurgeProtectionDataDialougeBinding
+    lateinit var binding: UtilityAddNewPowerDistributionboxBinding
     lateinit var viewmodel: HomeViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = UtilitySurgeProtectionDataDialougeBinding.inflate(inflater)
+        binding = UtilityAddNewPowerDistributionboxBinding.inflate(inflater)
         viewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
     }
@@ -56,19 +56,21 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
                 it.CapacityRating=binding.CapacityRatingEdit.text.toString()
                 it.Count=binding.CountEdit.text.toString().toIntOrNull()
                 it.Remark=binding.remarksEdit.text.toString()
-                it.LocationMark=binding.InstallationPointEdit.text.toString()
-                it.ProtectionMode=binding.ProtectionModeEdit.text.toString()
+                it.Weight=binding.WeightEdit.text.toString()
+                it.SizeL=binding.SizeLEdit.text.toString()
+                it.SizeB=binding.SizeBEdit.text.toString()
+                it.SizeH=binding.SizeHEdit.text.toString()
             }
             insData.let {
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
                 it.VendorCode= binding.VendorCodeEdit.text.toString()
                 it.InstallationDate= Utils.getFullFormatedDate(binding.InstallationDateEdit.text.toString())
             }
-            val utilitySurgeData= UtilityEquipmentSurgeProtectionDevice()
-            utilitySurgeData.Equipment= arrayListOf(equipData)
-            utilitySurgeData.InstallationAndAcceptence= arrayListOf(insData)
+            val utilityPowerData= UtilityEquipmentPowerDistributionBox()
+            utilityPowerData.Equipment= arrayListOf(equipData)
+            utilityPowerData.InstallationAndAcceptence= arrayListOf(insData)
             val utilityAllDataModel = UpdateUtilityEquipmentAllData()
-            utilityAllDataModel.UtilityEquipmentSurgeProtectionDevice= arrayListOf(utilitySurgeData)
+            utilityAllDataModel.UtilityEquipmentPowerDistributionBox= arrayListOf(utilityPowerData)
             if (fullData!=null)
                 utilityAllDataModel.id=fullData?.id
             viewmodel.updateUtilityEquip(utilityAllDataModel)
@@ -80,10 +82,10 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
         viewmodel.updateUtilityDataResponse?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
                 showProgressLayout()
-                AppLogger.log("SiteAgreemnets Fragment data loading in progress ")
+                AppLogger.log("AddNewUtilityPowerBoxDialouge Fragment data Updating in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentSurgeProtectionDevice==200) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipment==200) {
                 listner.addNewData()
                 hideProgressLayout()
                 dismiss()
@@ -92,12 +94,12 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
                 Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
-                AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                AppLogger.log("AddNewUtilityPowerBoxDialouge Fragment Something went wrong in updating data")
             }
             else if (it != null) {
-                AppLogger.log("SiteAgreemnets Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("AddNewUtilityPowerBoxDialouge Fragment error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                AppLogger.log("AddNewUtilityPowerBoxDialouge Fragment Something went wrong in updating data")
 
             }
         }
@@ -117,7 +119,7 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
     }
 
 
-    interface AddUtilitySurgeDataListener{
+    interface AddUtilityPowerBoxDataListener{
         fun addNewData()
     }
 

@@ -23,6 +23,8 @@ import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.AddNewBatt
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.AddNewDGDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.AddNewUtilityPowerBoxDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.UtilityPowerDisBoxActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.AddNewUtilitySurgDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.UtilitySurgeProtectionActivity
 import com.smarthub.baseapplication.ui.utilites.*
@@ -37,7 +39,7 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     var isDataLoaded = false
     var utilitydatalist: ArrayList<UtilityEquipmentAllData>? = ArrayList()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentUtilitesNocBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
@@ -133,6 +135,8 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     }
 
     override fun PowerDistributionBoxItemClicked(data: UtilityEquipmentAllData?) {
+        UtilityPowerDisBoxActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), UtilityPowerDisBoxActivity::class.java))
     }
 
     override fun CableItemClicked(data: UtilityEquipmentAllData?) {
@@ -185,6 +189,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewSurgeProtectionDevice(data: UtilityEquipmentAllData?) {
         val bm = AddNewUtilitySurgDialouge(data,
             object : AddNewUtilitySurgDialouge.AddUtilitySurgeDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewPDB(data: UtilityEquipmentAllData?) {
+        val bm = AddNewUtilityPowerBoxDialouge(data,
+            object : AddNewUtilityPowerBoxDialouge.AddUtilityPowerBoxDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)

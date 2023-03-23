@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice
+package com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,13 +12,13 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgListListener, surgDataData: ArrayList<UtilityEquipmentSurgeProtectionDevice>?) : RecyclerView.Adapter<UtilitySurgFragAdapter.ViewHold>() {
+class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowerBoxListListener, surgDataData: ArrayList<UtilityEquipmentPowerDistributionBox>?) : RecyclerView.Adapter<UtilityPowerBoxFragAdapter.ViewHold>() {
 //    private var equipmentData: UtilitySMPSEquipment?=null
 //    private var InsAccepData: UtiltyInstallationAcceptence?=null
 
     var list = ArrayList<Any>()
 
-    fun setData(data: ArrayList<UtilityEquipmentSurgeProtectionDevice>?) {
+    fun setData(data: ArrayList<UtilityEquipmentPowerDistributionBox>?) {
         this.list.clear()
         this.list.addAll(data!!)
         notifyDataSetChanged()
@@ -40,7 +40,7 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     
     class EquipViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : UtilitySurgProtectionDeviceDetailsBinding = UtilitySurgProtectionDeviceDetailsBinding.bind(itemView)
+        var binding : UtilityPowerDistributionBoxDetailsBinding = UtilityPowerDistributionBoxDetailsBinding.bind(itemView)
 
         init {
             binding.collapsingLayout.tag = false
@@ -56,14 +56,14 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list[position] is UtilityEquipmentSurgeProtectionDevice)
+        return if (list[position] is UtilityEquipmentPowerDistributionBox)
             1
         else 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return if (viewType == 1){
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.utility_surg_protection_device_details, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.utility_power_distribution_box_details, parent, false)
             return EquipViewHold(view)
         }
         else{
@@ -77,7 +77,7 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
             is EquipViewHold -> {
                 var equipmentData: UtilitySMPSEquipment?=null
                 var InsAccepData: UtiltyInstallationAcceptence?=null
-                val datalist=list[position] as UtilityEquipmentSurgeProtectionDevice
+                val datalist=list[position] as UtilityEquipmentPowerDistributionBox
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -120,8 +120,10 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
                     holder.binding.SerialNumber.text=equipmentData.SerialNumber
                     holder.binding.Make.text=equipmentData.Make
                     holder.binding.Model.text=equipmentData.Model
-                    holder.binding.ProtectionMode.text=equipmentData.ProtectionMode
-                    holder.binding.InstallationPoint.text=equipmentData.LocationMark
+                    holder.binding.Weight.text=equipmentData.Weight
+                    holder.binding.SizeL.text=equipmentData.SizeL
+                    holder.binding.SizeB.text=equipmentData.SizeB
+                    holder.binding.SizeH.text=equipmentData.SizeH
                     holder.binding.CapacityRating.text=equipmentData.CapacityRating
                     holder.binding.Count.text= equipmentData.Count.toString()
                     holder.binding.remarks.text=equipmentData.Remark
@@ -133,8 +135,10 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
                     holder.binding.ModelEdit.setText(equipmentData.Model)
                     holder.binding.CapacityRatingEdit.setText(equipmentData.CapacityRating)
                     holder.binding.CountEdit.setText(equipmentData.Count.toString())
-                    holder.binding.ProtectionModeEdit.setText(equipmentData.ProtectionMode)
-                    holder.binding.InstallationPointEdit.setText(equipmentData.LocationMark)
+                    holder.binding.WeightEdit.setText(equipmentData.Weight)
+                    holder.binding.SizeLEdit.setText(equipmentData.SizeL)
+                    holder.binding.SizeBEdit.setText(equipmentData.SizeB)
+                    holder.binding.SizeHEdit.setText(equipmentData.SizeH)
                     holder.binding.remarksEdit.setText(equipmentData.Remark)
                 }
                 if (InsAccepData!=null){
@@ -163,8 +167,10 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
                         it.Make=holder.binding.MakeEdit.text.toString()
                         it.Model=holder.binding.ModelEdit.text.toString()
                         it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
-                        it.ProtectionMode=holder.binding.ProtectionModeEdit.text.toString()
-                        it.LocationMark=holder.binding.InstallationPointEdit.text.toString()
+                        it.Weight=holder.binding.WeightEdit.text.toString()
+                        it.SizeL=holder.binding.SizeLEdit.text.toString()
+                        it.SizeB=holder.binding.SizeBEdit.text.toString()
+                        it.SizeH=holder.binding.SizeHEdit.text.toString()
                         it.Count=holder.binding.CountEdit.text.toString().toIntOrNull()
                         it.Remark=holder.binding.remarksEdit.text.toString()
                         if (equipmentData!=null)
@@ -178,11 +184,11 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
                             it.id=InsAccepData.id
                     }
 
-                    val utilitySurgData= UtilityEquipmentSurgeProtectionDevice()
-                    utilitySurgData.Equipment= arrayListOf(tempEquipData)
-                    utilitySurgData.InstallationAndAcceptence= arrayListOf(tempInsData)
-                    utilitySurgData.id=datalist.id
-                    listener.updateUtilitySurgeData(utilitySurgData)
+                    val utilityPowerBoxData= UtilityEquipmentPowerDistributionBox()
+                    utilityPowerBoxData.Equipment= arrayListOf(tempEquipData)
+                    utilityPowerBoxData.InstallationAndAcceptence= arrayListOf(tempInsData)
+                    utilityPowerBoxData.id=datalist.id
+                    listener.updateUtilityPowerBoxData(utilityPowerBoxData)
                 }
 //                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
 //                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
@@ -205,8 +211,8 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
 
 
 
-    interface UtilitySurgListListener {
-        fun updateUtilitySurgeData(updatedData: UtilityEquipmentSurgeProtectionDevice)
+    interface UtilityPowerBoxListListener {
+        fun updateUtilityPowerBoxData(updatedData: UtilityEquipmentPowerDistributionBox)
     }
 
 }

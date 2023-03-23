@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice
+package com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,19 +6,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivitySpdDetailsBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAC
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSurgeProtectionDevice
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentPowerDistributionBox
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
-import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.UtilityPowerDisBoxActivity
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class UtilitySurgeProtectionActivity : BaseActivity(),UtilitySurgFragAdapter.UtilitySurgListListener {
+class UtilityPowerDisBoxActivity : BaseActivity(),UtilityPowerBoxFragAdapter.UtilityPowerBoxListListener {
     lateinit var binding:ActivitySpdDetailsBinding
-    lateinit var adapter: UtilitySurgFragAdapter
-    var surgAllData: ArrayList<UtilityEquipmentSurgeProtectionDevice>?=null
+    lateinit var adapter: UtilityPowerBoxFragAdapter
+    var surgAllData: ArrayList<UtilityEquipmentPowerDistributionBox>?=null
     lateinit var viewmodel: HomeViewModel
     var count:String="0"
     companion object{
@@ -39,8 +37,8 @@ class UtilitySurgeProtectionActivity : BaseActivity(),UtilitySurgFragAdapter.Uti
             onBackPressed()
         }
         if (utilityData!=null){
-            count=utilityData?.UtilityEquipmentSurgeProtectionDevice?.size.toString()
-            adapter= UtilitySurgFragAdapter(this,this, utilityData?.UtilityEquipmentSurgeProtectionDevice)
+            count=utilityData?.UtilityEquipmentPowerDistributionBox?.size.toString()
+            adapter= UtilityPowerBoxFragAdapter(this,this, utilityData?.UtilityEquipmentPowerDistributionBox)
             binding.listItem.adapter=adapter
         }
         if (viewmodel.utilityEquipResponse?.hasActiveObservers() == true){
@@ -55,10 +53,10 @@ class UtilitySurgeProtectionActivity : BaseActivity(),UtilitySurgFragAdapter.Uti
                 hideLoader()
                 AppLogger.log("UtilitySurgeProtectionActivity card Data fetched successfully")
                 try {
-                    surgAllData=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentSurgeProtectionDevice
-                    utilityData =it.data.UtilityEquipment?.get(0)
-                    count=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentSurgeProtectionDevice?.size.toString()
-                    adapter.setData(it.data.UtilityEquipment?.get(0)?.UtilityEquipmentSurgeProtectionDevice)
+                    surgAllData=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentPowerDistributionBox
+                    utilityData=it.data.UtilityEquipment?.get(0)
+                    count=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentPowerDistributionBox?.size.toString()
+                    adapter.setData(it.data.UtilityEquipment?.get(0)?.UtilityEquipmentPowerDistributionBox)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("UtilitySurgeProtectionActivity error : ${e.localizedMessage}")
                 }
@@ -71,11 +69,12 @@ class UtilitySurgeProtectionActivity : BaseActivity(),UtilitySurgFragAdapter.Uti
             }
         }
         binding.Count.text=count
+        binding.title.text="Power Distribution Box"
 
         binding.addItemsLayout.setOnClickListener {
-            val bm = AddNewUtilitySurgDialouge(
+            val bm = AddNewUtilityPowerBoxDialouge(
                 utilityData,
-                object : AddNewUtilitySurgDialouge.AddUtilitySurgeDataListener {
+                object : AddNewUtilityPowerBoxDialouge.AddUtilityPowerBoxDataListener {
                     override fun addNewData(){
                         showLoader()
                         viewmodel.utilityRequestAll(AppController.getInstance().siteid)
@@ -86,10 +85,10 @@ class UtilitySurgeProtectionActivity : BaseActivity(),UtilitySurgFragAdapter.Uti
     }
     
 
-    override fun updateUtilitySurgeData(updatedData: UtilityEquipmentSurgeProtectionDevice) {
+    override fun updateUtilityPowerBoxData(updatedData: UtilityEquipmentPowerDistributionBox) {
         showLoader()
         val utilityAllDataModel = UpdateUtilityEquipmentAllData()
-        utilityAllDataModel.UtilityEquipmentSurgeProtectionDevice= arrayListOf(updatedData)
+        utilityAllDataModel.UtilityEquipmentPowerDistributionBox= arrayListOf(updatedData)
         if (utilityData!=null)
             utilityAllDataModel.id= utilityData?.id
         viewmodel.updateUtilityEquip(utilityAllDataModel)
